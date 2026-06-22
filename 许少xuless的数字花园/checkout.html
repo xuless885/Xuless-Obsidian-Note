@@ -1,0 +1,428 @@
+<!DOCTYPE html> <html lang="zh-cn"><head>
+<title>结账页面 / Checkout</title>
+<base href="..">
+<meta name="pathname" content="许少xuless的数字花园/checkout.html">
+<meta name="description" content="许少Xuless 官方结账页面 — DSE 数学模拟卷、练习册">
+<meta property="og:title" content="结账页面 / Checkout">
+<meta property="og:description" content="许少Xuless 官方结账页面 — DSE 数学模拟卷、练习册">
+<meta property="og:type" content="website">
+<meta property="og:url" content="许少xuless的数字花园/checkout.html">
+<meta property="og:image" content="undefined">
+<meta charset="UTF-8"><meta property="og:site_name" content="Xuless Obsidian Note"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0"><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="site-lib/rss.xml"><script async="" id="webpage-script" src="site-lib/scripts/webpage.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-wasm-script" src="site-lib/scripts/graph-wasm.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-render-worker-script" src="site-lib/scripts/graph-render-worker.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><link rel="icon" href="site-lib/media/favicon.png"><link rel="preload" href="site-lib/styles/snippets.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/snippets.css"></noscript><link rel="stylesheet" href="site-lib/styles/obsidian.css"><link rel="preload" href="site-lib/styles/other-plugins.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/other-plugins.css"></noscript><link rel="stylesheet" href="site-lib/styles/theme.css"><link rel="preload" href="site-lib/styles/global-variable-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/global-variable-styles.css"></noscript><link rel="preload" href="site-lib/styles/supported-plugins.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/supported-plugins.css"></noscript><link rel="preload" href="site-lib/styles/main-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/main-styles.css"></noscript><style>body{--line-width:40em;--line-width-adaptive:40em;--file-line-width:40em;--sidebar-width:min(20em, 80vw);--collapse-arrow-size:11px;--tree-vertical-spacing:1.3em;--sidebar-margin:12px}:root{background-color:#202124}.sidebar{height:100%;font-size:14px;z-index:10;min-width:calc(var(--sidebar-width) + var(--divider-width-hover));max-width:calc(var(--sidebar-width) + var(--divider-width-hover));position:relative;overflow:hidden;overflow:clip;transition:min-width ease-in-out,max-width ease-in-out;transition-duration:.2s;contain:size}#left-sidebar{left:0}#right-sidebar{right:0}.sidebar.is-collapsed{min-width:0;max-width:0}.sidebar.floating{position:absolute}.sidebar .leaf-content{height:100%;min-width:calc(var(--sidebar-width) - var(--divider-width-hover));top:0;padding:var(--sidebar-margin);padding-top:4em;line-height:var(--line-height-tight);background-color:var(--background-secondary);transition:background-color,border-right,border-left,box-shadow;transition-duration:var(--color-fade-speed);transition-timing-function:ease-in-out;position:absolute;display:flex;flex-direction:column}.sidebar:not(.is-collapsed) .leaf-content{min-width:calc(max(100%,var(--sidebar-width)) - 3px);max-width:calc(max(100%,var(--sidebar-width)) - 3px)}#left-sidebar-content{left:0;border-top-right-radius:var(--radius-l);border-bottom-right-radius:var(--radius-l)}#right-sidebar-content{right:0;border-top-left-radius:var(--radius-l);border-bottom-left-radius:var(--radius-l)}.sidebar #left-sidebar-content,.sidebar #right-sidebar-content{contain:none!important;container-type:normal!important;animation:none!important}.sidebar:has(.leaf-content:empty):has(.topbar-content:empty){display:none}.sidebar-topbar{height:calc(2.3em + 2 * var(--sidebar-margin));width:var(--sidebar-width);padding:var(--sidebar-margin);z-index:1;position:fixed;display:flex;align-items:center;transition:width ease-in-out;transition-duration:inherit}.sidebar.is-collapsed .sidebar-topbar{width:calc(2.3em + var(--sidebar-margin) * 2)}.sidebar .sidebar-topbar.is-collapsed{width:0}#left-sidebar .sidebar-topbar{left:0;flex-direction:row;border-top-right-radius:var(--radius-l)}#right-sidebar .sidebar-topbar{right:0;flex-direction:row-reverse;border-top-left-radius:var(--radius-l)}#left-sidebar .topbar-content{margin-right:calc(2.3em + var(--sidebar-margin));flex-direction:row}#right-sidebar .topbar-content{margin-left:calc(2.3em + var(--sidebar-margin));flex-direction:row-reverse}.topbar-content{overflow:hidden visible;overflow:clip visible;width:100%;height:100%;display:flex;align-items:center;transition:inherit}.sidebar.is-collapsed .topbar-content{width:0;transition:inherit}.clickable-icon.sidebar-collapse-icon{background-color:transparent;color:var(--icon-color-focused);padding:2px!important;margin:0!important;height:100%!important;width:2.3em!important;margin-inline:0.14em!important;position:absolute}#left-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);right:var(--sidebar-margin)}#right-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);left:var(--sidebar-margin)}.clickable-icon.sidebar-collapse-icon svg.svg-icon{width:100%;height:100%}.feature-title{margin-left:1px;text-transform:uppercase;letter-spacing:.06em;margin-top:.75em;margin-bottom:.75em}.feature-header{display:flex;align-items:center;padding-top:0;font-size:1em;padding-left:0}body.floating-sidebars .sidebar{position:absolute}body{transition:background-color var(--color-fade-speed) ease-in-out}#navbar:not(:empty){display:flex;align-items:center;justify-content:space-between;padding:.5em 1em;width:100%}#main{display:flex;flex-direction:column;height:100%;width:100%;align-items:stretch;justify-content:center}#main-horizontal{display:flex;flex-direction:row;flex-grow:1;width:100%;align-items:stretch;justify-content:center}#center-content{flex-basis:100%;max-width:100%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .2s ease-in-out;contain:inline-size}.hide{opacity:0!important;transition:opacity .2s ease-in-out;pointer-events:none}#center-content>.obsidian-document{padding-left:2em;padding-right:1em;margin-bottom:0;width:100%;width:-webkit-fill-available;width:-moz-available;width:fill-available;transition:background-color var(--color-fade-speed) ease-in-out;border-top-right-radius:var(--window-radius,var(--radius-m));border-top-left-radius:var(--window-radius,var(--radius-m));overflow-x:hidden!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;contain:inline-size}body #center-content>.obsidian-document>.markdown-preview-sizer{padding-bottom:80vh;width:100%;max-width:var(--line-width);flex-basis:var(--line-width);transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document>div{width:100%!important;transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document:not([data-type=markdown]).embed{display:flex;padding:1em;height:100%;width:100%;align-items:center;justify-content:center}#center-content>.obsidian-document:not([data-type=markdown]).embed>*{max-width:100%;max-height:100%;object-fit:contain}:not(h1,h2,h3,h4,h5,h6,li):has(> :is(.math,table)){overflow-x:auto!important}#center-content>.obsidian-document:not([data-type=markdown]){overflow-x:auto;contain:content;padding:0;margin:0;height:100%}.obsidian-document[data-type=attachment]{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%}.obsidian-document[data-type=attachment]>*{outline:0;border:none;box-shadow:none}.obsidian-document[data-type=attachment] :is(img){max-width:90%;max-height:90%;object-fit:contain}.obsidian-document[data-type=attachment]>:is(audio){width:100%;max-width:min(90%,var(--line-width))}.obsidian-document[data-type=attachment]>:is(embed,iframe,video){width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}.canvas-wrapper>:is(.header,.footer){z-index:100;position:absolute;display:flex;justify-content:center;flex-direction:column;width:100%;align-items:center}.scroll-highlight{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1000;background-color:hsla(var(--color-accent-hsl),.25);opacity:0;padding:1em;inset:50%;translate:-50% -50%;border-radius:var(--radius-s)}</style><script defer="">async function loadIncludes(){let e=document.querySelectorAll("link[itemprop='include']");for(const t of e){let e=t.getAttribute("href");try{let o="";if(e.startsWith("https:")||e.startsWith("http:")||"file:"!=window.location.protocol){const n=await fetch(e);if(!n.ok){console.log("Could not include file: "+e),t?.remove();continue}o=await n.text()}else{const t=document.getElementById(btoa(encodeURI(e)));if(t){const e=JSON.parse(decodeURI(atob(t.getAttribute("value")??"")));o=e?.data??""}}let n=document.createRange().createContextualFragment(o);t.before(n),t.remove(),console.log("Included text: "+o),console.log("Included file: "+e)}catch(o){t?.remove(),console.log("Could not include file: "+e,o);continue}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script")));!function e(n){let l=o[n],c=n+1;l?(l&&"true"!=l.getAttribute("loaded")||n<o.length&&e(c),n<o.length&&l.addEventListener("load",(()=>e(c)))):n<o.length?e(c):t()}(0)}</script></head><body class="publish css-settings-manager mod-windows is-hidden-frameless styled-scrollbars show-inline-title show-ribbon is-focused"><script defer="">let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script><div class="parsed-feature-container" style="display: contents;"><link itemprop="include" href="site-lib/html/custom-head-content-content.html"></div><div id="main"><div id="navbar"></div><div id="main-horizontal"><div id="left-content" class="leaf" style="--sidebar-width: var(--sidebar-width-left);"><div id="left-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><div id="search-container"><div id="search-wrapper"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div aria-label="Clear search" id="search-clear-button"></div></div></div></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="left-sidebar-content" class="leaf-content"><link itemprop="include" href="site-lib/html/file-tree-content.html"></div></div><script defer="">let ls = document.querySelector("#left-sidebar"); ls.classList.toggle("is-collapsed", window.innerWidth < 768); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div></div><div id="center-content" class="leaf"><div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event allow-fold-headings allow-fold-lists show-indentation-guide show-properties is-readable-line-width" data-type="markdown"><style id="MJX-CHTML-styles"></style><pre class="frontmatter language-yaml" style="display: none;"><code class="language-yaml is-loaded"><span class="token key atrule">title</span><span class="token punctuation">:</span> 结账页面 / Checkout
+<span class="token key atrule">description</span><span class="token punctuation">:</span> 许少Xuless 官方结账页面 — DSE 数学模拟卷、练习册
+<span class="token key atrule">permalink</span><span class="token punctuation">:</span> /checkout
+<span class="token key atrule">tags</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> 商业
+  <span class="token punctuation">-</span> DSE
+  <span class="token punctuation">-</span> 支付</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre><div class="markdown-preview-sizer markdown-preview-section"><div class="header"><h1 class="page-title heading inline-title" id="结账页面_/_Checkout_0">结账页面 / Checkout</h1><div class="data-bar"></div></div><div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div><div class="el-h1"><h1 data-heading="结账页面 / Checkout" dir="auto" class="heading" id="结账页面_/_Checkout_1"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>结账页面 / Checkout</h1></div><div class="el-blockquote"><blockquote dir="auto">
+<p><strong>许少Xuless 官方结账页面</strong></p>
+</blockquote></div><div class="el-p"><p dir="auto"><strong>最后更新</strong>：2026-06-22</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="🎓 关于许少Xuless" dir="auto" class="heading" id="🎓_关于许少Xuless_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>🎓 关于许少Xuless</h2></div><div class="el-p"><p dir="auto"><strong>许少Xuless</strong> 是香港 DSE 数学教学品牌，由 Xuless（许少）以个人名义运营。</p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><strong>作者背景</strong>：HKUST（香港科技大学）数学系</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><strong>专业经验</strong>：自编 DSE 数学教科书（37 章）+ 2023–2026 年模拟卷命题</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span><strong>联系方式</strong>：
+<ul class="has-list-bullet">
+<li data-line="3" dir="auto"><span class="list-bullet"></span>微信：<code>Xuless1214alpha</code></li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>邮箱：<code>3311059015@qq.com</code></li>
+</ul>
+</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><strong>经营地区</strong>：中国香港及中国大陆</li>
+</ul></div><div class="el-blockquote"><blockquote dir="auto">
+<p>💡 想先看讲义和内容？<a data-tooltip-position="top" aria-label="Wellcome!" data-href="Wellcome!" href="许少xuless的数字花园/wellcome!.html" class="internal-link" target="_self" rel="noopener nofollow">返回首页</a></p>
+</blockquote></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="📚 在售商品 / Products Available" dir="auto" class="heading" id="📚_在售商品_/_Products_Available_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>📚 在售商品 / Products Available</h2></div><div class="el-hr"><hr></div><div class="el-h3"><h3 data-heading="系列一：HKDSE 数学必修部分模拟卷" dir="auto" class="heading" id="系列一：HKDSE_数学必修部分模拟卷_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>系列一：HKDSE 数学必修部分模拟卷</h3></div><div class="el-blockquote"><blockquote dir="auto">
+<p>每套含 Paper 1 + Paper 2 + 评分参考（Marking Scheme），PDF 数字下载，HK$38-65/套。</p>
+</blockquote></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">产品编号</th>
+<th dir="ltr">年份 / 套数</th>
+<th dir="ltr">状态</th>
+<th dir="ltr">购买(Stripe平台)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>2023 CP 01</strong></td>
+<td dir="ltr">2023 年 第 1 套</td>
+<td dir="ltr">🚧 即将上架</td>
+<td dir="auto">—</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>2023 CP 02</strong></td>
+<td dir="ltr">2023 年 第 2 套</td>
+<td dir="ltr">🚧 即将上架</td>
+<td dir="auto">—</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>2023 CP 03</strong></td>
+<td dir="ltr">2023 年 第 3 套</td>
+<td dir="ltr">🚧 即将上架</td>
+<td dir="auto">—</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>2023 CP 04</strong></td>
+<td dir="ltr">2023 年 第 4 套</td>
+<td dir="ltr">🚧 即将上架</td>
+<td dir="auto">—</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>2023 CP 05</strong></td>
+<td dir="ltr">2023 年 第 5 套</td>
+<td dir="ltr">🚧 即将上架</td>
+<td dir="auto">—</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>2024 CP 01</strong></td>
+<td dir="ltr">2024 年 第 1 套</td>
+<td dir="ltr">🚧 即将上架</td>
+<td dir="auto">—</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>2024 CP 02</strong></td>
+<td dir="ltr">2024 年 第 2 套</td>
+<td dir="ltr">🚧 即将上架</td>
+<td dir="auto">—</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>2026 CP 01</strong></td>
+<td dir="ltr">2026 年 第 1 套</td>
+<td dir="ltr">✅ 在售</td>
+<td dir="ltr"><a data-tooltip-position="top" aria-label="https://buy.stripe.com/dRm14n3qc8FFaxG343bZe00" rel="noopener nofollow" class="external-link is-unresolved" href="https://buy.stripe.com/dRm14n3qc8FFaxG343bZe00" target="_self">立即购买</a></td>
+</tr>
+</tbody>
+</table></div><div class="el-blockquote"><blockquote dir="auto">
+<p>📌 购买前请确认选定套数，付款后可在 Stripe 备注中注明套数编号，或通过微信 / 邮箱告知。</p>
+<p>⚠️ <strong>支付前必读</strong>：继续付款即表示您已阅读并同意 <a data-tooltip-position="top" aria-label="legal/terms" data-href="legal/terms" href="许少xuless的数字花园/legal/terms.html" class="internal-link" target="_self" rel="noopener nofollow">服务条款</a>、<a data-tooltip-position="top" aria-label="legal/privacy" data-href="legal/privacy" href="许少xuless的数字花园/legal/privacy.html" class="internal-link" target="_self" rel="noopener nofollow">隐私政策</a> 和 <a data-tooltip-position="top" aria-label="legal/refund" data-href="legal/refund" href="许少xuless的数字花园/legal/refund.html" class="internal-link" target="_self" rel="noopener nofollow">退款政策</a>。</p>
+</blockquote></div><div class="el-hr"><hr></div><div class="el-h3"><h3 data-heading="系列二：HKDSE 数学选修部分模拟卷（M1 / M2）" dir="auto" class="heading" id="系列二：HKDSE_数学选修部分模拟卷（M1_/_M2）_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>系列二：HKDSE 数学选修部分模拟卷（M1 / M2）</h3></div><div class="el-blockquote"><blockquote dir="auto">
+<p>每套含完整 Mock Paper + 评分参考（Marking Scheme），PDF 数字下载，HK$48/套。</p>
+</blockquote></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">产品编号</th>
+<th dir="ltr">模块 / 年份</th>
+<th dir="ltr">状态</th>
+<th dir="ltr">购买</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>M1 2023 CP 01</strong></td>
+<td dir="ltr">单元一 · 2023 年</td>
+<td dir="ltr">🚧 即将上架</td>
+<td dir="auto">—</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>M2 2023 CP 01</strong></td>
+<td dir="ltr">单元二 · 2023 年</td>
+<td dir="ltr">🚧 即将上架</td>
+<td dir="auto">—</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>M1 2025 CP 01</strong></td>
+<td dir="ltr">单元一 · 2025 年</td>
+<td dir="ltr">🚧 即将上架</td>
+<td dir="auto">—</td>
+</tr>
+</tbody>
+</table></div><div class="el-blockquote"><blockquote dir="auto">
+<p>📌 M1 = 微积分与统计（Calculus &amp; Statistics） | M2 = 代数与微积分（Algebra &amp; Calculus）</p>
+</blockquote></div><div class="el-blockquote"><blockquote dir="auto">
+<p>📌 购买前请确认选定套数，付款后可在 Stripe 备注中注明套数编号，或通过微信 / 邮箱告知。</p>
+<p>⚠️ <strong>支付前必读</strong>：继续付款即表示您已阅读并同意 <a data-tooltip-position="top" aria-label="legal/terms" data-href="legal/terms" href="许少xuless的数字花园/legal/terms.html" class="internal-link" target="_self" rel="noopener nofollow">服务条款</a>、<a data-tooltip-position="top" aria-label="legal/privacy" data-href="legal/privacy" href="许少xuless的数字花园/legal/privacy.html" class="internal-link" target="_self" rel="noopener nofollow">隐私政策</a> 和 <a data-tooltip-position="top" aria-label="legal/refund" data-href="legal/refund" href="许少xuless的数字花园/legal/refund.html" class="internal-link" target="_self" rel="noopener nofollow">退款政策</a>。</p>
+</blockquote></div><div class="el-hr"><hr></div><div class="el-h3"><h3 data-heading="系列三：HKDSE 数学练习册" dir="auto" class="heading" id="系列三：HKDSE_数学练习册_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>系列三：HKDSE 数学练习册</h3></div><div class="el-blockquote"><blockquote dir="auto">
+<p>按 DSE 必修部分章节编排，每章一本独立练习册（含习题 + 答案），PDF 数字下载。</p>
+</blockquote></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">章节</th>
+<th dir="ltr">内容</th>
+<th dir="ltr">状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Ch.00</td>
+<td dir="ltr">基础概念</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.01</td>
+<td dir="ltr">数系 (I)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.02</td>
+<td dir="ltr">估算</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.03</td>
+<td dir="ltr">整数指数律与进制</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.04</td>
+<td dir="ltr">多项式 (I)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.05</td>
+<td dir="ltr">解方程方法 (I)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.06</td>
+<td dir="ltr">代数式</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.07</td>
+<td dir="ltr">率、比及百分法</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.08</td>
+<td dir="ltr">平面几何 (I)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.09</td>
+<td dir="ltr">三角学 (I)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.10</td>
+<td dir="ltr">立体几何 (I)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.11</td>
+<td dir="ltr">不等式 (I)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.12</td>
+<td dir="ltr">数据的组织与表达</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.13</td>
+<td dir="ltr">集中趋势的度量</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.14</td>
+<td dir="ltr">概率 (I)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.15</td>
+<td dir="ltr">解析几何 (I)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.16</td>
+<td dir="ltr">集合论</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.17</td>
+<td dir="ltr">数系 (II)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.18</td>
+<td dir="ltr">解方程方法 (II)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.19</td>
+<td dir="ltr">函数及其图像</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.20</td>
+<td dir="ltr">直线方程</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.21</td>
+<td dir="ltr">二次函数</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.22</td>
+<td dir="ltr">变分</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.23</td>
+<td dir="ltr">多项式 (II)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.24</td>
+<td dir="ltr">数列 (I)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.25</td>
+<td dir="ltr">指数函数及对数函数</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.26</td>
+<td dir="ltr">三角函数</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.27</td>
+<td dir="ltr">解方程方法 (III)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.28</td>
+<td dir="ltr">不等式 (II)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.29</td>
+<td dir="ltr">平面几何 (II)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.30</td>
+<td dir="ltr">轨迹</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.31</td>
+<td dir="ltr">解析几何 (II)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.32</td>
+<td dir="ltr">立体几何 (II)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.33</td>
+<td dir="ltr">离差的度量</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.34</td>
+<td dir="ltr">排列与组合</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.35</td>
+<td dir="ltr">概率 (II)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+<tr>
+<td dir="ltr">Ch.36</td>
+<td dir="ltr">数列 (II)</td>
+<td dir="ltr">🚧 即将上架</td>
+</tr>
+</tbody>
+</table></div><div class="el-blockquote"><blockquote dir="auto">
+<p>📌 购买前请确认选定套数，付款后可在 Stripe 备注中注明套数编号，或通过微信 / 邮箱告知。</p>
+<p>⚠️ <strong>支付前必读</strong>：继续付款即表示您已阅读并同意 <a data-tooltip-position="top" aria-label="legal/terms" data-href="legal/terms" href="许少xuless的数字花园/legal/terms.html" class="internal-link" target="_self" rel="noopener nofollow">服务条款</a>、<a data-tooltip-position="top" aria-label="legal/privacy" data-href="legal/privacy" href="许少xuless的数字花园/legal/privacy.html" class="internal-link" target="_self" rel="noopener nofollow">隐私政策</a> 和 <a data-tooltip-position="top" aria-label="legal/refund" data-href="legal/refund" href="许少xuless的数字花园/legal/refund.html" class="internal-link" target="_self" rel="noopener nofollow">退款政策</a>。</p>
+</blockquote></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="💳 支持的支付方式 / Accepted Payment Methods" dir="auto" class="heading" id="💳_支持的支付方式_/_Accepted_Payment_Methods_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>💳 支持的支付方式 / Accepted Payment Methods</h2></div><div class="el-p"><p dir="auto">本结账页面支持以下支付方式，由 <strong>Stripe</strong> 提供安全支付处理：</p></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">支付方式</th>
+<th dir="ltr">适用范围</th>
+<th dir="ltr">处理时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>微信支付（WeChat Pay）</strong></td>
+<td dir="ltr">适用于持有中国内地或香港微信账户的客户</td>
+<td dir="ltr">即时</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>支付宝（Alipay）</strong></td>
+<td dir="ltr">适用于持有中国内地支付宝账户的客户</td>
+<td dir="ltr">即时</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Visa / Mastercard / American Express</strong></td>
+<td dir="ltr">适用于全球客户</td>
+<td dir="ltr">即时</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Apple Pay</strong></td>
+<td dir="ltr">适用于移动设备用户</td>
+<td dir="ltr">即时</td>
+</tr>
+</tbody>
+</table></div><div class="el-blockquote"><blockquote dir="auto">
+<p>🛡️ 所有支付由 Stripe, Inc.（美国上市公司，PCI DSS Level 1 认证）处理。本网站不直接收集或存储您的银行卡信息。</p>
+</blockquote></div><div class="el-h3"><h3 data-heading="微信支付标识" dir="auto" class="heading" id="微信支付标识_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>微信支付标识</h3></div><div class="el-blockquote"><blockquote dir="auto">
+<p>✅ <strong>本商户支持微信支付（WeChat Pay）</strong></p>
+<p>您可在 Stripe 支付页面选择「微信支付」选项，使用微信扫描二维码完成付款。</p>
+</blockquote></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="📋 法律与政策 / Legal" dir="auto" class="heading" id="📋_法律与政策_/_Legal_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>📋 法律与政策 / Legal</h2></div><div class="el-p"><p dir="auto">请在付款前仔细阅读以下政策：</p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>📄 <a class="internal-link" data-href="legal/terms" href="许少xuless的数字花园/legal/terms.html" target="_self" rel="noopener nofollow">服务条款 / Terms of Service</a></li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>🔒 <a class="internal-link" data-href="legal/privacy" href="许少xuless的数字花园/legal/privacy.html" target="_self" rel="noopener nofollow">隐私政策 / Privacy Policy</a></li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>↩️ <a class="internal-link" data-href="legal/refund" href="许少xuless的数字花园/legal/refund.html" target="_self" rel="noopener nofollow">退款政策 / Refund Policy</a></li>
+</ul></div><div class="el-blockquote"><blockquote dir="auto">
+<p><strong>继续付款即表示您已阅读并同意上述所有政策。</strong></p>
+</blockquote></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="❓ 常见问题 / FAQ" dir="auto" class="heading" id="❓_常见问题_/_FAQ_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>❓ 常见问题 / FAQ</h2></div><div class="el-h3"><h3 data-heading="Q1：我付款后多久能收到商品？" dir="auto" class="heading" id="Q1：我付款后多久能收到商品？_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Q1：我付款后多久能收到商品？</h3></div><div class="el-p"><p dir="auto"><strong>A</strong>：数字商品（PDF 模拟卷 / 练习册）<strong>付款成功后立即可下载</strong>，无需等待。</p></div><div class="el-h3"><h3 data-heading="Q2：可以开发票吗？" dir="auto" class="heading" id="Q2：可以开发票吗？_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Q2：可以开发票吗？</h3></div><div class="el-p"><p dir="auto"><strong>A</strong>：本商户为香港个人经营者，可提供收据（Receipt）。如需正式商业发票，请通过微信联系作者协商。</p></div><div class="el-h3"><h3 data-heading="Q3：商品支持退款吗？" dir="auto" class="heading" id="Q3：商品支持退款吗？_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Q3：商品支持退款吗？</h3></div><div class="el-p"><p dir="auto"><strong>A</strong>：详见 <a class="internal-link" data-href="legal/refund" href="许少xuless的数字花园/legal/refund.html" target="_self" rel="noopener nofollow">退款政策</a>。<strong>简而言之：付款后 7 天内、且未下载商品</strong>可申请全额退款。</p></div><div class="el-h3"><h3 data-heading="Q4：购买后资料可以分享给他人吗？" dir="auto" class="heading" id="Q4：购买后资料可以分享给他人吗？_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Q4：购买后资料可以分享给他人吗？</h3></div><div class="el-p"><p dir="auto"><strong>A</strong>：不可以。本站销售的资料仅供<strong>个人学习使用</strong>。未经作者许可，不得以任何形式复制、传播、转售。违规者将追究法律责任。</p></div><div class="el-h3"><h3 data-heading="Q5：我的支付信息安全吗？" dir="auto" class="heading" id="Q5：我的支付信息安全吗？_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Q5：我的支付信息安全吗？</h3></div><div class="el-p"><p dir="auto"><strong>A</strong>：安全。所有支付由 Stripe, Inc. 处理，<strong>本站不收集、不存储您的银行卡或支付账户信息</strong>。Stripe 获得 PCI DSS Level 1 认证（最高级别支付安全标准）。</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="📞 联系我们 / Contact" dir="auto" class="heading" id="📞_联系我们_/_Contact_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>📞 联系我们 / Contact</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">渠道</th>
+<th dir="ltr">信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>微信</strong></td>
+<td dir="ltr"><code>Xuless1214alpha</code>（添加时请备注「DSE 购买」）</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>邮箱</strong></td>
+<td dir="ltr"><code>3311059015@qq.com</code></td>
+</tr>
+<tr>
+<td dir="ltr"><strong>响应时间</strong></td>
+<td dir="ltr">通常 24 小时内回复（工作日）</td>
+</tr>
+</tbody>
+</table></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="🏢 商家信息 / Merchant Information" dir="auto" class="heading" id="🏢_商家信息_/_Merchant_Information_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>🏢 商家信息 / Merchant Information</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">项目</th>
+<th dir="ltr">信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>商家名称</strong></td>
+<td dir="ltr">Xuless（许少）</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>经营地区</strong></td>
+<td dir="ltr">中国香港及中国大陆</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>支付处理商</strong></td>
+<td dir="ltr">Stripe Payments Europe Ltd.（爱尔兰）/ Stripe, Inc.（美国）</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>联系邮箱</strong></td>
+<td dir="ltr"><code>3311059015@qq.com</code></td>
+</tr>
+<tr>
+<td dir="ltr"><strong>联系微信</strong></td>
+<td dir="ltr"><code>Xuless1214alpha</code></td>
+</tr>
+</tbody>
+</table></div><div class="el-hr"><hr></div><div class="el-p"><p dir="auto"><sub>© 2026 Xuless. All rights reserved. | 本页面由许少Xuless独立运营</sub></p></div><div class="footer"><div class="data-bar"></div></div></div></div></div><div id="right-content" class="leaf" style="--sidebar-width: var(--sidebar-width-right);"><div id="right-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><label class="theme-toggle-container" for="theme-toggle-input" id=""><input class="theme-toggle-input" type="checkbox" id="theme-toggle-input"><div class="toggle-background"></div></label></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="right-sidebar-content" class="leaf-content"><div class="graph-view-wrapper"><div class="feature-header"><div class="feature-title">Interactive Graph</div></div><div class="graph-view-placeholder">
+		<div class="graph-view-container">
+			<div class="graph-icon graph-expand" role="button" aria-label="Expand" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+			<div class="graph-icon graph-global" role="button" aria-label="Global Graph" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-git-fork"><circle cx="12" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"></path><path d="M12 12v3"></path></svg></div>
+			<canvas id="graph-canvas" class="hide" width="512px" height="512px"></canvas>
+		</div>
+		</div></div><div id="outline" class=" tree-container"><div class="feature-header"><div class="feature-title">Table Of Contents</div><button class="clickable-icon nav-action-button tree-collapse-all" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#结账页面_/_Checkout_0" data-path="#结账页面_/_Checkout_0"><div class="tree-item-inner heading-link" heading-name="结账页面 / Checkout">结账页面 / Checkout</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="许少xuless的数字花园/checkout.html#结账页面_/_Checkout_1" data-path="#结账页面_/_Checkout_1"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="结账页面 / Checkout">结账页面 / Checkout</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#🎓_关于许少Xuless_0" data-path="#🎓_关于许少Xuless_0"><div class="tree-item-inner heading-link" heading-name="🎓 关于许少Xuless">🎓 关于许少Xuless</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-item-self is-clickable mod-collapsible" href="许少xuless的数字花园/checkout.html#📚_在售商品_/_Products_Available_0" data-path="#📚_在售商品_/_Products_Available_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="📚 在售商品 / Products Available">📚 在售商品 / Products Available</div></a><div class="tree-item-children"><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#系列一：HKDSE_数学必修部分模拟卷_0" data-path="#系列一：HKDSE_数学必修部分模拟卷_0"><div class="tree-item-inner heading-link" heading-name="系列一：HKDSE 数学必修部分模拟卷">系列一：HKDSE 数学必修部分模拟卷</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#系列二：HKDSE_数学选修部分模拟卷（M1_/_M2）_0" data-path="#系列二：HKDSE_数学选修部分模拟卷（M1_/_M2）_0"><div class="tree-item-inner heading-link" heading-name="系列二：HKDSE 数学选修部分模拟卷（M1 / M2）">系列二：HKDSE 数学选修部分模拟卷（M1 / M2）</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#系列三：HKDSE_数学练习册_0" data-path="#系列三：HKDSE_数学练习册_0"><div class="tree-item-inner heading-link" heading-name="系列三：HKDSE 数学练习册">系列三：HKDSE 数学练习册</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-item-self is-clickable mod-collapsible" href="许少xuless的数字花园/checkout.html#💳_支持的支付方式_/_Accepted_Payment_Methods_0" data-path="#💳_支持的支付方式_/_Accepted_Payment_Methods_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="💳 支持的支付方式 / Accepted Payment Methods">💳 支持的支付方式 / Accepted Payment Methods</div></a><div class="tree-item-children"><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#微信支付标识_0" data-path="#微信支付标识_0"><div class="tree-item-inner heading-link" heading-name="微信支付标识">微信支付标识</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#📋_法律与政策_/_Legal_0" data-path="#📋_法律与政策_/_Legal_0"><div class="tree-item-inner heading-link" heading-name="📋 法律与政策 / Legal">📋 法律与政策 / Legal</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-item-self is-clickable mod-collapsible" href="许少xuless的数字花园/checkout.html#❓_常见问题_/_FAQ_0" data-path="#❓_常见问题_/_FAQ_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="❓ 常见问题 / FAQ">❓ 常见问题 / FAQ</div></a><div class="tree-item-children"><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#Q1：我付款后多久能收到商品？_0" data-path="#Q1：我付款后多久能收到商品？_0"><div class="tree-item-inner heading-link" heading-name="Q1：我付款后多久能收到商品？">Q1：我付款后多久能收到商品？</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#Q2：可以开发票吗？_0" data-path="#Q2：可以开发票吗？_0"><div class="tree-item-inner heading-link" heading-name="Q2：可以开发票吗？">Q2：可以开发票吗？</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#Q3：商品支持退款吗？_0" data-path="#Q3：商品支持退款吗？_0"><div class="tree-item-inner heading-link" heading-name="Q3：商品支持退款吗？">Q3：商品支持退款吗？</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#Q4：购买后资料可以分享给他人吗？_0" data-path="#Q4：购买后资料可以分享给他人吗？_0"><div class="tree-item-inner heading-link" heading-name="Q4：购买后资料可以分享给他人吗？">Q4：购买后资料可以分享给他人吗？</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#Q5：我的支付信息安全吗？_0" data-path="#Q5：我的支付信息安全吗？_0"><div class="tree-item-inner heading-link" heading-name="Q5：我的支付信息安全吗？">Q5：我的支付信息安全吗？</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#📞_联系我们_/_Contact_0" data-path="#📞_联系我们_/_Contact_0"><div class="tree-item-inner heading-link" heading-name="📞 联系我们 / Contact">📞 联系我们 / Contact</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="许少xuless的数字花园/checkout.html#🏢_商家信息_/_Merchant_Information_0" data-path="#🏢_商家信息_/_Merchant_Information_0"><div class="tree-item-inner heading-link" heading-name="🏢 商家信息 / Merchant Information">🏢 商家信息 / Merchant Information</div></a><div class="tree-item-children"></div></div></div></div></div></div></div><script defer="">let rs = document.querySelector("#right-sidebar"); rs.classList.toggle("is-collapsed", window.innerWidth < 768); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></div></div></body></html>
