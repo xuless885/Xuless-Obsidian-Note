@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Xuless Obsidian Note]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Xuless Obsidian Note</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Wed, 24 Jun 2026 07:09:18 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Wed, 24 Jun 2026 07:09:16 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[欢迎 · 许少Xuless 的数字花园]]></title><description><![CDATA[个人数学与教学笔记精选 — DSE 数学 / 数理统计 / 复分析]]></description><link>许少xuless的数字花园/wellcome!.html</link><guid isPermaLink="false">许少Xuless的数字花园/Wellcome!.md</guid><pubDate>Wed, 24 Jun 2026 07:08:33 GMT</pubDate></item><item><title><![CDATA[给读者的简介 · DSE Textbook Plan]]></title><description><![CDATA[DSE Textbook Plan 各章节草稿文档的使用说明]]></description><link>hkdse-course/dse-textbook-plan/给读者的简介-introduction-for-every-reader.html</link><guid isPermaLink="false">HKDSE course/DSE Textbook Plan/给读者的简介 Introduction for every reader.md</guid><pubDate>Wed, 24 Jun 2026 06:45:55 GMT</pubDate></item><item><title><![CDATA[Chapter 7 率、比及百分法]]></title><description><![CDATA[
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Xuless Obsidian Note]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Xuless Obsidian Note</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Wed, 24 Jun 2026 08:40:51 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Wed, 24 Jun 2026 08:40:51 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Test]]></title><description><![CDATA[ Test]]></description><link>hkdse-course/dse-textbook-plan/test.html</link><guid isPermaLink="false">HKDSE course/DSE Textbook Plan/Test.canvas</guid><pubDate>Wed, 24 Jun 2026 08:20:08 GMT</pubDate></item><item><title><![CDATA[欢迎 · 许少Xuless 的数字花园]]></title><description><![CDATA[个人数学与教学笔记精选 — DSE 数学 / 数理统计 / 复分析]]></description><link>许少xuless的数字花园/wellcome!.html</link><guid isPermaLink="false">许少Xuless的数字花园/Wellcome!.md</guid><pubDate>Wed, 24 Jun 2026 07:08:33 GMT</pubDate></item><item><title><![CDATA[给读者的简介 · DSE Textbook Plan]]></title><description><![CDATA[DSE Textbook Plan 各章节草稿文档的使用说明]]></description><link>hkdse-course/dse-textbook-plan/给读者的简介-introduction-for-every-reader.html</link><guid isPermaLink="false">HKDSE course/DSE Textbook Plan/给读者的简介 Introduction for every reader.md</guid><pubDate>Wed, 24 Jun 2026 06:45:55 GMT</pubDate></item><item><title><![CDATA[Chapter 7 率、比及百分法]]></title><description><![CDATA[
 本章处理五个核心主题：百分法的基本概念与商业应用（含盈利/亏损百分率计算）、单位换算与量纲分析、比的运算与连比、比例（含性质、正反比例与混合比例应用）、以及率——当比的双方来自不同量纲时，比值即成为带有复合单位的率（速率、增长率）。
 前置：<a data-tooltip-position="top" aria-label="Chapter 6 代数式" data-href="Chapter 6 代数式" href="hkdse-course/dse-课题讲义/chapter-6-代数式.html" class="internal-link" target="_self" rel="noopener nofollow">代数式</a>；<a data-tooltip-position="top" aria-label="Chapter 5 解方程方法(I)" data-href="Chapter 5 解方程方法(I)" href="hkdse-course/dse-课题讲义/chapter-5-解方程方法(i).html" class="internal-link" target="_self" rel="noopener nofollow">解方程方法(I)</a>
 百分法是将数值以「百分之几」的方式表示的计算系统。我们日常生活中接触的折扣、利率、通胀、统计数据等无不以百分数呈现。
@@ -692,69 +692,7 @@ Example
 公理不用证明，它们是数学推理的「游戏规则」；定理必须从公理出发证明。
 逆否命题 与原命题 等价，但不要与逆命题 混淆，逆命题一般不等价于原命题。
 物理量运算时单位也要参与： 无意义；单位换算要先做。
-]]></description><link>hkdse-course/dse-课题讲义/chapter-0-基础概念.html</link><guid isPermaLink="false">HKDSE course/DSE 课题讲义/Chapter 0 基础概念.md</guid><pubDate>Tue, 23 Jun 2026 06:25:17 GMT</pubDate></item><item><title><![CDATA[隐私政策 / Privacy Policy]]></title><description><![CDATA[许少Xuless 隐私政策 — 符合 GDPR 与中国香港《个人资料（私隐）条例》]]></description><link>许少xuless的数字花园/legal/privacy.html</link><guid isPermaLink="false">许少Xuless的数字花园/legal/privacy.md</guid><pubDate>Mon, 22 Jun 2026 14:14:09 GMT</pubDate></item><item><title><![CDATA[结账页面 / Checkout]]></title><description><![CDATA[许少Xuless 官方结账页面 — DSE 数学模拟卷、练习册]]></description><link>许少xuless的数字花园/checkout.html</link><guid isPermaLink="false">许少Xuless的数字花园/checkout.md</guid><pubDate>Mon, 22 Jun 2026 14:12:44 GMT</pubDate></item><item><title><![CDATA[退款政策 / Refund Policy]]></title><description><![CDATA[许少Xuless 退款政策 — 7 天未下载可全额退款]]></description><link>许少xuless的数字花园/legal/refund.html</link><guid isPermaLink="false">许少Xuless的数字花园/legal/refund.md</guid><pubDate>Mon, 22 Jun 2026 14:06:22 GMT</pubDate></item><item><title><![CDATA[服务条款 / Terms of Service]]></title><description><![CDATA[许少Xuless 服务条款 — 适用于通过本数字花园购买的所有商品]]></description><link>许少xuless的数字花园/legal/terms.html</link><guid isPermaLink="false">许少Xuless的数字花园/legal/terms.md</guid><pubDate>Mon, 22 Jun 2026 14:06:05 GMT</pubDate></item><item><title><![CDATA[Test]]></title><description><![CDATA[ 表格161 个结果排序1筛选1属性搜索新建显示 161名称创建时间Test.canvasPath.canvasObsidian graph.thmGraph.agxexample.agxDSE F5 Final term (Algebra) 1DSE 数学词汇表DSE 官方考点大纲convert_t2s.pyChapter.baseChapter 19 函数及其图像Chapter.baseTest前置：<a data-href="Ch04 多项式(I)" href="hkdse-course/dse-textbook-plan/ch04-多项式(i).html" class="internal-link" target="_self" rel="noopener nofollow">Ch04 多项式(I)</a>模块目标： 掌握公式的主项变换与代入法，理解恒等式的定义及核心恒等式并应用于因式分解，掌握 次方根、 次方根及 次方根的定义、性质与运算法则，熟练进行代数分式的四则运算、根式化简及分母有理化。
-学习目标： 理解公式的概念，掌握代入法，并能根据不同情形变换公式的主项。 定义 (公式 / Formula):
-用数学符号表示量之间关系的等式。 <br>公式是方程的子集： 公式本身是一个含有变量的等式（即开放命题），因此它是<a data-tooltip-position="top" aria-label="Ch00 基础概念" data-href="Ch00 基础概念" href="hkdse-course/dse-textbook-plan/ch00-基础概念.html" class="internal-link" target="_self" rel="noopener nofollow">方程</a>的一种。所有公式都是方程，但并非所有方程都是公式。
-与一般方程的区别： 一般方程（如 ）在求解时往往能唯一确定未知数的值；而公式描述的是多个变量之间的普遍关系，通常无法由公式自身唯一确定各变量的取值——需要有额外的已知条件（如给定某些变量的值）才能确定其余变量。
-示例: 是公式（描述面积与长宽的普遍关系），单独看它无法确定 或 的具体值。 <br>定义 (代入法 / Substitution):
-由<a data-tooltip-position="top" aria-label="Ch00 基础概念" data-href="Ch00 基础概念" href="hkdse-course/dse-textbook-plan/ch00-基础概念.html" class="internal-link" target="_self" rel="noopener nofollow">莱布尼茨定律</a>（同一者不可分原理）直接导出的一种代换方法。 逻辑基础: 回顾公理 0.1.2 —— ，。其含义为：若两个对象相等，则任一关于前者的命题均可替换为关于后者的命题而不改变真值。
-在公式中的应用: 在公式中，若已知某变量 的取值为 （即 ），则由莱布尼茨定律，公式中所有 的出现均可替换为 ，从而将多变量公式化为仅含已知数的算式，进而求得其余变量的值。
-方法: 将已知量的值直接替换公式中对应变量的所有出现，计算得出未知量的值。
-注意: 代入时须注意单位一致性；代入代数式时须加括号。 定义 (公式的主项 / Subject of a Formula):
-在公式中，被单独表示在等号一侧（通常为左侧），且系数为 的变量。 示例: 在 中， 是主项。 变换主项 (Change of Subject):
-利用等式的性质，将公式变形，使另一个变量成为主项。根据公式的结构，分为以下四种基本情形： 情形 I：线性情形 (Linear Case)
-主项仅以一次形式出现，不涉及分母或乘方。 方法: 利用等式的加减乘除性质直接移项。
-示例: ，以 为主项 ()。 情形 II：含分母情形 (Fractional Case)
-主项出现在分母中。 方法: 先两边同乘分母消去分数，再按线性情形处理。 情形 III：含平方/开方情形 (Square / Square Root Case)
-主项以平方形式出现或在根号内。 方法: 若主项为 ：先解出 ，再开方得 。
-若主项在根号内：先两边平方，再解出主项。 情形 IV：主项出现多次 (Multiple Occurrences)
-主项在公式的不同项中出现。 方法: 将所有含主项的项移到一侧，不含主项的项移到另一侧，提取公因式（主项），再解出主项。
-示例: ，求 ()。 学习目标： 区分方程与恒等式，熟记并灵活运用核心恒等式，理解恒等式在因式分解中的应用。
-<br>回顾<a data-href="Ch00 基础概念" href="hkdse-course/dse-textbook-plan/ch00-基础概念.html" class="internal-link" target="_self" rel="noopener nofollow">Ch00 基础概念</a>：等式是连接两个对象、断言其一致的命题（如 ）。当等式中含有变量时，它成为一个开放命题 ，其真值取决于变量的取值。 定义 (恒等式 / Identity):
-设 为一个含有变量 的等式（开放命题）。若对变量在其取值范围内的任意赋值，该等式均成立，则称该等式为恒等式。用数理逻辑表示为： 符号: 常用 "" 表示恒等，但在初等数学中常直接用 ""。
-与方程的逻辑对比: 方程： 含有变量的等式（开放命题），我们寻求某些特定取值使命题为真，即 。
-恒等式： 含有变量的等式（开放命题），对所有取值均为真，即 。 示例: 是方程：仅当 时成立（存在量词）。 是恒等式：对任意 均成立（全称量词）。 <br>
-定理 (比较系数法 / Method of Comparing Coefficients):
-若多项式 与 对任意 均相等，则 对所有 成立。
-详见<a data-href="Ch04 多项式(I)" href="hkdse-course/dse-textbook-plan/ch04-多项式(i).html" class="internal-link" target="_self" rel="noopener nofollow">Ch04 多项式(I)</a>定理 4.2。 证明恒等式的方法: 方法 I: 从较复杂的一侧出发，逐步化简为另一侧。
-方法 II: 分别化简两侧，证明它们等于同一个表达式。
-方法 III: 证明 。
-方法 IV: 利用比较系数法（多项式恒等式）。 以下公式对于任意实数 均成立： 平方差公式 (Difference of Squares): 逆用 (因式分解): 。 完全平方公式 (Perfect Square): 记忆: 首平方，尾平方，积的二倍放中央。
-逆用: 。 立方和与立方差公式 (Sum and Difference of Cubes): 注意: 二次项部分 或 系数是 ，不是 。 在因式分解上的应用 (Application to Factorization):
-恒等式的逆用（从右到左）即为因式分解。当多项式可被识别为某种恒等式的展开形式时，可直接套用公式进行因式分解。 ，识别为平方差 。 ，识别为完全平方 。 ，识别为立方差 。 <br>
-方法: 因式分解时，先检查是否有公因式可提取（<a data-href="Ch04 多项式(I)" href="hkdse-course/dse-textbook-plan/ch04-多项式(i).html" class="internal-link" target="_self" rel="noopener nofollow">Ch04 多项式(I)</a>方法一），再观察剩余部分是否符合某种恒等式的形式并套用公式。 学习目标： 掌握 次方根（平方根）及 次方根（立方根）的代数性质与运算法则，并将其推广至一般的 次方根。
-<br>回顾<a data-href="Ch01 数系(I)" href="hkdse-course/dse-textbook-plan/ch01-数系(i).html" class="internal-link" target="_self" rel="noopener nofollow">Ch01 数系(I)</a>中平方根的定义：若 ，则 ，其中 为 的算术平方根。 引理 6.1:
-设 。若 ，则 。 证明: 。由平方差公式 。当 至少有一个不为 时 ，两边同除以 得 ，即 。当 时显然成立。 引理 6.2:
-若 ，则 。 证明: 由算术平方根定义 。因 ，由引理 6.1 得 。
-注意: 当 时引理不成立。例如 ，则 。一般地，。 定理 6.1 (平方根的乘法性质):
-设 ，则 。 证明: 。对等式两边开平方根，由引理 6.2（注意 ）得 。
-注: 此定理与指数律 形式一致，表明平方根自然蕴含指数性质。由此，我们也可以用分数指数表示平方根：（），详见定义 6.2。 定义 6.1 (实数的 次方根记法):
-设 为实数。若实数 满足 ，则称 为 的立方根。 的立方根只有一个，记为 。 注意: 与平方根不同，立方根可对负数开——负数的立方根仍为负数。 定义 6.2 (分数指数 / Fractional Exponents): 若 ，则 。
-若 为实数，则 。 注: 平方根的分数指数限定 以确保 在实数范围内有意义。 引理 6.4:
-设 为实数。若 ，则 。 证明思路: 。由立方差公式 。需分情形讨论——当 或 时 ，故 即 。 时显然。 引理 6.5:
-若 为实数，则 。 证明: 由立方根定义 。由引理 6.4 得 。 定理 6.2 (立方根的乘法性质):
-设 为实数，则 。 证明: 。对等式两边开立方根，由引理 6.5 得 。 定义 6.3 (非负实数的偶数次方根记法):
-设 为偶数，。若存在实数 使得 ，则 称为 的 次方根。 的 次方根有两个，记为 。其中非负的那个 称为 的算术 次方根。 注意: 限定 是因为实数的偶数次方必定非负，不存在 等于负数的情况。 定义 6.4 (实数的奇数次方根记法):
-设 为奇数， 为实数。若存在实数 使得 ，则 称为 的 次方根。 的 次方根只有一个，记为 。 注意: 奇数次方不改变符号——正数的奇数次方仍为正，负数的奇数次方仍为负。因此允许 。 定理 6.3 ( 次方根的乘法性质):
-。 当 为奇数时， 为任意实数。
-当 为偶数时， 为任意非负实数。 学习目标： 掌握代数分式的四则运算与化简，理解根式的运算与化简规则，并能进行分母有理化。 定义 (代数分式 / Algebraic Fraction):
-形如 的式子，其中 为多项式，且 。 运算: 乘除: 加减: 同分母：。
-异分母：通分后进行运算。通分时取各分母的 LCM。 方法:
-分子分母有公因式时须约分。 <br>关键步骤: 当分子或分母为多项式时，先因式分解再约分（运用<a data-href="Ch04 多项式(I)" href="hkdse-course/dse-textbook-plan/ch04-多项式(i).html" class="internal-link" target="_self" rel="noopener nofollow">Ch04 多项式(I)</a>的因式分解方法及本章第二节的恒等式逆用）。
-注意: 约分的前提是公因式不为零。 定义 (根式 / Radical):
-含有根号的代数式。 积商法则 (由定理 6.3):
-适用范围同定理 6.3。 <br>
-同类根式 (Like Radicals):
-化为最简根式后，被开方数相同的根式。同类根式可进行加减合并（类同<a data-href="Ch04 多项式(I)" href="hkdse-course/dse-textbook-plan/ch04-多项式(i).html" class="internal-link" target="_self" rel="noopener nofollow">Ch04 多项式(I)</a>中的同类项合并）。 定义 (最简根式 / Simplest Radical Form):
-满足以下两个条件的根式： 被开方数不含分母。
-被开方数中不含能开得尽方的因数（或因式）。 化简步骤: 将被开方数分解为平方因子（立方因子等）与非平方因子的乘积。
-利用积的法则将能开尽方的因子移出根号。 定义 (共轭根式 / Conjugate Radicals): 的共轭式为 。 性质: 两者之积 为有理数（利用平方差公式）。 定义 (分母有理化 / Rationalization of Denominator):
-将分母中的无理数转化为有理数的过程。 方法 I：单项式分母 分子分母同乘该根式。
-示例: 。 方法 II：二项式分母 (利用共轭根式) 分子分母同乘分母的共轭式。
-示例: 。 公式及代入法：公式是描述量之间关系的等式。代入法将已知值替换变量以求未知量。变换主项即将公式变形使指定变量成为主项，分线性、含分母、含平方/开方、主项多次出现四种情形处理。
-恒等式：对变量的所有允许取值均成立的等式。三大核心恒等式——平方差、完全平方、立方和差——的正向（展开）与逆向（因式分解）运用同等重要。恒等式的证明可从一侧化简至另一侧，或利用比较系数法。
-方根： 次方根（平方根）：（引理 6.2 及反例），（定理 6.1，）。 次方根（立方根）：可对负数开立方根，（定理 6.2， 为任意实数）。 次方根：偶数次限定 （两个根），奇数次对任意实数成立（一个根），均有 （定理 6.3）。 代数分式及根式：代数分式的四则运算（通分、约分）中，先因式分解再约分是关键。根式化简须化为最简根式（被开方数无分母、无开得尽方的因数）。分母有理化分单项式分母（同乘根式）和二项式分母（利用共轭根式）两种方法。
-（待编写）Ch06 代数式]]></description><link>hkdse-course/dse-textbook-plan/test.html</link><guid isPermaLink="false">HKDSE course/DSE Textbook Plan/Test.canvas</guid><pubDate>Sat, 20 Jun 2026 18:58:58 GMT</pubDate></item><item><title><![CDATA[Ch06 代数式]]></title><description><![CDATA[前置：<a data-href="Ch04 多项式(I)" href="hkdse-course/dse-textbook-plan/ch04-多项式(i).html" class="internal-link" target="_self" rel="noopener nofollow">Ch04 多项式(I)</a>模块目标： 掌握公式的主项变换与代入法，理解恒等式的定义及核心恒等式并应用于因式分解，掌握 次方根、 次方根及 次方根的定义、性质与运算法则，熟练进行代数分式的四则运算、根式化简及分母有理化。
+]]></description><link>hkdse-course/dse-课题讲义/chapter-0-基础概念.html</link><guid isPermaLink="false">HKDSE course/DSE 课题讲义/Chapter 0 基础概念.md</guid><pubDate>Tue, 23 Jun 2026 06:25:17 GMT</pubDate></item><item><title><![CDATA[隐私政策 / Privacy Policy]]></title><description><![CDATA[许少Xuless 隐私政策 — 符合 GDPR 与中国香港《个人资料（私隐）条例》]]></description><link>许少xuless的数字花园/legal/privacy.html</link><guid isPermaLink="false">许少Xuless的数字花园/legal/privacy.md</guid><pubDate>Mon, 22 Jun 2026 14:14:09 GMT</pubDate></item><item><title><![CDATA[结账页面 / Checkout]]></title><description><![CDATA[许少Xuless 官方结账页面 — DSE 数学模拟卷、练习册]]></description><link>许少xuless的数字花园/checkout.html</link><guid isPermaLink="false">许少Xuless的数字花园/checkout.md</guid><pubDate>Mon, 22 Jun 2026 14:12:44 GMT</pubDate></item><item><title><![CDATA[退款政策 / Refund Policy]]></title><description><![CDATA[许少Xuless 退款政策 — 7 天未下载可全额退款]]></description><link>许少xuless的数字花园/legal/refund.html</link><guid isPermaLink="false">许少Xuless的数字花园/legal/refund.md</guid><pubDate>Mon, 22 Jun 2026 14:06:22 GMT</pubDate></item><item><title><![CDATA[服务条款 / Terms of Service]]></title><description><![CDATA[许少Xuless 服务条款 — 适用于通过本数字花园购买的所有商品]]></description><link>许少xuless的数字花园/legal/terms.html</link><guid isPermaLink="false">许少Xuless的数字花园/legal/terms.md</guid><pubDate>Mon, 22 Jun 2026 14:06:05 GMT</pubDate></item><item><title><![CDATA[Ch06 代数式]]></title><description><![CDATA[前置：<a data-href="Ch04 多项式(I)" href="hkdse-course/dse-textbook-plan/ch04-多项式(i).html" class="internal-link" target="_self" rel="noopener nofollow">Ch04 多项式(I)</a>模块目标： 掌握公式的主项变换与代入法，理解恒等式的定义及核心恒等式并应用于因式分解，掌握 次方根、 次方根及 次方根的定义、性质与运算法则，熟练进行代数分式的四则运算、根式化简及分母有理化。
 学习目标： 理解公式的概念，掌握代入法，并能根据不同情形变换公式的主项。 定义 (公式 / Formula):
 用数学符号表示量之间关系的等式。 <br>公式是方程的子集： 公式本身是一个含有变量的等式（即开放命题），因此它是<a data-tooltip-position="top" aria-label="Ch00 基础概念" data-href="Ch00 基础概念" href="hkdse-course/dse-textbook-plan/ch00-基础概念.html" class="internal-link" target="_self" rel="noopener nofollow">方程</a>的一种。所有公式都是方程，但并非所有方程都是公式。
 与一般方程的区别： 一般方程（如 ）在求解时往往能唯一确定未知数的值；而公式描述的是多个变量之间的普遍关系，通常无法由公式自身唯一确定各变量的取值——需要有额外的已知条件（如给定某些变量的值）才能确定其余变量。
