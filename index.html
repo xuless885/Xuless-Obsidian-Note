@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>许少 Xuless · 数字花园</title>
+    <meta name="description" content="许少 Xuless 的数字花园，聚焦 HKDSE 数学课程、数学笔记与教育资源。">
+    <meta property="og:title" content="许少 Xuless · 数字花园">
+    <meta property="og:description" content="HKDSE 数学课程、数学笔记与教育资源。">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="site-lib/media/favicon.png">
+    <style>
+        :root {
+            --bg: #faf9f7;
+            --fg: #1a1a1a;
+            --muted: #5c5c5c;
+            --accent: #2b6cb0;
+            --accent-light: #ebf8ff;
+            --card-bg: #ffffff;
+            --border: #e2e2e2;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 64px 0 40px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2b6cb0 0%, #38a169 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        header .tagline {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        main {
+            flex: 1;
+            padding-bottom: 64px;
+        }
+
+        .section-title {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .card-garden .card-icon {
+            background: var(--accent-light);
+        }
+
+        .card-course .card-icon {
+            background: #f0fff4;
+        }
+
+        .card h2 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .card-link::after {
+            content: "→";
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover .card-link::after {
+            transform: translateX(4px);
+        }
+
+        .note {
+            background: #fffaf0;
+            border: 1px solid #fbd38d;
+            border-radius: 12px;
+            padding: 20px 24px;
+            font-size: 0.95rem;
+            color: #744210;
+        }
+
+        .note strong {
+            color: #5c3a0a;
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px 24px;
+            color: var(--muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer a {
+            color: var(--muted);
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 48px 0 32px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="avatar" aria-hidden="true">X</div>
+        <h1>许少 Xuless</h1>
+        <p class="tagline">数学教育者的数字花园：HKDSE 数学课程、大学数学笔记，以及持续生长的学习资源。</p>
+    </header>
+
+    <main class="container">
+        <p class="section-title">入口</p>
+        <div class="cards">
+            <article class="card card-garden">
+                <div class="card-icon">🌿</div>
+                <h2>数字花园</h2>
+                <p>个人博客与知识库入口，包含数学笔记、教学反思与长期项目导航。</p>
+                <a class="card-link" href="许少xuless的数字花园/wellcome!.html">进入数字花园</a>
+            </article>
+
+            <article class="card card-course">
+                <div class="card-icon">📚</div>
+                <h2>VividBook · HKDSE 数学</h2>
+                <p>面向 HKDSE 考生的数学课程主页：Textbook Plan、课题讲义与大纲索引。</p>
+                <a class="card-link" href="hkdse-course/网页简介-webpage-introduction.html">进入课程主页</a>
+            </article>
+        </div>
+
+        <div class="note">
+            <strong>提示：</strong>本站点由 Obsidian + Quartz 构建并部署于 GitHub Pages。左侧导航栏在内容页面中可用，首页仅保留核心入口。
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            <a href="https://github.com/xuless" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://firefly.3311059015.workers.dev/" target="_blank" rel="noopener">博客</a>
+        </p>
+        <p style="margin-top: 8px;">© 2026 许少 Xuless</p>
+    </footer>
+</body>
+</html>
