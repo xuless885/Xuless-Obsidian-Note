@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>博客 · Xuless 数字花园</title>
+<meta name="description" content="Xuless 数字花园的博客索引：HKDSE 数学课程讲义、Textbook Plan、数字花园与法务笔记，按分类、标签与时间浏览。">
+<meta name="theme-color" content="#f5f5f3">
+<link rel="icon" href="../site-lib/media/favicon.png">
+<script>
+/* 必须是最先执行的脚本：声明资源根前缀（blog 页为 ".."），并在样式到达前定好主题，避免闪白。 */
+window.DSH_ROOT = "..";
+(function () {
+    try {
+        var d = document.documentElement;
+        d.classList.add("js");
+        var t = localStorage.getItem("dsh-theme");
+        if (t !== "light" && t !== "dark") {
+            t = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+        }
+        d.setAttribute("data-theme", t);
+        d.style.colorScheme = t;
+    } catch (e) { /* 无 JS 环境下由 CSS 的 prefers-color-scheme 回落接管 */ }
+})();
+</script>
+<link rel="stylesheet" href="../site-lib/styles/blog-theme.css">
+<script defer src="../site-lib/scripts/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-nav" data-site-nav>
+    <div class="site-nav-inner">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">X</span>
+            <span class="brand-text">
+                <span>Xuless 数字花园</span>
+                <span class="brand-sub">数学 · 课程 · 笔记</span>
+            </span>
+        </a>
+        <nav class="site-nav-links" id="site-nav-links" aria-label="站点导航">
+            <a class="nav-link" href="../index.html">首页</a>
+            <a class="nav-link is-active" href="./index.html" aria-current="page">博客</a>
+            <a class="nav-link" href="./tags.html">标签</a>
+            <a class="nav-link" href="./graph.html">图谱</a>
+            <a class="nav-link" href="./search.html">搜索</a>
+            <a class="nav-link" href="./about.html">关于</a>
+        </nav>
+        <div class="nav-actions">
+            <form class="search-field site-nav-search" action="./search.html" method="get" role="search">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="nav-search-input" type="search" name="q" placeholder="搜索全部笔记" aria-label="站内搜索">
+            </form>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换深色主题" title="切换深色主题"><span data-theme-icon class="theme-toggle-icon" aria-hidden="true">☾</span></button>
+            <button class="site-nav-burger" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav-links" aria-label="打开菜单">
+                <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="main-area" id="main">
+    <div class="page-head">
+        <div class="page-head-inner">
+            <ol class="breadcrumb">
+                <li><a href="../index.html">首页</a></li>
+                <li>博客</li>
+            </ol>
+            <h1 class="page-title">博客</h1>
+            <p class="page-sub">全部笔记的索引。按分类、标签、标题或关联度浏览——这里汇集了 HKDSE 数学课程、Textbook Plan、数字花园与法务等内容。</p>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="wrap">
+            <div class="toolbar">
+                <form class="search-field is-wide toolbar-grow" action="./search.html" method="get" role="search">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <input id="blog-search-input" type="search" name="q" data-search-input placeholder="搜索标题、摘要与标签，回车进入搜索页" aria-label="搜索笔记">
+                    <button class="search-submit" type="submit">搜索</button>
+                </form>
+                <label class="visually-hidden" for="sort-select">排序方式</label>
+                <select class="select-field" id="sort-select">
+                    <option value="recent">最新更新</option>
+                    <option value="title">按标题</option>
+                    <option value="degree">按关联度</option>
+                </select>
+            </div>
+
+            <div class="chip-row" id="cat-chips" role="group" aria-label="按分类筛选"></div>
+            <div class="chip-row mt-5" id="tag-chips" role="group" aria-label="按标签筛选"></div>
+
+            <p class="section-sub mt-5" id="list-status" role="status" aria-live="polite"></p>
+
+            <div class="card-grid mt-5" id="doc-grid"></div>
+
+            <div class="empty-state mt-6" id="list-empty" hidden>
+                <span class="empty-state-icon" aria-hidden="true">🍃</span>
+                <p class="empty-state-title" id="list-empty-title">这里还没有内容</p>
+                <p class="empty-state-text" id="list-empty-text">试试换一个分类或标签，或者清空搜索关键词。</p>
+            </div>
+
+            <div class="text-center mt-6">
+                <button class="btn" type="button" id="load-more" hidden>加载更多</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer-site">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a class="brand" href="../index.html">
+                <span class="brand-mark" aria-hidden="true">X</span>
+                <span class="brand-text">
+                    <span>Xuless 数字花园</span>
+                    <span class="brand-sub">数学 · 课程 · 笔记</span>
+                </span>
+            </a>
+            <p>HKDSE 数学课程讲义、Textbook Plan、大学数学笔记与长期项目的持续沉淀。</p>
+        </div>
+        <nav aria-label="页脚导航">
+            <ul class="footer-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="./index.html">博客</a></li>
+                <li><a href="./tags.html">标签</a></li>
+                <li><a href="./graph.html">图谱</a></li>
+                <li><a href="./search.html">搜索</a></li>
+                <li><a href="./about.html">关于</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 许少 Xuless · 纯静态站点 · 由 Obsidian 内容与自带主题构成</p>
+    </div>
+</footer>
+
+<script>
+/* 博客列表页专用逻辑（站点通用逻辑在 site-lib/scripts/site.js） */
+(function () {
+    "use strict";
+    var api = window.DSH || {};
+    var PAGE_SIZE = 12;
+
+    /* ---- 兜底工具：即使 site.js 未能加载，页面也要能用 ---- */
+    function esc(s) {
+        if (api.escapeHtml) { return api.escapeHtml(s); }
+        return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+    function link(path) {
+        if (api.docUrl) { return api.docUrl(path); }
+        return "../" + String(path || "").split("/").map(encodeURIComponent).join("/");
+    }
+    function rel(t) { return api.relTime ? api.relTime(t) : ""; }
+    function num(n) { return api.formatNumber ? api.formatNumber(n) : String(n == null ? "" : n); }
+    function param(name, dflt) {
+        if (api.getParam) { return api.getParam(name, dflt); }
+        try {
+            var v = new URLSearchParams(window.location.search).get(name);
+            return v === null || v === "" ? (dflt === undefined ? "" : dflt) : v;
+        } catch (e) { return dflt === undefined ? "" : dflt; }
+    }
+    function loadJson(path) {
+        if (api.fetchJSON) { return api.fetchJSON(path); }
+        return fetch("../" + path).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    }
+
+    var grid = document.getElementById("doc-grid");
+    if (!grid) { return; }
+
+    var emptyBox = document.getElementById("list-empty");
+    var emptyTitle = document.getElementById("list-empty-title");
+    var emptyText = document.getElementById("list-empty-text");
+    var statusEl = document.getElementById("list-status");
+    var moreBtn = document.getElementById("load-more");
+    var catBox = document.getElementById("cat-chips");
+    var tagBox = document.getElementById("tag-chips");
+    var sortSel = document.getElementById("sort-select");
+    var searchInput = document.getElementById("blog-search-input");
+
+    var SORTS = { recent: 1, title: 1, degree: 1 };
+    var state = {
+        docs: [],
+        tags: [],
+        cats: [],
+        list: [],
+        shown: 0,
+        filter: { cat: param("cat"), tag: param("tag"), q: param("q"), sort: param("sort", "recent") }
+    };
+    if (!SORTS[state.filter.sort]) { state.filter.sort = "recent"; }
+    if (sortSel) { sortSel.value = state.filter.sort; }
+    if (searchInput) { searchInput.value = state.filter.q; }
+
+    function haystack(d) {
+        return [d.title, d.description, d.excerpt, (d.aliases || []).join(" "), (d.tags || []).join(" ")]
+            .join(" ").toLowerCase();
+    }
+
+    function matches(d) {
+        var f = state.filter;
+        if (f.cat && d.category !== f.cat && d.parentDir !== f.cat) { return false; }
+        if (f.tag && (d.tags || []).indexOf(f.tag) < 0) { return false; }
+        if (f.q && haystack(d).indexOf(f.q.toLowerCase()) < 0) { return false; }
+        return true;
+    }
+
+    function sorted(list) {
+        var f = state.filter.sort;
+        var arr = list.slice();
+        if (f === "title") {
+            arr.sort(function (a, b) {
+                return String(a.title || "").localeCompare(String(b.title || ""), "zh-Hans-CN");
+            });
+        } else if (f === "degree") {
+            arr.sort(function (a, b) {
+                return (b.degree || 0) - (a.degree || 0) || (b.modified || 0) - (a.modified || 0);
+            });
+        } else {
+            arr.sort(function (a, b) { return (b.modified || 0) - (a.modified || 0); });
+        }
+        return arr;
+    }
+
+    function cardHtml(d, index) {
+        var href = link(d.path);
+        var stamp = d.modified || d.created || "";
+        var excerpt = String(d.excerpt || d.description || "").replace(/\s+/g, " ").trim();
+        if (excerpt.length > 118) { excerpt = excerpt.slice(0, 118) + "…"; }
+        var tags = (d.tags || []).slice(0, 4).map(function (t) {
+            return '<a class="tag-pill" href="./index.html?tag=' + encodeURIComponent(t) + '">#' + esc(t) + "</a>";
+        }).join("");
+        var meta = [];
+        if (d.category) { meta.push('<span class="badge badge-accent">' + esc(d.category) + "</span>"); }
+        if (stamp) { meta.push('<span data-rel-time="' + esc(stamp) + '">' + esc(rel(stamp)) + "</span>"); }
+        if (d.words) { meta.push("<span>" + esc(num(d.words)) + " 字</span>"); }
+        if (d.degree) { meta.push("<span>关联 " + esc(d.degree) + "</span>"); }
+        return '<article class="card reveal" data-delay="' + ((index % 5) + 1) + '">' +
+            '<div class="card-meta">' + meta.join("") + "</div>" +
+            '<h3 class="card-title"><a href="' + esc(href) + '">' + esc(d.title || d.id || "未命名") + "</a></h3>" +
+            (excerpt ? '<p class="card-excerpt">' + esc(excerpt) + "</p>" : "") +
+            (tags ? '<div class="card-tags">' + tags + "</div>" : "") +
+            '<a class="card-link" href="' + esc(href) + '">阅读</a>' +
+            "</article>";
+    }
+
+    function render(reset) {
+        if (reset) {
+            state.list = sorted(state.docs.filter(matches));
+            state.shown = 0;
+            grid.innerHTML = "";
+        }
+        var next = state.list.slice(state.shown, state.shown + PAGE_SIZE);
+        if (next.length) {
+            grid.insertAdjacentHTML("beforeend", next.map(function (d, i) { return cardHtml(d, state.shown + i); }).join(""));
+            state.shown += next.length;
+        }
+        if (moreBtn) {
+            var rest = Math.max(0, state.list.length - state.shown);
+            moreBtn.hidden = rest === 0;
+            moreBtn.textContent = "加载更多（还有 " + rest + " 篇）";
+        }
+        if (emptyBox) { emptyBox.hidden = state.list.length !== 0; }
+        if (statusEl) {
+            statusEl.textContent = state.list.length
+                ? "共 " + state.list.length + " 篇 · 已显示 " + state.shown + " 篇"
+                : "";
+        }
+        if (api.reveal) { api.reveal(grid); }
+    }
+
+    function renderChips() {
+        var counts = {};
+        state.docs.forEach(function (d) {
+            var c = d.category || "未分类";
+            counts[c] = (counts[c] || 0) + 1;
+        });
+        var cats = state.cats.slice();
+        Object.keys(counts).forEach(function (c) { if (cats.indexOf(c) < 0) { cats.push(c); } });
+
+        if (catBox) {
+            var html = '<button class="chip' + (state.filter.cat ? "" : " is-active") + '" type="button" data-cat="" aria-pressed="' +
+                (state.filter.cat ? "false" : "true") + '">全部<span class="chip-count">' + state.docs.length + "</span></button>";
+            cats.forEach(function (c) {
+                var on = state.filter.cat === c;
+                html += '<button class="chip' + (on ? " is-active" : "") + '" type="button" data-cat="' + esc(c) + '" aria-pressed="' +
+                    (on ? "true" : "false") + '">' + esc(c) + '<span class="chip-count">' + (counts[c] || 0) + "</span></button>";
+            });
+            catBox.innerHTML = html;
+        }
+        if (tagBox) {
+            var top = state.tags.slice().sort(function (a, b) { return (b.count || 0) - (a.count || 0); }).slice(0, 18);
+            var th = '<button class="chip' + (state.filter.tag ? "" : " is-active") + '" type="button" data-tag="" aria-pressed="' +
+                (state.filter.tag ? "false" : "true") + '">全部标签</button>';
+            top.forEach(function (t) {
+                var on = state.filter.tag === t.name;
+                th += '<button class="chip' + (on ? " is-active" : "") + '" type="button" data-tag="' + esc(t.name) + '" aria-pressed="' +
+                    (on ? "true" : "false") + '">#' + esc(t.name) + '<span class="chip-count">' + (t.count || 0) + "</span></button>";
+            });
+            tagBox.innerHTML = th;
+        }
+    }
+
+    function syncUrl() {
+        try {
+            var p = new URLSearchParams(window.location.search);
+            var f = state.filter;
+            var pairs = [["cat", f.cat], ["tag", f.tag], ["q", f.q], ["sort", f.sort === "recent" ? "" : f.sort]];
+            pairs.forEach(function (pair) {
+                if (pair[1]) { p.set(pair[0], pair[1]); } else { p.delete(pair[0]); }
+            });
+            var qs = p.toString();
+            window.history.replaceState(null, "", window.location.pathname + (qs ? "?" + qs : "") + window.location.hash);
+        } catch (e) { /* 忽略：URL 同步失败不影响浏览 */ }
+    }
+
+    function showFailure(message) {
+        grid.innerHTML = "";
+        if (emptyBox) { emptyBox.hidden = false; }
+        if (emptyTitle) { emptyTitle.textContent = "内容索引暂时不可用"; }
+        if (emptyText) { emptyText.textContent = message || "数据文件（site-lib/data/docs.json）尚未生成或抓取失败，稍后再试。"; }
+        if (statusEl) { statusEl.textContent = ""; }
+        if (moreBtn) { moreBtn.hidden = true; }
+    }
+
+    function skeleton() {
+        var out = "";
+        for (var i = 0; i < 6; i++) {
+            out += '<div class="card skeleton skeleton-card" aria-hidden="true"></div>';
+        }
+        return out;
+    }
+
+    function bind() {
+        if (catBox) { catBox.addEventListener("click", onChip); }
+        if (tagBox) { tagBox.addEventListener("click", onChip); }
+        if (moreBtn) {
+            moreBtn.addEventListener("click", function () {
+                render(false);
+                try { moreBtn.blur(); } catch (e) { /* noop */ }
+            });
+        }
+        if (sortSel) {
+            sortSel.addEventListener("change", function () {
+                state.filter.sort = SORTS[sortSel.value] ? sortSel.value : "recent";
+                syncUrl();
+                render(true);
+            });
+        }
+    }
+
+    function onChip(ev) {
+        var target = ev.target;
+        var btn = target && target.closest ? target.closest("button[data-cat], button[data-tag]") : null;
+        if (!btn) { return; }
+        if (btn.hasAttribute("data-cat")) {
+            state.filter.cat = btn.getAttribute("data-cat") || "";
+        } else {
+            state.filter.tag = btn.getAttribute("data-tag") || "";
+        }
+        renderChips();
+        syncUrl();
+        render(true);
+    }
+
+    function boot() {
+        bind();
+        grid.innerHTML = skeleton();
+        Promise.all([
+            loadJson("site-lib/data/docs.json"),
+            loadJson("site-lib/data/tags.json"),
+            loadJson("site-lib/data/manifest.json")
+        ]).then(function (res) {
+            var docsData = res[0] || {};
+            var tagsData = res[1] || {};
+            var manifest = res[2] || {};
+            state.docs = Array.isArray(docsData.docs) ? docsData.docs : [];
+            state.tags = Array.isArray(tagsData.tags) ? tagsData.tags : [];
+            state.cats = Array.isArray(manifest.categories) ? manifest.categories.slice() : [];
+            if (!state.docs.length) {
+                showFailure();
+                return;
+            }
+            renderChips();
+            render(true);
+        }).catch(function () { showFailure(); });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
+    }
+})();
+</script>
+</body>
+</html>

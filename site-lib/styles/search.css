@@ -1,0 +1,393 @@
+/* ==========================================================================
+ * search.css —— 全站可视化检索的样式
+ * 站点：Xuless 数字花园 ｜ 归属：task-4「关系图与检索」
+ * 约定：
+ *   · 只 **读取** blog-theme.css 的设计令牌（写在 var(--x, fallback) 里），不重定义；
+ *   · 所有类名以 .search- 前缀，与主题、图谱页互不冲突。
+ * ========================================================================== */
+
+/* ---------- 布局：结果 + 筛选栏（.search-shell 由 search.js 运行时添加） ---------- */
+.search-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: var(--space-5, 1.25rem);
+  align-items: start;
+  margin: var(--space-5, 1.25rem) auto;
+}
+
+.search-shell > #search-app,
+.search-shell > .search-app { grid-column: 1; grid-row: 1; min-width: 0; }
+
+.search-shell > #search-filters,
+.search-shell > .search-filters { grid-column: 2; grid-row: 1; min-width: 0; }
+
+@media (max-width: 900px) {
+  .search-shell { grid-template-columns: minmax(0, 1fr); }
+  .search-shell > #search-app,
+  .search-shell > .search-app { grid-column: 1; grid-row: 1; }
+  .search-shell > #search-filters,
+  .search-shell > .search-filters { grid-column: 1; grid-row: 2; }
+}
+
+/* ---------- 顶部搜索区 ---------- */
+.search-app { display: block; }
+
+.search-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: var(--space-4, 1rem);
+}
+
+.search-field-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.85rem 3rem 0.85rem 1.1rem;
+  font: 500 1.05rem/1.5 var(--font-sans, system-ui, sans-serif);
+  color: var(--fg, #111);
+  background: var(--bg-elev, transparent);
+  border: 1px solid var(--border, rgba(127, 127, 127, 0.24));
+  border-radius: var(--radius-l, 14px);
+  box-shadow: var(--shadow-s, none);
+  outline: none;
+  transition: border-color var(--dur-fast, 120ms) var(--ease, ease),
+              box-shadow var(--dur-fast, 120ms) var(--ease, ease);
+}
+
+.search-input::placeholder { color: var(--fg-subtle, #9ca3af); }
+
+.search-input:focus {
+  border-color: var(--accent, #3b82f6);
+  box-shadow: 0 0 0 4px var(--accent-soft, rgba(59, 130, 246, 0.18)), var(--shadow-m, none);
+}
+
+.search-input::-webkit-search-cancel-button { cursor: pointer; }
+
+.search-kbd {
+  position: absolute;
+  right: 0.85rem;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.search-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  font: 500 0.78rem/1.5 var(--font-sans, system-ui, sans-serif);
+  color: var(--fg-subtle, #9ca3af);
+}
+
+.search-count { color: var(--fg-muted, #6b7280); }
+
+.search-time { font-family: var(--font-mono, ui-monospace, monospace); }
+
+.search-note {
+  margin: 0 0 var(--space-3, 0.75rem);
+  padding: 0.5rem 0.75rem;
+  font: 400 0.8rem/1.6 var(--font-sans, system-ui, sans-serif);
+  color: var(--fg-muted, #6b7280);
+  background: var(--bg-sunken, transparent);
+  border-left: 3px solid var(--accent, #3b82f6);
+  border-radius: var(--radius-s, 6px);
+}
+
+.search-note.is-error { border-left-color: var(--accent-2, #8b5cf6); }
+
+/* ---------- 结果网格 ---------- */
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4, 1rem);
+  align-items: start;
+}
+
+.search-results > .empty-state,
+.search-results > .search-browse-group { grid-column: 1 / -1; }
+
+.search-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
+  border: 1px solid var(--border, rgba(127, 127, 127, 0.22));
+  border-radius: var(--radius-m, 10px);
+  background: var(--bg-elev, transparent);
+  transition: transform var(--dur-fast, 120ms) var(--ease, ease),
+              border-color var(--dur-fast, 120ms) var(--ease, ease),
+              box-shadow var(--dur-fast, 120ms) var(--ease, ease);
+}
+
+.search-result:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong, rgba(127, 127, 127, 0.4));
+  box-shadow: var(--shadow-m, 0 6px 20px rgba(0, 0, 0, 0.1));
+}
+
+.search-result.is-selected {
+  border-color: var(--accent, #3b82f6);
+  box-shadow: 0 0 0 2px var(--accent-soft, rgba(59, 130, 246, 0.2));
+}
+
+.search-result-title {
+  margin: 0;
+  font: 650 0.98rem/1.45 var(--font-sans, system-ui, sans-serif);
+  word-break: break-word;
+}
+
+.search-result-link {
+  color: var(--fg, #111);
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent, #3b82f6), var(--accent, #3b82f6));
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--dur, 200ms) var(--ease, ease), color var(--dur-fast, 120ms) var(--ease, ease);
+}
+
+.search-result-link:hover,
+.search-result.is-selected .search-result-link {
+  color: var(--accent, #3b82f6);
+  background-size: 100% 2px;
+}
+
+.search-result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.search-result-time {
+  font: 500 0.72rem/1.5 var(--font-mono, ui-monospace, monospace);
+  color: var(--fg-subtle, #9ca3af);
+  margin-left: auto;
+}
+
+.search-result-excerpt {
+  margin: 0;
+  font: 400 0.82rem/1.7 var(--font-sans, system-ui, sans-serif);
+  color: var(--fg-muted, #6b7280);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.search-mark {
+  padding: 0 0.12em;
+  border-radius: 3px;
+  color: inherit;
+  background: var(--accent-soft, rgba(59, 130, 246, 0.22));
+  box-shadow: inset 0 -0.35em 0 var(--accent-soft, rgba(59, 130, 246, 0.22));
+  font-weight: 650;
+}
+
+.search-tips {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  color: var(--fg-subtle, #9ca3af);
+}
+
+/* ---------- 分页 ---------- */
+.search-more { display: flex; justify-content: center; margin-top: var(--space-4, 1rem); }
+
+/* ---------- 骨架屏 ---------- */
+.search-skeleton { gap: 0.6rem; }
+
+.search-skeleton-line {
+  height: 0.85rem;
+  border-radius: var(--radius-s, 6px);
+  background: var(--bg-sunken, rgba(127, 127, 127, 0.12));
+  animation: search-pulse 1.4s var(--ease, ease-in-out) infinite;
+}
+
+.search-skeleton-line.short { width: 55%; }
+
+@keyframes search-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+/* ---------- 空查询：浏览全部 ---------- */
+.search-browse-group { display: block; margin-bottom: var(--space-4, 1rem); }
+
+.search-browse-title {
+  margin: 0 0 var(--space-3, 0.75rem);
+  font: 600 0.85rem/1.4 var(--font-sans, system-ui, sans-serif);
+  letter-spacing: 0.03em;
+  color: var(--fg-muted, #6b7280);
+  text-transform: none;
+}
+
+.search-browse-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4, 1rem);
+}
+
+.search-hot-tags .chip-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.search-hot-tag {
+  cursor: pointer;
+  border: 1px solid var(--border, rgba(127, 127, 127, 0.22));
+  background: var(--bg-sunken, transparent);
+  color: var(--fg-muted, #6b7280);
+  transition: color var(--dur-fast, 120ms) var(--ease, ease),
+              border-color var(--dur-fast, 120ms) var(--ease, ease);
+}
+
+.search-hot-tag:hover { color: var(--accent, #3b82f6); border-color: var(--accent, #3b82f6); }
+
+/* ---------- 筛选栏 ----------
+ * 两种形态（由 search.js 判定公共父容器里是否只有「结果 + 筛选」两个元素）：
+ *   A. 默认 = 横向筛选条：主题把 #search-filters 放在 #search-app 之前，贴在大搜索框下面；
+ *   B. 父容器里正好只有这两个挂载点时加 .search-shell → 变成右侧竖排侧栏。
+ * 两种形态共用同一套子元素，只是排列方式不同。                                           */
+.search-filters { min-width: 0; margin-bottom: var(--space-4, 1rem); }
+
+.search-filters-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3, 0.75rem) var(--space-5, 1.25rem);
+  padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
+  border: 1px solid var(--border, rgba(127, 127, 127, 0.22));
+  border-radius: var(--radius-l, 14px);
+  background: var(--bg-elev, transparent);
+  box-shadow: var(--shadow-s, none);
+}
+
+.search-filters-title {
+  flex: 0 0 100%;
+  margin: 0;
+  font: 650 0.86rem/1.3 var(--font-sans, system-ui, sans-serif);
+  color: var(--fg-muted, #6b7280);
+}
+
+.search-filter-group {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.search-filter-head {
+  margin: 0;
+  flex: 0 0 auto;
+  font: 600 0.74rem/1.4 var(--font-sans, system-ui, sans-serif);
+  color: var(--fg-subtle, #9ca3af);
+}
+
+.search-filter-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+.search-filter-chip,
+.search-filter-tag {
+  cursor: pointer;
+  border: 1px solid var(--border, rgba(127, 127, 127, 0.22));
+  background: var(--bg-sunken, transparent);
+  color: var(--fg-muted, #6b7280);
+  font-size: 0.74rem;
+  transition: color var(--dur-fast, 120ms) var(--ease, ease),
+              background var(--dur-fast, 120ms) var(--ease, ease),
+              border-color var(--dur-fast, 120ms) var(--ease, ease);
+}
+
+.search-filter-chip:hover,
+.search-filter-tag:hover { border-color: var(--border-strong, rgba(127, 127, 127, 0.4)); color: var(--fg, #111); }
+
+.search-filter-chip.is-on,
+.search-filter-tag.is-on {
+  color: var(--accent-contrast, #fff);
+  background: var(--accent, #3b82f6);
+  border-color: var(--accent, #3b82f6);
+}
+
+.search-filter-sorts { display: flex; gap: 0.25rem; }
+
+.search-sort {
+  padding: 0.3rem 0.7rem;
+  font: 500 0.76rem/1.4 var(--font-sans, system-ui, sans-serif);
+  color: var(--fg-muted, #6b7280);
+  background: var(--bg-sunken, transparent);
+  border: 1px solid var(--border, rgba(127, 127, 127, 0.22));
+  border-radius: var(--radius-s, 6px);
+  cursor: pointer;
+  transition: color var(--dur-fast, 120ms) var(--ease, ease),
+              background var(--dur-fast, 120ms) var(--ease, ease);
+}
+
+.search-sort.is-on {
+  color: var(--accent-contrast, #fff);
+  background: var(--accent, #3b82f6);
+  border-color: var(--accent, #3b82f6);
+}
+
+.search-filter-more { margin-left: 0.15rem; }
+
+.search-filter-clear:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ---------- 形态 B：两栏侧栏（父容器只有「结果 + 筛选」时） ---------- */
+.search-shell .search-filters { margin-bottom: 0; }
+
+.search-shell .search-filters-inner {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: var(--space-4, 1rem);
+  position: sticky;
+  top: calc(var(--nav-h, 60px) + var(--space-3, 0.75rem));
+  max-height: calc(100vh - var(--nav-h, 60px) - var(--space-5, 1.25rem) * 2);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.search-shell .search-filters-title { flex: 0 0 auto; font-size: 1rem; color: var(--fg, #111); }
+
+.search-shell .search-filter-group {
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: var(--space-3, 0.75rem);
+  border-top: 1px solid var(--border, rgba(127, 127, 127, 0.16));
+  flex: 0 0 auto;
+}
+
+.search-shell .search-filter-sorts { display: flex; }
+.search-shell .search-sort { flex: 1 1 auto; }
+.search-shell .search-filter-more,
+.search-shell .search-filter-clear { width: 100%; }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 900px) {
+  .search-shell .search-filters-inner { position: static; max-height: none; }
+}
+
+@media (max-width: 640px) {
+  .search-results,
+  .search-browse-list { grid-template-columns: minmax(0, 1fr); }
+  .search-input { font-size: 1rem; padding-right: 2.5rem; }
+}
+
+/* ---------- 动效降级 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .search-result,
+  .search-result-link,
+  .search-hot-tag,
+  .search-filter-chip,
+  .search-filter-tag { transition: none; }
+  .search-result:hover { transform: none; }
+  .search-skeleton-line { animation: none; opacity: 0.7; }
+}

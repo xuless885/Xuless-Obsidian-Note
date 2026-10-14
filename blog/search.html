@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>搜索 · Xuless 数字花园</title>
+<meta name="description" content="Xuless 数字花园的全文搜索：在浏览器本地检索全部笔记的标题、正文与标签。">
+<meta name="theme-color" content="#f5f5f3">
+<link rel="icon" href="../site-lib/media/favicon.png">
+<script>
+/* 必须是最先执行的脚本：声明资源根前缀（blog 页为 ".."），并在样式到达前定好主题，避免闪白。 */
+window.DSH_ROOT = "..";
+(function () {
+    try {
+        var d = document.documentElement;
+        d.classList.add("js");
+        var t = localStorage.getItem("dsh-theme");
+        if (t !== "light" && t !== "dark") {
+            t = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+        }
+        d.setAttribute("data-theme", t);
+        d.style.colorScheme = t;
+    } catch (e) { /* 无 JS 环境下由 CSS 的 prefers-color-scheme 回落接管 */ }
+})();
+</script>
+<link rel="stylesheet" href="../site-lib/styles/blog-theme.css">
+<link rel="stylesheet" href="../site-lib/styles/search.css">
+<script defer src="../site-lib/scripts/site.js"></script>
+<script defer src="../site-lib/scripts/search.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-nav" data-site-nav>
+    <div class="site-nav-inner">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">X</span>
+            <span class="brand-text">
+                <span>Xuless 数字花园</span>
+                <span class="brand-sub">数学 · 课程 · 笔记</span>
+            </span>
+        </a>
+        <nav class="site-nav-links" id="site-nav-links" aria-label="站点导航">
+            <a class="nav-link" href="../index.html">首页</a>
+            <a class="nav-link" href="./index.html">博客</a>
+            <a class="nav-link" href="./tags.html">标签</a>
+            <a class="nav-link" href="./graph.html">图谱</a>
+            <a class="nav-link is-active" href="./search.html" aria-current="page">搜索</a>
+            <a class="nav-link" href="./about.html">关于</a>
+        </nav>
+        <div class="nav-actions">
+            <form class="search-field site-nav-search" action="./search.html" method="get" role="search">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="nav-search-input" type="search" name="q" placeholder="搜索全部笔记" aria-label="站内搜索">
+            </form>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换深色主题" title="切换深色主题"><span data-theme-icon class="theme-toggle-icon" aria-hidden="true">☾</span></button>
+            <button class="site-nav-burger" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav-links" aria-label="打开菜单">
+                <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="main-area" id="main">
+    <div class="page-head">
+        <div class="page-head-inner">
+            <ol class="breadcrumb">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="./index.html">博客</a></li>
+                <li>搜索</li>
+            </ol>
+            <h1 class="page-title">搜索</h1>
+            <p class="page-sub">在全部笔记的标题、正文与标签中检索。搜索索引在浏览器本地加载，不会把关键词发送到任何外部服务。</p>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="wrap" id="search-page">
+            <form class="search-field is-wide" action="./search.html" method="get" role="search">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="search-page-input" type="search" name="q" data-search-input placeholder="输入关键词，例如「数系」「三角函数」「矩阵」" aria-label="搜索笔记">
+                <button class="search-submit" type="submit">搜索</button>
+            </form>
+            <p class="kbd-hint mt-3">快捷键：<kbd class="kbd">/</kbd> 或 <kbd class="kbd">Ctrl</kbd> + <kbd class="kbd">K</kbd> 聚焦搜索框，<kbd class="kbd">Esc</kbd> 清空。</p>
+
+            <!-- 搜索筛选挂载点：由 site-lib/scripts/search.js 填充 -->
+            <aside id="search-filters" class="search-filters" aria-label="搜索筛选"></aside>
+            <!-- 搜索结果挂载点：渲染逻辑由 site-lib/scripts/search.js 负责 -->
+            <div id="search-app" class="search-app" data-search-root></div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer-site">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a class="brand" href="../index.html">
+                <span class="brand-mark" aria-hidden="true">X</span>
+                <span class="brand-text">
+                    <span>Xuless 数字花园</span>
+                    <span class="brand-sub">数学 · 课程 · 笔记</span>
+                </span>
+            </a>
+            <p>HKDSE 数学课程讲义、Textbook Plan、大学数学笔记与长期项目的持续沉淀。</p>
+        </div>
+        <nav aria-label="页脚导航">
+            <ul class="footer-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="./index.html">博客</a></li>
+                <li><a href="./tags.html">标签</a></li>
+                <li><a href="./graph.html">图谱</a></li>
+                <li><a href="./search.html">搜索</a></li>
+                <li><a href="./about.html">关于</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 许少 Xuless · 纯静态站点 · 由 Obsidian 内容与自带主题构成</p>
+    </div>
+</footer>
+</body>
+</html>

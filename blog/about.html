@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于 · Xuless 数字花园</title>
+<meta name="description" content="关于 Xuless 数字花园：站点定位、内容构成、技术说明与联系方式。">
+<meta name="theme-color" content="#f5f5f3">
+<link rel="icon" href="../site-lib/media/favicon.png">
+<script>
+/* 必须是最先执行的脚本：声明资源根前缀（blog 页为 ".."），并在样式到达前定好主题，避免闪白。 */
+window.DSH_ROOT = "..";
+(function () {
+    try {
+        var d = document.documentElement;
+        d.classList.add("js");
+        var t = localStorage.getItem("dsh-theme");
+        if (t !== "light" && t !== "dark") {
+            t = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+        }
+        d.setAttribute("data-theme", t);
+        d.style.colorScheme = t;
+    } catch (e) { /* 无 JS 环境下由 CSS 的 prefers-color-scheme 回落接管 */ }
+})();
+</script>
+<link rel="stylesheet" href="../site-lib/styles/blog-theme.css">
+<script defer src="../site-lib/scripts/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-nav" data-site-nav>
+    <div class="site-nav-inner">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true">X</span>
+            <span class="brand-text">
+                <span>Xuless 数字花园</span>
+                <span class="brand-sub">数学 · 课程 · 笔记</span>
+            </span>
+        </a>
+        <nav class="site-nav-links" id="site-nav-links" aria-label="站点导航">
+            <a class="nav-link" href="../index.html">首页</a>
+            <a class="nav-link" href="./index.html">博客</a>
+            <a class="nav-link" href="./tags.html">标签</a>
+            <a class="nav-link" href="./graph.html">图谱</a>
+            <a class="nav-link" href="./search.html">搜索</a>
+            <a class="nav-link is-active" href="./about.html" aria-current="page">关于</a>
+        </nav>
+        <div class="nav-actions">
+            <form class="search-field site-nav-search" action="./search.html" method="get" role="search">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="nav-search-input" type="search" name="q" placeholder="搜索全部笔记" aria-label="站内搜索">
+            </form>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换深色主题" title="切换深色主题"><span data-theme-icon class="theme-toggle-icon" aria-hidden="true">☾</span></button>
+            <button class="site-nav-burger" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav-links" aria-label="打开菜单">
+                <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="main-area" id="main">
+    <div class="page-head">
+        <div class="page-head-inner">
+            <ol class="breadcrumb">
+                <li><a href="../index.html">首页</a></li>
+                <li>关于</li>
+            </ol>
+            <h1 class="page-title">关于本站</h1>
+            <p class="page-sub">一个数学教育者的数字花园：把课程、讲义与笔记放在同一个地方，长期生长。</p>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="wrap wrap-narrow">
+            <div class="prose reveal">
+                <h2>站点定位</h2>
+                <p>这里是许少 Xuless 的公开笔记库。它不追热点，也不做流量，只做一件事：把 HKDSE 数学教学与大学数学学习过程中积累的内容，整理成可以长期翻阅、可以互相链接的结构化笔记。</p>
+                <p>写作的对象既是学生，也是我自己。每一篇讲义都尽量做到概念清楚、例题完整、术语中英对照；每一条笔记都尽量能被别处的笔记引用，让知识之间的关联显性化。</p>
+
+                <h2>内容构成</h2>
+                <ul>
+                    <li><strong>大纲</strong> —— 课程与学科的阶段规划、考核范围与复习路线。</li>
+                    <li><strong>课题讲义</strong> —— 按课题编写的课堂讲义，含定义、定理、例题与练习。</li>
+                    <li><strong>Textbook Plan</strong> —— 教科书的章节推进计划与配套笔记。</li>
+                    <li><strong>课程主页</strong> —— 课程入口与导航页。</li>
+                    <li><strong>数字花园</strong> —— 数学笔记、读书摘记与教学反思。</li>
+                    <li><strong>法务</strong> —— 与教学相关的规定、声明与合规资料。</li>
+                </ul>
+                <p>目前站点共收录 <strong data-manifest-count="docs">79</strong> 篇笔记，标签 <strong data-manifest-count="tags">—</strong> 个，笔记之间的引用与嵌入关系 <strong data-manifest-count="edges">—</strong> 条。</p>
+
+                <h2>技术说明</h2>
+                <p>本站是<strong>纯静态站点</strong>：没有服务器端程序，没有数据库，没有构建步骤，也不依赖任何框架或 CDN。全部页面由 HTML、CSS 与原生 JavaScript 构成，可以直接托管在 GitHub Pages 上。</p>
+                <p>内容来自 Obsidian 笔记库的导出：原有的 Markdown 笔记（含 LaTeX 公式、表格、代码块与提示框）被转换为静态页面，再套用一套自带的主题统一视觉。主题支持浅色与深色两种模式，深色会跟随系统偏好，也可以手动切换；切换结果会保存在浏览器本地。</p>
+                <p>站内另外提供了两个检索入口：知识图谱（把笔记之间的链接画成网络图）与全文搜索（在浏览器本地检索索引，不发送任何请求到外部服务）。</p>
+
+                <h2>关于引用</h2>
+                <p>站点内容欢迎在教学中参考与引用。如果用于公开发布或商业用途，请先与我联系。笔记中的公式与例题如有错误，非常欢迎指出——这是这个花园持续修剪的方式。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head">
+                <h2 class="section-title">联系与关注</h2>
+                <p class="section-sub">有问题、建议或合作意向，随时找我</p>
+            </div>
+            <div class="card-grid">
+                <article class="card reveal" data-delay="1">
+                    <span class="card-icon" aria-hidden="true">✉</span>
+                    <h3 class="card-title">直接联系</h3>
+                    <ul class="card-list">
+                        <li>微信：<strong>Xuless1214alpha</strong></li>
+                        <li>邮箱：<a href="mailto:3311059015@qq.com">3311059015@qq.com</a></li>
+                    </ul>
+                    <p class="card-excerpt">课程咨询、讲义勘误、内容授权，走这两个渠道最快。</p>
+                </article>
+                <article class="card reveal" data-delay="2">
+                    <span class="card-icon" aria-hidden="true">🔗</span>
+                    <h3 class="card-title">线上主页</h3>
+                    <ul class="card-list">
+                        <li>个人博客：<a href="https://firefly.3311059015.workers.dev/" target="_blank" rel="noopener noreferrer">firefly.3311059015.workers.dev</a></li>
+                        <li>GitHub：<a href="https://github.com/xuless885" target="_blank" rel="noopener noreferrer">github.com/xuless885</a></li>
+                    </ul>
+                    <p class="card-excerpt">博客写更长的文章，GitHub 放这个站点的源码与更新记录。</p>
+                </article>
+                <article class="card reveal" data-delay="3">
+                    <span class="card-icon" aria-hidden="true">🌿</span>
+                    <h3 class="card-title">本站速览</h3>
+                    <ul class="card-list">
+                        <li><a href="./index.html">全部笔记索引</a>：按分类、标签与关联度浏览</li>
+                        <li><a href="./graph.html">知识图谱</a>：看笔记之间如何互相连接</li>
+                        <li><a href="./search.html">全文搜索</a>：纯前端检索，无需联网请求</li>
+                    </ul>
+                    <p class="card-excerpt" data-manifest-built>内容持续更新中。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer-site">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a class="brand" href="../index.html">
+                <span class="brand-mark" aria-hidden="true">X</span>
+                <span class="brand-text">
+                    <span>Xuless 数字花园</span>
+                    <span class="brand-sub">数学 · 课程 · 笔记</span>
+                </span>
+            </a>
+            <p>HKDSE 数学课程讲义、Textbook Plan、大学数学笔记与长期项目的持续沉淀。</p>
+        </div>
+        <nav aria-label="页脚导航">
+            <ul class="footer-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="./index.html">博客</a></li>
+                <li><a href="./tags.html">标签</a></li>
+                <li><a href="./graph.html">图谱</a></li>
+                <li><a href="./search.html">搜索</a></li>
+                <li><a href="./about.html">关于</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 许少 Xuless · 纯静态站点 · 由 Obsidian 内容与自带主题构成</p>
+    </div>
+</footer>
+
+<script>
+/* 用 manifest.json 的真实数字替换「关于」页里的占位统计（失败则保留 HTML 中的默认值） */
+(function () {
+    "use strict";
+    var api = window.DSH || {};
+    function loadJson(path) {
+        if (api.fetchJSON) { return api.fetchJSON(path); }
+        return fetch("../" + path).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    }
+    function esc(s) {
+        if (api.escapeHtml) { return api.escapeHtml(s); }
+        return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    function boot() {
+        loadJson("site-lib/data/manifest.json").then(function (m) {
+            if (!m || typeof m !== "object") { return; }
+            var counts = m.counts || {};
+            Array.prototype.slice.call(document.querySelectorAll("[data-manifest-count]")).forEach(function (el) {
+                var key = el.getAttribute("data-manifest-count");
+                var val = counts[key];
+                if (val === undefined || val === null || val === "") { return; }
+                el.textContent = typeof val === "number" ? (api.formatNumber ? api.formatNumber(val) : String(val)) : String(val);
+            });
+            var built = document.querySelector("[data-manifest-built]");
+            if (built && m.builtAt) {
+                built.textContent = "索引构建于 " + esc(m.builtAt) + "，内容持续更新中。";
+            }
+        });
+    }
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
+    }
+})();
+</script>
+</body>
+</html>
