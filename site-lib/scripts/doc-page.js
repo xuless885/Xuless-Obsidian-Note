@@ -295,3 +295,138 @@
     boot();
   }
 })();
+
+/* ===========================================================================
+   可调整的侧边栏（左：目录 / 右：反向链接）
+   源导出页给了 #left-content / #right-content 三个叶子列（左栏、正文、右栏），
+   但旧样式从未消费 --sidebar-width，宽度因此不可调、间距也不对。
+   这里插入 .dsh-resizer 手柄，拖动即改宽度并持久化到 localStorage。
+   =========================================================================== */
+(function () {
+  "use strict";
+  var MIN = 190, MAX_PAD = 170, CLOSE_AT = 120;
+  var KEY_L = "sidebar-left-width", KEY_R = "sidebar-right-width", KEY_CLOSED = "sidebar-closed";
+
+  function ls(k, v) {
+    try {
+      if (v === undefined) return localStorage.getItem(k);
+      localStorage.setItem(k, v);
+    } catch (e) { /* 隐私模式下忽略 */ }
+    return null;
+  }
+
+  function install() {
+    var main = document.getElementById("main-horizontal");
+    var center = document.getElementById("center-content");
+    var left = document.getElementById("left-content");
+    var right = document.getElementById("right-content");
+    if (!main || !center) return;
+
+    var closed = (ls(KEY_CLOSED) || "").split(",");
+    var pairs = [];
+    if (left && left.parentNode === main) pairs.push([left, KEY_L, "调整左侧目录宽度", left.nextSibling]);
+    if (right && right.parentNode === main) pairs.push([right, KEY_R, "调整右侧栏宽度", right]);
+
+    function maxWidth() {
+      return Math.max(MIN + 20, Math.min(760, main.clientWidth - MAX_PAD));
+    }
+    function restore(el, key) {
+      var v = parseInt(ls(key), 10);
+      if (v > 0) el.style.setProperty("--sidebar-width", Math.min(v, maxWidth()) + "px");
+    }
+    function clampAll() {
+      pairs.forEach(function (pr) { restore(pr[0], pr[1]); });
+    }
+
+    pairs.forEach(function (pr) {
+      var el = pr[0], key = pr[1], label = pr[2];
+      restore(el, key);
+
+      var h = document.createElement("div");
+      h.className = "dsh-resizer";
+      h.setAttribute("role", "separator");
+      h.setAttribute("aria-orientation", "vertical");
+      h.setAttribute("aria-label", label);
+      h.setAttribute("tabindex", "0");
+      h.setAttribute("title", label + "（拖动 / 方向键；双击复位）");
+      // 左栏手柄放在左栏之后；右栏手柄放在右栏之前
+      var ref = (pr[3] && pr[3].nodeType === 1 && pr[3] !== el) ? pr[3] : el;
+      if (el === right) main.insertBefore(h, ref);
+      else main.insertBefore(h, ref.nextSibling);
+
+      var startX = 0, startW = 0, dir = (el === right) ? -1 : 1;
+
+      function baseWidth() {
+        var w = el.getBoundingClientRect().width;
+        return w > 0 ? w : (parseInt(getComputedStyle(el).getPropertyValue("--sidebar-width"), 10) || 280);
+      }
+      function apply(w) {
+        w = Math.max(0, Math.min(w, maxWidth()));
+        el.style.setProperty("--sidebar-width", w + "px");
+        el.classList.toggle("is-collapsed", w < CLOSE_AT);
+        return w;
+      }
+      function persist(w) {
+        if (w < CLOSE_AT) {
+          if (closed.indexOf(key) < 0) closed.push(key);
+        } else {
+          closed = closed.filter(function (x) { return x !== key; });
+          ls(KEY_CLOSED, closed.join(","));
+        }
+        ls(key, String(Math.round(w)));
+      }
+
+      h.addEventListener("pointerdown", function (e) {
+        if (e.button !== undefined && e.button !== 0) return;
+        startX = e.clientX;
+        startW = baseWidth();
+        h.setPointerCapture(e.pointerId);
+        h.classList.add("is-active");
+        el.classList.add("is-resizing");
+        document.body.classList.add("dsh-resizing");
+        e.preventDefault();
+      });
+      h.addEventListener("pointermove", function (e) {
+        if (!h.classList.contains("is-active")) return;
+        apply(startW + (e.clientX - startX) * dir);
+      });
+      function end(e) {
+        if (!h.classList.contains("is-active")) return;
+        h.classList.remove("is-active");
+        el.classList.remove("is-resizing");
+        document.body.classList.remove("dsh-resizing");
+        persist(baseWidth());
+      }
+      h.addEventListener("pointerup", end);
+      h.addEventListener("pointercancel", end);
+
+      h.addEventListener("keydown", function (e) {
+        var step = e.shiftKey ? 40 : 12;
+        var d = (e.key === "ArrowLeft") ? -1 : (e.key === "ArrowRight") ? 1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        persist(apply(baseWidth() + d * step * dir));
+      });
+      h.addEventListener("dblclick", function () {
+        el.classList.remove("is-collapsed");
+        var key2 = key;
+        try { localStorage.removeItem(key2); } catch (err) {}
+        el.style.removeProperty("--sidebar-width");
+        closed = closed.filter(function (x) { return x !== key2; });
+        ls(KEY_CLOSED, closed.join(","));
+      });
+    });
+
+    if (closed.indexOf(KEY_L) >= 0 && left) left.classList.add("is-collapsed");
+    if (closed.indexOf(KEY_R) >= 0 && right) right.classList.add("is-collapsed");
+
+    var rt;
+    window.addEventListener("resize", function () {
+      clearTimeout(rt);
+      rt = setTimeout(clampAll, 150);
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  else install();
+})();

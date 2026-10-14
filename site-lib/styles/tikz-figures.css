@@ -1,0 +1,103 @@
+/* ============================================================================
+   TikZ 预渲染图形的展示样式（共享）
+   这些图在构建期已渲染成静态 SVG，页面里是：
+     <figure class="tikz-figure-wrap"><img class="tikz-figure" …>
+       <details class="tikz-source-toggle"><summary>查看 TikZ 原始碼</summary>
+         <pre class="tikz-source"><code>…</code></pre></details></figure>
+   两条硬性要求：
+     1. SVG 里的 <text> 是 BaKoMa Computer Modern **字形槽位**（不是 Unicode），
+        必须同时加载 tikzjax-fonts.css，否则公式会显示成「看着正常但错误」的字符；
+     2. 图形的字号/颜色要跟随正文与主题，所以用 currentColor 与相对尺寸。
+   ========================================================================== */
+
+.tikz-figure-wrap {
+  margin: 1.4em 0;
+  text-align: center;
+}
+
+.tikz-figure {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  /* SVG 内的 <text fill="currentColor"> 依赖这里的 color 继承 */
+  color: var(--fg, currentColor);
+  vertical-align: middle;
+}
+
+/* 深色主题下 SVG 的描边若写死黑色会看不见，统一反转亮度 */
+html[data-theme="dark"] .tikz-figure,
+html.theme-dark .tikz-figure {
+  filter: none;
+}
+
+/* 原始码折叠区：默认收起，不打扰阅读 */
+.tikz-source-toggle {
+  margin: .6em auto 0;
+  max-width: 46em;
+  text-align: left;
+  font-size: .84em;
+}
+
+.tikz-source-toggle > summary {
+  cursor: pointer;
+  color: var(--fg-subtle, var(--fg-muted, #8b8f9a));
+  padding: 4px 2px;
+  border-radius: var(--radius-s, 8px);
+  list-style: none;
+  user-select: none;
+  transition: color .14s ease;
+}
+
+.tikz-source-toggle > summary::-webkit-details-marker { display: none; }
+
+.tikz-source-toggle > summary::before {
+  content: "▸ ";
+  display: inline-block;
+  transition: transform .18s ease;
+}
+
+.tikz-source-toggle[open] > summary::before { transform: rotate(90deg); }
+
+.tikz-source-toggle > summary:hover { color: var(--accent, #3b5bdb); }
+
+.tikz-source,
+pre.tikz-source {
+  margin: .5em 0 0;
+  padding: .8em 1em;
+  border: 1px solid var(--border, #e3e2dd);
+  border-radius: var(--radius-s, 8px);
+  background: var(--bg-sunken, #efeee9);
+  color: var(--fg-muted, #5b5f6b);
+  overflow-x: auto;
+  font-size: .82em;
+  line-height: 1.55;
+  white-space: pre;
+}
+
+.tikz-source code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* 无法预渲染的图：可见源码 + 说明（绝不是空白或坏图） */
+.tikz-figure-wrap.tikz-unavailable {
+  border: 1px dashed var(--border-strong, #cfcec7);
+  border-radius: var(--radius-m, 14px);
+  padding: 1em 1.2em;
+  background: var(--bg-elev, #fff);
+  text-align: left;
+}
+
+.tikz-fallback-hint {
+  margin: 0 0 .6em;
+  color: var(--fg-muted, #5b5f6b);
+  font-size: .86em;
+}
+
+.tikz-fallback-hint code {
+  font-size: .94em;
+  overflow-wrap: anywhere;
+}

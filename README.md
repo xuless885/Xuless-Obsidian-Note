@@ -1,191 +1,129 @@
-# Xuless 数字花园
+# Xuless 数学站
 
-许少（Xuless）的个人博客与知识库。纯静态站点，无构建步骤、无框架、无 CDN，直接托管于 GitHub Pages。
+许少（Xuless）的个人数学站：高中数学课程 + 大学数学内容。
+纯静态（HTML / CSS / JS，无后端、无追踪），部署为 **GitHub Pages 项目站点**（子路径）。
 
-## 站点结构
+线上地址：<https://xuless885.github.io/Xuless-Obsidian-Note/>
+
+---
+
+## 1. 站点结构
 
 ```
-index.html                     首页：hero / 站点统计 / 栏目导航 / 最新更新 / 标签云
-
+index.html                     首页：两个大板块（高中数学课程 / 大学数学内容）
+about.html                     关于本站（独立撰写的简介页）
+courses/
+  hs.html                      高中数学课程 —— 三个子板块的入口
+  uni.html                     大学数学内容 —— 内容建设中（先空着）
+  mock.html                    模拟卷清单（仅卷面，外部链接，不含答案）
+  outline.html                 大纲（官方考纲 / 课程阐释 PDF / 词汇表）
+hkdse-course/
+  dse-课题讲义/                 课程讲义正文：35 章 + 给读者的简介（渲染产物）
+  dse-课题讲义/*.md             讲义源文（自 Obsidian 库移植，与页面同目录）
+  大纲/                         DSE 数学词汇表、官方考纲与课题讲义关联分析（渲染产物）
+  图片/                         讲义配图（108 个唯一文件名，站内唯一图片目录）
 blog/
-  index.html                   文章列表（分类、标签筛选 + 排序 + 分页）
-  tags.html                    标签总览
-  graph.html                   知识关系图（Obsidian 风格）
-  search.html                  全站可视化检索
-  about.html                   关于本站
-
+  index.html  tags.html  graph.html  search.html  about.html
 site-lib/
-  styles/
-    blog-theme.css             ★ 本站自有主题（设计令牌 + 组件 + 对旧 Quartz DOM 的覆盖）
-    graph.css / search.css     关系图与检索页样式
-  scripts/
-    site.js                    主题切换、导航、入场动效、DSH 工具函数
-    graph.js                   canvas 力导向关系图（自研，无第三方库）
-    search.js                  全文检索（中文 2-gram / 英文分词打分）
-    doc-page.js                内容页的「反向链接 / 本文引用」面板
-    webpage.js / graph-wasm*   Obsidian 导出附带的原脚本（保留）
-  data/                        ★ 全站静态数据索引（由构建脚本生成）
-    docs.json                  134 篇文档的元数据 + 双向链接关系
-    links.json                 237 条有向关系边
-    tags.json                  标签词表与归属
-    search.json                全文检索索引（含公式文本，见下）
-    manifest.json              站点概要（11 个栏目）
-    home.json                  首页专用瘦身索引（约 11KB）
-  vendor/                      第三方渲染引擎（离线自足，见下）
-    tikzjax/                   TikZ 渲染引擎 + 140 个 BaKoMa 字体
-    NOTICE.md                  组件清单、版本、许可证与溯源
-  styles/obsidian.css 等       Obsidian 导出原样式（保留，新主题在其后覆盖）
-
-hkdse-course/                  内容主体（134 个页面 · 11 个栏目）
-  大纲/                        7    课程阐释 PDF 壳页、官方考点大纲、词汇表
-  dse-课题讲义/                 27   Chapter 0–25 课题讲义
-  dse-textbook-plan/           38   Ch00–Ch36 Textbook Plan 草稿
-  习题册草稿/                   34   Ch00–Ch29 习题册规划（公式最密，含 177 个 TikZ 图）
-  习题难度标记/                 5    四维难度打标示范
-  AI参考习题库/                 2    HKDSE 卷一 历届/模拟试题分类汇编
-  规划说明方案/                 2    习题册规划规范、讲义写作规范
-  规划文档/                    13   各章修改方案与讲义规划
-  图片/                        配图（SVG / PNG）
-许少xuless的数字花园/           数字花园入口 + legal/
+  styles/  scripts/  data/  media/  fonts/  vendor/
 ```
 
-### 源文件也在仓库里
+**两处必须记住的路径约定：**
 
-按「移植整个 HKDSE 项目」的要求，每个栏目除渲染后的 `.html` 外，**原始 `.md` 源文件、配图、以及项目工具脚本（`.py`／`.canvas`／`.base`／`.mcg`）都已随仓库一同保存**。
-排除的只有三类：PDF（按用户要求不搬，页面上保留文字引用）、`.bak_*`／`.corrupt`／`.tmp*` 过程稿、以及 `.agx`／`.thm`／`.ini`／`.lnk`／`.log` 这类编辑器产物。
+1. **绝不用 root-absolute 路径**（`/site-lib/...`）。本站是 GitHub Pages **项目站点**，
+   部署在 `/Xuless-Obsidian-Note/` 子路径下，以 `/` 开头的引用会 404。
+   页面用相对前缀（根页面 `./`、`courses/` 用 `../`、`hkdse-course/xxx/` 用 `../../`）。
+2. 新版外壳页（`index.html` / `about.html` / `courses/*.html`）**不写 `<base>`**，
+   深度靠 `../` 前缀自己算；讲义页沿用渲染器输出（同样不带 `<base>`）。
 
-## 数学与 TikZ 的渲染方式
+---
 
-这是本站最需要理解的一点：**公式在构建期就预渲染成静态 HTML，运行期零 JavaScript。**
+## 2. 内容来源与渲染
 
-- **公式**：构建期用 MathJax（`mathjax-full`，Apache-2.0）把 103,633 个公式容器序列化成 CHTML 静态标记，复用 `site-lib/fonts/mathjax_*.woff`。浏览器端**不加载任何 MathJax 运行时**——这与既有 78 页的导出方式一致，观感统一，且完全离线。
-- **公式可被搜索**：CHTML 把字形编码在类名里（`mjx-c1D445` → `𝑅`）。构建数据索引时把类名解码回字符（并用 Unicode NFKD 归一化，`𝑅`→`R`、`𝜆`→`λ`），因此**公式内容真的能搜**，例如搜 `Δ=b2-4ac`、`sin2θ+cos2θ=1`、`R=(1-λ)P+λQ` 都能命中。
-- **TikZ 图**：`site-lib/vendor/tikzjax/` 是本地化的 TeX 引擎（自带 `tex.wasm` 与 TeX 支持文件，**运行期无任何外网请求**）。
-  **图在构建期就渲染成静态 SVG**（178 张，见 `site-lib/vendor/tikzjax/prerendered/`），页面里是一张
-  `<img class="tikz-figure">`，**浏览器端不再加载这个 6.7 MB 的引擎**。
-  这一点很关键：客户端渲染实测**每张图 20–40 秒**，而 `ch08` 一页有 73 张图——首次访问要 24–48 分钟，等于不可用。
-  预渲染把这份成本一次性挪到构建期。
-  ⚠️ 这些 SVG 里的 `<text>` 用的是 **BaKoMa Computer Modern 字形槽位**（不是普通 Unicode），
+| 来源 | 路径 | 去处 |
+| --- | --- | --- |
+| Obsidian 文档库 | `C:\Users\xuless\OneDrive\Xuless Obsidian Note` | `HKDSE course/DSE 课题讲义/*.md` → 35 章讲义 |
+| Obsidian 文档库 | 同上 | `HKDSE course/大纲/*.md` → 词汇表、关联分析 |
+| LaTeX 文档库 | `C:\Users\xuless\OneDrive\文件\HKDSE` | 模拟卷**卷面 PDF**（清单页外链，**不搬进仓库**） |
+
+**讲义源库是唯一事实来源**：渲染器读的是 OneDrive 库里的 `.md`，不是仓库副本。
+要改正文内容，**必须改库源**，否则重渲染会把改动覆盖回去。
+（仓库内的同名 `.md` 是为「源文件也在站点里」而放的副本，仅供下载/检索。）
+
+渲染流水线（复用 `.build/md/render_md.py`，它已解决 MathJax 预渲染、TikZ 接入、
+表格 / wikilink / 图片 / callout 解析）：
+
+```bash
+python .build/restructure/render_all_docs.py --apply   # 渲染讲义 + 大纲（37 篇）
+python .build/de/build_data.py                         # 重建 site-lib/data/*.json
+python .build/restructure/fix_images.py --apply        # 修复对不上的图片引用
+python .build/md/integrate_tikz2.py --apply            # 把预渲染 SVG 接进页面
+python .build/md/add_tikz_fonts.py --apply             # 补 BaKoMa 字体 CSS
+python .build/restructure/add_tikzcss.py               # 补 tikz-figures.css
+```
+
+**顺序很重要**：渲染在前、图片修复与 TikZ 集成在后；集成脚本是幂等的（靠
+`data-tikz-prerendered` 标记判重），但**渲染会重置页面**，所以每次重渲染后都要重跑后三步。
+
+---
+
+## 3. 数学公式：构建期预渲染
+
+- 公式在**构建期**用 MathJax（`mathjax-full`，Apache-2.0）转成静态 CHTML，浏览器端**零 MathJax 运行时**，完全离线、无闪烁。
+- 复用 `site-lib/fonts/mathjax_*.woff`。
+- **公式可被搜索**：CHTML 把字形编码在类名里（`mjx-c1D445` → `𝑅`），建索引时解码回字符并做 NFKC 归一化（`𝑅`→R、`𝜆`→λ），同时剔除 U+2061 等不可见控制符。
+- 公式样式是**一份共用文件** `site-lib/styles/mathjax-chtml.css`（曾按目录各存一份，属浪费）。
+
+## 4. TikZ 图：构建期预渲染成静态 SVG
+
+- 站点本地化 tikzjax 引擎（`site-lib/vendor/tikzjax/`，自带 `tex.wasm`，运行期零外网请求）。
+- **452 张图在构建期渲染成静态 SVG**，页面里是 `<img class="tikz-figure">`。
+  **页面不再加载那个 6.7 MB 的引擎** —— 客户端渲染实测每张 20–40 秒，
+  一页上百张等于不可用。
+- ⚠️ **字体是承重的**：SVG 里的 `<text>` 用的是 BaKoMa Computer Modern **字形槽位**（不是 Unicode），
   必须同时加载 `tikzjax-fonts.css`（140 个 `@font-face`），否则公式会显示成「看着正常但错误」的字符。
-  有 5 张图无法渲染，原因与复现方式见 `prerendered/KNOWN-LIMITATIONS.md`。
-
-### 已知限制
-
-- **上下标被线性拉平**：`x²` 与 `x₂` 在检索索引里都是 `x2`。所以搜 `x2` 命中、搜 `x^2` 不命中。
-- **69/134 页触及 10000 字/页的索引上限**（公式最密的习题册页保留前 10000 字）；这是为把 `search.json` 压在 ~2.3 MB 内的取舍。
-- **55 个页面是孤立节点**（度数为 0）——这些规划/说明文档之间确实没有互链，是内容事实。关系图**默认关闭**「显示孤立节点」，需要时可在图谱页打开开关。
-
-## 本地预览
-
-站点使用根相对**同级**路径（不是 `root-absolute`），必须通过 HTTP 服务访问，直接双击打开 `file://` 会因 `<base>` 语义失效：
+- 图形样式在 `site-lib/styles/tikz-figures.css`。
 
 ```bash
-python -m http.server 8123
-# 打开 http://127.0.0.1:8123/
+node .build/tikz/prerender_tikz.js --resume   # 只重试失败项
 ```
 
-> ⚠️ 不要用 `/site-lib/...` 这类根绝对路径。本仓库是 GitHub Pages **项目站点**，
-> 线上地址形如 `https://<user>.github.io/Xuless-Obsidian-Note/`，根绝对路径会指向
-> 域名根而非仓库根，导致 404。
+## 5. 数据层
 
-### 路径约定（重要）
-
-内容页（`hkdse-course/**`、`许少xuless的数字花园/**`）由 Obsidian 插件导出，**自带
-`<base href="..">` 或 `<base href="../..">`**，因此它们引用资源一律用**无前缀**写法：
-
-```html
-<link rel="stylesheet" href="site-lib/styles/blog-theme.css">
-```
-
-新页面（根 `index.html` 与 `blog/*.html`）**不带 `<base>`**，因此用相对前缀：
-
-```html
-<!-- index.html -->   <link rel="stylesheet" href="./site-lib/styles/blog-theme.css">
-<!-- blog/*.html -->  <link rel="stylesheet" href="../site-lib/styles/blog-theme.css">
-```
-
-## 数据索引的生成
-
-`site-lib/data/*.json` 全部由脚本生成：既有 78 页的元数据来自 `site-lib/metadata.json`（Obsidian 导出产物），**新增页面以及所有出链／正文则从磁盘上的 HTML 实际抽取**（新页面不在 metadata 里，脚本按「磁盘存在但 metadata 没有 ⇒ 当新页面纳入」处理）。**内容页的链接或正文若发生改动，必须重建索引**，否则关系图、反向链接面板与搜索会与实际内容脱节：
+`site-lib/data/` 六个文件：`docs.json`（文档元数据 + 双向链接）、`links.json`（边）、
+`search.json`（检索索引）、`tags.json`、`manifest.json`、`home.json`。
+id = `md5(path)` 前 10 位；所有 path 都是**仓库根相对、绝不以 `/` 开头**。
 
 ```bash
-python .build/de/build_data.py     # 重建全部 6 个数据文件
-python .build/de/verify.py         # 校验（exit 0 表示通过）
+python .build/de/build_data.py     # 重建（一次产出 6 个 JSON）
+python .build/de/verify.py         # 6 条验收，证据留档
 ```
 
-构建是确定性的：连跑两次除时间戳外逐字节相同。
+**源 HTML 是移动目标**：任何批量改 `.html` 之后都必须重跑 `build_data.py`，
+否则关系图与检索会指向已不存在的页面（表现为页面一直「载入中」）。
 
-## 新增 markdown 内容的渲染
-
-`hkdse-course/` 下的习题册等栏目是**从 markdown 渲染来的**（源在 Obsidian 库里）。渲染流水线：
+## 6. 验收
 
 ```bash
-python .build/md/render_md.py --dry-run   # 只统计：页数、公式数、tikz 数、图片清单
-python .build/md/render_md.py --apply     # 实际生成 .html（幂等，二次运行 0 改动）
+python .build/lead_final_check.py      # 全站 49 页 + 555 个本地资源，全部 200、无 root-absolute
+node   .build/test_graph_search.js     # 关系图 / 检索 130 项断言
+python .build/de/verify.py             # 数据层
 ```
 
-- 渲染器读的是 **Obsidian 库源目录**（`render_md.py` 顶部的 `SRC_ROOT`），不是仓库里的 `.md` 副本——**改内容要改库源**，否则重渲染会把仓库副本的改动覆盖回去。
-- 数学走构建期 MathJax 预渲染（需要 `.build/tools/node_modules/mathjax-full`，仅构建期使用、不入仓库；公式结果缓存在 `.build/md/.cache/`，缓存命中时整轮渲染约 4 秒）。
-- 若要"从零复现"这条流水线：`cd .build/tools && npm install mathjax-full@3`。
+三个临时 HTTP 服务各司其职：检查器用线程化 `ThreadingTCPServer`（大文件如
+mathjax-chtml.css 在单线程 `http.server` 下会断连导致误报 404）。
 
-## 运维脚本
+## 7. 已知限制
 
-`.build/` 已被 `.gitignore` 忽略，属本地工具目录：
+- 讲义页公式密集，单页最大约 820 KB（构建期预渲染换来离线可用 + 无闪烁，靠 gzip 缓解传输）。
+- 5 张 TikZ 图无法渲染，原因与修复路径见 `site-lib/vendor/tikzjax/prerendered/KNOWN-LIMITATIONS.md`。
+- 模拟卷只做清单页 + 外部链接，**不含答案与评分参考**。
 
-| 脚本 | 用途 |
-| --- | --- |
-| `de/build_data.py` | 重建 `site-lib/data/*.json` |
-| `de/verify.py` | 数据索引完整性校验 |
-| `md/render_md.py` | markdown → HTML（习题册等新增内容） |
-| `md/tex2mml.js` | 批量 TeX 渲染器（MathJax，一次进程内完成） |
-| `copy_source.py` | 幂等地把 Obsidian 库源文件搬进仓库 |
-| `lead_final_check.py` | 全站终验：抓取所有页面与其引用的每个本地资源，断言全部 200 |
-| `inject_content.py` | 幂等地为内容页注入主题/导航/面板（判重标记见下） |
-| `lead_deadassets.py` | 清理导出遗留的死资源引用（已执行） |
-| `lead_headfix.py` | 回补误删的 `<head>` 注入块（已执行） |
-| `lead_linkfix.py` | 死链修复（已执行） |
-| `test_graph_search.js` | 关系图与检索的 headless 逻辑 + jsdom 集成自测 |
-| `vendor/fetch_vendor.js` | 可复现地重建 `site-lib/vendor/`（含 sha256 校验） |
-| `test_vendor_offline.js` | 证明 vendor 运行时 0 个外网请求 |
-| `test_tikz_render.js` | 无头 Chrome + 全网黑洞下验证 TikZ 真渲染 |
+## 8. 历史
 
-### 注入标记
-
-内容页中的以下注释用于幂等判重，**不要手工删除**：
-
-```html
-<!-- ==DSH-INJECT:head== -->          注入的样式/脚本/meta
-<!-- ==DSH-INJECT:nav== -->           顶部导航
-<!-- ==DSH-INJECT:panels== -->        反向链接 / 本文引用面板
-<!-- ==DSH-LEADFIX:dead-assets== -->  死资源引用清理
-```
-
-## 设计系统
-
-`site-lib/styles/blog-theme.css` 是唯一的主题来源，其他样式与脚本只能**消费**它导出的
-CSS 变量，不得重定义：
-
-```
---bg --bg-elev --bg-sunken --fg --fg-muted --fg-subtle
---accent --accent-2 --accent-soft --accent-contrast
---grad-hero --grad-card
---border --border-strong
---radius-s --radius-m --radius-l --radius-pill
---shadow-s --shadow-m --shadow-l
---space-1 … --space-8   --maxw --nav-h
---font-sans --font-serif --font-mono
---ease --dur-fast --dur --dur-slow
-```
-
-深浅主题切换使用 `localStorage` 键 `dsh-theme`（取值 `light` / `dark`），并兼容
-`prefers-color-scheme`。
-
-## 部署
-
-推送到 `main` 分支即由 GitHub Pages 发布：
-
-```bash
-git add -A && git commit -m "..." && git push origin main
-```
-
-推送前建议本地跑一遍 `python .build/lead_final_check.py`（应输出全部 200）。
+- `99cbad9` 重写为个人博客站（Obsidian 式双链 + 关系图 + 检索）。
+- `86f67af` 移植 HKDSE 项目全部文件并生成 56 个页面。
+- `e27e4bf` 加 `.nojekyll`（否则 Pages 会跑 Jekyll 渲染仓库里的源 `.md`）。
+- 之后按用户决定**重建信息架构**：只留「高中数学课程 / 大学数学内容」两个板块，
+  删掉旧 78 页与 56 个内部工作稿（连同源文件），讲义重渲染为 35 章。
+  回滚点：tag `checkpoint-before-restructure` / 分支 `backup/legacy-site`。

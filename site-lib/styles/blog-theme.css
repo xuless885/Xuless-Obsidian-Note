@@ -2989,3 +2989,83 @@ body.publish :focus-visible {
 }
 
 /* ==BLOG-THEME:document_end== */
+
+/* ==========================================================================
+   8.9 可调整的侧边栏（左：目录 / 右：反向链接）
+   背景：源导出页在 #left-content / #right-content 上写了
+   style="--sidebar-width: …"，但**没有任何 CSS 消费这个变量**，
+   布局实际由 flex 的 flex-grow/shrink 决定 —— 所以宽度不可调、间距也不对。
+   这里改用显式 flex-basis 并补齐拖拽手柄与持久化（JS 见 doc-page.js）。
+   ========================================================================== */
+body.publish #main-horizontal {
+    display: flex;
+    align-items: stretch;
+}
+
+body.publish #left-content,
+body.publish #right-content {
+    /* 关键：让 --sidebar-width 真正生效 */
+    flex: 0 0 auto;
+    width: var(--sidebar-width, 280px);
+    max-width: 60vw;
+    min-width: 0;
+    transition: width .16s var(--ease, ease);
+}
+
+body.publish #left-content.is-resizing,
+body.publish #right-content.is-resizing { transition: none; }
+
+/* 中间正文列：占据剩余空间并可收缩 */
+body.publish #center-content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* 间距：flex gap 在旧导出样式里缺失，用 margin 兜住，避免侧栏与正文贴死 */
+body.publish #center-content { margin-inline: var(--space-4, 16px); }
+
+/* 拖拽手柄 */
+body.publish .dsh-resizer {
+    flex: 0 0 7px;
+    align-self: stretch;
+    cursor: col-resize;
+    position: relative;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    touch-action: none;
+}
+
+body.publish .dsh-resizer::before {
+    content: "";
+    position: absolute;
+    inset: 12px 3px;
+    border-radius: 999px;
+    background: var(--border-strong, #cfcec7);
+    opacity: 0;
+    transition: opacity .16s var(--ease, ease), background .16s ease;
+}
+
+body.publish .dsh-resizer:hover::before,
+body.publish .dsh-resizer:focus-visible::before,
+body.publish .dsh-resizer.is-active::before {
+    opacity: 1;
+    background: var(--accent, #3b5bdb);
+}
+
+body.publish .dsh-resizer:focus-visible {
+    outline: 2px solid var(--accent, #3b5bdb);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+/* 拖拽中：禁用文本选择与过渡，避免抖动 */
+body.dsh-resizing { user-select: none; cursor: col-resize; }
+body.dsh-resizing * { transition: none !important; }
+
+/* 窄屏：侧栏转为抽屉，手柄隐藏（由 doc-page.js 打 is-narrow 标记） */
+@media (max-width: 900px) {
+    body.publish .dsh-resizer { display: none; }
+    body.publish #left-content,
+    body.publish #right-content { width: auto; flex: 0 0 auto; }
+}

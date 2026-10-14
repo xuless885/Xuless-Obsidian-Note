@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模拟卷（仅卷面）</title>
+<meta name="description" content="HKDSE 数学模拟卷清单，只提供卷面，不含答案。">
+<meta property="og:title" content="模拟卷（仅卷面）">
+<meta property="og:description" content="HKDSE 数学模拟卷清单，只提供卷面，不含答案。">
+<link rel="icon" href="../site-lib/media/favicon.png">
+<script>window.DSH_ROOT = "../";</script>
+<style>:root{--bg:#f7f7f5;--bg-elev:#fff;--bg-sunken:#efeee9;--fg:#17181c;--fg-muted:#5b5f6b;--fg-subtle:#8b8f9a;
+--accent:#3b5bdb;--accent-2:#0ca678;--accent-soft:#e7ecff;--grad-hero:linear-gradient(135deg,#3b5bdb 0%,#7048e8 45%,#0ca678 100%);
+--border:#e3e2dd;--border-strong:#cfcec7;--radius-s:8px;--radius-m:14px;--radius-l:22px;--radius-pill:999px;
+--shadow-s:0 1px 2px rgba(16,18,27,.06);--shadow-m:0 6px 22px rgba(16,18,27,.09);--shadow-l:0 18px 48px rgba(16,18,27,.14);
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:48px;--space-8:72px;
+--maxw:1120px;--nav-h:60px;--ease:cubic-bezier(.22,.61,.36,1);--dur-fast:.14s;--dur:.26s;--dur-slow:.5s;
+--font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+html[data-theme="dark"]{--bg:#111216;--bg-elev:#191b21;--bg-sunken:#0d0e12;--fg:#ecedf1;--fg-muted:#a2a7b4;--fg-subtle:#767c8a;
+--accent:#7f95ff;--accent-2:#38d9a9;--accent-soft:#1e2436;--grad-hero:linear-gradient(135deg,#2b3a8f 0%,#5b34b8 45%,#0b7a58 100%);
+--border:#2a2d36;--border-strong:#3a3e4a;--shadow-s:0 1px 2px rgba(0,0,0,.4);--shadow-m:0 6px 22px rgba(0,0,0,.45);--shadow-l:0 18px 48px rgba(0,0,0,.55)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);line-height:1.7;-webkit-font-smoothing:antialiased;
+font-family:var(--font-sans);transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--space-5)}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;z-index:99;background:var(--bg-elev);padding:12px 16px;border-radius:8px}
+.site-nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(12px);
+background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid var(--border)}
+.site-nav-inner{display:flex;align-items:center;gap:var(--space-5);height:var(--nav-h);max-width:var(--maxw);margin:0 auto;padding:0 var(--space-5)}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--fg)}.brand:hover{text-decoration:none}
+.brand-mark{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--grad-hero);color:#fff;font-weight:800;font-size:15px}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-link{padding:7px 12px;border-radius:var(--radius-pill);color:var(--fg-muted);font-size:.94rem;transition:background var(--dur-fast),color var(--dur-fast)}
+.nav-link:hover{background:var(--bg-sunken);color:var(--fg);text-decoration:none}
+.nav-link.is-active{color:var(--accent);background:var(--accent-soft)}
+.theme-toggle{width:36px;height:36px;border-radius:var(--radius-pill);border:1px solid var(--border);background:var(--bg-elev);
+color:var(--fg-muted);cursor:pointer;display:grid;place-items:center;font-size:15px;transition:all var(--dur-fast)}
+.theme-toggle:hover{color:var(--accent);border-color:var(--border-strong)}
+.nav-toggle{display:none}
+@media (max-width:760px){.nav-links{position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;background:var(--bg-elev);
+border-bottom:1px solid var(--border);padding:var(--space-3);display:none;box-shadow:var(--shadow-m)}
+.site-nav.is-open .nav-links{display:flex}.nav-toggle{display:grid;margin-left:auto}}
+.page-head{position:relative;overflow:hidden;padding:var(--space-7) 0 var(--space-6);background:var(--grad-hero);color:#fff}
+.page-head::after{content:"";position:absolute;inset:0;pointer-events:none;
+background:radial-gradient(1100px 380px at 10% -20%,rgba(255,255,255,.26),transparent 60%)}
+.page-head .wrap{position:relative;z-index:1}
+.crumbs{font-size:.85rem;color:rgba(255,255,255,.82);margin-bottom:var(--space-4)}
+.crumbs a{color:rgba(255,255,255,.92)}.crumbs span{opacity:.7;margin:0 7px}
+.page-title{margin:0 0 var(--space-3);font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:-.03em;font-weight:800}
+.page-sub{margin:0;max-width:46em;color:rgba(255,255,255,.9)}
+main{display:block;padding:var(--space-7) 0}
+.grid{display:grid;gap:var(--space-5)}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card{position:relative;display:flex;flex-direction:column;padding:var(--space-5);border-radius:var(--radius-l);
+border:1px solid var(--border);background:var(--bg-elev);box-shadow:var(--shadow-s);overflow:hidden;
+transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur)}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-m);border-color:var(--border-strong);text-decoration:none}
+.card-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:22px;margin-bottom:var(--space-4);
+background:var(--grad-hero);color:#fff}
+.card-title{margin:0 0 var(--space-2);font-size:1.16rem;color:var(--fg);letter-spacing:-.01em}
+.card-desc{margin:0 0 var(--space-4);color:var(--fg-muted);font-size:.94rem;flex:1}
+.card-go{display:inline-flex;align-items:center;gap:7px;font-weight:650;color:var(--accent);font-size:.93rem}
+.card-go::after{content:"\2192";transition:transform var(--dur) var(--ease)}
+.card:hover .card-go::after{transform:translateX(4px)}
+.h-list{display:grid;gap:var(--space-3)}
+.h-item{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-5);border:1px solid var(--border);
+border-radius:var(--radius-m);background:var(--bg-elev);transition:transform var(--dur-fast) var(--ease),border-color var(--dur-fast),box-shadow var(--dur-fast)}
+.h-item:hover{transform:translateX(4px);border-color:var(--border-strong);box-shadow:var(--shadow-s);text-decoration:none}
+.h-idx{flex:0 0 46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--bg-sunken);
+border:1px solid var(--border);color:var(--fg-muted);font-weight:700;font-size:.88rem}
+.h-body{flex:1;min-width:0}
+.h-title{color:var(--fg);font-weight:600;letter-spacing:-.01em;overflow-wrap:anywhere}
+.h-meta{color:var(--fg-subtle);font-size:.83rem;margin-top:2px}
+.h-tag{flex:0 0 auto;padding:3px 10px;border-radius:var(--radius-pill);background:var(--accent-soft);color:var(--accent);font-size:.78rem}
+.empty{padding:var(--space-8) var(--space-5);text-align:center;border:1px dashed var(--border-strong);border-radius:var(--radius-l);background:var(--bg-elev)}
+.empty-ico{font-size:42px;margin-bottom:var(--space-4)}.empty-title{font-size:1.2rem;font-weight:700;margin:0 0 var(--space-3)}
+.empty-text{color:var(--fg-muted);max-width:36em;margin:0 auto}
+.note{padding:var(--space-4) var(--space-5);border-left:3px solid var(--accent);border-radius:0 var(--radius-m) var(--radius-m) 0;
+background:var(--accent-soft);color:var(--fg-muted);font-size:.93rem;margin:var(--space-5) 0}
+.note strong{color:var(--fg)}
+.section-title{margin:var(--space-7) 0 var(--space-5);font-size:1.25rem;letter-spacing:-.02em}
+.section-title:first-child{margin-top:0}
+.pager{display:flex;justify-content:space-between;gap:var(--space-4);margin-top:var(--space-6);flex-wrap:wrap}
+.pager a{padding:10px 16px;border:1px solid var(--border);border-radius:var(--radius-pill);background:var(--bg-elev);color:var(--fg-muted)}
+.pager a:hover{color:var(--accent);border-color:var(--border-strong);text-decoration:none}
+.footer-site{border-top:1px solid var(--border);margin-top:var(--space-8);padding:var(--space-6) 0 var(--space-7);color:var(--fg-muted);font-size:.9rem}
+.footer-grid{display:flex;justify-content:space-between;gap:var(--space-5);flex-wrap:wrap}
+.footer-links{display:flex;gap:var(--space-4);flex-wrap:wrap}.footer-links a{color:var(--fg-muted)}.footer-links a:hover{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(18px)}
+.reveal.is-visible{opacity:1;transform:none;transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+@media (prefers-reduced-motion:reduce){.reveal,.reveal.is-visible{opacity:1;transform:none;transition:none}.card:hover,.h-item:hover{transform:none}}
+</style>
+<link rel="stylesheet" href="../site-lib/styles/blog-theme.css">
+<link rel="stylesheet" href="../site-lib/styles/pages.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+<nav class="site-nav" id="site-nav" aria-label="站点导航">
+ <div class="site-nav-inner">
+  <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">X</span><span>许少 Xuless</span></a>
+  <button class="theme-toggle nav-toggle" type="button" aria-label="展开导航" aria-expanded="false" data-nav-toggle>&#9776;</button>
+  <div class="nav-links">
+   <a class="nav-link" href="../index.html">首页</a>
+   <a class="nav-link is-active" href="../courses/hs.html">高中数学课程</a>
+   <a class="nav-link" href="../courses/uni.html">大学数学内容</a>
+   <a class="nav-link" href="../about.html">关于</a>
+   <a class="nav-link" href="../blog/graph.html">知识图谱</a>
+   <button class="theme-toggle" type="button" aria-label="切换深浅主题" data-theme-toggle>&#9680;</button>
+  </div>
+ </div>
+</nav>
+<header class="page-head"><div class="wrap"><div class="crumbs"><a href="../index.html">首页</a><span>/</span><a href="hs.html">高中数学课程</a></div><h1 class="page-title">模拟卷（仅卷面）</h1><p class="page-sub">历年模拟卷试卷清单。仅卷面，答案另购。</p></div></header>
+<main id="main"><div class="wrap">
+
+<div class="note">
+ <strong>本站只提供试卷卷面。</strong>评分参考、答案与详解（MS 文件）不在站内发布。
+ 下方为模拟卷清单；如需某一套试卷，请通过<a href="../about.html">联系页</a>与我联系。
+</div>
+<h2 class="section-title">模拟卷清单（%d 份）</h2>
+<div class="h-list">
+%s
+</div>
+
+</div></main>
+<footer class="footer-site">
+ <div class="wrap footer-grid">
+  <div>
+   <strong style="color:var(--fg)">许少 Xuless</strong>
+   <div style="margin-top:6px">纯静态站点 · 内容源自 Obsidian 与 LaTeX 文档库</div>
+   <div style="margin-top:6px;font-size:.84rem;color:var(--fg-subtle)">&copy; <span id="year">2026</span> 许少 Xuless</div>
+  </div>
+  <div class="footer-links">
+   <a href="https://github.com/xuless885" target="_blank" rel="noopener">GitHub</a>
+   <a href="../about.html">关于本站</a>
+   <a href="../blog/graph.html">知识图谱</a>
+  </div>
+ </div>
+</footer>
+
+<script defer src="../site-lib/scripts/site.js"></script>
+<script>
+(function(){"use strict";
+ var ROOT=window.DSH_ROOT||".";
+ var root=document.documentElement;
+ function applyTheme(t){root.setAttribute("data-theme",t);try{localStorage.setItem("dsh-theme",t);}catch(e){}}
+ try{var s=localStorage.getItem("dsh-theme");
+  if(s)root.setAttribute("data-theme",s);
+  else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)root.setAttribute("data-theme","dark");}catch(e){}
+ document.addEventListener("click",function(e){
+  var tb=e.target.closest&&e.target.closest("[data-theme-toggle]");
+  if(tb){e.preventDefault();applyTheme(root.getAttribute("data-theme")==="dark"?"light":"dark");return;}
+  var nb=e.target.closest&&e.target.closest("[data-nav-toggle]");
+  if(nb){e.preventDefault();var p=nb.closest(".site-nav");p.classList.toggle("is-open");nb.setAttribute("aria-expanded",String(p.classList.contains("is-open")));}
+ });
+ var y=document.getElementById("year"); if(y) y.textContent=String(new Date().getFullYear());
+ var rv=document.querySelectorAll(".reveal");
+ if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("is-visible");io.unobserve(en.target);}});},{threshold:.05});rv.forEach(function(n){io.observe(n);});}
+ else{rv.forEach(function(n){n.classList.add("is-visible");});}
+})();
+</script>
+</body>
+</html>

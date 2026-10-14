@@ -21,18 +21,20 @@
 
   /** 物理参数（世界坐标单位 ≈ CSS 像素 @k=1） */
   var PHYSICS = {
-    repulsion: 900,        // 斥力系数：a = repulsion / d²
+    repulsion: 1750,       // 斥力系数：a = repulsion / d²（调大 → 节点铺得更开、更有张力）
     spring: 0.18,          // 弹簧系数
-    linkDistance: 46,      // 弹簧自然长度基准
+    linkDistance: 52,      // 弹簧自然长度基准
     linkDistanceScale: 4,  // 每单位度数的额外长度（高度节点连线更长，像 Obsidian）
-    center: 0.00028,       // 向心力：a = center * 到原点距离
+    center: 0.00022,       // 向心力：a = center * 到原点距离
     damping: 0.86,         // 速度阻尼
     alphaDecay: 0.985,     // alpha 每步衰减
     alphaMin: 0.006,       // 低于此值即认为静止 → 停止 rAF
     maxVelocity: 14,       // 单步位移上限（防爆）
     maxForce: 60,          // 单点加速度上限（防爆）
     minDist2: 25,          // 软核：距离平方下限
-    collision: 0.25,       // 短程碰撞系数：圆点重叠时额外推开（0 = 关闭）
+    collision: 1.35,       // 短程碰撞系数：圆点重叠时额外推开（0 = 关闭）
+    collidePad: 7,         // 碰撞判定的额外间隙：节点之间始终留白，不贴边
+    collideKick: 0.30,     // 碰撞时同时给一点速度（硬分离 + 弹性观感，避免静摩擦糊死）
     preSettleSteps: 420    // 首帧前的同步预收敛步数（避免开场炸开 + 首帧即收敛）
   };
 
@@ -214,9 +216,24 @@
         if (d2 < p.minDist2) d2 = p.minDist2;     // 软核
         d = Math.sqrt(d2);
         f = p.repulsion / d2;
-        // 短程碰撞：两个圆点半径重叠时额外推开，避免节点糊在一起（Obsidian 的观感）
-        var rsum = (a.r || 3) + (b.r || 3) + 1.5;
-        if (p.collision > 0 && d < rsum) f += (rsum - d) * p.collision;
+        // 短程碰撞：两个圆点（含间隙）重叠时**硬**推开 + 给一点速度。
+        // 只加加速度的话，节点会在阻尼下停在「刚好挨着」的位置，看起来像糊在一起；
+        // 改成直接修正坐标（硬分离）并叠加速度冲击，才有多体碰撞的弹性观感。
+        var pad = (p.collidePad != null) ? p.collidePad : 1.5;
+        var rsum = (a.r || 3) + (b.r || 3) + pad;
+        if (p.collision > 0 && d < rsum) {
+          f += (rsum - d) * p.collision;
+          // 硬分离：直接修正坐标。
+          // 注意**不要**再叠加速度冲击（试过 collideKick）：速度在积分时还要乘 alpha，
+          // 会让重叠节点一步弹开十几像素，模拟久久不收敛、首帧耗时飙升。
+          var overlap = (rsum - d);
+          if (overlap > 0) {
+            var nx = dx / d, ny = dy / d;
+            var push = overlap * 0.5;             // 各退一半
+            if (!a.pinned) { a.x -= nx * push; a.y -= ny * push; }
+            if (!b.pinned) { b.x += nx * push; b.y += ny * push; }
+          }
+        }
         if (f > p.maxForce) f = p.maxForce;
         ax = (dx / d) * f; ay = (dy / d) * f;
         a.ax -= ax; a.ay -= ay;
@@ -719,13 +736,44 @@
       return 0.05;
     }
 
-    function drawArrow(a, b, color, alpha) {
+    /** 连线的轻微弧度控制点（确定性：由端点坐标导出，保证每帧一致） */
+    function edgeCtrl(a, b) {
       var dx = b.x - a.x, dy = b.y - a.y;
       var d = Math.sqrt(dx * dx + dy * dy) || 1;
-      var ux = dx / d, uy = dy / d;
-      var ex = b.x - ux * ((b.r || 3) + 1.2);
-      var ey = b.y - uy * ((b.r || 3) + 1.2);
-      var size = 4.2;
+      var k = Math.min(d * 0.10, 16);            // 长边弧更明显，短边几乎直
+      // 垂直方向偏移；符号由坐标决定，双向边会自然分开
+      var sgn = ((a.x + b.x + a.y - b.y) >= 0) ? 1 : -1;
+      return { x: (a.x + b.x) / 2 - dy / d * k * sgn,
+               y: (a.y + b.y) / 2 + dx / d * k * sgn };
+    }
+
+    /** 画一条（可能是弧的）连线；返回终点控制信息供箭头使用 */
+    function strokeEdge(a, b, curved) {
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      if (curved) {
+        var c = edgeCtrl(a, b);
+        ctx.quadraticCurveTo(c.x, c.y, b.x, b.y);
+      } else {
+        ctx.lineTo(b.x, b.y);
+      }
+      ctx.stroke();
+      return curved ? edgeCtrl(a, b) : null;
+    }
+
+    function drawArrow(a, b, color, alpha, ctrl) {
+      var dx, dy, d, ux, uy, ex, ey;
+      if (ctrl) {
+        // 弧线：用控制点到终点的方向作为箭头朝向（切线近似）
+        dx = b.x - ctrl.x; dy = b.y - ctrl.y;
+      } else {
+        dx = b.x - a.x; dy = b.y - a.y;
+      }
+      d = Math.sqrt(dx * dx + dy * dy) || 1;
+      ux = dx / d; uy = dy / d;
+      ex = b.x - ux * ((b.r || 3) + 1.2);
+      ey = b.y - uy * ((b.r || 3) + 1.2);
+      var size = 4.6;
       ctx.fillStyle = rgba(color, alpha);
       ctx.beginPath();
       ctx.moveTo(ex, ey);
@@ -743,13 +791,22 @@
       ctx.lineWidth = clamp(1 / S.view.k, 0.35, 3);
 
       if (!focus) {
-        // 无高亮 → 按样式批量成两条路径，减少 stroke 调用
+        // 无高亮 → 按样式批量成两条路径，减少 stroke 调用。
+        // 拖动/缩放中用直线（快），静止时用轻微弧线（好看）——
+        // 弧线要逐条 quadraticCurveTo，批量路径的优势会丢一半。
+        var curved = !(S.drag && S.drag.mode);
         ctx.beginPath();
         for (i = 0; i < S.edges.length; i++) {
           ed = S.edges[i];
           if (ed.active === false || ed.kind === 'embed') continue;
           a = S.nodes[ed.si]; b = S.nodes[ed.ti];
-          ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          ctx.moveTo(a.x, a.y);
+          if (curved) {
+            var c0 = edgeCtrl(a, b);
+            ctx.quadraticCurveTo(c0.x, c0.y, b.x, b.y);
+          } else {
+            ctx.lineTo(b.x, b.y);
+          }
         }
         ctx.strokeStyle = rgba(edgeColor, edgeAlpha(null));
         ctx.stroke();
@@ -768,12 +825,14 @@
           for (i = 0; i < S.edges.length; i++) {
             ed = S.edges[i];
             if (ed.active === false) continue;
-            drawArrow(S.nodes[ed.si], S.nodes[ed.ti], edgeColor, edgeAlpha(null));
+            a = S.nodes[ed.si]; b = S.nodes[ed.ti];
+            drawArrow(a, b, edgeColor, edgeAlpha(null), curved ? edgeCtrl(a, b) : null);
           }
         }
         return;
       }
 
+      // 有高亮：逐条画，用弧线 + 主题色的渐变描边，突出重点关系
       for (i = 0; i < S.edges.length; i++) {
         ed = S.edges[i];
         if (ed.active === false) continue;
@@ -782,11 +841,13 @@
         ctx.save();
         if (ed.kind === 'embed') ctx.setLineDash([3.5, 3.5]);
         ctx.strokeStyle = rgba(edgeColor, al);
+        var c1 = edgeCtrl(a, b);
         ctx.beginPath();
-        ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+        ctx.moveTo(a.x, a.y);
+        ctx.quadraticCurveTo(c1.x, c1.y, b.x, b.y);
         ctx.stroke();
         ctx.restore();
-        if (arrowOn && al > 0.2) drawArrow(a, b, edgeColor, al);
+        if (arrowOn && al > 0.2) drawArrow(a, b, edgeColor, al, c1);
       }
     }
 
@@ -802,11 +863,40 @@
         if (focus) al = focus.set[i] ? 1 : dim;
         else if (S.matchSet && !S.matchSet[i]) al = 0.3;
 
-        // 节点圆
+        // 光晕：给每个节点加一层柔光，整体更有「发光图」的观感。
+        // 只对度数较高的节点加，避免几百个节点时 glow 反而糊成一片。
+        // 旧浏览器/测试桩可能没有 createRadialGradient —— 拿不到就跳过光晕，
+        // 绝不让它抛异常打断渲染循环（否则整个图谱「静止」不下来）。
+        if ((n.degree || 0) >= 2 && al > 0.5 && typeof ctx.createRadialGradient === "function") {
+          var glowR = r * 2.6;
+          var g = ctx.createRadialGradient(n.x, n.y, r * 0.6, n.x, n.y, glowR);
+          if (g && typeof g.addColorStop === "function") {
+            g.addColorStop(0, rgba(col, 0.30 * al));
+            g.addColorStop(1, rgba(col, 0));
+            ctx.globalAlpha = 1;
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, glowR, 0, Math.PI * 2);
+            ctx.fillStyle = g;
+            ctx.fill();
+          }
+        }
+
+        // 节点圆：径向渐变制造球感（高光偏左上）；无渐变能力时退回纯色
         ctx.globalAlpha = al;
+        var fill = rgba(col, 0.95);
+        if (typeof ctx.createRadialGradient === "function") {
+          var rg = ctx.createRadialGradient(
+            n.x - r * 0.35, n.y - r * 0.35, r * 0.15,
+            n.x, n.y, r);
+          if (rg && typeof rg.addColorStop === "function") {
+            rg.addColorStop(0, rgba(col, 1));
+            rg.addColorStop(1, rgba(col, 0.72));
+            fill = rg;
+          }
+        }
         ctx.beginPath();
         ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = rgba(col, 0.95);
+        ctx.fillStyle = fill;
         ctx.fill();
         ctx.lineWidth = 1.2 / clamp(S.view.k, 0.4, 2);
         ctx.strokeStyle = rgba(S.theme.bg, 0.9);
