@@ -1,0 +1,1511 @@
+{
+ "note": "Stable page -> figure map. Array order == document order of <script type=\"text/tikz\"> blocks in that page. \"key\" is the sha256 used in index.json.",
+ "pages": {
+  "hkdse-course/AI参考习题库/HKDSE Mock Paper/hkdse-卷一-模拟试题分类汇编（2023-2024）.html": [
+   {
+    "indexOnPage": 0,
+    "key": "1c18f84edf09cba7c576744d7b16f8b49587b10acd50af58e93816b5d6fa2fd4",
+    "ok": true,
+    "file": "1c18f84edf09cba7.svg",
+    "w": 216.03,
+    "h": 136.91
+   },
+   {
+    "indexOnPage": 1,
+    "key": "d8fabca7687da6f0cfbf8c66d3fa8ed7ca198dc7d7815290b80f2c705b472376",
+    "ok": true,
+    "file": "d8fabca7687da6f0.svg",
+    "w": 111.54,
+    "h": 183.25
+   },
+   {
+    "indexOnPage": 2,
+    "key": "3f6c4c24597a302288bb7303743a6bba1cca28b3aef5f8c63c2ebe7027fbddf5",
+    "ok": true,
+    "file": "3f6c4c24597a3022.svg",
+    "w": 152.88,
+    "h": 142.66
+   },
+   {
+    "indexOnPage": 3,
+    "key": "4fade78e7ae07c9128b0c3555dc6a3ab72f32d68098dfca876b34903c3a7e35e",
+    "ok": true,
+    "file": "4fade78e7ae07c91.svg",
+    "w": 185.92,
+    "h": 83.4
+   },
+   {
+    "indexOnPage": 4,
+    "key": "25663a865a6c9bada8cecc692f8e7a86cfd0d57dfd131d08587f51141abed660",
+    "ok": true,
+    "file": "25663a865a6c9bad.svg",
+    "w": 170.61,
+    "h": 142.31
+   },
+   {
+    "indexOnPage": 5,
+    "key": "0f3f0f849009724402b3a0626d548189f3144cb2820bcffd920a0776367ccbdc",
+    "ok": true,
+    "file": "0f3f0f8490097244.svg",
+    "w": 110.34,
+    "h": 112.85
+   },
+   {
+    "indexOnPage": 6,
+    "key": "a64cf58dfa71a85e2adb9a8689bcf8b10fba9b0dbf6b0301c860638df246eac4",
+    "ok": true,
+    "file": "a64cf58dfa71a85e.svg",
+    "w": 170.61,
+    "h": 128.08
+   },
+   {
+    "indexOnPage": 7,
+    "key": "f5f431a92e849ea43b5ecddb3a2f49713c11886a75efd8d41e0ecbb30cd46b2b",
+    "ok": true,
+    "file": "f5f431a92e849ea4.svg",
+    "w": 162.59,
+    "h": 112.85
+   },
+   {
+    "indexOnPage": 8,
+    "key": "425a88ee570f973b560ea248304eb07f15e64182bb578cdf1a761d24682dc6a3",
+    "ok": true,
+    "file": "425a88ee570f973b.svg",
+    "w": 170.9,
+    "h": 112.86
+   },
+   {
+    "indexOnPage": 9,
+    "key": "4f646217fd4a6c592a729da229f03058b3a2850e4344b2540b10b29022cab2fc",
+    "ok": true,
+    "file": "4f646217fd4a6c59.svg",
+    "w": 150.81,
+    "h": 162.21
+   },
+   {
+    "indexOnPage": 10,
+    "key": "5ad673f4d7c10bb733b74cc21c3fb2563fb74817d73a619bee5418e48c607e71",
+    "ok": true,
+    "file": "5ad673f4d7c10bb7.svg",
+    "w": 170.36,
+    "h": 140.51
+   },
+   {
+    "indexOnPage": 11,
+    "key": "273d78206b48dd066af6b84a9a5b7eb23a26d5c7ee75658d73ae6c4bee65630f",
+    "ok": true,
+    "file": "273d78206b48dd06.svg",
+    "w": 293.12,
+    "h": 169.07
+   },
+   {
+    "indexOnPage": 12,
+    "key": "2383a2aa695102797262c2f0b34d320e71c544ff4f73551f1962d9991bb89dac",
+    "ok": true,
+    "file": "2383a2aa69510279.svg",
+    "w": 165.76,
+    "h": 112.88
+   },
+   {
+    "indexOnPage": 13,
+    "key": "58bf3e98d61b94080d7f0a460827c54de7820e09785a19a7bdfc51172328dd5e",
+    "ok": true,
+    "file": "58bf3e98d61b9408.svg",
+    "w": 195.18,
+    "h": 130.31
+   },
+   {
+    "indexOnPage": 14,
+    "key": "40eebcae98fec944140f12370fd5fdc9f465cae647349ef4d814fc4dfda042cc",
+    "ok": true,
+    "file": "40eebcae98fec944.svg",
+    "w": 171.12,
+    "h": 171.12
+   },
+   {
+    "indexOnPage": 15,
+    "key": "ccb94a45b02e648ae5db4873035aa79573308847fba870fa42f032f79fdb67a6",
+    "ok": false,
+    "file": null,
+    "w": null,
+    "h": null
+   },
+   {
+    "indexOnPage": 16,
+    "key": "6c25e2b5be6704cc47009b8ce2cc1d7d6866dc92a58368d3faedf85b670beeef",
+    "ok": false,
+    "file": null,
+    "w": null,
+    "h": null
+   },
+   {
+    "indexOnPage": 17,
+    "key": "89dd3f4c0dafc7006baaa3107597395ab3fc6ec9008178f3ad231137ab8a513c",
+    "ok": true,
+    "file": "89dd3f4c0dafc700.svg",
+    "w": 224.63,
+    "h": 136.6
+   },
+   {
+    "indexOnPage": 18,
+    "key": "e9c1c498150e5489abb57741014a2f0da6c727357f5d6576e98f2ef96e1ac4a4",
+    "ok": true,
+    "file": "e9c1c498150e5489.svg",
+    "w": 167.82,
+    "h": 154.04
+   },
+   {
+    "indexOnPage": 19,
+    "key": "13bdfaeee4c977b71f32f006c835d018e3005bd96a6a290aa43fbfd5d5419f61",
+    "ok": true,
+    "file": "13bdfaeee4c977b7.svg",
+    "w": 168.17,
+    "h": 144.52
+   }
+  ],
+  "hkdse-course/习题册草稿/ch04-多項式i-ps1-規劃.html": [
+   {
+    "indexOnPage": 0,
+    "key": "54df8e941a0d332d47148fe6cbced05b0a2f2531acee2b1f581ef332469debaf",
+    "ok": true,
+    "file": "54df8e941a0d332d.svg",
+    "w": 260.06,
+    "h": 246.02
+   }
+  ],
+  "hkdse-course/习题册草稿/ch08-平面幾何i-ps1-規劃.html": [
+   {
+    "indexOnPage": 0,
+    "key": "a5e111a6a40590e56dcc679851b8f57fa9fea4363c4e74749425d0582f4c521f",
+    "ok": true,
+    "file": "a5e111a6a40590e5.svg",
+    "w": 157.35,
+    "h": 129.83
+   },
+   {
+    "indexOnPage": 1,
+    "key": "b22cf3efd4eeda7d387a31532cfb02437fcea29cbb585882ca2f7326063e85ef",
+    "ok": true,
+    "file": "b22cf3efd4eeda7d.svg",
+    "w": 96.32,
+    "h": 104.22
+   },
+   {
+    "indexOnPage": 2,
+    "key": "c8046a71870b7091f1f1b9fb76a741cc45e5883abf7872dcb48782da5a3ee9de",
+    "ok": true,
+    "file": "c8046a71870b7091.svg",
+    "w": 89.94,
+    "h": 83.43
+   },
+   {
+    "indexOnPage": 3,
+    "key": "e1b1d9943e0581028db90c70a6043f16040c8f6e0fb848dd2f21d599ac381d3b",
+    "ok": true,
+    "file": "e1b1d9943e058102.svg",
+    "w": 89.94,
+    "h": 83.43
+   },
+   {
+    "indexOnPage": 4,
+    "key": "8865db1150c45a22377f9c070592554d051785b25f0f86beffdd2d8b7d8481dd",
+    "ok": true,
+    "file": "8865db1150c45a22.svg",
+    "w": 89.94,
+    "h": 83.43
+   },
+   {
+    "indexOnPage": 5,
+    "key": "ec0cead37269a2eb09e8df3765ec9b19eca34eaa71f16ffa970f5ace5a66adc6",
+    "ok": true,
+    "file": "ec0cead37269a2eb.svg",
+    "w": 174.53,
+    "h": 91.42
+   },
+   {
+    "indexOnPage": 6,
+    "key": "cf634b16e19d37c88b8cde55f5dfaf2578b0edb2c7eb0d27f053e64baf07c35c",
+    "ok": true,
+    "file": "cf634b16e19d37c8.svg",
+    "w": 173.55,
+    "h": 99.1
+   },
+   {
+    "indexOnPage": 7,
+    "key": "8e57dfcb42185c2ec2419edbb0a52fd014c0b18706b9b0e4c326099b4965d48f",
+    "ok": true,
+    "file": "8e57dfcb42185c2e.svg",
+    "w": 185.18,
+    "h": 15.84
+   },
+   {
+    "indexOnPage": 8,
+    "key": "99db21b9375166bf665e9a43d450c139c135a030bb1bad4cd73d787111c0c383",
+    "ok": true,
+    "file": "99db21b9375166bf.svg",
+    "w": 171.26,
+    "h": 115.81
+   },
+   {
+    "indexOnPage": 9,
+    "key": "35a5cda6c1ccb86b268bb77b6130dd9af17e8c02643f155c7bc8f531bafa4bd2",
+    "ok": true,
+    "file": "35a5cda6c1ccb86b.svg",
+    "w": 142.91,
+    "h": 95.69
+   },
+   {
+    "indexOnPage": 10,
+    "key": "f243b7b692fa448ff83dc043d91a02625cec25ada3a52ab41398e89027dff55f",
+    "ok": true,
+    "file": "f243b7b692fa448f.svg",
+    "w": 108.13,
+    "h": 95.69
+   },
+   {
+    "indexOnPage": 11,
+    "key": "9e335dc1a0f390ca2949dbd9596ef1b510f1588ecce8acf4f2fa5c9feb84f4ab",
+    "ok": true,
+    "file": "9e335dc1a0f390ca.svg",
+    "w": 92.28,
+    "h": 72.92
+   },
+   {
+    "indexOnPage": 12,
+    "key": "cb326b30d1ed900ccd3fb21a298ff072f34b44f6f64f6b0c94b842a6bb8011f7",
+    "ok": true,
+    "file": "cb326b30d1ed900c.svg",
+    "w": 126.38,
+    "h": 68.65
+   },
+   {
+    "indexOnPage": 13,
+    "key": "6a7a0cf1f1b4580fbf674895772d5936ad646cc5a9fee96abb863d7f7c66181b",
+    "ok": true,
+    "file": "6a7a0cf1f1b4580f.svg",
+    "w": 110.04,
+    "h": 95.68
+   },
+   {
+    "indexOnPage": 14,
+    "key": "4a36cfbc25c59ea33edf3d74670804cc1f29a7239c530a40fca06dd0c289e533",
+    "ok": true,
+    "file": "4a36cfbc25c59ea3.svg",
+    "w": 199.45,
+    "h": 89.99
+   },
+   {
+    "indexOnPage": 15,
+    "key": "791a60bc6e3254f072e898d706c157955b8897d409721463c675ccabb12488c8",
+    "ok": true,
+    "file": "791a60bc6e3254f0.svg",
+    "w": 140.88,
+    "h": 100.24
+   },
+   {
+    "indexOnPage": 16,
+    "key": "a61fe513757e76a4e51b0ec8c1a7cdc5dea621963a7ca90f2a39379da3c4662b",
+    "ok": true,
+    "file": "a61fe513757e76a4.svg",
+    "w": 162.95,
+    "h": 112.76
+   },
+   {
+    "indexOnPage": 17,
+    "key": "c36e8409cd398c97853754922f141fda55a122bd2fccebbf5887c688afd209b0",
+    "ok": true,
+    "file": "c36e8409cd398c97.svg",
+    "w": 157.35,
+    "h": 80.3
+   },
+   {
+    "indexOnPage": 18,
+    "key": "d7ebe819ff73c74e5f15ca1ed216bcbc57a218835a179eaee9b443dc80fd9090",
+    "ok": true,
+    "file": "d7ebe819ff73c74e.svg",
+    "w": 157.72,
+    "h": 104.22
+   },
+   {
+    "indexOnPage": 19,
+    "key": "99093910a28c9cd8f8138135f50fb8d41501ab128084de42b5ac73a8d59bb51a",
+    "ok": true,
+    "file": "99093910a28c9cd8.svg",
+    "w": 135.5,
+    "h": 118.45
+   },
+   {
+    "indexOnPage": 20,
+    "key": "d97d2327052beeef9ce9bc1d7a3aea853ed9684f4683222d24890902185eb4ec",
+    "ok": true,
+    "file": "d97d2327052beeef.svg",
+    "w": 151.22,
+    "h": 82.03
+   },
+   {
+    "indexOnPage": 21,
+    "key": "8b582944e396bac88b5a235c57719ef810a40a60911a1f68fbb281552b5c7e5d",
+    "ok": true,
+    "file": "8b582944e396bac8.svg",
+    "w": 149.65,
+    "h": 79.18
+   },
+   {
+    "indexOnPage": 22,
+    "key": "92e109ed21f6c1ab2b9552462d7914ae7459e34ce1707e71a2e02b3bda76a08c",
+    "ok": true,
+    "file": "92e109ed21f6c1ab.svg",
+    "w": 105.93,
+    "h": 118.45
+   },
+   {
+    "indexOnPage": 23,
+    "key": "123d097ec8fcadacc8830b65b143a9dfcc238c809e46a943290eb59efc2ce397",
+    "ok": true,
+    "file": "123d097ec8fcadac.svg",
+    "w": 157.35,
+    "h": 88.86
+   },
+   {
+    "indexOnPage": 24,
+    "key": "ae0bda61d1eb59004e021f6c1c6556e64ac234499138ad115652264212119af4",
+    "ok": true,
+    "file": "ae0bda61d1eb5900.svg",
+    "w": 151.04,
+    "h": 82.03
+   },
+   {
+    "indexOnPage": 25,
+    "key": "d4f89766e0e60ab6793ace0d08f17a31b538146abd4caf27515b4038e9d78abe",
+    "ok": true,
+    "file": "d4f89766e0e60ab6.svg",
+    "w": 86.75,
+    "h": 97.14
+   },
+   {
+    "indexOnPage": 26,
+    "key": "323af8d6bcc9ec0ed41900635846f48639f88f0b12ed73092e7da7af09413a76",
+    "ok": true,
+    "file": "323af8d6bcc9ec0e.svg",
+    "w": 88.43,
+    "h": 114.21
+   },
+   {
+    "indexOnPage": 27,
+    "key": "d4f89766e0e60ab6793ace0d08f17a31b538146abd4caf27515b4038e9d78abe",
+    "ok": true,
+    "file": "d4f89766e0e60ab6.svg",
+    "w": 86.75,
+    "h": 97.14
+   },
+   {
+    "indexOnPage": 28,
+    "key": "d4f89766e0e60ab6793ace0d08f17a31b538146abd4caf27515b4038e9d78abe",
+    "ok": true,
+    "file": "d4f89766e0e60ab6.svg",
+    "w": 86.75,
+    "h": 97.14
+   },
+   {
+    "indexOnPage": 29,
+    "key": "606c7e24511384fe59693d9528a2534e407f2b385b63d831b481086d311e6117",
+    "ok": true,
+    "file": "606c7e24511384fe.svg",
+    "w": 152.6,
+    "h": 93.98
+   },
+   {
+    "indexOnPage": 30,
+    "key": "a9cab5614264842b3bfc17df51e175c1874f4e77ef06a36d52bbc60e70e39240",
+    "ok": true,
+    "file": "a9cab5614264842b.svg",
+    "w": 168.18,
+    "h": 99.1
+   },
+   {
+    "indexOnPage": 31,
+    "key": "2a6d50cb49511f3876abc8af981499ab00ec594a599cfe26a121621a39bb8ea0",
+    "ok": true,
+    "file": "2a6d50cb49511f38.svg",
+    "w": 171.74,
+    "h": 90.28
+   },
+   {
+    "indexOnPage": 32,
+    "key": "83c7ff537051d2a37f9b204197b79dd0016d7397bd8938426bd02b34a4b3ebc0",
+    "ok": true,
+    "file": "83c7ff537051d2a3.svg",
+    "w": 160.21,
+    "h": 136.66
+   },
+   {
+    "indexOnPage": 33,
+    "key": "9e3b70479f43de32f8ac544860631a2693ed3f85726cd7fd5c1c832e2406d165",
+    "ok": true,
+    "file": "9e3b70479f43de32.svg",
+    "w": 147.69,
+    "h": 82.03
+   },
+   {
+    "indexOnPage": 34,
+    "key": "08b4023a740a277888baad10f5452e31fc4185d202690d72717d5d89533c5e6d",
+    "ok": true,
+    "file": "08b4023a740a2778.svg",
+    "w": 170.52,
+    "h": 104.22
+   },
+   {
+    "indexOnPage": 35,
+    "key": "2900a35d5894bcdbd68936fb648284671b2426b310868e28f006d2a027c69022",
+    "ok": true,
+    "file": "2900a35d5894bcdb.svg",
+    "w": 154.81,
+    "h": 104.79
+   },
+   {
+    "indexOnPage": 36,
+    "key": "b5c323eab2272be011655d9e6ea34d007f7fc5e877f835fa553eec894b60d37d",
+    "ok": true,
+    "file": "b5c323eab2272be0.svg",
+    "w": 92.28,
+    "h": 70.08
+   },
+   {
+    "indexOnPage": 37,
+    "key": "53dec02a174201ceca677784383dae2500fb945f72089c96d08327efe4091e17",
+    "ok": true,
+    "file": "53dec02a174201ce.svg",
+    "w": 83.37,
+    "h": 69.18
+   },
+   {
+    "indexOnPage": 38,
+    "key": "21ab6144b0fa6ed43e15cd12042bde8bcd78f4d26d3b45f3bf08f30b04cb8325",
+    "ok": true,
+    "file": "21ab6144b0fa6ed4.svg",
+    "w": 92.11,
+    "h": 72.92
+   },
+   {
+    "indexOnPage": 39,
+    "key": "e6a4bf04020a8d665ea9e65f3c398f50d286dd36082c30a4f6ebb99c1d6dd969",
+    "ok": true,
+    "file": "e6a4bf04020a8d66.svg",
+    "w": 86.29,
+    "h": 70.08
+   },
+   {
+    "indexOnPage": 40,
+    "key": "78c79041d749239ca442106b8939bb6f0ae2ca105676d2a898d16f11d9427f73",
+    "ok": true,
+    "file": "78c79041d749239c.svg",
+    "w": 111.63,
+    "h": 107.07
+   },
+   {
+    "indexOnPage": 41,
+    "key": "4dd5a84bc8950f5d0229620b81a699bd2f7749e868bf1c5de9d971a0ce2f32a2",
+    "ok": true,
+    "file": "4dd5a84bc8950f5d.svg",
+    "w": 132.11,
+    "h": 93.98
+   },
+   {
+    "indexOnPage": 42,
+    "key": "f698643919e287d03eebf29e2843a92bf8eb0b208522b19dbad2f39accf62d15",
+    "ok": true,
+    "file": "f698643919e287d0.svg",
+    "w": 132.11,
+    "h": 93.98
+   },
+   {
+    "indexOnPage": 43,
+    "key": "46adeb2a83c25a7a62db467f6e9f9f7526988f7e00a840280bd3537e7f836a3b",
+    "ok": true,
+    "file": "46adeb2a83c25a7a.svg",
+    "w": 148.04,
+    "h": 93.98
+   },
+   {
+    "indexOnPage": 44,
+    "key": "0ae931ee64a5ef79f7f48cf0e77bc8f35e140f5eb9df331859879deb43668202",
+    "ok": true,
+    "file": "0ae931ee64a5ef79.svg",
+    "w": 152.6,
+    "h": 133.92
+   },
+   {
+    "indexOnPage": 45,
+    "key": "5516999ae1d527e9eecd542a49a8a25b207ef2d6d1643eda3df49ca50b2aec43",
+    "ok": true,
+    "file": "5516999ae1d527e9.svg",
+    "w": 169.93,
+    "h": 78.61
+   },
+   {
+    "indexOnPage": 46,
+    "key": "6b6e5c21212ea26d3dd082cce42aa301b388e9db75b8feeb3f73c7b5e30118e6",
+    "ok": true,
+    "file": "6b6e5c21212ea26d.svg",
+    "w": 145.61,
+    "h": 88.86
+   },
+   {
+    "indexOnPage": 47,
+    "key": "70c82d5cc2ae173327b22fac3a5b5ae14a549b8877babe2c65a2da0f1e7b9d92",
+    "ok": true,
+    "file": "70c82d5cc2ae1733.svg",
+    "w": 122.56,
+    "h": 109.34
+   },
+   {
+    "indexOnPage": 48,
+    "key": "c54df67345e31eb2afc4484a594a31ecf12e36c9e5dc1fab1ad9bf87789e4f2e",
+    "ok": true,
+    "file": "c54df67345e31eb2.svg",
+    "w": 139.66,
+    "h": 82.03
+   },
+   {
+    "indexOnPage": 49,
+    "key": "c9b3108d75ae7468af181ba471c1541181e0eea742de3f9c1bb59a1ff5291fd6",
+    "ok": true,
+    "file": "c9b3108d75ae7468.svg",
+    "w": 132.8,
+    "h": 129.83
+   },
+   {
+    "indexOnPage": 50,
+    "key": "7f45db7d5ace98acb913ff4efb236369bca8982a88bc543e3e73f49656fb2b2f",
+    "ok": true,
+    "file": "7f45db7d5ace98ac.svg",
+    "w": 181.61,
+    "h": 82.03
+   },
+   {
+    "indexOnPage": 51,
+    "key": "d2ff42dc96dd5475b589f11f11064eb4acbb892e8cea243dfd73a972e804a80b",
+    "ok": true,
+    "file": "d2ff42dc96dd5475.svg",
+    "w": 83.44,
+    "h": 80.52
+   },
+   {
+    "indexOnPage": 52,
+    "key": "c812cc3b439b6f280568312d2f2f1adef73bbf6dc409be1bad9150d9dbbbe29d",
+    "ok": true,
+    "file": "c812cc3b439b6f28.svg",
+    "w": 108.58,
+    "h": 118.45
+   },
+   {
+    "indexOnPage": 53,
+    "key": "8dc2c64c4ad6e984ca1509d59c050371c0b16e53cd7fa54f04702ea85b5aa1d6",
+    "ok": true,
+    "file": "8dc2c64c4ad6e984.svg",
+    "w": 132.15,
+    "h": 116.1
+   },
+   {
+    "indexOnPage": 54,
+    "key": "a5170b5fb04844414b8cfb6aee2b50b5be4cfd298b2bbdcfff10ca8243259a95",
+    "ok": true,
+    "file": "a5170b5fb0484441.svg",
+    "w": 73.45,
+    "h": 71.66
+   },
+   {
+    "indexOnPage": 55,
+    "key": "4eab8e960ddd7e6f617736f7ac328516b17d82bcfb9e3f9ad152e41eeb165f3d",
+    "ok": true,
+    "file": "4eab8e960ddd7e6f.svg",
+    "w": 103.7,
+    "h": 84.07
+   },
+   {
+    "indexOnPage": 56,
+    "key": "dfc17fba491cdbc0124112b91202cea18022887466a28ebb356d58f2dcd4940c",
+    "ok": true,
+    "file": "dfc17fba491cdbc0.svg",
+    "w": 132.15,
+    "h": 116.1
+   },
+   {
+    "indexOnPage": 57,
+    "key": "48eec56b40a0f9e008869e14c851c4b9791f7b69e0a2e4ba596d032fbd9660b5",
+    "ok": true,
+    "file": "48eec56b40a0f9e0.svg",
+    "w": 143.74,
+    "h": 173.24
+   },
+   {
+    "indexOnPage": 58,
+    "key": "5c3a5ba18dff86cc6b1cd269874428654f932af516f7c909a356a5560c9efff4",
+    "ok": true,
+    "file": "5c3a5ba18dff86cc.svg",
+    "w": 139.9,
+    "h": 146.23
+   },
+   {
+    "indexOnPage": 59,
+    "key": "5516999ae1d527e9eecd542a49a8a25b207ef2d6d1643eda3df49ca50b2aec43",
+    "ok": true,
+    "file": "5516999ae1d527e9.svg",
+    "w": 169.93,
+    "h": 78.61
+   },
+   {
+    "indexOnPage": 60,
+    "key": "5009d01ba4b285200cf4bf97e6d982a8a6a82195a01d24735754fce1f18693d1",
+    "ok": true,
+    "file": "5009d01ba4b28520.svg",
+    "w": 128.46,
+    "h": 82.03
+   },
+   {
+    "indexOnPage": 61,
+    "key": "ae1305a2347131708a63eddcff57a90f9e3e59d5abc49314799339a0ef0e4569",
+    "ok": true,
+    "file": "ae1305a234713170.svg",
+    "w": 170.52,
+    "h": 104.22
+   },
+   {
+    "indexOnPage": 62,
+    "key": "39f79544fceb4b560365d63d2a300b7e18b6490f9a2f59417dd66f36fa5482d9",
+    "ok": true,
+    "file": "39f79544fceb4b56.svg",
+    "w": 116.75,
+    "h": 93.98
+   },
+   {
+    "indexOnPage": 63,
+    "key": "980d5c060146cfb290fc0c383d12d575ed40cb6eac1d2de864e715a35c9bd670",
+    "ok": true,
+    "file": "980d5c060146cfb2.svg",
+    "w": 169.69,
+    "h": 156.12
+   },
+   {
+    "indexOnPage": 64,
+    "key": "83195b68a8ffcc55155872ebde8aa9e4956840c545fa4cc69168803f8637a1b5",
+    "ok": true,
+    "file": "83195b68a8ffcc55.svg",
+    "w": 122.56,
+    "h": 135.74
+   },
+   {
+    "indexOnPage": 65,
+    "key": "710585f84b020e22148045f5ac512225715b1209f68564a135acf6bf6190b01f",
+    "ok": true,
+    "file": "710585f84b020e22.svg",
+    "w": 151.04,
+    "h": 82.03
+   },
+   {
+    "indexOnPage": 66,
+    "key": "0651d362d541841a018db3b0a597481e6c3927a0f1e7b9b7f851cfebc3198fcb",
+    "ok": true,
+    "file": "0651d362d541841a.svg",
+    "w": 199.84,
+    "h": 95.7
+   },
+   {
+    "indexOnPage": 67,
+    "key": "2131c5496d3285da52d7477706595c55276059231237d31c68d914b3c0bfe35d",
+    "ok": true,
+    "file": "2131c5496d3285da.svg",
+    "w": 151.57,
+    "h": 107.07
+   },
+   {
+    "indexOnPage": 68,
+    "key": "389edefc582c5afd1c4716cfeec94609a6c5638b4b5d1fe0faa22e66eaecbfb3",
+    "ok": true,
+    "file": "389edefc582c5afd.svg",
+    "w": 171.58,
+    "h": 84.3
+   },
+   {
+    "indexOnPage": 69,
+    "key": "ad757bfea6c6c31741617228eeb6527f2bcc00dd5a1c2816443004700e32d1c9",
+    "ok": true,
+    "file": "ad757bfea6c6c317.svg",
+    "w": 115.08,
+    "h": 114.7
+   },
+   {
+    "indexOnPage": 70,
+    "key": "9ed6b9e8292765203714d76288a3ea3f06f033355297f956c5463ab518c457c4",
+    "ok": true,
+    "file": "9ed6b9e829276520.svg",
+    "w": 166.96,
+    "h": 129.84
+   },
+   {
+    "indexOnPage": 71,
+    "key": "e2dae2392cc5941b1dd748d9c86cb4e709104a1e80224eb838fd590fcc335915",
+    "ok": true,
+    "file": "e2dae2392cc5941b.svg",
+    "w": 111.74,
+    "h": 98.38
+   },
+   {
+    "indexOnPage": 72,
+    "key": "67b161a6dc60ccc020a31f4ed1658ecc2d4030ed70caf84d15cf51149fd85343",
+    "ok": true,
+    "file": "67b161a6dc60ccc0.svg",
+    "w": 234.22,
+    "h": 78.62
+   },
+   {
+    "indexOnPage": 73,
+    "key": "1cc321988b5d76ecbba2eb15c991a57315957ddf9e43aeb0c9192691e0e8c18e",
+    "ok": true,
+    "file": "1cc321988b5d76ec.svg",
+    "w": 175.35,
+    "h": 146.92
+   },
+   {
+    "indexOnPage": 74,
+    "key": "97dbe4099a6219c75d4ee9ca4d9bf67397920967562b426c071d39dd45c6d451",
+    "ok": true,
+    "file": "97dbe4099a6219c7.svg",
+    "w": 148.75,
+    "h": 150.32
+   },
+   {
+    "indexOnPage": 75,
+    "key": "b5fe56cb0ae04bb9503c0876b519a2962c4348e5e62ccfe29d4fd56b5734a037",
+    "ok": true,
+    "file": "b5fe56cb0ae04bb9.svg",
+    "w": 169.93,
+    "h": 78.61
+   },
+   {
+    "indexOnPage": 76,
+    "key": "577c48224dd7101ebe7b579a0545ba84b57881a132706b54f8eefd558d3b59d9",
+    "ok": true,
+    "file": "577c48224dd7101e.svg",
+    "w": 116.2,
+    "h": 114.46
+   },
+   {
+    "indexOnPage": 77,
+    "key": "5e5dc7a24098bcb921d696b5c238552d2d3aed7ee173195c14c240793c78da4b",
+    "ok": true,
+    "file": "5e5dc7a24098bcb9.svg",
+    "w": 152.6,
+    "h": 104.22
+   },
+   {
+    "indexOnPage": 78,
+    "key": "18bdeb5dbed42ed7603f5e113ab94b59c0e34aec0daebf17e4c657bec08e61a5",
+    "ok": true,
+    "file": "18bdeb5dbed42ed7.svg",
+    "w": 167.12,
+    "h": 186.74
+   },
+   {
+    "indexOnPage": 79,
+    "key": "68effa780f5e94c8cf412c531848afbebde571f105acd8cd63f1c33dac75eaad",
+    "ok": true,
+    "file": "68effa780f5e94c8.svg",
+    "w": 143.14,
+    "h": 109.35
+   }
+  ],
+  "hkdse-course/习题册草稿/ch11-不等式-ps1-規劃.html": [
+   {
+    "indexOnPage": 0,
+    "key": "2fb4a5ad2e3f49c48886743ef27deec7048f99710bd5af7b997cf90e71ced9eb",
+    "ok": true,
+    "file": "2fb4a5ad2e3f49c4.svg",
+    "w": 218.06,
+    "h": 16.21
+   },
+   {
+    "indexOnPage": 1,
+    "key": "32ca6c7a00eddc436b097399579ada535fed18e12f11d0ed1e96dfd9d24bd1a4",
+    "ok": true,
+    "file": "32ca6c7a00eddc43.svg",
+    "w": 218.06,
+    "h": 17.44
+   },
+   {
+    "indexOnPage": 2,
+    "key": "aea7683a5b8f3035f0517c5da411bf3a271141cf6b1a214a562a341f73bacd3a",
+    "ok": true,
+    "file": "aea7683a5b8f3035.svg",
+    "w": 218.06,
+    "h": 16.21
+   },
+   {
+    "indexOnPage": 3,
+    "key": "f3fbab0f9297213f180ef696ca1d26ec792a78858a10adc2be446bf8410433ba",
+    "ok": true,
+    "file": "f3fbab0f9297213f.svg",
+    "w": 230.87,
+    "h": 28.97
+   },
+   {
+    "indexOnPage": 4,
+    "key": "ce26f6f495fbd6a07955b24eae38993fb65b670480efb60ddf1248f47692219a",
+    "ok": true,
+    "file": "ce26f6f495fbd6a0.svg",
+    "w": 205.26,
+    "h": 18.13
+   },
+   {
+    "indexOnPage": 5,
+    "key": "7fa52d88672be14821e7f945bf87525e8086670747241df34426d7833f09970a",
+    "ok": true,
+    "file": "7fa52d88672be148.svg",
+    "w": 182.5,
+    "h": 17.14
+   },
+   {
+    "indexOnPage": 6,
+    "key": "24a6a9cdd8204928db69fca9650b7ff1dd3ffbdcd40088cf8ed1e713b05bfd10",
+    "ok": true,
+    "file": "24a6a9cdd8204928.svg",
+    "w": 182.5,
+    "h": 16.31
+   },
+   {
+    "indexOnPage": 7,
+    "key": "53eef4eacadee69714d942fd5a6faf7434776613375b7f262b8a824a7a65dd57",
+    "ok": true,
+    "file": "53eef4eacadee697.svg",
+    "w": 182.5,
+    "h": 15.91
+   },
+   {
+    "indexOnPage": 8,
+    "key": "5ec4b7095cbcded6837ca206348364470b64b346975ffe1fba1867d63f0cb458",
+    "ok": true,
+    "file": "5ec4b7095cbcded6.svg",
+    "w": 236.5,
+    "h": 16.61
+   },
+   {
+    "indexOnPage": 9,
+    "key": "d3b4df6e6b89930a8f65a1cecce505636a7e20c526e8a964199f9620ce53c0f1",
+    "ok": true,
+    "file": "d3b4df6e6b89930a.svg",
+    "w": 159.74,
+    "h": 14.91
+   },
+   {
+    "indexOnPage": 10,
+    "key": "0d9bf32a006552c015e21a0eb307098771c5e18fec6dbed1089196d86a87e4e7",
+    "ok": true,
+    "file": "0d9bf32a006552c0.svg",
+    "w": 159.74,
+    "h": 14.91
+   }
+  ],
+  "hkdse-course/习题册草稿/ch12-數據的組織與表達-ps1-規劃.html": [
+   {
+    "indexOnPage": 0,
+    "key": "6c554d44ea5ac9d73d1a6cb65cfb6fa41227a168309e44a73997ec0a8deccde7",
+    "ok": false,
+    "file": null,
+    "w": null,
+    "h": null
+   },
+   {
+    "indexOnPage": 1,
+    "key": "670fc36aef6298e1cbfe3ca1ebe9b1f7bef5b565a4a193c8dea567012b3877d8",
+    "ok": false,
+    "file": null,
+    "w": null,
+    "h": null
+   },
+   {
+    "indexOnPage": 2,
+    "key": "09811e0fce0e75f6d870e0591a994bb221aec10b39d7c1465ffd320a9d3ff61e",
+    "ok": false,
+    "file": null,
+    "w": null,
+    "h": null
+   }
+  ],
+  "hkdse-course/习题册草稿/ch19-函數及其圖像-ps1-規劃.html": [
+   {
+    "indexOnPage": 0,
+    "key": "607c6afd15b07cc11d8140311826f1a31af96a3b08d5167e086b2ff6e152682f",
+    "ok": true,
+    "file": "607c6afd15b07cc1.svg",
+    "w": 231.87,
+    "h": 132.82
+   }
+  ],
+  "hkdse-course/习题册草稿/ch20-直线方程-ps1-規劃.html": [
+   {
+    "indexOnPage": 0,
+    "key": "b8b3ac95ca61598fdbdc78ef856c0878e665ac054081d010d68045f09ef60344",
+    "ok": true,
+    "file": "b8b3ac95ca61598f.svg",
+    "w": 165.89,
+    "h": 112.76
+   },
+   {
+    "indexOnPage": 1,
+    "key": "2d28aa143fa0b4e127c9ba11b290f668031f251bc09e283b17d2f8613e16e0df",
+    "ok": true,
+    "file": "2d28aa143fa0b4e1.svg",
+    "w": 177.05,
+    "h": 155.44
+   },
+   {
+    "indexOnPage": 2,
+    "key": "23b5c7ff3cf4fd099b8ff453af618ef072df2d7f7c25cfc79b32568ecdaab912",
+    "ok": true,
+    "file": "23b5c7ff3cf4fd09.svg",
+    "w": 172.64,
+    "h": 98.53
+   }
+  ],
+  "hkdse-course/习题册草稿/ch29-平面幾何ii-ps1-規劃.html": [
+   {
+    "indexOnPage": 0,
+    "key": "19a8022c85b9a137b8b5463227de3043a5d8f00ca42d7015161faac2317a9ea7",
+    "ok": true,
+    "file": "19a8022c85b9a137.svg",
+    "w": 114.88,
+    "h": 91.45
+   },
+   {
+    "indexOnPage": 1,
+    "key": "ffe1259d610ce54ab8048f89bb385878c98a599e67edf69003b8b09f3a88b257",
+    "ok": true,
+    "file": "ffe1259d610ce54a.svg",
+    "w": 112.67,
+    "h": 91.45
+   },
+   {
+    "indexOnPage": 2,
+    "key": "ecfd3bdc507b869a478774af31c4c2dd7454d8a7ecf93111832f6747e42e1c66",
+    "ok": true,
+    "file": "ecfd3bdc507b869a.svg",
+    "w": 112.03,
+    "h": 91.45
+   },
+   {
+    "indexOnPage": 3,
+    "key": "f8880c4b1cbdd05e6b3280dfa584729cdb8f811723cb87d3d96f690ef691e7e7",
+    "ok": true,
+    "file": "f8880c4b1cbdd05e.svg",
+    "w": 102.83,
+    "h": 119.78
+   },
+   {
+    "indexOnPage": 4,
+    "key": "341931f3551a86eb5499b0fc4192f2c7a3cc1d4f5f9fed66bddd7bd90128a49c",
+    "ok": true,
+    "file": "341931f3551a86eb.svg",
+    "w": 115.93,
+    "h": 112.96
+   },
+   {
+    "indexOnPage": 5,
+    "key": "689f7d86c119548e08833ed9873bf163700b211bfc4b2bd666455c0ed6d6e568",
+    "ok": true,
+    "file": "689f7d86c119548e.svg",
+    "w": 108.93,
+    "h": 100.68
+   },
+   {
+    "indexOnPage": 6,
+    "key": "9f44eb1487782b81fe826cb0b73232d476a852472387f8953030538a17a481d6",
+    "ok": true,
+    "file": "9f44eb1487782b81.svg",
+    "w": 107.78,
+    "h": 105.63
+   },
+   {
+    "indexOnPage": 7,
+    "key": "e29956b81011bb256b16ca5a3a65fdf64f976bff18c2a625c321fe427e73c55f",
+    "ok": true,
+    "file": "e29956b81011bb25.svg",
+    "w": 123.6,
+    "h": 112.26
+   },
+   {
+    "indexOnPage": 8,
+    "key": "777bb9ad13f0b6969d6ee26723d38f42490b7b1da02a33a808f56f041f50dfac",
+    "ok": true,
+    "file": "777bb9ad13f0b696.svg",
+    "w": 97.38,
+    "h": 107.39
+   },
+   {
+    "indexOnPage": 9,
+    "key": "d5a13866bbd7238da1e9a7547641143a55b9102f304082b4f29390ccdea5a385",
+    "ok": true,
+    "file": "d5a13866bbd7238d.svg",
+    "w": 103.72,
+    "h": 101.52
+   },
+   {
+    "indexOnPage": 10,
+    "key": "c40fb4b9c12f6f525fa7ce7b7e7e3f65950c483dbef38d8acebe9eb73db03939",
+    "ok": true,
+    "file": "c40fb4b9c12f6f52.svg",
+    "w": 114.77,
+    "h": 104.95
+   },
+   {
+    "indexOnPage": 11,
+    "key": "d47c7a2c47be8e24d4610d17e45d63f744aae8cd8f7816fc512a17af31d32e9f",
+    "ok": true,
+    "file": "d47c7a2c47be8e24.svg",
+    "w": 109.65,
+    "h": 100.68
+   },
+   {
+    "indexOnPage": 12,
+    "key": "d998bba40d881bbc9502a1d6cc3528cc4e550198e1157cc71809ae9a2de1e6ce",
+    "ok": true,
+    "file": "d998bba40d881bbc.svg",
+    "w": 108.8,
+    "h": 115.7
+   },
+   {
+    "indexOnPage": 13,
+    "key": "3b3c43d69b08779ef0f50c5a7d8da92b21d9ed6b37e9b2f560c0da73c0a9972f",
+    "ok": true,
+    "file": "3b3c43d69b08779e.svg",
+    "w": 121.57,
+    "h": 126.54
+   },
+   {
+    "indexOnPage": 14,
+    "key": "0bd703ee0da239fe37a1e3019a4426f0d8246cdb6f2fc8a25931a10c27973950",
+    "ok": true,
+    "file": "0bd703ee0da239fe.svg",
+    "w": 113.91,
+    "h": 128.31
+   },
+   {
+    "indexOnPage": 15,
+    "key": "e15e5b764fb6d10886bc44d3f9d3b855453fca8766a9c8c99ae5a0f31fc43ab3",
+    "ok": true,
+    "file": "e15e5b764fb6d108.svg",
+    "w": 103.34,
+    "h": 102.2
+   },
+   {
+    "indexOnPage": 16,
+    "key": "56bc8fa4b8b1432502228c7dfe68677b94e7b389d7f6229eb8ef3435515547e0",
+    "ok": true,
+    "file": "56bc8fa4b8b14325.svg",
+    "w": 123.36,
+    "h": 103.17
+   },
+   {
+    "indexOnPage": 17,
+    "key": "f2d4aa7242a4b4da5953c3aff50a7776520124050faf0d2368fe6c627907327a",
+    "ok": true,
+    "file": "f2d4aa7242a4b4da.svg",
+    "w": 123.27,
+    "h": 128.71
+   },
+   {
+    "indexOnPage": 18,
+    "key": "45b1ad0b92a8866353f093ef598ab06df16622b4714a452543968f01d330f6d7",
+    "ok": true,
+    "file": "45b1ad0b92a88663.svg",
+    "w": 104.43,
+    "h": 107.11
+   },
+   {
+    "indexOnPage": 19,
+    "key": "3ee97c0bfbec70c936d600fa24812cac88ae00803836d3a1fab8b9b5b6fd1c47",
+    "ok": true,
+    "file": "3ee97c0bfbec70c9.svg",
+    "w": 113.35,
+    "h": 115.7
+   },
+   {
+    "indexOnPage": 20,
+    "key": "796d8628e943456e61be3b6509143ea2f20a38965171619495453a93aa100eeb",
+    "ok": true,
+    "file": "796d8628e943456e.svg",
+    "w": 114.81,
+    "h": 128.26
+   },
+   {
+    "indexOnPage": 21,
+    "key": "e3dabb8a14d0c9a83f8a79e17301a5f5d2c36d4435c4b0e221fe5dcb56df6ec1",
+    "ok": true,
+    "file": "e3dabb8a14d0c9a8.svg",
+    "w": 101.13,
+    "h": 104.95
+   },
+   {
+    "indexOnPage": 22,
+    "key": "bf858c28d585e873fe83e9b8f74be737478619aee02df0988301ddc6957e3927",
+    "ok": true,
+    "file": "bf858c28d585e873.svg",
+    "w": 106.5,
+    "h": 70.08
+   },
+   {
+    "indexOnPage": 23,
+    "key": "5020e1ee4ac5ae00592be8de50ca7f95e215ce7fe58d8bfd700b7857fd56b39e",
+    "ok": true,
+    "file": "5020e1ee4ac5ae00.svg",
+    "w": 137.8,
+    "h": 101.38
+   },
+   {
+    "indexOnPage": 24,
+    "key": "88833355f6d94e4f5c0af98461a951d2ff1d2ce5d3a1809bc6f802ef0a124773",
+    "ok": true,
+    "file": "88833355f6d94e4f.svg",
+    "w": 118.68,
+    "h": 104.26
+   },
+   {
+    "indexOnPage": 25,
+    "key": "1a132e760485718beb5e38beb14171a5135f6cf5937cbb2046b296a21ed55ab5",
+    "ok": true,
+    "file": "1a132e760485718b.svg",
+    "w": 97.61,
+    "h": 107.92
+   },
+   {
+    "indexOnPage": 26,
+    "key": "797e04b1ebfa976ea6dd926d83dc5eeae7d30c67154455fe2a577800a9dd71b4",
+    "ok": true,
+    "file": "797e04b1ebfa976e.svg",
+    "w": 132.18,
+    "h": 88.57
+   },
+   {
+    "indexOnPage": 27,
+    "key": "08e096b410ba9ecb408ab45c4442aea82f952f52f9c59f9f90c4b15c0a319342",
+    "ok": true,
+    "file": "08e096b410ba9ecb.svg",
+    "w": 117.99,
+    "h": 115.01
+   },
+   {
+    "indexOnPage": 28,
+    "key": "b1354162ecabf83aa32f92d6a7ebfb4f6b319e6555da54e4ff79cef701f48bb0",
+    "ok": true,
+    "file": "b1354162ecabf83a.svg",
+    "w": 108.92,
+    "h": 104.95
+   },
+   {
+    "indexOnPage": 29,
+    "key": "8726791a86abacab216658bee50261e3015e25abf05f27a9e3e34950d61cc3a5",
+    "ok": true,
+    "file": "8726791a86abacab.svg",
+    "w": 105.92,
+    "h": 111.77
+   },
+   {
+    "indexOnPage": 30,
+    "key": "9b756438e948b3b972db811cdfe162b6b6157b0925fc75f9e037e7d8af688a21",
+    "ok": true,
+    "file": "9b756438e948b3b9.svg",
+    "w": 114.61,
+    "h": 104.95
+   },
+   {
+    "indexOnPage": 31,
+    "key": "cfef8d989372a64573b1fae0decd2e86a39ea0c9d7b7189d0f7892aacef322b2",
+    "ok": true,
+    "file": "cfef8d989372a645.svg",
+    "w": 105.92,
+    "h": 111.77
+   },
+   {
+    "indexOnPage": 32,
+    "key": "4c836f6631748467e00a3b60519579dbbc60feb0ad02d48f626d71536300ce01",
+    "ok": true,
+    "file": "4c836f6631748467.svg",
+    "w": 91.45,
+    "h": 94.31
+   },
+   {
+    "indexOnPage": 33,
+    "key": "be31b389fed086746f536ee37b344acbde28e44d4df984673dd5369a65fd5cd8",
+    "ok": true,
+    "file": "be31b389fed08674.svg",
+    "w": 153.9,
+    "h": 111.53
+   },
+   {
+    "indexOnPage": 34,
+    "key": "780c6a9b74a180f78781b01c934dc8c874bb9ffd97eb055712fca9e05a7484bb",
+    "ok": true,
+    "file": "780c6a9b74a180f7.svg",
+    "w": 148.21,
+    "h": 93.57
+   },
+   {
+    "indexOnPage": 35,
+    "key": "4b9ff25fa76f8de03d45eb4932ffb23f141808eab2682318ce384be240b202a3",
+    "ok": true,
+    "file": "4b9ff25fa76f8de0.svg",
+    "w": 142.91,
+    "h": 103.32
+   },
+   {
+    "indexOnPage": 36,
+    "key": "ee58beb464a36e0910aa902c7b50d41b80a9b536ab2acc7f61937a6b6783b120",
+    "ok": true,
+    "file": "ee58beb464a36e09.svg",
+    "w": 178.78,
+    "h": 104.95
+   },
+   {
+    "indexOnPage": 37,
+    "key": "73a462af13bc0940f44dc93acad7a64ea5a954f01e2ed9830576c2c522d02ae4",
+    "ok": true,
+    "file": "73a462af13bc0940.svg",
+    "w": 178.78,
+    "h": 108.8
+   },
+   {
+    "indexOnPage": 38,
+    "key": "29ce2753f3dfd1db013df000d4dce0d8552490390379811efca6c17c32e3eae4",
+    "ok": true,
+    "file": "29ce2753f3dfd1db.svg",
+    "w": 178.78,
+    "h": 104.95
+   },
+   {
+    "indexOnPage": 39,
+    "key": "05fb897ca1bac55b5636a81b23a1c939455da9816e9e6b32a722dab064cd7d2f",
+    "ok": true,
+    "file": "05fb897ca1bac55b.svg",
+    "w": 178.78,
+    "h": 104.95
+   },
+   {
+    "indexOnPage": 40,
+    "key": "3b312c8d74ad95c91931d3b85d2f6e0f48df872e1dfba7bbd8946110b58ddfc0",
+    "ok": true,
+    "file": "3b312c8d74ad95c9.svg",
+    "w": 138.16,
+    "h": 104.95
+   },
+   {
+    "indexOnPage": 41,
+    "key": "0b75ceed3d6488de0287ca3f238e4b39d22da182215e9a94a1fbf940f7bcbf52",
+    "ok": true,
+    "file": "0b75ceed3d6488de.svg",
+    "w": 178.78,
+    "h": 118.56
+   },
+   {
+    "indexOnPage": 42,
+    "key": "c174b59f22d67ab4c4fbea2c21688b32a53c5315af2349a3a5e2b1ea29e33832",
+    "ok": true,
+    "file": "c174b59f22d67ab4.svg",
+    "w": 178.78,
+    "h": 117.76
+   },
+   {
+    "indexOnPage": 43,
+    "key": "d596208fbdccee261ed5f8b6c82479118ef438b7e413e9331849f128ee778057",
+    "ok": true,
+    "file": "d596208fbdccee26.svg",
+    "w": 166.42,
+    "h": 105.11
+   },
+   {
+    "indexOnPage": 44,
+    "key": "b4c522c6918ce7d45da00c97ef0130a046e8e5b5df718dd44dc785273a0c5f88",
+    "ok": true,
+    "file": "b4c522c6918ce7d4.svg",
+    "w": 151.45,
+    "h": 100.02
+   },
+   {
+    "indexOnPage": 45,
+    "key": "a642158d4e58a016d9c72b005d24889c2ece2bf7eb10c7794462c1095ec8a3df",
+    "ok": true,
+    "file": "a642158d4e58a016.svg",
+    "w": 166.62,
+    "h": 102.2
+   },
+   {
+    "indexOnPage": 46,
+    "key": "43211a6148ba794c936a9eaae231dcbe409b6ca40f70f31f541618043f157394",
+    "ok": true,
+    "file": "43211a6148ba794c.svg",
+    "w": 124.74,
+    "h": 123.72
+   },
+   {
+    "indexOnPage": 47,
+    "key": "3bb50c38448dd92f4bca17068c9484220937adf1903afdf9f398764ec4e74dd6",
+    "ok": true,
+    "file": "3bb50c38448dd92f.svg",
+    "w": 162.83,
+    "h": 109.28
+   },
+   {
+    "indexOnPage": 48,
+    "key": "1aeb4904ce9937a29b27269a0a94d9e4888504e987ff5740fe145cdf7c4ebfa2",
+    "ok": true,
+    "file": "1aeb4904ce9937a2.svg",
+    "w": 111.06,
+    "h": 99.67
+   },
+   {
+    "indexOnPage": 49,
+    "key": "1e9967880fbf5c4e560ab9c0e58b3c02bc533b61c5336041cfa1e1b7bea9b25a",
+    "ok": true,
+    "file": "1e9967880fbf5c4e.svg",
+    "w": 89.43,
+    "h": 107.07
+   },
+   {
+    "indexOnPage": 50,
+    "key": "1caee18b487c17f45ff2cb12ebcbf4cdef4e970ecfd80963b1d08377f90a206d",
+    "ok": true,
+    "file": "1caee18b487c17f4.svg",
+    "w": 149.18,
+    "h": 129.83
+   },
+   {
+    "indexOnPage": 51,
+    "key": "b154dfbf1c03497263451f6bdc0efca8e2c208208e297ec3c121c6626ead6607",
+    "ok": true,
+    "file": "b154dfbf1c034972.svg",
+    "w": 126.42,
+    "h": 89.99
+   },
+   {
+    "indexOnPage": 52,
+    "key": "588d4b71860ecf7aca04e30354d04bfbbf8aa374daad657c32d097f1da73a969",
+    "ok": true,
+    "file": "588d4b71860ecf7a.svg",
+    "w": 132.11,
+    "h": 102.8
+   },
+   {
+    "indexOnPage": 53,
+    "key": "6ea2e51522d9040e1b7198a11ecad91b6e7ac4042a19841d43e3f0112c5df3fa",
+    "ok": true,
+    "file": "6ea2e51522d9040e.svg",
+    "w": 149.18,
+    "h": 129.83
+   },
+   {
+    "indexOnPage": 54,
+    "key": "9ce05efcb3a807b4699dc8f63a38e47d64184263ee152bda17bd91a0d695c223",
+    "ok": true,
+    "file": "9ce05efcb3a807b4.svg",
+    "w": 154.87,
+    "h": 107.07
+   },
+   {
+    "indexOnPage": 55,
+    "key": "18017515ca86bafa625ea857ba7872e1fa48e34df6038e16b0df1de4718a63cc",
+    "ok": true,
+    "file": "18017515ca86bafa.svg",
+    "w": 115.04,
+    "h": 104.22
+   },
+   {
+    "indexOnPage": 56,
+    "key": "18697b1cd87bbcb380d48da77389941c79d0ead8b381438185721f37389542a2",
+    "ok": true,
+    "file": "18697b1cd87bbcb3.svg",
+    "w": 103.6,
+    "h": 99.26
+   },
+   {
+    "indexOnPage": 57,
+    "key": "9615ab3e05b7b7c694ac5e99dba5ed3e5aa913e3aa9367924ab66e11574f4b53",
+    "ok": true,
+    "file": "9615ab3e05b7b7c6.svg",
+    "w": 140.07,
+    "h": 96.72
+   },
+   {
+    "indexOnPage": 58,
+    "key": "eedeb02f28bb534879c9bc23bbb42f359edec2255cedd56c8f79172eb5d6bc50",
+    "ok": true,
+    "file": "eedeb02f28bb5348.svg",
+    "w": 118.1,
+    "h": 103.48
+   },
+   {
+    "indexOnPage": 59,
+    "key": "df069303bd74356697ec2879c9966ea3973e3765206743833cfa8c0b89e3c3ea",
+    "ok": true,
+    "file": "df069303bd743566.svg",
+    "w": 85.76,
+    "h": 95.68
+   },
+   {
+    "indexOnPage": 60,
+    "key": "37de39333c4bf7a83f63a077437ef736dcd4e7cf95a68e57c92a4427b7d8b36e",
+    "ok": true,
+    "file": "37de39333c4bf7a8.svg",
+    "w": 122.86,
+    "h": 122.19
+   },
+   {
+    "indexOnPage": 61,
+    "key": "cfeef418cd681981d1510a73dd9d87d1db3166901f8bd9190c49c8d79b48d230",
+    "ok": true,
+    "file": "cfeef418cd681981.svg",
+    "w": 159.35,
+    "h": 104.35
+   },
+   {
+    "indexOnPage": 62,
+    "key": "523c1ec5dfc5571e15190ef54e6c6eab9d4f063a9cbaf354c2d8aff3245838fa",
+    "ok": true,
+    "file": "523c1ec5dfc5571e.svg",
+    "w": 140.65,
+    "h": 101.38
+   },
+   {
+    "indexOnPage": 63,
+    "key": "a0c695a714681dfece504bc9df6f4718f431e78b2404ac2b98d8fbc20aa15663",
+    "ok": true,
+    "file": "a0c695a714681dfe.svg",
+    "w": 147.32,
+    "h": 159.7
+   },
+   {
+    "indexOnPage": 64,
+    "key": "d67e4e77cd3b67a3453fa31fd67cfb4ccf48fbaa5182dcf5cb38d76190ddb671",
+    "ok": true,
+    "file": "d67e4e77cd3b67a3.svg",
+    "w": 117,
+    "h": 127.57
+   },
+   {
+    "indexOnPage": 65,
+    "key": "a9205d200b6be902a4107ab5c5bffa3bf6f455e9e4fd7381e4c3f9cde66b26d8",
+    "ok": true,
+    "file": "a9205d200b6be902.svg",
+    "w": 130.86,
+    "h": 127.89
+   }
+  ],
+  "hkdse-course/规划说明方案/课题讲义写作规范.html": [
+   {
+    "indexOnPage": 0,
+    "key": "d2f661c1c2f635708561ed2948ddc8492a30d11d486d371332f1b6883783668c",
+    "ok": true,
+    "file": "d2f661c1c2f63570.svg",
+    "w": 220.18,
+    "h": 208.96
+   }
+  ]
+ }
+}

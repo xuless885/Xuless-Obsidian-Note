@@ -1,0 +1,14 @@
+views:
+  - type: table
+    name: 表格
+    filters:
+      and:
+        - file.inFolder("HKDSE course")
+    order:
+      - file.name
+      - file.ctime
+    sort:
+      - property: file.name
+        direction: DESC
+    columnSize:
+      file.name: 268

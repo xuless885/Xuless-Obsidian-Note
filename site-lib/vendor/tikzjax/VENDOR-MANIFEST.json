@@ -1,0 +1,884 @@
+{
+ "generator": ".build/vendor/fetch_vendor.js",
+ "generatedFor": "site-lib/vendor/tikzjax",
+ "sources": {
+  "obsidian-tikzjax": {
+   "version": "0.5.2",
+   "url": "https://github.com/artisticat1/obsidian-tikzjax",
+   "license": "MIT",
+   "mainJsSha256": "d4b609bb0f880ca91ebe855110b088b7c891a399671862328d937d48e0a46486",
+   "mainJsBytes": 7861302,
+   "stylesCssSha256": "d9a7f741ec8fdcbe5e0145152c799238cee8df5a14ddc7dc9feb3bb835ce068d"
+  },
+  "tikzjax (upstream, inlined in the plugin build)": {
+   "url": "https://github.com/kisonecat/tikzjax",
+   "license": "LPPL-1.3c",
+   "bundleSha256": "a998481b0cbab9b1459719fdf68810a077c4488ff49f7597e61d55ff8577f5e6",
+   "bundleBytes": 7033505
+  }
+ },
+ "output": {
+  "tikzjax.js": {
+   "bytes": 7035163,
+   "bodySha256": "be325bdc2fc6b660ea658324a63f87518e34c9eb0d4f2bd2d1c6d16c0ded7c91",
+   "patches": [
+    "offline-fallback-for-compile-errors"
+   ]
+  },
+  "tikzjax-fonts.css": {
+   "bytes": 13919
+  }
+ },
+ "fonts": {
+  "count": 140,
+  "totalBytes": 3581960,
+  "files": [
+   {
+    "family": "cmb10",
+    "file": "fonts/cmb10.ttf",
+    "bytes": 25464,
+    "sha256": "41a921d4dda8063b8f79a8764439ca6cea333b3035a3c1db0670cc037337e101"
+   },
+   {
+    "family": "cmbsy10",
+    "file": "fonts/cmbsy10.ttf",
+    "bytes": 29912,
+    "sha256": "37d804a1dce708e67427106d9da27b12cf08c6ee2b85173d83449455c82d520e"
+   },
+   {
+    "family": "cmbsy6",
+    "file": "fonts/cmbsy6.ttf",
+    "bytes": 31508,
+    "sha256": "f6ebf857f2677c8f41729a5a5eb14ae0b64103e22395ded14e8a5e97d2d4d154"
+   },
+   {
+    "family": "cmbsy7",
+    "file": "fonts/cmbsy7.ttf",
+    "bytes": 30668,
+    "sha256": "ad874807b2541c779c63bee7be9fd6e2ffdd2c4f668b860db4252f59cf4b17b5"
+   },
+   {
+    "family": "cmbsy8",
+    "file": "fonts/cmbsy8.ttf",
+    "bytes": 30140,
+    "sha256": "bdc1d3baef2c206e8306613031437ee717a2b3a2e2330ea77fdaa7258f49b354"
+   },
+   {
+    "family": "cmbsy9",
+    "file": "fonts/cmbsy9.ttf",
+    "bytes": 30564,
+    "sha256": "d44fa6645c73f762f43cfcca27088c4e4a3ca5cf21568454a28c7e6ed973de75"
+   },
+   {
+    "family": "cmbx10",
+    "file": "fonts/cmbx10.ttf",
+    "bytes": 25740,
+    "sha256": "8e787e2a54899a699b273d6f5fab4cfb4f00c19b0601673ebcb9ce1a4cb85a40"
+   },
+   {
+    "family": "cmbx12",
+    "file": "fonts/cmbx12.ttf",
+    "bytes": 25728,
+    "sha256": "376c267bda02b68af8ab20961adad4d782a6286297b2f4d9201ec9fb2977d386"
+   },
+   {
+    "family": "cmbx5",
+    "file": "fonts/cmbx5.ttf",
+    "bytes": 25944,
+    "sha256": "49845db2078c01d8655dc58af7799e51a4e640100762cfe6cec86f9d2ea5b026"
+   },
+   {
+    "family": "cmbx6",
+    "file": "fonts/cmbx6.ttf",
+    "bytes": 25924,
+    "sha256": "acb39082346bb6d93d55a3187e32a5f92f164fd9b3027923e4e32de6330b7238"
+   },
+   {
+    "family": "cmbx7",
+    "file": "fonts/cmbx7.ttf",
+    "bytes": 25852,
+    "sha256": "6bc253def1a1b81d1f886c5c156d4897df4019f7ea6e24d15239c90316205394"
+   },
+   {
+    "family": "cmbx8",
+    "file": "fonts/cmbx8.ttf",
+    "bytes": 25800,
+    "sha256": "07ab075a21615cd954cc38cdc158babcf4fb2a1508358b5e91c244a068fee946"
+   },
+   {
+    "family": "cmbx9",
+    "file": "fonts/cmbx9.ttf",
+    "bytes": 25808,
+    "sha256": "a7d8187f79c868feef075e752adb10e2de146ed4c7b49381b82b7ff681699193"
+   },
+   {
+    "family": "cmbxsl10",
+    "file": "fonts/cmbxsl10.ttf",
+    "bytes": 26832,
+    "sha256": "d7eaa8a0702cd0dda04f0b77aa5d57c1af8f03d0f55d99486e29c3be2507fa4f"
+   },
+   {
+    "family": "cmbxti10",
+    "file": "fonts/cmbxti10.ttf",
+    "bytes": 32852,
+    "sha256": "8f7a854045554f3b0f8c488d274133ad04c43f8f88f2d019792692d09076a579"
+   },
+   {
+    "family": "cmcsc10",
+    "file": "fonts/cmcsc10.ttf",
+    "bytes": 25500,
+    "sha256": "7e17a872914678a4bd260151dcaf39e33e9319ef5247fcaf47521d1a599a282d"
+   },
+   {
+    "family": "cmcsc8",
+    "file": "fonts/cmcsc8.ttf",
+    "bytes": 25676,
+    "sha256": "620c8fbe7df055ebd55bbfd32b17b50ed9c6fb433ae5b270408a6ff2ba02ae7f"
+   },
+   {
+    "family": "cmcsc9",
+    "file": "fonts/cmcsc9.ttf",
+    "bytes": 25556,
+    "sha256": "15cb1d0ecfe2974bb1c82f53bfa59f6b292303bb05ec503548172af71b19d059"
+   },
+   {
+    "family": "cmdunh10",
+    "file": "fonts/cmdunh10.ttf",
+    "bytes": 26968,
+    "sha256": "ed664bd5ed2917c67e6568a92868d40fd9f2f1c17a53b6da384ae64474790453"
+   },
+   {
+    "family": "cmex10",
+    "file": "fonts/cmex10.ttf",
+    "bytes": 20792,
+    "sha256": "b8bf760867a9da99ed41d7e95980f45e40a7aa6569292bad6ef8b1fcf9eab062"
+   },
+   {
+    "family": "cmex7",
+    "file": "fonts/cmex7.ttf",
+    "bytes": 21280,
+    "sha256": "136247b0f12995df791571c785c6b8d9e4ac516cc46e724f55c416b77dd39a60"
+   },
+   {
+    "family": "cmex8",
+    "file": "fonts/cmex8.ttf",
+    "bytes": 21172,
+    "sha256": "8f60427e98073631b9f1ddee41f2a54b29793317aafb249c4eda2fa4f6df5146"
+   },
+   {
+    "family": "cmex9",
+    "file": "fonts/cmex9.ttf",
+    "bytes": 20912,
+    "sha256": "f4ceecb7066d8dc98e2ed5c6aa8a156aed53a804781e1132797f83b5e5ed3a6c"
+   },
+   {
+    "family": "cmff10",
+    "file": "fonts/cmff10.ttf",
+    "bytes": 31260,
+    "sha256": "f369202b80ae7f158db188c1b44b225602cb9d8f2bea102af38abe6bacc8f2cd"
+   },
+   {
+    "family": "cmfi10",
+    "file": "fonts/cmfi10.ttf",
+    "bytes": 31900,
+    "sha256": "d143554282dfe84b6039778f7691131b3edfe8cfa7efedd6ae7e9d15ad3ec337"
+   },
+   {
+    "family": "cmfib8",
+    "file": "fonts/cmfib8.ttf",
+    "bytes": 27280,
+    "sha256": "1c6baca07e3e14918f5f935efbb59ff00f4c491b0dfea91e4a773234abdc9e76"
+   },
+   {
+    "family": "cminch",
+    "file": "fonts/cminch.ttf",
+    "bytes": 8564,
+    "sha256": "290160e53567f41b6b8f6da532d5426e24f3e26cd8787578b9f91b9af9761ab9"
+   },
+   {
+    "family": "cmitt10",
+    "file": "fonts/cmitt10.ttf",
+    "bytes": 29488,
+    "sha256": "b2cce1e94becd6f3040a3ee6372bd553de2604de91c310191aa31172bcc6904c"
+   },
+   {
+    "family": "cmmi10",
+    "file": "fonts/cmmi10.ttf",
+    "bytes": 32456,
+    "sha256": "14127ae4e8de0a6933c16aa80c43edd53b2eb875c81e029381dbdf3bb51a879e"
+   },
+   {
+    "family": "cmmi12",
+    "file": "fonts/cmmi12.ttf",
+    "bytes": 32164,
+    "sha256": "49627e8e32aeabdf449ee2ac94a9b3f4248378e479e267a9ad6adca2f56e3427"
+   },
+   {
+    "family": "cmmi5",
+    "file": "fonts/cmmi5.ttf",
+    "bytes": 33344,
+    "sha256": "82c1e94ae51649b6ff684e6f69a7de577da2ba51710ad8e07d578e9ec2665215"
+   },
+   {
+    "family": "cmmi6",
+    "file": "fonts/cmmi6.ttf",
+    "bytes": 33276,
+    "sha256": "f006087b9d235ef75c344a33144344e6808c683c6abab403b42935cfae7eb2a2"
+   },
+   {
+    "family": "cmmi7",
+    "file": "fonts/cmmi7.ttf",
+    "bytes": 33340,
+    "sha256": "05896a1c7eddcf3794676e0a85896f71b2b9cd055c3478507a613a1904bc8c35"
+   },
+   {
+    "family": "cmmi8",
+    "file": "fonts/cmmi8.ttf",
+    "bytes": 33220,
+    "sha256": "036a1c0f61fd9430fa36faaf8e0d3159402a1af0ef1dde7afde30d312d954aa2"
+   },
+   {
+    "family": "cmmi9",
+    "file": "fonts/cmmi9.ttf",
+    "bytes": 32512,
+    "sha256": "2efa74fc10e381d918f91341ac450d895e1a3a6f3cb6135051c0082e78854520"
+   },
+   {
+    "family": "cmmib10",
+    "file": "fonts/cmmib10.ttf",
+    "bytes": 32548,
+    "sha256": "d0610e75b0e9947ea863e9e3ab1ad14110aa357144f362b35e4e07ef399aee0e"
+   },
+   {
+    "family": "cmmib6",
+    "file": "fonts/cmmib6.ttf",
+    "bytes": 33300,
+    "sha256": "d7473852686b244ca0ae3f373a62e6b55930b38a959a8a9d154af7e90e2ed2a1"
+   },
+   {
+    "family": "cmmib7",
+    "file": "fonts/cmmib7.ttf",
+    "bytes": 32604,
+    "sha256": "fa846c3d3d287b29873f9b698fe7c8d0e74756486066fdd056825216414241e6"
+   },
+   {
+    "family": "cmmib8",
+    "file": "fonts/cmmib8.ttf",
+    "bytes": 32508,
+    "sha256": "dba317942eb54172291698d15475936a7d1ebe85995b69a03effa73c879c70a3"
+   },
+   {
+    "family": "cmmib9",
+    "file": "fonts/cmmib9.ttf",
+    "bytes": 32404,
+    "sha256": "11bd6d084f628f168e6b3ae89a25320d817d6cef98190b466f0df4160a1f9b6a"
+   },
+   {
+    "family": "cmr10",
+    "file": "fonts/cmr10.ttf",
+    "bytes": 26160,
+    "sha256": "264b324062a00b9e0806913863d92f11133e66a21bd34e8fd003bee3393c7c2f"
+   },
+   {
+    "family": "cmr12",
+    "file": "fonts/cmr12.ttf",
+    "bytes": 26300,
+    "sha256": "7cfb4da28c339472f76057aa02eb73e2eb3bedc5c2b1139d3af94f55f6424102"
+   },
+   {
+    "family": "cmr17",
+    "file": "fonts/cmr17.ttf",
+    "bytes": 27336,
+    "sha256": "f5510ddebf9e29d82610615ba4f8f8858df0fe6eb0d18f29eacd731f7333a934"
+   },
+   {
+    "family": "cmr5",
+    "file": "fonts/cmr5.ttf",
+    "bytes": 25584,
+    "sha256": "8f72ede301a7b7de3f509d3a418f250abab0d913031739abcc7c85ff96f8ab4a"
+   },
+   {
+    "family": "cmr6",
+    "file": "fonts/cmr6.ttf",
+    "bytes": 26612,
+    "sha256": "184c53ad2a757eac1205f18b93b0ff494d8038b7111afaa268225830a3eba9d8"
+   },
+   {
+    "family": "cmr7",
+    "file": "fonts/cmr7.ttf",
+    "bytes": 26256,
+    "sha256": "e1b8ac38c440a957ad62a63281fedad90f1600dd723ba9b4bf170cfbad91375e"
+   },
+   {
+    "family": "cmr8",
+    "file": "fonts/cmr8.ttf",
+    "bytes": 26404,
+    "sha256": "e59caaa9a586c8ada0857f3c02b871822dfc14558c80c1c5155d6283f0ad2921"
+   },
+   {
+    "family": "cmr9",
+    "file": "fonts/cmr9.ttf",
+    "bytes": 26280,
+    "sha256": "cec2e37d69773d8839d47f15c641c4dd420995db24fc957b3cd0e59093921307"
+   },
+   {
+    "family": "cmsl10",
+    "file": "fonts/cmsl10.ttf",
+    "bytes": 27812,
+    "sha256": "47e8b6e12b5ced292ddadb5e8e45364d605f7b1d8aa2272d45e6a98f4792fb11"
+   },
+   {
+    "family": "cmsl12",
+    "file": "fonts/cmsl12.ttf",
+    "bytes": 27832,
+    "sha256": "03e7b9e1fb7158aaaabf6386e66296c30ce0e2de612ed0e43a854fac264b3051"
+   },
+   {
+    "family": "cmsl8",
+    "file": "fonts/cmsl8.ttf",
+    "bytes": 27772,
+    "sha256": "8d4155ed07838ef4e93363a90c38496f6b612a0af3059fa5cc3a1927024e3522"
+   },
+   {
+    "family": "cmsl9",
+    "file": "fonts/cmsl9.ttf",
+    "bytes": 27896,
+    "sha256": "c50ef8e3a6fefa1d31b51ada8e2b30384ef642f2dc2aadccf792890e34eb264f"
+   },
+   {
+    "family": "cmsltt10",
+    "file": "fonts/cmsltt10.ttf",
+    "bytes": 28728,
+    "sha256": "754e4854120c2b95829bde9f70615a89c3ddd13c56dfd635431dbd87b903ff78"
+   },
+   {
+    "family": "cmss10",
+    "file": "fonts/cmss10.ttf",
+    "bytes": 20164,
+    "sha256": "6dabb294c402918a602b64d5ad3a242aa07ad7d2cd2f88d9dac3466861859eee"
+   },
+   {
+    "family": "cmss12",
+    "file": "fonts/cmss12.ttf",
+    "bytes": 20088,
+    "sha256": "f8ce47459c85ba6c0ae0f43fa692d1849ca7c9e3eb4ec598921cd89de776a13c"
+   },
+   {
+    "family": "cmss17",
+    "file": "fonts/cmss17.ttf",
+    "bytes": 20256,
+    "sha256": "8050a37eec1a62866dca2dc3f72561517b311451fd9ddc5fc19625ff6964bb45"
+   },
+   {
+    "family": "cmss8",
+    "file": "fonts/cmss8.ttf",
+    "bytes": 20176,
+    "sha256": "999b4d1921714d5fdd03912571f035c988e9d8f0f68765e334553fe9202c88d4"
+   },
+   {
+    "family": "cmss9",
+    "file": "fonts/cmss9.ttf",
+    "bytes": 20080,
+    "sha256": "0129c5ebdfaa7d8abbcf32629ac3a1d3d9496a652e09675a64bf635d976a7fa3"
+   },
+   {
+    "family": "cmssbx10",
+    "file": "fonts/cmssbx10.ttf",
+    "bytes": 25352,
+    "sha256": "d9be119e1d38fea40e893e19a736c07be044b6a62ffad4ada4c46d5b9f39aa47"
+   },
+   {
+    "family": "cmssdc10",
+    "file": "fonts/cmssdc10.ttf",
+    "bytes": 24864,
+    "sha256": "ba23d5543b2423c2066145272953eca0cf120c3b02ed8cc65cfd7f84e7e6c8b3"
+   },
+   {
+    "family": "cmssi10",
+    "file": "fonts/cmssi10.ttf",
+    "bytes": 20988,
+    "sha256": "4124f20df886e5484d52a4f837ef255ff4ee6318717592013d99b94299686b83"
+   },
+   {
+    "family": "cmssi12",
+    "file": "fonts/cmssi12.ttf",
+    "bytes": 20936,
+    "sha256": "8a5f83f56997b29ce609569e6eabf4bd1e892fa8b4923d43cb64e81ee974e72e"
+   },
+   {
+    "family": "cmssi17",
+    "file": "fonts/cmssi17.ttf",
+    "bytes": 21176,
+    "sha256": "af457e87efed4fd90e2fca078ce79a6cb693a155267baa2541e32c4917efba66"
+   },
+   {
+    "family": "cmssi8",
+    "file": "fonts/cmssi8.ttf",
+    "bytes": 20912,
+    "sha256": "b3fecb51d5a9c3f66f3b772efcbdb23eeb9bf7cf16b2a5b3f8dd6dd9eda18a2c"
+   },
+   {
+    "family": "cmssi9",
+    "file": "fonts/cmssi9.ttf",
+    "bytes": 21016,
+    "sha256": "82626171ac5f74e01da1129dcc7f6abf2f00da54f2301ad23ca6b4628f7ad70c"
+   },
+   {
+    "family": "cmssq8",
+    "file": "fonts/cmssq8.ttf",
+    "bytes": 25704,
+    "sha256": "d8c74e87a711bc6628c08f7bf098c6b2b9535b306676a3be369bafdf8fe4758f"
+   },
+   {
+    "family": "cmssqi8",
+    "file": "fonts/cmssqi8.ttf",
+    "bytes": 27124,
+    "sha256": "6b6a7589bd9b1a3905330b0627d24cfa3ba1dae2ecb10146e5326b37b6e35dec"
+   },
+   {
+    "family": "cmsy10",
+    "file": "fonts/cmsy10.ttf",
+    "bytes": 29224,
+    "sha256": "a6d33a4d00fde71797637688ee9df24918d28de8620a0f96f8c03f6d462c27ce"
+   },
+   {
+    "family": "cmsy5",
+    "file": "fonts/cmsy5.ttf",
+    "bytes": 30048,
+    "sha256": "f6d346c47862689bf8c7af91ce10292e26d07252d48b69b686dfac4ceaba1b35"
+   },
+   {
+    "family": "cmsy6",
+    "file": "fonts/cmsy6.ttf",
+    "bytes": 30076,
+    "sha256": "89893cc3a9d305f086490ebb5f66befd862c803722432de023bb68c4ea1c030b"
+   },
+   {
+    "family": "cmsy7",
+    "file": "fonts/cmsy7.ttf",
+    "bytes": 29628,
+    "sha256": "87910d88d4ee8c60fd0b2ce43787d71ec41a5d7295481cc6ceea1de8253eb9ba"
+   },
+   {
+    "family": "cmsy8",
+    "file": "fonts/cmsy8.ttf",
+    "bytes": 29144,
+    "sha256": "4f0ec0cf114409e4bc9a7a22add5aebe8ac90c94fd48b7b5bd8dd44408277fad"
+   },
+   {
+    "family": "cmsy9",
+    "file": "fonts/cmsy9.ttf",
+    "bytes": 29148,
+    "sha256": "fedd9d2e2f4e3bcba22fcdbfb08946b943621a212ff26b7e599b5c452fcdaca9"
+   },
+   {
+    "family": "cmtcsc10",
+    "file": "fonts/cmtcsc10.ttf",
+    "bytes": 28288,
+    "sha256": "aa2b4529c916b79a16b316e0d00dfd5a3b842a0887efadba79c81760dc280fd4"
+   },
+   {
+    "family": "cmtex10",
+    "file": "fonts/cmtex10.ttf",
+    "bytes": 26772,
+    "sha256": "a6716d3a5f4f9e228be017f10fc250565104d3b66fdd5158751e78372e04e131"
+   },
+   {
+    "family": "cmtex8",
+    "file": "fonts/cmtex8.ttf",
+    "bytes": 26616,
+    "sha256": "d845e8213cb3eacf0a2470f842852adf61bbe1e74f0c3054323b5f63c88cd2dd"
+   },
+   {
+    "family": "cmtex9",
+    "file": "fonts/cmtex9.ttf",
+    "bytes": 26920,
+    "sha256": "001b8b9c15f29128b15cade2fb12aab693fbf22a2f0b8d9992902ab55acb00ef"
+   },
+   {
+    "family": "cmti10",
+    "file": "fonts/cmti10.ttf",
+    "bytes": 32652,
+    "sha256": "0754d7d0bb6381dea5cb4f6d0d5afc77c016cddaa5e717413b83b7bcc0000358"
+   },
+   {
+    "family": "cmti12",
+    "file": "fonts/cmti12.ttf",
+    "bytes": 32608,
+    "sha256": "42ac1c904c4abaad166f2fd205a9ea2b7d39421c854d4024d387a1c113c1aee1"
+   },
+   {
+    "family": "cmti7",
+    "file": "fonts/cmti7.ttf",
+    "bytes": 33624,
+    "sha256": "8e1c8777b81850a0e3ed80e80521458bd08d7d04115b5b68e1b43bf66869fe10"
+   },
+   {
+    "family": "cmti8",
+    "file": "fonts/cmti8.ttf",
+    "bytes": 33548,
+    "sha256": "c1e3220864bacc84d5aa2bef3f2e0665908397878344f5310599995bb7618cab"
+   },
+   {
+    "family": "cmti9",
+    "file": "fonts/cmti9.ttf",
+    "bytes": 32756,
+    "sha256": "73bebaa34d9b99aeb116c81a0724fc458202734bd3ca0cb088c54d4229ff5ad9"
+   },
+   {
+    "family": "cmtt10",
+    "file": "fonts/cmtt10.ttf",
+    "bytes": 27700,
+    "sha256": "64f5637b1bd2572744991c3308bb8a2386bc28a7898af4a07b957b56bece1ddf"
+   },
+   {
+    "family": "cmtt12",
+    "file": "fonts/cmtt12.ttf",
+    "bytes": 27552,
+    "sha256": "5d1e2066d23ad290a828986d52a04a0af211e601e3926aa1ac1cd5cfc23869ab"
+   },
+   {
+    "family": "cmtt8",
+    "file": "fonts/cmtt8.ttf",
+    "bytes": 27404,
+    "sha256": "84e48b97b884973f1302c2d572c1f12a3c4ab812c847da122e46a15077184766"
+   },
+   {
+    "family": "cmtt9",
+    "file": "fonts/cmtt9.ttf",
+    "bytes": 27716,
+    "sha256": "7a9a737ebab023683ca10b8c88a471c4a2ff6366d23c9f85f8ad504117c1ef11"
+   },
+   {
+    "family": "cmu10",
+    "file": "fonts/cmu10.ttf",
+    "bytes": 28784,
+    "sha256": "dbba4e845f894910edcd0e5ecf6d92fbf6b91a0e4420cc4f406feae58c0848e3"
+   },
+   {
+    "family": "cmvtt10",
+    "file": "fonts/cmvtt10.ttf",
+    "bytes": 29284,
+    "sha256": "e41dc7d80c63aa2343e46ef1a81c89a866a057ff5acac6d07b0986342a2d3719"
+   },
+   {
+    "family": "euex10",
+    "file": "fonts/euex10.ttf",
+    "bytes": 11348,
+    "sha256": "8539ac319f2ef346ede22d656175c7835be6d6b73e6c231a137ff00e1facc99a"
+   },
+   {
+    "family": "euex7",
+    "file": "fonts/euex7.ttf",
+    "bytes": 11348,
+    "sha256": "e1bd246745bdc877df789798281963bb5ed3a530467e27017dd2e39eb8d1397b"
+   },
+   {
+    "family": "euex8",
+    "file": "fonts/euex8.ttf",
+    "bytes": 11376,
+    "sha256": "730068c3f8e6f3a671cd8e2de24c9c2005252e7f1d27c4adffd2cf1a442ddb81"
+   },
+   {
+    "family": "euex9",
+    "file": "fonts/euex9.ttf",
+    "bytes": 11244,
+    "sha256": "265b751bc21aaf48004a39d75869e33480e058c975612374b5ff026634efe2e7"
+   },
+   {
+    "family": "eufb10",
+    "file": "fonts/eufb10.ttf",
+    "bytes": 23548,
+    "sha256": "f9d366e13fcb7860ac21bca23e35b545b2529ff24c774e28b3ad1d2598f61105"
+   },
+   {
+    "family": "eufb5",
+    "file": "fonts/eufb5.ttf",
+    "bytes": 23804,
+    "sha256": "5597f7d5f9adc2642f9463f88c8a64f065b1ef86834ced2202308a33e851d4cd"
+   },
+   {
+    "family": "eufb6",
+    "file": "fonts/eufb6.ttf",
+    "bytes": 23800,
+    "sha256": "e60fb3e0363dc1a147d4b809c8e55f207b8ccb746c518c57678037e8ff897b9c"
+   },
+   {
+    "family": "eufb7",
+    "file": "fonts/eufb7.ttf",
+    "bytes": 23620,
+    "sha256": "ad9d2bad73d30c30d80cf6c1560ec477a6eddffd5268a4dba7b67de184185692"
+   },
+   {
+    "family": "eufb8",
+    "file": "fonts/eufb8.ttf",
+    "bytes": 23660,
+    "sha256": "977e777ea4657a479eba984b27d0134f9a061559b5061a448d408ce3edef8cc5"
+   },
+   {
+    "family": "eufb9",
+    "file": "fonts/eufb9.ttf",
+    "bytes": 23564,
+    "sha256": "ac1179f178406a0dd82823c27df4cf6c368be5527ff4b85b16c8f6fa6e9f4d9b"
+   },
+   {
+    "family": "eufm10",
+    "file": "fonts/eufm10.ttf",
+    "bytes": 23472,
+    "sha256": "662fb3a27936fc28396fd80e038bce2ab3adbcd7dea55c7bb57f62a10b8cf443"
+   },
+   {
+    "family": "eufm5",
+    "file": "fonts/eufm5.ttf",
+    "bytes": 23824,
+    "sha256": "9d8ef203584d116b2fe8bf5e23c61f019e75d344577bf554b6f19a659befc540"
+   },
+   {
+    "family": "eufm6",
+    "file": "fonts/eufm6.ttf",
+    "bytes": 23548,
+    "sha256": "3b83bff4dd32c08927e7d1eda1c942c91df5a1d141cd0629e5cfb08aa95b66cc"
+   },
+   {
+    "family": "eufm7",
+    "file": "fonts/eufm7.ttf",
+    "bytes": 23324,
+    "sha256": "9810b5de1ba60367f7d223aecf4f79a6a3bef554e2665c15aab67d335c48eef7"
+   },
+   {
+    "family": "eufm8",
+    "file": "fonts/eufm8.ttf",
+    "bytes": 23528,
+    "sha256": "55827890635038ea4839cd95100d4e85e0ed23257b31dd4a0fe683eb8567aa8f"
+   },
+   {
+    "family": "eufm9",
+    "file": "fonts/eufm9.ttf",
+    "bytes": 23532,
+    "sha256": "2d5776396e671d333ecb9d6879f316a6af153ebd20becbe0dba1869e266ea5b0"
+   },
+   {
+    "family": "eurb10",
+    "file": "fonts/eurb10.ttf",
+    "bytes": 25020,
+    "sha256": "1d587870b66e179078746df19ecb548ff5bfc2d26b9e9035886471f86b51bcfd"
+   },
+   {
+    "family": "eurb5",
+    "file": "fonts/eurb5.ttf",
+    "bytes": 25432,
+    "sha256": "0429abdbe59b294dc9ada755275f9543d8a78684b87389c67b592e7a36c2c686"
+   },
+   {
+    "family": "eurb6",
+    "file": "fonts/eurb6.ttf",
+    "bytes": 25316,
+    "sha256": "4de6373293913fbac8202de2abd7bdc1ef23bab92bf5ac521bb0e441a5efae17"
+   },
+   {
+    "family": "eurb7",
+    "file": "fonts/eurb7.ttf",
+    "bytes": 25280,
+    "sha256": "8e876f90d4308b06fa8f8f46b2ecb8f1ed6f5ec47a41556ce46010432909fb45"
+   },
+   {
+    "family": "eurb8",
+    "file": "fonts/eurb8.ttf",
+    "bytes": 25100,
+    "sha256": "83994c4e08b714aac4ff1224d8eb8a22d8ba8df7648578c719cacb903bb8fa63"
+   },
+   {
+    "family": "eurb9",
+    "file": "fonts/eurb9.ttf",
+    "bytes": 25028,
+    "sha256": "cc87f9152d4ff465e4d24689f07272dd7756935b7ff6165d3895c4b5327a7e7f"
+   },
+   {
+    "family": "eurm10",
+    "file": "fonts/eurm10.ttf",
+    "bytes": 25012,
+    "sha256": "e17fba0ecdb385e7a625d938f26c6a26e7603748725c52d96039d068323ae4d2"
+   },
+   {
+    "family": "eurm5",
+    "file": "fonts/eurm5.ttf",
+    "bytes": 25604,
+    "sha256": "ec644c9bd2de07c67a1e2239673c1d4d6899d6b836b252da8071b099455aff2e"
+   },
+   {
+    "family": "eurm6",
+    "file": "fonts/eurm6.ttf",
+    "bytes": 25308,
+    "sha256": "1ad7d5e8ad7cafb4f0636db4c117ca3fefe321871e6709f595a340d84296de8a"
+   },
+   {
+    "family": "eurm7",
+    "file": "fonts/eurm7.ttf",
+    "bytes": 25544,
+    "sha256": "11a6e35571bdb5cdd5649e05eeaabc91b4b591370b05d9f70c4b03030d266308"
+   },
+   {
+    "family": "eurm8",
+    "file": "fonts/eurm8.ttf",
+    "bytes": 25392,
+    "sha256": "8df01f3595da673bd8d492fd42e345779c266f44fc8ae3df1bcb99ad224174f6"
+   },
+   {
+    "family": "eurm9",
+    "file": "fonts/eurm9.ttf",
+    "bytes": 25092,
+    "sha256": "6f1289d7f7251ca1e6004e2b8465045056f02bb0e052444846fc52c9bdd33cce"
+   },
+   {
+    "family": "eusb10",
+    "file": "fonts/eusb10.ttf",
+    "bytes": 11852,
+    "sha256": "a0f4ded2ef3ecc2cd38af043f99c558328641ed34e7776e9875a8a6df1cc575c"
+   },
+   {
+    "family": "eusb5",
+    "file": "fonts/eusb5.ttf",
+    "bytes": 12184,
+    "sha256": "2f2cc4b7ea28a00d701d597a65671eaf921e13c3685c893fdb966bc552c0afe0"
+   },
+   {
+    "family": "eusb6",
+    "file": "fonts/eusb6.ttf",
+    "bytes": 12020,
+    "sha256": "48277637d4dea337de5ecabb79daa376c68afef04a48c4cc00a4d90b252e5d27"
+   },
+   {
+    "family": "eusb7",
+    "file": "fonts/eusb7.ttf",
+    "bytes": 11956,
+    "sha256": "c88e46a313facb44fb964d0707de6f9340c149bf0d8c2cf56587c8b97253f40f"
+   },
+   {
+    "family": "eusb8",
+    "file": "fonts/eusb8.ttf",
+    "bytes": 11964,
+    "sha256": "63019b1690e992e5ec41fb9a2b994f1d2abf47136a49ab9887323fd3f5471e2e"
+   },
+   {
+    "family": "eusb9",
+    "file": "fonts/eusb9.ttf",
+    "bytes": 11936,
+    "sha256": "e6dd3e0b789b7e6bb703f1922de641405b890858f8f138a385bdc8f9ecd7bab4"
+   },
+   {
+    "family": "eusm10",
+    "file": "fonts/eusm10.ttf",
+    "bytes": 11980,
+    "sha256": "eca5356a934f7a246c1222cb0419d12995335c98aac2ef9d7e30d319eefbbe89"
+   },
+   {
+    "family": "eusm5",
+    "file": "fonts/eusm5.ttf",
+    "bytes": 12232,
+    "sha256": "324ecd188591eaa9e72cf7406b671e3343c5bb7cf8ebed30812ba75fbee6bad8"
+   },
+   {
+    "family": "eusm6",
+    "file": "fonts/eusm6.ttf",
+    "bytes": 12128,
+    "sha256": "8733f04e10cfc8fadf41ac469b163276b45b2f9d4afee59a426c315a5a58d9ce"
+   },
+   {
+    "family": "eusm7",
+    "file": "fonts/eusm7.ttf",
+    "bytes": 12024,
+    "sha256": "56858621efc0891800e1c2bf6d581a4bdd44a5535a2bc75eaaf53a7337b5545d"
+   },
+   {
+    "family": "eusm8",
+    "file": "fonts/eusm8.ttf",
+    "bytes": 11956,
+    "sha256": "29516df5c3977adea2d055825dce63afdac0af816bcafe3a6516933d6618bc84"
+   },
+   {
+    "family": "eusm9",
+    "file": "fonts/eusm9.ttf",
+    "bytes": 11928,
+    "sha256": "289ebcca99cfed89b1302903991821d68cba209b692088c6faa29b7f3b48a2e8"
+   },
+   {
+    "family": "msam10",
+    "file": "fonts/msam10.ttf",
+    "bytes": 28140,
+    "sha256": "824cbbb820b1ac4a9e6972c50fbb6c70b0c872580fb49ee0e411552293638198"
+   },
+   {
+    "family": "msam5",
+    "file": "fonts/msam5.ttf",
+    "bytes": 28608,
+    "sha256": "ed2889f48c2ab7d45fcac4af88d32dd4ae456dd5e907ce6ee62f648a78a2b319"
+   },
+   {
+    "family": "msam6",
+    "file": "fonts/msam6.ttf",
+    "bytes": 28648,
+    "sha256": "d01b83dfe742d04a82dcf51f4b22f6c1ffe1ef97f4e19bf821839bb54ca0e90e"
+   },
+   {
+    "family": "msam7",
+    "file": "fonts/msam7.ttf",
+    "bytes": 28492,
+    "sha256": "8bbaf6acd2ffd69a98d84bf49bd404d53592f4c02a95ddbdbe0d4a5d083c0d40"
+   },
+   {
+    "family": "msam8",
+    "file": "fonts/msam8.ttf",
+    "bytes": 28032,
+    "sha256": "d9eb7f6833157a62bc3b889bd6bc4cac7a732ee75a0ccbc9ce113322d8826937"
+   },
+   {
+    "family": "msam9",
+    "file": "fonts/msam9.ttf",
+    "bytes": 28176,
+    "sha256": "6923dc3bdbb804bd6e6744270e8a79f302162323edbda09d198e8551faba9cb9"
+   },
+   {
+    "family": "msbm10",
+    "file": "fonts/msbm10.ttf",
+    "bytes": 37604,
+    "sha256": "f49078fcee3500318c101b30f4f2aba37882dd866bf1703497bbd1d001852b14"
+   },
+   {
+    "family": "msbm5",
+    "file": "fonts/msbm5.ttf",
+    "bytes": 38428,
+    "sha256": "6b3c3122e630c83ac934d8dcc9427f77040547f5ba92d8b5b81ff4c8c911f960"
+   },
+   {
+    "family": "msbm6",
+    "file": "fonts/msbm6.ttf",
+    "bytes": 38260,
+    "sha256": "3b97fd7c83854859e607cb4b229eb57703bf89270b07a737b06f889602f7ad74"
+   },
+   {
+    "family": "msbm7",
+    "file": "fonts/msbm7.ttf",
+    "bytes": 38248,
+    "sha256": "be27093ae899f6fbe6a770dc0fed39baefedf124d7c1c50fe7812fad24171947"
+   },
+   {
+    "family": "msbm8",
+    "file": "fonts/msbm8.ttf",
+    "bytes": 37748,
+    "sha256": "f8bd3ce0dd5b1756ad638d8be6b26f15b084a522b5a220be70ed440d535e1344"
+   },
+   {
+    "family": "msbm9",
+    "file": "fonts/msbm9.ttf",
+    "bytes": 37688,
+    "sha256": "8e4ae15b0903b429c9241442c60c953386a0263f2bca3772aa19c5d387762576"
+   }
+  ]
+ },
+ "engine": {
+  "assets": 215,
+  "totalGzipBytes": 4823787,
+  "totalBase64Chars": 6432004
+ },
+ "reproduce": "node .build/vendor/fetch_vendor.js  (then: node .build/vendor/fetch_vendor.js --check)"
+}

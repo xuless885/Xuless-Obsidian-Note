@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0">
+<title>Chapter 6 代數式 — 補充規劃：代數分式方程（§6.5）</title>
+<meta name="description" content="| 原則 | 說明 |">
+<meta name="pathname" content="hkdse-course/习题册草稿/ch06-代數式-ps1-補充規劃.html">
+<meta property="og:title" content="Chapter 6 代數式 — 補充規劃：代數分式方程（§6.5）">
+<meta property="og:description" content="| 原則 | 說明 |">
+<meta property="og:type" content="website">
+<meta property="og:url" content="hkdse-course/习题册草稿/ch06-代數式-ps1-補充規劃.html">
+<meta property="og:site_name" content="Xuless Obsidian Note">
+<meta name="theme-color" content="#f5f5f3">
+<link rel="icon" href="../../site-lib/media/favicon.png">
+<link rel="stylesheet" href="../../site-lib/styles/blog-theme.css">
+<link rel="stylesheet" href="./mathjax-chtml.css">
+<script defer>async function loadIncludes(){let e=document.querySelectorAll("link[itemprop='include']");for(const t of e){let e=t.getAttribute("href");try{let o="";if(e.startsWith("https:")||e.startsWith("http:")||"file:"!=window.location.protocol){const n=await fetch(e);if(!n.ok){console.log("Could not include file: "+e),t?.remove();continue}o=await n.text()}else{const t=document.getElementById(btoa(encodeURI(e)));if(t){const e=JSON.parse(decodeURI(atob(t.getAttribute("value")??"")));o=e?.data??""}}let n=document.createRange().createContextualFragment(o);t.before(n),t.remove(),console.log("Included text: "+o),console.log("Included file: "+e)}catch(o){t?.remove(),console.log("Could not include file: "+e,o);continue}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script")));!function e(n){let l=o[n],c=n+1;l?(l&&"true"!=l.getAttribute("loaded")||n<o.length&&e(c),n<o.length&&l.addEventListener("load",(()=>e(c)))):n<o.length?e(c):t()}(0)}</script>
+<script defer src="../../site-lib/scripts/site.js"></script>
+<script defer src="../../site-lib/scripts/doc-page.js"></script>
+<meta name="dsh-doc-id" content="6ff610c467">
+<meta name="dsh-doc-title" content="Chapter 6 代數式 — 補充規劃：代數分式方程（§6.5）">
+<!-- ==DSH-INJECT:head== -->
+<meta name="dsh-description" content="| 原則 | 說明 |">
+</head><body class="publish css-settings-manager mod-windows is-hidden-frameless styled-scrollbars show-inline-title show-ribbon mathcraft-active theorem-style-framed is-focused">
+<script>let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script>
+<div class="parsed-feature-container" style="display: contents;"></div>
+<div id="main">
+<div id="navbar"><!-- ==DSH-INJECT:nav== --><a class="site-nav-back" href="../../index.html">← 返回博客首页</a><span class="site-nav-crumb">习题册草稿 → Chapter 6 代數式 — 補充規劃：代數分式方程（§6.5）</span><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换主题" title="切换主题"><span data-theme-icon class="theme-toggle-icon" aria-hidden="true">☾</span></button></div>
+<div id="main-horizontal">
+<div id="left-content" class="leaf" style="--sidebar-width: var(--sidebar-width-left);"><div id="left-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><div id="search-container"><div id="search-wrapper"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div aria-label="Clear search" id="search-clear-button"></div></div></div></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="left-sidebar-content" class="leaf-content"><link itemprop="include" href="../../site-lib/html/file-tree-content.html"></div></div><script defer>let ls = document.querySelector("#left-sidebar"); ls.classList.toggle("is-collapsed", window.innerWidth < 768); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div></div>
+<div id="center-content" class="leaf"><div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event allow-fold-headings allow-fold-lists show-indentation-guide show-properties is-readable-line-width" data-type="markdown"><div class="markdown-preview-sizer markdown-preview-section"><div class="header"><h1 class="page-title heading inline-title" id="Chapter_6_代數式_—_補充規劃：代數分式方程（§6.5）_0">Chapter 6 代數式 — 補充規劃：代數分式方程（§6.5）</h1><div class="data-bar"></div></div><div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div><div class="el-blockquote"><blockquote dir="auto">
+<div class="el-p"><p dir="auto">本規劃為 <code>Ch06_PS1.tex</code> 的補充，對應講義新增之 §6.5「代數分式方程（Fractional Equations）」。題目編號接續現有 Q60，從 Q61 起，作為第 6 節插入習題冊。每題附英文翻譯（灰底框），並按性質套用三色標記框。</p></div></blockquote></div><div class="el-blockquote"><blockquote dir="auto">
+<div class="el-p"><p dir="auto"><strong>記號規範提醒：</strong> 方程用 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo></mjx-math></mjx-container></span>，恆等變換用 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2261"></mjx-c></mjx-mo></mjx-math></mjx-container></span>，推理用 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n"><mjx-c class="mjx-c27F9"></mjx-c></mjx-mo><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle></mjx-math></mjx-container></span>。解方程過程中「兩邊同乘 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D437 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>」屬方程操作用 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo></mjx-math></mjx-container></span>；通分後分子展開屬恆等變換用 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2261"></mjx-c></mjx-mo></mjx-math></mjx-container></span>；驗根代入用 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo></mjx-math></mjx-container></span>。</p></div></blockquote></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="一、新增節設計原則" dir="auto" class="heading" id="一、新增節設計原則_0">一、新增節設計原則</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">原則</th>
+<th dir="ltr">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>內容對齊</strong></td>
+<td dir="ltr">對應講義 §6.5.1–§6.5.3：定義與定義域、去分母法、增根與驗根</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>難度分層</strong></td>
+<td dir="ltr">辨識 → 單分母 → 多分母通分 → 增根 → 無解 → 應用 → 理論探究</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>範圍限定</strong></td>
+<td dir="ltr">分子、分母均為一元一次多項式；去分母後所得多項式方程仍為一次方程（講義明確限定）</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>跨章聯動</strong></td>
+<td dir="ltr">Q65 聯動 Ch6 §6.2（因式分解求 LCM）；Q70 聯動 Ch5（解方程方法對比）；Q71–Q72 聯動 Ch5（應用題列方程）；Q74 聯動 Ch0（乘除法不變性公理）</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>驗根強制</strong></td>
+<td dir="ltr">每道解方程題的答案均須含驗根步驟，不可省略</td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="二、新增節結構與題量" dir="auto" class="heading" id="二、新增節結構與題量_0">二、新增節結構與題量</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">節</th>
+<th dir="ltr">標題</th>
+<th dir="ltr">對應講義</th>
+<th dir="ltr">題號</th>
+<th dir="ltr">題數</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">6</td>
+<td dir="ltr">代數分式方程</td>
+<td dir="ltr">§6.5</td>
+<td dir="ltr">Q61–Q74</td>
+<td dir="ltr">14</td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-blockquote"><blockquote dir="auto">
+<div class="el-p"><p dir="auto">插入位置：現有第 5 節「理論與綜合」（Q56–Q60）之後。題號系統以 <code>resume*=mainlist</code> 接續，全文連續編號不中斷。</p></div></blockquote></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="三、各題大綱" dir="auto" class="heading" id="三、各題大綱_0">三、各題大綱</h2></div><div class="el-h3"><h3 data-heading="第 6 節　代數分式方程（Q61–Q74）" dir="auto" class="heading" id="第_6_節　代數分式方程（Q61–Q74）_0">第 6 節　代數分式方程（Q61–Q74）</h3></div><div class="el-blockquote"><blockquote dir="auto">
+<div class="el-p"><p dir="auto"><strong>簡介：</strong> 本節練習代數分式方程的辨識、定義域的確定、去分母法解方程，以及增根的產生與驗根。驗根為不可省略之步驟。</p></div><div class="el-p"><p dir="auto"><strong>跨章聯動：</strong> Q65 聯動 Ch6 §6.2（因式分解）；Q70 聯動 Ch5 §5.2（解方程方法對比）；Q71–Q72 聯動 Ch5（應用題列方程）；Q74 聯動 Ch0（等式性質定理）。</p></div></blockquote></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">題號</th>
+<th dir="ltr">考點</th>
+<th dir="ltr">題型</th>
+<th dir="ltr">標記</th>
+<th dir="ltr">跨章</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Q61</td>
+<td dir="ltr">判斷是否為代數分式方程（含常數分母 vs 代數分母辨識）</td>
+<td dir="ltr">四欄判斷</td>
+<td dir="ltr">—</td>
+<td dir="ltr"></td>
+</tr>
+<tr>
+<td dir="ltr">Q62</td>
+<td dir="auto">代數分式方程的定義域（求使所有分母不為零的 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 取值範圍）</td>
+<td dir="ltr">雙欄計算</td>
+<td dir="ltr">—</td>
+<td dir="ltr"></td>
+</tr>
+<tr>
+<td dir="ltr">Q63</td>
+<td dir="auto">去分母法 — 單分母，無增根（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-mrow></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 類）</td>
+<td dir="ltr">雙欄計算</td>
+<td dir="ltr">recquestion</td>
+<td dir="ltr"></td>
+</tr>
+<tr>
+<td dir="ltr">Q64</td>
+<td dir="auto">去分母法 — 雙分母通分，無增根（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mfrac space="3"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 類）</td>
+<td dir="ltr">雙欄計算</td>
+<td dir="ltr">recquestion</td>
+<td dir="ltr"></td>
+</tr>
+<tr>
+<td dir="ltr">Q65</td>
+<td dir="auto">去分母法 — 先因式分解分母再取 LCM（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mfrac space="3"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.289em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math></mjx-container></span> 類）</td>
+<td dir="ltr">計算</td>
+<td dir="ltr">recquestion</td>
+<td dir="ltr">Ch6§6.2</td>
+</tr>
+<tr>
+<td dir="ltr">Q66</td>
+<td dir="auto">增根的產生 — 去分母後解出使分母為零的根，須捨去（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mrow size="s"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c36"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 類）</td>
+<td dir="ltr">計算</td>
+<td dir="ltr">recquestion</td>
+<td dir="ltr"></td>
+</tr>
+<tr>
+<td dir="ltr">Q67</td>
+<td dir="ltr">無解的方程 — 去分母後唯一解即為增根，原方程無解</td>
+<td dir="ltr">計算</td>
+<td dir="ltr">—</td>
+<td dir="ltr"></td>
+</tr>
+<tr>
+<td dir="ltr">Q68</td>
+<td dir="ltr">綜合解方程 — 多分母 + 驗根（含因式分解分母與增根判斷）</td>
+<td dir="ltr">計算</td>
+<td dir="ltr">recquestion</td>
+<td dir="ltr"></td>
+</tr>
+<tr>
+<td dir="ltr">Q69</td>
+<td dir="ltr">驗根判斷 — 給定去分母後求得的根，判斷哪些為原方程的根、哪些為增根</td>
+<td dir="ltr">判斷</td>
+<td dir="ltr">—</td>
+<td dir="ltr"></td>
+</tr>
+<tr>
+<td dir="ltr">Q70</td>
+<td dir="ltr">常數分母方程 vs 代數分母方程的解法對比 — 引導學生理解兩者「去分母」步驟的異同與等價性條件</td>
+<td dir="ltr">引導式</td>
+<td dir="ltr">ofsquestion</td>
+<td dir="ltr">Ch5</td>
+</tr>
+<tr>
+<td dir="ltr">Q71</td>
+<td dir="auto">應用題 — 工作問題：甲獨做需 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 小時，乙獨做需 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D466 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 小時，合作完成需多久；列代數分式方程求解</td>
+<td dir="ltr">應用</td>
+<td dir="ltr">recquestion</td>
+<td dir="ltr">Ch5</td>
+</tr>
+<tr>
+<td dir="ltr">Q72</td>
+<td dir="ltr">應用題 — 速率問題：順流與逆流行程，船速與水速關係；列代數分式方程求解</td>
+<td dir="ltr">應用</td>
+<td dir="ltr">recquestion</td>
+<td dir="ltr">Ch5</td>
+</tr>
+<tr>
+<td dir="ltr">Q73</td>
+<td dir="auto">去分母等價性定理 — 以引導式分步證明：原方程的根 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2286"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 去分母後方程的根，逆方向僅在 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D437 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2260"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 時成立</td>
+<td dir="ltr">引導式/證明</td>
+<td dir="ltr">ofsquestion</td>
+<td dir="ltr"></td>
+</tr>
+<tr>
+<td dir="ltr">Q74</td>
+<td dir="auto">增根產生原因探究 — 從乘除法不變性 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c27FA"></mjx-c></mjx-mo><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mtext class="mjx-n"><mjx-c class="mjx-cA0"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2260"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 出發，分析 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D437 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 含未知數時等價性為何被破壞</td>
+<td dir="ltr">探究</td>
+<td dir="ltr">exquestion</td>
+<td dir="ltr">Ch0</td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="四、標記框分佈統計（本節）" dir="auto" class="heading" id="四、標記框分佈統計（本節）_0">四、標記框分佈統計（本節）</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">標記</th>
+<th dir="ltr">顏色</th>
+<th dir="ltr">性質</th>
+<th dir="ltr">題數</th>
+<th dir="ltr">佔比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">無框</td>
+<td dir="ltr">—</td>
+<td dir="ltr">基礎/辨識</td>
+<td dir="ltr">4</td>
+<td dir="ltr">29%</td>
+</tr>
+<tr>
+<td dir="auto"><code>recquestion</code></td>
+<td dir="ltr">藍</td>
+<td dir="ltr">常規 DSE 操練</td>
+<td dir="ltr">7</td>
+<td dir="ltr">50%</td>
+</tr>
+<tr>
+<td dir="auto"><code>ofsquestion</code></td>
+<td dir="ltr">紅</td>
+<td dir="ltr">超綱但講義覆蓋</td>
+<td dir="ltr">2</td>
+<td dir="ltr">14%</td>
+</tr>
+<tr>
+<td dir="auto"><code>exquestion</code></td>
+<td dir="ltr">黑</td>
+<td dir="ltr">探索新概念</td>
+<td dir="ltr">1</td>
+<td dir="ltr">7%</td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-blockquote"><blockquote dir="auto">
+<div class="el-p"><p dir="auto">跨章聯動題 5 題（Q65, Q70, Q71, Q72, Q74），佔比約 36%，符合「純技巧操練題不超過 70%」的原則。</p></div></blockquote></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="五、訓練重點說明" dir="auto" class="heading" id="五、訓練重點說明_0">五、訓練重點說明</h2></div><div class="el-h3"><h3 data-heading="去分母法的四步流程" dir="auto" class="heading" id="去分母法的四步流程_0">去分母法的四步流程</h3></div><div class="el-ol"><ol>
+<li dir="auto"><strong>因式分解</strong>各分母 → 確定 LCM <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D437 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>。</li>
+</ol>
+<ol start="2">
+<li dir="auto">兩邊同乘 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D437 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> → 消去所有分母。</li>
+</ol>
+<ol start="3">
+<li dir="auto">解所得一元一次方程。</li>
+</ol>
+<ol start="4">
+<li dir="auto"><strong>驗根</strong>：將每個根代入原方程各分母，使分母為零者為增根，捨去。</li>
+</ol></div><div class="el-h3"><h3 data-heading="增根的核心邏輯" dir="auto" class="heading" id="增根的核心邏輯_0">增根的核心邏輯</h3></div><div class="el-div"><div class="math math-block is-loaded"><mjx-container class="MathJax" jax="CHTML" display="true"><mjx-math display="true" style="margin-left: 0; margin-right: 0;" class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c27FA"></mjx-c></mjx-mo><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mstyle><mjx-mspace style="width: 1em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2260"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></div></div><div class="el-p"><p dir="auto">去分母時所乘的 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D437 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 是含未知數的多項式，在使 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D437 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 的 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 處，乘除法不變性的前提 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2260"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 被破壞，等價性不成立 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n"><mjx-c class="mjx-c27F9"></mjx-c></mjx-mo><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle></mjx-math></mjx-container></span> 產生增根。</p></div><div class="el-h3"><h3 data-heading="設計梯度" dir="auto" class="heading" id="設計梯度_0">設計梯度</h3></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">層次</th>
+<th dir="ltr">題號</th>
+<th dir="ltr">重點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">辨識</td>
+<td dir="ltr">Q61</td>
+<td dir="ltr">區分常數分母（非代數分式方程）與代數分母</td>
+</tr>
+<tr>
+<td dir="ltr">定義域</td>
+<td dir="ltr">Q62</td>
+<td dir="ltr">分母不為零的條件</td>
+</tr>
+<tr>
+<td dir="ltr">基本解法</td>
+<td dir="ltr">Q63–Q64</td>
+<td dir="ltr">單分母 → 雙分母，無增根</td>
+</tr>
+<tr>
+<td dir="ltr">因式分解分母</td>
+<td dir="ltr">Q65</td>
+<td dir="auto"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span>，LCM 為二次式</td>
+</tr>
+<tr>
+<td dir="ltr">增根</td>
+<td dir="ltr">Q66–Q67</td>
+<td dir="ltr">有增根捨去 → 無解</td>
+</tr>
+<tr>
+<td dir="ltr">綜合</td>
+<td dir="ltr">Q68–Q69</td>
+<td dir="ltr">多分母 + 驗根判斷</td>
+</tr>
+<tr>
+<td dir="ltr">對比</td>
+<td dir="ltr">Q70</td>
+<td dir="ltr">Ch5 常數分母 vs 代數分母</td>
+</tr>
+<tr>
+<td dir="ltr">應用</td>
+<td dir="ltr">Q71–Q72</td>
+<td dir="ltr">工作問題 + 速率問題</td>
+</tr>
+<tr>
+<td dir="ltr">理論</td>
+<td dir="ltr">Q73–Q74</td>
+<td dir="ltr">等價性定理 + 增根原因探究</td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="六、記號與排版約定（摘要）" dir="auto" class="heading" id="六、記號與排版約定（摘要）_0">六、記號與排版約定（摘要）</h2></div><div class="el-ol"><ol>
+<li dir="auto"><strong>方程</strong>用 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo></mjx-math></mjx-container></span>；<strong>恆等變換</strong>（通分後分子展開、分母因式分解）用 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2261"></mjx-c></mjx-mo></mjx-math></mjx-container></span>；<strong>推理</strong>用 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n"><mjx-c class="mjx-c27F9"></mjx-c></mjx-mo><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle></mjx-math></mjx-container></span>。</li>
+</ol>
+<ol start="2">
+<li dir="auto">解方程過程中，兩邊同乘 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D437 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 後的等式用 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo></mjx-math></mjx-container></span>（方程操作），非 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2261"></mjx-c></mjx-mo></mjx-math></mjx-container></span>。</li>
+</ol>
+<ol start="3">
+<li dir="auto">驗根步驟須明確寫出：代入分母 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n"><mjx-c class="mjx-c27F9"></mjx-c></mjx-mo><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle></mjx-math></mjx-container></span> 判斷是否為零 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n"><mjx-c class="mjx-c27F9"></mjx-c></mjx-mo><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle></mjx-math></mjx-container></span> 結論（「✓ 有效」或「✗ 增根，捨去」）。</li>
+</ol>
+<ol start="4">
+<li dir="auto">原方程須抄入答案首行（如 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mstyle><mjx-mfrac><mjx-frac type="d"><mjx-num><mjx-nstrut type="d"></mjx-nstrut><mjx-mrow><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-mrow></mjx-num><mjx-dbox><mjx-dtable><mjx-line type="d"></mjx-line><mjx-row><mjx-den><mjx-dstrut type="d"></mjx-dstrut><mjx-mrow><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-mstyle><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c33"></mjx-c></mjx-mn><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c27F9"></mjx-c></mjx-mo><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2026"></mjx-c></mjx-mo></mjx-math></mjx-container></span>）。</li>
+</ol>
+<ol start="5">
+<li dir="auto">題幹中<strong>不提示解題方法</strong>（不寫「兩邊同乘 LCM」「先因式分解分母」等）。</li>
+</ol>
+<ol start="6">
+<li dir="auto"><strong>禁止帶分數</strong>：答案中如出現 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c37"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math></mjx-container></span> 不寫 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mn class="mjx-n"><mjx-c class="mjx-c33"></mjx-c></mjx-mn><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math></mjx-container></span>。</li>
+</ol>
+<ol start="7">
+<li dir="auto">多步驟 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle><mjx-mo class="mjx-n"><mjx-c class="mjx-c27F9"></mjx-c></mjx-mo><mjx-mstyle><mjx-mspace style="width: 0.278em;"></mjx-mspace></mjx-mstyle></mjx-math></mjx-container></span> 鏈強制 <code>aligned[t]</code>，每步一行用 <code>&amp;\implies</code>。</li>
+</ol>
+<ol start="8">
+<li dir="auto">子題優先用 <code>twocolunm</code>/<code>fourcolunm</code>；每題一個 <code>entranslation</code> 灰底框。</li>
+</ol>
+<ol start="9">
+<li dir="auto">題號 <code>resume*=mainlist</code> 接續 Q60。</li>
+</ol>
+<ol start="10">
+<li dir="auto"><strong>驗根不可省略</strong>：每道解方程題答案均須含驗根步驟。</li>
+</ol></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="七、待審閱要點" dir="auto" class="heading" id="七、待審閱要點_0">七、待審閱要點</h2></div><div class="el-ol"><ol>
+<li dir="auto"><strong>題量</strong>：14 題是否合適？是否需增加更多基礎操練題（如 Q63–Q64 各擴充至 4 題）？</li>
+</ol>
+<ol start="2">
+<li dir="auto"><strong>Q67 無解方程</strong>：是否與 Q66 增根題重疊？（Q66 有增根但仍有解 vs Q67 無解 — 各有側重）</li>
+</ol>
+<ol start="3">
+<li dir="auto"><strong>Q70 對比題</strong>：是否過於理論化？可改為直接解兩道方程（一道常數分母、一道代數分母）再問差異。</li>
+</ol>
+<ol start="4">
+<li dir="auto"><strong>Q71–Q72 應用題</strong>：工作問題與速率問題是否為最佳選擇？是否需加入數字規律題（如「某數的倒數加 1 等於...」）？</li>
+</ol>
+<ol start="5">
+<li dir="auto"><strong>Q73–Q74 理論題</strong>：等價性定理證明與增根原因探究是否對 DSE 程度過深？（建議以引導式分步降低難度）</li>
+</ol>
+<ol start="6">
+<li dir="auto"><strong>與第 5 節「理論與綜合」的關係</strong>：新 §6 是否應置於「理論與綜合」之前？或保持現有順序（理論與綜合 → 代數分式方程）？（建議：代數分式方程為獨立技能，應在理論與綜合之前，即新 §6 插入原 §4 與 §5 之間，原 §5 改編號為 §7。）</li>
+</ol></div><div class="el-blockquote"><blockquote dir="auto">
+<div class="el-p"><p dir="auto">審閱確認後，即依此規劃撰寫 <code>.tex</code> 習題並更新答案。</p></div></blockquote></div><div class="footer"><div class="data-bar"></div></div>
+<!-- ==DSH-INJECT:panels== -->
+<section id="dsh-backlinks" class="doc-panel dsh-backlinks" data-doc-id="6ff610c467">
+  <h2 class="panel-head">反向链接</h2>
+  <div class="backlinks-body" data-backlinks-mount><p class="empty-state">正在加载反向链接…</p></div>
+</section>
+<section id="dsh-outlinks" class="doc-panel dsh-outlinks" data-doc-id="6ff610c467">
+  <h2 class="panel-head">本文引用</h2>
+  <div class="outlinks-body" data-outlinks-mount><p class="empty-state">正在加载…</p></div>
+</section>
+</div></div></div><div id="right-content" class="leaf" style="--sidebar-width: var(--sidebar-width-right);"><div id="right-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="right-sidebar-content" class="leaf-content"><div id="outline" class=" tree-container"><div class="feature-header"><div class="feature-title">Table Of Contents</div><button class="clickable-icon nav-action-button tree-collapse-all" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#一、新增節設計原則_0" data-path="#一、新增節設計原則_0"><div class="tree-item-inner heading-link" heading-name="一、新增節設計原則">一、新增節設計原則</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#二、新增節結構與題量_0" data-path="#二、新增節結構與題量_0"><div class="tree-item-inner heading-link" heading-name="二、新增節結構與題量">二、新增節結構與題量</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="#三、各題大綱_0" data-path="#三、各題大綱_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="三、各題大綱">三、各題大綱</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="#第_6_節　代數分式方程（Q61–Q74）_0" data-path="#第_6_節　代數分式方程（Q61–Q74）_0"><div class="tree-item-inner heading-link" heading-name="第 6 節　代數分式方程（Q61–Q74）">第 6 節　代數分式方程（Q61–Q74）</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#四、標記框分佈統計（本節）_0" data-path="#四、標記框分佈統計（本節）_0"><div class="tree-item-inner heading-link" heading-name="四、標記框分佈統計（本節）">四、標記框分佈統計（本節）</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="#五、訓練重點說明_0" data-path="#五、訓練重點說明_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="五、訓練重點說明">五、訓練重點說明</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="#去分母法的四步流程_0" data-path="#去分母法的四步流程_0"><div class="tree-item-inner heading-link" heading-name="去分母法的四步流程">去分母法的四步流程</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="#增根的核心邏輯_0" data-path="#增根的核心邏輯_0"><div class="tree-item-inner heading-link" heading-name="增根的核心邏輯">增根的核心邏輯</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="#設計梯度_0" data-path="#設計梯度_0"><div class="tree-item-inner heading-link" heading-name="設計梯度">設計梯度</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#六、記號與排版約定（摘要）_0" data-path="#六、記號與排版約定（摘要）_0"><div class="tree-item-inner heading-link" heading-name="六、記號與排版約定（摘要）">六、記號與排版約定（摘要）</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#七、待審閱要點_0" data-path="#七、待審閱要點_0"><div class="tree-item-inner heading-link" heading-name="七、待審閱要點">七、待審閱要點</div></a><div class="tree-item-children"></div></div></div></div></div><script defer>let rs = document.querySelector("#right-sidebar"); rs.classList.toggle("is-collapsed", window.innerWidth < 768); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></div></div></body></html>

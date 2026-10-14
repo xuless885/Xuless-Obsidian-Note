@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0">
+<title>Chapter 17 修改方案</title>
+<meta name="description" content="基于 注释扫描结果，共 21 处需修改。按类型分类如下。">
+<meta name="pathname" content="hkdse-course/规划文档/chapter-17-修改方案.html">
+<meta property="og:title" content="Chapter 17 修改方案">
+<meta property="og:description" content="基于 注释扫描结果，共 21 处需修改。按类型分类如下。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="hkdse-course/规划文档/chapter-17-修改方案.html">
+<meta property="og:site_name" content="Xuless Obsidian Note">
+<meta name="theme-color" content="#f5f5f3">
+<link rel="icon" href="../../site-lib/media/favicon.png">
+<link rel="stylesheet" href="../../site-lib/styles/blog-theme.css">
+<link rel="stylesheet" href="./mathjax-chtml.css">
+<script defer>async function loadIncludes(){let e=document.querySelectorAll("link[itemprop='include']");for(const t of e){let e=t.getAttribute("href");try{let o="";if(e.startsWith("https:")||e.startsWith("http:")||"file:"!=window.location.protocol){const n=await fetch(e);if(!n.ok){console.log("Could not include file: "+e),t?.remove();continue}o=await n.text()}else{const t=document.getElementById(btoa(encodeURI(e)));if(t){const e=JSON.parse(decodeURI(atob(t.getAttribute("value")??"")));o=e?.data??""}}let n=document.createRange().createContextualFragment(o);t.before(n),t.remove(),console.log("Included text: "+o),console.log("Included file: "+e)}catch(o){t?.remove(),console.log("Could not include file: "+e,o);continue}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script")));!function e(n){let l=o[n],c=n+1;l?(l&&"true"!=l.getAttribute("loaded")||n<o.length&&e(c),n<o.length&&l.addEventListener("load",(()=>e(c)))):n<o.length?e(c):t()}(0)}</script>
+<script defer src="../../site-lib/scripts/site.js"></script>
+<script defer src="../../site-lib/scripts/doc-page.js"></script>
+<meta name="dsh-doc-id" content="5dc869652f">
+<meta name="dsh-doc-title" content="Chapter 17 修改方案">
+<!-- ==DSH-INJECT:head== -->
+<meta name="dsh-description" content="基于 注释扫描结果，共 21 处需修改。按类型分类如下。">
+</head><body class="publish css-settings-manager mod-windows is-hidden-frameless styled-scrollbars show-inline-title show-ribbon mathcraft-active theorem-style-framed is-focused">
+<script>let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script>
+<div class="parsed-feature-container" style="display: contents;"></div>
+<div id="main">
+<div id="navbar"><!-- ==DSH-INJECT:nav== --><a class="site-nav-back" href="../../index.html">← 返回博客首页</a><span class="site-nav-crumb">规划文档 → Chapter 17 修改方案</span><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换主题" title="切换主题"><span data-theme-icon class="theme-toggle-icon" aria-hidden="true">☾</span></button></div>
+<div id="main-horizontal">
+<div id="left-content" class="leaf" style="--sidebar-width: var(--sidebar-width-left);"><div id="left-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><div id="search-container"><div id="search-wrapper"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div aria-label="Clear search" id="search-clear-button"></div></div></div></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="left-sidebar-content" class="leaf-content"><link itemprop="include" href="../../site-lib/html/file-tree-content.html"></div></div><script defer>let ls = document.querySelector("#left-sidebar"); ls.classList.toggle("is-collapsed", window.innerWidth < 768); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div></div>
+<div id="center-content" class="leaf"><div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event allow-fold-headings allow-fold-lists show-indentation-guide show-properties is-readable-line-width" data-type="markdown"><div class="markdown-preview-sizer markdown-preview-section"><div class="header"><h1 class="page-title heading inline-title" id="Chapter_17_修改方案_0">Chapter 17 修改方案</h1><div class="data-bar"></div></div><div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div><div class="el-p"><p dir="auto">基于 <code>%%...%%</code> 注释扫描结果，共 21 处需修改。按类型分类如下。</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="一、数学环境标题补充（15 处）" dir="auto" class="heading" id="一、数学环境标题补充（15_处）_0">一、数学环境标题补充（15 处）</h2></div><div class="el-p"><p dir="auto">规则：<code>title: 环境名（名称） | 英文环境名（英文名称）</code>，无名称省略括号。</p></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">#</th>
+<th dir="ltr">位置（行号）</th>
+<th dir="ltr">当前 title</th>
+<th dir="ltr">改为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">T1</td>
+<td dir="auto">L42 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（无理数） | Definition（Irrational Number）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T2</td>
+<td dir="auto">L85 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（稠密） | Definition（Dense）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T3</td>
+<td dir="auto">L149 <code>ad-thm</code></td>
+<td dir="auto"><code>定理 | Theorem</code></td>
+<td dir="auto"><code>定理（有理数集的稠密性） | Theorem（Denseness of Q）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T4</td>
+<td dir="auto">L229 <code>ad-thm</code></td>
+<td dir="auto"><code>定理 | Theorem</code></td>
+<td dir="auto"><code>定理（无理数集的稠密性） | Theorem（Denseness of R\Q）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T5</td>
+<td dir="auto">L283 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（戴德金分割） | Definition（Dedekind Cut）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T6</td>
+<td dir="auto">L362 <code>ad-thm</code></td>
+<td dir="auto"><code>定理 | Theorem</code></td>
+<td dir="auto"><code>定理（戴德金分割定理） | Theorem（Dedekind Cut Theorem）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T7</td>
+<td dir="auto">L449 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（虚数单位） | Definition（Imaginary Unit）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T8</td>
+<td dir="auto">L461 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（复数） | Definition（Complex Number）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T9</td>
+<td dir="auto">L486 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（实部与虚部） | Definition（Real Part and Imaginary Part）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T10</td>
+<td dir="auto">L502 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（纯虚数） | Definition（Purely Imaginary Number）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T11</td>
+<td dir="auto">L538 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（复数的加减法） | Definition（Addition and Subtraction）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T12</td>
+<td dir="auto">L567 <code>ad-thm</code></td>
+<td dir="auto"><code>定理 | Theorem</code></td>
+<td dir="auto"><code>定理（复数乘法的运算律） | Theorem（Laws of Complex Multiplication）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T13</td>
+<td dir="auto">L622 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（共轭复数） | Definition（Conjugate）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T14</td>
+<td dir="auto">L633 <code>ad-thm</code></td>
+<td dir="auto"><code>定理 | Theorem</code></td>
+<td dir="auto"><code>定理（共轭的基本性质） | Theorem（Basic Properties of Conjugate）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T15</td>
+<td dir="auto">L664 <code>ad-thm</code></td>
+<td dir="auto"><code>定理 | Theorem</code></td>
+<td dir="auto"><code>定理（共轭的运算性质） | Theorem（Properties of Conjugate under Operations）</code></td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-p"><p dir="auto"><strong>备注：</strong> 共轭相关的两个定理（L633 与 L664）区分：前者是共轭自身的 5 条性质，后者是共轭与加减乘的关系。</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="二、中英标题缺失（2 处）" dir="auto" class="heading" id="二、中英标题缺失（2_处）_0">二、中英标题缺失（2 处）</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">#</th>
+<th dir="ltr">位置</th>
+<th dir="ltr">当前 title</th>
+<th dir="ltr">改为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">B1</td>
+<td dir="auto">L117 嵌套 <code>ad-axi</code>（完备性公理）</td>
+<td dir="auto"><code>公理 | Axiom</code></td>
+<td dir="auto"><code>公理（完备性公理） | Axiom（Completeness Axiom）</code></td>
+</tr>
+<tr>
+<td dir="ltr">B2</td>
+<td dir="auto">L734 <code>ad-thm</code>（除法共轭性质）</td>
+<td dir="auto"><code>定理 | Theorem</code></td>
+<td dir="auto"><code>定理（除法的共轭性质） | Theorem（Conjugate of Division）</code></td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="三、标题补充（续：模与复平面相关）" dir="auto" class="heading" id="三、标题补充（续：模与复平面相关）_0">三、标题补充（续：模与复平面相关）</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">#</th>
+<th dir="ltr">位置</th>
+<th dir="ltr">当前 title</th>
+<th dir="ltr">改为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">T16</td>
+<td dir="auto">L759 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（模） | Definition（Modulus）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T17</td>
+<td dir="auto">L772 <code>ad-thm</code></td>
+<td dir="auto"><code>定理 | Theorem</code></td>
+<td dir="auto"><code>定理（模的性质） | Theorem（Properties of Modulus）</code></td>
+</tr>
+<tr>
+<td dir="ltr">T18</td>
+<td dir="auto">L800 <code>ad-def</code></td>
+<td dir="auto"><code>定义 | Definition</code></td>
+<td dir="auto"><code>定义（复平面） | Definition（Complex Plane）</code></td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="四、环境类型错误（2 处）" dir="auto" class="heading" id="四、环境类型错误（2_处）_0">四、环境类型错误（2 处）</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">#</th>
+<th dir="ltr">位置</th>
+<th dir="ltr">当前环境</th>
+<th dir="ltr">问题</th>
+<th dir="ltr">改为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">E1</td>
+<td dir="auto">L255 <code>ad-lem</code></td>
+<td dir="ltr">引理（稠密性与连续性是两种根本不同的性质）</td>
+<td dir="ltr">内容是注记/讨论，不是引理</td>
+<td dir="auto"><code>ad-note</code>，title: <code>注记 | Remark</code>，正文不变</td>
+</tr>
+<tr>
+<td dir="ltr">E2</td>
+<td dir="auto">L312 <code>ad-axi</code></td>
+<td dir="ltr">公理（来自数学分析中的示例）</td>
+<td dir="ltr">内容是「此例较难可跳过」的提示，不是公理</td>
+<td dir="auto"><code>ad-note</code>，title: <code>注记 | Remark</code></td>
+</tr>
+<tr>
+<td dir="ltr">E3</td>
+<td dir="auto">L393 <code>ad-lem</code></td>
+<td dir="ltr">引理（注记）</td>
+<td dir="ltr">标题已写「注记」却用引理环境</td>
+<td dir="auto"><code>ad-note</code>，title: <code>注记 | Remark</code></td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="五、排版改写（1 处）" dir="auto" class="heading" id="五、排版改写（1_处）_0">五、排版改写（1 处）</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">#</th>
+<th dir="ltr">位置</th>
+<th dir="ltr">内容</th>
+<th dir="ltr">改为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">R1</td>
+<td dir="auto">L553 <code>ad-def</code>（乘法）</td>
+<td dir="ltr">直接给出公式，缺少引入文字</td>
+<td dir="auto">添加引入：<code>设 $z_1=a+bi$，$z_2=c+di$（$a,b,c,d\in\mathbb{R}$）。**乘法：** 按多项式展开并用 $i^2=-1$ 合并：</code>，再接公式块</td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="六、新增章节（1 处）" dir="auto" class="heading" id="六、新增章节（1_处）_0">六、新增章节（1 处）</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">#</th>
+<th dir="ltr">位置</th>
+<th dir="ltr">需求</th>
+<th dir="ltr">方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">N1</td>
+<td dir="ltr">L833 注释</td>
+<td dir="auto">需新增 §17.2.6 介绍 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msqrt><mjx-sqrt><mjx-surd><mjx-mo class="mjx-n"><mjx-c class="mjx-c221A"></mjx-c></mjx-mo></mjx-surd><mjx-box style="padding-top: 0.282em;"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi></mjx-box></mjx-sqrt></mjx-msqrt><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-msqrt><mjx-sqrt><mjx-surd><mjx-mo class="mjx-sop"><mjx-c class="mjx-c221A TEX-S1"></mjx-c></mjx-mo></mjx-surd><mjx-box style="padding-top: 0.108em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c7C"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c7C"></mjx-c></mjx-mo></mjx-box></mjx-sqrt></mjx-msqrt></mjx-math></mjx-container></span>（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math></mjx-container></span>），衔接前文，搭配例题</td>
+<td dir="auto">新增 <code>### 17.2.6 负实数的复数平方根</code>，内容包括：<br>1. <strong>动机</strong>：§17.2.1 已证 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math></mjx-container></span>（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3E"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math></mjx-container></span>）无实数解，现在有了复数，可以给出解的复数形式<br>2. <strong>定义/定理</strong>：对 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math></mjx-container></span>，定义 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msqrt><mjx-sqrt><mjx-surd><mjx-mo class="mjx-n"><mjx-c class="mjx-c221A"></mjx-c></mjx-mo></mjx-surd><mjx-box style="padding-top: 0.282em;"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi></mjx-box></mjx-sqrt></mjx-msqrt><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-msqrt><mjx-sqrt><mjx-surd><mjx-mo class="mjx-sop"><mjx-c class="mjx-c221A TEX-S1"></mjx-c></mjx-mo></mjx-surd><mjx-box style="padding-top: 0.108em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c7C"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c7C"></mjx-c></mjx-mo></mjx-box></mjx-sqrt></mjx-msqrt></mjx-math></mjx-container></span>，并证明 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-msqrt><mjx-sqrt><mjx-surd><mjx-mo class="mjx-sop"><mjx-c class="mjx-c221A TEX-S1"></mjx-c></mjx-mo></mjx-surd><mjx-box style="padding-top: 0.108em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c7C"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c7C"></mjx-c></mjx-mo></mjx-box></mjx-sqrt></mjx-msqrt><mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span><br>3. <strong>推广</strong>：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的幂的循环规律 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msup></mjx-math></mjx-container></span>（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c33"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 循环）<br>4. <strong>例题</strong>：(a) 求 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msqrt><mjx-sqrt><mjx-surd><mjx-mo class="mjx-n"><mjx-c class="mjx-c221A"></mjx-c></mjx-mo></mjx-surd><mjx-box style="padding-top: 0.128em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-box></mjx-sqrt></mjx-msqrt></mjx-math></mjx-container></span>；(b) 求 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msqrt><mjx-sqrt><mjx-surd><mjx-mo class="mjx-n"><mjx-c class="mjx-c221A"></mjx-c></mjx-mo></mjx-surd><mjx-box style="padding-top: 0.134em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c39"></mjx-c></mjx-mn></mjx-box></mjx-sqrt></mjx-msqrt><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-msqrt space="3"><mjx-sqrt><mjx-surd><mjx-mo class="mjx-n"><mjx-c class="mjx-c221A"></mjx-c></mjx-mo></mjx-surd><mjx-box style="padding-top: 0.134em;"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-box></mjx-sqrt></mjx-msqrt></mjx-math></mjx-container></span>；(c) 解方程 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c33"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math></mjx-container></span>；(d) 计算 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c35"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-msup space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-TeXAtom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-TeXAtom></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-msup space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-TeXAtom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mn></mjx-TeXAtom></mjx-script></mjx-msup></mjx-math></mjx-container></span></td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="七、词汇表排版修复" dir="auto" class="heading" id="七、词汇表排版修复_0">七、词汇表排版修复</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">#</th>
+<th dir="ltr">位置</th>
+<th dir="ltr">问题</th>
+<th dir="ltr">改为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">V1</td>
+<td dir="ltr">L872 模行</td>
+<td dir="auto"><code>modulus $ | z | $</code> 格式破碎，多余空列</td>
+<td dir="auto">修复为 <code>modulus \|z\|</code>，删除多余列分隔符</td>
+</tr>
+</tbody>
+</table>
+</div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="八、删除所有 88 注释" dir="auto" class="heading" id="八、删除所有_88_注释_0">八、删除所有 <code>%%...%%</code> 注释</h2></div><div class="el-p"><p dir="auto">执行以上修改后，逐一删除所有 <code>%%...%%</code> 标记。</p></div><div class="el-hr"><hr></div><div class="el-p"><p dir="auto"><strong>总计：21 处标题补充 + 3 处环境类型修正 + 1 处排版改写 + 1 处新增章节 + 1 处词汇表修复 + 注释清除。</strong></p></div><div class="footer"><div class="data-bar"></div></div>
+<!-- ==DSH-INJECT:panels== -->
+<section id="dsh-backlinks" class="doc-panel dsh-backlinks" data-doc-id="5dc869652f">
+  <h2 class="panel-head">反向链接</h2>
+  <div class="backlinks-body" data-backlinks-mount><p class="empty-state">正在加载反向链接…</p></div>
+</section>
+<section id="dsh-outlinks" class="doc-panel dsh-outlinks" data-doc-id="5dc869652f">
+  <h2 class="panel-head">本文引用</h2>
+  <div class="outlinks-body" data-outlinks-mount><p class="empty-state">正在加载…</p></div>
+</section>
+</div></div></div><div id="right-content" class="leaf" style="--sidebar-width: var(--sidebar-width-right);"><div id="right-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="right-sidebar-content" class="leaf-content"><div id="outline" class=" tree-container"><div class="feature-header"><div class="feature-title">Table Of Contents</div><button class="clickable-icon nav-action-button tree-collapse-all" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#一、数学环境标题补充（15_处）_0" data-path="#一、数学环境标题补充（15_处）_0"><div class="tree-item-inner heading-link" heading-name="一、数学环境标题补充（15 处）">一、数学环境标题补充（15 处）</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#二、中英标题缺失（2_处）_0" data-path="#二、中英标题缺失（2_处）_0"><div class="tree-item-inner heading-link" heading-name="二、中英标题缺失（2 处）">二、中英标题缺失（2 处）</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#三、标题补充（续：模与复平面相关）_0" data-path="#三、标题补充（续：模与复平面相关）_0"><div class="tree-item-inner heading-link" heading-name="三、标题补充（续：模与复平面相关）">三、标题补充（续：模与复平面相关）</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#四、环境类型错误（2_处）_0" data-path="#四、环境类型错误（2_处）_0"><div class="tree-item-inner heading-link" heading-name="四、环境类型错误（2 处）">四、环境类型错误（2 处）</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#五、排版改写（1_处）_0" data-path="#五、排版改写（1_处）_0"><div class="tree-item-inner heading-link" heading-name="五、排版改写（1 处）">五、排版改写（1 处）</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#六、新增章节（1_处）_0" data-path="#六、新增章节（1_处）_0"><div class="tree-item-inner heading-link" heading-name="六、新增章节（1 处）">六、新增章节（1 处）</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#七、词汇表排版修复_0" data-path="#七、词汇表排版修复_0"><div class="tree-item-inner heading-link" heading-name="七、词汇表排版修复">七、词汇表排版修复</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#八、删除所有_88_注释_0" data-path="#八、删除所有_88_注释_0"><div class="tree-item-inner heading-link" heading-name="八、删除所有 88 注释">八、删除所有 88 注释</div></a><div class="tree-item-children"></div></div></div></div></div><script defer>let rs = document.querySelector("#right-sidebar"); rs.classList.toggle("is-collapsed", window.innerWidth < 768); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></div></div></body></html>

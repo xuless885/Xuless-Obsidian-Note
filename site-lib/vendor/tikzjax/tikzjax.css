@@ -1,0 +1,76 @@
+/*!
+ * tikzjax.css — styles for the vendored TikZ -> SVG renderer.
+ * Hand-written for this site; NOT part of upstream tikzjax.
+ * Injected automatically by tikzjax-loader.js (disable with data-tikzjax-css="off").
+ */
+
+/* Authored TikZ source must never flash as raw text. */
+script[type="text/tikz"] { display: none !important; }
+
+/* Wrapper injected by the loader around each rendered picture.
+ * display:block + centring mirrors what obsidian-tikzjax does to TikZ blocks in
+ * the vault, so a picture looks the same here as it does in the user's notes.
+ * Override with data-tikzjax-align="left|right" on the loader <script>. */
+.tikzjax-host {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+  text-align: center;
+  line-height: 0;              /* kill the inline-SVG descender gap */
+}
+.tikzjax-host[data-tikzjax-align="left"] { text-align: left; }
+.tikzjax-host[data-tikzjax-align="right"] { text-align: right; }
+
+.tikzjax-host > svg {
+  max-width: 100%;
+  height: auto;
+  /* dvi2html sizes the SVG to the TeX bounding box, and SVG content defaults to
+   * overflow:hidden — arrow heads, labels and overshooting \draw paths get
+   * clipped without this. obsidian-tikzjax sets the same property. */
+  overflow: visible;
+  vertical-align: middle;
+}
+
+/* ---------------------------------------------------------------------------
+ * Fallback: shown when the engine cannot run, fails to compile, or hangs.
+ * The original TikZ source stays visible and selectable so nothing is lost.
+ * ------------------------------------------------------------------------- */
+.tikzjax-fallback {
+  display: block;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 0.6em 0;
+  padding: 0.7em 0.9em 0.7em 1em;
+  border: 1px solid var(--border, #e3e2dd);
+  border-left: 3px solid #e8590c;
+  border-radius: var(--radius-s, 8px);
+  background: var(--bg-sunken, #efeee9);
+  color: var(--fg-muted, #5b5f6b);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  white-space: pre;
+  tab-size: 2;
+  text-align: left;
+}
+.tikzjax-fallback::before {
+  content: "TikZ 渲染不可用，下面保留原始代码 ／ TikZ unavailable, source shown";
+  display: block;
+  margin-bottom: 0.45em;
+  color: #e8590c;
+  font-family: var(--font-sans, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: normal;
+}
+.tikzjax-fallback[data-tikzjax-error="timeout"]::before {
+  content: "TikZ 渲染超时，下面保留原始代码 ／ TikZ timed out, source shown";
+}
+.tikzjax-fallback[data-tikzjax-error="engine-load-failed"]::before {
+  content: "TikZ 引擎加载失败，下面保留原始代码 ／ TikZ engine failed to load, source shown";
+}
+
+/* Without JS the <script> content is not rendered at all, so a TikZ-only page
+   would show nothing. Pages that carry TikZ should ship a <noscript> note; see
+   site-lib/vendor/tikzjax/README.md. */

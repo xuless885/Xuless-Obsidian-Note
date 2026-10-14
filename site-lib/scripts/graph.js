@@ -615,7 +615,7 @@
       activeCats: Object.create(null),
       allTags: [], activeTags: Object.create(null),
       minDegree: 0, maxDegree: 0,
-      showIsolated: true, showArrows: true,
+      showIsolated: false, showArrows: true,
       query: '', matchSet: null, matchList: [],
       labelOrder: null, labelKey: '', labelWidths: null,
       hover: -1, selected: -1,
@@ -1188,7 +1188,7 @@
         swBox.appendChild(row);
         return cb;
       }
-      switchRow('显示孤立节点', true, function (v) { S.showIsolated = v; applyFilters(true); });
+      switchRow('显示孤立节点', false, function (v) { S.showIsolated = v; applyFilters(true); });
       switchRow('显示箭头', true, function (v) { S.showArrows = v; });
       wrap.appendChild(swBox);
 
@@ -1466,10 +1466,13 @@
       refreshTheme(true);
       resize();
       initPositions(S.nodes, 20240601);
+      // ★ 顺序很关键：先按筛选条件落定 active 标记，再跑物理。
+      //   被隐藏的节点（如默认关掉的孤立节点）不能参与力导向 —— 否则它们会把可见子图推向四周，
+      //   自动适配视图时缩放被压到标签阈值以下，整个图既散又看不到标签。
+      applyFilters(false);
       S.alpha = 1;
       settle(S.nodes, S.edges, S, PHYSICS.preSettleSteps, PHYSICS); // 首帧前同步收敛
       S.view = fitView(S.nodes, S.width, S.height);
-      applyFilters(false);
       buildControls(controls);
       renderCounts();
       render();

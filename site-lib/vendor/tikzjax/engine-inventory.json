@@ -1,0 +1,1085 @@
+{
+ "note": "Inventory of the gzip assets inlined in tikzjax.js. They are base64 data: URIs inside the bundle, so this file is documentation/provenance only — nothing is loaded from it at runtime, and the site does NOT ship these as separate files.",
+ "upstreamBundleSha256": "a998481b0cbab9b1459719fdf68810a077c4488ff49f7597e61d55ff8577f5e6",
+ "patchedBundleSha256": "be325bdc2fc6b660ea658324a63f87518e34c9eb0d4f2bd2d1c6d16c0ded7c91",
+ "assetCount": 215,
+ "totalGzipBytes": 4823787,
+ "totalBase64Chars": 6432004,
+ "assets": [
+  {
+   "name": "core.dump.gz",
+   "gzBytes": 3252439,
+   "sha256": "ae9f69dfe3837606240c5b9cb50f86aa0ee7463bbae4c26f2843b17eb155b91f"
+  },
+  {
+   "name": "tex.wasm.gz",
+   "gzBytes": 121703,
+   "sha256": "f8667f45e90039832df4f62550f10ff0c2f47781dbfdde9510f0ff3f360a61ba"
+  },
+  {
+   "name": "tex_files/amsbsy.sty.gz",
+   "gzBytes": 1042,
+   "sha256": "47e43c5bce1bb739d3fe2daefa72b207db8a4c8e5f2566a03026443e6e54d7b6"
+  },
+  {
+   "name": "tex_files/amscd.sty.gz",
+   "gzBytes": 2004,
+   "sha256": "8e23386817603d688b672ed698af2fc4cac89dc6988e38ba757c1521d1a26b4d"
+  },
+  {
+   "name": "tex_files/amsfonts.sty.gz",
+   "gzBytes": 1982,
+   "sha256": "755cea1d31bb0430e85cc0d8bb360c9568e0d6f8caf82e74bb0187d1d8a06766"
+  },
+  {
+   "name": "tex_files/amsgen.sty.gz",
+   "gzBytes": 1769,
+   "sha256": "f5ee97b846d648c9158249b90682e218ab8976c6efe86ce4cfd73c0640761842"
+  },
+  {
+   "name": "tex_files/amsmath-2018-12-01.sty.gz",
+   "gzBytes": 18643,
+   "sha256": "286b80b62781b6628daf78874d75f49233228bcca9543807f5c84df72e2f8a62"
+  },
+  {
+   "name": "tex_files/amsmath.sty.gz",
+   "gzBytes": 19150,
+   "sha256": "27cab3083dbf40c571b5bac82468bec5d0a75fc3f7cfcd6d0c5eea56cbbe04e8"
+  },
+  {
+   "name": "tex_files/amsopn.sty.gz",
+   "gzBytes": 1464,
+   "sha256": "39a481211642c8785dcac5aa4a3df7160d13a57ce1efcbaa1a327a94b53e57d2"
+  },
+  {
+   "name": "tex_files/amssymb.sty.gz",
+   "gzBytes": 2733,
+   "sha256": "93938720f1dd4ac9bf6494c450c27f39d592f51ef9100af6cd792f64f17a9bac"
+  },
+  {
+   "name": "tex_files/amstex.sty.gz",
+   "gzBytes": 16764,
+   "sha256": "15439844938946796c70abf1511d0ef0ca0037966e5c4a2fe35a2694f45eb42e"
+  },
+  {
+   "name": "tex_files/amstext.sty.gz",
+   "gzBytes": 1081,
+   "sha256": "7899668c0a975ccf829105736175171ef858b045e58185451ab49ac3900b8c64"
+  },
+  {
+   "name": "tex_files/amsxtra.sty.gz",
+   "gzBytes": 923,
+   "sha256": "7752cfe9df7c5cce388bb16cad397649e8d99c9d3f50af5cb5a3d4a9245c3012"
+  },
+  {
+   "name": "tex_files/array.sty.gz",
+   "gzBytes": 3961,
+   "sha256": "69af950a99fa331c19fed504688d14c8dac71a15272de6c56f7f03712ba9a8f7"
+  },
+  {
+   "name": "tex_files/chemfig.sty.gz",
+   "gzBytes": 253,
+   "sha256": "43238a6e1040691c0d36662ab0793f7e38da3d7ac5d8ffc7376ea6fd12d86b4e"
+  },
+  {
+   "name": "tex_files/chemfig.tex.gz",
+   "gzBytes": 25242,
+   "sha256": "285d80afcead39a1507a24467219a0c79c5f582449ce6109e61bca3f761cc4fa"
+  },
+  {
+   "name": "tex_files/circuitikz-0.4.sty.gz",
+   "gzBytes": 31869,
+   "sha256": "2891542dd2d813f4e13fc7530c052ed3104f69a1e0a2271294994dbaca473cca"
+  },
+  {
+   "name": "tex_files/circuitikz-0.6.sty.gz",
+   "gzBytes": 38054,
+   "sha256": "f94432a51b75c2ea845419ec576ec127dfe702e3bea8deb5b6510dc01d9cab41"
+  },
+  {
+   "name": "tex_files/circuitikz-0.7.sty.gz",
+   "gzBytes": 39218,
+   "sha256": "2ad318a40b48c3f57bf2c85e63fa3ed93cb377210408903f53ce1908e4c1fdf0"
+  },
+  {
+   "name": "tex_files/circuitikz-0.8.3.sty.gz",
+   "gzBytes": 41360,
+   "sha256": "ff2e05f58a4feba8736c651ee11cb5647cf059d2c4b3b48653e579edbeb33369"
+  },
+  {
+   "name": "tex_files/circuitikz-0.9.3.sty.gz",
+   "gzBytes": 69433,
+   "sha256": "dbd1b915a727f53eb093f03ffab81bfa01d41e55b603ff0a71346eeea9b5e6f8"
+  },
+  {
+   "name": "tex_files/circuitikz-0.9.6.sty.gz",
+   "gzBytes": 77654,
+   "sha256": "4615d09f7c2f127bdec7f03cfe20e13d72c4dbe7e46b229f959984a47a057c3a"
+  },
+  {
+   "name": "tex_files/circuitikz.sty.gz",
+   "gzBytes": 2274,
+   "sha256": "a8aab1d36ce4fbd2e5b5e81bb19a49bd00bd6d1a0994184ff07a3b191fc5eb1e"
+  },
+  {
+   "name": "tex_files/cmmib57.sty.gz",
+   "gzBytes": 631,
+   "sha256": "a90a9bf082a5b6671608dccac441c5b334bb1733e468c383c5344fdaa006469a"
+  },
+  {
+   "name": "tex_files/ctikzstyle-example.tex.gz",
+   "gzBytes": 208,
+   "sha256": "61073070cca73f3a321adb0c122ef32f3a92ef387d34dac55ade1dd833db17e7"
+  },
+  {
+   "name": "tex_files/ctikzstyle-legacy.tex.gz",
+   "gzBytes": 1040,
+   "sha256": "d401a167122af81dbafd16294ad845d1d6c76e0fce9dcb54717bd186c94de6bd"
+  },
+  {
+   "name": "tex_files/ctikzstyle-romano.tex.gz",
+   "gzBytes": 750,
+   "sha256": "bd8768917f7c2c0d8ec58a757cb9bb2280dc760e42bacc35ac58ccf70ee49152"
+  },
+  {
+   "name": "tex_files/eucal.sty.gz",
+   "gzBytes": 733,
+   "sha256": "b4a45e48f8ea4f73be046b06977b396a52cc5304c87d0c986476805471ad5dfb"
+  },
+  {
+   "name": "tex_files/eufrak.sty.gz",
+   "gzBytes": 735,
+   "sha256": "6e5bdb0629c8d6d51d0dae184fe31e0a3fba49a9b462d64c0846c8c402f7cb70"
+  },
+  {
+   "name": "tex_files/euscript.sty.gz",
+   "gzBytes": 717,
+   "sha256": "fbbade4412148dd590e0cecfd13fbc3cd36d23be16d534912fc45a529d2321eb"
+  },
+  {
+   "name": "tex_files/ifthen.sty.gz",
+   "gzBytes": 1837,
+   "sha256": "b86cc7c1aa714d27768874188192fdc51a8de26c315164c3a382748c0240e715"
+  },
+  {
+   "name": "tex_files/pgfcalendar.code.tex.gz",
+   "gzBytes": 6271,
+   "sha256": "b352337616bca88dc9c023d312056cad648539f7890ad5c13cc519ea21cdd4ab"
+  },
+  {
+   "name": "tex_files/pgfcalendar.sty.gz",
+   "gzBytes": 236,
+   "sha256": "3e50f0692055732d0dd57cfc7c3cbd160c13f84cebbb62e66f8868211181dd0c"
+  },
+  {
+   "name": "tex_files/pgfcirc.defines.tex.gz",
+   "gzBytes": 13162,
+   "sha256": "512b78fab061a2c316898eb01fb9ce26e2c04eebef2849e368a330a39c3cc33e"
+  },
+  {
+   "name": "tex_files/pgfcircbipoles.tex.gz",
+   "gzBytes": 15743,
+   "sha256": "23f28243c1b50c38e95a6bd7d6c76c144617d4edafcba0c22b1a472874af08fe"
+  },
+  {
+   "name": "tex_files/pgfcirccurrent.tex.gz",
+   "gzBytes": 1341,
+   "sha256": "37a9541f5e9c84596701a9ca143ce5bc3f8667215cf831558e24e08cf7e0e6f6"
+  },
+  {
+   "name": "tex_files/pgfcircflow.tex.gz",
+   "gzBytes": 1305,
+   "sha256": "a4aa695bddaea293d678eff43540b51b10cd49608176f59ad06d5eedb5b153a3"
+  },
+  {
+   "name": "tex_files/pgfcirclabel.tex.gz",
+   "gzBytes": 3271,
+   "sha256": "4bd45f9a36467410709f0f70cc830019b0b63ac2557009e6e5b8d75fa450bb0e"
+  },
+  {
+   "name": "tex_files/pgfcircmonopoles.tex.gz",
+   "gzBytes": 4301,
+   "sha256": "ac1b5617e34f8c5bf28f4c229ae71cc67c7a4ba41a84b04ae9fec031b401088a"
+  },
+  {
+   "name": "tex_files/pgfcircmultipoles.tex.gz",
+   "gzBytes": 11275,
+   "sha256": "688b51f2d7e1ea11626186db211d9be461d48813f23e466070bec8780b17d105"
+  },
+  {
+   "name": "tex_files/pgfcircpath.tex.gz",
+   "gzBytes": 7656,
+   "sha256": "62764acd6bc4e2022e6031397981f1327c9741da0fd0d5a64886cc264df71823"
+  },
+  {
+   "name": "tex_files/pgfcircquadpoles.tex.gz",
+   "gzBytes": 3903,
+   "sha256": "0debc0726af31dbad365312b260e3d301d3a128f72cd14ce9b283718dc4d5334"
+  },
+  {
+   "name": "tex_files/pgfcircshapes.tex.gz",
+   "gzBytes": 3731,
+   "sha256": "fb5c6e6251331e271c14de80698248834516f0aa099bfaab7c406d6a75b03a65"
+  },
+  {
+   "name": "tex_files/pgfcirctripoles.tex.gz",
+   "gzBytes": 19717,
+   "sha256": "da0ce66ad9b5a0956f2679397be759ca403692f588a990f3009ca68553df83cf"
+  },
+  {
+   "name": "tex_files/pgfcircutils.tex.gz",
+   "gzBytes": 707,
+   "sha256": "0a3166077d692746737f1b308a404160579d1dae71d33bb587176c6877fe9d5a"
+  },
+  {
+   "name": "tex_files/pgfcircvoltage.tex.gz",
+   "gzBytes": 3670,
+   "sha256": "27328f89abcefb7ef0f5704e8216055f56aefeb08f049c37b243d38cc194642d"
+  },
+  {
+   "name": "tex_files/pgfint.code.tex.gz",
+   "gzBytes": 1225,
+   "sha256": "5ebb461d2b481f12090a254252b6b45e5c2937ae5d2b6912df7ffd07d1cb7dac"
+  },
+  {
+   "name": "tex_files/pgflibraryarrows.code.tex.gz",
+   "gzBytes": 2885,
+   "sha256": "68d617468d7d67cde2b064db29fa3fa5d376d0d0d215cbac3406607c3b32234f"
+  },
+  {
+   "name": "tex_files/pgflibraryarrows.meta.code.tex.gz",
+   "gzBytes": 7681,
+   "sha256": "4210020e03e200df44cd4468b23b3d7e6b50248680f796908bb3846791c07079"
+  },
+  {
+   "name": "tex_files/pgflibrarybbox.code.tex.gz",
+   "gzBytes": 1113,
+   "sha256": "6152b19e5d641d8cdedfd3a3040449eb19b31746c60ed5359e0bfc1bddc8a6c1"
+  },
+  {
+   "name": "tex_files/pgflibrarycurvilinear.code.tex.gz",
+   "gzBytes": 3176,
+   "sha256": "2566f25f5cfeb537eb4484ce33116604edc54a1b811bdc17c78c5d57d5229a6c"
+  },
+  {
+   "name": "tex_files/pgflibrarydatavisualization.barcharts.code.tex.gz",
+   "gzBytes": 1199,
+   "sha256": "d97726f22436d3c3351e01a39808438633f15d4c2e9e4b8f1790e15f91fe0b8e"
+  },
+  {
+   "name": "tex_files/pgflibrarydatavisualization.formats.functions.code.tex.gz",
+   "gzBytes": 1989,
+   "sha256": "2a9ad504176520ee14bddc66e01d6330ff9a81faa7de891b55cb09cafbb9b044"
+  },
+  {
+   "name": "tex_files/pgflibrarydatavisualization.polar.code.tex.gz",
+   "gzBytes": 1826,
+   "sha256": "5585f979a6b8d1eb81c02388d9ca880ea6260ed4c8a2d10f9e19decae7dda41d"
+  },
+  {
+   "name": "tex_files/pgflibrarydecorations.footprints.code.tex.gz",
+   "gzBytes": 3208,
+   "sha256": "4ead933220dea4ff91b3382d4f7c7fc6c0c491da5f9657d6637ec7bd448c1bc5"
+  },
+  {
+   "name": "tex_files/pgflibrarydecorations.fractals.code.tex.gz",
+   "gzBytes": 435,
+   "sha256": "3ddc8e4f6e80ce595214d10d7aae4d6ec81ef6d46ddd1df6b80ff11e042334f6"
+  },
+  {
+   "name": "tex_files/pgflibrarydecorations.markings.code.tex.gz",
+   "gzBytes": 1450,
+   "sha256": "f743cbfaa1eab0163d364577df8340ac2bf6e0ab58dc90658f18fa30dd1df07a"
+  },
+  {
+   "name": "tex_files/pgflibrarydecorations.pathmorphing.code.tex.gz",
+   "gzBytes": 1587,
+   "sha256": "327ff93d56b7389184dcc03e9bb01dceca5ff07263c5ac8d148db87325858257"
+  },
+  {
+   "name": "tex_files/pgflibrarydecorations.pathreplacing.code.tex.gz",
+   "gzBytes": 1464,
+   "sha256": "5ad9f0b40c6075cff50c92cd41417858d105bf247efbfd28c56cec28aa63418e"
+  },
+  {
+   "name": "tex_files/pgflibrarydecorations.shapes.code.tex.gz",
+   "gzBytes": 3409,
+   "sha256": "53e0f1a679603050da84db3d60f1470a03aadd96b01677a01149aa13935b5401"
+  },
+  {
+   "name": "tex_files/pgflibrarydecorations.text.code.tex.gz",
+   "gzBytes": 2435,
+   "sha256": "e3973f6658a1240feb3ce6548e8af250a4c6543dcb865a3b8a6d903439a1e285"
+  },
+  {
+   "name": "tex_files/pgflibraryfadings.code.tex.gz",
+   "gzBytes": 558,
+   "sha256": "af1a018ccf54df10f3a44ad3f6e4b087e34da1db317cc39fc651d5d10e5284ec"
+  },
+  {
+   "name": "tex_files/pgflibraryfixedpointarithmetic.code.tex.gz",
+   "gzBytes": 2311,
+   "sha256": "8af947fc97c468a05f3243d6ef8b0c6f373aec23d766559716a13166686635c2"
+  },
+  {
+   "name": "tex_files/pgflibraryfpu.code.tex.gz",
+   "gzBytes": 14538,
+   "sha256": "7c4167084e96a7f3808e6bcbbe4390186b622443d90e8b6e564f6d0664dc9cdc"
+  },
+  {
+   "name": "tex_files/pgflibraryintersections.code.tex.gz",
+   "gzBytes": 8139,
+   "sha256": "3cba39bbe6c364910d4bfda629f54ab28cec77401445252adb00785d55e69a94"
+  },
+  {
+   "name": "tex_files/pgflibrarylindenmayersystems.code.tex.gz",
+   "gzBytes": 1720,
+   "sha256": "b7277c2a373e4944d0b25bd262d36e87c304063c580e079708978a6b7b018200"
+  },
+  {
+   "name": "tex_files/pgflibrarypatterns.code.tex.gz",
+   "gzBytes": 1200,
+   "sha256": "04ca69dea2b1c3c60521e3dd7f88bf404e0bab591aa571ca9046f7f18ced83e7"
+  },
+  {
+   "name": "tex_files/pgflibrarypatterns.meta.code.tex.gz",
+   "gzBytes": 2880,
+   "sha256": "8a9b1a5939698cedc585f6057d045efb7bd9e8329a6a478506a26912e8e5a3b5"
+  },
+  {
+   "name": "tex_files/pgflibrarypgfplots.surfshading.code.tex.gz",
+   "gzBytes": 5700,
+   "sha256": "417efa2bcdeb7e21fab23e3977eae031060d9bdf74a5b1c5d9db40b178f8c6f7"
+  },
+  {
+   "name": "tex_files/pgflibraryplotmarks.code.tex.gz",
+   "gzBytes": 1710,
+   "sha256": "7695798e5ef16a4435afb1c69ff6956668297f49777e9f47d29058959340d735"
+  },
+  {
+   "name": "tex_files/pgflibraryshadings.code.tex.gz",
+   "gzBytes": 2085,
+   "sha256": "95292fbd1775cae1baf88e2129ef421698b97d18a1b6223064ccc70a9c1ce95e"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.arrows.code.tex.gz",
+   "gzBytes": 6765,
+   "sha256": "4f98af1e4127108514321f72ee23fe3bc110b8e16b098502fc352eeba175ce2f"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.callouts.code.tex.gz",
+   "gzBytes": 5082,
+   "sha256": "fbc9bfc328d46e40780eb3041d899dbeca0f1eaf8e0931b7d9e4dab133da38ad"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.gates.ee.IEC.code.tex.gz",
+   "gzBytes": 2427,
+   "sha256": "9e6f72ea1f1ea11b6a1a61b5592a2daa9cd151919e48d3bbe453397431d2093e"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.gates.ee.code.tex.gz",
+   "gzBytes": 1184,
+   "sha256": "d12b50876999e1050417f4bbc7785f910189be4a432891aaeeb34f1556a49eee"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.gates.logic.IEC.code.tex.gz",
+   "gzBytes": 2494,
+   "sha256": "bce545913e6e243518e0a3f973d5e4dd2f8309fbfc0dac8f99b74b6a270a3d93"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.gates.logic.US.code.tex.gz",
+   "gzBytes": 6418,
+   "sha256": "2a8d4c60206369ce8e3307e4640b067338e1896684d4ee4c7e06dd8e5c6bb110"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.gates.logic.code.tex.gz",
+   "gzBytes": 841,
+   "sha256": "4066fce94c47c26dcd94e37d4b11a9275e4f654cdf8cb4e3a0ae12a223b53edc"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.geometric.code.tex.gz",
+   "gzBytes": 17801,
+   "sha256": "35900c3af1db43f69d3c16907997bd206da21ac592c7748d3069ccfc4a77171a"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.misc.code.tex.gz",
+   "gzBytes": 5121,
+   "sha256": "5798e07abd0a881e8e9bea3b49769bd5055f0b308216c81eef0bf89df8ef18da"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.multipart.code.tex.gz",
+   "gzBytes": 6988,
+   "sha256": "aaa894ccafad8d9e5f4ecc95808def4b81eea5df7d18ba6c25d8d5532fb224d6"
+  },
+  {
+   "name": "tex_files/pgflibraryshapes.symbols.code.tex.gz",
+   "gzBytes": 13147,
+   "sha256": "c84db2a18c1a2dd524efbac526af0c7871665290653e076b9ce9c5c01f7dd1c6"
+  },
+  {
+   "name": "tex_files/pgflibrarysvg.path.code.tex.gz",
+   "gzBytes": 2967,
+   "sha256": "33372a54a3b42831f9116f1e040086e373dfef7be9c0992731ee01a586d8d136"
+  },
+  {
+   "name": "tex_files/pgfmoduleanimations.code.tex.gz",
+   "gzBytes": 9719,
+   "sha256": "e8a0c10854e1ef7182e1450f1572518db28e3494f88f4bdf4bd37e1b0f7789d5"
+  },
+  {
+   "name": "tex_files/pgfmodulebending.code.tex.gz",
+   "gzBytes": 2541,
+   "sha256": "b81cd7daa5ebede87308d86d847bd5a1f91221b23d014b41ad6003d40e9236d9"
+  },
+  {
+   "name": "tex_files/pgfmoduledatavisualization.code.tex.gz",
+   "gzBytes": 22689,
+   "sha256": "192397598bd044cead8c1c33b202724d20b2f679ddf693045ebb622c7e969fb2"
+  },
+  {
+   "name": "tex_files/pgfmoduledecorations.code.tex.gz",
+   "gzBytes": 12161,
+   "sha256": "e27a0536e0f4bd6f23e1068b84bc42f269e88b64a1ddd3f19eac433d8ce92a4d"
+  },
+  {
+   "name": "tex_files/pgfmodulenonlineartransformations.code.tex.gz",
+   "gzBytes": 3043,
+   "sha256": "32f33a6ff6803b88c85684755e732453370f081a3be0f374563b9f7de0b17de5"
+  },
+  {
+   "name": "tex_files/pgfmoduleoo.code.tex.gz",
+   "gzBytes": 7251,
+   "sha256": "961924d6f00a7127335841907fdc63312c14912f8f0e2cc1e65cb97509e9b9ed"
+  },
+  {
+   "name": "tex_files/pgfmoduleparser.code.tex.gz",
+   "gzBytes": 3723,
+   "sha256": "eec6b827bad8c11564da7629095e1f3930f2826e59ac257d72e32de4edd4ad5a"
+  },
+  {
+   "name": "tex_files/pgfplots.code.tex.gz",
+   "gzBytes": 95833,
+   "sha256": "937cfbf0cc52493ea168d2b0a001d8ba66df4981d67dcc2b67247b37352accde"
+  },
+  {
+   "name": "tex_files/pgfplots.errorbars.code.tex.gz",
+   "gzBytes": 4185,
+   "sha256": "42bd176f6f4bbaec0a936199ef7e65acd2e980875b00ac8922ed0c9afeb31f31"
+  },
+  {
+   "name": "tex_files/pgfplots.markers.code.tex.gz",
+   "gzBytes": 3914,
+   "sha256": "e8b3cbe96dad077fdba7495ceed81a6c7608860acba4e96416f84acd0a26b19f"
+  },
+  {
+   "name": "tex_files/pgfplots.paths.code.tex.gz",
+   "gzBytes": 1014,
+   "sha256": "943e968aa45f0cf8653101c4c2f527dc6f988fa267d955786f15e5c72ec1a9d9"
+  },
+  {
+   "name": "tex_files/pgfplots.revision.tex.gz",
+   "gzBytes": 206,
+   "sha256": "55902be87d0ff26818256afb2d8206ca71501131e809ba309eca1b776e39d4a4"
+  },
+  {
+   "name": "tex_files/pgfplots.scaling.code.tex.gz",
+   "gzBytes": 29322,
+   "sha256": "e32d83ca37a812ec8c0690590c18edb54683a83f753cca47beae01a577fa266b"
+  },
+  {
+   "name": "tex_files/pgfplots.sty.gz",
+   "gzBytes": 1762,
+   "sha256": "a73bdc2fecd618903e14e77b1d94fd1509902b2e30693677e27fa86b50f3e655"
+  },
+  {
+   "name": "tex_files/pgfplotsarray.code.tex.gz",
+   "gzBytes": 5717,
+   "sha256": "70ff84891e47be72ea08063a6cb9ce1f3def37ae2c734ab8a3b87c537408c498"
+  },
+  {
+   "name": "tex_files/pgfplotsbinary.code.tex.gz",
+   "gzBytes": 6294,
+   "sha256": "d9051724f2fc22e7f24e666787e0adc18298c174e3922485572eaa1ff043f6fc"
+  },
+  {
+   "name": "tex_files/pgfplotsbinary.data.code.tex.gz",
+   "gzBytes": 1774,
+   "sha256": "b582d39cbe315c56f4667cc4e8e7813ace174076fffd3f3b9207db85a0d65d3b"
+  },
+  {
+   "name": "tex_files/pgfplotscolor.code.tex.gz",
+   "gzBytes": 5512,
+   "sha256": "1d647043842cb9d08891dcfc8e9d0e2a4b887205acda4dfcbce12aa45a159bbf"
+  },
+  {
+   "name": "tex_files/pgfplotscolormap.code.tex.gz",
+   "gzBytes": 19600,
+   "sha256": "ac7a27e7a1da19e3e766c4e054a2b799accb583c2f8bc234cd23313f78b39507"
+  },
+  {
+   "name": "tex_files/pgfplotscoordprocessing.code.tex.gz",
+   "gzBytes": 77250,
+   "sha256": "7b4ae3be147dd14e8d9da41aa774c0a36a2ab7f478d76986373e24d4402771b9"
+  },
+  {
+   "name": "tex_files/pgfplotscore.code.tex.gz",
+   "gzBytes": 6579,
+   "sha256": "43c0e3d55cee6d3e4b2eced9eab0b8bce491f852a5cb7e501b029f3cc36d829a"
+  },
+  {
+   "name": "tex_files/pgfplotsdeque.code.tex.gz",
+   "gzBytes": 1497,
+   "sha256": "0eba9955527b7cd10c530dcb01d77e85475c15c1b9cfb8f46aa324016c776d09"
+  },
+  {
+   "name": "tex_files/pgfplotslibrary.code.tex.gz",
+   "gzBytes": 1142,
+   "sha256": "6b9d21d3cbac2f161dcc4dacde41f6dc063a5aef322887b2321e9f4ea40ce3d8"
+  },
+  {
+   "name": "tex_files/pgfplotsliststructure.code.tex.gz",
+   "gzBytes": 3889,
+   "sha256": "9db793754128383eb05301b0321bf8529b06089191eef3ca0c0e0854769f030b"
+  },
+  {
+   "name": "tex_files/pgfplotsliststructureext.code.tex.gz",
+   "gzBytes": 3801,
+   "sha256": "266d35998cfde809d43c19810cfe9ae685575e657017f13a8b754baa94d38af9"
+  },
+  {
+   "name": "tex_files/pgfplotsmatrix.code.tex.gz",
+   "gzBytes": 4201,
+   "sha256": "aea441af168f05e5307004b81ea2cabf759fc0c67882eb139a9383ce6c9b7e2f"
+  },
+  {
+   "name": "tex_files/pgfplotsmeshplothandler.code.tex.gz",
+   "gzBytes": 28147,
+   "sha256": "8f90ab995526ebd7f1a1e87f444ed2088d78d34f8d23c929f86febb19eed214e"
+  },
+  {
+   "name": "tex_files/pgfplotsmeshplotimage.code.tex.gz",
+   "gzBytes": 5115,
+   "sha256": "650d728d72dcd54bf217421ed6b6c9ed48d15de22992ca1b93bd3c316094c2ad"
+  },
+  {
+   "name": "tex_files/pgfplotsoldpgfsupp_loader.code.tex.gz",
+   "gzBytes": 3324,
+   "sha256": "f2ce033bffef33be7e44de79e5a5539319a7ff46115005fe8889edcf67f43173"
+  },
+  {
+   "name": "tex_files/pgfplotsplothandlers.code.tex.gz",
+   "gzBytes": 24781,
+   "sha256": "98ddad5c4f7fa1264fec985d60f78dbb08650db330390b621a12fcede1ad5bf2"
+  },
+  {
+   "name": "tex_files/pgfplotsstackedplots.code.tex.gz",
+   "gzBytes": 6739,
+   "sha256": "c2e5d0b4685d56ecdd89e07a2940f8341505fd46bf275a2fece163681b5ed114"
+  },
+  {
+   "name": "tex_files/pgfplotssysgeneric.code.tex.gz",
+   "gzBytes": 1359,
+   "sha256": "55be6e9d0fc2823ef92fbff5cd17cab60be52f4a0dd91270a3bd4515d5332d2f"
+  },
+  {
+   "name": "tex_files/pgfplotstableshared.code.tex.gz",
+   "gzBytes": 17962,
+   "sha256": "6fdcf0c6cf5db9276f5be6f1f1b49be8e87232d428dc1d44f2d2ae3386d50e1d"
+  },
+  {
+   "name": "tex_files/pgfplotsticks.code.tex.gz",
+   "gzBytes": 21462,
+   "sha256": "ea0a49e4d6d65c524736b295ece5204a53de13280d626e4405bb0729f92c464d"
+  },
+  {
+   "name": "tex_files/pgfplotsutil.code.tex.gz",
+   "gzBytes": 16330,
+   "sha256": "ddbc204851de033cf6c407755b3f8f516e99aead9c8dd0b819e5e68511af86e0"
+  },
+  {
+   "name": "tex_files/pgfplotsutil.verb.code.tex.gz",
+   "gzBytes": 1299,
+   "sha256": "c7ec094471dfcedfad8dd173c71fc78dfe4dc9e1c90f3f7461cf1968bb955da2"
+  },
+  {
+   "name": "tex_files/pgfsys-luatex.def.gz",
+   "gzBytes": 3302,
+   "sha256": "165f32ec437f741a05d2b130d0452dc5791739ed90dd19d347bfa298ea92286f"
+  },
+  {
+   "name": "tex_files/pgfsysanimations.code.tex.gz",
+   "gzBytes": 9659,
+   "sha256": "057c8d76c0ce388817c496d29055aa1de92576d9dda6eac6ff228f654b8ce326"
+  },
+  {
+   "name": "tex_files/simplekv.sty.gz",
+   "gzBytes": 152,
+   "sha256": "0c8451dafa8811f5cfdfbd5304890c60bf9a35ced413db858670d7f0c48dcf9d"
+  },
+  {
+   "name": "tex_files/simplekv.tex.gz",
+   "gzBytes": 4955,
+   "sha256": "42e959092211c14612af0c6a2944837867f16b094544a2c7b34c5f02359e37b2"
+  },
+  {
+   "name": "tex_files/t-chemfig.tex.gz",
+   "gzBytes": 145,
+   "sha256": "dbb1f3e195c24a2b9a7373ad80e823a671e2d2ae13f8d0cad33066c438fe1477"
+  },
+  {
+   "name": "tex_files/t-circuitikz-0.8.3.tex.gz",
+   "gzBytes": 40758,
+   "sha256": "8b2de8bc00753405cdf7a38b1847fffae9e751e974ad5a1cf659f43aecce116d"
+  },
+  {
+   "name": "tex_files/t-circuitikz-0.9.3.tex.gz",
+   "gzBytes": 68363,
+   "sha256": "fb33d0964c0da75f35f0aeb45d49fb54f22dcf8f895fa1bb2aa64348658013c1"
+  },
+  {
+   "name": "tex_files/t-circuitikz-0.9.6.tex.gz",
+   "gzBytes": 76542,
+   "sha256": "df8ec085954679fe70618be86249d02dc2ebacba2c219faad2e52b7ddb82a047"
+  },
+  {
+   "name": "tex_files/t-circuitikz.tex.gz",
+   "gzBytes": 1186,
+   "sha256": "3485b92a4b6da8ba21676e3bf00fb20632ed393687348b1e3961fd73437d362e"
+  },
+  {
+   "name": "tex_files/tikz-3dplot.sty.gz",
+   "gzBytes": 7870,
+   "sha256": "b8f27f6da23d8412ffe7684708813160142f8274830a66d58d72cd5bdd9a35a8"
+  },
+  {
+   "name": "tex_files/tikz-cd.sty.gz",
+   "gzBytes": 545,
+   "sha256": "e0a674b91e703ef895dcb7eb7c9800d326fc4898b44392aeef0f56e4c5ecc6dd"
+  },
+  {
+   "name": "tex_files/tikz-feynhand.sty.gz",
+   "gzBytes": 775,
+   "sha256": "9ad60e209c3645aa395e652ef61ff424571efa6be69976a4de1062489ccb8c25"
+  },
+  {
+   "name": "tex_files/tikzfeynhand.keys.code.tex.gz",
+   "gzBytes": 4405,
+   "sha256": "923ee13ae5d844af8c739205a05954f01b99af2dd8f9c12626a8cf173986296d"
+  },
+  {
+   "name": "tex_files/tikzfeynhand.sty.gz",
+   "gzBytes": 775,
+   "sha256": "9ad60e209c3645aa395e652ef61ff424571efa6be69976a4de1062489ccb8c25"
+  },
+  {
+   "name": "tex_files/tikzlibrary3d.code.tex.gz",
+   "gzBytes": 842,
+   "sha256": "00150b5e425f62c6cd4c0d66328a51dc3642b8c46c27bc7679d303c0b58ae01a"
+  },
+  {
+   "name": "tex_files/tikzlibraryangles.code.tex.gz",
+   "gzBytes": 947,
+   "sha256": "c69af46299fcd7e6a9df27d12077705db659e41425cbcedcc6f49e246508aff7"
+  },
+  {
+   "name": "tex_files/tikzlibraryanimations.code.tex.gz",
+   "gzBytes": 6455,
+   "sha256": "05b5b5e2317c44e567a6b3250e943dd73b71a9ff5b83f59f94e3513266b38c10"
+  },
+  {
+   "name": "tex_files/tikzlibraryarrows.code.tex.gz",
+   "gzBytes": 239,
+   "sha256": "afc46db24cc0815a7b7b5588322172fcebe468d91b041f0f7ab37edcb43993e0"
+  },
+  {
+   "name": "tex_files/tikzlibraryautomata.code.tex.gz",
+   "gzBytes": 1001,
+   "sha256": "f8ad24ca15ad336ca320fd72e4df52445dcab48049f6cf494dfd613939bd86b3"
+  },
+  {
+   "name": "tex_files/tikzlibrarybabel.code.tex.gz",
+   "gzBytes": 265,
+   "sha256": "730b0606d18bb5671279f10f1c9dc5785f82d896e898d146b8d28348d59cad1a"
+  },
+  {
+   "name": "tex_files/tikzlibrarybackgrounds.code.tex.gz",
+   "gzBytes": 1044,
+   "sha256": "adfc0f35f766f9e4a328f3bd9ccd61feed5302cf7bdd36a5d01da583fd5dfc38"
+  },
+  {
+   "name": "tex_files/tikzlibrarybending.code.tex.gz",
+   "gzBytes": 258,
+   "sha256": "381478b1a682a2b4a5e36ca5d7f5f9fab9afe02facd130aff220e8b60193a194"
+  },
+  {
+   "name": "tex_files/tikzlibrarycalc.code.tex.gz",
+   "gzBytes": 3936,
+   "sha256": "ca74fbc2f78e2fa3bca67db2e0cc742b4411e261b874418231c36f21d8023fb2"
+  },
+  {
+   "name": "tex_files/tikzlibrarycalendar.code.tex.gz",
+   "gzBytes": 2395,
+   "sha256": "a0cb87c77453fb91c043ea1d0a2608edfb01052b8e8c9dc954d67ea672d29406"
+  },
+  {
+   "name": "tex_files/tikzlibrarycd.code.tex.gz",
+   "gzBytes": 6003,
+   "sha256": "836de1b0d16f4a9e07a0d5f9deee80c71cb2d98ca47071f1046364af543eee00"
+  },
+  {
+   "name": "tex_files/tikzlibrarychains.code.tex.gz",
+   "gzBytes": 1566,
+   "sha256": "12a578b368c2fd1d61b93cc86b8f38fa5460f94dee7689096b2d987f5d1b61fc"
+  },
+  {
+   "name": "tex_files/tikzlibrarycircuits.code.tex.gz",
+   "gzBytes": 2378,
+   "sha256": "2f151acaef4c2619251b2a98fc27d07b6fafa3e5e5b14d969c6edc771c01e792"
+  },
+  {
+   "name": "tex_files/tikzlibrarycircuits.ee.IEC.code.tex.gz",
+   "gzBytes": 1444,
+   "sha256": "c90b90e47fad66f2800d6ec29852944ace147c82261113f4b4ff7dc3f31c0b35"
+  },
+  {
+   "name": "tex_files/tikzlibrarycircuits.ee.code.tex.gz",
+   "gzBytes": 1093,
+   "sha256": "8f7e1e5f10c285be59e3f44ddaa027b0e9b0866fcd6eed968bc1096e56655ac2"
+  },
+  {
+   "name": "tex_files/tikzlibrarycircuits.logic.CDH.code.tex.gz",
+   "gzBytes": 318,
+   "sha256": "a100a5b3f65779034d7dfb28e838331cfa99c6420bf6dd6b0779ce9e821893a8"
+  },
+  {
+   "name": "tex_files/tikzlibrarycircuits.logic.IEC.code.tex.gz",
+   "gzBytes": 645,
+   "sha256": "ceae00097315264462cf974d2a7f64b54b08382d13a6b52dab503186b816f190"
+  },
+  {
+   "name": "tex_files/tikzlibrarycircuits.logic.US.code.tex.gz",
+   "gzBytes": 555,
+   "sha256": "cbf8d206be72319551731a321285d695319f8c02e23400263c1114e963fee804"
+  },
+  {
+   "name": "tex_files/tikzlibrarycircuits.logic.code.tex.gz",
+   "gzBytes": 440,
+   "sha256": "8d22397faf0c9c74477e85ec90f2ba80a1be6c5c76103b425a5f4d5e881531a6"
+  },
+  {
+   "name": "tex_files/tikzlibrarydatavisualization.3d.code.tex.gz",
+   "gzBytes": 752,
+   "sha256": "b3ec9e988b5810f3b87b6e2aea110eb5b37fbdd5eefc6445ec95f618d0fd9699"
+  },
+  {
+   "name": "tex_files/tikzlibrarydatavisualization.barcharts.code.tex.gz",
+   "gzBytes": 465,
+   "sha256": "33d4a17f4c017eb1ee2e3a0fa27b3b5aee59ee965fec940b6ad80fc0770df31d"
+  },
+  {
+   "name": "tex_files/tikzlibrarydatavisualization.code.tex.gz",
+   "gzBytes": 17062,
+   "sha256": "72a82e68130900f35ccc6271ff7fdb14c963d1fbc4930914bab6521542fc5b79"
+  },
+  {
+   "name": "tex_files/tikzlibrarydatavisualization.formats.functions.code.tex.gz",
+   "gzBytes": 265,
+   "sha256": "f2aa84515355e78f4b8ea5f38fa029416bb2172e593c663a46c90deaba959609"
+  },
+  {
+   "name": "tex_files/tikzlibrarydatavisualization.polar.code.tex.gz",
+   "gzBytes": 2644,
+   "sha256": "306c3e1cc0fca2e2f6b86ac8c7b100cf531005cadbe2a591dab1f8b73b9a5ce4"
+  },
+  {
+   "name": "tex_files/tikzlibrarydatavisualization.sparklines.code.tex.gz",
+   "gzBytes": 386,
+   "sha256": "e422c971c7756bff5e0e9e4cf4fb1ae2da9f74fd72c8732fc731a608aea99877"
+  },
+  {
+   "name": "tex_files/tikzlibrarydecorations.code.tex.gz",
+   "gzBytes": 1564,
+   "sha256": "f90a3ea684012c7d99d4712dcddb3c2271d767330a28ed4b5450d3fc7ed7f0cf"
+  },
+  {
+   "name": "tex_files/tikzlibrarydecorations.footprints.code.tex.gz",
+   "gzBytes": 233,
+   "sha256": "9c15e2fb91fede60f81e6564357906a6d0fc17b51b03b95b664994868a719734"
+  },
+  {
+   "name": "tex_files/tikzlibrarydecorations.fractals.code.tex.gz",
+   "gzBytes": 231,
+   "sha256": "a9924486a90341c3d10e8ee2d9964ab5f3e03fef87499faf153575c66108c6a4"
+  },
+  {
+   "name": "tex_files/tikzlibrarydecorations.markings.code.tex.gz",
+   "gzBytes": 360,
+   "sha256": "85d64c1f4146a10997e1c159338d5c9989fb8654b1b8d5e2b184d6699cc66209"
+  },
+  {
+   "name": "tex_files/tikzlibrarydecorations.pathmorphing.code.tex.gz",
+   "gzBytes": 234,
+   "sha256": "7417970235d0f15d0000479261a5c667b524a4b4dedc4f635723815191a56df1"
+  },
+  {
+   "name": "tex_files/tikzlibrarydecorations.pathreplacing.code.tex.gz",
+   "gzBytes": 428,
+   "sha256": "b3984b917c60087d8317d563c83840aa4fab14ac9cfc0214e097beaa0ae9ce8a"
+  },
+  {
+   "name": "tex_files/tikzlibrarydecorations.shapes.code.tex.gz",
+   "gzBytes": 230,
+   "sha256": "8388bfeb41d4724d6e61efe2b364931009e8a732dc51ae9c75c9a88ca28836e7"
+  },
+  {
+   "name": "tex_files/tikzlibrarydecorations.text.code.tex.gz",
+   "gzBytes": 5265,
+   "sha256": "53849a752402d8de1801a6d8faa2dd2f0cc2bd6eb25886c22dc258f3b0843d8a"
+  },
+  {
+   "name": "tex_files/tikzlibraryer.code.tex.gz",
+   "gzBytes": 440,
+   "sha256": "76ddfd5d7baecf241be82ec2dba420174da84b91bf467dd6a215ac41bfb27dc9"
+  },
+  {
+   "name": "tex_files/tikzlibraryfadings.code.tex.gz",
+   "gzBytes": 553,
+   "sha256": "db1285d76aa5af2624ea00ad4b32231f7a4f994a66e5576f90f8fa76c78ea572"
+  },
+  {
+   "name": "tex_files/tikzlibraryfeynhand.code.tex.gz",
+   "gzBytes": 2630,
+   "sha256": "1b7ebdfb7192a1182be33ad9f881f035a85e49b696e4f2b9e57d0d23f00b5325"
+  },
+  {
+   "name": "tex_files/tikzlibraryfit.code.tex.gz",
+   "gzBytes": 1067,
+   "sha256": "671025f081f1584bc715cce26af2961fb3f9fe0bcb25c0f7665aa60a456ffb59"
+  },
+  {
+   "name": "tex_files/tikzlibraryfixedpointarithmetic.code.tex.gz",
+   "gzBytes": 216,
+   "sha256": "e9b7994568f96f818af673fa82ad0746efcd31b0adf9d1fc48b952ab2ebf8ae9"
+  },
+  {
+   "name": "tex_files/tikzlibraryfolding.code.tex.gz",
+   "gzBytes": 5403,
+   "sha256": "db1fe96111b4d6f381da9e84c41b092403517903ec9e9e3af6bbba89184da730"
+  },
+  {
+   "name": "tex_files/tikzlibraryfpu.code.tex.gz",
+   "gzBytes": 218,
+   "sha256": "e034b0407b4e7d22fda0c103685f04cc6e6fd5d3922c79d8f27cf08dd0407675"
+  },
+  {
+   "name": "tex_files/tikzlibrarygraphs.code.tex.gz",
+   "gzBytes": 16650,
+   "sha256": "fa266d42ec88302f79ebceb61d17a7b61e6f895fbf02495d7abe26cef29c7d70"
+  },
+  {
+   "name": "tex_files/tikzlibrarygraphs.standard.code.tex.gz",
+   "gzBytes": 876,
+   "sha256": "bd4d0057ee82e07e069f60b33da7e8bcdd8636f1e306a0d206867acc5a691c93"
+  },
+  {
+   "name": "tex_files/tikzlibraryintersections.code.tex.gz",
+   "gzBytes": 1526,
+   "sha256": "b3ac2b5d6cd6f53e9b86740645d53b346411bbc4114d6948127278ce102ddb34"
+  },
+  {
+   "name": "tex_files/tikzlibrarylindenmayersystems.code.tex.gz",
+   "gzBytes": 904,
+   "sha256": "ec27a9ddcce75c220b0ab666c4e772220c5e5ccf8a7eca71b9cfc280c1f8799d"
+  },
+  {
+   "name": "tex_files/tikzlibrarymath.code.tex.gz",
+   "gzBytes": 3991,
+   "sha256": "82d508dbbdc7f14c5ac2ac6a739f57138cefa59212f25d72c1e4b8a40ca35c53"
+  },
+  {
+   "name": "tex_files/tikzlibrarymatrix.code.tex.gz",
+   "gzBytes": 1278,
+   "sha256": "a7d7c63a98c6b2b76933f2dd694576bea9e2e99fac209e42977fb3ac3caf3212"
+  },
+  {
+   "name": "tex_files/tikzlibrarymindmap.code.tex.gz",
+   "gzBytes": 3013,
+   "sha256": "0454f420da4142d44bbb04755db0cdccda30a649722e99a2839f0733e4fc8a84"
+  },
+  {
+   "name": "tex_files/tikzlibrarypatterns.code.tex.gz",
+   "gzBytes": 389,
+   "sha256": "d088444b5d860c963af55a8a6b6306fe3d8df6e4b0f5b7ea92feba0218959469"
+  },
+  {
+   "name": "tex_files/tikzlibrarypatterns.meta.code.tex.gz",
+   "gzBytes": 1018,
+   "sha256": "d9130ee450c22dcc865e82a6a16184bd98d0cb93447f7ec6e103b639a518fb49"
+  },
+  {
+   "name": "tex_files/tikzlibraryperspective.code.tex.gz",
+   "gzBytes": 1060,
+   "sha256": "6b00a767607b25ed1f9de7a281bd94108a4ccd4e05160a4d54cc04746d1ec301"
+  },
+  {
+   "name": "tex_files/tikzlibrarypetri.code.tex.gz",
+   "gzBytes": 1207,
+   "sha256": "9fba7abf0659bcbfb169e598786027b612b4b566331189f5f5273e3dc987408a"
+  },
+  {
+   "name": "tex_files/tikzlibraryplothandlers.code.tex.gz",
+   "gzBytes": 242,
+   "sha256": "a0f886ef68c87501d618cac0e2cd57df8ae28b1ecaa44445ba6a950c6edfee70"
+  },
+  {
+   "name": "tex_files/tikzlibraryplotmarks.code.tex.gz",
+   "gzBytes": 241,
+   "sha256": "ae9ad2b2c750f3f71fa0ab2d06873e615c093e823417ece265cf2537baa25c2c"
+  },
+  {
+   "name": "tex_files/tikzlibrarypositioning.code.tex.gz",
+   "gzBytes": 1168,
+   "sha256": "2f723bc8a9d2e0790e08d7c6f7b773631fe2d32b2d69e5d47e22f2ea96725386"
+  },
+  {
+   "name": "tex_files/tikzlibraryquotes.code.tex.gz",
+   "gzBytes": 923,
+   "sha256": "bca41b378b3846a80ac3a1fac76f0d6a5af5a5bb6fcf113c530fc828ea7c3939"
+  },
+  {
+   "name": "tex_files/tikzlibraryrdf.code.tex.gz",
+   "gzBytes": 1800,
+   "sha256": "670f23661069fff21490ec2734a69b42e541af2709217b751fdf616c0c1e619e"
+  },
+  {
+   "name": "tex_files/tikzlibraryscopes.code.tex.gz",
+   "gzBytes": 439,
+   "sha256": "f6e28db51156d70d8b0f04980da810c0ba2ffd10244dc4ef2bfa9dcf609f5ee7"
+  },
+  {
+   "name": "tex_files/tikzlibraryshadings.code.tex.gz",
+   "gzBytes": 330,
+   "sha256": "1f37c00faf67a58030f5ebfcfd82521f11fabd87d153badeaa48cce0568d8cb4"
+  },
+  {
+   "name": "tex_files/tikzlibraryshadows.code.tex.gz",
+   "gzBytes": 760,
+   "sha256": "9082bc415ee47a66ec95ecb800b8bbced96c852f57798d49c40f2d90a0d550cc"
+  },
+  {
+   "name": "tex_files/tikzlibraryshapes.arrows.code.tex.gz",
+   "gzBytes": 286,
+   "sha256": "7bd558f61de7336754b2b019fa0176fb9f1f385d1807dc101413c83c8f0cdfee"
+  },
+  {
+   "name": "tex_files/tikzlibraryshapes.callouts.code.tex.gz",
+   "gzBytes": 445,
+   "sha256": "8ff0c4b7cb9b76f0f929845294cf29c79b941060fdfd89ed2a51e4309643dd83"
+  },
+  {
+   "name": "tex_files/tikzlibraryshapes.code.tex.gz",
+   "gzBytes": 277,
+   "sha256": "b36631c8d4e25670f311553c121feb9d1bbef82606ae7d570213875766e05597"
+  },
+  {
+   "name": "tex_files/tikzlibraryshapes.gates.logic.IEC.code.tex.gz",
+   "gzBytes": 457,
+   "sha256": "a3028d7604744f35aecebe5188ee156985b3d285e106515f8a2b762e7bc51a29"
+  },
+  {
+   "name": "tex_files/tikzlibraryshapes.gates.logic.US.code.tex.gz",
+   "gzBytes": 383,
+   "sha256": "5cd5fd3f14cf44f67122efee0abb3728c0b4e9cb0de8c3c559869c350dd1c4e2"
+  },
+  {
+   "name": "tex_files/tikzlibraryshapes.geometric.code.tex.gz",
+   "gzBytes": 246,
+   "sha256": "362c9891b2ced842d851176ca374d02b85841373c793449b1c31d267c7574b7e"
+  },
+  {
+   "name": "tex_files/tikzlibraryshapes.misc.code.tex.gz",
+   "gzBytes": 242,
+   "sha256": "e9653b003dbb48f5f4e3a6855c8ddb6fe91f0b9de5cc2e9b20c3ec577304621d"
+  },
+  {
+   "name": "tex_files/tikzlibraryshapes.multipart.code.tex.gz",
+   "gzBytes": 385,
+   "sha256": "2bfc2946828efe0902ec09e5597a1398a73c1083f555d8b4072753c9b71dd9aa"
+  },
+  {
+   "name": "tex_files/tikzlibraryshapes.symbols.code.tex.gz",
+   "gzBytes": 300,
+   "sha256": "b220d9f171fb564b3544ce08bdb1547fdbf354254c34ba6bc1400f719b8c251e"
+  },
+  {
+   "name": "tex_files/tikzlibrarysnakes.code.tex.gz",
+   "gzBytes": 820,
+   "sha256": "69d279b72b86bbf146344550235e58646bc8b904d321d2f68af773f65781430f"
+  },
+  {
+   "name": "tex_files/tikzlibraryspy.code.tex.gz",
+   "gzBytes": 1276,
+   "sha256": "ed84c3501a27d66af3ac7760c88f0738f36fde9f4e11fa64018631b090817381"
+  },
+  {
+   "name": "tex_files/tikzlibrarysvg.path.code.tex.gz",
+   "gzBytes": 452,
+   "sha256": "3fe1bb625f709e6ea4eb193d277332fe87e1024ac36fa4dbfc8ba27e845c82fc"
+  },
+  {
+   "name": "tex_files/tikzlibrarythrough.code.tex.gz",
+   "gzBytes": 510,
+   "sha256": "16903f2293284247e6b1dc9d51517acf2288f168b8b97bf287fef96f034ed7a9"
+  },
+  {
+   "name": "tex_files/tikzlibrarytrees.code.tex.gz",
+   "gzBytes": 953,
+   "sha256": "e8a1fffe6236d6e9746841b962ecba888157f415aacd6a781be22c4c091b5fc1"
+  },
+  {
+   "name": "tex_files/tikzlibraryturtle.code.tex.gz",
+   "gzBytes": 741,
+   "sha256": "43d73eab53bd23878e268f7c3e99e56558fbd70e867e82004a41b748f396eb96"
+  },
+  {
+   "name": "tex_files/tikzlibraryviews.code.tex.gz",
+   "gzBytes": 556,
+   "sha256": "47451a1d7266761036d9c6985d0fa97e79f3cb0d2cfa9a10351d61963d9f2098"
+  },
+  {
+   "name": "tex_files/ueuex.fd.gz",
+   "gzBytes": 583,
+   "sha256": "4a0d62d2b5fae55e9da4fa8759b2602f909392ac4b24199b222b17fba08df3cb"
+  },
+  {
+   "name": "tex_files/ueuf.fd.gz",
+   "gzBytes": 582,
+   "sha256": "726a86a19d12243da46cf82121ecc0e291625dab21f2bac521f7f76622c6adbf"
+  },
+  {
+   "name": "tex_files/ueur.fd.gz",
+   "gzBytes": 595,
+   "sha256": "2e1d3bd0d3012980f688043858554ee439fb8d6e0273cdbd39e4ad5f7ce64e3a"
+  },
+  {
+   "name": "tex_files/ueus.fd.gz",
+   "gzBytes": 594,
+   "sha256": "51c557f916a43a33999d3119c6d8157ae9ae1eff4035bef2228104ead337fa30"
+  },
+  {
+   "name": "tex_files/umsa.fd.gz",
+   "gzBytes": 568,
+   "sha256": "6f5216d7f2c4eed135fdd9d35f42ee2b93afc8326b389c9a4a544b74f90fdd46"
+  },
+  {
+   "name": "tex_files/umsb.fd.gz",
+   "gzBytes": 569,
+   "sha256": "300f9d2cf8fab1483411e148aea262c8b767764d5b259de6266c42bf3d362ce3"
+  },
+  {
+   "name": "asset-214",
+   "gzBytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+ ]
+}
