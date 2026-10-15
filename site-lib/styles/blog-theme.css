@@ -3134,3 +3134,52 @@ body.publish .sidebar-content-wrapper::-webkit-scrollbar-track { background: tra
         overflow: visible;
     }
 }
+
+/* ==========================================================================
+   8.11 侧栏文档树（site-lib/html/file-tree-content.html 注入的内容）
+   旧树来自 Quartz 导出，类名一大堆（tree-item/nav-folder…）且链接全失效，
+   已整份重建为轻量结构（.dsh-tree）。这里给它一套与主题一致的样式。
+   ========================================================================== */
+body.publish .dsh-tree {
+    padding: var(--space-3, 12px) var(--space-2, 8px) var(--space-5, 24px);
+    font-size: .91rem;
+}
+
+body.publish .dsh-tree-group + .dsh-tree-group {
+    margin-top: var(--space-4, 16px);
+    padding-top: var(--space-3, 12px);
+    border-top: 1px solid var(--border);
+}
+
+body.publish .dsh-tree-head {
+    font-size: .74rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--fg-subtle, #8b8f9a);
+    font-weight: 700;
+    padding: 0 var(--space-2, 8px) var(--space-2, 8px);
+}
+
+body.publish .dsh-tree-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body.publish .dsh-tree-link {
+    display: block;
+    padding: 5px 10px;
+    border-radius: var(--radius-s, 8px);
+    color: var(--fg-muted, #5b5f6b);
+    text-decoration: none;
+    line-height: 1.45;
+    border-left: 2px solid transparent;
+    transition: background .14s ease, color .14s ease, border-color .14s ease;
+}
+
+body.publish .dsh-tree-link:hover {
+    background: var(--accent-soft, #e7ecff);
+    color: var(--accent, #3b5bdb);
+    border-left-color: var(--accent, #3b5bdb);
+    text-decoration: none;
+}
