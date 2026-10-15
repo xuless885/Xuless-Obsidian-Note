@@ -599,11 +599,6 @@ mjx-sqrt.mjx-tall > mjx-box {
   margin-left: -.3em;
 }
 
-mjx-mrow {
-  display: inline-block;
-  text-align: left;
-}
-
 mjx-mover {
   display: inline-block;
   text-align: left;
@@ -636,6 +631,11 @@ mjx-script {
 
 mjx-script > mjx-spacer {
   display: block;
+}
+
+mjx-mrow {
+  display: inline-block;
+  text-align: left;
 }
 
 mjx-mroot {
@@ -772,112 +772,112 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
 
 @font-face /* 0 */ {
   font-family: MJXZERO;
-  src: url("../../site-lib/fonts/MathJax_Zero.woff") format("woff");
+  src: url("../fonts/MathJax_Zero.woff") format("woff");
 }
 
 @font-face /* 1 */ {
   font-family: MJXTEX;
-  src: url("../../site-lib/fonts/MathJax_Main-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_Main-Regular.woff") format("woff");
 }
 
 @font-face /* 2 */ {
   font-family: MJXTEX-B;
-  src: url("../../site-lib/fonts/MathJax_Main-Bold.woff") format("woff");
+  src: url("../fonts/MathJax_Main-Bold.woff") format("woff");
 }
 
 @font-face /* 3 */ {
   font-family: MJXTEX-I;
-  src: url("../../site-lib/fonts/MathJax_Math-Italic.woff") format("woff");
+  src: url("../fonts/MathJax_Math-Italic.woff") format("woff");
 }
 
 @font-face /* 4 */ {
   font-family: MJXTEX-MI;
-  src: url("../../site-lib/fonts/MathJax_Main-Italic.woff") format("woff");
+  src: url("../fonts/MathJax_Main-Italic.woff") format("woff");
 }
 
 @font-face /* 5 */ {
   font-family: MJXTEX-BI;
-  src: url("../../site-lib/fonts/MathJax_Math-BoldItalic.woff") format("woff");
+  src: url("../fonts/MathJax_Math-BoldItalic.woff") format("woff");
 }
 
 @font-face /* 6 */ {
   font-family: MJXTEX-S1;
-  src: url("../../site-lib/fonts/MathJax_Size1-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_Size1-Regular.woff") format("woff");
 }
 
 @font-face /* 7 */ {
   font-family: MJXTEX-S2;
-  src: url("../../site-lib/fonts/MathJax_Size2-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_Size2-Regular.woff") format("woff");
 }
 
 @font-face /* 8 */ {
   font-family: MJXTEX-S3;
-  src: url("../../site-lib/fonts/MathJax_Size3-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_Size3-Regular.woff") format("woff");
 }
 
 @font-face /* 9 */ {
   font-family: MJXTEX-S4;
-  src: url("../../site-lib/fonts/MathJax_Size4-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_Size4-Regular.woff") format("woff");
 }
 
 @font-face /* 10 */ {
   font-family: MJXTEX-A;
-  src: url("../../site-lib/fonts/MathJax_AMS-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_AMS-Regular.woff") format("woff");
 }
 
 @font-face /* 11 */ {
   font-family: MJXTEX-C;
-  src: url("../../site-lib/fonts/MathJax_Calligraphic-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_Calligraphic-Regular.woff") format("woff");
 }
 
 @font-face /* 12 */ {
   font-family: MJXTEX-CB;
-  src: url("../../site-lib/fonts/MathJax_Calligraphic-Bold.woff") format("woff");
+  src: url("../fonts/MathJax_Calligraphic-Bold.woff") format("woff");
 }
 
 @font-face /* 13 */ {
   font-family: MJXTEX-FR;
-  src: url("../../site-lib/fonts/MathJax_Fraktur-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_Fraktur-Regular.woff") format("woff");
 }
 
 @font-face /* 14 */ {
   font-family: MJXTEX-FRB;
-  src: url("../../site-lib/fonts/MathJax_Fraktur-Bold.woff") format("woff");
+  src: url("../fonts/MathJax_Fraktur-Bold.woff") format("woff");
 }
 
 @font-face /* 15 */ {
   font-family: MJXTEX-SS;
-  src: url("../../site-lib/fonts/MathJax_SansSerif-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_SansSerif-Regular.woff") format("woff");
 }
 
 @font-face /* 16 */ {
   font-family: MJXTEX-SSB;
-  src: url("../../site-lib/fonts/MathJax_SansSerif-Bold.woff") format("woff");
+  src: url("../fonts/MathJax_SansSerif-Bold.woff") format("woff");
 }
 
 @font-face /* 17 */ {
   font-family: MJXTEX-SSI;
-  src: url("../../site-lib/fonts/MathJax_SansSerif-Italic.woff") format("woff");
+  src: url("../fonts/MathJax_SansSerif-Italic.woff") format("woff");
 }
 
 @font-face /* 18 */ {
   font-family: MJXTEX-SC;
-  src: url("../../site-lib/fonts/MathJax_Script-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_Script-Regular.woff") format("woff");
 }
 
 @font-face /* 19 */ {
   font-family: MJXTEX-T;
-  src: url("../../site-lib/fonts/MathJax_Typewriter-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_Typewriter-Regular.woff") format("woff");
 }
 
 @font-face /* 20 */ {
   font-family: MJXTEX-V;
-  src: url("../../site-lib/fonts/MathJax_Vector-Regular.woff") format("woff");
+  src: url("../fonts/MathJax_Vector-Regular.woff") format("woff");
 }
 
 @font-face /* 21 */ {
   font-family: MJXTEX-VB;
-  src: url("../../site-lib/fonts/MathJax_Vector-Bold.woff") format("woff");
+  src: url("../fonts/MathJax_Vector-Bold.woff") format("woff");
 }
 
 mjx-stretchy-h.mjx-c23DF mjx-beg mjx-c::before {
@@ -1341,16 +1341,6 @@ mjx-c.mjx-c3C::before {
   content: "<";
 }
 
-mjx-c.mjx-c2E::before {
-  padding: 0.12em 0.278em 0 0;
-  content: ".";
-}
-
-mjx-c.mjx-c64::before {
-  padding: 0.694em 0.556em 0.011em 0;
-  content: "d";
-}
-
 mjx-c.mjx-c1D458.TEX-I::before {
   padding: 0.694em 0.521em 0.011em 0;
   content: "k";
@@ -1364,11 +1354,6 @@ mjx-c.mjx-c221A::before {
 mjx-c.mjx-cB1::before {
   padding: 0.666em 0.778em 0 0;
   content: "\B1";
-}
-
-mjx-c.mjx-c1D451.TEX-I::before {
-  padding: 0.694em 0.52em 0.01em 0;
-  content: "d";
 }
 
 mjx-c.mjx-c221A.TEX-S1::before {
@@ -1386,14 +1371,14 @@ mjx-c.mjx-c1D70B.TEX-I::before {
   content: "\3C0";
 }
 
+mjx-c.mjx-c2E::before {
+  padding: 0.12em 0.278em 0 0;
+  content: ".";
+}
+
 mjx-c.mjx-c2D9::before {
   padding: 0.669em 0.5em 0 0;
   content: "\2D9";
-}
-
-mjx-c.mjx-c1D45E.TEX-I::before {
-  padding: 0.442em 0.46em 0.194em 0;
-  content: "q";
 }
 
 mjx-c.mjx-c3E::before {
@@ -1404,6 +1389,11 @@ mjx-c.mjx-c3E::before {
 mjx-c.mjx-c2264::before {
   padding: 0.636em 0.778em 0.138em 0;
   content: "\2264";
+}
+
+mjx-c.mjx-c1D45E.TEX-I::before {
+  padding: 0.442em 0.46em 0.194em 0;
+  content: "q";
 }
 
 mjx-c.mjx-c1D45F.TEX-I::before {
@@ -1419,6 +1409,16 @@ mjx-c.mjx-c2124.TEX-A::before {
 mjx-c.mjx-c2224.TEX-A::before {
   padding: 0.75em 0.297em 0.252em 0;
   content: "\2224";
+}
+
+mjx-c.mjx-c64::before {
+  padding: 0.694em 0.556em 0.011em 0;
+  content: "d";
+}
+
+mjx-c.mjx-c1D451.TEX-I::before {
+  padding: 0.694em 0.52em 0.01em 0;
+  content: "d";
 }
 
 mjx-c.mjx-c211A.TEX-A::before {
@@ -1656,9 +1656,9 @@ mjx-c.mjx-c2205.TEX-A::before {
   content: "\2205";
 }
 
-mjx-c.mjx-c1D460.TEX-I::before {
-  padding: 0.442em 0.469em 0.01em 0;
-  content: "s";
+mjx-c.mjx-c1D6FC.TEX-I::before {
+  padding: 0.442em 0.64em 0.011em 0;
+  content: "\3B1";
 }
 
 mjx-c.mjx-c75::before {
@@ -1669,11 +1669,6 @@ mjx-c.mjx-c75::before {
 mjx-c.mjx-c70::before {
   padding: 0.442em 0.556em 0.194em 0;
   content: "p";
-}
-
-mjx-c.mjx-c1D6FC.TEX-I::before {
-  padding: 0.442em 0.64em 0.011em 0;
-  content: "\3B1";
 }
 
 mjx-c.mjx-c66::before {
@@ -1796,6 +1791,11 @@ mjx-c.mjx-c2213::before {
   content: "\2213";
 }
 
+mjx-c.mjx-c1D460.TEX-I::before {
+  padding: 0.442em 0.469em 0.01em 0;
+  content: "s";
+}
+
 mjx-c.mjx-c2248::before {
   padding: 0.483em 0.778em 0 0;
   content: "\2248";
@@ -1816,11 +1816,6 @@ mjx-c.mjx-c29.TEX-S1::before {
   content: ")";
 }
 
-mjx-c.mjx-c2032::before {
-  padding: 0.56em 0.275em 0 0;
-  content: "\2032";
-}
-
 mjx-c.mjx-c1D442.TEX-I::before {
   padding: 0.704em 0.763em 0.022em 0;
   content: "O";
@@ -1829,11 +1824,6 @@ mjx-c.mjx-c1D442.TEX-I::before {
 mjx-c.mjx-c7B.TEX-S3::before {
   padding: 1.45em 0.75em 0.949em 0;
   content: "{";
-}
-
-mjx-c.mjx-c1D43B.TEX-I::before {
-  padding: 0.683em 0.888em 0 0;
-  content: "H";
 }
 
 mjx-c.mjx-c2061::before {
@@ -1859,6 +1849,11 @@ mjx-c.mjx-c25B3::before {
 mjx-c.mjx-c27F8::before {
   padding: 0.525em 1.609em 0.024em 0;
   content: "\27F8";
+}
+
+mjx-c.mjx-c2032::before {
+  padding: 0.56em 0.275em 0 0;
+  content: "\2032";
 }
 
 mjx-c.mjx-c28.TEX-S1::before {
@@ -1956,9 +1951,9 @@ mjx-c.mjx-c2033::before {
   content: "\2032\2032";
 }
 
-mjx-c.mjx-c5C::before {
-  padding: 0.75em 0.5em 0.25em 0;
-  content: "\5C";
+mjx-c.mjx-c1D43B.TEX-I::before {
+  padding: 0.683em 0.888em 0 0;
+  content: "H";
 }
 
 mjx-c.mjx-c2220::before {
@@ -1971,19 +1966,14 @@ mjx-c.mjx-c2C6.TEX-S3::before {
   content: "\2C6";
 }
 
-mjx-c.mjx-c2C6.TEX-S4::before {
-  padding: 0.845em 1.902em 0 0;
-  content: "\2C6";
-}
-
-mjx-c.mjx-c1D6FE.TEX-I::before {
-  padding: 0.441em 0.543em 0.216em 0;
-  content: "\3B3";
-}
-
 mjx-c.mjx-c2277.TEX-A::before {
   padding: 0.681em 0.778em 0.253em 0;
   content: "\2277";
+}
+
+mjx-c.mjx-c2C6.TEX-S4::before {
+  padding: 0.845em 1.902em 0 0;
+  content: "\2C6";
 }
 
 mjx-c.mjx-c50::before {
@@ -2006,11 +1996,6 @@ mjx-c.mjx-c2C6::before {
   content: "\2C6";
 }
 
-mjx-c.mjx-c1D43E.TEX-I::before {
-  padding: 0.683em 0.889em 0 0;
-  content: "K";
-}
-
 mjx-c.mjx-c3B::before {
   padding: 0.43em 0.278em 0.194em 0;
   content: ";";
@@ -2024,6 +2009,11 @@ mjx-c.mjx-c4C.TEX-C::before {
 mjx-c.mjx-c53.TEX-C::before {
   padding: 0.705em 0.642em 0.022em 0;
   content: "S";
+}
+
+mjx-c.mjx-c1D43E.TEX-I::before {
+  padding: 0.683em 0.889em 0 0;
+  content: "K";
 }
 
 mjx-c.mjx-c1D6FF.TEX-I::before {
@@ -2071,6 +2061,11 @@ mjx-c.mjx-c20D7.TEX-V::before {
   content: "\2192";
 }
 
+mjx-c.mjx-c1D6FE.TEX-I::before {
+  padding: 0.441em 0.543em 0.216em 0;
+  content: "\3B3";
+}
+
 mjx-c.mjx-c3A6::before {
   padding: 0.683em 0.722em 0 0;
   content: "\3A6";
@@ -2096,14 +2091,14 @@ mjx-c.mjx-c2211.TEX-S2::before {
   content: "\2211";
 }
 
-mjx-c.mjx-c51::before {
-  padding: 0.705em 0.778em 0.193em 0;
-  content: "Q";
-}
-
 mjx-c.mjx-c1D70E.TEX-I::before {
   padding: 0.431em 0.571em 0.011em 0;
   content: "\3C3";
+}
+
+mjx-c.mjx-c51::before {
+  padding: 0.705em 0.778em 0.193em 0;
+  content: "Q";
 }
 
 mjx-c.mjx-c7A::before {

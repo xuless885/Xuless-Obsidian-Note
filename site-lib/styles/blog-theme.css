@@ -3069,3 +3069,68 @@ body.dsh-resizing * { transition: none !important; }
     body.publish #left-content,
     body.publish #right-content { width: auto; flex: 0 0 auto; }
 }
+
+/* ==========================================================================
+   8.10 侧栏：粘住视口 + 自身滚动
+   症状（用户报「侧栏渲染错误且不跟随页面滚动」）：
+     · #left-content / #right-content 是 flex 列，高度默认被拉伸到与正文等高。
+       正文很长时，侧栏卡片就有几千像素高，它的内容随页面滚动一起被带走，
+       看上去就是「不跟随滚动」+ 长卡片怪样子。
+     · .sidebar 上又写了 overflow: hidden（为了圆角好看），
+       于是内容既滚不动、又被裁掉，表现为「渲染错误」。
+   修法：给侧栏列本身 position: sticky; top: 导航栏高度; align-self: flex-start
+        + height: calc(100vh - 顶栏 - 间距)，再把「内容区」设为可滚动。
+       圆角裁切留在卡片上，滚动交给内容区，两者不冲突。
+   ========================================================================== */
+body.publish #left-content,
+body.publish #right-content {
+    align-self: flex-start;
+    position: sticky;
+    top: calc(var(--nav-h, 60px) + var(--space-3, 12px));
+    height: calc(100vh - var(--nav-h, 60px) - var(--space-5, 24px));
+    max-height: calc(100vh - var(--nav-h, 60px) - var(--space-5, 24px));
+    display: flex;
+    flex-direction: column;
+}
+
+body.publish #left-content > .sidebar,
+body.publish #right-content > .sidebar {
+    flex: 1 1 auto;
+    min-height: 0;              /* 关键：允许内部滚动而不是把父级撑高 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 内容区自己滚；顶栏与折叠图标留在上方不动 */
+body.publish .sidebar-content-wrapper,
+body.publish #left-sidebar-content,
+body.publish #right-sidebar-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+}
+
+body.publish .sidebar-content-wrapper::-webkit-scrollbar { width: 9px; }
+body.publish .sidebar-content-wrapper::-webkit-scrollbar-thumb {
+    background: var(--border-strong, #cfcec7);
+    border-radius: 999px;
+}
+body.publish .sidebar-content-wrapper::-webkit-scrollbar-track { background: transparent; }
+
+/* 窄屏不粘（否则侧栏会占满整个视口，正文看不到） */
+@media (max-width: 900px) {
+    body.publish #left-content,
+    body.publish #right-content {
+        position: static;
+        height: auto;
+        max-height: none;
+    }
+    body.publish .sidebar-content-wrapper,
+    body.publish #left-sidebar-content,
+    body.publish #right-sidebar-content {
+        overflow: visible;
+    }
+}
