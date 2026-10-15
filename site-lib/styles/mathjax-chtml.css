@@ -2476,42 +2476,16 @@ body.publish .el-table table { border-collapse: collapse; }
 body.publish code.code-inline { padding: .1em .35em; }
 
 /* ==========================================================================
-   CMU Serif（Computer Modern Unicode）——用户的 Obsidian 正文字体就是它
-   （vault appearance.json: textFontFamily = "CMU Serif,宋体"）。
-   不加载它的话，公式里的正体部分（\text、数字、函数名、直立字母）会落到
-   浏览器的系统字体上，与同一段公式里的 CMU 数学斜体不是一套 —— 观感很别扭。
-   这里是 CHTML 的「正文族」覆盖：MathJax 自带的 MJXTEX 仍是第一顺位
-   （数学符号必须走它的字形），CMU Serif 作为其后的兜底接管 ASCII 文本。
+   数学字体：**保持 MathJax 原厂字体栈，不要动它**
+   ──────────────────────────────────────────────────────────────────────────
+   MathJax CHTML 靠字体重映射排字形：`.mjx-c1D445.TEX-I::before { content:"R" }`
+   里的 "R" 必须在 MJXTEX-I（MathJax_Math-Italic）里取，才会是数学斜体 𝑅。
+   所以 MJXTEX* 本身就是「最标准默认的 LaTeX 字体」（Computer Modern /
+   Latin Modern）。**不要**在这条链里追加任何正文字体（如 CMU Serif）作为兜底：
+   一旦数学字体没命中，浏览器就会用兜底字体把字母画成正体 ——
+   表现就是「公式没有斜体、字体不对」，这是真实踩过的回归。
+   数学字体文件在 site-lib/fonts/MathJax_*.woff，由上面的 @font-face 加载。
    ========================================================================== */
-@font-face {
-  font-family: "CMU Serif";
-  font-style: normal; font-weight: 400; font-display: swap;
-  src: url("../fonts/cmu.serif-roman.ttf") format("truetype");
-}
-@font-face {
-  font-family: "CMU Serif";
-  font-style: italic; font-weight: 400; font-display: swap;
-  src: url("../fonts/cmu.serif-italic.ttf") format("truetype");
-}
-@font-face {
-  font-family: "CMU Serif";
-  font-style: normal; font-weight: 700; font-display: swap;
-  src: url("../fonts/cmu.serif-bold.ttf") format("truetype");
-}
-
-body.publish .MJX-TEX  { font-family: MJXZERO, MJXTEX, "CMU Serif", serif; }
-body.publish .TEX-B   { font-family: MJXZERO, MJXTEX-B, "CMU Serif", serif; }
-body.publish .TEX-I   { font-family: MJXZERO, MJXTEX-I, "CMU Serif", serif; }
-body.publish .TEX-MI  { font-family: MJXZERO, MJXTEX-MI, "CMU Serif", serif; }
-body.publish .TEX-A   { font-family: MJXZERO, MJXTEX-A, "CMU Serif", serif; }
-body.publish .TEX-S1  { font-family: MJXZERO, MJXTEX-S1, "CMU Serif", serif; }
-body.publish .TEX-S2  { font-family: MJXZERO, MJXTEX-S2, "CMU Serif", serif; }
-body.publish .TEX-S3  { font-family: MJXZERO, MJXTEX-S3, "CMU Serif", serif; }
-body.publish .TEX-S4  { font-family: MJXZERO, MJXTEX-S4, "CMU Serif", serif; }
-body.publish .TEX-CAL { font-family: MJXZERO, MJXTEX-C, "CMU Serif", serif; }
-body.publish .TEX-FR  { font-family: MJXZERO, MJXTEX-FR, "CMU Serif", serif; }
-body.publish .TEX-SF  { font-family: MJXZERO, MJXTEX-SF, "CMU Serif", serif; }
-body.publish .TEX-TT  { font-family: MJXZERO, MJXTEX-TT, "CMU Serif", serif; }
 
 /* 可折叠代码块（>20 行或 >1500 字节的围栏） */
 body.publish .code-fold > details { border: 1px solid var(--background-modifier-border, #d8d8d3); border-radius: 8px; }

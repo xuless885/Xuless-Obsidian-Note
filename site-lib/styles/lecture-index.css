@@ -1,6 +1,3 @@
-@font-face{font-family:"CMU Serif Web";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/cmu.serif-roman.ttf") format("truetype")}
-@font-face{font-family:"CMU Serif Web";font-style:italic;font-weight:400;font-display:swap;src:url("../fonts/cmu.serif-italic.ttf") format("truetype")}
-@font-face{font-family:"CMU Serif Web";font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/cmu.serif-bold.ttf") format("truetype")}
 /* 讲义目录页（hkdse-course/dse-课题讲义/index.html）样式
    复用 index.html 的视觉语言；因为这是内容目录页，不引入整站外壳的行内样式。 */
 :root{--bg:#f7f7f5;--bg-elev:#fff;--bg-sunken:#efeee9;--fg:#17181c;--fg-muted:#5b5f6b;--fg-subtle:#8b8f9a;
@@ -8,7 +5,7 @@
 --border:#e3e2dd;--border-strong:#cfcec7;--radius-m:14px;--radius-pill:999px;
 --shadow-s:0 1px 2px rgba(16,18,27,.06);--shadow-m:0 6px 22px rgba(16,18,27,.09);
 --space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:48px;--space-8:72px;--maxw:1120px;--nav-h:60px;
---font-sans:"CMU Serif","CMU Serif Web","Songti SC","PingFang SC",Georgia,serif;
+--font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
 --ease:cubic-bezier(.22,.61,.36,1)}
 html[data-theme="dark"]{--bg:#111216;--bg-elev:#191b21;--bg-sunken:#0d0e12;--fg:#ecedf1;--fg-muted:#a2a7b4;--fg-subtle:#767c8a;
 --accent:#7f95ff;--accent-soft:#1e2436;--grad-hero:linear-gradient(135deg,#2b3a8f 0%,#5b34b8 45%,#0b7a58 100%);

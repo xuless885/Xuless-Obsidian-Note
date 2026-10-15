@@ -602,3 +602,203 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
   else install();
 })();
+
+/* ============================================================================
+   侧栏「知识图谱」缩略图（doc-page.js 末尾追加的小模块）
+   ----------------------------------------------------------------------------
+   用户反馈：文档的侧边栏没有显示知识图谱的缩略图（旧站左栏顶部有）。
+   做法：在左栏内容区顶部插一个 canvas，用 site-lib/data 的 docs/links 现场算一个
+   轻量力导向布局（全站只有几十个文档，250 次迭代毫秒级），画成缩略图：
+     · 节点按分类上色，当前文档用强调色 + 更大的半径
+     · 当前文档的直接邻居加亮，其余淡化
+     · 点击整块跳转到完整的知识图谱页
+   不引入任何外部库，读主题的 CSS 变量取色，跟随深浅色。
+   ========================================================================== */
+(function () {
+  "use strict";
+
+  function cssVar(name, fallback) {
+    try {
+      var v = getComputedStyle(document.documentElement).getPropertyValue(name);
+      v = (v || "").trim();
+      return v || fallback;
+    } catch (e) { return fallback; }
+  }
+
+  /* 求仓库根前缀（相对当前页面）。优先 window.DSH_ROOT，其次从脚本自身 src 反推。 */
+  function rootPrefix() {
+    if (typeof window.DSH_ROOT === "string" && window.DSH_ROOT) {
+      return window.DSH_ROOT.replace(/\/+$/, "") || ".";
+    }
+    var s = document.querySelector('script[src*="site-lib/scripts/doc-page.js"]');
+    if (s) {
+      var src = s.getAttribute("src") || "";
+      var i = src.indexOf("site-lib/");
+      if (i > 0) {
+        var pre = src.slice(0, i).replace(/\/+$/, "");
+        return pre || ".";
+      }
+    }
+    return "..";
+  }
+
+  function install() {
+    var mount = document.getElementById("left-sidebar-content");
+    if (!mount || document.querySelector(".dsh-mini-graph")) return;
+
+    // 讲义页**没有** window.DSH_ROOT（只有外壳页/blog 页有），所以要自己求根前缀：
+    // 从本站脚本自身的 src 反推（`../../site-lib/scripts/doc-page.js` → `../..`）。
+    // 早先盲目回落成 ".." 会让取数路径变成 /hkdse-course/site-lib/... → 404，
+    // 然后被 .catch 把整块撤掉 —— 表现就是「侧栏没有图谱缩略图」。
+    var root = rootPrefix();
+    var meta = document.querySelector('meta[name="dsh-doc-id"]');
+    var curId = meta ? meta.getAttribute("content") : null;
+
+    var wrap = document.createElement("div");
+    wrap.className = "dsh-mini-graph";
+    wrap.innerHTML =
+      '<div class="dsh-mini-head"><span>知识图谱</span>' +
+      '<a class="dsh-mini-more" href="' + root + '/blog/graph.html">查看全图 →</a></div>' +
+      '<a class="dsh-mini-canvas-link" href="' + root + '/blog/graph.html" ' +
+      'title="打开完整的知识图谱"><canvas width="520" height="320"></canvas></a>';
+    mount.insertBefore(wrap, mount.firstChild);
+
+    Promise.all([
+      fetch(root + "/site-lib/data/docs.json").then(function (r) { return r.json(); }),
+      fetch(root + "/site-lib/data/links.json").then(function (r) { return r.json(); })
+    ]).then(function (res) {
+      var docs = (res[0] && res[0].docs) || [];
+      var edges = (res[1] && (res[1].edges || res[1].links)) || [];
+      if (!docs.length) { wrap.remove(); return; }
+
+      var idx = {}, nodes = [];
+      docs.forEach(function (d, i) {
+        idx[d.id] = i;
+        nodes.push({ x: Math.cos(i * 2.399) * 40 + (i % 7) * 3,
+                     y: Math.sin(i * 2.399) * 40 + (i % 5) * 3,
+                     vx: 0, vy: 0, deg: 0, cat: d.category || "" });
+      });
+      var links = [];
+      edges.forEach(function (e) {
+        var s = idx[e.s !== undefined ? e.s : e.source];
+        var t = idx[e.t !== undefined ? e.t : e.target];
+        if (s === undefined || t === undefined || s === t) return;
+        links.push([s, t]);
+        nodes[s].deg++; nodes[t].deg++;
+      });
+      var cur = curId ? idx[curId] : undefined;
+      var nbr = {};
+      if (cur !== undefined) {
+        links.forEach(function (l) {
+          if (l[0] === cur) nbr[l[1]] = 1;
+          if (l[1] === cur) nbr[l[0]] = 1;
+        });
+      }
+
+      // 轻量力导向：斥力 + 弹簧 + 向心，同步迭代
+      var N = nodes.length;
+      for (var it = 0; it < 260; it++) {
+        var a, b, dx, dy, d2, d, f;
+        for (a = 0; a < N; a++) { nodes[a].ax = 0; nodes[a].ay = 0; }
+        for (a = 0; a < N; a++) {
+          for (b = a + 1; b < N; b++) {
+            dx = nodes[b].x - nodes[a].x; dy = nodes[b].y - nodes[a].y;
+            d2 = dx * dx + dy * dy; if (d2 < 4) d2 = 4;
+            d = Math.sqrt(d2); f = 900 / d2;
+            if (f > 30) f = 30;
+            nodes[a].ax -= dx / d * f; nodes[a].ay -= dy / d * f;
+            nodes[b].ax += dx / d * f; nodes[b].ay += dy / d * f;
+          }
+        }
+        for (var li = 0; li < links.length; li++) {
+          a = links[li][0]; b = links[li][1];
+          dx = nodes[b].x - nodes[a].x; dy = nodes[b].y - nodes[a].y;
+          d = Math.sqrt(dx * dx + dy * dy) || 1;
+          f = (d - 34) / d * 0.08;
+          nodes[a].ax += dx * f; nodes[a].ay += dy * f;
+          nodes[b].ax -= dx * f; nodes[b].ay -= dy * f;
+        }
+        for (a = 0; a < N; a++) {
+          nodes[a].ax -= nodes[a].x * 0.0016;
+          nodes[a].ay -= nodes[a].y * 0.0016;
+          nodes[a].vx = (nodes[a].vx + nodes[a].ax) * 0.82;
+          nodes[a].vy = (nodes[a].vy + nodes[a].ay) * 0.82;
+          nodes[a].x += nodes[a].vx; nodes[a].y += nodes[a].vy;
+        }
+      }
+
+      // 取景
+      var minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+      nodes.forEach(function (n) {
+        if (n.x < minX) minX = n.x; if (n.x > maxX) maxX = n.x;
+        if (n.y < minY) minY = n.y; if (n.y > maxY) maxY = n.y;
+      });
+      var W = 520, H = 320, pad = 26;
+      var k = Math.min((W - pad * 2) / Math.max(1, maxX - minX),
+                       (H - pad * 2) / Math.max(1, maxY - minY));
+      var cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+      function px(n) { return W / 2 + (n.x - cx) * k; }
+      function py(n) { return H / 2 + (n.y - cy) * k; }
+
+      var cv = wrap.querySelector("canvas");
+      var ctx = cv.getContext("2d");
+      if (!ctx) { return; }
+      var accent = cssVar("--accent", "#3b5bdb");
+      var fgMuted = cssVar("--fg-subtle", "#8b8f9a");
+      var border = cssVar("--border-strong", "#cfcec7");
+      var bgElev = cssVar("--bg-elev", "#fff");
+
+      // 高清屏适配
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = W * dpr; cv.height = H * dpr;
+      cv.style.width = "100%"; cv.style.height = "auto";
+      ctx.scale(dpr, dpr);
+
+      var palette = ["#3b5bdb", "#0ca678", "#e8590c", "#7048e8"];
+
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = border;
+      ctx.globalAlpha = 0.55;
+      links.forEach(function (l) {
+        var hi = cur !== undefined && (l[0] === cur || l[1] === cur);
+        ctx.globalAlpha = hi ? 0.95 : 0.25;
+        ctx.strokeStyle = hi ? accent : border;
+        ctx.beginPath();
+        ctx.moveTo(px(nodes[l[0]]), py(nodes[l[0]]));
+        ctx.lineTo(px(nodes[l[1]]), py(nodes[l[1]]));
+        ctx.stroke();
+      });
+
+      nodes.forEach(function (n, i) {
+        var isCur = i === cur;
+        var isNbr = nbr[i];
+        var r = isCur ? 7 : (isNbr ? 4 : (n.deg > 0 ? 3 : 2));
+        ctx.globalAlpha = (cur === undefined || isCur || isNbr) ? 1 : 0.35;
+        ctx.beginPath();
+        ctx.arc(px(n), py(n), r, 0, Math.PI * 2);
+        ctx.fillStyle = isCur ? accent : palette[Math.abs(hash(n.cat)) % palette.length];
+        ctx.fill();
+        if (isCur) {
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = bgElev;
+          ctx.stroke();
+        }
+      });
+      ctx.globalAlpha = 1;
+    }).catch(function () {
+      // 数据取不到就撤掉这块，绝不留下破图
+      var w = document.querySelector(".dsh-mini-graph");
+      if (w) w.remove();
+    });
+  }
+
+  function hash(s) {
+    s = String(s || "");
+    var h = 0;
+    for (var i = 0; i < s.length; i++) { h = ((h << 5) - h + s.charCodeAt(i)) | 0; }
+    return h;
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  else install();
+})();

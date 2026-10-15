@@ -50,7 +50,34 @@
         return v === "" ? "." : v;
     }
 
-    var ROOT = normalizeRoot(window.DSH_ROOT);
+    /* 从本脚本自身的 src 反推仓库根前缀。
+       为什么必须这样：rendered 出来的内容页（hkdse-course/<栏目>/xxx.html）**不设**
+       window.DSH_ROOT，而 normalizeRoot 会把空值回落成 "."；这些页面在两层目录下，
+       正确的根前缀是 "../.."。回落成 "." 会让所有取数变成
+       /hkdse-course/<栏目>/site-lib/... → 404，
+       表现就是「反向链接/引用面板加载失败」「侧栏图谱缩略图不见」。
+       外壳页（index.html 等）会在内联脚本里显式设置 DSH_ROOT，所以优先尊重它。 */
+    function deriveRoot() {
+        try {
+            var list = document.querySelectorAll("script[src]");
+            for (var i = 0; i < list.length; i++) {
+                var raw = list[i].getAttribute("src") || "";
+                if (raw.indexOf("site-lib/scripts/site.js") !== -1) {
+                    var k = raw.indexOf("site-lib/");
+                    if (k > 0) {
+                        var pre = raw.slice(0, k).replace(/\/+$/, "");
+                        return pre || ".";
+                    }
+                }
+            }
+        } catch (err) { /* ignore */ }
+        return ".";
+    }
+
+    var explicit = (typeof window.DSH_ROOT === "string" && window.DSH_ROOT.trim() !== "")
+        ? window.DSH_ROOT
+        : deriveRoot();
+    var ROOT = normalizeRoot(explicit);
     window.DSH_ROOT = ROOT;
 
     /* 逐段 encodeURIComponent，保留 "/"，与站点既有的中文文件名共存 */

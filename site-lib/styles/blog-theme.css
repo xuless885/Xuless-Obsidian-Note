@@ -3223,26 +3223,6 @@ body.publish samp {
   font-family: var(--font-mono, "Cascadia Code", "Chiron Hei HK", ui-monospace, monospace) !important;
 }
 
-/* CMU-SERIF-OVERRIDE
-   ────────────────────────────────────────────────────────────────────────
-   用户的 Obsidian 正文字体是 CMU Serif（vault appearance.json:
-   textFontFamily = "CMU Serif,宋体"），站点正文也用同一族，公式与正文才是一套。
-
-   这里**直接重定义 --font-sans 本身**，而不是逐条盖规则：
-   本文件里有十几处零散规则写着 `font-family: var(--font-sans) !important`
-   （body / p / 标题 / 表格 / 列表 / 引用…），逐条覆盖既啰嗦又容易漏。
-   重定义变量后，它们全部跟着变成 CMU Serif，一处生效。
-   放在文件末尾，靠后定义取胜。
-
-   顺序：先用系统已装的 "CMU Serif"，再回落到仓库里的 webfont "CMU Serif Web"
-   （site-lib/fonts/cmu.serif-*.ttf，OFL 许可），最后才是通用衬线。
-   */
-:root {
-    --font-sans: "CMU Serif", "CMU Serif Web", "Latin Modern Roman", "Songti SC",
-        "Noto Serif CJK SC", Georgia, serif;
-    --font-serif-cmu: "CMU Serif", "CMU Serif Web", "Latin Modern Roman", "Songti SC",
-        "Noto Serif CJK SC", Georgia, serif;
-}
 
 /* ==========================================================================
    8.12 侧栏顶栏图标尺寸修复（dsh-sidebar-icon-fix）
@@ -3423,3 +3403,100 @@ body.publish .dsh-sidebar-openers button[hidden] { display: none; }
     body.publish #left-content.dsh-overlay > .sidebar,
     body.publish #right-content.dsh-overlay > .sidebar { display: flex !important; height: 100%; }
 }
+
+/* ==========================================================================
+   CMU-SERIF-DOC-ONLY：文档正文用 CMU Serif，UI 不用
+   ──────────────────────────────────────────────────────────────────────────
+   用户要求「文档的字体与非文档部分的字体要区分开」：
+     · 文档正文（#center-content 内的正文/标题/表格/引用/列表）→ CMU Serif
+       （与他的 Obsidian 一致，textFontFamily = "CMU Serif,宋体"）
+     · 侧栏 / 目录树 / 导航 / 按钮 / 检索 / 外壳页 → 系统 UI 字体栈（--font-sans）
+   注意此前是把 --font-sans 整个改掉，那会把 UI 也变衬线，属于过度修改。
+   这里**只**针对文档内容区域生效。
+   ========================================================================== */
+@font-face {
+  font-family: "CMU Serif Web";
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/cmu.serif-roman.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CMU Serif Web";
+  font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../fonts/cmu.serif-italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CMU Serif Web";
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/cmu.serif-bold.ttf") format("truetype");
+}
+
+body.publish #center-content {
+  --font-doc: "CMU Serif", "CMU Serif Web", "Latin Modern Roman", "Songti SC",
+              "Noto Serif CJK SC", Georgia, serif;
+}
+body.publish #center-content p,
+body.publish #center-content li,
+body.publish #center-content dt,
+body.publish #center-content dd,
+body.publish #center-content blockquote,
+body.publish #center-content table,
+body.publish #center-content th,
+body.publish #center-content td,
+body.publish #center-content h1,
+body.publish #center-content h2,
+body.publish #center-content h3,
+body.publish #center-content h4,
+body.publish #center-content h5,
+body.publish #center-content h6,
+body.publish #center-content .page-title,
+body.publish #center-content .inline-title,
+body.publish #center-content .callout-content,
+body.publish #center-content .callout-title-inner {
+  font-family: var(--font-doc) !important;
+}
+
+/* ==========================================================================
+   8.14 侧栏「知识图谱」缩略图（doc-page.js 注入）
+   ========================================================================== */
+body.publish .dsh-mini-graph {
+    margin: var(--space-3, 12px) var(--space-3, 12px) var(--space-2, 8px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-m, 14px);
+    background: var(--bg-elev);
+    overflow: hidden;
+}
+
+body.publish .dsh-mini-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px 6px;
+    font-size: .74rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--fg-subtle, #8b8f9a);
+    font-weight: 700;
+}
+
+body.publish .dsh-mini-more {
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+    font-size: .78rem;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+body.publish .dsh-mini-canvas-link {
+    display: block;
+    line-height: 0;
+    border-top: 1px solid var(--border);
+}
+
+body.publish .dsh-mini-canvas-link canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity .16s ease;
+}
+
+body.publish .dsh-mini-canvas-link:hover canvas { opacity: .85; }
