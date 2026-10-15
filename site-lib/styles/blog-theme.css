@@ -3183,3 +3183,63 @@ body.publish .dsh-tree-link:hover {
     border-left-color: var(--accent, #3b5bdb);
     text-decoration: none;
 }
+
+/* ==========================================================================
+   正文字体：CMU Serif（Computer Modern Unicode）
+   用户 Obsidian 的正文字体就是它（vault appearance.json: textFontFamily =
+   "CMU Serif,宋体"）。站点也用同一族，公式与正文才是一套观感。
+   字体文件：site-lib/fonts/cmu.serif-{roman,italic,bold}.ttf（OFL 许可，可再分发）。
+   注意顺序：先列用户系统已有的 "CMU Serif"，再回落到仓库里的 webfont。
+   ========================================================================== */
+@font-face {
+  font-family: "CMU Serif Web";
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/cmu.serif-roman.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CMU Serif Web";
+  font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../fonts/cmu.serif-italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CMU Serif Web";
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/cmu.serif-bold.ttf") format("truetype");
+}
+
+:root {
+  --font-serif-cmu: "CMU Serif", "CMU Serif Web", "Latin Modern Roman", "Songti SC", Georgia, serif;
+}
+body.publish,
+body.publish .markdown-preview-view,
+body.publish .markdown-rendered {
+  font-family: var(--font-serif-cmu) !important;
+}
+/* 代码与等宽处仍走等宽字体，不要把它们变成衬线 */
+body.publish code,
+body.publish pre,
+body.publish kbd,
+body.publish samp {
+  font-family: var(--font-mono, "Cascadia Code", "Chiron Hei HK", ui-monospace, monospace) !important;
+}
+
+/* CMU-SERIF-OVERRIDE
+   ────────────────────────────────────────────────────────────────────────
+   用户的 Obsidian 正文字体是 CMU Serif（vault appearance.json:
+   textFontFamily = "CMU Serif,宋体"），站点正文也用同一族，公式与正文才是一套。
+
+   这里**直接重定义 --font-sans 本身**，而不是逐条盖规则：
+   本文件里有十几处零散规则写着 `font-family: var(--font-sans) !important`
+   （body / p / 标题 / 表格 / 列表 / 引用…），逐条覆盖既啰嗦又容易漏。
+   重定义变量后，它们全部跟着变成 CMU Serif，一处生效。
+   放在文件末尾，靠后定义取胜。
+
+   顺序：先用系统已装的 "CMU Serif"，再回落到仓库里的 webfont "CMU Serif Web"
+   （site-lib/fonts/cmu.serif-*.ttf，OFL 许可），最后才是通用衬线。
+   */
+:root {
+    --font-sans: "CMU Serif", "CMU Serif Web", "Latin Modern Roman", "Songti SC",
+        "Noto Serif CJK SC", Georgia, serif;
+    --font-serif-cmu: "CMU Serif", "CMU Serif Web", "Latin Modern Roman", "Songti SC",
+        "Noto Serif CJK SC", Georgia, serif;
+}

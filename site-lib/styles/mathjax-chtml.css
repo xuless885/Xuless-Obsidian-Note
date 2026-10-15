@@ -2475,6 +2475,44 @@ body.publish .el-table { overflow-x: auto; max-width: 100%; }
 body.publish .el-table table { border-collapse: collapse; }
 body.publish code.code-inline { padding: .1em .35em; }
 
+/* ==========================================================================
+   CMU Serif（Computer Modern Unicode）——用户的 Obsidian 正文字体就是它
+   （vault appearance.json: textFontFamily = "CMU Serif,宋体"）。
+   不加载它的话，公式里的正体部分（\text、数字、函数名、直立字母）会落到
+   浏览器的系统字体上，与同一段公式里的 CMU 数学斜体不是一套 —— 观感很别扭。
+   这里是 CHTML 的「正文族」覆盖：MathJax 自带的 MJXTEX 仍是第一顺位
+   （数学符号必须走它的字形），CMU Serif 作为其后的兜底接管 ASCII 文本。
+   ========================================================================== */
+@font-face {
+  font-family: "CMU Serif";
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/cmu.serif-roman.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CMU Serif";
+  font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../fonts/cmu.serif-italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CMU Serif";
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/cmu.serif-bold.ttf") format("truetype");
+}
+
+body.publish .MJX-TEX  { font-family: MJXZERO, MJXTEX, "CMU Serif", serif; }
+body.publish .TEX-B   { font-family: MJXZERO, MJXTEX-B, "CMU Serif", serif; }
+body.publish .TEX-I   { font-family: MJXZERO, MJXTEX-I, "CMU Serif", serif; }
+body.publish .TEX-MI  { font-family: MJXZERO, MJXTEX-MI, "CMU Serif", serif; }
+body.publish .TEX-A   { font-family: MJXZERO, MJXTEX-A, "CMU Serif", serif; }
+body.publish .TEX-S1  { font-family: MJXZERO, MJXTEX-S1, "CMU Serif", serif; }
+body.publish .TEX-S2  { font-family: MJXZERO, MJXTEX-S2, "CMU Serif", serif; }
+body.publish .TEX-S3  { font-family: MJXZERO, MJXTEX-S3, "CMU Serif", serif; }
+body.publish .TEX-S4  { font-family: MJXZERO, MJXTEX-S4, "CMU Serif", serif; }
+body.publish .TEX-CAL { font-family: MJXZERO, MJXTEX-C, "CMU Serif", serif; }
+body.publish .TEX-FR  { font-family: MJXZERO, MJXTEX-FR, "CMU Serif", serif; }
+body.publish .TEX-SF  { font-family: MJXZERO, MJXTEX-SF, "CMU Serif", serif; }
+body.publish .TEX-TT  { font-family: MJXZERO, MJXTEX-TT, "CMU Serif", serif; }
+
 /* 可折叠代码块（>20 行或 >1500 字节的围栏） */
 body.publish .code-fold > details { border: 1px solid var(--background-modifier-border, #d8d8d3); border-radius: 8px; }
 body.publish .code-fold > details > summary.code-fold-summary {
@@ -2483,9 +2521,7 @@ body.publish .code-fold > details > summary.code-fold-summary {
 body.publish .code-fold > details > summary.code-fold-summary:hover { opacity: 1; }
 body.publish .code-fold > details[open] > summary.code-fold-summary { border-bottom: 1px solid var(--background-modifier-border, #d8d8d3); }
 
-/* TikZ 块：由 site-lib/vendor/tikzjax/tikzjax-loader.js 处理
-   （它自己注入 tikzjax.css、把 <script type="text/tikz"> 包成 .tikzjax-host、
-     成功后注入 SVG，失败时降级成 .tikzjax-fallback 可见源码） */
+/* TikZ 块的兜底样式（页面已改为静态 SVG，这里只在极端情况下生效） */
 body.publish .tikz-block { margin: 1em 0; text-align: center; }
 body.publish .tikz-block .tikzjax-host { display: inline-block; max-width: 100%; }
 body.publish .tikz-block .tikzjax-host svg { max-width: 100%; height: auto; }
