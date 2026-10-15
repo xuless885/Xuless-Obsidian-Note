@@ -430,3 +430,175 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
   else install();
 })();
+
+/* ===========================================================================
+   侧栏折叠/展开兜底（原版 Obsidian 侧栏 JS 未加载，这里自己实现）
+   · 点击顶栏的 .sidebar-collapse-icon 收起/展开该栏
+   · ≤1024px 默认两栏都收起，用左上角悬浮按钮以覆盖层打开
+   · 状态记在 localStorage（与页面内联脚本用的键一致）
+   =========================================================================== */
+(function () {
+  "use strict";
+  var LS = "dsh-sidebar-collapsed";
+  var BP = 1024;
+
+  function read() {
+    try { return JSON.parse(localStorage.getItem(LS) || "{}") || {}; } catch (e) { return {}; }
+  }
+  function write(o) { try { localStorage.setItem(LS, JSON.stringify(o)); } catch (e) {} }
+
+  function install() {
+    var left = document.getElementById("left-content");
+    var right = document.getElementById("right-content");
+    var main = document.getElementById("main-horizontal");
+    if (!main || (!left && !right)) return;
+    var wide = window.innerWidth > BP;
+    var st = read();
+
+    // 窄屏：默认收起两栏（页面内联脚本只处理了 <768，这里补齐 768–1024）
+    if (!wide) {
+      if (left) left.classList.add("is-collapsed");
+      if (right) right.classList.add("is-collapsed");
+    } else {
+      if (left && st.left) left.classList.add("is-collapsed");
+      if (right && st.right) right.classList.add("is-collapsed");
+    }
+
+    function setCollapsed(el, key, v, overlay) {
+      if (!el) return;
+      el.classList.toggle("is-collapsed", v && !overlay);
+      el.classList.toggle("dsh-overlay", !!overlay);
+      if (!overlay && wide) { st[key] = v ? 1 : 0; write(st); }
+    }
+
+    // 顶栏折叠图标
+    [[left, "left"], [right, "right"]].forEach(function (pr) {
+      var el = pr[0], key = pr[1];
+      if (!el) return;
+      var icon = el.querySelector(".sidebar-collapse-icon");
+      if (!icon) return;
+      icon.setAttribute("title", "收起 / 展开此栏");
+      icon.addEventListener("click", function (e) {
+        e.preventDefault(); e.stopPropagation();
+        var collapsed = el.classList.contains("is-collapsed") || el.classList.contains("dsh-overlay");
+        setCollapsed(el, key, !collapsed, false);
+      });
+    });
+
+    // 窄屏（或已收起）时，提供悬浮按钮打开覆盖层
+    var bar = document.createElement("div");
+    bar.className = "dsh-sidebar-openers";
+    function mkBtn(label, title, el, key) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.innerHTML = label;
+      b.title = title;
+      b.addEventListener("click", function () {
+        var open = el.classList.contains("dsh-overlay");
+        if (open) { el.classList.remove("dsh-overlay"); el.classList.add("is-collapsed"); }
+        else { el.classList.remove("is-collapsed"); el.classList.add("dsh-overlay"); }
+        refresh();
+      });
+      return b;
+    }
+    var bL = left ? mkBtn("&#9776;", "打开/收起课程目录", left, "left") : null;
+    var bR = right ? mkBtn("&#9776;", "打开/收起本文目录", right, "right") : null;
+    if (bL) bar.appendChild(bL);
+    if (bR) bar.appendChild(bR);
+    document.body.appendChild(bar);
+
+    function refresh() {
+      var needBar = !wide || (left && left.classList.contains("is-collapsed")) ||
+                    (right && right.classList.contains("is-collapsed"));
+      bar.hidden = !needBar;
+      if (bL) bL.hidden = !left;
+      if (bR) bR.hidden = !right;
+    }
+    refresh();
+
+    window.addEventListener("resize", function () {
+      var nowWide = window.innerWidth > BP;
+      if (nowWide !== wide) { wide = nowWide; location.reload(); return; }
+      refresh();
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  else install();
+})();
+
+/* ===========================================================================
+   右栏目录（#outline）的折叠交互
+   原版 Obsidian 的侧栏 JS 没有随站点加载，所以这些 .collapse-icon / .tree-collapse-all
+   都是死的（点了没反应），而「全部折叠」按钮的图标原本还是个空 SVG。
+   这里补上最小可用的折叠逻辑：点箭头收起/展开该节点，点右上按钮全部收起/展开。
+   =========================================================================== */
+(function () {
+  "use strict";
+  function install() {
+    var outline = document.getElementById("outline");
+    if (!outline) return;
+
+    // 每个 tree-item：把子节点包成一个可折叠容器
+    function childrenOf(item) {
+      var kids = item.querySelector(":scope > .tree-item-children");
+      if (kids) return kids;
+      var sibs = [];
+      var n = item.nextElementSibling;
+      while (n && n.classList.contains("tree-item")) { sibs.push(n); n = n.nextElementSibling; }
+      return null;
+    }
+
+    function toggle(item) {
+      var kids = item.querySelector(":scope > .tree-item-children");
+      if (!kids) {
+        // 没有显式的 children 容器：直接收起后续同深度的兄弟项
+        var depth = item.getAttribute("data-depth") || "1";
+        var collapsed = item.classList.toggle("is-collapsed");
+        var n = item.nextElementSibling;
+        while (n && n.classList.contains("tree-item") &&
+               (n.getAttribute("data-depth") || "1") > depth) {
+          n.style.display = collapsed ? "none" : "";
+          // 递归恢复被隐藏的更深层
+          if (!collapsed) {
+            n.querySelectorAll('.tree-item[style*="display: none"]').forEach(function (d) {
+              if (!d.closest(".tree-item.is-collapsed")) d.style.display = "";
+            });
+          }
+          n = n.nextElementSibling;
+        }
+        return collapsed;
+      }
+      var c = item.classList.toggle("is-collapsed");
+      kids.style.display = c ? "none" : "";
+      return c;
+    }
+
+    outline.addEventListener("click", function (e) {
+      var icon = e.target.closest(".collapse-icon, .tree-item-icon");
+      if (icon) {
+        var item = icon.closest(".tree-item");
+        if (item) { e.preventDefault(); e.stopPropagation(); toggle(item); }
+      }
+    });
+
+    var all = outline.querySelector(".tree-collapse-all");
+    if (all) {
+      var collapsedAll = false;
+      all.addEventListener("click", function (e) {
+        e.preventDefault(); e.stopPropagation();
+        collapsedAll = !collapsedAll;
+        all.classList.toggle("is-collapsed", collapsedAll);
+        all.setAttribute("aria-label", collapsedAll ? "Expand All" : "Collapse All");
+        outline.querySelectorAll(".tree-item[data-depth='1'] .tree-item-children").forEach(function (k) {
+          k.style.display = collapsedAll ? "none" : "";
+        });
+        outline.querySelectorAll(".tree-item[data-depth='1']").forEach(function (it) {
+          it.classList.toggle("is-collapsed", collapsedAll);
+        });
+      });
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  else install();
+})();

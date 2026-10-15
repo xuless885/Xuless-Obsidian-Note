@@ -3243,3 +3243,183 @@ body.publish samp {
     --font-serif-cmu: "CMU Serif", "CMU Serif Web", "Latin Modern Roman", "Songti SC",
         "Noto Serif CJK SC", Georgia, serif;
 }
+
+/* ==========================================================================
+   8.12 侧栏顶栏图标尺寸修复（dsh-sidebar-icon-fix）
+   症状（用户截图里左、右栏顶部的巨大灰色方块）：
+     源导出的折叠按钮是
+       <div class="clickable-icon sidebar-collapse-icon">
+         <svg width="100%" height="100%" viewBox="0 0 24 24" …>
+   这个 svg 用百分比定尺寸，而它的容器 .clickable-icon 没有任何宽高约束，
+   于是 SVG 按父级可用宽度撑开 —— 在窄栏里是一个几百像素高的大方块。
+   修法：给按钮与 svg 明确的尺寸，并让顶栏用 flex 把搜索框和按钮排成一行。
+   ========================================================================== */
+body.publish .sidebar-topbar {
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--space-2, 8px) !important;
+    padding: var(--space-3, 12px) var(--space-3, 12px) var(--space-2, 8px) !important;
+}
+
+body.publish .sidebar-topbar .topbar-content {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    overflow: hidden;
+}
+
+body.publish .clickable-icon.sidebar-collapse-icon {
+    flex: 0 0 auto !important;
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
+    display: grid !important;
+    place-items: center !important;
+    padding: 0 !important;
+}
+
+body.publish .clickable-icon.sidebar-collapse-icon > svg,
+body.publish .clickable-icon.sidebar-collapse-icon > svg.svg-icon {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+    stroke-width: 2 !important;
+}
+
+/* 侧栏搜索框：别被上面的 flex 拉变形 */
+body.publish #search-container,
+body.publish #search-wrapper { width: 100%; }
+body.publish #search-wrapper input { width: 100%; }
+
+/* 顶栏里的其它可点图标（如右侧目录的折叠）一并约束，避免同类问题 */
+body.publish .sidebar-topbar .clickable-icon > svg { width: 18px !important; height: 18px !important; }
+body.publish .sidebar-topbar .clickable-icon {
+    width: 30px !important; height: 30px !important; flex: 0 0 auto !important;
+    display: grid !important; place-items: center !important;
+}
+
+/* ==========================================================================
+   8.13 侧栏布局总修（dsh-sidebar-layout-v2）
+   规则顺序很重要：本块在文件末尾，同优先级下胜出。
+   ========================================================================== */
+
+/* --- 折叠态：整列收起，不占任何宽度 --- */
+body.publish #left-content.is-collapsed,
+body.publish #right-content.is-collapsed {
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    flex: 0 0 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
+body.publish #left-content.is-collapsed > .sidebar,
+body.publish #right-content.is-collapsed > .sidebar {
+    display: none !important;
+}
+
+/* --- 正文列：给下限，永不塌成 0 --- */
+body.publish #center-content {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word;
+}
+
+/* --- 侧栏列：可收缩（0 1 auto），不要写成一收缩就爆 --- */
+body.publish #left-content,
+body.publish #right-content {
+    flex: 0 1 auto;
+    min-width: 0;
+}
+
+/* 宽屏（≥1440）：两栏都在，正文 ≥ 760px */
+@media (min-width: 1441px) {
+    body.publish #left-content,
+    body.publish #right-content { width: var(--sidebar-width, 280px); }
+}
+
+/* 中等屏（1181–1440）：侧栏收窄到 240，保正文 */
+@media (min-width: 1181px) and (max-width: 1440px) {
+    body.publish #left-content,
+    body.publish #right-content { width: 240px; }
+}
+
+/* 小屏（1025–1180）：只留左栏（文档树），右栏目录收起，正文优先 */
+@media (min-width: 1025px) and (max-width: 1180px) {
+    body.publish #left-content { width: 230px; }
+    body.publish #right-content {
+        width: 0 !important; min-width: 0 !important; max-width: 0 !important;
+        flex: 0 0 0 !important; overflow: hidden !important; border: 0 !important;
+    }
+    body.publish #right-content > .sidebar { display: none !important; }
+}
+
+/* 平板/手机（≤1024）：两栏都收起，正文满宽 */
+@media (max-width: 1024px) {
+    body.publish #left-content,
+    body.publish #right-content {
+        width: 0 !important; min-width: 0 !important; max-width: 0 !important;
+        flex: 0 0 0 !important; overflow: hidden !important; border: 0 !important;
+        position: static !important; height: auto !important;
+    }
+    body.publish #left-content > .sidebar,
+    body.publish #right-content > .sidebar { display: none !important; }
+    body.publish #center-content { margin-inline: 0 !important; }
+}
+
+/* --- 顶栏：把「展开侧栏」按钮做出来（原 JS 未加载，这里自己兜底） --- */
+body.publish .dsh-sidebar-openers {
+    position: fixed;
+    top: calc(var(--nav-h, 60px) + 10px);
+    left: 12px;
+    z-index: 60;
+    display: flex;
+    gap: 6px;
+}
+
+body.publish .dsh-sidebar-openers button {
+    width: 34px; height: 34px;
+    display: grid; place-items: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill, 999px);
+    background: color-mix(in srgb, var(--bg-elev) 88%, transparent);
+    color: var(--fg-muted);
+    cursor: pointer;
+    box-shadow: var(--shadow-s);
+    backdrop-filter: blur(8px);
+    font-size: 15px;
+    line-height: 1;
+}
+
+body.publish .dsh-sidebar-openers button:hover {
+    color: var(--accent);
+    border-color: var(--border-strong);
+}
+
+body.publish .dsh-sidebar-openers button[hidden] { display: none; }
+
+/* 侧栏以覆盖层形式打开时的样式（仅窄屏用到） */
+@media (max-width: 1024px) {
+    body.publish #left-content.dsh-overlay,
+    body.publish #right-content.dsh-overlay {
+        position: fixed !important;
+        top: var(--nav-h, 60px) !important;
+        bottom: 0 !important;
+        width: min(320px, 86vw) !important;
+        max-width: none !important;
+        flex: none !important;
+        z-index: 70;
+        overflow: auto !important;
+        border: 0 !important;
+        box-shadow: var(--shadow-l);
+    }
+    body.publish #left-content.dsh-overlay { left: 0 !important; }
+    body.publish #right-content.dsh-overlay { right: 0 !important; }
+    body.publish #left-content.dsh-overlay > .sidebar,
+    body.publish #right-content.dsh-overlay > .sidebar { display: flex !important; height: 100%; }
+}
