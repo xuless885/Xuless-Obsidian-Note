@@ -528,6 +528,100 @@
 })();
 
 /* ===========================================================================
+   左栏讲义树：筛选框 + 当前页高亮（dsh-tree-v2）
+
+   背景：侧栏顶部那个 "Search..." 输入框是 Obsidian 导出留下的，站点没有配套 JS，
+   打字/回车/清空全都毫无反应；讲义树也没有「我在第几章」的标记。
+   这里补三件事（都不改生成物结构，只在运行时增强）：
+     ① 输入即筛选：按标题子串过滤 .dsh-tree-link，输入框清空按钮联动；
+     ② 当前页高亮：把 href 解析后与 location 比对，命中打 .is-current 并滚进视野；
+     ③ 占位文案本地化。
+   =========================================================================== */
+(function () {
+  "use strict";
+  function install() {
+    var input = document.querySelector("#left-sidebar input[type='search']") ||
+                document.querySelector("#search-wrapper input[type='search']");
+    if (!input && !document.getElementById("dsh-tree")) return;
+
+    // 注意：讲义树是 <link itemprop="include"> 异步注入的，install() 执行时它还没进 DOM。
+    // 所以这里所有查询都必须**在事件触发时**现查，不能把 tree 缓存在闭包里。
+    function treeLinks() { return document.querySelectorAll("#dsh-tree .dsh-tree-link"); }
+
+    /* ② 当前页高亮 */
+    function markCurrent() {
+      var links = treeLinks();
+      if (!links.length) return;
+      var here = location.href.split("#")[0].split("?")[0];
+      var marked = null;
+      for (var i = 0; i < links.length; i++) {
+        var href = links[i].getAttribute("href") || "";
+        var abs;
+        try { abs = new URL(href, here).href; } catch (e) { continue; }
+        links[i].classList.remove("is-current");
+        if (abs === here) {
+          links[i].classList.add("is-current");
+          links[i].setAttribute("aria-current", "page");
+          marked = links[i];
+        }
+      }
+      if (marked && marked.scrollIntoView) {
+        try { marked.scrollIntoView({ block: "nearest" }); } catch (e) { /* 老浏览器忽略选项 */ }
+      }
+    }
+
+    /* ① 输入即筛选 */
+    function filterTree(q) {
+      var links = treeLinks();
+      var key = (q || "").trim().toLowerCase();
+      var lists = document.querySelectorAll("#dsh-tree .dsh-tree-list");
+      for (var i = 0; i < links.length; i++) {
+        var txt = (links[i].textContent || "").toLowerCase();
+        var hit = !key || txt.indexOf(key) >= 0;
+        links[i].classList.toggle("is-filtered-out", !hit);
+      }
+      for (var j = 0; j < lists.length; j++) {
+        var any = lists[j].querySelector(".dsh-tree-link:not(.is-filtered-out)");
+        lists[j].classList.toggle("is-empty", !any);
+      }
+    }
+
+    if (input) {
+      input.setAttribute("placeholder", "筛选讲义…");
+      input.setAttribute("aria-label", "筛选讲义目录");
+      input.addEventListener("input", function () { filterTree(input.value); });
+      input.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") { input.value = ""; filterTree(""); }
+        if (e.key === "Enter") {
+          var first = document.querySelector("#dsh-tree .dsh-tree-link:not(.is-filtered-out)");
+          if (first) location.href = first.getAttribute("href");
+        }
+      });
+      var clear = document.getElementById("search-clear-button");
+      if (clear) {
+        clear.setAttribute("role", "button");
+        clear.setAttribute("aria-label", "清空筛选");
+        clear.addEventListener("click", function () { input.value = ""; filterTree(""); input.focus(); });
+      }
+    }
+
+    // 树是异步注入的（<link itemprop="include">），等它出现再标当前页；期间用户可能已经输入了关键词
+    var tries = 0;
+    (function waitTree() {
+      if (treeLinks().length) {
+        markCurrent();
+        if (input && input.value) filterTree(input.value);
+        return;
+      }
+      if (tries++ > 40) return;
+      window.setTimeout(waitTree, 100);
+    })();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  else install();
+})();
+
+/* ===========================================================================
    右栏目录（#outline）的折叠交互
    原版 Obsidian 的侧栏 JS 没有随站点加载，所以这些 .collapse-icon / .tree-collapse-all
    都是死的（点了没反应），而「全部折叠」按钮的图标原本还是个空 SVG。
@@ -538,6 +632,38 @@
   function install() {
     var outline = document.getElementById("outline");
     if (!outline) return;
+
+    /* ---- 排版增强（外观在 blog-theme.css 8.16）-----------------------------
+       ① 表头改中文「目录」并挂一个条目数徽标；
+       ② 把标题开头的编号（"20.1"、"2.1.3"、"16.2　" 等）包成 .dsh-toc-num，
+          让编号用等宽数字、颜色比标题淡一档 —— 目录立刻有层次；
+       ③ 给每一项挂 title，长标题被两行截断时鼠标悬停能看到全文。 */
+    var title = outline.querySelector(".feature-title");
+    var links = outline.querySelectorAll("a.tree-item-self");
+    if (title) {
+      title.textContent = "目录";
+      var badge = document.createElement("span");
+      badge.className = "dsh-toc-count";
+      badge.textContent = String(links.length);
+      title.appendChild(badge);
+    }
+    for (var li = 0; li < links.length; li++) {
+      var inner = links[li].querySelector(".tree-item-inner");
+      if (!inner) continue;
+      var txt = inner.textContent || "";
+      if (inner.getAttribute("title") === null && txt.length > 14) inner.setAttribute("title", txt.trim());
+      var first = inner.firstChild;
+      if (first && first.nodeType === 3) {
+        var m = /^\s*([0-9]+(?:\.[0-9]+)*)\s*[　\s]*/.exec(first.nodeValue);
+        if (m) {
+          var num = document.createElement("span");
+          num.className = "dsh-toc-num";
+          num.textContent = m[1];
+          first.nodeValue = first.nodeValue.slice(m[0].length);
+          inner.insertBefore(num, first);
+        }
+      }
+    }
 
     // 每个 tree-item：把子节点包成一个可折叠容器
     function childrenOf(item) {

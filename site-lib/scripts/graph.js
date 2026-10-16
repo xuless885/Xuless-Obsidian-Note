@@ -169,6 +169,25 @@
     return 3 + 9 * clamp(t, 0, 1);
   }
 
+  /**
+   * 画出来的半径（世界坐标）—— 与 degreeRadius 的区别：
+   * 世界半径直接乘 k 时，默认 fit 视角下节点能有 25px、放大后更是撑满一屏
+   * （用户截图：「节点图标太大，不能随缩放变换」）。这里把**屏幕半径**夹在
+   * [minPx, maxPx] 再换回世界坐标：节点始终是 3–13px 的圆点，
+   * 放大不会变成大饼，缩到很远也还看得见。物理/碰撞仍用 degreeRadius，观感不受影响。
+   */
+  function screenRadius(worldR, k, minPx, maxPx) {
+    var kk = k || 1;
+    var lo = (minPx === undefined) ? 2.6 : minPx;
+    var hi = (maxPx === undefined) ? 13 : maxPx;
+    return clamp((worldR || 3) * kk, lo, hi) / kk;
+  }
+
+  /** 标签字号：屏幕上恒定在 [10.5, 13]px（世界坐标 = 屏幕字号 / k） */
+  function labelFontScreen(k) {
+    return clamp(11.0 * (0.84 + 0.12 * (k || 1)), 10.5, 13);
+  }
+
   /** 初始位置：同心圆 + 确定性抖动（像 Obsidian 开场那样铺开） */
   function initPositions(nodes, seed) {
     var rnd = mulberry32(seed || 1013904223);
@@ -337,6 +356,7 @@
   function fitView(nodes, width, height, opts) {
     opts = opts || {};
     var pad = (opts.padding === undefined) ? 48 : opts.padding;
+    var labelPad = opts.labelPad || 0;      // 标签画在节点下方，适配时要把这段留出来
     var minK = (opts.minK === undefined) ? 0.15 : opts.minK;
     var maxK = (opts.maxK === undefined) ? 4 : opts.maxK;
     var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity, any = false;
@@ -351,6 +371,7 @@
       any = true;
     }
     if (!any) return { k: 1, x: width / 2, y: height / 2 };
+    if (labelPad) { minX -= labelPad * 0.6; maxX += labelPad * 0.6; maxY += labelPad; }
     var w = Math.max(maxX - minX, 1);
     var h = Math.max(maxY - minY, 1);
     var k = Math.min((width - pad * 2) / w, (height - pad * 2) / h);
@@ -416,6 +437,8 @@
     mulberry32: mulberry32,
     buildGraph: buildGraph,
     degreeRadius: degreeRadius,
+    screenRadius: screenRadius,
+    labelFontScreen: labelFontScreen,
     initPositions: initPositions,
     simulateStep: simulateStep,
     runStep: runStep,
@@ -667,7 +690,7 @@
       canvas.height = Math.round(h * S.dpr);
       canvas.style.width = w + 'px';
       canvas.style.height = h + 'px';
-      if (!S.userTouched) S.view = fitView(S.nodes, w, h);
+      if (!S.userTouched) S.view = fitGraph();
     }
 
     function themeKeyOf(t) {
@@ -854,10 +877,11 @@
     function drawNodes(focus) {
       var i, n, r, col;
       var dim = 0.12;
+      var kk = S.view.k || 1;
       for (i = 0; i < S.nodes.length; i++) {
         n = S.nodes[i];
         if (n.active === false) continue;
-        r = n.r || 3;
+        r = screenRadius(n.r || 3, kk);      // 屏幕半径有上下限，见 screenRadius 注释
         col = S.theme.cats[(n.catIndex || 0) % 6];
         var al = 1;
         if (focus) al = focus.set[i] ? 1 : dim;
@@ -947,13 +971,16 @@
       return w;
     }
 
-    /** 标签：放大时淡入（像 Obsidian），并做一次轻量遮挡剔除，避免糊成一团 */
+    /** 标签：放大时淡入（像 Obsidian），并做一次轻量遮挡剔除，避免糊成一团
+     *  字号：屏幕上恒定 10.5–13.5px（世界字号 = 屏幕字号 / k），
+     *  否则默认 fit（k≈1.5–2.4）下标签会有 28px 那么大，糊满画布。 */
     function drawLabels(focus) {
       var k = S.view.k;
       var base = clamp((k - 0.62) / 0.25, 0, 1);
       if (base <= 0.02) base = 0;
-      var fs = 11.5;
-      var fontKey = fs + '|' + S.theme.font;
+      var fs = labelFontScreen(k) / (k || 1);
+      var gap = 3.5 / (k || 1);
+      var fontKey = fs.toFixed(2) + '|' + S.theme.font;
       if (S.labelKey !== fontKey) { S.labelKey = fontKey; S.labelWidths = Object.create(null); }
 
       var i, n;
@@ -978,9 +1005,9 @@
         n = S.nodes[idx];
         var txt = labelTextOf(n);
         var w = labelWidth(ctx, txt);
-        var y = n.y + (n.r || 3) + 3.5;
+        var y = n.y + screenRadius(n.r || 3, k) + gap;
         ctx.globalAlpha = alpha;
-        ctx.lineWidth = 3.2;
+        ctx.lineWidth = 3.2 / (k || 1);
         ctx.strokeStyle = rgba(S.theme.bg, 0.92);
         ctx.strokeText(txt, n.x, y);
         ctx.fillStyle = rgba(S.theme.fg, 0.92);
@@ -1004,7 +1031,7 @@
           n = S.nodes[list[i]];
           var txt = labelTextOf(n);
           var w = labelWidth(ctx, txt);
-          var y = n.y + (n.r || 3) + 3.5;
+          var y = n.y + screenRadius(n.r || 3, k) + gap;
           var r = { x0: n.x - w / 2 - 1, x1: n.x + w / 2 + 1, y0: y - 1, y1: y + fs + 1 };
           var hit = false;
           for (var q = 0; q < rects.length; q++) {
@@ -1044,9 +1071,24 @@
       if (S.alpha > PHYSICS.alphaMin) requestRender(); // 静止后不再调度 → 0 空转
     }
 
-    function heat(level) {
+    /**
+     * 自动适配视图（fit）。
+     *  · maxK 上限 1.15：本站只有 30–40 个节点，不设上限时 fit 会把 k 顶到 2.4，
+     *    节点与标签被放大到糊满画布（用户截图原话「太大」）。上限让图平铺开。
+     *  · labelPad：标签画在节点下方，适配时要把这段高度留出来，否则底部标签被卡片裁掉。
+     */
+    function fitGraph(extra) {
+      var opts = { padding: 56, maxK: 2.4, labelPad: labelFontScreen(1) + 16 };
+      if (extra) { for (var kk in extra) { if (Object.prototype.hasOwnProperty.call(extra, kk)) opts[kk] = extra[kk]; } }
+      return fitView(S.nodes, S.width, S.height, opts);
+    }
+
+    function heat(level, interactive) {
       S.alpha = Math.max(S.alpha, level === undefined ? 0.28 : level);
-      if (REDUCED) { // 降级：直接跳到稳态，不播动画
+      // 降级（prefers-reduced-motion）：**只**用于开场的自动布局 —— 用户自己发起的
+      // 拖动/筛选/重新布局永远播动画，否则手感就是「节点纹丝不动、没有物理效果」
+      // （用户反馈原话）。降级时也要让 alpha 走完，拖完能自然回落。
+      if (REDUCED && !interactive) {
         settle(S.nodes, S.edges, S, 260, PHYSICS);
         render();
         return;
@@ -1086,7 +1128,7 @@
       S.counts.nodes = visibleNodes;
       S.counts.edges = visibleEdges;
       renderCounts();
-      if (reheat !== false) heat(0.25);
+      if (reheat !== false) heat(0.34, true);   // 筛选是用户操作 → 一定播动画
       else render();
     }
 
@@ -1290,7 +1332,7 @@
         S.userTouched = false;
         S.selected = -1; S.hover = -1;
         if (S.detail) S.detail.box.hidden = true;
-        S.view = fitView(S.nodes, S.width, S.height);
+        S.view = fitGraph();
         render();
       });
       var bRelayout = el('button', 'btn btn-ghost', '重新布局');
@@ -1299,19 +1341,13 @@
         initPositions(S.nodes, (Date.now() & 0x7fffffff) || 1);
         S.nodes.forEach(function (n) { n.vx = 0; n.vy = 0; n.pinned = false; });
         S.alpha = 1;
-        if (REDUCED) {
-          settle(S.nodes, S.edges, S, 420, PHYSICS);
-          S.view = fitView(S.nodes, S.width, S.height);
+        // 「重新布局」是用户点的按钮 → 永远播动画（连 prefers-reduced-motion 也不该让它瞬间跳完）
+        requestRender();
+        window.setTimeout(function () {
+          S.view = fitGraph();
           S.userTouched = false;
-          applyFilters(false);
-        } else {
-          requestRender();
-          window.setTimeout(function () {
-            S.view = fitView(S.nodes, S.width, S.height);
-            S.userTouched = false;
-            render();
-          }, 900);
-        }
+          render();
+        }, 900);
       });
       btnRow.appendChild(bReset);
       btnRow.appendChild(bRelayout);
@@ -1383,7 +1419,7 @@
         S.nodes[idx].pinned = true;
         S.nodes[idx].x = w.x; S.nodes[idx].y = w.y;
         S.clickCandidate = idx;
-        heat(0.5);
+        heat(0.62, true);   // 抓住节点：给足 alpha，邻居才会被弹簧拉着动起来
       } else {
         S.drag = { mode: 'pan', id: ev.pointerId, moved: 0, sx: p.x, sy: p.y, vx: S.view.x, vy: S.view.y };
         S.clickCandidate = -1;
@@ -1406,7 +1442,7 @@
           var w = screenToWorld(S.view, p.x, p.y);
           var n = S.nodes[S.drag.idx];
           n.x = w.x; n.y = w.y;
-          heat(0.5);
+          heat(0.62, true);   // 拖动全程持续供能，物理不衰减（否则拖到一半就「冻住」）
         }
         return;
       }
@@ -1429,7 +1465,7 @@
       if (wasNode && idx !== undefined) {
         S.nodes[idx].pinned = false;
         if (moved < 5) showDetail(idx);
-        heat(0.2);
+        heat(0.5, true);    // 松手后让子图回弹收敛 —— 这段回弹就是「物理效果」
       }
       try { canvas.releasePointerCapture && ev.pointerId !== undefined && canvas.releasePointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
     }
@@ -1441,7 +1477,7 @@
       if (ev.deltaMode === 1) delta *= 16;
       else if (ev.deltaMode === 2) delta *= S.height;
       var factor = Math.exp(-clamp(delta, -240, 240) * 0.0016);
-      S.view = zoomAt(S.view, p.x, p.y, factor, 0.15, 4);
+      S.view = zoomAt(S.view, p.x, p.y, factor, 0.2, 3);
       S.userTouched = true;
       render();
     }
@@ -1454,9 +1490,9 @@
         case 'ArrowRight': S.view.x -= step; break;
         case 'ArrowUp': S.view.y += step; break;
         case 'ArrowDown': S.view.y -= step; break;
-        case '+': case '=': S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1.2, 0.15, 4); break;
-        case '-': case '_': S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1 / 1.2, 0.15, 4); break;
-        case '0': S.view = fitView(S.nodes, S.width, S.height); S.userTouched = false; break;
+        case '+': case '=': S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1.2, 0.2, 3); break;
+        case '-': case '_': S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1 / 1.2, 0.2, 3); break;
+        case '0': S.view = fitGraph(); S.userTouched = false; break;
         case 'Escape': S.selected = -1; if (S.detail) S.detail.box.hidden = true; break;
         default: handled = false;
       }
@@ -1562,7 +1598,7 @@
       applyFilters(false);
       S.alpha = 1;
       settle(S.nodes, S.edges, S, PHYSICS.preSettleSteps, PHYSICS); // 首帧前同步收敛
-      S.view = fitView(S.nodes, S.width, S.height);
+      S.view = fitGraph();
       buildControls(controls);
       renderCounts();
       render();
@@ -1605,8 +1641,36 @@
       var p = localPos(ev);
       var w = screenToWorld(S.view, p.x, p.y);
       var idx = pickNode(S.nodes, w.x, w.y, S.view.k);
-      if (idx >= 0) { S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1.5, 0.15, 4); centerOn(idx, true); }
+      if (idx >= 0) { S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1.5, 0.2, 3); centerOn(idx, true); }
     });
+
+    /**
+     * 只读自检钩子：给无头浏览器验收用（.build/probe/verify_graph.mjs）。
+     * 不暴露任何写操作，页面行为不受影响。
+     */
+    window.DSH_GRAPH_STATE = function () {
+      return {
+        k: S.view.k, alpha: S.alpha, settled: S.alpha <= PHYSICS.alphaMin,
+        view: { k: S.view.k, x: S.view.x, y: S.view.y },
+        width: S.width, height: S.height,
+        nodes: S.nodes.length,
+        active: S.counts.nodes, edges: S.counts.edges,
+        dragging: !!(S.drag && S.drag.mode === 'node'),
+        dragIdx: (S.drag && S.drag.mode === 'node') ? S.drag.idx : -1,
+        reduced: REDUCED,
+        labelScreenPx: labelFontScreen(S.view.k),
+        maxNodeScreenPx: (function () {
+          var m = 0;
+          for (var i = 0; i < S.nodes.length; i++) {
+            if (S.nodes[i].active === false) continue;
+            var px = screenRadius(S.nodes[i].r || 3, S.view.k) * S.view.k;
+            if (px > m) m = px;
+          }
+          return m;
+        })(),
+        positions: S.nodes.map(function (n) { return [Math.round(n.x * 10) / 10, Math.round(n.y * 10) / 10]; }),
+      };
+    };
 
     try {
       if (window.ResizeObserver) {

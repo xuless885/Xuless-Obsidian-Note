@@ -3627,3 +3627,282 @@ body.publish #navbar .clickable-icon > svg { width: 18px; height: 18px; }
         font-size: 0.82rem;
     }
 }
+
+/* ==========================================================================
+   8.16 右侧目录（#outline）排版重建（dsh-toc-v3，2026-10-16）
+
+   症状（用户截图）：折叠箭头独占一行把标题挤到下一行、各级标题没有缩进、
+   长标题折成三行、行距松散、顶部 "TABLE OF CONTENTS" 全大写 + 大字距，
+   外加一个 44px 的空心圆角按钮。
+
+   根因：这段 DOM 是 Obsidian 导出原样保留的（.tree-item-icon 是 div，块级 → 箭头换行；
+   .tree-item-children 没有缩进 → 层级看不出来；.feature-title 命中了 8.3 的
+   uppercase/letter-spacing 规则）。
+
+   做法：把每一行做成 flex（箭头 16px + 文本弹性 + 两行截断），层级用
+   .tree-item-children 的左边距 + 竖向引导线表达，表头 sticky，按钮缩到 26px。
+   折叠交互（.is-collapsed / .tree-collapse-all）由 doc-page.js 维护，本区只管外观。
+   ========================================================================== */
+body.publish #outline {
+    padding: var(--space-2, 8px) 10px var(--space-6, 32px) !important;
+    font-family: var(--font-sans) !important;
+    font-size: 0.86rem;
+}
+
+/* 表头：粘在滚动容器顶部，条目从它下面滚过 */
+body.publish #outline .feature-header {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 4px;
+    padding: 9px 6px 9px 10px;
+    background: color-mix(in srgb, var(--bg-elev) 94%, transparent);
+    backdrop-filter: saturate(160%) blur(8px);
+    -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--border);
+}
+
+body.publish #outline .feature-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.78rem !important;
+    font-weight: 650 !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+    color: var(--fg-muted) !important;
+    white-space: nowrap;
+}
+
+/* 目录条数徽标（doc-page.js 注入） */
+body.publish #outline .dsh-toc-count {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 0 6px;
+    border-radius: var(--radius-pill, 999px);
+    background: var(--bg-sunken);
+    border: 1px solid var(--border);
+    color: var(--fg-subtle);
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1.5;
+    vertical-align: 1px;
+}
+
+body.publish #outline .tree-collapse-all {
+    flex: 0 0 auto;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-s, 8px);
+    background: var(--bg);
+    color: var(--fg-subtle);
+    cursor: pointer;
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
+        background-color var(--dur-fast) var(--ease);
+}
+
+body.publish #outline .tree-collapse-all:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+body.publish #outline .tree-collapse-all > svg,
+body.publish #outline .tree-collapse-all > svg.svg-icon {
+    width: 13px !important;
+    height: 13px !important;
+    display: block;
+}
+
+/* 目录项：一行 = flex[箭头][文本]；文本两行截断，不再折成三行 */
+body.publish #outline .tree-item-self {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 1px 0;
+    padding: 5px 8px 5px 6px !important;
+    border-radius: var(--radius-s, 8px) !important;
+    line-height: 1.42 !important;
+    font-size: 0.855rem !important;
+    text-decoration: none !important;
+}
+
+/* 没有子节点的条目补一个箭头位，保证同级文字左边缘对齐 */
+body.publish #outline .tree-item-self:not(:has(.tree-item-icon)) {
+    padding-left: 28px !important;
+}
+
+body.publish #outline .tree-item-icon {
+    flex: 0 0 16px;
+    width: 16px !important;
+    height: 16px !important;
+    margin-top: 0.16em;
+    display: grid !important;
+    place-items: center;
+    color: var(--fg-subtle) !important;
+}
+
+body.publish #outline .tree-item-icon > svg,
+body.publish #outline .tree-item-icon > svg.svg-icon {
+    width: 10px !important;
+    height: 10px !important;
+    display: block;
+    transform: rotate(90deg);          /* 展开：箭头朝下 */
+    transition: transform var(--dur-fast) var(--ease);
+}
+
+body.publish #outline .tree-item.is-collapsed > .tree-item-self .tree-item-icon > svg {
+    transform: rotate(0deg);           /* 折叠：箭头朝右 */
+}
+
+body.publish #outline .tree-item-inner {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+}
+
+/* 编号（doc-page.js 包成 .dsh-toc-num）：等宽数字，和标题文字拉开一点 */
+body.publish #outline .dsh-toc-num {
+    margin-right: 0.45em;
+    font-variant-numeric: tabular-nums;
+    font-weight: 650;
+    color: var(--fg-subtle);
+}
+
+body.publish #outline .tree-item[data-depth="1"] > .tree-item-self {
+    color: var(--fg) !important;
+    font-weight: 600 !important;
+    font-size: 0.865rem !important;
+}
+
+body.publish #outline .tree-item[data-depth="1"] > .tree-item-self .dsh-toc-num {
+    color: var(--accent);
+}
+
+body.publish #outline .tree-item[data-depth="2"] > .tree-item-self {
+    color: var(--fg-muted) !important;
+}
+
+body.publish #outline .tree-item[data-depth="3"] > .tree-item-self,
+body.publish #outline .tree-item[data-depth="4"] > .tree-item-self {
+    color: var(--fg-subtle) !important;
+    font-size: 0.82rem !important;
+}
+
+/* 层级：子列表缩进 + 一条竖向引导线（只在真的有子项时画） */
+body.publish #outline .tree-item-children {
+    margin: 0 0 2px 14px !important;
+    padding-left: 8px !important;
+}
+
+body.publish #outline .tree-item-children:has(> .tree-item) {
+    border-left: 1px solid var(--border);
+}
+
+body.publish #outline .tree-item-self:hover {
+    background: var(--bg-sunken) !important;
+    color: var(--fg) !important;
+}
+
+body.publish #outline .tree-item-self:focus-visible {
+    outline: 2px solid var(--accent) !important;
+    outline-offset: -2px;
+}
+
+/* 当前小节（scrollspy 打标）——已有 ::before 竖条，这里补背景与字重 */
+body.publish #outline .tree-item-self.dsh-toc-active {
+    background: var(--accent-soft, rgba(79, 70, 229, 0.1)) !important;
+    color: var(--accent, #4f46e5) !important;
+    font-weight: 650 !important;
+}
+
+body.publish #outline .tree-item-self.dsh-toc-active .dsh-toc-num {
+    color: inherit;
+}
+
+/* 左栏目录树表头（.dsh-tree-head）也统一到同一套小标题语言 */
+body.publish .dsh-tree-head {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.06em !important;
+    color: var(--fg-subtle) !important;
+}
+
+@media (max-width: 900px) {
+    body.publish #outline .feature-header { position: static; }
+}
+
+/* ==========================================================================
+   8.17 左侧讲义树：编号列 / 当前页高亮 / 顶部筛选框（dsh-tree-v2，2026-10-16）
+
+   编号从标题里拆出来单独成列（build_filetree.py 生成 .dsh-tree-num），
+   这样 1 与 10、2 与 20 的标题左边缘能对齐 —— 否则一章两行时列表看起来是歪的。
+   顶部那个 "Search..." 框原本没有任何 JS 接管（Obsidian 的搜索代码没进站点），
+   点了写了都没反应；现在由 doc-page.js 接成「筛选讲义」，并给当前页打 .is-current。
+   ========================================================================== */
+body.publish .dsh-tree-link {
+    display: flex !important;
+    align-items: baseline;
+    gap: 0.5em;
+    padding: 5px 10px !important;
+    line-height: 1.5 !important;
+}
+
+body.publish .dsh-tree-num {
+    flex: 0 0 1.7em;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: var(--fg-subtle);
+}
+
+body.publish .dsh-tree-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+body.publish .dsh-tree-link.is-current {
+    background: var(--accent-soft) !important;
+    color: var(--accent) !important;
+    border-left-color: var(--accent) !important;
+    font-weight: 600 !important;
+}
+
+body.publish .dsh-tree-link.is-current .dsh-tree-num {
+    color: inherit;
+}
+
+body.publish .dsh-tree-link.is-filtered-out {
+    display: none !important;
+}
+
+body.publish .dsh-tree-list.is-empty::after {
+    content: "没有匹配的讲义";
+    display: block;
+    padding: 6px 10px;
+    color: var(--fg-subtle);
+    font-size: 0.8rem;
+}
+
+/* 侧栏顶部筛选框：跟目录同语言，选中态用 accent 环 */
+body.publish #left-sidebar .sidebar-topbar input[type="search"],
+body.publish #search-wrapper input[type="search"] {
+    font-size: 0.84rem !important;
+    letter-spacing: 0.01em;
+}
+
+body.publish #left-sidebar .sidebar-topbar input[type="search"]::placeholder {
+    color: var(--fg-subtle);
+}
