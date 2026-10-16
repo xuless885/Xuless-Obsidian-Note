@@ -1143,11 +1143,19 @@ samp {
 
 .section-title {
     position: relative;
-    margin: 0;
+    /* 上下留白必须在这里给：本文件在**外壳页内联样式之后**加载，同特异度时后者胜出，
+       原先这条 `margin: 0` 会把外壳页里写的 `margin: var(--space-7) 0 var(--space-5)` 全部抹掉 ——
+       结果是「建议阅读顺序」「章节一览」这些标题与上面的内容贴死（实测 gapPrev=0），
+       用户 2026-10-16 两次截图报的就是这个。 */
+    margin: var(--space-7, 40px) 0 var(--space-4, 16px);
     padding-left: var(--space-4);
     font-size: 1.3rem;
     font-weight: 700;
     letter-spacing: -0.012em;
+}
+
+.section-title:first-child {
+    margin-top: 0;
 }
 
 .section-title::before {
