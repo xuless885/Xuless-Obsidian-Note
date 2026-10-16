@@ -21,21 +21,24 @@
 
   /** 物理参数（世界坐标单位 ≈ CSS 像素 @k=1） */
   var PHYSICS = {
-    repulsion: 1750,       // 斥力系数：a = repulsion / d²（调大 → 节点铺得更开、更有张力）
-    spring: 0.18,          // 弹簧系数
-    linkDistance: 52,      // 弹簧自然长度基准
-    linkDistanceScale: 4,  // 每单位度数的额外长度（高度节点连线更长，像 Obsidian）
-    center: 0.00022,       // 向心力：a = center * 到原点距离
-    damping: 0.86,         // 速度阻尼
+    repulsion: 3050,       // 斥力系数：a = repulsion / d²（2026-10-16 从 1750 上调：用户说节点太密）
+    spring: 0.20,          // 弹簧系数
+    linkDistance: 76,      // 弹簧自然长度基准（52 → 76：整体更疏）
+    linkDistanceScale: 5,  // 每单位度数的额外长度（高度节点连线更长，像 Obsidian）
+    center: 0.00014,       // 向心力：a = center * 到原点距离（调小 → 允许铺得更开）
+    damping: 0.86,         // 速度阻尼（常态）
+    dragDamping: 0.945,    // **拖拽时**的阻尼：越小越“粘”，越大越跟手（用户：拖拽阻力太大）
+    dragSpring: 1.6,       // 拖拽时弹簧更硬：邻居被拉得更快
+    dragAlphaFloor: 0.34,  // 拖拽时 alpha 不低于此值 → 物理一直“热”，邻居不会中途冻住
     alphaDecay: 0.985,     // alpha 每步衰减
     alphaMin: 0.006,       // 低于此值即认为静止 → 停止 rAF
-    maxVelocity: 14,       // 单步位移上限（防爆）
+    maxVelocity: 16,       // 单步位移上限（防爆）
     maxForce: 60,          // 单点加速度上限（防爆）
     minDist2: 25,          // 软核：距离平方下限
     collision: 1.35,       // 短程碰撞系数：圆点重叠时额外推开（0 = 关闭）
-    collidePad: 7,         // 碰撞判定的额外间隙：节点之间始终留白，不贴边
+    collidePad: 11,        // 碰撞判定的额外间隙：节点之间始终留白，不贴边（7 → 11）
     collideKick: 0.30,     // 碰撞时同时给一点速度（硬分离 + 弹性观感，避免静摩擦糊死）
-    preSettleSteps: 420    // 首帧前的同步预收敛步数（避免开场炸开 + 首帧即收敛）
+    preSettleSteps: 560    // 首帧前的同步预收敛步数（避免开场炸开 + 首帧即收敛）
   };
 
   function clamp(v, lo, hi) {
@@ -159,6 +162,14 @@
     }
     for (i = 0; i < nodes.length; i++) nodes[i].degree = nodes[i].inDeg + nodes[i].outDeg;
 
+    // 标记「互为反向」的边（A→B 与 B→A 同时存在）：画直线时各偏一点，避免两条完全重叠。
+    // 数据里目前有 2 对；纯标记，不影响物理与度数。
+    var hasRev = Object.create(null);
+    for (i = 0; i < edges.length; i++) hasRev[edges[i].si + '>' + edges[i].ti] = 1;
+    for (i = 0; i < edges.length; i++) {
+      edges[i]._mutual = !!hasRev[edges[i].ti + '>' + edges[i].si];
+    }
+
     return { nodes: nodes, edges: edges, byId: byId, adj: adj, dropped: dropped, derived: derived };
   }
 
@@ -215,6 +226,11 @@
     var alpha = clamp(state && state.alpha, 0, 1);
     var n = (nodes && nodes.length) || 0;
     var i, j, a, b, dx, dy, d2, d, f, ax, ay;
+    // 拖拽一个节点时：阻尼调小、弹簧调硬 —— 邻居才会「跟着走」而不是被按住不动
+    // （用户反馈：拖拽时其他节点阻力太大）。
+    var dragging = !!(state && state.drag && state.drag.mode === 'node');
+    var damp = dragging ? (p.dragDamping === undefined ? p.damping : p.dragDamping) : p.damping;
+    var springK = dragging ? p.spring * (p.dragSpring === undefined ? 1 : p.dragSpring) : p.spring;
 
     for (i = 0; i < n; i++) { nodes[i].ax = 0; nodes[i].ay = 0; }
 
@@ -272,7 +288,7 @@
       if (!(d2 > 1e-6)) { dx = 0.31; dy = 0.29; d2 = dx * dx + dy * dy; }
       d = Math.sqrt(d2);
       var L = p.linkDistance + p.linkDistanceScale * Math.min(((a.degree || 0) + (b.degree || 0)), 12);
-      f = ((d - L) / d) * p.spring * (ed.kind === 'embed' ? 0.6 : 1);
+      f = ((d - L) / d) * springK * (ed.kind === 'embed' ? 0.6 : 1);
       if (f > p.maxForce) f = p.maxForce; else if (f < -p.maxForce) f = -p.maxForce;
       ax = dx * f; ay = dy * f;
       a.ax += ax; a.ay += ay;
@@ -293,8 +309,8 @@
       a = nodes[i];
       if (a.active === false) continue;
       if (a.pinned) { a.vx = 0; a.vy = 0; if (a.ax || a.ay) { a.ax = 0; a.ay = 0; } continue; }
-      var vx = (a.vx + a.ax * alpha) * p.damping;
-      var vy = (a.vy + a.ay * alpha) * p.damping;
+      var vx = (a.vx + a.ax * alpha) * damp;
+      var vy = (a.vy + a.ay * alpha) * damp;
       var sp2 = vx * vx + vy * vy;
       if (!isFinite(sp2)) { vx = 0; vy = 0; sp2 = 0; }
       var sp = Math.sqrt(sp2);
@@ -312,6 +328,10 @@
     var p = params || PHYSICS;
     var maxSpeed = simulateStep(nodes, edges, state, p);
     state.alpha = clamp(state.alpha, 0, 1) * p.alphaDecay;
+    // 拖拽期间不让 alpha 掉下去：否则拖到一半物理就「冻」了，邻居不再跟随
+    if (state.drag && state.drag.mode === 'node' && p.dragAlphaFloor && state.alpha < p.dragAlphaFloor) {
+      state.alpha = p.dragAlphaFloor;
+    }
     state.maxSpeed = maxSpeed;
     state.settled = state.alpha < p.alphaMin;
     return state;
@@ -648,6 +668,44 @@
       });
     }
 
+    /* ---- 动画小工具：开场进度 + 视图缓动 ----------------------------------
+       1) introT()：首帧起 620ms 内让节点淡入 + 轻微放大（比“啪一下全出现”自然）；
+       2) animateViewTo()：重置视图 / 双击缩放 / 键盘 0 都用缓动过渡，
+          而不是瞬间跳变；缓动跑完就不再要帧（静止仍 0 CPU）。 */
+    function nowMs() {
+      return (window.performance && window.performance.now) ? window.performance.now() : Date.now();
+    }
+    var INTRO_MS = 620;
+    var viewAnim = null;
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+    function introT() {
+      if (!S.introStart || REDUCED) return 1;   // 降级偏好：跳过装饰性开场（交互动画不受影响）
+      var t = (nowMs() - S.introStart) / INTRO_MS;
+      return t >= 1 ? 1 : (t <= 0 ? 0 : easeOutCubic(t));
+    }
+    function animateViewTo(target, ms) {
+      if (!target) return;
+      viewAnim = { from: { k: S.view.k, x: S.view.x, y: S.view.y },
+                   to: { k: target.k, x: target.x, y: target.y },
+                   t0: nowMs(), dur: ms || 420 };
+      requestRender();
+    }
+    function stepViewAnim() {
+      if (!viewAnim) return false;
+      var t = (nowMs() - viewAnim.t0) / viewAnim.dur;
+      var to = viewAnim.to, from = viewAnim.from;
+      if (!(t < 1)) {
+        S.view = { k: to.k, x: to.x, y: to.y };
+        viewAnim = null;
+        return false;
+      }
+      var e = easeOutCubic(t);
+      S.view = { k: from.k + (to.k - from.k) * e,
+                 x: from.x + (to.x - from.x) * e,
+                 y: from.y + (to.y - from.y) * e };
+      return true;
+    }
+
     var canvas = el('canvas', 'graph-canvas');
     canvas.setAttribute('tabindex', '0');
     canvas.setAttribute('role', 'application');
@@ -801,6 +859,42 @@
       return curved ? edgeCtrl(a, b) : null;
     }
 
+    /**
+     * 边的几何：全部走**直线**（2026-10-16 按用户要求把弧线改成直箭头）。
+     * 唯一例外是「互为反向」的两条边（A→B 与 B→A 同时存在，本站有 2 对）：
+     * 各往法线方向偏 1.7 世界像素，避免两条线完全重叠 —— 仍然是直线。
+     */
+    function edgeGeom(a, b, off) {
+      var dx = b.x - a.x, dy = b.y - a.y;
+      var d = Math.sqrt(dx * dx + dy * dy);
+      if (!(d > 1e-6)) d = 1e-6;
+      var nx = -dy / d, ny = dx / d;
+      var o = off || 0;
+      var x1 = a.x + nx * o, y1 = a.y + ny * o;
+      var x2 = b.x + nx * o, y2 = b.y + ny * o;
+      return { x1: x1, y1: y1, x2: x2, y2: y2, ux: (x2 - x1) / d, uy: (y2 - y1) / d };
+    }
+
+    function edgeOffsetOf(ed) {
+      if (!ed || !ed._mutual) return 0;
+      return (ed.si < ed.ti ? 1 : -1) * 1.7;
+    }
+
+    /** 直线箭头：三角形尖端贴在**画出来的**节点圆边上（不是物理半径上） */
+    function drawArrowGeo(g, b, color, alpha) {
+      var rr = screenRadius(b.r || 3, S.view.k) + 1.2;
+      var ex = g.x2 - g.ux * rr;
+      var ey = g.y2 - g.uy * rr;
+      var size = 5.0;
+      ctx.fillStyle = rgba(color, alpha);
+      ctx.beginPath();
+      ctx.moveTo(ex, ey);
+      ctx.lineTo(ex - g.ux * size - g.uy * size * 0.48, ey - g.uy * size + g.ux * size * 0.48);
+      ctx.lineTo(ex - g.ux * size + g.uy * size * 0.48, ey - g.uy * size - g.ux * size * 0.48);
+      ctx.closePath();
+      ctx.fill();
+    }
+
     function drawArrow(a, b, color, alpha, ctrl) {
       var dx, dy, d, ux, uy, ex, ey;
       if (ctrl) {
@@ -811,14 +905,14 @@
       }
       d = Math.sqrt(dx * dx + dy * dy) || 1;
       ux = dx / d; uy = dy / d;
-      ex = b.x - ux * ((b.r || 3) + 1.2);
-      ey = b.y - uy * ((b.r || 3) + 1.2);
-      var size = 4.6;
+      ex = b.x - ux * (screenRadius(b.r || 3, S.view.k) + 1.2);
+      ey = b.y - uy * (screenRadius(b.r || 3, S.view.k) + 1.2);
+      var size = 5.0;
       ctx.fillStyle = rgba(color, alpha);
       ctx.beginPath();
       ctx.moveTo(ex, ey);
-      ctx.lineTo(ex - ux * size - uy * size * 0.52, ey - uy * size + ux * size * 0.52);
-      ctx.lineTo(ex - ux * size + uy * size * 0.52, ey - uy * size - ux * size * 0.52);
+      ctx.lineTo(ex - ux * size - uy * size * 0.48, ey - uy * size + ux * size * 0.48);
+      ctx.lineTo(ex - ux * size + uy * size * 0.48, ey - uy * size - ux * size * 0.48);
       ctx.closePath();
       ctx.fill();
     }
@@ -831,22 +925,15 @@
       ctx.lineWidth = clamp(1 / S.view.k, 0.35, 3);
 
       if (!focus) {
-        // 无高亮 → 按样式批量成两条路径，减少 stroke 调用。
-        // 拖动/缩放中用直线（快），静止时用轻微弧线（好看）——
-        // 弧线要逐条 quadraticCurveTo，批量路径的优势会丢一半。
-        var curved = !(S.drag && S.drag.mode);
+        // 无高亮 → 批量成两条路径，减少 stroke 调用；连线一律直线（含互为反向的偏移）
         ctx.beginPath();
         for (i = 0; i < S.edges.length; i++) {
           ed = S.edges[i];
           if (ed.active === false || ed.kind === 'embed') continue;
           a = S.nodes[ed.si]; b = S.nodes[ed.ti];
-          ctx.moveTo(a.x, a.y);
-          if (curved) {
-            var c0 = edgeCtrl(a, b);
-            ctx.quadraticCurveTo(c0.x, c0.y, b.x, b.y);
-          } else {
-            ctx.lineTo(b.x, b.y);
-          }
+          var g = edgeGeom(a, b, edgeOffsetOf(ed));
+          ctx.moveTo(g.x1, g.y1);
+          ctx.lineTo(g.x2, g.y2);
         }
         ctx.strokeStyle = rgba(edgeColor, edgeAlpha(null));
         ctx.stroke();
@@ -857,7 +944,8 @@
           ed = S.edges[i];
           if (ed.active === false || ed.kind !== 'embed') continue;
           a = S.nodes[ed.si]; b = S.nodes[ed.ti];
-          ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          var ge = edgeGeom(a, b, edgeOffsetOf(ed));
+          ctx.moveTo(ge.x1, ge.y1); ctx.lineTo(ge.x2, ge.y2);
         }
         ctx.stroke();
         ctx.restore();
@@ -866,28 +954,28 @@
             ed = S.edges[i];
             if (ed.active === false) continue;
             a = S.nodes[ed.si]; b = S.nodes[ed.ti];
-            drawArrow(a, b, edgeColor, edgeAlpha(null), curved ? edgeCtrl(a, b) : null);
+            drawArrowGeo(edgeGeom(a, b, edgeOffsetOf(ed)), b, edgeColor, edgeAlpha(null));
           }
         }
         return;
       }
 
-      // 有高亮：逐条画，用弧线 + 主题色的渐变描边，突出重点关系
+      // 有高亮：逐条画（直线），用主题色描边突出重点关系
       for (i = 0; i < S.edges.length; i++) {
         ed = S.edges[i];
         if (ed.active === false) continue;
         var al = edgeAlpha(focus, ed.si, ed.ti);
         a = S.nodes[ed.si]; b = S.nodes[ed.ti];
+        var g1 = edgeGeom(a, b, edgeOffsetOf(ed));
         ctx.save();
         if (ed.kind === 'embed') ctx.setLineDash([3.5, 3.5]);
         ctx.strokeStyle = rgba(edgeColor, al);
-        var c1 = edgeCtrl(a, b);
         ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.quadraticCurveTo(c1.x, c1.y, b.x, b.y);
+        ctx.moveTo(g1.x1, g1.y1);
+        ctx.lineTo(g1.x2, g1.y2);
         ctx.stroke();
         ctx.restore();
-        if (arrowOn && al > 0.2) drawArrow(a, b, edgeColor, al, c1);
+        if (arrowOn && al > 0.2) drawArrowGeo(g1, b, edgeColor, al);
       }
     }
 
@@ -895,14 +983,22 @@
       var i, n, r, col;
       var dim = 0.12;
       var kk = S.view.k || 1;
+      var intro = introT();                 // 开场 0→1（节点淡入 + 轻微放大）
+      var animating = intro < 1;
       for (i = 0; i < S.nodes.length; i++) {
         n = S.nodes[i];
         if (n.active === false) continue;
-        r = screenRadius(n.r || 3, kk);      // 屏幕半径有上下限，见 screenRadius 注释
+        // 悬停/选中：半径与高亮环做 0.25 步长的缓动，不再瞬间跳变
+        var wantT = (i === S.hover || i === S.selected) ? 1 : 0;
+        if (n._t === undefined) n._t = wantT;
+        else if (Math.abs(n._t - wantT) > 0.004) { n._t += (wantT - n._t) * 0.28; animating = true; }
+        else n._t = wantT;
+        r = screenRadius(n.r || 3, kk) * (1 + 0.16 * n._t) * (0.6 + 0.4 * intro);
         col = S.theme.cats[(n.catIndex || 0) % 6];
         var al = 1;
         if (focus) al = focus.set[i] ? 1 : dim;
         else if (S.matchSet && !S.matchSet[i]) al = 0.3;
+        al *= intro;
 
         // 光晕：给每个节点加一层柔光，整体更有「发光图」的观感。
         // 只对度数较高的节点加，避免几百个节点时 glow 反而糊成一片。
@@ -943,7 +1039,7 @@
         ctx.strokeStyle = rgba(S.theme.bg, 0.9);
         ctx.stroke();
 
-        // 选中 / 命中 / 悬停 的环
+        // 选中 / 命中 / 悬停 的环（随 n._t 缓动淡入淡出）
         if (i === S.selected) {
           ctx.beginPath();
           ctx.arc(n.x, n.y, r + 3.2, 0, Math.PI * 2);
@@ -953,18 +1049,19 @@
         } else if (S.matchSet && S.matchSet[i]) {
           ctx.beginPath();
           ctx.arc(n.x, n.y, r + 2.6, 0, Math.PI * 2);
-          ctx.strokeStyle = rgba(S.theme.accent2, 0.9);
+          ctx.strokeStyle = rgba(S.theme.accent2, 0.9 * (0.4 + 0.6 * (n._t || 0)));
           ctx.lineWidth = 1.8 / clamp(S.view.k, 0.5, 2);
           ctx.stroke();
         } else if (i === S.hover) {
           ctx.beginPath();
           ctx.arc(n.x, n.y, r + 2.6, 0, Math.PI * 2);
-          ctx.strokeStyle = rgba(S.theme.accent, 0.7);
+          ctx.strokeStyle = rgba(S.theme.accent, 0.7 * (0.35 + 0.65 * (n._t || 0)));
           ctx.lineWidth = 1.6 / clamp(S.view.k, 0.5, 2);
           ctx.stroke();
         }
         ctx.globalAlpha = 1;
       }
+      if (animating) requestRender();        // 缓动没走完就继续要帧；走完自然停（静止 0 CPU）
     }
 
     function labelTextOf(n) {
@@ -995,6 +1092,8 @@
       var k = S.view.k;
       var base = clamp((k - 0.62) / 0.25, 0, 1);
       if (base <= 0.02) base = 0;
+      var intro = introT();                 // 标签与节点一起淡入，避免开场“字先跳出来”
+      if (intro <= 0.02) return;
       var fs = labelFontScreen(k) / (k || 1);
       var gap = 3.5 / (k || 1);
       var fontKey = fs.toFixed(2) + '|' + S.theme.font;
@@ -1033,7 +1132,7 @@
         return { x0: n.x - w / 2 - 1, x1: n.x + w / 2 + 1, y0: y - 1, y1: y + fs + 1 };
       };
 
-      for (i = 0; i < forced.length; i++) rects.push(draw(forced[i], 1));
+      for (i = 0; i < forced.length; i++) rects.push(draw(forced[i], intro));
 
       if (auto.length) {
         var order = S.labelOrder && S.labelOrder.length ? S.labelOrder : null;
@@ -1056,7 +1155,7 @@
             if (r.x0 < o.x1 && r.x1 > o.x0 && r.y0 < o.y1 && r.y1 > o.y0) { hit = true; break; }
           }
           if (hit) continue;                        // 与已绘制的标签重叠 → 让位
-          rects.push(draw(list[i], base * (focus && !focus.set[list[i]] ? 0.35 : 1)));
+          rects.push(draw(list[i], base * intro * (focus && !focus.set[list[i]] ? 0.35 : 1)));
         }
       }
     }
@@ -1074,6 +1173,7 @@
       drawNodes(focus);
       drawLabels(focus);
       ctx.restore();
+      if (introT() < 1) requestRender();      // 开场动画未走完 → 继续要帧
     }
 
     function requestRender() {
@@ -1084,8 +1184,10 @@
     function frame() {
       S.rafId = 0;
       if (S.alpha > PHYSICS.alphaMin) runStep(S.nodes, S.edges, S, PHYSICS);
+      var viewMoving = stepViewAnim();
       render();
-      if (S.alpha > PHYSICS.alphaMin) requestRender(); // 静止后不再调度 → 0 空转
+      // 静止后不再调度 → 0 空转；只有物理还热、视图缓动中、或开场未结束才继续
+      if (S.alpha > PHYSICS.alphaMin || viewMoving) requestRender();
     }
 
     /**
@@ -1230,10 +1332,10 @@
       var n = S.nodes[idx];
       if (!n) return;
       var k = S.view.k;
-      if (zoomIn) k = clamp(Math.max(k, 1.25), 0.15, 4);
-      S.view = { k: k, x: S.width / 2 - n.x * k, y: S.height / 2 - n.y * k };
+      if (zoomIn) k = clamp(Math.max(k, 1.25), 0.22, 3.5);
       S.userTouched = true;
-      render();
+      // 缓动过去（双击节点不再“瞬移”）
+      animateViewTo({ k: k, x: S.width / 2 - n.x * k, y: S.height / 2 - n.y * k }, 380);
     }
 
     function buildControls(host) {
@@ -1359,8 +1461,7 @@
         S.userTouched = false;
         S.selected = -1; S.hover = -1;
         if (S.detail) S.detail.box.hidden = true;
-        S.view = fitGraph();
-        render();
+        animateViewTo(fitGraph(), 460);      // 缓动回位，不再瞬移
       });
       var bRelayout = el('button', 'btn btn-ghost', '重新布局');
       bRelayout.type = 'button';
@@ -1371,9 +1472,8 @@
         // 「重新布局」是用户点的按钮 → 永远播动画（连 prefers-reduced-motion 也不该让它瞬间跳完）
         requestRender();
         window.setTimeout(function () {
-          S.view = fitGraph();
           S.userTouched = false;
-          render();
+          animateViewTo(fitGraph(), 520);    // 布局收敛后缓动收拢视野
         }, 900);
       });
       btnRow.appendChild(bReset);
@@ -1469,6 +1569,16 @@
           var w = screenToWorld(S.view, p.x, p.y);
           var n = S.nodes[S.drag.idx];
           n.x = w.x; n.y = w.y;
+          // 记录指针速度（指数平滑）→ 松手时“甩”一下，动画更自然
+          var tNow = nowMs();
+          if (S.drag.last) {
+            var dt = Math.max(8, tNow - S.drag.last.t);
+            var ivx = (p.x - S.drag.last.x) / dt * 16;   // 屏幕像素 / 帧
+            var ivy = (p.y - S.drag.last.y) / dt * 16;
+            S.drag.pvx = (S.drag.pvx === undefined) ? ivx : S.drag.pvx * 0.55 + ivx * 0.45;
+            S.drag.pvy = (S.drag.pvy === undefined) ? ivy : S.drag.pvy * 0.55 + ivy * 0.45;
+          }
+          S.drag.last = { x: p.x, y: p.y, t: tNow };
           heat(0.62, true);   // 拖动全程持续供能，物理不衰减（否则拖到一半就「冻住」）
         }
         return;
@@ -1488,9 +1598,17 @@
       var wasNode = S.drag.mode === 'node';
       var idx = S.drag.idx;
       var moved = S.drag.moved;
+      var fling = { x: S.drag.pvx || 0, y: S.drag.pvy || 0 };
       S.drag = null;
       if (wasNode && idx !== undefined) {
-        S.nodes[idx].pinned = false;
+        var nd = S.nodes[idx];
+        nd.pinned = false;
+        // 松手时的惯性：把「屏幕像素/帧」换算到世界坐标，并限速（免得一甩飞出去）
+        var kk = S.view.k || 1;
+        if (Math.abs(fling.x) > 0.5 || Math.abs(fling.y) > 0.5) {
+          nd.vx = clamp(fling.x / kk * 0.6, -14, 14);
+          nd.vy = clamp(fling.y / kk * 0.6, -14, 14);
+        }
         if (moved < 5) showDetail(idx);
         heat(0.5, true);    // 松手后让子图回弹收敛 —— 这段回弹就是「物理效果」
       }
@@ -1519,7 +1637,7 @@
         case 'ArrowDown': S.view.y -= step; break;
         case '+': case '=': S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1.2, 0.22, 3.5); break;
         case '-': case '_': S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1 / 1.2, 0.22, 3.5); break;
-        case '0': S.view = fitGraph(); S.userTouched = false; break;
+        case '0': S.userTouched = false; animateViewTo(fitGraph(), 460); break;
         case 'Escape': S.selected = -1; if (S.detail) S.detail.box.hidden = true; break;
         default: handled = false;
       }
@@ -1626,6 +1744,7 @@
       S.alpha = 1;
       settle(S.nodes, S.edges, S, PHYSICS.preSettleSteps, PHYSICS); // 首帧前同步收敛
       S.view = fitGraph();
+      S.introStart = nowMs();               // 开场淡入 + 轻微放大从这里计时
       buildControls(controls);
       renderCounts();
       render();
