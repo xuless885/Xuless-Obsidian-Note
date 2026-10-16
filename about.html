@@ -91,9 +91,30 @@ background:var(--accent-soft);color:var(--fg-muted);font-size:.93rem;margin:var(
 .footer-links{display:flex;gap:var(--space-4);flex-wrap:wrap}.footer-links a{color:var(--fg-muted)}.footer-links a:hover{color:var(--accent)}
 .reveal{opacity:0;transform:translateY(18px)}
 .reveal.is-visible{opacity:1;transform:none;transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
-@media (prefers-reduced-motion:reduce){.reveal,.reveal.is-visible{opacity:1;transform:none;transition:none}.card:hover,.h-item:hover{transform:none}}
+/* ---- 高中数学课程页专用：章节一览网格 + 阅读路径 ---- */
+.chap-grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));margin-top:var(--space-4)}
+.chap{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-s);
+background:var(--bg-elev);color:var(--fg);transition:border-color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast)}
+.chap:hover{transform:translateY(-2px);border-color:var(--border-strong);box-shadow:var(--shadow-s);text-decoration:none}
+.chap-num{flex:0 0 34px;height:24px;border-radius:6px;display:grid;place-items:center;background:var(--bg-sunken);
+border:1px solid var(--border);color:var(--fg-subtle);font-size:.74rem;font-weight:700;font-variant-numeric:tabular-nums}
+.chap-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.92rem}
+.chap.is-todo{border-style:dashed;background:transparent}
+.chap.is-todo .chap-num{background:transparent;border-style:dashed}
+.chap.is-todo .chap-name{color:var(--fg-subtle)}
+.steps{display:grid;gap:var(--space-3);counter-reset:step;margin-top:var(--space-4)}
+.step{display:flex;gap:var(--space-4);padding:var(--space-4) var(--space-5);border:1px solid var(--border);border-radius:var(--radius-m);background:var(--bg-elev)}
+.step-n{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);
+font-weight:700;font-size:.82rem}
+.step-n::before{counter-increment:step;content:counter(step)}
+.step-body{min-width:0}.step-title{font-weight:650;color:var(--fg);margin-bottom:2px}
+.step-desc{color:var(--fg-muted);font-size:.92rem}
+.faq{display:grid;gap:var(--space-3);margin-top:var(--space-4)}
+.faq-item{padding:var(--space-4) var(--space-5);border:1px solid var(--border);border-radius:var(--radius-m);background:var(--bg-elev)}
+.faq-q{font-weight:650;color:var(--fg);margin-bottom:4px}.faq-a{color:var(--fg-muted);font-size:.93rem}
+@media (prefers-reduced-motion:reduce){.reveal,.reveal.is-visible{opacity:1;transform:none;transition:none}.card:hover,.h-item:hover,.chap:hover{transform:none}}
 </style>
-<link rel="stylesheet" href="./site-lib/styles/blog-theme.css?v=b6af1bed">
+<link rel="stylesheet" href="./site-lib/styles/blog-theme.css?v=63729f7d">
 <link rel="stylesheet" href="./site-lib/styles/pages.css?v=f6a3ec74">
 </head>
 <body>

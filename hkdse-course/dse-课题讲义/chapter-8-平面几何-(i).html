@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Xuless Obsidian Note">
 <meta name="theme-color" content="#f5f5f3">
 <link rel="icon" href="../../site-lib/media/favicon.png">
-<link rel="stylesheet" href="../../site-lib/styles/blog-theme.css?v=b6af1bed">
-<link rel="stylesheet" href="../../site-lib/styles/mathjax-chtml.css?v=8b15563a">
+<link rel="stylesheet" href="../../site-lib/styles/blog-theme.css?v=63729f7d">
+<link rel="stylesheet" href="../../site-lib/styles/mathjax-chtml.css?v=1a52d662">
 <script defer>async function loadIncludes(){let e=document.querySelectorAll("link[itemprop='include']");for(const t of e){let e=t.getAttribute("href");try{let o="";if(e.startsWith("https:")||e.startsWith("http:")||"file:"!=window.location.protocol){const n=await fetch(e);if(!n.ok){console.log("Could not include file: "+e),t?.remove();continue}o=await n.text()}else{const t=document.getElementById(btoa(encodeURI(e)));if(t){const e=JSON.parse(decodeURI(atob(t.getAttribute("value")??"")));o=e?.data??""}}let n=document.createRange().createContextualFragment(o);t.before(n),t.remove(),console.log("Included text: "+o),console.log("Included file: "+e)}catch(o){t?.remove(),console.log("Could not include file: "+e,o);continue}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script")));!function e(n){let l=o[n],c=n+1;l?(l&&"true"!=l.getAttribute("loaded")||n<o.length&&e(c),n<o.length&&l.addEventListener("load",(()=>e(c)))):n<o.length?e(c):t()}(0)}</script>
 <script defer src="../../site-lib/scripts/site.js?v=358b4874"></script>
 <script defer src="../../site-lib/scripts/doc-page.js?v=6d7aa110"></script>
@@ -22,8 +22,6 @@
 <!-- ==DSH-INJECT:head== -->
 <meta name="dsh-tags" content="DSE课程笔记">
 <meta name="dsh-description" content="前置：Chapter 0 基础概念|基础概念、Chapter 6 代数式|代数式、Chapter 7 率、比及百分法|率、比及百分法">
-<link rel="stylesheet" href="../../site-lib/vendor/tikzjax/tikzjax-fonts.css?v=c7b17aeb">
-<link rel="stylesheet" href="../../site-lib/styles/tikz-figures.css?v=cb2a278b">
 </head><body class="publish css-settings-manager mod-windows is-hidden-frameless styled-scrollbars show-inline-title show-ribbon mathcraft-active theorem-style-framed is-focused">
 <script>(function(){var d=document.documentElement;function rd(k){try{return localStorage.getItem(k)}catch(e){return null}}var t=rd("dsh-theme")||rd("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"!=t&&(t="light");d.setAttribute("data-theme",t);d.classList.add("theme-"+t);if("dark"==t){d.classList.add("theme-dark");d.classList.remove("theme-light")}else{d.classList.add("theme-light");d.classList.remove("theme-dark")}var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content","dark"==t?"#111216":"#f7f7f5");function vp(){var b=document.body;if(!b)return;b.classList.remove("is-phone","is-tablet","is-small-screen","is-large-screen");b.classList.add(window.innerWidth<480?"is-phone":window.innerWidth<768?"is-tablet":window.innerWidth<1024?"is-small-screen":"is-large-screen")}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",vp):vp();})()</script>
 <div class="parsed-feature-container" style="display: contents;"></div>
@@ -121,7 +119,7 @@
 <div class="el-p"><p dir="auto">第五公设的等价形式：过直线外一点，有且仅有一条直线与该直线平行——是平面几何区别于非欧几何的关键。</p></div></blockquote></div></div></div></div><div class="el-h3"><h3 data-heading="平行线与截线 (Parallel Lines and Transversals)" dir="auto" class="heading" id="平行线与截线_(Parallel_Lines_and_Transversals)_0">平行线与截线 (Parallel Lines and Transversals)</h3></div><div class="el-pre admonition-parent admonition-def-parent"><div class="callout admonition admonition-def admonition-plugin" style="--callout-color: 162, 113, 254;" data-callout="def" data-callout-fold="" data-callout-metadata=""><div class="callout-title admonition-title"><div class="callout-icon admonition-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><div class="callout-title-inner admonition-title-content">定义（平行线） | Definition（Parallel Lines）</div></div><div class="callout-content admonition-content"><div class="el-p"><p dir="auto">在同一平面内，永不相交的两条直线。记作 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c2113"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2225"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mi class="mjx-i"><mjx-c class="mjx-c2113"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub></mjx-math></mjx-container></span>。</p></div></div></div></div><div class="el-p"><p dir="auto"><span alt="628" src="../图片/c8-g5.svg" class="internal-embed media-embed image-embed is-loaded" target="_self" style="max-width: 100%;"><img alt="628" src="../图片/c8-g5.svg" target="_self" loading="lazy" style="max-width: 100%;"></span></p></div><div class="el-pre admonition-parent admonition-def-parent"><div class="callout admonition admonition-def admonition-plugin" style="--callout-color: 162, 113, 254;" data-callout="def" data-callout-fold="" data-callout-metadata=""><div class="callout-title admonition-title"><div class="callout-icon admonition-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><div class="callout-title-inner admonition-title-content">定义（截线） | Definition（Transversal）</div></div><div class="callout-content admonition-content"><div class="el-p"><p dir="auto">与两条（或以上）直线相交的一条直线。</p></div></div></div></div><div class="el-p"><p dir="auto"><span alt="628" src="../图片/c8-g6.svg" class="internal-embed media-embed image-embed is-loaded" target="_self" style="max-width: 100%;"><img alt="628" src="../图片/c8-g6.svg" target="_self" loading="lazy" style="max-width: 100%;"></span></p></div><div class="el-p"><p dir="auto">当一条截线与两条直线相交时，在截点处共形成八个角。根据角与两条被截直线的相对位置，可将这些角分为三组特殊关系：</p></div><div class="el-pre admonition-parent admonition-def-parent"><div class="callout admonition admonition-def admonition-plugin" style="--callout-color: 162, 113, 254;" data-callout="def" data-callout-fold="" data-callout-metadata=""><div class="callout-title admonition-title"><div class="callout-icon admonition-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><div class="callout-title-inner admonition-title-content">定义（同位角） | Definition（Corresponding Angles）</div></div><div class="callout-content admonition-content"><div class="el-p"><p dir="auto">在截线的同一侧，且分别位于两条被截直线的同一侧的两个角。</p></div><div class="el-blockquote"><blockquote dir="auto">
 <div class="el-p"><p dir="auto">形象地说：若将两条被截直线「对齐」放在一起，同位角就像是将其中一个截点处的角「平移」到另一个截点处的对应位置。例如，两直线与截线形成字母 <strong>F</strong> 形状时，上下两个「同方向」的角即为同位角。</p></div></blockquote></div></div></div></div><div class="el-pre admonition-parent admonition-def-parent"><div class="callout admonition admonition-def admonition-plugin" style="--callout-color: 162, 113, 254;" data-callout="def" data-callout-fold="" data-callout-metadata=""><div class="callout-title admonition-title"><div class="callout-icon admonition-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><div class="callout-title-inner admonition-title-content">定义（内错角） | Definition（Alternate Interior Angles）</div></div><div class="callout-content admonition-content"><div class="el-p"><p dir="auto">位于两条被截直线<strong>之间</strong>（内部），且在截线<strong>两侧</strong>（交错）的两个角。</p></div><div class="el-blockquote"><blockquote dir="auto">
 <div class="el-p"><p dir="auto">形象地说：两直线与截线形成字母 <strong>Z</strong> 形状（或倒 Z 形状）时，位于 Z 字内部的两个角即为内错角。</p></div></blockquote></div></div></div></div><div class="el-pre admonition-parent admonition-def-parent"><div class="callout admonition admonition-def admonition-plugin" style="--callout-color: 162, 113, 254;" data-callout="def" data-callout-fold="" data-callout-metadata=""><div class="callout-title admonition-title"><div class="callout-icon admonition-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><div class="callout-title-inner admonition-title-content">定义（同旁内角） | Definition（Co-interior Angles / Interior Angles on the Same Side）</div></div><div class="callout-content admonition-content"><div class="el-p"><p dir="auto">位于两条被截直线<strong>之间</strong>（内部），且在截线<strong>同一侧</strong>的两个角。</p></div><div class="el-blockquote"><blockquote dir="auto">
-<div class="el-p"><p dir="auto">形象地说：两直线与截线形成字母 <strong>C</strong> 形状（或 U 形状）时，位于 C 字内部的两个角即为同旁内角。</p></div></blockquote></div></div></div></div><div class="el-p"><p dir="auto"><span alt="628" src="../图片/c8-g7.svg" class="internal-embed media-embed image-embed is-loaded" target="_self" style="max-width: 100%;"><img alt="628" src="../图片/c8-g7.svg" target="_self" loading="lazy" style="max-width: 100%;"></span></p></div><figure class="tikz-figure-wrap" data-tikz-prerendered="ce9e6975560b9e13"><img class="tikz-figure" src="../../site-lib/vendor/tikzjax/prerendered/ce9e6975560b9e13.svg" width="239" height="305" alt="TikZ 圖" loading="lazy" decoding="async"><details class="tikz-source-toggle"><summary>查看 TikZ 原始碼</summary><pre class="tikz-source"><code>\usepackage{pgfplots}
+<div class="el-p"><p dir="auto">形象地说：两直线与截线形成字母 <strong>C</strong> 形状（或 U 形状）时，位于 C 字内部的两个角即为同旁内角。</p></div></blockquote></div></div></div></div><div class="el-p"><p dir="auto"><span alt="628" src="../图片/c8-g7.svg" class="internal-embed media-embed image-embed is-loaded" target="_self" style="max-width: 100%;"><img alt="628" src="../图片/c8-g7.svg" target="_self" loading="lazy" style="max-width: 100%;"></span></p></div><div class="tikz-block"><script type="text/tikz">\usepackage{pgfplots}
 \pgfplotsset{compat=1.15}
 \usetikzlibrary{arrows,arrows.meta}
 
@@ -148,7 +146,34 @@
   \draw[line cap=round,line join=round,line width=1pt] (G) ++(23.31:0.6) arc (23.31:77.33:0.6);
 \end{tikzpicture}
 
-\end{document}</code></pre></details></figure><figure class="tikz-figure-wrap" data-tikz-prerendered="ab5b9d432438e7d0"><img class="tikz-figure" src="../../site-lib/vendor/tikzjax/prerendered/ab5b9d432438e7d0.svg" width="179" height="229" alt="TikZ 圖" loading="lazy" decoding="async"><details class="tikz-source-toggle"><summary>查看 TikZ 原始碼</summary><pre class="tikz-source"><code>\usepackage{pgfplots}
+\end{document}</script><noscript><div class="tikz-fallback"><p class="tikz-fallback-hint">此图由 TikZ 渲染；当前未运行 JavaScript，以下为源码。</p><pre class="tikz-source"><code>\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows,arrows.meta}
+
+\begin{document}
+
+
+\begin{tikzpicture}[scale=1.5]
+  % 坐标点定义
+  \coordinate (A) at (0,0.86);
+  \coordinate (B) at (3.56,2.39);
+  \coordinate (C) at (3,0);
+  \coordinate (D) at (2.67,5.18);
+  \coordinate (E) at (0.89,-2.74);
+  \coordinate (F) at (1.88,1.67);
+  \coordinate (G) at (1.35,-0.71);
+
+  % 几何元素
+  \draw[line cap=round,line join=round,line width=1pt] (-0.64,0.58) -- (4.93,2.98);
+  \draw[line cap=round,line join=round,line width=1pt] (-0.64,-1.57) -- (4.93,0.83);
+  \draw[line cap=round,line join=round,line width=1pt] (0.85,-2.9) -- (2.45,4.22);
+  \fill [shift=(F), gray!30] (0,0) -- (23.31:0.6) arc (23.31:77.33:0.6) -- cycle;
+  \draw[line cap=round,line join=round,line width=1pt] (F) ++(23.31:0.6) arc (23.31:77.33:0.6);
+  \fill [shift=(G), gray!30] (0,0) -- (23.31:0.6) arc (23.31:77.33:0.6) -- cycle;
+  \draw[line cap=round,line join=round,line width=1pt] (G) ++(23.31:0.6) arc (23.31:77.33:0.6);
+\end{tikzpicture}
+
+\end{document}</code></pre></div></noscript></div><div class="tikz-block"><script type="text/tikz">\usepackage{pgfplots}
 \pgfplotsset{compat=1.15}
 \usetikzlibrary{arrows,arrows.meta}
 \begin{document}
@@ -171,7 +196,30 @@
   \fill [shift=(F), gray!30] (0,0) -- (203.31:0.6) arc (203.31:257.33:0.6) -- cycle;
   \draw[line cap=round,line join=round,line width=1pt] (F) ++(203.31:0.6) arc (203.31:257.33:0.6);
 \end{tikzpicture}
-\end{document}</code></pre></details></figure><figure class="tikz-figure-wrap" data-tikz-prerendered="d16fd6e8e355e1ab"><img class="tikz-figure" src="../../site-lib/vendor/tikzjax/prerendered/d16fd6e8e355e1ab.svg" width="179" height="229" alt="TikZ 圖" loading="lazy" decoding="async"><details class="tikz-source-toggle"><summary>查看 TikZ 原始碼</summary><pre class="tikz-source"><code>\usepackage{pgfplots}
+\end{document}</script><noscript><div class="tikz-fallback"><p class="tikz-fallback-hint">此图由 TikZ 渲染；当前未运行 JavaScript，以下为源码。</p><pre class="tikz-source"><code>\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows,arrows.meta}
+\begin{document}
+\begin{tikzpicture}[scale=1.5]
+  % 坐标点定义
+  \coordinate (A) at (0,0.86);
+  \coordinate (B) at (3.56,2.39);
+  \coordinate (C) at (3,0);
+  \coordinate (D) at (2.67,5.18);
+  \coordinate (E) at (0.89,-2.74);
+  \coordinate (F) at (1.88,1.67);
+  \coordinate (G) at (1.35,-0.71);
+  \coordinate (H) at (1.03,1.3);
+  % 几何元素
+  \draw[line cap=round,line join=round,line width=1pt] (0.15,0.92) -- (4.33,2.72);
+  \draw[line cap=round,line join=round,line width=1pt] (0.15,-1.23) -- (4.33,0.57);
+  \draw[line cap=round,line join=round,line width=1pt] (1.02,-2.18) -- (2.22,3.16);
+  \fill [shift=(G), gray!30] (0,0) -- (23.31:0.6) arc (23.31:77.33:0.6) -- cycle;
+  \draw[line cap=round,line join=round,line width=1pt] (G) ++(23.31:0.6) arc (23.31:77.33:0.6);
+  \fill [shift=(F), gray!30] (0,0) -- (203.31:0.6) arc (203.31:257.33:0.6) -- cycle;
+  \draw[line cap=round,line join=round,line width=1pt] (F) ++(203.31:0.6) arc (203.31:257.33:0.6);
+\end{tikzpicture}
+\end{document}</code></pre></div></noscript></div><div class="tikz-block"><script type="text/tikz">\usepackage{pgfplots}
 \pgfplotsset{compat=1.15}
 \usetikzlibrary{arrows,arrows.meta}
 \begin{document}
@@ -194,7 +242,30 @@
   \fill [shift=(F), gray!30] (0,0) -- (257.33:0.6) arc (257.33:383.31:0.6) -- cycle;
   \draw[line cap=round,line join=round,line width=1pt] (F) ++(257.33:0.6) arc (257.33:383.31:0.6);
 \end{tikzpicture}
-\end{document}</code></pre></details></figure><div class="el-pre admonition-parent admonition-thm-parent"><div class="callout admonition admonition-thm admonition-plugin" style="--callout-color: 162, 113, 254;" data-callout="thm" data-callout-fold="" data-callout-metadata=""><div class="callout-title admonition-title"><div class="callout-icon admonition-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><div class="callout-title-inner admonition-title-content">定理（平行线的角关系） | Theorem（Angle Relationships with Parallel Lines）</div></div><div class="callout-content admonition-content"><div class="el-p"><p dir="auto">设两平行线被一条截线所截，则：</p></div><div class="el-ol"><ol>
+\end{document}</script><noscript><div class="tikz-fallback"><p class="tikz-fallback-hint">此图由 TikZ 渲染；当前未运行 JavaScript，以下为源码。</p><pre class="tikz-source"><code>\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows,arrows.meta}
+\begin{document}
+\begin{tikzpicture}[scale=1.5]
+  % 坐标点定义
+  \coordinate (A) at (0,0.86);
+  \coordinate (B) at (3.56,2.39);
+  \coordinate (C) at (3,0);
+  \coordinate (D) at (2.67,5.18);
+  \coordinate (E) at (0.89,-2.74);
+  \coordinate (F) at (1.88,1.67);
+  \coordinate (G) at (1.35,-0.71);
+  \coordinate (H) at (1.03,1.3);
+  % 几何元素
+  \draw[line cap=round,line join=round,line width=1pt] (0.72,1.17) -- (4.9,2.97);
+  \draw[line cap=round,line join=round,line width=1pt] (0.72,-0.98) -- (4.9,0.82);
+  \draw[line cap=round,line join=round,line width=1pt] (1.17,-1.48) -- (2.37,3.86);
+  \fill [shift=(G), gray!30] (0,0) -- (23.31:0.6) arc (23.31:77.33:0.6) -- cycle;
+  \draw[line cap=round,line join=round,line width=1pt] (G) ++(23.31:0.6) arc (23.31:77.33:0.6);
+  \fill [shift=(F), gray!30] (0,0) -- (257.33:0.6) arc (257.33:383.31:0.6) -- cycle;
+  \draw[line cap=round,line join=round,line width=1pt] (F) ++(257.33:0.6) arc (257.33:383.31:0.6);
+\end{tikzpicture}
+\end{document}</code></pre></div></noscript></div><div class="el-pre admonition-parent admonition-thm-parent"><div class="callout admonition admonition-thm admonition-plugin" style="--callout-color: 162, 113, 254;" data-callout="thm" data-callout-fold="" data-callout-metadata=""><div class="callout-title admonition-title"><div class="callout-icon admonition-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><div class="callout-title-inner admonition-title-content">定理（平行线的角关系） | Theorem（Angle Relationships with Parallel Lines）</div></div><div class="callout-content admonition-content"><div class="el-p"><p dir="auto">设两平行线被一条截线所截，则：</p></div><div class="el-ol"><ol>
 <li dir="auto"><strong>同位角相等 (Corresponding Angles Equal)</strong>：</li>
 </ol></div><div class="el-blockquote"><blockquote dir="auto">
 <div class="el-p"><p dir="auto">图中所标注的两个角相等</p></div></blockquote></div><div class="el-ol"><ol start="2">
@@ -497,7 +568,7 @@
 <li dir="auto"><span class="list-bullet"></span><strong>弦 (Chord)</strong>：连接圆周上任意两点的线段。</li>
 </ul>
 <ul class="has-list-bullet">
-<li dir="auto"><span class="list-bullet"></span><p dir="auto"><strong>弧 (Arc)</strong>：圆周的一部分。</p>本讲义在 <span class="is-unresolved" data-unresolved="Chapter 30 轨迹">轨迹</span> §30.1.2 把圆当作「到定点等距」这一条件所确定的点集重新定义一次，并把<strong>圆周</strong>（那条曲线本身）、<strong>周长</strong>（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>，即一周的长度）与<strong>圆盘</strong>（圆及其内部，面积 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math></mjx-container></span>）三个概念分立；那里的用词为本册的规范用词。</li>
+<li dir="auto"><span class="list-bullet"></span><p dir="auto"><strong>弧 (Arc)</strong>：圆周的一部分。</p>本讲义在 <a class="internal-link" data-href="Chapter 30 轨迹" href="./chapter-30-轨迹.html" target="_self">轨迹</a> §30.1.2 把圆当作「到定点等距」这一条件所确定的点集重新定义一次，并把<strong>圆周</strong>（那条曲线本身）、<strong>周长</strong>（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>，即一周的长度）与<strong>圆盘</strong>（圆及其内部，面积 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math></mjx-container></span>）三个概念分立；那里的用词为本册的规范用词。</li>
 </ul></div></div></div></div><div class="el-p"><p dir="auto">注意弦和弧的区别：弦是直线段，弧是曲线。弦是连接两点的「直线距离」，而弧是「沿着圆走的曲线距离」。</p></div><div class="el-h3"><h3 data-heading="弧长 (Arc Length)" dir="auto" class="heading" id="弧长_(Arc_Length)_0">弧长 (Arc Length)</h3></div><div class="el-p"><p dir="auto">弧长与扇形面积公式的核心思想都是<strong>比例</strong>。具体而言，我们需要依赖以下两条比例关系：</p></div><div class="el-ol"><ol>
 <li dir="auto"><strong>弧长与圆心角成正比</strong>：弧长 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43F TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 与周长 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D70B TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 之比 = 圆心角 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D703 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 与周角 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c36"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.393em;"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2218"></mjx-c></mjx-mo></mjx-script></mjx-msup></mjx-math></mjx-container></span> 之比。</li>
 </ol>

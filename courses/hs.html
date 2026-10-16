@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>高中数学课程</title>
-<meta name="description" content="HKDSE 数学课程讲义、模拟卷与大纲。">
+<meta name="description" content="HKDSE 数学课程讲义、模拟卷与大纲：章节一览、阅读顺序与项目状态。">
 <meta property="og:title" content="高中数学课程">
-<meta property="og:description" content="HKDSE 数学课程讲义、模拟卷与大纲。">
+<meta property="og:description" content="HKDSE 数学课程讲义、模拟卷与大纲：章节一览、阅读顺序与项目状态。">
 <link rel="icon" href="../site-lib/media/favicon.png">
 <script>window.DSH_ROOT = "../";</script>
 <style>:root{--bg:#f7f7f5;--bg-elev:#fff;--bg-sunken:#efeee9;--fg:#17181c;--fg-muted:#5b5f6b;--fg-subtle:#8b8f9a;
@@ -91,9 +91,30 @@ background:var(--accent-soft);color:var(--fg-muted);font-size:.93rem;margin:var(
 .footer-links{display:flex;gap:var(--space-4);flex-wrap:wrap}.footer-links a{color:var(--fg-muted)}.footer-links a:hover{color:var(--accent)}
 .reveal{opacity:0;transform:translateY(18px)}
 .reveal.is-visible{opacity:1;transform:none;transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
-@media (prefers-reduced-motion:reduce){.reveal,.reveal.is-visible{opacity:1;transform:none;transition:none}.card:hover,.h-item:hover{transform:none}}
+/* ---- 高中数学课程页专用：章节一览网格 + 阅读路径 ---- */
+.chap-grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));margin-top:var(--space-4)}
+.chap{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-s);
+background:var(--bg-elev);color:var(--fg);transition:border-color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast)}
+.chap:hover{transform:translateY(-2px);border-color:var(--border-strong);box-shadow:var(--shadow-s);text-decoration:none}
+.chap-num{flex:0 0 34px;height:24px;border-radius:6px;display:grid;place-items:center;background:var(--bg-sunken);
+border:1px solid var(--border);color:var(--fg-subtle);font-size:.74rem;font-weight:700;font-variant-numeric:tabular-nums}
+.chap-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.92rem}
+.chap.is-todo{border-style:dashed;background:transparent}
+.chap.is-todo .chap-num{background:transparent;border-style:dashed}
+.chap.is-todo .chap-name{color:var(--fg-subtle)}
+.steps{display:grid;gap:var(--space-3);counter-reset:step;margin-top:var(--space-4)}
+.step{display:flex;gap:var(--space-4);padding:var(--space-4) var(--space-5);border:1px solid var(--border);border-radius:var(--radius-m);background:var(--bg-elev)}
+.step-n{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);
+font-weight:700;font-size:.82rem}
+.step-n::before{counter-increment:step;content:counter(step)}
+.step-body{min-width:0}.step-title{font-weight:650;color:var(--fg);margin-bottom:2px}
+.step-desc{color:var(--fg-muted);font-size:.92rem}
+.faq{display:grid;gap:var(--space-3);margin-top:var(--space-4)}
+.faq-item{padding:var(--space-4) var(--space-5);border:1px solid var(--border);border-radius:var(--radius-m);background:var(--bg-elev)}
+.faq-q{font-weight:650;color:var(--fg);margin-bottom:4px}.faq-a{color:var(--fg-muted);font-size:.93rem}
+@media (prefers-reduced-motion:reduce){.reveal,.reveal.is-visible{opacity:1;transform:none;transition:none}.card:hover,.h-item:hover,.chap:hover{transform:none}}
 </style>
-<link rel="stylesheet" href="../site-lib/styles/blog-theme.css?v=b6af1bed">
+<link rel="stylesheet" href="../site-lib/styles/blog-theme.css?v=63729f7d">
 <link rel="stylesheet" href="../site-lib/styles/pages.css?v=f6a3ec74">
 </head>
 <body>
@@ -115,29 +136,142 @@ background:var(--accent-soft);color:var(--fg-muted);font-size:.93rem;margin:var(
 <header class="page-head"><div class="wrap"><div class="crumbs"><a href="../index.html">首页</a></div><h1 class="page-title">高中数学课程</h1><p class="page-sub">HKDSE 数学（必修部分 / M1 / M2）的课程讲义、模拟卷与官方大纲。</p></div></header>
 <main id="main"><div class="wrap">
 
+<h2 class="section-title">这是什么</h2>
+<p>这里是 <strong>HKDSE 数学</strong>的教学内容板块：一套正在编写中的数学教材，目标是把 DSE 考纲的内容重新组织成一条<strong>逻辑严谨、结构清晰</strong>的知识链——从初中基础到高中进阶，按章推进。</p>
+<p>写法上强调<strong>定义 → 定理 → 推论</strong>的完整链条，重点讲「为什么」，而不只是「怎么做」。每章开头有「本章目标」，正文给出完整推导与例题，图示与公式都按印刷标准排版。</p>
+<div class="note"><strong>已发布：34 章讲义</strong>（Ch00–Ch33）＋ 18 份模拟卷卷面 ＋ 6 份官方大纲文件。后续章节（Ch34 排列与组合、Ch35 概率 (II)、Ch36 数列 (II)）在写作中。</div>
+
+<h2 class="section-title">三个子板块</h2>
 <div class="grid grid-3">
  <a class="card reveal" href="../hkdse-course/dse-课题讲义/index.html">
   <div class="card-ico" aria-hidden="true">&#128218;</div>
-  <h2 class="card-title">个人 DSE 数学课程讲义</h2>
-  <p class="card-desc">按章整理的课程讲义正文，覆盖必修部分与延伸单元的核心概念、定理、推导与例题。</p>
-  <span class="card-go">查看讲义</span>
+  <h2 class="card-title">课程讲义</h2>
+  <p class="card-desc">按章整理的讲义正文：核心概念、定理与推导、例题与图示。共 34 篇，含一篇《给读者的简介》说明用法与记号约定。</p>
+  <span class="card-go">进入讲义目录</span>
  </a>
  <a class="card reveal" href="../courses/mock.html">
   <div class="card-ico" aria-hidden="true">&#128196;</div>
   <h2 class="card-title">模拟卷（仅卷面）</h2>
-  <p class="card-desc">历年模拟卷试卷。只提供卷面，不含评分参考与答案。</p>
-  <span class="card-go">查看清单</span>
+  <p class="card-desc">历年模拟卷试卷，按年份与卷别编号。只提供卷面，不含评分参考与答案。</p>
+  <span class="card-go">查看模拟卷</span>
  </a>
  <a class="card reveal" href="../courses/outline.html">
   <div class="card-ico" aria-hidden="true">&#128203;</div>
   <h2 class="card-title">大纲</h2>
-  <p class="card-desc">官方考点大纲、课程阐释与数学词汇表，用于对照讲义进度与考核范围。</p>
+  <p class="card-desc">官方考纲、课程阐释与数学词汇表，用来对照讲义进度与考核范围。</p>
   <span class="card-go">查看大纲</span>
  </a>
 </div>
 
-<h2 class="section-title">关于这个板块</h2>
-<div class="note"><strong>讲义</strong>为课程正文，逐章编排；<strong>模拟卷</strong>只放卷面，答案与评分参考不在站内提供；<strong>大纲</strong>收录官方文件与词汇表。</div>
+<h2 class="section-title">建议阅读顺序</h2>
+<div class="steps">
+ <div class="step reveal"><span class="step-n" aria-hidden="true"></span><div class="step-body">
+  <div class="step-title">先读《给读者的简介》</div>
+  <div class="step-desc">这一篇说明讲义怎么用、记号约定、难度标记与章节之间的关系，读一章正文之前值得先花十分钟看完。</div></div></div>
+ <div class="step reveal"><span class="step-n" aria-hidden="true"></span><div class="step-body">
+  <div class="step-title">按章推进，先看「本章目标」</div>
+  <div class="step-desc">每章开头列出本章要建立的概念与目标；正文按定义、定理、推论的顺序展开，例题紧跟其后。</div></div></div>
+ <div class="step reveal"><span class="step-n" aria-hidden="true"></span><div class="step-body">
+  <div class="step-title">对照大纲确认范围</div>
+  <div class="step-desc">大纲页收录官方文件与词汇表，可以核对某章覆盖到哪个学习单位、哪些考点尚未上线。</div></div></div>
+ <div class="step reveal"><span class="step-n" aria-hidden="true"></span><div class="step-body">
+  <div class="step-title">用图谱看章与章的关系</div>
+  <div class="step-desc">知识图谱把全部笔记之间的引用关系画成网络，适合在复习阶段确认先修与延伸的依赖顺序。</div></div></div>
+</div>
+
+<h2 class="section-title">章节一览</h2>
+<p class="page-sub" style="color:var(--fg-muted)">已发布 34 章，点击章名直达该章讲义。</p>
+
+<div class="chap-grid">
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-0-基础概念.html">
+  <span class="chap-num">00</span><span class="chap-name">基础概念</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-1-数系(i).html">
+  <span class="chap-num">01</span><span class="chap-name">数系(i)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-2-估算.html">
+  <span class="chap-num">02</span><span class="chap-name">估算</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-3-整数指数律与进制.html">
+  <span class="chap-num">03</span><span class="chap-name">整数指数律与进制</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-4-多项式(i).html">
+  <span class="chap-num">04</span><span class="chap-name">多项式(i)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-5-解方程方法(i).html">
+  <span class="chap-num">05</span><span class="chap-name">解方程方法(i)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-6-代数式.html">
+  <span class="chap-num">06</span><span class="chap-name">代数式</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-7-率、比及百分法.html">
+  <span class="chap-num">07</span><span class="chap-name">率、比及百分法</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-8-平面几何-(i).html">
+  <span class="chap-num">08</span><span class="chap-name">平面几何 (I)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-9-三角学(i).html">
+  <span class="chap-num">09</span><span class="chap-name">三角学(i)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-10-立体几何-(i).html">
+  <span class="chap-num">10</span><span class="chap-name">立体几何 (I)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-11-不等式-(i).html">
+  <span class="chap-num">11</span><span class="chap-name">不等式 (I)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-12-数据的组织与表达.html">
+  <span class="chap-num">12</span><span class="chap-name">数据的组织与表达</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-13-集中趋势的度量.html">
+  <span class="chap-num">13</span><span class="chap-name">集中趋势的度量</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-14-概率(i).html">
+  <span class="chap-num">14</span><span class="chap-name">概率(i)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-15-解析几何-(i).html">
+  <span class="chap-num">15</span><span class="chap-name">解析几何 (I)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-16-集合论.html">
+  <span class="chap-num">16</span><span class="chap-name">集合论</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-17-数系(ii).html">
+  <span class="chap-num">17</span><span class="chap-name">数系(ii)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-18-解方程方法(ii).html">
+  <span class="chap-num">18</span><span class="chap-name">解方程方法(ii)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-19-函数及其图像.html">
+  <span class="chap-num">19</span><span class="chap-name">函数及其图像</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-20-直线方程.html">
+  <span class="chap-num">20</span><span class="chap-name">直线方程</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-21-二次函数.html">
+  <span class="chap-num">21</span><span class="chap-name">二次函数</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-22-变分.html">
+  <span class="chap-num">22</span><span class="chap-name">变分</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-23-多项式-(ii).html">
+  <span class="chap-num">23</span><span class="chap-name">多项式 · (ii)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-24-数列（i）.html">
+  <span class="chap-num">24</span><span class="chap-name">数列（i）</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-25-指数函数与对数函数.html">
+  <span class="chap-num">25</span><span class="chap-name">指数函数与对数函数</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-26-三角函数.html">
+  <span class="chap-num">26</span><span class="chap-name">三角函数</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html">
+  <span class="chap-num">27</span><span class="chap-name">解方程方法 · (iii)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-28-不等式-(ii).html">
+  <span class="chap-num">28</span><span class="chap-name">不等式 · (ii)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-29-平面几何-(ii).html">
+  <span class="chap-num">29</span><span class="chap-name">平面几何 · (ii)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-30-轨迹.html">
+  <span class="chap-num">30</span><span class="chap-name">轨迹</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-31-解析几何-(ii).html">
+  <span class="chap-num">31</span><span class="chap-name">解析几何 · (ii)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-32-立体几何-(ii).html">
+  <span class="chap-num">32</span><span class="chap-name">立体几何 · (ii)</span></a>
+ <a class="chap" href="../hkdse-course/dse-课题讲义/chapter-33-离差的度量.html">
+  <span class="chap-num">33</span><span class="chap-name">离差的度量</span></a>
+ <span class="chap is-todo" title="写作中"><span class="chap-num">34</span><span class="chap-name">排列与组合 · 写作中</span></span>
+ <span class="chap is-todo" title="写作中"><span class="chap-num">35</span><span class="chap-name">概率 (II) · 写作中</span></span>
+ <span class="chap is-todo" title="写作中"><span class="chap-num">36</span><span class="chap-name">数列 (II) · 写作中</span></span>
+</div>
+
+<h2 class="section-title">常见问题</h2>
+<div class="faq">
+ <div class="faq-item"><div class="faq-q">模拟卷为什么没有答案？</div>
+  <div class="faq-a">站内只发布卷面。评分参考与详细解答不随卷面公开，需要的话请通过关于页的方式联系。</div></div>
+ <div class="faq-item"><div class="faq-q">讲义与课本有什么不同？</div>
+  <div class="faq-a">讲义是按 DSE 考纲重写的正文，强调推导的完整性；它不是任何出版社课本的替代品，而是同一批课题的另一种组织方式。</div></div>
+ <div class="faq-item"><div class="faq-q">内容还在更新吗？</div>
+  <div class="faq-a">在。各章会持续修订与增补，最新的改动记录写在各篇讲义末尾的更新说明里。</div></div>
+</div>
+
+<h2 class="section-title">项目状态</h2>
+<div class="note">
+ <strong>活跃开发中</strong>：章节持续重建与修订，当前重点是把已上线各章的质量做扎实。<br>
+ <strong>LaTeX 源文件</strong>：全书最终会以 LaTeX 排版输出为 PDF 教科书。<br>
+ <strong>迭代式工作流</strong>：内容以「定义 → 定理 → 推论」的严格格式逐步完善，每轮修订都会记录改动与验证数据。
+</div>
 
 </div></main>
 <footer class="footer-site">

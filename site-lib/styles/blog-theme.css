@@ -2569,6 +2569,7 @@ body.publish .is-unresolved,
 body.publish a.is-unresolved {
     color: var(--fg-subtle) !important;
     border-bottom: 1px dashed var(--border-strong) !important;
+    cursor: help;   /* 悬停有 title：「本站未发布：<原目标>」，一眼分清「有意留白」与「坏链」 */
 }
 
 body.publish .original-internal-link {

@@ -938,115 +938,123 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
 }
 
-@font-face /* 0 */ {
+/* ==DSH-MATH-FONTS:BEGIN== */
+/* MathJax v3 CHTML 的 22 个 TeX 字体（官方 woff，OFL/Apache-2.0）。
+   本区由 .build/mathfont/sync_math_fonts.py 生成：字体族名与文件名出自同一张表，
+   路径一律相对本文件（../fonts/），全小写——不要手改，也不要在这里写大写 MathJax_*。
+   font-display: block：字体到位前公式宁可短暂不可见，也不回落成正文字体。 */
+@font-face {
   font-family: MJXZERO;
+  font-display: block;
   src: url("../fonts/mathjax_zero.woff") format("woff");
 }
-
-@font-face /* 1 */ {
+@font-face {
   font-family: MJXTEX;
+  font-display: block;
   src: url("../fonts/mathjax_main-regular.woff") format("woff");
 }
-
-@font-face /* 2 */ {
+@font-face {
   font-family: MJXTEX-B;
+  font-display: block;
   src: url("../fonts/mathjax_main-bold.woff") format("woff");
 }
-
-@font-face /* 3 */ {
+@font-face {
   font-family: MJXTEX-I;
+  font-display: block;
   src: url("../fonts/mathjax_math-italic.woff") format("woff");
 }
-
-@font-face /* 4 */ {
+@font-face {
   font-family: MJXTEX-MI;
+  font-display: block;
   src: url("../fonts/mathjax_main-italic.woff") format("woff");
 }
-
-@font-face /* 5 */ {
+@font-face {
   font-family: MJXTEX-BI;
+  font-display: block;
   src: url("../fonts/mathjax_math-bolditalic.woff") format("woff");
 }
-
-@font-face /* 6 */ {
+@font-face {
   font-family: MJXTEX-S1;
+  font-display: block;
   src: url("../fonts/mathjax_size1-regular.woff") format("woff");
 }
-
-@font-face /* 7 */ {
+@font-face {
   font-family: MJXTEX-S2;
+  font-display: block;
   src: url("../fonts/mathjax_size2-regular.woff") format("woff");
 }
-
-@font-face /* 8 */ {
+@font-face {
   font-family: MJXTEX-S3;
+  font-display: block;
   src: url("../fonts/mathjax_size3-regular.woff") format("woff");
 }
-
-@font-face /* 9 */ {
+@font-face {
   font-family: MJXTEX-S4;
+  font-display: block;
   src: url("../fonts/mathjax_size4-regular.woff") format("woff");
 }
-
-@font-face /* 10 */ {
+@font-face {
   font-family: MJXTEX-A;
+  font-display: block;
   src: url("../fonts/mathjax_ams-regular.woff") format("woff");
 }
-
-@font-face /* 11 */ {
+@font-face {
   font-family: MJXTEX-C;
+  font-display: block;
   src: url("../fonts/mathjax_calligraphic-regular.woff") format("woff");
 }
-
-@font-face /* 12 */ {
+@font-face {
   font-family: MJXTEX-CB;
+  font-display: block;
   src: url("../fonts/mathjax_calligraphic-bold.woff") format("woff");
 }
-
-@font-face /* 13 */ {
+@font-face {
   font-family: MJXTEX-FR;
+  font-display: block;
   src: url("../fonts/mathjax_fraktur-regular.woff") format("woff");
 }
-
-@font-face /* 14 */ {
+@font-face {
   font-family: MJXTEX-FRB;
+  font-display: block;
   src: url("../fonts/mathjax_fraktur-bold.woff") format("woff");
 }
-
-@font-face /* 15 */ {
+@font-face {
   font-family: MJXTEX-SS;
+  font-display: block;
   src: url("../fonts/mathjax_sansserif-regular.woff") format("woff");
 }
-
-@font-face /* 16 */ {
+@font-face {
   font-family: MJXTEX-SSB;
+  font-display: block;
   src: url("../fonts/mathjax_sansserif-bold.woff") format("woff");
 }
-
-@font-face /* 17 */ {
+@font-face {
   font-family: MJXTEX-SSI;
+  font-display: block;
   src: url("../fonts/mathjax_sansserif-italic.woff") format("woff");
 }
-
-@font-face /* 18 */ {
+@font-face {
   font-family: MJXTEX-SC;
+  font-display: block;
   src: url("../fonts/mathjax_script-regular.woff") format("woff");
 }
-
-@font-face /* 19 */ {
+@font-face {
   font-family: MJXTEX-T;
+  font-display: block;
   src: url("../fonts/mathjax_typewriter-regular.woff") format("woff");
 }
-
-@font-face /* 20 */ {
+@font-face {
   font-family: MJXTEX-V;
+  font-display: block;
   src: url("../fonts/mathjax_vector-regular.woff") format("woff");
 }
-
-@font-face /* 21 */ {
+@font-face {
   font-family: MJXTEX-VB;
+  font-display: block;
   src: url("../fonts/mathjax_vector-bold.woff") format("woff");
 }
+/* ==DSH-MATH-FONTS:END== */
+
 
 .mjx-stretched mjx-c.mjx-c2013::before {
   content: "\2013";
