@@ -1,13 +1,18 @@
 /* ============================================================================
    TikZ 预渲染图形的展示样式（共享）
-   这些图在构建期已渲染成静态 SVG，页面里是：
-     <figure class="tikz-figure-wrap"><img class="tikz-figure" …>
-       <details class="tikz-source-toggle"><summary>查看 TikZ 原始碼</summary>
+   这些图在构建期已渲染成静态 SVG，页面里现在是**内联**的：
+     <figure class="tikz-figure-wrap"><svg class="tikz-figure" role="img" style="width:…px">…</svg>
+       <details class="tikz-source-toggle"><summary>查看 TikZ 源代码</summary>
          <pre class="tikz-source"><code>…</code></pre></details></figure>
-   两条硬性要求：
-     1. SVG 里的 <text> 是 BaKoMa Computer Modern **字形槽位**（不是 Unicode），
-        必须同时加载 tikzjax-fonts.css，否则公式会显示成「看着正常但错误」的字符；
-     2. 图形的字号/颜色要跟随正文与主题，所以用 currentColor 与相对尺寸。
+   三条硬性要求：
+     1. 必须是**内联** SVG，不能改成 <img src="…svg">：SVG 里的 <text> 是 BaKoMa
+        Computer Modern **字形槽位**（font-family="cmmi10" 等），字体靠页面的
+        tikzjax-fonts.css 提供；而 <img> 加载的 SVG 是独立文档、拿不到页面的
+        @font-face，浏览器会用系统字体兜底 —— 表现为「配图里的文字与正文公式
+        不是同一套字体」；
+     2. 显示尺寸：inline style 给出「原图 pt × 1.35」的宽度（1pt = 4/3 px；直接拿
+        pt 当 px 用会小 25%），再由这里的 max-width:100% 兜住超宽图；
+     3. 图形的字号/颜色要跟随正文与主题，所以 SVG 用 currentColor，这里给 color。
    ========================================================================== */
 
 .tikz-figure-wrap {
@@ -16,7 +21,8 @@
 }
 
 .tikz-figure {
-  display: inline-block;
+  display: block;
+  margin: 0 auto;
   max-width: 100%;
   height: auto;
   /* SVG 内的 <text fill="currentColor"> 依赖这里的 color 继承 */
