@@ -2702,10 +2702,15 @@ body.publish .highlight {
 /* 9.8 Callout（def / thm / lem / cor / axi / proof / example / note / tip / warning …） */
 body.publish .callout {
     --callout-radius: var(--radius-m);
+    /* Obsidian 导出把 --callout-color 写成 **RGB 三元组**（`--callout-color: 162, 113, 254;`），
+       不是 color 值。直接 `color: var(--callout-color)` / `stroke: …` 是无效声明：带 !important
+       时会退回**初始值**，于是 SVG 图标的 stroke 变成 none —— 图标还在（1.05em 的框）却一笔不画，
+       表现就是「板块左上角少了个图案」。所以一律用 rgb(…) 包一层，并给出同样格式的兜底。 */
+    --callout-rgb: var(--callout-color, 79 70 229);
     margin: var(--space-5) 0 !important;
     padding: var(--space-4) var(--space-5) !important;
     border: 1px solid var(--border) !important;
-    border-left: 4px solid var(--callout-color, var(--accent)) !important;
+    border-left: 4px solid rgb(var(--callout-rgb)) !important;
     border-radius: var(--radius-m) !important;
     background: var(--bg-elev) !important;
     background-image: var(--grad-card) !important;
@@ -2737,15 +2742,16 @@ body.publish .callout-title-inner {
 
 body.publish .callout-icon,
 body.publish .callout-icon svg {
-    color: var(--callout-color, var(--accent)) !important;
-    stroke: var(--callout-color, var(--accent)) !important;
+    color: rgb(var(--callout-rgb, 79 70 229)) !important;
+    stroke: rgb(var(--callout-rgb, 79 70 229)) !important;
     width: 1.05em !important;
     height: 1.05em !important;
     flex: 0 0 auto;
 }
 
 body.publish .callout-icon .svg-icon {
-    color: var(--callout-color, var(--accent)) !important;
+    color: rgb(var(--callout-rgb, 79 70 229)) !important;
+    stroke: rgb(var(--callout-rgb, 79 70 229)) !important;
 }
 
 body.publish .callout-content {
