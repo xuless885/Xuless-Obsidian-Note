@@ -27,9 +27,11 @@
     linkDistanceScale: 5,  // 每单位度数的额外长度（高度节点连线更长，像 Obsidian）
     center: 0.00014,       // 向心力：a = center * 到原点距离（调小 → 允许铺得更开）
     damping: 0.86,         // 速度阻尼（常态）
-    dragDamping: 0.945,    // **拖拽时**的阻尼：越小越“粘”，越大越跟手（用户：拖拽阻力太大）
-    dragSpring: 1.6,       // 拖拽时弹簧更硬：邻居被拉得更快
-    dragAlphaFloor: 0.34,  // 拖拽时 alpha 不低于此值 → 物理一直“热”，邻居不会中途冻住
+    dragDamping: 0.885,    // **拖拽时**的阻尼：0.86 太粘（邻居不动）、0.945 太飘（会来回抽搐）
+    dragSpring: 1.15,      // 拖拽时弹簧稍硬：邻居跟得上，但不过冲
+    dragAlphaFloor: 0.24,  // 拖拽时 alpha 不低于此值 → 物理一直“热”，邻居不会中途冻住
+    dragMaxVelocity: 5.2,  // 拖拽期间的单步位移上限（比常态更小：防过冲抖动）
+    dragMaxSeparation: 1.5,// 拖拽期间的硬分离上限（世界px）
     alphaDecay: 0.985,     // alpha 每步衰减
     alphaMin: 0.006,       // 低于此值即认为静止 → 停止 rAF
     maxVelocity: 16,       // 单步位移上限（防爆）
@@ -37,6 +39,7 @@
     minDist2: 25,          // 软核：距离平方下限
     collision: 1.35,       // 短程碰撞系数：圆点重叠时额外推开（0 = 关闭）
     collidePad: 11,        // 碰撞判定的额外间隙：节点之间始终留白，不贴边（7 → 11）
+    maxSeparation: 2.0,    // 单步「硬分离」位移上限（世界px）：一次推太多会让邻居瞬移 → 抽搐
     collideKick: 0.30,     // 碰撞时同时给一点速度（硬分离 + 弹性观感，避免静摩擦糊死）
     preSettleSteps: 560    // 首帧前的同步预收敛步数（避免开场炸开 + 首帧即收敛）
   };
@@ -232,7 +235,7 @@
     var damp = dragging ? (p.dragDamping === undefined ? p.damping : p.dragDamping) : p.damping;
     var springK = dragging ? p.spring * (p.dragSpring === undefined ? 1 : p.dragSpring) : p.spring;
 
-    for (i = 0; i < n; i++) { nodes[i].ax = 0; nodes[i].ay = 0; }
+    for (i = 0; i < n; i++) { nodes[i].ax = 0; nodes[i].ay = 0; nodes[i].sx = 0; nodes[i].sy = 0; }
 
     // 1) 斥力：所有「可见」节点两两相斥
     for (i = 0; i < n; i++) {
@@ -258,15 +261,15 @@
         var rsum = (a.r || 3) + (b.r || 3) + pad;
         if (p.collision > 0 && d < rsum) {
           f += (rsum - d) * p.collision;
-          // 硬分离：直接修正坐标。
-          // 注意**不要**再叠加速度冲击（试过 collideKick）：速度在积分时还要乘 alpha，
-          // 会让重叠节点一步弹开十几像素，模拟久久不收敛、首帧耗时飙升。
+          // 硬分离：先**累加**到 sx/sy，配对循环结束后统一限幅施加（Jacobi 式）。
+          // 直接在每个配对上改坐标的问题是：一个节点同时压着 3–4 个邻居时，
+          // 单步会被推 10px 以上（不走 maxVelocity 限制）→ 视觉上就是抽搐。
           var overlap = (rsum - d);
           if (overlap > 0) {
             var nx = dx / d, ny = dy / d;
-            var push = overlap * 0.5;             // 各退一半
-            if (!a.pinned) { a.x -= nx * push; a.y -= ny * push; }
-            if (!b.pinned) { b.x += nx * push; b.y += ny * push; }
+            var push = overlap * 0.22;
+            a.sx -= nx * push; a.sy -= ny * push;
+            b.sx += nx * push; b.sy += ny * push;
           }
         }
         if (f > p.maxForce) f = p.maxForce;
@@ -305,16 +308,27 @@
 
     // 4) 积分（被拖动的节点是「钉住」的，不参与积分）
     var maxSpeed = 0;
+    var sepCap = dragging && p.dragMaxSeparation ? p.dragMaxSeparation
+               : (p.maxSeparation === undefined ? 2.0 : p.maxSeparation);
     for (i = 0; i < n; i++) {
       a = nodes[i];
       if (a.active === false) continue;
-      if (a.pinned) { a.vx = 0; a.vy = 0; if (a.ax || a.ay) { a.ax = 0; a.ay = 0; } continue; }
+      if (a.pinned) { a.vx = 0; a.vy = 0; a.ax = 0; a.ay = 0; a.sx = 0; a.sy = 0; continue; }
+      // 先把本步累加的硬分离位移限幅施加（防止多邻居同时挤压时瞬移）
+      if (a.sx || a.sy) {
+        var sl = Math.sqrt(a.sx * a.sx + a.sy * a.sy);
+        if (sl > sepCap) { var ss = sepCap / sl; a.sx *= ss; a.sy *= ss; }
+        a.x += a.sx; a.y += a.sy;
+        a.sx = 0; a.sy = 0;
+      }
       var vx = (a.vx + a.ax * alpha) * damp;
       var vy = (a.vy + a.ay * alpha) * damp;
       var sp2 = vx * vx + vy * vy;
       if (!isFinite(sp2)) { vx = 0; vy = 0; sp2 = 0; }
       var sp = Math.sqrt(sp2);
-      if (sp > p.maxVelocity) { var s = p.maxVelocity / sp; vx *= s; vy *= s; sp = p.maxVelocity; }
+      // 拖拽期间用更小的速度上限：位移小一点，邻居是「跟过去」而不是「冲过头再弹回来」
+      var vcap = dragging && p.dragMaxVelocity ? p.dragMaxVelocity : p.maxVelocity;
+      if (sp > vcap) { var s = vcap / sp; vx *= s; vy *= s; sp = vcap; }
       a.vx = vx; a.vy = vy;
       a.x += vx; a.y += vy;
       if (!isFinite(a.x) || !isFinite(a.y)) { a.x = 0; a.y = 0; a.vx = 0; a.vy = 0; sp = 0; }
@@ -712,7 +726,7 @@
     canvas.setAttribute('aria-label', '文档关系图：方向键平移，+/- 缩放，Tab 聚焦后可用键盘操作');
     app.textContent = '';
     app.appendChild(canvas);
-    var hint = el('div', 'graph-hint', '滚轮缩放 · 拖动平移 · 拖节点调整 · 点击看详情');
+    var hint = el('div', 'graph-hint', '滚轮缩放 · 拖动平移 · 拖节点调整 · 单击看详情 · 双击进入文档');
     app.appendChild(hint);
     var toast = el('div', 'graph-toast');
     toast.hidden = true;
@@ -827,11 +841,26 @@
       return { idx: idx, set: set };
     }
 
+    /** 焦点外节点的目标亮度（配合每节点缓动 _a 使用） */
+    var FOCUS_DIM = 0.12;
+
     function edgeAlpha(focus, si, ti) {
-      if (!focus) return clamp(0.18 + 0.42 * S.view.k, 0.14, 0.62);
-      if (si === focus.idx || ti === focus.idx) return 0.85;
-      if (focus.set[si] && focus.set[ti]) return 0.45;
-      return 0.05;
+      var ambient = clamp(0.18 + 0.42 * S.view.k, 0.14, 0.62);
+      if (!focus) return ambient;
+      // 用两端节点**缓动后的**亮度做插值 → 悬停/取消悬停时连线淡入淡出，而不是瞬间跳变
+      var f = 0.5 * (focusRatio(si) + focusRatio(ti));
+      var focused;
+      if (si === focus.idx || ti === focus.idx) focused = 0.85;
+      else if (focus.set[si] && focus.set[ti]) focused = 0.45;
+      else focused = 0.05;
+      return ambient + (focused - ambient) * f;
+    }
+
+    /** 节点「在焦点里的程度」0..1（由缓动后的 _a 归一化而来），供连线与标签共用 */
+    function focusRatio(i) {
+      var n = S.nodes[i];
+      var a = (n && n._a !== undefined) ? n._a : 1;
+      return clamp((a - FOCUS_DIM) / (1 - FOCUS_DIM), 0, 1);
     }
 
     /** 连线的轻微弧度控制点（确定性：由端点坐标导出，保证每帧一致） */
@@ -981,24 +1010,27 @@
 
     function drawNodes(focus) {
       var i, n, r, col;
-      var dim = 0.12;
       var kk = S.view.k || 1;
       var intro = introT();                 // 开场 0→1（节点淡入 + 轻微放大）
       var animating = intro < 1;
       for (i = 0; i < S.nodes.length; i++) {
         n = S.nodes[i];
         if (n.active === false) continue;
-        // 悬停/选中：半径与高亮环做 0.25 步长的缓动，不再瞬间跳变
+        // 悬停/选中：半径与高亮环做 0.28 步长的缓动，不再瞬间跳变
         var wantT = (i === S.hover || i === S.selected) ? 1 : 0;
         if (n._t === undefined) n._t = wantT;
         else if (Math.abs(n._t - wantT) > 0.004) { n._t += (wantT - n._t) * 0.28; animating = true; }
         else n._t = wantT;
+        // 亮度（焦点内外）也走缓动：光标移入/移出节点时，其余节点是淡出而不是闪一下
+        var wantA = 1;
+        if (focus) wantA = focus.set[i] ? 1 : FOCUS_DIM;
+        else if (S.matchSet && !S.matchSet[i]) wantA = 0.3;
+        if (n._a === undefined) n._a = wantA;
+        else if (Math.abs(n._a - wantA) > 0.005) { n._a += (wantA - n._a) * 0.22; animating = true; }
+        else n._a = wantA;
         r = screenRadius(n.r || 3, kk) * (1 + 0.16 * n._t) * (0.6 + 0.4 * intro);
         col = S.theme.cats[(n.catIndex || 0) % 6];
-        var al = 1;
-        if (focus) al = focus.set[i] ? 1 : dim;
-        else if (S.matchSet && !S.matchSet[i]) al = 0.3;
-        al *= intro;
+        var al = n._a * intro;
 
         // 光晕：给每个节点加一层柔光，整体更有「发光图」的观感。
         // 只对度数较高的节点加，避免几百个节点时 glow 反而糊成一片。
@@ -1155,7 +1187,7 @@
             if (r.x0 < o.x1 && r.x1 > o.x0 && r.y0 < o.y1 && r.y1 > o.y0) { hit = true; break; }
           }
           if (hit) continue;                        // 与已绘制的标签重叠 → 让位
-          rects.push(draw(list[i], base * intro * (focus && !focus.set[list[i]] ? 0.35 : 1)));
+          rects.push(draw(list[i], base * intro * (0.35 + 0.65 * focusRatio(list[i]))));
         }
       }
     }
@@ -1787,7 +1819,10 @@
       var p = localPos(ev);
       var w = screenToWorld(S.view, p.x, p.y);
       var idx = pickNode(S.nodes, w.x, w.y, S.view.k);
-      if (idx >= 0) { S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1.5, 0.22, 3.5); centerOn(idx, true); }
+      if (idx < 0) return;
+      var n = S.nodes[idx];
+      var url = docUrl(n.path);
+      if (url) window.location.href = url;      // 双击节点 = 进入该篇文档（用户 2026-10-16 要求）
     });
 
     /**
@@ -1804,6 +1839,16 @@
         dragging: !!(S.drag && S.drag.mode === 'node'),
         dragIdx: (S.drag && S.drag.mode === 'node') ? S.drag.idx : -1,
         reduced: REDUCED,
+        // 焦点缓动状态（验收用：悬停时 min 应平滑下降，而不是一步到位）
+        focusMin: (function () {
+          var m = 1;
+          for (var i = 0; i < S.nodes.length; i++) {
+            var a = S.nodes[i]._a;
+            if (typeof a === 'number' && a < m) m = a;
+          }
+          return Math.round(m * 1000) / 1000;
+        })(),
+        hover: S.hover,
         labelScreenPx: labelFontScreen(S.view.k),
         maxNodeScreenPx: (function () {
           var m = 0;
@@ -1815,6 +1860,8 @@
           return m;
         })(),
         positions: S.nodes.map(function (n) { return [Math.round(n.x * 10) / 10, Math.round(n.y * 10) / 10]; }),
+        // 哪些节点当前可见（验收脚本算抖动时要跳过被过滤掉的节点）
+        activeFlags: S.nodes.map(function (n) { return n.active === false ? 0 : 1; }),
       };
     };
 

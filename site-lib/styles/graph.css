@@ -13,6 +13,12 @@
    控制面板 absolute 悬浮在画布左上（顶栏之下，z-index 低于 .site-nav 的 60）。
    旧的 .graph-shell 两列网格已弃用（graph.js 里加 .graph-shell 的那段也一并删掉，
    否则它会把 grid-template-columns 套到这个全屏容器上）。 */
+/* 全屏图谱：外壳页的 `main` 有上下内边距（var(--space-7)），会把「视口 − 顶栏」的高度
+   顶出屏幕（实测图谱区 bottom 1149 > 视口 1100）。图谱页的 main 归零。 */
+.main-area {
+  padding: 0;
+}
+
 .graph-page {
   position: relative;
   width: 100%;
@@ -99,7 +105,13 @@
   z-index: 5;
   width: min(320px, calc(100% - 2rem));
   max-height: calc(100% - 84px);
-  min-width: 0;
+  /* ⚠ 面板必须能滚（用户反馈「设置无法滚动」）：外层给 max-height 后要变成 flex 容器，
+     内层才能用 min-height:0 + overflow-y:auto 撑出**确定的**滚动高度。
+     之前只给内层写 max-height:100%（父元素高度不确定 → 解析成 none），于是内容溢出窗口
+     又没有任何一层可滚 —— 与文档页侧栏那次踩的是同一类坑：只能有一层当滚动容器。 */
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .graph-controls-inner {
@@ -113,9 +125,11 @@
   backdrop-filter: saturate(160%) blur(14px);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
   box-shadow: var(--shadow-l, 0 18px 48px rgba(16, 18, 27, 0.14));
-  max-height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 
 /* 开关按钮：始终停在左上，面板收起时它就是唯一入口 */

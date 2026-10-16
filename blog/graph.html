@@ -1,77 +1,188 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>知识图谱 · Xuless 数字花园</title>
-<meta name="description" content="Xuless 数字花园的知识图谱：把笔记之间的引用与嵌入关系画成可交互的网络图。">
-<meta name="theme-color" content="#f5f5f3">
+<title>知识图谱 · 许少 Xuless</title>
+<meta name="description" content="把站内全部笔记之间的引用与嵌入关系画成一张可交互的网络图。">
+<meta property="og:title" content="知识图谱 · 许少 Xuless">
+<meta property="og:description" content="把站内全部笔记之间的引用与嵌入关系画成一张可交互的网络图。">
 <link rel="icon" href="../site-lib/media/favicon.png">
-<script>
-/* 必须是最先执行的脚本：声明资源根前缀（blog 页为 ".."），并在样式到达前定好主题，避免闪白。 */
-window.DSH_ROOT = "..";
-(function () {
-    try {
-        var d = document.documentElement;
-        d.classList.add("js");
-        var t = localStorage.getItem("dsh-theme");
-        if (t !== "light" && t !== "dark") {
-            t = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
-        }
-        d.setAttribute("data-theme", t);
-        d.style.colorScheme = t;
-    } catch (e) { /* 无 JS 环境下由 CSS 的 prefers-color-scheme 回落接管 */ }
-})();
-</script>
+<script>window.DSH_ROOT = "../";</script>
+<style>:root{--bg:#f7f7f5;--bg-elev:#fff;--bg-sunken:#efeee9;--fg:#17181c;--fg-muted:#5b5f6b;--fg-subtle:#8b8f9a;
+--accent:#3b5bdb;--accent-2:#0ca678;--accent-soft:#e7ecff;--grad-hero:linear-gradient(135deg,#3b5bdb 0%,#7048e8 45%,#0ca678 100%);
+--border:#e3e2dd;--border-strong:#cfcec7;--radius-s:8px;--radius-m:14px;--radius-l:22px;--radius-pill:999px;
+--shadow-s:0 1px 2px rgba(16,18,27,.06);--shadow-m:0 6px 22px rgba(16,18,27,.09);--shadow-l:0 18px 48px rgba(16,18,27,.14);
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:48px;--space-8:72px;
+--maxw:1120px;--nav-h:60px;--ease:cubic-bezier(.22,.61,.36,1);--dur-fast:.14s;--dur:.26s;--dur-slow:.5s;
+--font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;--font-mono:"Cascadia Code","Chiron Hei HK",ui-monospace,monospace}
+html[data-theme="dark"]{--bg:#111216;--bg-elev:#191b21;--bg-sunken:#0d0e12;--fg:#ecedf1;--fg-muted:#a2a7b4;--fg-subtle:#767c8a;
+--accent:#7f95ff;--accent-2:#38d9a9;--accent-soft:#1e2436;--grad-hero:linear-gradient(135deg,#2b3a8f 0%,#5b34b8 45%,#0b7a58 100%);
+--border:#2a2d36;--border-strong:#3a3e4a;--shadow-s:0 1px 2px rgba(0,0,0,.4);--shadow-m:0 6px 22px rgba(0,0,0,.45);--shadow-l:0 18px 48px rgba(0,0,0,.55)}
+
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);line-height:1.7;-webkit-font-smoothing:antialiased;
+font-family:var(--font-sans);transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--space-5)}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;z-index:99;background:var(--bg-elev);padding:12px 16px;border-radius:8px}
+.site-nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(12px);
+background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid var(--border)}
+.site-nav-inner{display:flex;align-items:center;gap:var(--space-5);height:var(--nav-h);max-width:var(--maxw);margin:0 auto;padding:0 var(--space-5)}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--fg)}.brand:hover{text-decoration:none}
+.brand-mark{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--grad-hero);color:#fff;font-weight:800;font-size:15px}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-link{padding:7px 12px;border-radius:var(--radius-pill);color:var(--fg-muted);font-size:.94rem;transition:background var(--dur-fast),color var(--dur-fast)}
+.nav-link:hover{background:var(--bg-sunken);color:var(--fg);text-decoration:none}
+.nav-link.is-active{color:var(--accent);background:var(--accent-soft)}
+.theme-toggle{width:36px;height:36px;border-radius:var(--radius-pill);border:1px solid var(--border);background:var(--bg-elev);
+color:var(--fg-muted);cursor:pointer;display:grid;place-items:center;font-size:15px;transition:all var(--dur-fast)}
+.theme-toggle:hover{color:var(--accent);border-color:var(--border-strong)}
+.nav-toggle{display:none}
+@media (max-width:760px){.nav-links{position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;background:var(--bg-elev);
+border-bottom:1px solid var(--border);padding:var(--space-3);display:none;box-shadow:var(--shadow-m)}
+.site-nav.is-open .nav-links{display:flex}.nav-toggle{display:grid;margin-left:auto}}
+.page-head{position:relative;overflow:hidden;padding:var(--space-7) 0 var(--space-6);background:var(--grad-hero);color:#fff}
+.page-head::after{content:"";position:absolute;inset:0;pointer-events:none;
+background:radial-gradient(1100px 380px at 10% -20%,rgba(255,255,255,.26),transparent 60%)}
+.page-head .wrap{position:relative;z-index:1}
+.crumbs{font-size:.85rem;color:rgba(255,255,255,.82);margin-bottom:var(--space-4)}
+.crumbs a{color:rgba(255,255,255,.92)}.crumbs span{opacity:.7;margin:0 7px}
+.page-title{margin:0 0 var(--space-3);font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:-.03em;font-weight:800}
+.page-sub{margin:0;max-width:46em;color:rgba(255,255,255,.9)}
+main{display:block;padding:var(--space-7) 0}
+.grid{display:grid;gap:var(--space-5)}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card{position:relative;display:flex;flex-direction:column;padding:var(--space-5);border-radius:var(--radius-l);
+border:1px solid var(--border);background:var(--bg-elev);box-shadow:var(--shadow-s);overflow:hidden;
+transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur)}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-m);border-color:var(--border-strong);text-decoration:none}
+.card-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:22px;margin-bottom:var(--space-4);
+background:var(--grad-hero);color:#fff}
+.card-title{margin:0 0 var(--space-2);font-size:1.16rem;color:var(--fg);letter-spacing:-.01em}
+.card-desc{margin:0 0 var(--space-4);color:var(--fg-muted);font-size:.94rem;flex:1}
+.card-go{display:inline-flex;align-items:center;gap:7px;font-weight:650;color:var(--accent);font-size:.93rem}
+.card-go::after{content:"\2192";transition:transform var(--dur) var(--ease)}
+.card:hover .card-go::after{transform:translateX(4px)}
+.h-list{display:grid;gap:var(--space-3)}
+.h-item{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-5);border:1px solid var(--border);
+border-radius:var(--radius-m);background:var(--bg-elev);transition:transform var(--dur-fast) var(--ease),border-color var(--dur-fast),box-shadow var(--dur-fast)}
+.h-item:hover{transform:translateX(4px);border-color:var(--border-strong);box-shadow:var(--shadow-s);text-decoration:none}
+.h-idx{flex:0 0 46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--bg-sunken);
+border:1px solid var(--border);color:var(--fg-muted);font-weight:700;font-size:.88rem}
+.h-body{flex:1;min-width:0}
+.h-title{color:var(--fg);font-weight:600;letter-spacing:-.01em;overflow-wrap:anywhere}
+.h-meta{color:var(--fg-subtle);font-size:.83rem;margin-top:2px}
+.h-tag{flex:0 0 auto;padding:3px 10px;border-radius:var(--radius-pill);background:var(--accent-soft);color:var(--accent);font-size:.78rem}
+.empty{padding:var(--space-8) var(--space-5);text-align:center;border:1px dashed var(--border-strong);border-radius:var(--radius-l);background:var(--bg-elev)}
+.empty-ico{font-size:42px;margin-bottom:var(--space-4)}.empty-title{font-size:1.2rem;font-weight:700;margin:0 0 var(--space-3)}
+.empty-text{color:var(--fg-muted);max-width:36em;margin:0 auto}
+.note{padding:var(--space-4) var(--space-5);border-left:3px solid var(--accent);border-radius:0 var(--radius-m) var(--radius-m) 0;
+background:var(--accent-soft);color:var(--fg-muted);font-size:.93rem;margin:var(--space-5) 0}
+.note strong{color:var(--fg)}
+.section-title{margin:var(--space-7) 0 var(--space-5);font-size:1.25rem;letter-spacing:-.02em}
+.section-title:first-child{margin-top:0}
+.pager{display:flex;justify-content:space-between;gap:var(--space-4);margin-top:var(--space-6);flex-wrap:wrap}
+.pager a{padding:10px 16px;border:1px solid var(--border);border-radius:var(--radius-pill);background:var(--bg-elev);color:var(--fg-muted)}
+.pager a:hover{color:var(--accent);border-color:var(--border-strong);text-decoration:none}
+.footer-site{border-top:1px solid var(--border);margin-top:var(--space-8);padding:var(--space-6) 0 var(--space-7);color:var(--fg-muted);font-size:.9rem}
+.footer-grid{display:flex;justify-content:space-between;gap:var(--space-5);flex-wrap:wrap}
+.footer-links{display:flex;gap:var(--space-4);flex-wrap:wrap}.footer-links a{color:var(--fg-muted)}.footer-links a:hover{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(18px)}
+.reveal.is-visible{opacity:1;transform:none;transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+/* ---- 高中数学课程页专用：章节一览网格 + 阅读路径 ---- */
+.chap-grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));margin-top:var(--space-4)}
+.chap{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-s);
+background:var(--bg-elev);color:var(--fg);transition:border-color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast)}
+.chap:hover{transform:translateY(-2px);border-color:var(--border-strong);box-shadow:var(--shadow-s);text-decoration:none}
+.chap-num{flex:0 0 34px;height:24px;border-radius:6px;display:grid;place-items:center;background:var(--bg-sunken);
+border:1px solid var(--border);color:var(--fg-subtle);font-size:.74rem;font-weight:700;font-variant-numeric:tabular-nums}
+.chap-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.92rem}
+.chap.is-todo{border-style:dashed;background:transparent}
+.chap.is-todo .chap-num{background:transparent;border-style:dashed}
+.chap.is-todo .chap-name{color:var(--fg-subtle)}
+.steps{display:grid;gap:var(--space-3);counter-reset:step;margin-top:var(--space-4)}
+.step{display:flex;gap:var(--space-4);padding:var(--space-4) var(--space-5);border:1px solid var(--border);border-radius:var(--radius-m);background:var(--bg-elev)}
+.step-n{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);
+font-weight:700;font-size:.82rem}
+.step-n::before{counter-increment:step;content:counter(step)}
+.step-body{min-width:0}.step-title{font-weight:650;color:var(--fg);margin-bottom:2px}
+.step-desc{color:var(--fg-muted);font-size:.92rem}
+.faq{display:grid;gap:var(--space-3);margin-top:var(--space-4)}
+.faq-item{padding:var(--space-4) var(--space-5);border:1px solid var(--border);border-radius:var(--radius-m);background:var(--bg-elev)}
+.faq-q{font-weight:650;color:var(--fg);margin-bottom:4px}.faq-a{color:var(--fg-muted);font-size:.93rem}
+@media (prefers-reduced-motion:reduce){.reveal,.reveal.is-visible{opacity:1;transform:none;transition:none}.card:hover,.h-item:hover,.chap:hover{transform:none}}
+</style>
 <link rel="stylesheet" href="../site-lib/styles/blog-theme.css?v=6464da79">
-<link rel="stylesheet" href="../site-lib/styles/graph.css?v=46c95095">
-<script defer src="../site-lib/scripts/site.js?v=358b4874"></script>
-<script defer src="../site-lib/scripts/graph.js?v=d828fd13"></script>
+<link rel="stylesheet" href="../site-lib/styles/pages.css?v=f6a3ec74">
+<script>(function(){try{var d=document.documentElement;d.classList.add("js");var t=localStorage.getItem("dsh-theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}d.setAttribute("data-theme",t);d.style.colorScheme=t;}catch(e){}})();</script>
+<link rel="stylesheet" href="../site-lib/styles/graph.css?v=1bcd9112">
+<script defer src="../site-lib/scripts/graph.js?v=c81ac4e3"></script>
 </head>
 <body>
-<a class="skip-link" href="#main">跳到主要内容</a>
-
-<header class="site-nav" data-site-nav>
-    <div class="site-nav-inner">
-        <a class="brand" href="../index.html">
-            <span class="brand-mark" aria-hidden="true">X</span>
-            <span class="brand-text">
-                <span>Xuless 数字花园</span>
-                <span class="brand-sub">数学 · 课程 · 笔记</span>
-            </span>
-        </a>
-        <nav class="site-nav-links" id="site-nav-links" aria-label="站点导航">
-            <a class="nav-link" href="../index.html">首页</a>
-            <a class="nav-link" href="./index.html">博客</a>
-            <a class="nav-link" href="./tags.html">标签</a>
-            <a class="nav-link is-active" href="./graph.html" aria-current="page">图谱</a>
-            <a class="nav-link" href="./search.html">搜索</a>
-            <a class="nav-link" href="./about.html">关于</a>
-        </nav>
-        <div class="nav-actions">
-            <form class="search-field site-nav-search" action="./search.html" method="get" role="search">
-                <span class="search-icon" aria-hidden="true">⌕</span>
-                <input id="nav-search-input" type="search" name="q" placeholder="搜索全部笔记" aria-label="站内搜索">
-            </form>
-            <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换深色主题" title="切换深色主题"><span data-theme-icon class="theme-toggle-icon" aria-hidden="true">☾</span></button>
-            <button class="site-nav-burger" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav-links" aria-label="打开菜单">
-                <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
-            </button>
-        </div>
-    </div>
-</header>
-
-<main class="main-area" id="main">
-    <!-- 全屏图谱：画布铺满「顶栏以下」的整块视口，控制面板做成可开关的悬浮窗 -->
-    <div class="graph-page" id="graph-page">
-        <button class="graph-panel-toggle" id="graph-panel-toggle" type="button"
-                aria-expanded="true" aria-controls="graph-controls">
-            <span class="graph-panel-toggle-ico" aria-hidden="true">&#9881;</span>
-            <span class="graph-panel-toggle-text">设置</span>
-        </button>
-        <aside id="graph-controls" class="graph-controls" aria-label="图谱控制面板"></aside>
-        <div id="graph-app" class="graph-app" data-graph-root></div>
-    </div>
+<a class="skip" href="#main">跳到主要内容</a>
+<nav class="site-nav" id="site-nav" aria-label="站点导航">
+ <div class="site-nav-inner">
+  <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">X</span><span>许少 Xuless</span></a>
+  <button class="theme-toggle nav-toggle" type="button" aria-label="展开导航" aria-expanded="false" data-nav-toggle>&#9776;</button>
+  <div class="nav-links">
+   <a class="nav-link" href="../index.html">首页</a>
+   <a class="nav-link" href="../courses/hs.html">高中数学课程</a>
+   <a class="nav-link" href="../courses/uni.html">大学数学内容</a>
+   <a class="nav-link is-active" href="../blog/graph.html">知识图谱</a>
+   <a class="nav-link" href="../search.html">搜索</a>
+   <a class="nav-link" href="../about.html">关于</a>
+   <button class="theme-toggle" type="button" aria-label="切换深浅主题" data-theme-toggle>&#9680;</button>
+  </div>
+ </div>
+</nav>
+<main id="main" class="main-area">
+<div class="graph-page" id="graph-page">
+ <button class="graph-panel-toggle" id="graph-panel-toggle" type="button"
+         aria-expanded="true" aria-controls="graph-controls">
+  <span class="graph-panel-toggle-ico" aria-hidden="true">&#9881;</span>
+  <span class="graph-panel-toggle-text">设置</span>
+ </button>
+ <aside id="graph-controls" class="graph-controls" aria-label="图谱控制面板"></aside>
+ <div id="graph-app" class="graph-app" data-graph-root></div>
+</div>
 </main>
+<footer class="footer-site">
+ <div class="wrap footer-grid">
+  <div>
+   <strong style="color:var(--fg)">许少 Xuless</strong>
+   <div style="margin-top:6px">纯静态站点 · 内容源自 Obsidian 与 LaTeX 文档库</div>
+   <div style="margin-top:6px;font-size:.84rem;color:var(--fg-subtle)">&copy; <span id="year">2026</span> 许少 Xuless</div>
+  </div>
+  <div class="footer-links">
+   <a href="https://github.com/xuless885" target="_blank" rel="noopener">GitHub</a>
+   <a href="../about.html">关于本站</a>
+   <a href="../blog/graph.html">知识图谱</a>
+  </div>
+ </div>
+</footer>
+
+<script defer src="../site-lib/scripts/site.js?v=358b4874"></script>
+<script>
+(function(){"use strict";
+ var ROOT=window.DSH_ROOT||".";
+ var root=document.documentElement;
+ function applyTheme(t){root.setAttribute("data-theme",t);try{localStorage.setItem("dsh-theme",t);}catch(e){}}
+ try{var s=localStorage.getItem("dsh-theme");
+  if(s)root.setAttribute("data-theme",s);
+  else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)root.setAttribute("data-theme","dark");}catch(e){}
+ document.addEventListener("click",function(e){
+  var tb=e.target.closest&&e.target.closest("[data-theme-toggle]");
+  if(tb){e.preventDefault();applyTheme(root.getAttribute("data-theme")==="dark"?"light":"dark");return;}
+  var nb=e.target.closest&&e.target.closest("[data-nav-toggle]");
+  if(nb){e.preventDefault();var p=nb.closest(".site-nav");p.classList.toggle("is-open");nb.setAttribute("aria-expanded",String(p.classList.contains("is-open")));}
+ });
+ var y=document.getElementById("year"); if(y) y.textContent=String(new Date().getFullYear());
+ var rv=document.querySelectorAll(".reveal");
+ if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("is-visible");io.unobserve(en.target);}});},{threshold:.05});rv.forEach(function(n){io.observe(n);});}
+ else{rv.forEach(function(n){n.classList.add("is-visible");});}
+})();
+</script>
 </body>
 </html>
