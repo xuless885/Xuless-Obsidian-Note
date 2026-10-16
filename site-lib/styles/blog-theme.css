@@ -3108,16 +3108,26 @@ body.publish #right-content > .sidebar {
     flex-direction: column;
 }
 
-/* 内容区自己滚；顶栏与折叠图标留在上方不动 */
-body.publish .sidebar-content-wrapper,
-body.publish #left-sidebar-content,
-body.publish #right-sidebar-content {
+/* 内容区自己滚；顶栏与折叠图标留在上方不动。
+   ⚠ 只有 .sidebar-content-wrapper 能是滚动容器：#left/#right-sidebar-content 必须
+   保持 overflow: visible。它们的高度是内容撑出来的（clientHeight == scrollHeight），
+   写成 overflow-y:auto 会变成一个**不可滚动的内层滚动容器**，滚轮事件被交到它手里却滚不动，
+   又不会继续传给外层的 wrapper —— 症状就是「光标悬在侧栏上，滚轮完全没反应」
+   （用户 2026-10-16 报的正是这个；实测：内层改 visible 后左栏 0→720、右栏 0→230）。 */
+body.publish .sidebar-content-wrapper {
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
     overscroll-behavior: contain;
     scrollbar-width: thin;
+}
+
+body.publish #left-sidebar-content,
+body.publish #right-sidebar-content,
+body.publish .leaf-content {
+    overflow: visible;
+    min-height: 0;
 }
 
 body.publish .sidebar-content-wrapper::-webkit-scrollbar { width: 9px; }
