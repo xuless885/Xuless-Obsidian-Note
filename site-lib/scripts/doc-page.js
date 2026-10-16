@@ -802,3 +802,91 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
   else install();
 })();
+
+/* ===========================================================================
+   固定顶栏运行时（dsh-topbar-v2）：阅读进度条 + 右栏目录当前小节高亮
+   · 进度条：往 #navbar 底部插一条 .dsh-nav-progress（外观在 blog-theme.css 8.15），
+     宽度 = 已滚动比例，样式无关地降级（没有 #navbar 就不建）。
+   · scrollspy：#outline 里的目录项是 a.tree-item-self[href="#标题id"]，
+     滚动时把「最后一个越过顶栏下沿」的标题对应项打上 .dsh-toc-active，
+     并让它在侧栏自身滚动容器里保持可见（不动页面滚动位置）。
+   节流：scroll/resize 只排一次 requestAnimationFrame，滚动不掉帧。
+   =========================================================================== */
+(function () {
+  "use strict";
+
+  function install() {
+    var doc = document.documentElement;
+    var nav = document.getElementById("navbar");
+    var bar = null;
+    if (nav) {
+      bar = document.createElement("div");
+      bar.className = "dsh-nav-progress";
+      nav.appendChild(bar);
+    }
+
+    var outline = document.getElementById("outline");
+    var items = [];
+    if (outline) {
+      var links = outline.querySelectorAll('a.tree-item-self[href^="#"]');
+      for (var i = 0; i < links.length; i++) {
+        var id = "";
+        try { id = decodeURIComponent(links[i].getAttribute("href").slice(1)); } catch (e) { id = links[i].getAttribute("href").slice(1); }
+        var h = id && document.getElementById(id);
+        if (h) items.push({ link: links[i], el: h });
+      }
+    }
+
+    if (!bar && !items.length) return;
+
+    var wrap = null;
+    if (outline) {
+      wrap = outline.closest ? outline.closest(".sidebar-content-wrapper") : null;
+      if (!wrap) {
+        // 老浏览器兜底：没有 closest 就自己往上找。
+        // 括号必须先判节点再判类名，否则 p 走到 null 时读 p.className 会抛异常。
+        var p = outline.parentNode;
+        while (p && p.nodeType === 1 &&
+               (p.className || "").indexOf("sidebar-content-wrapper") === -1) p = p.parentNode;
+        wrap = (p && p.nodeType === 1) ? p : null;
+      }
+    }
+
+    function revealInSidebar(a) {
+      if (!wrap) return;
+      var ar = a.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
+      if (ar.top < wr.top + 8) wrap.scrollTop -= (wr.top + 8 - ar.top);
+      else if (ar.bottom > wr.bottom - 8) wrap.scrollTop += (ar.bottom - wr.bottom + 8);
+    }
+
+    var cur = null, raf = 0;
+    function update() {
+      raf = 0;
+      var top = window.pageYOffset || doc.scrollTop || 0;
+      var vh = window.innerHeight || doc.clientHeight || 0;
+      var max = (doc.scrollHeight || 0) - vh;
+      if (bar) bar.style.width = (max > 0 ? Math.min(1, Math.max(0, top / max)) : 0) * 100 + "%";
+      if (!items.length) return;
+      var line = top + (nav ? nav.offsetHeight : 0) + 24;
+      var active = -1;
+      for (var i = 0; i < items.length; i++) {
+        var elTop = items[i].el.getBoundingClientRect().top + top;
+        if (elTop <= line) active = i; else break;   // 目录按文档顺序排列
+      }
+      var want = active >= 0 ? items[active].link : null;
+      if (want !== cur) {
+        if (cur) cur.classList.remove("dsh-toc-active");
+        if (want) { want.classList.add("dsh-toc-active"); revealInSidebar(want); }
+        cur = want;
+      }
+    }
+    function schedule() { if (!raf) raf = window.requestAnimationFrame(update); }
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+    update();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  else install();
+})();

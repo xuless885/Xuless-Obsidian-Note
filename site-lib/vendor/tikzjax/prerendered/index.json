@@ -5,11 +5,11 @@
  "fontsCss": "site-lib/vendor/tikzjax/tikzjax-fonts.css",
  "note": "Key = sha256 of the TeX source plus any output-affecting data-* attributes. \"file\" is relative to this directory. Regenerate with `node .build/tikz/prerender_tikz.js --resume` after editing any TikZ source.",
  "meta": {
-  "lastRun": "2026-10-14T14:00:45.273Z",
+  "lastRun": "2026-10-16T06:31:38.141Z",
   "lastRunReason": "complete",
-  "distinctFigures": 452,
-  "totalBlocksOnPages": 452,
-  "pages": 14,
+  "distinctFigures": 40,
+  "totalBlocksOnPages": 40,
+  "pages": 6,
   "concurrency": 6
  },
  "figures": {
@@ -2887,7 +2887,7 @@
    "libraries": [
     "calc"
    ],
-   "bytes": 10524,
+   "bytes": 10870,
    "colors": "currentColor",
    "autoWrapped": false,
    "usedOnPages": 1,
@@ -13756,6 +13756,147 @@
    "h": 175.5,
    "libraries": [],
    "bytes": 2559,
+   "colors": "currentColor",
+   "autoWrapped": false,
+   "usedOnPages": 1,
+   "ok": true
+  },
+  "a4f83d9e331f2a9bca1be27d818a3674d676aedfcc0058363f21386ab31f56b1": {
+   "ok": false,
+   "error": "render-failed",
+   "sha256": "a4f83d9e331f2a9bca1be27d818a3674d676aedfcc0058363f21386ab31f56b1",
+   "libraries": [
+    "calc"
+   ],
+   "usedOnPages": 1,
+   "firstPage": "hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html",
+   "sourceSnippet": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n  xlabel={$x$}, ylabel={$y$},\n  xmin=-0.2, xmax=2.6, ymin=0, ymax=6.5,\n  legend pos=north west\n]\n\\addplot[domain=-0.2:2.6, samples=80, blue!70!black, thick] {2^x};\n\\addlegendentry{$y=2^x$}"
+  },
+  "aaf2e9965e074858f7786864ec31d847664193933d52ec3cd7f6a89dc0eebd6c": {
+   "file": "aaf2e9965e074858.svg",
+   "sha256": "aaf2e9965e074858f7786864ec31d847664193933d52ec3cd7f6a89dc0eebd6c",
+   "w": 239.21,
+   "h": 188.37,
+   "libraries": [
+    "calc"
+   ],
+   "bytes": 16309,
+   "colors": "currentColor",
+   "autoWrapped": false,
+   "usedOnPages": 1,
+   "ok": true
+  },
+  "0b2978cdb91146413b75024575d55e0c924248ec7f0a5920a7405517755f9f27": {
+   "ok": false,
+   "error": "render-failed",
+   "sha256": "0b2978cdb91146413b75024575d55e0c924248ec7f0a5920a7405517755f9f27",
+   "libraries": [
+    "calc"
+   ],
+   "usedOnPages": 1,
+   "firstPage": "hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html",
+   "sourceSnippet": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n  xlabel={$x$}, ylabel={$y$},\n  xmin=-0.2, xmax=2.6, ymin=0, ymax=6.5,\n  legend pos=north west,\n]\n\\addplot[domain=-0.2:2.6, samples=80, blue!70!black, thick] {2^x};\n\\addlegendentry{$y=2^x$}"
+  },
+  "d732b78c52476ee5171deb1bf896fa6562fd1bea3e68f3423569e85b046e513c": {
+   "ok": false,
+   "error": "render-failed",
+   "sha256": "d732b78c52476ee5171deb1bf896fa6562fd1bea3e68f3423569e85b046e513c",
+   "libraries": [
+    "calc"
+   ],
+   "usedOnPages": 1,
+   "firstPage": "hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html",
+   "sourceSnippet": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n  xlabel={$x$}, ylabel={$y$},\n  xmin=-0.2, xmax=2.6, ymin=0, ymax=6.5,\n  legend pos=north west,\n]\n\\addplot[domain=-0.2:2.6, samples=80, blue!70!black, thick] {2^x};\n\\addlegendentry{$y=2^x$}"
+  },
+  "8c6f47cf6395d2220f0b8c99979c06992b8714c0777ab4f395a118df0ccf4a23": {
+   "ok": false,
+   "error": "render-failed",
+   "sha256": "8c6f47cf6395d2220f0b8c99979c06992b8714c0777ab4f395a118df0ccf4a23",
+   "libraries": [
+    "calc"
+   ],
+   "usedOnPages": 1,
+   "firstPage": "hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html",
+   "sourceSnippet": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n  xlabel={$x$}, ylabel={$y$},\n  xmin=-0.2, xmax=2.6, ymin=0, ymax=6.5,\n  legend pos=north west,\n]\n\\addplot[domain=-0.2:2.6, samples=80, blue!70!black, thick] {pow(2,x)};\n\\addlegendentry{$y=2^x$}"
+  },
+  "e3aa229c33845e13db5a6e15d9174b3e35df8e0c5c92a75192bd5e1965480674": {
+   "ok": false,
+   "error": "render-failed",
+   "sha256": "e3aa229c33845e13db5a6e15d9174b3e35df8e0c5c92a75192bd5e1965480674",
+   "libraries": [
+    "calc"
+   ],
+   "usedOnPages": 1,
+   "firstPage": "hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html",
+   "sourceSnippet": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n  xlabel={$x$}, ylabel={$y$},\n  xmin=-0.2, xmax=2.6, ymin=0, ymax=6.5,\n  legend pos=north west,\n]\n\\addplot[domain=-0.2:2.6, samples=40, blue!70!black, thick] {2^x};\n\\addlegendentry{$y=2^x$}"
+  },
+  "e62eee5ac37420885fd34270c91095e41eaa0c7b7f3700bec1d8b0b0826a1752": {
+   "ok": false,
+   "error": "render-failed",
+   "sha256": "e62eee5ac37420885fd34270c91095e41eaa0c7b7f3700bec1d8b0b0826a1752",
+   "libraries": [
+    "calc"
+   ],
+   "usedOnPages": 1,
+   "firstPage": "hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html",
+   "sourceSnippet": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.15}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n  xlabel={$x$}, ylabel={$y$},\n  xmin=-0.2, xmax=2.6, ymin=0, ymax=6.5,\n  legend pos=north west,\n]\n\\addplot[domain=-0.2:2.6, samples=80, blue!70!black, thick] {2^x};\n\\addlegendentry{$y=2^x$}"
+  },
+  "608e26971a4614b5fabda31c482f6688b6938a0e6d0ba09651be210f2d09decd": {
+   "ok": false,
+   "error": "render-failed",
+   "sha256": "608e26971a4614b5fabda31c482f6688b6938a0e6d0ba09651be210f2d09decd",
+   "libraries": [
+    "calc"
+   ],
+   "usedOnPages": 1,
+   "firstPage": "hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html",
+   "sourceSnippet": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.11}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n  xlabel={$x$}, ylabel={$y$},\n  xmin=-0.2, xmax=2.6, ymin=0, ymax=6.5,\n  legend pos=north west,\n]\n\\addplot[domain=-0.2:2.6, samples=80, blue!70!black, thick] {2^x};\n\\addlegendentry{$y=2^x$}"
+  },
+  "99cb256594a584224731be8bd25f5dd8b30295bf6f79b10cfe4208d7e4c3aff7": {
+   "ok": false,
+   "error": "render-failed",
+   "sha256": "99cb256594a584224731be8bd25f5dd8b30295bf6f79b10cfe4208d7e4c3aff7",
+   "libraries": [
+    "calc"
+   ],
+   "usedOnPages": 1,
+   "firstPage": "hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html",
+   "sourceSnippet": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.18}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n  xlabel={$x$}, ylabel={$y$},\n  xmin=-0.2, xmax=2.6, ymin=0, ymax=6.5,\n  legend pos=north west,\n]\n\\addplot[domain=-0.2:2.6, samples=80, blue!70!black, thick] {2^x};\n\\addlegendentry{$y=2^x$}"
+  },
+  "d4d5711a77087e92f5cffbf5f2e572916515bdfd15fc2645da47665f221db100": {
+   "ok": false,
+   "error": "render-failed",
+   "sha256": "d4d5711a77087e92f5cffbf5f2e572916515bdfd15fc2645da47665f221db100",
+   "libraries": [
+    "calc"
+   ],
+   "usedOnPages": 1,
+   "firstPage": "hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html",
+   "sourceSnippet": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n  xlabel={$x$}, ylabel={$y$},\n  xmin=-0.2, xmax=2.6, ymin=0, ymax=6.5,\n]\n\\addplot[domain=-0.2:2.6, samples=80, blue!70!black, thick] {2^x};\n\\addplot[domain=-0.2:2.6, samples=80, red!70!black, thick] {5^(x-1)};\n\\draw[dashed, gray] (axis cs:1.756,0) -- (axis cs:1.756,3.38);"
+  },
+  "927c203909e0d35ae7d3f3df6035bfde0f83b4961f7e3ad6899312b04158abb9": {
+   "file": "927c203909e0d35a.svg",
+   "sha256": "927c203909e0d35ae7d3f3df6035bfde0f83b4961f7e3ad6899312b04158abb9",
+   "w": 222.74,
+   "h": 186.68,
+   "libraries": [
+    "calc"
+   ],
+   "bytes": 14547,
+   "colors": "currentColor",
+   "autoWrapped": false,
+   "usedOnPages": 1,
+   "ok": true
+  },
+  "9396048201e478222e28c72e7fd1a8f5204fb84b4ff7f4fd23b3ddc3ea0f9863": {
+   "file": "9396048201e47822.svg",
+   "sha256": "9396048201e478222e28c72e7fd1a8f5204fb84b4ff7f4fd23b3ddc3ea0f9863",
+   "w": 239.21,
+   "h": 188.37,
+   "libraries": [
+    "calc"
+   ],
+   "bytes": 16309,
    "colors": "currentColor",
    "autoWrapped": false,
    "usedOnPages": 1,

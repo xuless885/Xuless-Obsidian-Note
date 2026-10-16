@@ -2227,11 +2227,8 @@ body.publish #right-content {
     min-width: 0;
 }
 
-body.publish #navbar {
-    background: var(--bg-elev) !important;
-    border-bottom: 1px solid var(--border) !important;
-    color: var(--fg-muted) !important;
-}
+/* body.publish #navbar 的定位与外观整体重构在「8.15 固定顶栏」一节，
+   这里不再放零散覆盖，避免两处打架。 */
 
 /* 8.1 侧栏：新主题的卡片化外观 */
 body.publish .sidebar {
@@ -2781,7 +2778,12 @@ body.publish .callout[data-callout="warning"] {
     background: color-mix(in srgb, #f59e0b 8%, var(--bg-elev)) !important;
 }
 
-/* 9.9 MathJax 公式区 */
+/* 9.9 MathJax 公式区
+   注意：这里**绝不**给 mjx-* 元素写 font-family。
+   公式的字体族来自 mathjax-chtml.css 的 .MJX-TEX / .TEX-* / @font-face(MJXTEX*)，
+   一旦在主题里给 mjx-container 或 mjx-c 写 font-family（哪怕只是 inherit!important），
+   就会把 MathJax 的 TeX 字体顶掉，公式立刻退回正文字体 —— 那正是「字体不是 LaTeX 默认字体」
+   的症状。.build/probe/verify_ui.py 会抽样断言每个 mjx-c::before 的 font-family 含 MJX。 */
 body.publish .math,
 body.publish .math-inline,
 body.publish .math-block,
@@ -2789,7 +2791,6 @@ body.publish mjx-container {
     background: transparent !important;
     border: 0 !important;
     color: inherit !important;
-    font-family: inherit !important;
     max-width: 100% !important;
 }
 
@@ -3500,3 +3501,129 @@ body.publish .dsh-mini-canvas-link canvas {
 }
 
 body.publish .dsh-mini-canvas-link:hover canvas { opacity: .85; }
+
+/* ==========================================================================
+   8.15 固定顶栏 + 阅读进度 + 目录高亮（dsh-topbar-v2）
+   症状（用户截图）：讲义页顶栏随滚动消失。根因：#navbar 从来没有定位规则，
+   而侧栏 sticky 的 top 却按「顶栏固定 60px」设计——两者假设互相矛盾。
+   本块把 #navbar 做成与博客外壳 .site-nav 同一套玻璃拟态语言：
+   sticky + 模糊 + 描边，并新增阅读进度条（doc-page.js 注入 .dsh-nav-progress）
+   与右栏目录的当前小节高亮（.dsh-toc-active）。
+   ========================================================================== */
+html {
+    /* 锚点跳转/目录点击后，标题不被固定顶栏压住 */
+    scroll-padding-top: calc(var(--nav-h, 60px) + var(--space-4, 16px));
+}
+
+body.publish #navbar {
+    position: sticky;
+    top: 0;
+    z-index: 95;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3, 12px);
+    height: var(--nav-h, 60px);
+    padding: 0 var(--space-5, 24px);
+    background: color-mix(in srgb, var(--bg-elev) 82%, transparent) !important;
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--border) !important;
+    color: var(--fg-muted) !important;
+    font-family: var(--font-sans) !important;
+    box-shadow: 0 10px 26px -22px rgba(10, 10, 20, 0.35);
+}
+
+body.publish #navbar .site-nav-back {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    padding: 0.34rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill, 999px);
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color var(--dur-fast, 120ms) var(--ease, ease),
+        color var(--dur-fast, 120ms) var(--ease, ease),
+        border-color var(--dur-fast, 120ms) var(--ease, ease);
+}
+
+body.publish #navbar .site-nav-back:hover {
+    background: var(--accent-soft, rgba(79, 70, 229, 0.1));
+    border-color: var(--accent, #4f46e5);
+    color: var(--accent, #4f46e5);
+    text-decoration: none;
+}
+
+body.publish #navbar .site-nav-crumb {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    color: var(--fg-subtle, #8a8a95);
+}
+
+body.publish #navbar .theme-toggle {
+    flex: 0 0 auto;
+}
+
+/* 阅读进度条：贴顶栏底边的渐变细线，宽度由 doc-page.js 按滚动比例设置 */
+body.publish .dsh-nav-progress {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 2px;
+    width: 0%;
+    max-width: 100%;
+    border-radius: 0 2px 2px 0;
+    background: var(--grad-hero, linear-gradient(90deg, #4338ca, #6d28d9, #0d9488));
+    pointer-events: none;
+}
+
+/* 右栏目录：当前小节高亮（类由 doc-page.js 的 scrollspy 维护） */
+body.publish #outline .tree-item-self {
+    position: relative;
+}
+
+body.publish #outline .tree-item-self.dsh-toc-active {
+    background: var(--accent-soft, rgba(79, 70, 229, 0.1)) !important;
+    color: var(--accent, #4f46e5) !important;
+    font-weight: 650;
+}
+
+body.publish #outline .tree-item-self.dsh-toc-active::before {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 18%;
+    bottom: 18%;
+    width: 2.5px;
+    border-radius: 2px;
+    background: var(--accent, #4f46e5);
+}
+
+/* 顶栏内的图标按钮（若有）统一小尺寸，防止 SVG 百分比尺寸撑爆 */
+body.publish #navbar .clickable-icon {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+}
+body.publish #navbar .clickable-icon > svg { width: 18px; height: 18px; }
+
+@media (max-width: 640px) {
+    body.publish #navbar {
+        padding: 0 var(--space-3, 12px);
+        gap: var(--space-2, 8px);
+    }
+    body.publish #navbar .site-nav-back {
+        padding: 0.3rem 0.55rem;
+        font-size: 0.82rem;
+    }
+}
