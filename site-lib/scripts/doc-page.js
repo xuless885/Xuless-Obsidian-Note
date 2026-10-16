@@ -774,8 +774,6 @@
 
     // 讲义页**没有** window.DSH_ROOT（只有外壳页/blog 页有），所以要自己求根前缀：
     // 从本站脚本自身的 src 反推（`../../site-lib/scripts/doc-page.js` → `../..`）。
-    // 早先盲目回落成 ".." 会让取数路径变成 /hkdse-course/site-lib/... → 404，
-    // 然后被 .catch 把整块撤掉 —— 表现就是「侧栏没有图谱缩略图」。
     var root = rootPrefix();
     var meta = document.querySelector('meta[name="dsh-doc-id"]');
     var curId = meta ? meta.getAttribute("content") : null;
@@ -784,10 +782,24 @@
     wrap.className = "dsh-mini-graph";
     wrap.innerHTML =
       '<div class="dsh-mini-head"><span>知识图谱</span>' +
-      '<a class="dsh-mini-more" href="' + root + '/blog/graph.html">查看全图 →</a></div>' +
-      '<a class="dsh-mini-canvas-link" href="' + root + '/blog/graph.html" ' +
-      'title="打开完整的知识图谱"><canvas width="520" height="320"></canvas></a>';
+      '<a class="dsh-mini-more" href="' + root + '/blog/graph.html">查看全图 \u2192</a></div>' +
+      '<div class="dsh-mini-canvas-link">' +
+      '<canvas width="560" height="470" role="img" aria-label="站内知识图谱缩略图（可拖动节点、悬停看标题）"></canvas>' +
+      '<span class="dsh-mini-tip" hidden></span></div>';
     mount.insertBefore(wrap, mount.firstChild);
+
+    // 侧栏被拖得比「可用最小宽度」还窄时整块隐藏（用户要求：比最小宽度小就不显示）。
+    // 侧栏宽度由 .dsh-resizer 控制（doc-page.js 里 MIN=190），这里按 210px 判。
+    var MIN_SHOW = 210;
+    function syncNarrow() {
+      var w = wrap.parentElement ? wrap.parentElement.getBoundingClientRect().width : 999;
+      wrap.classList.toggle("is-narrow", w > 0 && w < MIN_SHOW);
+    }
+    syncNarrow();
+    try {
+      if (window.ResizeObserver) new window.ResizeObserver(syncNarrow).observe(mount);
+      else window.addEventListener("resize", syncNarrow, { passive: true });
+    } catch (e) { /* ignore */ }
 
     Promise.all([
       fetch(root + "/site-lib/data/docs.json").then(function (r) { return r.json(); }),
@@ -802,36 +814,34 @@
         idx[d.id] = i;
         nodes.push({ x: Math.cos(i * 2.399) * 40 + (i % 7) * 3,
                      y: Math.sin(i * 2.399) * 40 + (i % 5) * 3,
-                     vx: 0, vy: 0, deg: 0, cat: d.category || "" });
+                     vx: 0, vy: 0, deg: 0, cat: d.category || "",
+                     title: d.title || d.path || "", pinned: false });
       });
-      var links = [];
+      var links = [], adj = [];
+      nodes.forEach(function () { adj.push([]); });
       edges.forEach(function (e) {
         var s = idx[e.s !== undefined ? e.s : e.source];
         var t = idx[e.t !== undefined ? e.t : e.target];
         if (s === undefined || t === undefined || s === t) return;
         links.push([s, t]);
         nodes[s].deg++; nodes[t].deg++;
+        if (adj[s].indexOf(t) < 0) adj[s].push(t);
+        if (adj[t].indexOf(s) < 0) adj[t].push(s);
       });
       var cur = curId ? idx[curId] : undefined;
-      var nbr = {};
-      if (cur !== undefined) {
-        links.forEach(function (l) {
-          if (l[0] === cur) nbr[l[1]] = 1;
-          if (l[1] === cur) nbr[l[0]] = 1;
-        });
-      }
 
-      // 轻量力导向：斥力 + 弹簧 + 向心，同步迭代
+      /* ---- 物理：静态迭代算初值，拖动时每帧再跑几步（保持「拖动会带动邻居」的手感）---- */
       var N = nodes.length;
-      for (var it = 0; it < 260; it++) {
+      var W = 560, H = 470, PAD = 24;
+      function step(alpha) {
         var a, b, dx, dy, d2, d, f;
         for (a = 0; a < N; a++) { nodes[a].ax = 0; nodes[a].ay = 0; }
         for (a = 0; a < N; a++) {
           for (b = a + 1; b < N; b++) {
             dx = nodes[b].x - nodes[a].x; dy = nodes[b].y - nodes[a].y;
-            d2 = dx * dx + dy * dy; if (d2 < 4) d2 = 4;
-            d = Math.sqrt(d2); f = 900 / d2;
-            if (f > 30) f = 30;
+            d2 = dx * dx + dy * dy; if (d2 < 9) d2 = 9;
+            d = Math.sqrt(d2); f = 1500 / d2;
+            if (f > 34) f = 34;
             nodes[a].ax -= dx / d * f; nodes[a].ay -= dy / d * f;
             nodes[b].ax += dx / d * f; nodes[b].ay += dy / d * f;
           }
@@ -840,77 +850,191 @@
           a = links[li][0]; b = links[li][1];
           dx = nodes[b].x - nodes[a].x; dy = nodes[b].y - nodes[a].y;
           d = Math.sqrt(dx * dx + dy * dy) || 1;
-          f = (d - 34) / d * 0.08;
+          f = (d - 52) / d * 0.05;
           nodes[a].ax += dx * f; nodes[a].ay += dy * f;
           nodes[b].ax -= dx * f; nodes[b].ay -= dy * f;
         }
         for (a = 0; a < N; a++) {
-          nodes[a].ax -= nodes[a].x * 0.0016;
-          nodes[a].ay -= nodes[a].y * 0.0016;
-          nodes[a].vx = (nodes[a].vx + nodes[a].ax) * 0.82;
-          nodes[a].vy = (nodes[a].vy + nodes[a].ay) * 0.82;
+          if (nodes[a].pinned) { nodes[a].vx = 0; nodes[a].vy = 0; nodes[a].ax = 0; nodes[a].ay = 0; continue; }
+          nodes[a].ax -= nodes[a].x * 0.0012;
+          nodes[a].ay -= nodes[a].y * 0.0012;
+          nodes[a].vx = (nodes[a].vx + nodes[a].ax * alpha) * 0.82;
+          nodes[a].vy = (nodes[a].vy + nodes[a].ay * alpha) * 0.82;
           nodes[a].x += nodes[a].vx; nodes[a].y += nodes[a].vy;
         }
       }
+      for (var it = 0; it < 300; it++) step(1);
 
-      // 取景
-      var minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
-      nodes.forEach(function (n) {
-        if (n.x < minX) minX = n.x; if (n.x > maxX) maxX = n.x;
-        if (n.y < minY) minY = n.y; if (n.y > maxY) maxY = n.y;
-      });
-      var W = 520, H = 320, pad = 26;
-      var k = Math.min((W - pad * 2) / Math.max(1, maxX - minX),
-                       (H - pad * 2) / Math.max(1, maxY - minY));
-      var cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
-      function px(n) { return W / 2 + (n.x - cx) * k; }
-      function py(n) { return H / 2 + (n.y - cy) * k; }
+      /* ---- 取景：每次重画时按当前包围盒算，拖动后自动跟随 ---- */
+      var view = { k: 1, cx: 0, cy: 0 };
+      function fitView() {
+        var minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+        nodes.forEach(function (n) {
+          if (n.x < minX) minX = n.x; if (n.x > maxX) maxX = n.x;
+          if (n.y < minY) minY = n.y; if (n.y > maxY) maxY = n.y;
+        });
+        view.k = Math.min((W - PAD * 2) / Math.max(1, maxX - minX),
+                          (H - PAD * 2) / Math.max(1, maxY - minY));
+        view.cx = (minX + maxX) / 2; view.cy = (minY + maxY) / 2;
+      }
+      fitView();
+      function sx(n) { return W / 2 + (n.x - view.cx) * view.k; }
+      function sy(n) { return H / 2 + (n.y - view.cy) * view.k; }
 
       var cv = wrap.querySelector("canvas");
+      var tip = wrap.querySelector(".dsh-mini-tip");
       var ctx = cv.getContext("2d");
-      if (!ctx) { return; }
+      if (!ctx) return;
+
       var accent = cssVar("--accent", "#3b5bdb");
       var fgMuted = cssVar("--fg-subtle", "#8b8f9a");
       var border = cssVar("--border-strong", "#cfcec7");
       var bgElev = cssVar("--bg-elev", "#fff");
+      var palette = ["#3b5bdb", "#0ca678", "#e8590c", "#7048e8"];
 
-      // 高清屏适配
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
       cv.width = W * dpr; cv.height = H * dpr;
       cv.style.width = "100%"; cv.style.height = "auto";
       ctx.scale(dpr, dpr);
 
-      var palette = ["#3b5bdb", "#0ca678", "#e8590c", "#7048e8"];
+      // 悬停 / 拖动状态：hover 优先于「当前文档」，高亮它的邻居（用户要求「跟其他关联」）
+      var hover = -1, drag = null;
 
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = border;
-      ctx.globalAlpha = 0.55;
-      links.forEach(function (l) {
-        var hi = cur !== undefined && (l[0] === cur || l[1] === cur);
-        ctx.globalAlpha = hi ? 0.95 : 0.25;
-        ctx.strokeStyle = hi ? accent : border;
-        ctx.beginPath();
-        ctx.moveTo(px(nodes[l[0]]), py(nodes[l[0]]));
-        ctx.lineTo(px(nodes[l[1]]), py(nodes[l[1]]));
-        ctx.stroke();
-      });
+      function radiusOf(i) {
+        var n = nodes[i];
+        if (i === hover) return 9;
+        if (i === cur) return 8;
+        if (hover >= 0 && adj[hover].indexOf(i) >= 0) return 5.5;
+        return n.deg > 0 ? 3.6 : 2.6;
+      }
+      function alphaOf(i) {
+        if (hover >= 0) return (i === hover || adj[hover].indexOf(i) >= 0) ? 1 : 0.18;
+        if (cur === undefined) return 1;
+        return (i === cur || adj[cur].indexOf(i) >= 0) ? 1 : 0.35;
+      }
 
-      nodes.forEach(function (n, i) {
-        var isCur = i === cur;
-        var isNbr = nbr[i];
-        var r = isCur ? 7 : (isNbr ? 4 : (n.deg > 0 ? 3 : 2));
-        ctx.globalAlpha = (cur === undefined || isCur || isNbr) ? 1 : 0.35;
-        ctx.beginPath();
-        ctx.arc(px(n), py(n), r, 0, Math.PI * 2);
-        ctx.fillStyle = isCur ? accent : palette[Math.abs(hash(n.cat)) % palette.length];
-        ctx.fill();
-        if (isCur) {
-          ctx.lineWidth = 2;
-          ctx.strokeStyle = bgElev;
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        ctx.lineWidth = 1;
+        links.forEach(function (l) {
+          var hi;
+          if (hover >= 0) hi = (l[0] === hover || l[1] === hover);
+          else hi = (cur !== undefined && (l[0] === cur || l[1] === cur));
+          ctx.globalAlpha = hover >= 0 ? (hi ? 0.9 : 0.12) : (hi ? 0.9 : 0.22);
+          ctx.strokeStyle = hi ? accent : border;
+          ctx.beginPath();
+          ctx.moveTo(sx(nodes[l[0]]), sy(nodes[l[0]]));
+          ctx.lineTo(sx(nodes[l[1]]), sy(nodes[l[1]]));
           ctx.stroke();
+        });
+        nodes.forEach(function (n, i) {
+          var r = radiusOf(i);
+          ctx.globalAlpha = alphaOf(i);
+          ctx.beginPath();
+          ctx.arc(sx(n), sy(n), r, 0, Math.PI * 2);
+          ctx.fillStyle = (i === cur) ? accent : palette[Math.abs(hash(n.cat)) % palette.length];
+          ctx.fill();
+          if (i === cur || i === hover) {
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = bgElev;
+            ctx.stroke();
+          }
+        });
+        ctx.globalAlpha = 1;
+      }
+
+      /* ---- 指针交互：悬停出标题、按下可拖动（拖动时带动邻居，松手继续收敛）---- */
+      function toCanvas(ev) {
+        var r = cv.getBoundingClientRect();
+        return { x: (ev.clientX - r.left) / (r.width || 1) * W,
+                 y: (ev.clientY - r.top) / (r.height || 1) * H };
+      }
+      function pick(pt) {
+        var best = -1, bestD = 1e9;
+        for (var i = 0; i < N; i++) {
+          var dx = sx(nodes[i]) - pt.x, dy = sy(nodes[i]) - pt.y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          var lim = radiusOf(i) + 6;
+          if (d < lim && d < bestD) { bestD = d; best = i; }
+        }
+        return best;
+      }
+      function showTip(i) {
+        if (!tip) return;
+        if (i < 0) { tip.hidden = true; return; }
+        tip.hidden = false;
+        tip.textContent = nodes[i].title || "";
+        var r = cv.getBoundingClientRect();
+        var scale = r.width / W;
+        var x = sx(nodes[i]) * scale, y = sy(nodes[i]) * scale;
+        tip.style.left = Math.max(4, Math.min(r.width - 8, x)) + "px";
+        tip.style.top = Math.max(2, y - 10) + "px";
+      }
+      var rafId = 0;
+      function tick() {
+        rafId = 0;
+        if (!drag) return;
+        for (var s = 0; s < 3; s++) step(0.55);
+        fitView(); draw();
+        if (drag) rafId = window.requestAnimationFrame(tick);
+      }
+      function requestTick() { if (!rafId) rafId = window.requestAnimationFrame(tick); }
+
+      cv.addEventListener("pointermove", function (ev) {
+        var pt = toCanvas(ev);
+        if (drag && drag.id === ev.pointerId) {
+          var n = nodes[drag.i];
+          n.x = (pt.x - W / 2) / view.k + view.cx;
+          n.y = (pt.y - H / 2) / view.k + view.cy;
+          drag.moved += Math.abs(ev.clientX - drag.lastX) + Math.abs(ev.clientY - drag.lastY);
+          drag.lastX = ev.clientX; drag.lastY = ev.clientY;
+          requestTick();
+          return;
+        }
+        var i = pick(pt);
+        if (i !== hover) {
+          hover = i;
+          showTip(i);
+          cv.style.cursor = i >= 0 ? "grab" : "default";
+          draw();
         }
       });
-      ctx.globalAlpha = 1;
+      cv.addEventListener("pointerdown", function (ev) {
+        var i = pick(toCanvas(ev));
+        if (i < 0) return;
+        drag = { i: i, id: ev.pointerId, moved: 0, lastX: ev.clientX, lastY: ev.clientY };
+        nodes[i].pinned = true;
+        hover = i; showTip(i); draw();
+        cv.style.cursor = "grabbing";
+        try { cv.setPointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
+        if (ev.preventDefault) ev.preventDefault();
+      });
+      function endDrag(ev) {
+        if (!drag || (ev && drag.id !== ev.pointerId)) return;
+        nodes[drag.i].pinned = false;
+        var moved = drag.moved;
+        try { cv.releasePointerCapture(drag.id); } catch (e) { /* ignore */ }
+        drag = null;
+        cv.style.cursor = hover >= 0 ? "grab" : "default";
+        // 松手后让邻居回弹收敛（视觉上就是「拖动会牵动周围」）
+        for (var s = 0; s < 26; s++) step(0.85);
+        fitView(); draw();
+        // 拖过就不要再触发外层「查看全图」的跳转
+        if (moved > 6) { cv.dataset.dragged = "1"; window.setTimeout(function () { delete cv.dataset.dragged; }, 400); }
+      }
+      cv.addEventListener("pointerup", endDrag);
+      cv.addEventListener("pointercancel", endDrag);
+      cv.addEventListener("pointerleave", function () {
+        if (drag) return;
+        hover = -1; showTip(-1); draw();
+      });
+      wrap.querySelector(".dsh-mini-canvas-link").addEventListener("click", function (ev) {
+        if (cv.dataset.dragged) { ev.preventDefault(); ev.stopPropagation(); return; }
+        ev.preventDefault();
+        window.location.href = root + "/blog/graph.html";
+      });
+
+      draw();
     }).catch(function () {
       // 数据取不到就撤掉这块，绝不留下破图
       var w = document.querySelector(".dsh-mini-graph");

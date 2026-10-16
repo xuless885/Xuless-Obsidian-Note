@@ -2780,6 +2780,19 @@ body.publish .callout-content > *:last-child {
     margin-bottom: 0 !important;
 }
 
+/* Obsidian 导出把每个段落包进 `div.el-p`，所以「引用块/板块的最后一个子元素」往往是 `.el-p`
+   而不是 `p`：上面两条 `> *:last-child` 只把 .el-p 的 margin 归零，里面 `<p>` 的
+   `margin-bottom: 16px` 仍留在盒内 —— 表现为**盒内底部留空比顶部多 16px**
+   （实测 chapter-4 一个引用块：上 5px / 下 21.3px，用户 2026-10-16 截图指出）。
+   这里把「最后一个内容块**内部**的段落」也归零，上下留白才对称。 */
+body.publish blockquote > *:last-child > p:last-child,
+body.publish blockquote > *:last-child > .el-p:last-child > p:last-child,
+body.publish .callout-content > *:last-child > p:last-child,
+body.publish .callout-content > *:last-child > .el-p:last-child > p:last-child,
+body.publish .callout > *:last-child > p:last-child {
+    margin-bottom: 0 !important;
+}
+
 body.publish .callout-content p,
 body.publish .callout-content li,
 body.publish .callout-content td,
@@ -3533,6 +3546,30 @@ body.publish .dsh-mini-canvas-link canvas {
 }
 
 body.publish .dsh-mini-canvas-link:hover canvas { opacity: .85; }
+
+/* 缩略图交互（2026-10-16 用户要求：能拖节点、悬停出标题并高亮邻居；侧栏太窄就整块隐藏） */
+body.publish .dsh-mini-canvas-link { position: relative; cursor: default; }
+
+body.publish .dsh-mini-graph.is-narrow { display: none; }
+
+body.publish .dsh-mini-tip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-50%, -130%);
+    max-width: 92%;
+    padding: 3px 7px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--fg) 90%, transparent);
+    color: var(--bg-elev);
+    font-size: .7rem;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+    z-index: 3;
+}
 
 /* ==========================================================================
    8.15 固定顶栏 + 阅读进度 + 目录高亮（dsh-topbar-v2）

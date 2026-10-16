@@ -37,7 +37,8 @@ background:var(--bg-elev);border-bottom:1px solid var(--border);padding:var(--sp
 .page-title{margin:0 0 var(--space-4);font-size:clamp(1.6rem,3.6vw,2.3rem);letter-spacing:-.03em;font-weight:800}
 .page-sub{margin:0;color:var(--fg-muted);max-width:46em}
 .h-list{display:grid;gap:var(--space-3)}
-.h-item{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-5);border:1px solid var(--border);
+/* 章节行（用户 2026-10-16：每行上下间距太小）——纵向内边距 16 → 22px，行间 12 → 14px */
+.h-item{display:flex;align-items:center;gap:var(--space-4);padding:22px var(--space-5);border:1px solid var(--border);
 border-radius:var(--radius-m);background:var(--bg-elev);transition:transform .14s var(--ease),border-color .14s,box-shadow .14s}
 .h-item:hover{transform:translateX(4px);border-color:var(--border-strong);box-shadow:var(--shadow-s);text-decoration:none}
 .h-idx{flex:0 0 46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--bg-sunken);
@@ -46,6 +47,10 @@ border:1px solid var(--border);color:var(--fg-muted);font-weight:700;font-size:.
 .h-title{color:var(--fg);font-weight:600;overflow-wrap:anywhere}
 .h-meta{color:var(--fg-subtle);font-size:.83rem;margin-top:2px}
 .h-tag{flex:0 0 auto;padding:3px 10px;border-radius:var(--radius-pill);background:var(--accent-soft);color:var(--accent);font-size:.78rem}
+
+/* 「更新日志」这类非章节入口：与上面的简介卡片之间要留出间距（用户 2026-10-16 反馈两者贴在一起） */
+.h-list-side{margin-top:var(--space-4);gap:14px}
+.h-list-side .h-idx{background:var(--bg-sunken);font-size:1.1rem}
 
 /* 「给读者的简介」置顶卡片（2026-10-16）：与编号章节明显区分 —— 它不是第 N 章，
    而是「先读这篇」的使用说明，所以用整块渐变边、更大标题、独立 kicker。 */
