@@ -1016,3 +1016,101 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
   else install();
 })();
+
+/* ===========================================================================
+   锚点跳转校准（dsh-anchor-fix）
+   ---------------------------------------------------------------------------
+   背景：正文里的板块（.callout）为了缩放/滚动性能加了 `content-visibility: auto`
+   （见 blog-theme.css 末尾「运行时性能」段）：屏幕外板块的高度是「上次渲染的估计值」，
+   于是浏览器**原生 #id 跳转**会把目标滚偏 —— 实测 chapter-28 点目录第 12 项，
+   目标标题停在视口 783px 处（本该贴在顶栏下方）。
+   做法：不阻止原生跳转（保留历史记录与无障碍语义），跳转后花几帧把目标校准到顶栏下方；
+   位置稳定即停（2px 内算到位，最多 8 次）。初始带 hash 打开、hashchange 也走同一套。
+   =========================================================================== */
+(function () {
+  "use strict";
+  try { window.__dshAnchorFix = { loaded: 1, clicks: 0, aligned: 0 }; } catch (e0) { /* ignore */ }
+  var NAV_GAP = 14;      // 标题距顶栏的留白
+  var WATCH_MS = 1600;   // 校准观察窗：原生 fragment 滚动可能比我们晚落地
+  var RETRY_MS = 110;
+
+  function navHeight() {
+    var nav = document.getElementById("navbar") || document.querySelector(".site-nav");
+    var h = 60;
+    if (nav) {
+      var r = nav.getBoundingClientRect();
+      if (r && r.height) h = Math.round(r.height);
+    }
+    return h;
+  }
+
+  function findById(id) {
+    if (!id) return null;
+    var el = null;
+    try { el = document.getElementById(id); } catch (e) { el = null; }
+    if (el) return el;
+    try { return document.querySelector('[id="' + String(id).replace(/"/g, '\\"') + '"]'); } catch (e2) { return null; }
+  }
+
+  /** 把 el 顶边对齐到「顶栏 + 留白」。
+   *  为什么要「盯着」而不是只对一次：目标标题跳转后，Chrome 会**推迟**执行原生 fragment
+   *  滚动（要等 content-visibility 的屏幕外板块把高度算出来），它可能在我们校准完之后才落地，
+   *  于是又把位置带偏。所以这里在一个时间窗内持续纠正；用户一旦自己滚动/按键就立刻收手。 */
+  function align(el) {
+    if (!el || !el.getBoundingClientRect) return;
+    try { if (window.__dshAnchorFix) window.__dshAnchorFix.aligned++; } catch (e0) { /* ignore */ }
+    var want = navHeight() + NAV_GAP;
+    var t0 = Date.now();
+    var cancelled = false;
+
+    function stop() { cancelled = true; }
+    window.addEventListener("wheel", stop, { passive: true, once: true });
+    window.addEventListener("touchstart", stop, { passive: true, once: true });
+    window.addEventListener("keydown", stop, { once: true });
+    window.addEventListener("pointerdown", stop, { once: true });
+
+    function step() {
+      if (cancelled) return;
+      var r = el.getBoundingClientRect();
+      var delta = Math.round(r.top - want);
+      if (Math.abs(delta) > 2) window.scrollBy(0, delta);
+      if (Date.now() - t0 < WATCH_MS) window.setTimeout(step, RETRY_MS);
+    }
+    step();
+  }
+
+  function hashId() {
+    var h = location.hash || "";
+    if (h.length < 2) return "";
+    try { return decodeURIComponent(h.slice(1)); } catch (e) { return h.slice(1); }
+  }
+
+  function alignHash() { align(findById(hashId())); }
+
+  function install() {
+    // ① 点击站内锚点：先让浏览器跳，再校准
+    document.addEventListener("click", function (ev) {
+      var a = ev.target && ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
+      if (!a) return;
+      try { if (window.__dshAnchorFix) window.__dshAnchorFix.clicks++; } catch (e0) { /* ignore */ }
+      var id = "";
+      try { id = decodeURIComponent((a.getAttribute("href") || "").slice(1)); } catch (e) { id = ""; }
+      if (!id) return;
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () { align(findById(id)); });
+      });
+    }, false);
+
+    // ② 带 hash 打开 / 前进后退
+    window.addEventListener("hashchange", function () {
+      window.requestAnimationFrame(function () { alignHash(); });
+    }, false);
+    if (hashId()) {
+      window.setTimeout(alignHash, 300);    // 等侧栏树/图谱缩略图这类异步模块把布局推开
+      window.setTimeout(alignHash, 1200);
+    }
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  else install();
+})();

@@ -2692,6 +2692,21 @@ body.publish .el-pre pre code {
     font-size: 0.9rem !important;
 }
 
+/* 围栏式 admonition（> [!thm] / ```ad-thm）的外层容器也带 `.el-pre` —— 那是 Obsidian 给
+   **代码块**的外壳类，上面那条规则会连它一起上边框、背景、圆角，于是每个板块外面多出
+   一层比它大一圈的圆角细线，看起来就是「板块上下各有一条不正常的线」（用户 2026-10-16 截图）。
+   这里把外层容器还原成「纯定位容器」：不要边框/背景/内边距/圆角。 */
+body.publish .el-pre.admonition-parent,
+body.publish .admonition-parent,
+body.publish .el-pre:has(> .callout) {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
 body.publish mark,
 body.publish .highlight {
     padding: 0 0.16em !important;
@@ -3922,4 +3937,36 @@ body.publish #search-wrapper input[type="search"] {
 
 body.publish #left-sidebar .sidebar-topbar input[type="search"]::placeholder {
     color: var(--fg-subtle);
+}
+
+/* ==========================================================================
+   运行时性能：浏览器缩放 / 长页滚动
+   ==========================================================================
+   用户反馈「浏览器缩放页面时掉帧卡顿」。放大 = 整页重排 + 重绘，页面越大越贵；
+   本站一章正文有 1–2 万个 DOM 节点、几十个板块（callout），一次缩放要全量重排。
+   实测（.build/probe/verify_zoomperf.mjs，无头 Chrome 跑 chapter-28 连续 6 档缩放，
+   取「每次缩放后页面稳定的耗时」平均值）：
+       原样 241ms  |  去掉顶栏毛玻璃 228ms  |  板块加 content-visibility 137ms
+       |  两者都做 124ms
+   所以：① 屏幕外的板块**跳过排版与绘制**（content-visibility: auto + 记住上次高度，
+   避免滚动条跳动）；② 侧栏顶栏去掉 backdrop-filter（每次侧栏滚动都要重算背景模糊）。
+   注意：content-visibility 只加在「块级并列」的 .callout / 图表上，正文段落不加，
+   否则会影响 in-page 锚点定位与 Ctrl+F 的命中范围。 */
+body.publish .callout {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 320px;   /* auto = 用上次渲染出来的高度 */
+    contain: layout paint style;
+}
+
+body.publish .tikz-figure-wrap,
+body.publish .el-table,
+body.publish pre {
+    contain: layout paint;
+}
+
+body.publish #left-sidebar .sidebar-topbar,
+body.publish #right-sidebar .sidebar-topbar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--bg-elev, #fff) !important;
 }
