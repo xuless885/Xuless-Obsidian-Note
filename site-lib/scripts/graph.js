@@ -618,18 +618,35 @@
     var controls = document.getElementById('graph-controls') ||
       document.querySelector('[data-graph-controls]');
 
-    // —— 让「画布 + 侧栏」在任意父容器下都能并排（只加一个自己的类，不动主题的 DOM）——
-    try {
-      var shell = app.parentElement;
-      if (shell && controls && shell === controls.parentElement) {
-        var kids = shell.children;
-        var count = 0;
-        for (var ci = 0; ci < kids.length; ci++) {
-          if (kids[ci] === app || kids[ci] === controls) count++;
-        }
-        if (count === 2) shell.classList.add('graph-shell');
+    /* 悬浮控制窗的开关（全屏图谱）：面板默认展开，状态记在 localStorage。
+       面板收起时点节点仍要能看到详情 → 见 showDetail() 里的 ensurePanelOpen()。 */
+    var page = document.getElementById('graph-page') || app.parentElement;
+    var PANEL_KEY = 'dsh-graph-panel';
+    function panelOpen() {
+      return !(page && page.classList.contains('is-panel-hidden'));
+    }
+    function setPanel(open, persist) {
+      if (!page) return;
+      page.classList.toggle('is-panel-hidden', !open);
+      var btn = document.getElementById('graph-panel-toggle');
+      if (btn) {
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('title', open ? '收起设置' : '展开设置');
+        var txt = btn.querySelector('.graph-panel-toggle-text');
+        if (txt) txt.textContent = open ? '收起' : '设置';
       }
-    } catch (e) { /* ignore */ }
+      if (controls) controls.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if (persist) { try { localStorage.setItem(PANEL_KEY, open ? '1' : '0'); } catch (e) { /* 隐私模式忽略 */ } }
+    }
+    function ensurePanelOpen() { if (!panelOpen()) setPanel(true, true); }
+    try { setPanel(localStorage.getItem(PANEL_KEY) !== '0', false); } catch (e) { setPanel(true, false); }
+    var panelBtn = document.getElementById('graph-panel-toggle');
+    if (panelBtn) {
+      panelBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        setPanel(!panelOpen(), true);
+      });
+    }
 
     var canvas = el('canvas', 'graph-canvas');
     canvas.setAttribute('tabindex', '0');
@@ -1073,14 +1090,23 @@
 
     /**
      * 自动适配视图（fit）。
-     *  · maxK 上限 1.15：本站只有 30–40 个节点，不设上限时 fit 会把 k 顶到 2.4，
-     *    节点与标签被放大到糊满画布（用户截图原话「太大」）。上限让图平铺开。
+     *  · maxK 上限 3.2：全屏画布（1600×940）下 35 个节点要铺满整屏需要 k≈3，
+     *    而节点半径与标签字号都是「屏幕尺寸夹在区间内」的，放大不会糊（见 screenRadius /
+     *    labelFontScreen）；上限只防「几个节点时被放到荒唐大小」。
      *  · labelPad：标签画在节点下方，适配时要把这段高度留出来，否则底部标签被卡片裁掉。
      */
     function fitGraph(extra) {
-      var opts = { padding: 56, maxK: 2.4, labelPad: labelFontScreen(1) + 16 };
+      var opts = { padding: 56, maxK: 3.2, labelPad: labelFontScreen(1) + 16 };
       if (extra) { for (var kk in extra) { if (Object.prototype.hasOwnProperty.call(extra, kk)) opts[kk] = extra[kk]; } }
-      return fitView(S.nodes, S.width, S.height, opts);
+      var v = fitView(S.nodes, S.width, S.height, opts);
+      // 控制窗是**浮**在画布上的：把视图中心右移半个面板宽，图就不会被它压住
+      // （面板收起时不做偏移；窄屏面板贴底，也不需要）
+      if (controls && S.width > 700 && panelOpen()) {
+        var pw = 0;
+        try { pw = controls.getBoundingClientRect().width || 0; } catch (e) { pw = 0; }
+        if (pw > 0) v.x += Math.round(pw / 2) + 8;
+      }
+      return v;
     }
 
     function heat(level, interactive) {
@@ -1181,6 +1207,7 @@
       if (!d) return;
       var n = S.nodes[idx];
       if (!n) { d.box.hidden = true; return; }
+      ensurePanelOpen();          // 面板收起时点节点也要看得到「节点详情」
       d.box.hidden = false;
       d.title.textContent = n.title;
       d.cat.textContent = n.category;
@@ -1477,7 +1504,7 @@
       if (ev.deltaMode === 1) delta *= 16;
       else if (ev.deltaMode === 2) delta *= S.height;
       var factor = Math.exp(-clamp(delta, -240, 240) * 0.0016);
-      S.view = zoomAt(S.view, p.x, p.y, factor, 0.2, 3);
+      S.view = zoomAt(S.view, p.x, p.y, factor, 0.22, 3.5);
       S.userTouched = true;
       render();
     }
@@ -1490,8 +1517,8 @@
         case 'ArrowRight': S.view.x -= step; break;
         case 'ArrowUp': S.view.y += step; break;
         case 'ArrowDown': S.view.y -= step; break;
-        case '+': case '=': S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1.2, 0.2, 3); break;
-        case '-': case '_': S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1 / 1.2, 0.2, 3); break;
+        case '+': case '=': S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1.2, 0.22, 3.5); break;
+        case '-': case '_': S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1 / 1.2, 0.22, 3.5); break;
         case '0': S.view = fitGraph(); S.userTouched = false; break;
         case 'Escape': S.selected = -1; if (S.detail) S.detail.box.hidden = true; break;
         default: handled = false;
@@ -1641,7 +1668,7 @@
       var p = localPos(ev);
       var w = screenToWorld(S.view, p.x, p.y);
       var idx = pickNode(S.nodes, w.x, w.y, S.view.k);
-      if (idx >= 0) { S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1.5, 0.2, 3); centerOn(idx, true); }
+      if (idx >= 0) { S.view = zoomAt(S.view, S.width / 2, S.height / 2, 1.5, 0.22, 3.5); centerOn(idx, true); }
     });
 
     /**

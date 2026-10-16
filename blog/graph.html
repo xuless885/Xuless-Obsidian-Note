@@ -24,9 +24,9 @@ window.DSH_ROOT = "..";
 })();
 </script>
 <link rel="stylesheet" href="../site-lib/styles/blog-theme.css?v=b6af1bed">
-<link rel="stylesheet" href="../site-lib/styles/graph.css?v=5b0e67df">
+<link rel="stylesheet" href="../site-lib/styles/graph.css?v=46c95095">
 <script defer src="../site-lib/scripts/site.js?v=358b4874"></script>
-<script defer src="../site-lib/scripts/graph.js?v=8fb9d94f"></script>
+<script defer src="../site-lib/scripts/graph.js?v=9e9d26b8"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要内容</a>
@@ -62,54 +62,16 @@ window.DSH_ROOT = "..";
 </header>
 
 <main class="main-area" id="main">
-    <div class="page-head">
-        <div class="page-head-inner">
-            <ol class="breadcrumb">
-                <li><a href="../index.html">首页</a></li>
-                <li><a href="./index.html">博客</a></li>
-                <li>知识图谱</li>
-            </ol>
-            <h1 class="page-title">知识图谱</h1>
-            <p class="page-sub">把全部笔记之间的引用与嵌入关系画成一张网络图：节点大小对应关联度，颜色对应分类，点击节点即可进入该篇笔记。</p>
-        </div>
+    <!-- 全屏图谱：画布铺满「顶栏以下」的整块视口，控制面板做成可开关的悬浮窗 -->
+    <div class="graph-page" id="graph-page">
+        <button class="graph-panel-toggle" id="graph-panel-toggle" type="button"
+                aria-expanded="true" aria-controls="graph-controls">
+            <span class="graph-panel-toggle-ico" aria-hidden="true">&#9881;</span>
+            <span class="graph-panel-toggle-text">设置</span>
+        </button>
+        <aside id="graph-controls" class="graph-controls" aria-label="图谱控制面板"></aside>
+        <div id="graph-app" class="graph-app" data-graph-root></div>
     </div>
-
-    <section class="section">
-        <div class="wrap" id="graph-page">
-            <!-- 图谱控制面板挂载点（按 task-4 约定为左侧筛选栏，故在 DOM 中排在画布之前）：由 site-lib/scripts/graph.js 填充 -->
-            <aside id="graph-controls" class="graph-controls" aria-label="图谱控制面板"></aside>
-            <!-- 图谱画布挂载点：渲染逻辑由 site-lib/scripts/graph.js 负责 -->
-            <div id="graph-app" class="graph-app" data-graph-root></div>
-        </div>
-    </section>
 </main>
-
-<footer class="footer-site">
-    <div class="footer-inner">
-        <div class="footer-brand">
-            <a class="brand" href="../index.html">
-                <span class="brand-mark" aria-hidden="true">X</span>
-                <span class="brand-text">
-                    <span>Xuless 数字花园</span>
-                    <span class="brand-sub">数学 · 课程 · 笔记</span>
-                </span>
-            </a>
-            <p>HKDSE 数学课程讲义、Textbook Plan、大学数学笔记与长期项目的持续沉淀。</p>
-        </div>
-        <nav aria-label="页脚导航">
-            <ul class="footer-links">
-                <li><a href="../index.html">首页</a></li>
-                <li><a href="./index.html">博客</a></li>
-                <li><a href="./tags.html">标签</a></li>
-                <li><a href="./graph.html">图谱</a></li>
-                <li><a href="./search.html">搜索</a></li>
-                <li><a href="./about.html">关于</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2026 许少 Xuless · 纯静态站点 · 由 Obsidian 内容与自带主题构成</p>
-    </div>
-</footer>
 </body>
 </html>

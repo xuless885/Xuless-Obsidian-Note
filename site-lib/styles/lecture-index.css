@@ -46,6 +46,29 @@ border:1px solid var(--border);color:var(--fg-muted);font-weight:700;font-size:.
 .h-title{color:var(--fg);font-weight:600;overflow-wrap:anywhere}
 .h-meta{color:var(--fg-subtle);font-size:.83rem;margin-top:2px}
 .h-tag{flex:0 0 auto;padding:3px 10px;border-radius:var(--radius-pill);background:var(--accent-soft);color:var(--accent);font-size:.78rem}
+
+/* 「给读者的简介」置顶卡片（2026-10-16）：与编号章节明显区分 —— 它不是第 N 章，
+   而是「先读这篇」的使用说明，所以用整块渐变边、更大标题、独立 kicker。 */
+.intro-card{display:flex;align-items:center;gap:var(--space-5);margin:var(--space-6) 0 0;padding:var(--space-5);
+border:1px solid var(--border);border-left:4px solid transparent;border-radius:var(--radius-m);
+background:var(--bg-elev);background-image:var(--grad-hero);background-size:100% 4px;background-repeat:no-repeat;
+background-position:top left;box-shadow:var(--shadow-m);transition:transform .16s var(--ease),box-shadow .16s}
+.intro-card:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(16,18,27,.16);text-decoration:none}
+.intro-ico{flex:0 0 auto;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:24px;
+background:var(--accent-soft);color:var(--accent)}
+.intro-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.intro-kicker{font-size:.76rem;letter-spacing:.08em;color:var(--accent);font-weight:700}
+.intro-title{font-size:1.24rem;font-weight:800;letter-spacing:-.02em;color:var(--fg)}
+.intro-desc{color:var(--fg-muted);font-size:.9rem;line-height:1.65}
+.intro-go{flex:0 0 auto;padding:6px 14px;border-radius:var(--radius-pill);background:var(--accent-soft);
+color:var(--accent);font-weight:700;font-size:.85rem;white-space:nowrap}
+.list-head{display:flex;align-items:baseline;gap:10px;margin:var(--space-7) 0 var(--space-4);font-size:1.02rem;
+font-weight:700;color:var(--fg)}
+.list-head-num{font-size:.8rem;font-weight:600;color:var(--fg-subtle)}
+@media (max-width:640px){
+.intro-card{flex-wrap:wrap;gap:var(--space-4)}
+.intro-go{width:100%;text-align:center}
+}
 .footer-site{border-top:1px solid var(--border);margin-top:var(--space-8);padding:var(--space-6) 0 var(--space-7);color:var(--fg-muted);font-size:.9rem}
 .footer-grid{display:flex;justify-content:space-between;gap:var(--space-5);flex-wrap:wrap}
 .footer-links{display:flex;gap:var(--space-4)}.footer-links a{color:var(--fg-muted)}.footer-links a:hover{color:var(--accent)}

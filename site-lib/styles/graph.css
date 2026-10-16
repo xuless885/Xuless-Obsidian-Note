@@ -7,50 +7,32 @@
  *   · 所有类名以 .graph- 前缀，与主题、检索页互不冲突。
  * ========================================================================== */
 
-/* ---------- 布局：画布 + 侧栏（类由 graph.js 在运行时按需加到公共父节点上） ---------- */
-.graph-shell {
-  display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: var(--space-5, 1.25rem);
-  align-items: start;
-  margin: var(--space-5, 1.25rem) auto;
-}
-
-.graph-shell > #graph-controls,
-.graph-shell > .graph-controls {
-  grid-column: 1;
-  grid-row: 1;
-  min-width: 0;
-}
-
-.graph-shell > #graph-app,
-.graph-shell > .graph-app {
-  grid-column: 2;
-  grid-row: 1;
-  min-width: 0;
-}
-
-@media (max-width: 900px) {
-  .graph-shell {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .graph-shell > #graph-controls,
-  .graph-shell > .graph-controls { grid-column: 1; grid-row: 1; }
-  .graph-shell > #graph-app,
-  .graph-shell > .graph-app { grid-column: 1; grid-row: 2; }
-}
-
-/* ---------- 画布容器 ---------- */
-.graph-app {
+/* ---------- 布局：全屏画布 + 可开关的悬浮控制窗（2026-10-16） ----------
+   用户要求：图谱整页全屏显示，设置做成悬浮窗并带开关，且**不能盖住顶部栏**。
+   做法：.graph-page 高度 = 视口 − 顶栏高度，画布 absolute 铺满；
+   控制面板 absolute 悬浮在画布左上（顶栏之下，z-index 低于 .site-nav 的 60）。
+   旧的 .graph-shell 两列网格已弃用（graph.js 里加 .graph-shell 的那段也一并删掉，
+   否则它会把 grid-template-columns 套到这个全屏容器上）。 */
+.graph-page {
   position: relative;
   width: 100%;
-  height: clamp(420px, 72vh, 820px);
-  border: 1px solid var(--border, rgba(127, 127, 127, 0.22));
-  border-radius: var(--radius-l, 14px);
+  height: calc(100vh - var(--nav-h, 60px));
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.graph-app {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
   background: var(--bg-elev, transparent);
-  box-shadow: var(--shadow-m, none);
+  box-shadow: none;
   overflow: hidden;
   isolation: isolate;
+  z-index: 1;
 }
 
 .graph-canvas {
@@ -109,8 +91,14 @@
   border-radius: inherit;
 }
 
-/* ---------- 侧栏 ---------- */
+/* ---------- 悬浮控制窗 ---------- */
 .graph-controls {
+  position: absolute;
+  top: 62px;
+  left: var(--space-4, 1rem);
+  z-index: 5;
+  width: min(320px, calc(100% - 2rem));
+  max-height: calc(100% - 84px);
   min-width: 0;
 }
 
@@ -121,11 +109,57 @@
   padding: var(--space-4, 1rem);
   border: 1px solid var(--border, rgba(127, 127, 127, 0.22));
   border-radius: var(--radius-l, 14px);
-  background: var(--bg-elev, transparent);
-  box-shadow: var(--shadow-s, none);
-  max-height: clamp(420px, 72vh, 820px);
+  background: color-mix(in srgb, var(--bg-elev, #fff) 88%, transparent);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  box-shadow: var(--shadow-l, 0 18px 48px rgba(16, 18, 27, 0.14));
+  max-height: 100%;
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+/* 开关按钮：始终停在左上，面板收起时它就是唯一入口 */
+.graph-panel-toggle {
+  position: absolute;
+  top: var(--space-4, 1rem);
+  left: var(--space-4, 1rem);
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.4rem 0.85rem;
+  font: 600 0.82rem/1.4 var(--font-sans, system-ui, sans-serif);
+  color: var(--fg, #111);
+  background: color-mix(in srgb, var(--bg-elev, #fff) 88%, transparent);
+  border: 1px solid var(--border, rgba(127, 127, 127, 0.24));
+  border-radius: var(--radius-pill, 999px);
+  box-shadow: var(--shadow-m, 0 6px 22px rgba(16, 18, 27, 0.09));
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  cursor: pointer;
+  transition: color var(--dur-fast, 120ms) var(--ease, ease),
+              border-color var(--dur-fast, 120ms) var(--ease, ease),
+              background-color var(--dur-fast, 120ms) var(--ease, ease);
+}
+
+.graph-panel-toggle:hover { color: var(--accent, #3b82f6); border-color: var(--accent, #3b82f6); }
+.graph-panel-toggle:focus-visible { outline: 2px solid var(--accent, #3b82f6); outline-offset: 2px; }
+.graph-panel-toggle[aria-expanded="true"] { color: var(--accent, #3b82f6); border-color: var(--accent, #3b82f6); }
+.graph-panel-toggle-ico { font-size: 0.95rem; line-height: 1; }
+
+/* 收起状态：面板整体隐藏（同时把它移出可访问树，避免 Tab 落到看不见的控件上） */
+.graph-page.is-panel-hidden .graph-controls { display: none; }
+
+@media (max-width: 640px) {
+  .graph-controls {
+    top: auto;
+    bottom: var(--space-3, 0.75rem);
+    left: var(--space-3, 0.75rem);
+    right: var(--space-3, 0.75rem);
+    width: auto;
+    max-height: 52%;
+  }
+  .graph-controls-inner { max-height: 100%; }
 }
 
 .graph-controls-title {
@@ -361,8 +395,7 @@
 
 /* ---------- 响应式 ---------- */
 @media (max-width: 640px) {
-  .graph-app { height: clamp(320px, 62vh, 560px); }
-  .graph-controls-inner { max-height: none; }
+  .graph-app { min-height: 320px; }
   .graph-hint { display: none; }
 }
 
