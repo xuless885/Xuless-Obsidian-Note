@@ -492,6 +492,7 @@
     function mkBtn(label, title, el, key) {
       var b = document.createElement("button");
       b.type = "button";
+      b.className = key === "right" ? "is-right" : "is-left";   // 决定贴左还是贴右
       b.innerHTML = label;
       b.title = title;
       b.setAttribute("aria-label", title);
@@ -500,20 +501,16 @@
           // 宽屏：直接把这栏放回原位（不做覆盖层，否则会盖住正文）
           setCollapsed(el, key, false, false);
         } else {
-          // 窄屏：打开/关闭覆盖层
-          var open = el.classList.contains("dsh-overlay");
-          if (open) setCollapsed(el, key, true, false);
-          else {
-            el.classList.remove("is-collapsed");
-            el.classList.add("dsh-overlay");
-          }
+          // 窄屏：打开 / 关闭覆盖层（按钮始终留着，否则打开后就没法关）
+          if (el.classList.contains("dsh-overlay")) setCollapsed(el, key, true, false);
+          else { el.classList.remove("is-collapsed"); el.classList.add("dsh-overlay"); }
         }
         refresh();
       });
       return b;
     }
-    var bL = left ? mkBtn("&#9776;", left.querySelector(".sidebar-collapse-icon") ? "展开课程目录" : "打开/收起课程目录", left, "left") : null;
-    var bR = right ? mkBtn("&#9776;", right.querySelector(".sidebar-collapse-icon") ? "展开本文目录" : "打开/收起本文目录", right, "right") : null;
+    var bL = left ? mkBtn("&#9776;", "展开课程目录", left, "left") : null;
+    var bR = right ? mkBtn("&#9776;", "展开本文目录", right, "right") : null;
     if (bL) bar.appendChild(bL);
     if (bR) bar.appendChild(bR);
     document.body.appendChild(bar);
@@ -523,10 +520,12 @@
     }
     function refresh() {
       var lc = collapsed(left), rc = collapsed(right);
-      bar.hidden = !(!wide || lc || rc);
-      // 只显示「确实收起了」的那些栏的按钮，免得让人以为按钮点错了
-      if (bL) bL.hidden = !(left && lc);
-      if (bR) bR.hidden = !(right && rc);
+      // 窄屏（两栏都当覆盖层用）时按钮必须一直在，否则覆盖层打开后关不掉
+      var showL = wide ? lc : !wide;
+      var showR = wide ? rc : !wide;
+      bar.hidden = !(showL || showR);
+      if (bL) bL.hidden = !(left && showL);
+      if (bR) bR.hidden = !(right && showR);
     }
     refresh();
 
@@ -1253,19 +1252,20 @@
   else install();
 })();
 /* ============================================================================
-   正文版心滑块（dsh-measure）
-   · 用户要求「加一个滑块用来调整正文的左右页边距，当前正文宽度是固定的」；
-   · 只写一个 CSS 变量 --doc-measure（px），正文列 max-width 用
-     min(100%, var(--doc-measure, 52rem))，所以正文恒居中、左右边距对称，
-     窄屏自动退回 100%；
-   · 默认 832px（= 改前的 52rem），范围 480–1200、步长 8；
-   · 状态存 localStorage["dsh-doc-measure"]，模板首帧前的启动脚本会先读一次（防闪）；
-   · 交互：点「⇔」开合面板、拖动滑块实时改宽、双击按钮/「恢复默认」回默认、
-     聚焦按钮时 ←/→ 微调、Esc 或点面板外收起。
+   正文版心（dsh-measure）
+   · 用户要求「加一个滑块用来调整正文的左右页边距」——所以**宽屏直接把滑块摆在顶栏里**
+     （版心 ▁▂▃ 832px ↺），不再藏在按钮后面；只有窄屏（≤1024）才收进「⇔」浮层，
+     避免挤掉面包屑。
+   · 只写一个 CSS 变量 --doc-measure（px），正文列 max-width 用它，默认 832px
+     （= 改前的 52rem，默认观感不变）。
+   · 状态存 localStorage["dsh-doc-measure"]，模板首帧前的启动脚本会先读一次（无闪烁）。
+   · 同一个 range/数值/重置按钮在两种布局间**搬家**（DOM 节点复用，不复制），
+     所以永远只有一个真值来源。
    ========================================================================== */
 (function () {
   var KEY = "dsh-doc-measure";
   var MIN = 480, MAX = 1400, DEF = 832, STEP = 8;
+  var BP = 1024;
 
   function clamp(n) {
     if (isNaN(n)) return DEF;
@@ -1287,34 +1287,39 @@
   }
 
   function install() {
-    var btn = document.querySelector("[data-measure-toggle]");
-    var pop = document.getElementById("dsh-measure-pop");
-    if (!btn || !pop) return;
-    var rng = pop.querySelector(".dsh-measure-range");
-    var out = pop.querySelector(".dsh-measure-val");
-    if (!rng) return;
+    var wrap = document.querySelector(".dsh-measure-wrap");
+    if (!wrap) return;
+    var inline = wrap.querySelector(".dsh-measure-inline");
+    var btn = wrap.querySelector("[data-measure-toggle]");
+    var pop = wrap.querySelector(".dsh-measure-pop");
+    var rng = wrap.querySelector(".dsh-measure-range");
+    var val = wrap.querySelector(".dsh-measure-val");
+    var reset = wrap.querySelector(".dsh-measure-reset");
+    var head = pop && pop.querySelector(".dsh-measure-head");
+    var foot = pop && pop.querySelector(".dsh-measure-foot");
+    if (!inline || !pop || !rng || !val || !btn) return;
 
     var cur = apply(read(), false);
+    var wide = window.innerWidth > BP;
+
+    function paint() {
+      rng.value = String(cur);
+      val.textContent = cur + "px";
+    }
 
     function sync(n) {
       cur = apply(n, true);
-      rng.value = String(cur);
-      out.textContent = cur + "px";
+      paint();
     }
 
-    // 版心的物理上限 = 正文卡片「内容盒」宽度。做法：塞一个 width:100% 的隐形探针
-    // 进卡片的父元素里量一次再撤掉（同一帧内完成，不会闪）。
-    // 走过的弯路（都实测过，别再用）：
-    //   · clientWidth 减 padding —— 卡片里有滚动条，量出来比真实窄 20 来 px；
-    //   · 把 --doc-measure 临时设成 100000px 再量正文列 —— 正文变成超宽后它的
-    //     最小内容宽度暴涨，flex 会给正文列抢走侧栏的空间，量出 1144 这种假上限。
+    // 可用宽度 = 正文卡片「内容盒」宽度（塞一个 width:100% 的隐形探针量一次再撤掉）。
+    // 走过的弯路：clientWidth 减 padding 会被卡片内滚动条带偏；把 --doc-measure 设成
+    // 100000px 再量会因正文最小内容宽度暴涨而抢走侧栏空间，量出假上限。
     function avail() {
       var sec = document.querySelector(".markdown-preview-section");
       var host = sec && sec.parentElement;
       if (!host) return MAX;
       var probe = document.createElement("div");
-      // 必须留在普通流里：position:absolute 的 width:100% 是相对「最近的定位祖先」
-      // 解析，卡片没定位就会解析成视口宽（实测量出 1390 这种假值）。
       probe.style.cssText =
         "width:100%;height:0;margin:0;padding:0;border:0;visibility:hidden;pointer-events:none";
       host.appendChild(probe);
@@ -1328,16 +1333,44 @@
       var m = avail();
       rng.max = String(m);
       if (cur > m) sync(m);
-      else rng.value = String(cur);
+      else paint();
     }
 
-    // 面板挂在按钮正下方（右对齐），不压住右侧目录栏
+    // 版面稳定后再量一次（侧栏有 .16s 过渡、字体是外链 woff）。
+    // 量早了会量出偏小的可用宽度，把用户存的版心改小（v1 实测 832 被改成 712）。
+    var rangeTimer = null;
+    function scheduleRange() {
+      window.clearTimeout(rangeTimer);
+      rangeTimer = window.setTimeout(function () { syncRange(); }, 260);
+    }
+
+    // 宽屏：滑块 + 数值 + 重置按钮留在顶栏；窄屏：搬进浮层
+    function layout() {
+      wide = window.innerWidth > BP;
+      if (wide) {
+        [rng, val, reset].forEach(function (n) { if (n) inline.appendChild(n); });
+        btn.hidden = true;
+        pop.hidden = true;
+        btn.setAttribute("aria-expanded", "false");
+        inline.hidden = false;
+      } else {
+        if (head) { head.appendChild(val); }
+        if (foot) { head.parentNode.insertBefore(rng, foot); foot.appendChild(reset); }
+        btn.hidden = false;
+        inline.hidden = true;
+        pop.hidden = true;
+      }
+      paint();
+      scheduleRange();     // 宽屏也要把滑块上限收到真实可用宽度（否则读数 ≠ 实际宽度）
+    }
+
     function place() {
       var r = btn.getBoundingClientRect();
       pop.style.right = Math.max(8, Math.round(window.innerWidth - r.right)) + "px";
     }
 
     function open(on) {
+      if (wide) return;
       pop.hidden = !on;
       btn.setAttribute("aria-expanded", on ? "true" : "false");
       btn.classList.toggle("is-active", !!on);
@@ -1345,51 +1378,13 @@
       place();
       syncRange();
       try { rng.focus({ preventScroll: true }); } catch (e) { rng.focus(); }
-      // 侧栏宽度有 .16s 过渡：开面板那一瞬间量到的容器宽度还在半路上（实测偏 3–30px），
-      // 等过渡结束再量一次，读数才和正文实际宽度一致。
-      window.setTimeout(function () {
-        if (pop.hidden) return;
-        syncRange();
-      }, 220);
+      window.setTimeout(function () { if (!pop.hidden) { place(); syncRange(); } }, 220);
     }
 
-    window.addEventListener("resize", function () {
-      if (pop.hidden) return;
-      place();
-      syncRange();
-    });
-
-    // 字体到位后版面会再动一次（CMU/Sans 都是外链 woff），面板开着就重新量一遍
-    try {
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(function () {
-          if (pop.hidden) return;
-          place();
-          syncRange();
-        });
-      }
-    } catch (e) { /* 老浏览器没有 FontFaceSet */ }
-
-    rng.value = String(cur);
-    out.textContent = cur + "px";
-    // 注意：这里**不要**立刻 syncRange()。DOMContentLoaded 时侧栏/字体还没定，
-    // avail() 会量出一个偏小的值，把用户存的版心永久改小（实测 832 被改成 712）。
-    // max 只在面板真正打开时才收紧。
-
     rng.addEventListener("input", function () { sync(parseInt(rng.value, 10)); });
-    btn.addEventListener("click", function (ev) {
-      ev.stopPropagation();
-      open(pop.hidden);
-    });
+    if (reset) reset.addEventListener("click", function () { sync(DEF); });
+    btn.addEventListener("click", function (ev) { ev.stopPropagation(); open(pop.hidden); });
     btn.addEventListener("dblclick", function () { sync(DEF); });
-    btn.addEventListener("keydown", function (ev) {
-      if (ev.key === "ArrowLeft" || ev.key === "ArrowRight") {
-        sync(cur + (ev.key === "ArrowLeft" ? -2 * STEP : 2 * STEP));
-        ev.preventDefault();
-      }
-    });
-    var reset = pop.querySelector(".dsh-measure-reset");
-    if (reset) reset.addEventListener("click", function () { sync(DEF); rng.focus(); });
     document.addEventListener("click", function (ev) {
       if (pop.hidden) return;
       if (pop.contains(ev.target) || btn.contains(ev.target)) return;
@@ -1398,12 +1393,25 @@
     document.addEventListener("keydown", function (ev) {
       if (ev.key === "Escape" && !pop.hidden) { open(false); btn.focus(); }
     });
+    window.addEventListener("resize", function () {
+      layout();
+      if (!pop.hidden) { place(); syncRange(); }
+    });
+    try {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () { paint(); scheduleRange(); });
+      }
+    } catch (e) { /* 老浏览器 */ }
 
-    // 只读钩子（验收脚本 / verify_docui 用）：当前值 + 主动设置
+    layout();
+    paint();
+
+    // 只读钩子（验收脚本 / verify_docui 用）
     window.DSH_DOC_MEASURE = {
       get: function () { return cur; },
       set: function (px) { sync(px); return cur; },
-      reset: function () { sync(DEF); return cur; }
+      reset: function () { sync(DEF); return cur; },
+      avail: function () { return avail(); }
     };
   }
 

@@ -4030,18 +4030,49 @@ body.publish #right-sidebar .sidebar-topbar {
 }
 
 /* ==========================================================================
-   8.18 正文版心滑块（dsh-measure，2026-10-17）
-   用户要求「加一个滑块用来调整正文的左右页边距，当前正文宽度是固定的」。
-   做法：滑块只写一个 CSS 变量 --doc-measure（px），正文列的 max-width 用
-   min(100%, var(--doc-measure, 52rem)) —— 于是正文始终居中，左右页边距对称，
-   窄屏自动退回 100% 不溢出。状态存 localStorage["dsh-doc-measure"]，
-   模板 <head>/首帧前的启动脚本会先把变量写进 documentElement（防「先排默认宽度再跳」）。
-   按钮在顶栏「⇔」，面板是顶部右侧的浮层（position: fixed，不受顶栏 flex 影响）。
+   8.18 正文版心滑块（dsh-measure，2026-10-17 v2）
+   用户要求「加一个滑块用来调整正文的左右页边距」。v1 把滑块藏在顶栏「⇔」的浮层里，
+   用户反馈「没见到滑块」——所以 **宽屏直接把滑块摆在顶栏**：`版心 ———●—— 832px ↺`；
+   只有窄屏（≤1024，顶栏挤）才收进「⇔」浮层。控件本体（range / 数值 / 重置）由 JS
+   在两处之间搬家，DOM 节点复用，永远只有一个真值来源。
+   正文列只认 --doc-measure（px，默认 832px = 改前的 52rem，默认观感不变）。
    ========================================================================== */
 .dsh-measure-wrap {
     position: relative;
     flex: 0 0 auto;
     display: inline-flex;
+    align-items: center;
+    gap: var(--space-2, 8px);
+}
+
+.dsh-measure-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2, 8px);
+}
+
+/* 作者规则会把 UA 的 [hidden]{display:none} 盖掉，这两个必须显式写 */
+.dsh-measure-inline[hidden],
+.dsh-measure-btn[hidden],
+.dsh-measure-pop[hidden],
+.dsh-sidebar-openers[hidden] {
+    display: none !important;
+}
+
+.dsh-measure-label {
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    color: var(--fg-subtle, var(--fg-muted));
+    user-select: none;
+}
+
+.dsh-measure-val {
+    min-width: 3.6em;
+    font-size: 0.76rem;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    color: var(--fg-muted);
+    user-select: none;
 }
 
 body.publish #navbar .dsh-measure-btn,
@@ -4059,8 +4090,6 @@ body.publish #navbar .dsh-measure-btn,
     font-size: 1rem;
     line-height: 1;
     cursor: pointer;
-    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
-        background-color var(--dur) var(--ease);
 }
 
 body.publish #navbar .dsh-measure-btn:hover,
@@ -4072,11 +4101,83 @@ body.publish #navbar .dsh-measure-btn.is-active,
     background: var(--accent-soft);
 }
 
-.dsh-measure-icon {
-    font-size: 1.08rem;
-    letter-spacing: -0.02em;
+.dsh-measure-icon { font-size: 1.08rem; letter-spacing: -0.02em; }
+
+/* --- 滑杆本体（顶栏内联 ≈96px；浮层里撑满） --- */
+.dsh-measure-range {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    width: 96px;
+    height: 20px;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
 }
 
+.dsh-measure-pop .dsh-measure-range { width: 100%; height: 22px; }
+
+.dsh-measure-range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background: var(--border-strong);
+}
+
+.dsh-measure-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    margin-top: -5px;
+    border: 2px solid var(--bg-elev);
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: var(--shadow-s);
+}
+
+.dsh-measure-range::-moz-range-track {
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background: var(--border-strong);
+}
+
+.dsh-measure-range::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--bg-elev);
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.dsh-measure-range:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: var(--radius-pill);
+}
+
+/* --- 重置按钮 --- */
+.dsh-measure-reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.7rem;
+    height: 1.7rem;
+    padding: 0 0.34rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--fg-muted);
+    font-size: 0.82rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.dsh-measure-reset:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* --- 窄屏用的浮层（宽屏不会出现） --- */
 .dsh-measure-pop {
     position: fixed;
     top: calc(var(--nav-h, 60px) + 8px);
@@ -4093,10 +4194,6 @@ body.publish #navbar .dsh-measure-btn.is-active,
     text-align: left;
 }
 
-.dsh-measure-pop[hidden] {
-    display: none;
-}
-
 .dsh-measure-head {
     display: flex;
     align-items: baseline;
@@ -4107,59 +4204,10 @@ body.publish #navbar .dsh-measure-btn.is-active,
     color: var(--fg-muted);
 }
 
-.dsh-measure-val {
-    font-variant-numeric: tabular-nums;
+.dsh-measure-head .dsh-measure-val {
+    font-size: 0.86rem;
     font-weight: 600;
     color: var(--fg);
-}
-
-.dsh-measure-range {
-    -webkit-appearance: none;
-    appearance: none;
-    display: block;
-    width: 100%;
-    height: 22px;
-    margin: 0;
-    background: transparent;
-    cursor: pointer;
-}
-
-.dsh-measure-range::-webkit-slider-runnable-track {
-    height: 4px;
-    border-radius: var(--radius-pill);
-    background: var(--border-strong);
-}
-
-.dsh-measure-range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    margin-top: -6px;
-    border: 2px solid var(--bg-elev);
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: var(--shadow-s);
-}
-
-.dsh-measure-range::-moz-range-track {
-    height: 4px;
-    border-radius: var(--radius-pill);
-    background: var(--border-strong);
-}
-
-.dsh-measure-range::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
-    border: 2px solid var(--bg-elev);
-    border-radius: 50%;
-    background: var(--accent);
-}
-
-.dsh-measure-range:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 4px;
-    border-radius: var(--radius-pill);
 }
 
 .dsh-measure-foot {
@@ -4172,23 +4220,6 @@ body.publish #navbar .dsh-measure-btn.is-active,
     color: var(--fg-subtle, var(--fg-muted));
 }
 
-.dsh-measure-reset {
-    padding: 0.18rem 0.62rem;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-pill);
-    background: transparent;
-    color: var(--fg-muted);
-    font-size: 0.76rem;
-    cursor: pointer;
-    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
-}
-
-.dsh-measure-reset:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-}
-
-/* 手机上顶栏挤，面板改成贴边通栏 */
 @media (max-width: 640px) {
     .dsh-measure-pop {
         left: var(--space-3, 12px);
@@ -4196,3 +4227,45 @@ body.publish #navbar .dsh-measure-btn.is-active,
         width: auto;
     }
 }
+
+/* --- 侧栏「召回」悬浮按钮：左栏的贴左、右栏的贴右（原来两个都挤在左边，
+       用户 2026-10-17 反馈「右侧侧边栏的按钮出现在了左侧」） --- */
+body.publish .dsh-sidebar-openers {
+    position: fixed;
+    top: calc(var(--nav-h, 60px) + 10px);
+    left: 0;
+    right: 0;
+    z-index: 60;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 12px;
+    pointer-events: none;      /* 容器整条不挡内容，只有按钮可点 */
+}
+
+body.publish .dsh-sidebar-openers button {
+    pointer-events: auto;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill, 999px);
+    background: color-mix(in srgb, var(--bg-elev) 88%, transparent);
+    color: var(--fg-muted);
+    cursor: pointer;
+    box-shadow: var(--shadow-s);
+    backdrop-filter: blur(8px);
+    font-size: 15px;
+    line-height: 1;
+}
+
+body.publish .dsh-sidebar-openers button:hover {
+    color: var(--accent);
+    border-color: var(--border-strong);
+}
+
+/* 只有一个按钮可见时，space-between 会把它顶到左边 —— 右栏的按钮必须自己贴右 */
+body.publish .dsh-sidebar-openers button.is-right { margin-left: auto; }
+
+body.publish .dsh-sidebar-openers button[hidden] { display: none !important; }
