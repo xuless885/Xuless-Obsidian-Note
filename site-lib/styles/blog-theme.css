@@ -3421,6 +3421,9 @@ body.publish .dsh-sidebar-openers {
     gap: 6px;
 }
 
+/* 必须显式写：作者规则 `display: flex` 会盖掉 UA 的 `[hidden] { display: none }` */
+body.publish .dsh-sidebar-openers[hidden] { display: none; }
+
 body.publish .dsh-sidebar-openers button {
     width: 34px; height: 34px;
     display: grid; place-items: center;
@@ -3494,6 +3497,11 @@ body.publish #center-content {
               "Noto Serif CJK SC", Georgia, serif;
 }
 body.publish #center-content p,
+/* `.el-p` 是 Obsidian 导出的段落壳：有些段落（列表项尾行、行内只有 <strong>/<span> 的段落）
+   里没有 <p>，文字直接挂在 .el-p 上。9.3 那条 `.el-p { font-family: var(--font-sans) }`
+   会把这类文字（以及它里面的 <strong>）整片染成正文字体 —— 用户 2026-10-17 截图「底部的
+   文字字体怎么不对」就是这个：同一段里前半句衬线、后半句粗体无衬线。 */
+body.publish #center-content .el-p,
 body.publish #center-content li,
 body.publish #center-content dt,
 body.publish #center-content dd,

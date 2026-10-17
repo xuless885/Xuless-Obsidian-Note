@@ -482,10 +482,11 @@
         e.preventDefault(); e.stopPropagation();
         var collapsed = el.classList.contains("is-collapsed") || el.classList.contains("dsh-overlay");
         setCollapsed(el, key, !collapsed, false);
+        refresh();      // ← 少了这一句：点图标收起后悬浮「召回」按钮不出现，侧栏就再也回不来了
       });
     });
 
-    // 窄屏（或已收起）时，提供悬浮按钮打开覆盖层
+    // 收起后（或窄屏）在左上角浮动「召回」按钮
     var bar = document.createElement("div");
     bar.className = "dsh-sidebar-openers";
     function mkBtn(label, title, el, key) {
@@ -493,26 +494,39 @@
       b.type = "button";
       b.innerHTML = label;
       b.title = title;
+      b.setAttribute("aria-label", title);
       b.addEventListener("click", function () {
-        var open = el.classList.contains("dsh-overlay");
-        if (open) { el.classList.remove("dsh-overlay"); el.classList.add("is-collapsed"); }
-        else { el.classList.remove("is-collapsed"); el.classList.add("dsh-overlay"); }
+        if (wide) {
+          // 宽屏：直接把这栏放回原位（不做覆盖层，否则会盖住正文）
+          setCollapsed(el, key, false, false);
+        } else {
+          // 窄屏：打开/关闭覆盖层
+          var open = el.classList.contains("dsh-overlay");
+          if (open) setCollapsed(el, key, true, false);
+          else {
+            el.classList.remove("is-collapsed");
+            el.classList.add("dsh-overlay");
+          }
+        }
         refresh();
       });
       return b;
     }
-    var bL = left ? mkBtn("&#9776;", "打开/收起课程目录", left, "left") : null;
-    var bR = right ? mkBtn("&#9776;", "打开/收起本文目录", right, "right") : null;
+    var bL = left ? mkBtn("&#9776;", left.querySelector(".sidebar-collapse-icon") ? "展开课程目录" : "打开/收起课程目录", left, "left") : null;
+    var bR = right ? mkBtn("&#9776;", right.querySelector(".sidebar-collapse-icon") ? "展开本文目录" : "打开/收起本文目录", right, "right") : null;
     if (bL) bar.appendChild(bL);
     if (bR) bar.appendChild(bR);
     document.body.appendChild(bar);
 
+    function collapsed(el) {
+      return !!el && (el.classList.contains("is-collapsed") || el.classList.contains("dsh-overlay"));
+    }
     function refresh() {
-      var needBar = !wide || (left && left.classList.contains("is-collapsed")) ||
-                    (right && right.classList.contains("is-collapsed"));
-      bar.hidden = !needBar;
-      if (bL) bL.hidden = !left;
-      if (bR) bR.hidden = !right;
+      var lc = collapsed(left), rc = collapsed(right);
+      bar.hidden = !(!wide || lc || rc);
+      // 只显示「确实收起了」的那些栏的按钮，免得让人以为按钮点错了
+      if (bL) bL.hidden = !(left && lc);
+      if (bR) bR.hidden = !(right && rc);
     }
     refresh();
 
