@@ -2381,7 +2381,12 @@ body.publish .markdown-preview-sizer > div {
 
 body.publish .markdown-preview-section {
     width: 100% !important;
-    max-width: 52rem !important;
+    /* 正文版心：由顶栏「⇔」滑块写 --doc-measure（px，默认 832px=52rem）。
+       这里**只写 max-width**：width 仍是 100%，窄屏自然填满、不会溢出。
+       不要写成 min(100%, var(...))：百分比在 max-width 里一旦进了 min()，内在尺寸
+       （intrinsic sizing）阶段就算不出来，正文列的最小内容宽度因此暴涨，会把左右
+       侧栏挤到只剩 90 来 px（2026-10-17 实测踩到，侧栏从 217px 塌成 92px）。 */
+    max-width: var(--doc-measure, 52rem) !important;
     margin: 0 auto !important;
 }
 
@@ -4014,4 +4019,172 @@ body.publish #right-sidebar .sidebar-topbar {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: var(--bg-elev, #fff) !important;
+}
+
+/* ==========================================================================
+   8.18 正文版心滑块（dsh-measure，2026-10-17）
+   用户要求「加一个滑块用来调整正文的左右页边距，当前正文宽度是固定的」。
+   做法：滑块只写一个 CSS 变量 --doc-measure（px），正文列的 max-width 用
+   min(100%, var(--doc-measure, 52rem)) —— 于是正文始终居中，左右页边距对称，
+   窄屏自动退回 100% 不溢出。状态存 localStorage["dsh-doc-measure"]，
+   模板 <head>/首帧前的启动脚本会先把变量写进 documentElement（防「先排默认宽度再跳」）。
+   按钮在顶栏「⇔」，面板是顶部右侧的浮层（position: fixed，不受顶栏 flex 影响）。
+   ========================================================================== */
+.dsh-measure-wrap {
+    position: relative;
+    flex: 0 0 auto;
+    display: inline-flex;
+}
+
+body.publish #navbar .dsh-measure-btn,
+.dsh-measure-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: var(--bg-elev);
+    color: var(--fg-muted);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+        background-color var(--dur) var(--ease);
+}
+
+body.publish #navbar .dsh-measure-btn:hover,
+body.publish #navbar .dsh-measure-btn.is-active,
+.dsh-measure-btn:hover,
+.dsh-measure-btn.is-active {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.dsh-measure-icon {
+    font-size: 1.08rem;
+    letter-spacing: -0.02em;
+}
+
+.dsh-measure-pop {
+    position: fixed;
+    top: calc(var(--nav-h, 60px) + 8px);
+    right: var(--space-4, 16px);
+    z-index: 120;
+    width: 244px;
+    padding: var(--space-4, 16px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-m);
+    background: var(--bg-elev);
+    box-shadow: var(--shadow-l);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    text-align: left;
+}
+
+.dsh-measure-pop[hidden] {
+    display: none;
+}
+
+.dsh-measure-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2, 8px);
+    margin-bottom: 10px;
+    font-size: 0.86rem;
+    color: var(--fg-muted);
+}
+
+.dsh-measure-val {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: var(--fg);
+}
+
+.dsh-measure-range {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: 22px;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.dsh-measure-range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background: var(--border-strong);
+}
+
+.dsh-measure-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    margin-top: -6px;
+    border: 2px solid var(--bg-elev);
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: var(--shadow-s);
+}
+
+.dsh-measure-range::-moz-range-track {
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background: var(--border-strong);
+}
+
+.dsh-measure-range::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--bg-elev);
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.dsh-measure-range:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: var(--radius-pill);
+}
+
+.dsh-measure-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2, 8px);
+    margin-top: 8px;
+    font-size: 0.76rem;
+    color: var(--fg-subtle, var(--fg-muted));
+}
+
+.dsh-measure-reset {
+    padding: 0.18rem 0.62rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--fg-muted);
+    font-size: 0.76rem;
+    cursor: pointer;
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.dsh-measure-reset:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* 手机上顶栏挤，面板改成贴边通栏 */
+@media (max-width: 640px) {
+    .dsh-measure-pop {
+        left: var(--space-3, 12px);
+        right: var(--space-3, 12px);
+        width: auto;
+    }
 }

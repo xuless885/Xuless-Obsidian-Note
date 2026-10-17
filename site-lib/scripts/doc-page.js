@@ -1238,3 +1238,161 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
   else install();
 })();
+/* ============================================================================
+   正文版心滑块（dsh-measure）
+   · 用户要求「加一个滑块用来调整正文的左右页边距，当前正文宽度是固定的」；
+   · 只写一个 CSS 变量 --doc-measure（px），正文列 max-width 用
+     min(100%, var(--doc-measure, 52rem))，所以正文恒居中、左右边距对称，
+     窄屏自动退回 100%；
+   · 默认 832px（= 改前的 52rem），范围 480–1200、步长 8；
+   · 状态存 localStorage["dsh-doc-measure"]，模板首帧前的启动脚本会先读一次（防闪）；
+   · 交互：点「⇔」开合面板、拖动滑块实时改宽、双击按钮/「恢复默认」回默认、
+     聚焦按钮时 ←/→ 微调、Esc 或点面板外收起。
+   ========================================================================== */
+(function () {
+  var KEY = "dsh-doc-measure";
+  var MIN = 480, MAX = 1400, DEF = 832, STEP = 8;
+
+  function clamp(n) {
+    if (isNaN(n)) return DEF;
+    n = Math.round(n / STEP) * STEP;
+    return n < MIN ? MIN : n > MAX ? MAX : n;
+  }
+
+  function read() {
+    var v = null;
+    try { v = localStorage.getItem(KEY); } catch (e) { v = null; }
+    return clamp(parseInt(v, 10));
+  }
+
+  function apply(px, persist) {
+    var n = clamp(px);
+    document.documentElement.style.setProperty("--doc-measure", n + "px");
+    if (persist) { try { localStorage.setItem(KEY, String(n)); } catch (e) { /* 隐私模式 */ } }
+    return n;
+  }
+
+  function install() {
+    var btn = document.querySelector("[data-measure-toggle]");
+    var pop = document.getElementById("dsh-measure-pop");
+    if (!btn || !pop) return;
+    var rng = pop.querySelector(".dsh-measure-range");
+    var out = pop.querySelector(".dsh-measure-val");
+    if (!rng) return;
+
+    var cur = apply(read(), false);
+
+    function sync(n) {
+      cur = apply(n, true);
+      rng.value = String(cur);
+      out.textContent = cur + "px";
+    }
+
+    // 版心的物理上限 = 正文卡片「内容盒」宽度。做法：塞一个 width:100% 的隐形探针
+    // 进卡片的父元素里量一次再撤掉（同一帧内完成，不会闪）。
+    // 走过的弯路（都实测过，别再用）：
+    //   · clientWidth 减 padding —— 卡片里有滚动条，量出来比真实窄 20 来 px；
+    //   · 把 --doc-measure 临时设成 100000px 再量正文列 —— 正文变成超宽后它的
+    //     最小内容宽度暴涨，flex 会给正文列抢走侧栏的空间，量出 1144 这种假上限。
+    function avail() {
+      var sec = document.querySelector(".markdown-preview-section");
+      var host = sec && sec.parentElement;
+      if (!host) return MAX;
+      var probe = document.createElement("div");
+      // 必须留在普通流里：position:absolute 的 width:100% 是相对「最近的定位祖先」
+      // 解析，卡片没定位就会解析成视口宽（实测量出 1390 这种假值）。
+      probe.style.cssText =
+        "width:100%;height:0;margin:0;padding:0;border:0;visibility:hidden;pointer-events:none";
+      host.appendChild(probe);
+      var w = probe.getBoundingClientRect().width;
+      host.removeChild(probe);
+      if (!(w > 0)) return MAX;
+      return Math.max(MIN, Math.min(MAX, Math.floor(w)));
+    }
+
+    function syncRange() {
+      var m = avail();
+      rng.max = String(m);
+      if (cur > m) sync(m);
+      else rng.value = String(cur);
+    }
+
+    // 面板挂在按钮正下方（右对齐），不压住右侧目录栏
+    function place() {
+      var r = btn.getBoundingClientRect();
+      pop.style.right = Math.max(8, Math.round(window.innerWidth - r.right)) + "px";
+    }
+
+    function open(on) {
+      pop.hidden = !on;
+      btn.setAttribute("aria-expanded", on ? "true" : "false");
+      btn.classList.toggle("is-active", !!on);
+      if (!on) return;
+      place();
+      syncRange();
+      try { rng.focus({ preventScroll: true }); } catch (e) { rng.focus(); }
+      // 侧栏宽度有 .16s 过渡：开面板那一瞬间量到的容器宽度还在半路上（实测偏 3–30px），
+      // 等过渡结束再量一次，读数才和正文实际宽度一致。
+      window.setTimeout(function () {
+        if (pop.hidden) return;
+        syncRange();
+      }, 220);
+    }
+
+    window.addEventListener("resize", function () {
+      if (pop.hidden) return;
+      place();
+      syncRange();
+    });
+
+    // 字体到位后版面会再动一次（CMU/Sans 都是外链 woff），面板开着就重新量一遍
+    try {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () {
+          if (pop.hidden) return;
+          place();
+          syncRange();
+        });
+      }
+    } catch (e) { /* 老浏览器没有 FontFaceSet */ }
+
+    rng.value = String(cur);
+    out.textContent = cur + "px";
+    // 注意：这里**不要**立刻 syncRange()。DOMContentLoaded 时侧栏/字体还没定，
+    // avail() 会量出一个偏小的值，把用户存的版心永久改小（实测 832 被改成 712）。
+    // max 只在面板真正打开时才收紧。
+
+    rng.addEventListener("input", function () { sync(parseInt(rng.value, 10)); });
+    btn.addEventListener("click", function (ev) {
+      ev.stopPropagation();
+      open(pop.hidden);
+    });
+    btn.addEventListener("dblclick", function () { sync(DEF); });
+    btn.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowLeft" || ev.key === "ArrowRight") {
+        sync(cur + (ev.key === "ArrowLeft" ? -2 * STEP : 2 * STEP));
+        ev.preventDefault();
+      }
+    });
+    var reset = pop.querySelector(".dsh-measure-reset");
+    if (reset) reset.addEventListener("click", function () { sync(DEF); rng.focus(); });
+    document.addEventListener("click", function (ev) {
+      if (pop.hidden) return;
+      if (pop.contains(ev.target) || btn.contains(ev.target)) return;
+      open(false);
+    });
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape" && !pop.hidden) { open(false); btn.focus(); }
+    });
+
+    // 只读钩子（验收脚本 / verify_docui 用）：当前值 + 主动设置
+    window.DSH_DOC_MEASURE = {
+      get: function () { return cur; },
+      set: function (px) { sync(px); return cur; },
+      reset: function () { sync(DEF); return cur; }
+    };
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", install);
+  else install();
+})();
