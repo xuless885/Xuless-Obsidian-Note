@@ -2652,6 +2652,11 @@ mjx-c.mjx-c2226.TEX-A::before {
   content: "\2226";
 }
 
+mjx-c.mjx-c46.TEX-C::before {
+  padding: 0.683em 0.829em 0.032em 0;
+  content: "F";
+}
+
 
 /* ==== task-6：新页面补充样式（公式区之外的少量必要样式） ==== */
 body.publish .el-table { overflow-x: auto; max-width: 100%; }

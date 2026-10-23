@@ -18,12 +18,12 @@ courses/
   mock.html                    模拟卷清单（仅卷面，外部链接，不含答案）
   outline.html                 大纲（官方考纲 / 课程阐释 PDF / 词汇表）
 hkdse-course/
-  dse-课题讲义/                 课程讲义正文：35 章 + 给读者的简介（渲染产物）
-  dse-课题讲义/*.md             讲义源文（自 Obsidian 库移植，与页面同目录）
+  dse-课题讲义/                 课程讲义正文：36 章 + 给读者的简介 + 更新日志（渲染产物）
+  dse-课题讲义/*.md             讲义源文（自 Obsidian 库同步，与页面同目录；mtime = 页面「最后修改」）
   大纲/                         DSE 数学词汇表、官方考纲与课题讲义关联分析（渲染产物）
   图片/                         讲义配图（108 个唯一文件名，站内唯一图片目录）
 blog/
-  index.html  tags.html  graph.html  search.html  about.html
+  graph.html                   知识图谱（全屏页；旧博客外壳已删）
 site-lib/
   styles/  scripts/  data/  media/  fonts/  vendor/
 ```
@@ -42,7 +42,7 @@ site-lib/
 
 | 来源 | 路径 | 去处 |
 | --- | --- | --- |
-| Obsidian 文档库 | `C:\Users\xuless\OneDrive\Xuless Obsidian Note` | `HKDSE course/DSE 课题讲义/*.md` → 35 章讲义 |
+| Obsidian 文档库 | `C:\Users\xuless\OneDrive\Xuless Obsidian Note` | `HKDSE course/DSE 课题讲义/*.md` → 36 章讲义 |
 | Obsidian 文档库 | 同上 | `HKDSE course/大纲/*.md` → 词汇表、关联分析 |
 | LaTeX 文档库 | `C:\Users\xuless\OneDrive\文件\HKDSE` | 模拟卷**卷面 PDF**（清单页外链，**不搬进仓库**） |
 
@@ -54,16 +54,26 @@ site-lib/
 表格 / wikilink / 图片 / callout 解析）：
 
 ```bash
-python .build/restructure/render_all_docs.py --apply   # 渲染讲义 + 大纲（37 篇）
-python .build/de/build_data.py                         # 重建 site-lib/data/*.json
+python .build/sync_vault_sources.py --apply            # 库源 → 仓库 .md 快照（保留 mtime；页面「最后修改」靠它）
+python .build/restructure/render_all_docs.py --apply   # 渲染讲义 + 大纲（40 篇）
 python .build/restructure/fix_images.py --apply        # 修复对不上的图片引用
+node   .build/tikz/prerender_tikz.js --resume          # 新图 → 静态 SVG（--emit-by-page 重写页→图映射）
 python .build/md/integrate_tikz2.py --apply            # 把预渲染 SVG 接进页面
 python .build/md/add_tikz_fonts.py --apply             # 补 BaKoMa 字体 CSS
-python .build/restructure/add_tikzcss.py               # 补 tikz-figures.css
+python .build/restructure/add_tikzcss.py --apply       # 补 tikz-figures.css
+python .build/mathfont/sync_math_fonts.py              # 公式字体外链归一 + 打印新 sha1
+python .build/de/build_data.py                         # 重建 site-lib/data/*.json
+python .build/restructure/build_filetree.py            # 左侧栏讲义树
+python .build/restructure/write_pages.py               # 外壳页 + site.json（含讲义目录页之外的 courses/*）
+python .build/restructure/write_home.py                # 首页
+python .build/restructure/build_lecture_index.py       # 讲义目录页（按磁盘上的章自动发现）
+python .build/restructure/add_cache_bust.py --apply    # 必须最后一步：给 css/js/树加内容指纹
 ```
 
 **顺序很重要**：渲染在前、图片修复与 TikZ 集成在后；集成脚本是幂等的（靠
-`data-tikz-prerendered` 标记判重），但**渲染会重置页面**，所以每次重渲染后都要重跑后三步。
+`data-tikz-prerendered` 标记判重），但**渲染会重置页面**，所以每次重渲染后都要重跑后几步。
+外壳页与数据层之间也有依赖：`write_pages.py` 的 `site.json` 读 `docs.json`，所以要先跑 `build_data.py`；
+`add_cache_bust.py` 永远最后跑（它按文件内容算指纹，改任何 css/js/树 之后都必须重跑）。
 
 ---
 
@@ -77,7 +87,7 @@ python .build/restructure/add_tikzcss.py               # 补 tikz-figures.css
 ## 4. TikZ 图：构建期预渲染成静态 SVG
 
 - 站点本地化 tikzjax 引擎（`site-lib/vendor/tikzjax/`，自带 `tex.wasm`，运行期零外网请求）。
-- **452 张图在构建期渲染成静态 SVG**，页面里是 `<img class="tikz-figure">`。
+- **518 张图在构建期渲染成静态 SVG**，分布在 19 个讲义页面；页面里是 `<img class="tikz-figure">`。
   **页面不再加载那个 6.7 MB 的引擎** —— 客户端渲染实测每张 20–40 秒，
   一页上百张等于不可用。
 - ⚠️ **字体是承重的**：SVG 里的 `<text>` 用的是 BaKoMa Computer Modern **字形槽位**（不是 Unicode），
@@ -90,8 +100,9 @@ node .build/tikz/prerender_tikz.js --resume   # 只重试失败项
 
 ## 5. 数据层
 
-`site-lib/data/` 六个文件：`docs.json`（文档元数据 + 双向链接）、`links.json`（边）、
-`search.json`（检索索引）、`tags.json`、`manifest.json`、`home.json`。
+`site-lib/data/` 七个文件：`docs.json`（文档元数据 + 双向链接）、`links.json`（边）、
+`search.json`（检索索引）、`tags.json`、`manifest.json`、`home.json`（以上六个由 `build_data.py` 产出）、
+`site.json`（首页统计，由 `write_pages.py` 产出）。
 id = `md5(path)` 前 10 位；所有 path 都是**仓库根相对、绝不以 `/` 开头**。
 
 ```bash
@@ -105,8 +116,8 @@ python .build/de/verify.py         # 6 条验收，证据留档
 ## 6. 验收
 
 ```bash
-python .build/lead_final_check.py      # 全站 49 页 + 555 个本地资源，全部 200、无 root-absolute
-node   .build/test_graph_search.js     # 关系图 / 检索 130 项断言
+python .build/lead_final_check.py      # 全站 49 页 + 94 个唯一本地资源，全部 200、无 root-absolute
+node   .build/test_graph_search.js     # 关系图 / 检索 134 项断言
 python .build/de/verify.py             # 数据层
 ```
 
@@ -115,7 +126,7 @@ mathjax-chtml.css 在单线程 `http.server` 下会断连导致误报 404）。
 
 ## 7. 已知限制
 
-- 讲义页公式密集，单页最大约 820 KB（构建期预渲染换来离线可用 + 无闪烁，靠 gzip 缓解传输）。
+- 讲义页公式密集，单页最大约 2 MB（`chapter-31-解析几何-(ii)`；构建期预渲染换来离线可用 + 无闪烁，靠 gzip 缓解传输）。
 - 5 张 TikZ 图无法渲染，原因与修复路径见 `site-lib/vendor/tikzjax/prerendered/KNOWN-LIMITATIONS.md`。
 - 模拟卷只做清单页 + 外部链接，**不含答案与评分参考**。
 

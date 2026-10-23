@@ -804,6 +804,194 @@
     "h": 222.44
    }
   ],
+  "hkdse-course/dse-课题讲义/chapter-21-二次函数.html": [
+   {
+    "i": 0,
+    "key": "a29b1c3f2965ba831222894abc3a6535331c52ea56fec57280b7251a5ef354de",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}[scale = 2]\n\\begin{axis}[\n    width=10cm, height=6cm,\n    xmin=-2, xmax=5, ymin=-2, ymax=6,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-1,1,2,3,4}, ytick={-1,1,2,3,4,5},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70},\n    legend style={font=\\tiny, at={(1.02,1)}, anchor=north west}\n]\n\\addplot[domain=-0.5:4.5, samples=80, blue!70!black, thick] {x^2 - 4*x + 3};\n\\addlegendentry{$y = x^2 - 4x + 3$ (general)}\n\\addplot[domain=-0.5:4.5, samples=80, red!70!black, thick, dashed] {(x-2)^2 - 1};\n\\addlegendentry{$y = (x-2)^2 - 1$ (vertex)}\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "a29b1c3f2965ba83.svg",
+    "w": 701.48,
+    "h": 252.22
+   },
+   {
+    "i": 1,
+    "key": "3cbfeb5a63a6fa5aacc8a080e61fd9c8e641b3de5802f9d81eb717e1da78eae7",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=10cm, height=6.5cm,\n    xmin=-2, xmax=4, ymin=-3, ymax=4,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-1,1,2,3}, ytick={-2,-1,1,2,3},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n% y = x^2 - 2x - 1，顶点 (1, -2)\n\\addplot[domain=-0.5:3.5, samples=80, blue!70!black, thick] {x^2 - 2*x - 1};\n\n% 顶点\n\\node[circle, fill=red!70!black, inner sep=2pt] at (axis cs:1,-2) {};\n\\node[anchor=west, font=\\tiny] at (axis cs:1.1,-2) {$(1, -2)$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "3cbfeb5a63a6fa5a.svg",
+    "w": 239.92,
+    "h": 140.33
+   },
+   {
+    "i": 2,
+    "key": "89d23e4256ede6457697d749c86d635d35917ebb272f0600aa100b27d3dbfaa2",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\\begin{document}\n\\begin{tikzpicture}[scale = 1.6]\n% 第一组：a 的符号\n\\begin{axis}[\n    width=4.5cm, height=4.5cm,\n    xmin=-3, xmax=3, ymin=-3, ymax=4,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-2,-1,1,2}, ytick={-2,-1,1,2,3},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70},\n    title={\\small $a>0$ vs $a<0$},\n    title style={font=\\small}\n]\n\\addplot[domain=-2:2, samples=60, blue!70!black, thick] {x^2};\n\\addplot[domain=-2:2, samples=60, red!70!black, thick] {-x^2};\n\\end{axis}\n% 第二组：|a| 的胖瘦\n\\begin{scope}[xshift=5cm]\n\\begin{axis}[\n    width=4.5cm, height=4.5cm,\n    xmin=-3, xmax=3, ymin=-1, ymax=6,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-2,-1,1,2}, ytick={1,2,3,4,5},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70},\n    title={\\small $|a|$: width},\n    title style={font=\\small}\n]\n\\addplot[domain=-5:5, samples=60, blue!70!black, thick] {x^2};\n\\addplot[domain=-5:5, samples=60, red!70!black, thick] {2*x^2};\n\\addplot[domain=-5:5, samples=60, green!60!black, thick] {0.5*x^2};\n\\end{axis}\n\\end{scope}\n% 第三组：c 上下平移\n\\begin{scope}[xshift=10cm]\n\\begin{axis}[\n    width=4.5cm, height=4.5cm,\n    xmin=-3, xmax=3, ymin=-2, ymax=5,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-2,-1,1,2}, ytick={-1,1,2,3,4},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70},\n    title={\\small $c$: shift},\n    title style={font=\\small}\n]\n\\addplot[domain=-2:2, samples=60, blue!70!black, thick] {x^2};\n\\addplot[domain=-2:2, samples=60, red!70!black, thick] {x^2+2};\n\\addplot[domain=-2:2, samples=60, green!60!black, thick] {x^2-1};\n\\end{axis}\n\\end{scope}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "89d23e4256ede645.svg",
+    "w": 588.75,
+    "h": 169.93
+   },
+   {
+    "i": 3,
+    "key": "38d2d5629fba125b3c0408bfdae0da02a0b6512c0e4838ec1359fc55c98261c8",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}[scale = 1.5]\n\\begin{axis}[\n    width=10cm, height=6cm,\n    xmin=0, xmax=20, ymin=0, ymax=120,\n    axis lines=middle,\n    xlabel={side $x$ (cm)}, ylabel={area $A$ (cm$^2$)},\n    xtick={2,4,6,8,10,12,14,16,18}, ytick={20,40,60,80,100},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n\\addplot[domain=0.5:19.5, samples=80, blue!70!black, thick] {-x^2 + 20*x};\n\n% 顶点\n\\node[circle, fill=red!70!black, inner sep=2pt] at (axis cs:10,100) {};\n\\node[anchor=south west, font=\\tiny] at (axis cs:10,100) {$(10, 100)$: square};\n\n% 对称轴\n\\draw[gray!60, dashed] (axis cs:10,0) -- (axis cs:10,110);\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "38d2d5629fba125b.svg",
+    "w": 388.4,
+    "h": 207.21
+   },
+   {
+    "i": 4,
+    "key": "3177ff534219d4969074da6a86f4215cf9aa1e905c91888891eb78d91b38d6f2",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n% 等腰直角三角形（最大面积情形）\n\\draw[blue!70!black, thick] (0,0) -- (5,0) -- (0,5) -- cycle;\n\\node[below] at (2.5,0) {$5\\sqrt{2}$};\n\\node[left] at (0,2.5) {$5\\sqrt{2}$};\n\\node[above right] at (5,0) {hyp $= 10$};\n\\node[anchor=south] at (2.5,0) {area $= 25$ (max)};\n\n% 直角标记\n\\draw[thick] (0,0.4) -- (0.4,0.4) -- (0.4,0);\n\n% 对比：另一个直角三角形（面积较小）\n\\begin{scope}[xshift=8cm]\n\\draw[red!70!black, thick] (0,0) -- (8,0) -- (0,6) -- cycle;\n\\node[below] at (4,0) {$8$};\n\\node[left] at (0,3) {$6$};\n\\node[above right] at (8,0) {hyp $= 10$};\n\\node[anchor=south] at (4,0) {area $= 24$};\n\\draw[thick] (0,0.4) -- (0.4,0.4) -- (0.4,0);\n\\end{scope}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "3177ff534219d496.svg",
+    "w": 754.93,
+    "h": 273.74
+   },
+   {
+    "i": 5,
+    "key": "437b9028040327f5438365849bb30db0db3f526984525468f35066132e7a7165",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}[scale = 1.8]\n\\begin{axis}[\n    width=9cm, height=7cm,\n    xmin=-2.5, xmax=2.5, ymin=-0.5, ymax=4.5,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-2,-1,1,2}, ytick={1,2,3,4},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n% 抛物线\n\\addplot[domain=-2:2, samples=80, blue!70!black, thick] {4 - x^2};\n\n% 内接矩形（最大面积情形，x = 2sqrt(3)/3 ≈ 1.155）\n\\pgfmathsetmacro{\\xmax}{2*sqrt(3)/3}\n\\pgfmathsetmacro{\\ytop}{4 - (2*sqrt(3)/3)^2}\n\\draw[red!70!black, thick, fill=red!20] (axis cs:-\\xmax,0) rectangle (axis cs:\\xmax,\\ytop);\n\n% 标注\n\\node[font=\\tiny, anchor=west] at (axis cs:\\xmax+0.1,\\ytop/2) {$\\frac{8}{3}$};\n\\node[font=\\tiny, anchor=south] at (axis cs:0,0) {$\\frac{4\\sqrt{3}}{3}$};\n\n% 顶点\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:0,4) {};\n\\node[anchor=south, font=\\tiny] at (axis cs:0,4) {$(0, 4)$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "437b9028040327f5.svg",
+    "w": 380.66,
+    "h": 278.22
+   },
+   {
+    "i": 6,
+    "key": "daaa240362fe57eb2efbe13be90c22cec4d4b77afe3dc2688441534d0a110490",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}[scale = 1.8]\n\\begin{axis}[\n    width=9cm, height=6.5cm,\n    xmin=-2.5, xmax=4, ymin=-4.5, ymax=4,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-2,-1,1,2,3}, ytick={-3,-2,-1,1,2,3},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n\\addplot[domain=-2.2:3.5, samples=80, blue!70!black, thick] {x^2 - 2*x - 3};\n\n% 交点\n\\node[circle, fill=red!70!black, inner sep=2pt] at (axis cs:-1,0) {};\n\\node[anchor=south, font=\\tiny] at (axis cs:-1,0) {$(-1, 0)$};\n\\node[circle, fill=red!70!black, inner sep=2pt] at (axis cs:3,0) {};\n\\node[anchor=south, font=\\tiny] at (axis cs:3,0) {$(3, 0)$};\n\n% y 截距\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:0,-3) {};\n\\node[anchor=east, font=\\tiny] at (axis cs:0,-3) {$(0, -3)$};\n\n% 顶点\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:1,-4) {};\n\\node[anchor=north, font=\\tiny] at (axis cs:1,-4) {$(1, -4)$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "daaa240362fe57eb.svg",
+    "w": 380.65,
+    "h": 252.6
+   },
+   {
+    "i": 7,
+    "key": "919223977dc166e75f7a21d881ed76a5452fcd40a5ad02435e91271c7e7472f0",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}[scale = 2]\n\\begin{axis}[\n    width=9cm, height=6.5cm,\n    xmin=-1, xmax=5, ymin=-2, ymax=4,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-1,1,2,3,4}, ytick={-1,1,2,3},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n\\addplot[domain=0.2:3.8, samples=80, blue!70!black, thick] {-(x-2)^2 + 3};\n\n% 顶点\n\\node[circle, fill=red!70!black, inner sep=2pt] at (axis cs:2,3) {};\n\\node[anchor=south, font=\\tiny] at (axis cs:2,3) {$(2, 3)$};\n\n% 已知点\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:4,-1) {};\n\\node[anchor=north, font=\\tiny] at (axis cs:4,-1) {$(4, -1)$};\n\n% 对称轴\n\\draw[gray!60, dashed] (axis cs:2,-2) -- (axis cs:2,4);\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "919223977dc166e7.svg",
+    "w": 438.04,
+    "h": 280.68
+   },
+   {
+    "i": 8,
+    "key": "0d37855e3461bdc9976b8548e5c2f47a355e88b86b7f53c2cb0cf70c457bb112",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}[scale = 2]\n\\begin{axis}[\n    width=9cm, height=7cm,\n    xmin=-1, xmax=5, ymin=-2.5, ymax=7,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={0,1,2,3,4}, ytick={-1,0,1,3,5},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n% 抛物线 y = x^2 - 2x + 1 = (x-1)^2\n\\addplot[domain=-0.5:3.5, samples=80, blue!70!black, thick] {x^2 - 2*x + 1};\n% 直线 y = 2x - 1\n\\addplot[domain=-0.5:3.5, samples=2, red!70!black, thick] {2*x - 1};\n\n% 交点\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:{2-sqrt(2)},{3-2*sqrt(2)}) {};\n\\node[anchor=north, font=\\tiny] at (axis cs:{2-sqrt(2)},{3-2*sqrt(2)}) {$P$};\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:{2+sqrt(2)},{3+2*sqrt(2)}) {};\n\\node[anchor=south, font=\\tiny] at (axis cs:{2+sqrt(2)},{3+2*sqrt(2)}) {$Q$};\n\n% 弦长标注\n\\draw[green!60!black, thick, <->] (axis cs:{2-sqrt(2)},{3-2*sqrt(2)}) -- (axis cs:{2+sqrt(2)},{3+2*sqrt(2)});\n\\node[font=\\tiny] at (axis cs:1.5,3.5) {$|PQ| = 2\\sqrt{10}$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "0d37855e3461bdc9.svg",
+    "w": 422.95,
+    "h": 309.13
+   },
+   {
+    "i": 9,
+    "key": "fc2e9cd6a2696b6fb773a3520e9c90d9ec0fc9d2d01fcd94b5166fd51e976ad8",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}[scale = 2]\n\\begin{axis}[\n    width=9cm, height=7cm,\n    xmin=-2, xmax=3, ymin=-0.5, ymax=5,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-1,1,2}, ytick={1,2,3,4},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n% 抛物线\n\\addplot[domain=-1.5:2.5, samples=80, blue!70!black, thick] {x^2};\n% 直线\n\\addplot[domain=-1.5:2.5, samples=2, red!70!black, thick] {x + 2};\n\n% 填充区域\n\\addplot[domain=-1:2, samples=50, fill=green!20, draw=none] {x + 2} \\closedcycle;\n\\addplot[domain=-1:2, samples=50, fill=white, draw=none] {x^2} \\closedcycle;\n\n% 交点\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:-1,1) {};\n\\node[anchor=east, font=\\tiny] at (axis cs:-1,1) {$(-1, 1)$};\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:2,4) {};\n\\node[anchor=south, font=\\tiny] at (axis cs:2,4) {$(2, 4)$};\n\n\\node[font=\\small] at (axis cs:0.5,2.5) {$S = \\frac{9}{2}$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "fc2e9cd6a2696b6f.svg",
+    "w": 422.95,
+    "h": 309.13
+   },
+   {
+    "i": 10,
+    "key": "32b1167c2e0cdb96b768631bf94057f840c6376bcd59a4487d1b7d7243341a09",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}[scale = 2]\n\\begin{axis}[\n    width=9cm, height=7cm,\n    xmin=-3, xmax=3, ymin=-0.5, ymax=5,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-2,-1,1,2}, ytick={1,2,3,4},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n% 抛物线\n\\addplot[domain=-2:2, samples=80, blue!70!black, thick] {4 - x^2};\n\n% 填充弓形\n\\addplot[domain=-2:2, samples=50, fill=green!20, draw=none] {4 - x^2} \\closedcycle;\n\n% 顶点\n\\node[circle, fill=red!70!black, inner sep=2pt] at (axis cs:0,4) {};\n\\node[anchor=south, font=\\tiny] at (axis cs:0,4) {$(0, 4)$};\n\n% 底长与高\n\\draw[<->, thick] (axis cs:-2,-0.3) -- (axis cs:2,-0.3);\n\\node[anchor=north, font=\\tiny] at (axis cs:0,-0.3) {base $b = 4$};\n\\draw[<->, thick] (axis cs:2.3,0) -- (axis cs:2.3,4);\n\\node[anchor=west, font=\\tiny] at (axis cs:2.3,2) {height $h = 4$};\n\n\\node[font=\\small] at (axis cs:0,2) {$S = \\frac{32}{3}$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "32b1167c2e0cdb96.svg",
+    "w": 422.95,
+    "h": 309.13
+   }
+  ],
+  "hkdse-course/dse-课题讲义/chapter-22-变分.html": [
+   {
+    "i": 0,
+    "key": "0cce3f640ab85fb69efd434741ba240603249b385c94b26c51456ad6cae82d92",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=9cm, height=7cm,\n    xmin=-0.5, xmax=4, ymin=-1, ymax=10,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={1,3}, ytick={1,9},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n% curve y = x^2\n\\addplot[domain=0:3.3, samples=80, blue!70!black, thick] {x^2};\n% secant line\n\\addplot[domain=0.5:3.3, samples=2, red!70!black, thick, dashed] {4*x - 3};\n% two points\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:1,1) {};\n\\node[anchor=north east, font=\\tiny] at (axis cs:1,1) {$(x_1, y_1)$};\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:3,9) {};\n\\node[anchor=south west, font=\\tiny] at (axis cs:3,9) {$(x_2, y_2)$};\n% Delta x and Delta y\n\\draw[<->, green!60!black, thick] (axis cs:1,0.5) -- (axis cs:3,0.5);\n\\node[anchor=north, font=\\tiny] at (axis cs:2,0.5) {$\\Delta x$};\n\\draw[<->, green!60!black, thick] (axis cs:3.3,1) -- (axis cs:3.3,9);\n\\node[anchor=west, font=\\tiny] at (axis cs:3.3,5) {$\\Delta y$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "0cce3f640ab85fb6.svg",
+    "w": 211.47,
+    "h": 154.57
+   },
+   {
+    "i": 1,
+    "key": "10c4d12bcdcc2643742c966bb9b53b1e5501e943bb411c9aa1f79df9f46d79a8",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=8cm, height=7cm,\n    xmin=-4, xmax=4, ymin=-6, ymax=6,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-3,-2,-1,1,2,3}, ytick={-4,-2,2,4},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n% k > 0: y = 2x\n\\addplot[domain=-3:3, samples=2, blue!70!black, thick] {2*x};\n\\node[anchor=south west, font=\\tiny] at (axis cs:1.5,3) {$y=2x\\ (k>0)$};\n% k < 0: y = -x\n\\addplot[domain=-4:4, samples=2, red!70!black, thick] {-1*x};\n\\node[anchor=north west, font=\\tiny] at (axis cs:-3,3) {$y=-x\\ (k<0)$};\n% origin\n\\node[circle, fill=black, inner sep=1.5pt] at (axis cs:0,0) {};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "10c4d12bcdcc2643.svg",
+    "w": 183.02,
+    "h": 154.57
+   },
+   {
+    "i": 2,
+    "key": "18c931de908a3201581b3ed8e50b9349fbaacd78102332112493d08f45865eca",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=8cm, height=7cm,\n    xmin=-5, xmax=5, ymin=-5, ymax=5,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={-4,-2,2,4}, ytick={-4,-2,2,4},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n% y = 4/x, first quadrant\n\\addplot[domain=0.9:5, samples=80, blue!70!black, thick] {4/x};\n% y = 4/x, third quadrant\n\\addplot[domain=-5:-0.9, samples=80, blue!70!black, thick] {4/x};\n% label\n\\node[anchor=south west, font=\\tiny] at (axis cs:2,2) {$y=\\frac{4}{x}$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "18c931de908a3201.svg",
+    "w": 183.02,
+    "h": 154.57
+   }
+  ],
+  "hkdse-course/dse-课题讲义/chapter-23-多项式-(ii).html": [
+   {
+    "i": 0,
+    "key": "b6245fe5f3db5593dcac0b0878e801c6631a71f9ee44487a5204102e0ab4aae8",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}[scale = 2]\n\\begin{axis}[\n    width=10cm, height=7cm,\n    xmin=-0.5, xmax=3.5, ymin=-2.5, ymax=4,\n    axis lines=middle,\n    xlabel={$x$}, ylabel={$y$},\n    xtick={1,2}, ytick={-2,2},\n    ticklabel style={font=\\tiny, gray},\n    axis line style={gray!70}\n]\n% P(x) = (x-1)(x-2)^2 = x^3 - 5x^2 + 8x - 4\n\\addplot[domain=0.3:3.2, samples=80, blue!70!black, thick] {x^3 - 5*x^2 + 8*x - 4};\n% simple root at x=1\n\\node[circle, fill=red!70!black, inner sep=2pt] at (axis cs:1,0) {};\n\\node[anchor=north, font=\\tiny, red!70!black] at (axis cs:1,0) {simple root};\n% double root at x=2\n\\node[circle, fill=green!60!black, inner sep=2pt] at (axis cs:2,0) {};\n\\node[anchor=west, font=\\tiny, green!60!black] at (axis cs:2,0) {double root};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "b6245fe5f3db5593.svg",
+    "w": 479.85,
+    "h": 309.14
+   },
+   {
+    "i": 1,
+    "key": "fde1827a95ef2890dd87ba5553479af9bd0eacc54dd2d8781253ad1e481a57e7",
+    "attrs": {
+     "data-tex-packages": "{\"amsmath\": \"\"}"
+    },
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.3]\n% real axis\n\\draw[->, gray!70] (-3.5,0) -- (3.5,0) node[right, font=\\tiny, black] {$\\operatorname{Re}$};\n% imaginary axis\n\\draw[->, gray!70] (0,-2.5) -- (0,2.5) node[above, font=\\tiny, black] {$\\operatorname{Im}$};\n% point z = a + bi\n\\node[circle, fill=blue!70!black, inner sep=2pt] at (1.5,1.5) {};\n\\node[anchor=south west, font=\\tiny, blue!70!black] at (1.5,1.5) {$z = a+bi$};\n% point conjugate z = a - bi\n\\node[circle, fill=red!70!black, inner sep=2pt] at (1.5,-1.5) {};\n\\node[anchor=north west, font=\\tiny, red!70!black] at (1.5,-1.5) {$\\overline{z} = a-bi$};\n% dashed line connecting them\n\\draw[dashed, gray!50] (1.5,1.5) -- (1.5,-1.5);\n% projection on real axis\n\\node[circle, fill=black, inner sep=1.5pt] at (1.5,0) {};\n\\node[anchor=north, font=\\tiny] at (1.5,0) {$a$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "fde1827a95ef2890.svg",
+    "w": 273.89,
+    "h": 195.41
+   }
+  ],
   "hkdse-course/dse-课题讲义/chapter-24-数列（i）.html": [
    {
     "i": 0,
@@ -826,6 +1014,260 @@
     "file": "cef35a71353ed5db.svg",
     "w": 268.07,
     "h": 171.12
+   }
+  ],
+  "hkdse-course/dse-课题讲义/chapter-25-指数函数与对数函数.html": [
+   {
+    "i": 0,
+    "key": "6d613d9f9ba6a8f2aca186220117d61a35aa7874cf57e7a5fe92278377797445",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    xlabel={$x$}, ylabel={$y$},\n    xmin=-3, xmax=3, ymin=-0.5, ymax=5,\n    axis lines=middle,\n    legend pos=north west,\n    samples=80, domain=-3:3,\n    grid=both, grid style={dashed, gray!30}\n]\n\\addplot[blue!70!black, thick] {2^x};\n\\addlegendentry{$y=2^x$};\n\\addplot[red!70!black, thick, dashed] {(1/2)^x};\n\\addlegendentry{$y=(1/2)^x$};\n\\addplot[gray, thin] {0};\n\\node[anchor=south west] at (axis cs:0,1) {$(0,1)$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "6d613d9f9ba6a8f2.svg",
+    "w": 210.55,
+    "h": 170.1
+   },
+   {
+    "i": 1,
+    "key": "ea863190d2b64a32bea8ef434392cb1e60a435b01de938fc972374c95709d468",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    xlabel={$x$}, ylabel={$y$},\n    xmin=-3, xmax=5, ymin=-3, ymax=5,\n    axis lines=middle,\n    legend pos=north west,\n    samples=80, domain=0.01:5,\n    grid=both, grid style={dashed, gray!30}\n]\n\\addplot[blue!70!black, thick, domain=-3:5] {2^x};\n\\addlegendentry{$y=2^x$};\n\\addplot[red!70!black, thick] {ln(x)/ln(2)};\n\\addlegendentry{$y=\\log_2 x$};\n\\addplot[gray, thick, domain=-3:5] {x};\n\\addlegendentry{$y=x$};\n\\node[anchor=south west] at (axis cs:1,0) {$(1,0)$};\n\\node[anchor=south east] at (axis cs:0,1) {$(0,1)$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "ea863190d2b64a32.svg",
+    "w": 195.4,
+    "h": 162.4
+   },
+   {
+    "i": 2,
+    "key": "11c4fa0136b2720aa61a93a98e91e85fc6743b1da350d7070f39bae6d597e17a",
+    "attrs": {
+     "data-tikz-libraries": "plotmarks"
+    },
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    xlabel={$x$}, ylabel={$\\log y$},\n    xmin=-0.5, xmax=5, ymin=0, ymax=2.5,\n    axis lines=middle,\n    legend pos=north west,\n    samples=80, domain=0:5,\n    grid=both, grid style={dashed, gray!30}\n]\n\\addplot[blue!70!black, thick, mark=*, only marks] coordinates {(0,0.30)(1,0.60)(2,0.90)(3,1.20)(4,1.50)};\n\\addlegendentry{$\\log y$ vs $x$};\n\\addplot[red!70!black, thick, dashed] {0.30 + 0.30*x};\n\\addlegendentry{Linear fit};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "11c4fa0136b2720a.svg",
+    "w": 204.88,
+    "h": 184
+   }
+  ],
+  "hkdse-course/dse-课题讲义/chapter-26-三角函数.html": [
+   {
+    "i": 0,
+    "key": "895f4934003f7bca82d838e48081ff324e76dc11f5dc18e67a700990da8c9f62",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.5,0) -- (2.0,0) node[right]{$x$};\n\\draw[->] (0,-0.6) -- (0,1.5) node[above]{$y$};\n% circle of radius r = 1.2\n\\draw[thick] (0,0) circle (1.2);\n% initial side (x-axis) and terminal side at angle theta\n\\draw[thick] (0,0) -- node[below]{$r$} (1.2,0);\n\\draw[thick] (0,0) -- node[above left]{$r$} (1.2*0.819, 1.2*0.574);\n% the arc s highlighted\n\\draw[very thick, red] (1.2,0) arc (0:35:1.2);\n\\node[red] at (1.42,0.38) {$s$};\n% central angle theta\n\\node at (0.36,0.14) {$\\theta$};\n% terminal point\n\\node at (1.2*0.819+0.12, 1.2*0.574+0.08) {$P$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "895f4934003f7bca.svg",
+    "w": 311.54,
+    "h": 243.98
+   },
+   {
+    "i": 1,
+    "key": "f5e8d2a9d0a2cc51e547828eda577b872fe52752043f3d835c5b612bcc0baa41",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.5,0) -- (1.6,0) node[right]{$x$};\n\\draw[->] (0,-1.5) -- (0,1.6) node[above]{$y$};\n% initial side on positive x-axis\n\\draw[thick, ->] (0,0) -- (1.3,0) node[below]{$A$};\n% terminal side at 120 degrees\n\\draw[thick, ->] (0,0) -- (-0.65,1.126) node[above left]{$B$};\n% rotation arc from A to B (counterclockwise)\n\\draw[->, red, thick] (0.55,0) arc (0:120:0.55);\n\\node[red] at (-0.2,0.62) {$120^{\\circ}$};\n% origin\n\\node[below left] at (0,0) {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "f5e8d2a9d0a2cc51.svg",
+    "w": 277.39,
+    "h": 277.93
+   },
+   {
+    "i": 2,
+    "key": "08746fc27102f6c07495dcedb87a6e70dc62210c4149bbfacf65b21aa78e8d76",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.4,0) -- (1.4,0) node[right]{$x$};\n\\draw[->] (0,-1.2) -- (0,1.3) node[above]{$y$};\n% unit circle\n\\draw[thick] (0,0) circle (1);\n% point P at theta = 50 degrees\n\\coordinate (P) at (0.643, 0.766);\n\\draw[thick] (0,0) -- (P) node[above right]{$P(x,y)$};\n% projection onto x-axis\n\\draw[dashed] (P) -- (0.643,0);\n% horizontal segment (cos theta) and vertical segment (sin theta)\n\\draw[blue, very thick] (0,0) -- (0.643,0);\n\\draw[red, very thick] (0.643,0) -- (P);\n\\node[blue] at (0.32,-0.18) {$\\cos\\theta$};\n\\node[red] at (0.88,0.38) {$\\sin\\theta$};\n% right angle mark at the foot\n\\draw (0.52,0) -- (0.52,0.12) -- (0.643,0.12);\n% angle theta\n\\node at (0.24,0.10) {$\\theta$};\n% unit marker\n\\node at (0.5,-0.32) {$1$};\n\\node[below left] at (0,0) {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "08746fc27102f6c0.svg",
+    "w": 251.78,
+    "h": 226.71
+   },
+   {
+    "i": 3,
+    "key": "f43377a7ceaa729031fa112bea3c3d584e538fce96096825865bca9afa70b772",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.4,0) -- (1.4,0) node[right]{$x$};\n\\draw[->] (0,-1.4) -- (0,1.4) node[above]{$y$};\n% unit circle\n\\draw[thick] (0,0) circle (1);\n% quadrant labels\n\\node at (0.42,0.42) {\\textbf{A}};\n\\node at (-0.42,0.42) {\\textbf{S}};\n\\node at (-0.42,-0.42) {\\textbf{T}};\n\\node at (0.42,-0.42) {\\textbf{C}};\n% quadrant markers\n\\node[below left] at (0,0) {$O$};\n\\node at (1.12,1.08) {I};\n\\node at (-1.12,1.08) {II};\n\\node at (-1.12,-1.08) {III};\n\\node at (1.12,-1.08) {IV};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "f43377a7ceaa7290.svg",
+    "w": 251.78,
+    "h": 252.32
+   },
+   {
+    "i": 4,
+    "key": "efcc3631d26ddc9c1c7939fa68db2dd9ed1973359f9ec863301482319053029d",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.4,0) -- (1.4,0) node[right]{$x$};\n\\draw[->] (0,-1.2) -- (0,1.3) node[above]{$y$};\n% unit circle\n\\draw[thick] (0,0) circle (1);\n% line y = x (mirror axis)\n\\draw[dashed, gray] (-1.1,-1.1) -- (1.1,1.1);\n% P(alpha) at 50 deg, P(90-alpha) mirror over y=x, P(90+alpha)\n\\coordinate (P) at (0.643,0.766);\n\\coordinate (P1) at (0.766,0.643);\n\\coordinate (P2) at (-0.766,0.643);\n\\draw[blue, thick] (0,0) -- (P);\n\\draw[red, thick] (0,0) -- (P1);\n\\draw[green!60!black, thick] (0,0) -- (P2);\n\\filldraw[blue] (P) circle (0.5pt);\n\\filldraw[red] (P1) circle (0.5pt);\n\\filldraw[green!60!black] (P2) circle (0.5pt);\n\\node[blue, above] at (P) {$P(x,y)$};\n\\node[red,  right] at (P1) {$P'(y,x)$};\n\\node[green!60!black, above left] at (P2) {$P''(-y,x)$};\n\\node[below left] at (0,0) {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "efcc3631d26ddc9c.svg",
+    "w": 251.78,
+    "h": 226.71
+   },
+   {
+    "i": 5,
+    "key": "6556451c1af65584dd20e733e92030ea92dd805549bad9e650610c19a25ce911",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.4,0) -- (1.4,0) node[right]{$x$};\n\\draw[->] (0,-1.4) -- (0,1.4) node[above]{$y$};\n% unit circle\n\\draw[thick] (0,0) circle (1);\n% P(alpha), P(180-alpha) y-axis mirror, P(180+alpha) origin mirror\n\\coordinate (P) at (0.643,0.766);\n\\coordinate (P1) at (-0.643,0.766);\n\\coordinate (P2) at (-0.643,-0.766);\n\\draw[blue, thick] (0,0) -- (P);\n\\draw[red, thick] (0,0) -- (P1);\n\\draw[orange, thick] (0,0) -- (P2);\n% symmetry dashed lines\n\\draw[dashed, gray] (P) -- (P1);\n\\draw[dashed, gray] (P) -- (P2);\n\\filldraw[blue] (P) circle (1.5pt);\n\\filldraw[red] (P1) circle (1.5pt);\n\\filldraw[orange] (P2) circle (1.5pt);\n\\node[blue, above right] at (P) {$P(x,y)$};\n\\node[red, above left] at (P1) {$P'(-x,y)$};\n\\node[orange, below left] at (P2) {$P''(-x,-y)$};\n\\node[below left] at (0,0) {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "6556451c1af65584.svg",
+    "w": 251.78,
+    "h": 252.32
+   },
+   {
+    "i": 6,
+    "key": "60bdf95b24585697e347cc4ac579d78ac7fec29fc85344ebd7faf655a1ac3ada",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.4,0) -- (1.4,0) node[right]{$x$};\n\\draw[->] (0,-1.4) -- (0,1.4) node[above]{$y$};\n% unit circle\n\\draw[thick] (0,0) circle (1);\n% P(alpha), P(270-alpha), P(270+alpha)\n\\coordinate (P) at (0.643,0.766);\n\\coordinate (P1) at (-0.766,-0.643);\n\\coordinate (P2) at (0.766,-0.643);\n\\draw[blue, thick] (0,0) -- (P);\n\\draw[red, thick] (0,0) -- (P1);\n\\draw[green!60!black, thick] (0,0) -- (P2);\n\\filldraw[blue] (P) circle (1.5pt);\n\\filldraw[red] (P1) circle (1.5pt);\n\\filldraw[green!60!black] (P2) circle (1.5pt);\n\\node[blue, above right] at (P) {$P(x,y)$};\n\\node[red, below left] at (P1) {$P'(-y,-x)$};\n\\node[green!60!black, below right] at (P2) {$P''(y,-x)$};\n\\node[below left] at (0,0) {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "60bdf95b24585697.svg",
+    "w": 253.7,
+    "h": 252.32
+   },
+   {
+    "i": 7,
+    "key": "6781d0977a85089ecf55756ca1203c107a02e696bd08d356bc82e848fcd1df9b",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.4,0) -- (1.4,0) node[right]{$x$};\n\\draw[->] (0,-1.2) -- (0,1.3) node[above]{$y$};\n% unit circle\n\\draw[thick] (0,0) circle (1);\n% P(alpha) and its x-axis mirror\n\\coordinate (P) at (0.643,0.766);\n\\coordinate (P1) at (0.643,-0.766);\n\\draw[blue, thick] (0,0) -- (P);\n\\draw[red, thick] (0,0) -- (P1);\n\\draw[dashed, gray] (P) -- (P1);\n\\filldraw[blue] (P) circle (1.5pt);\n\\filldraw[red] (P1) circle (1.5pt);\n\\node[blue, above right] at (P) {$P(x,y)$};\n\\node[red, below right] at (P1) {$P'(x,-y)$};\n\\node[below left] at (0,0) {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "6781d0977a85089e.svg",
+    "w": 251.78,
+    "h": 226.71
+   },
+   {
+    "i": 8,
+    "key": "598907f9d36efc7f68d19ff050fb414adc3f4d4219cda021a4188e77db05e595",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.4,0) -- (1.4,0) node[right]{$x$};\n\\draw[->] (0,-1.4) -- (0,1.4) node[above]{$y$};\n% unit circle\n\\draw[thick] (0,0) circle (1);\n% P at theta = 50 deg, opposite point at theta+180 deg\n\\coordinate (P) at (0.643,0.766);\n\\coordinate (Pp) at (-0.643,-0.766);\n\\draw[blue, thick] (0,0) -- (P);\n\\draw[red, thick] (0,0) -- (Pp);\n\\filldraw[blue] (P) circle (1.5pt);\n\\filldraw[red] (Pp) circle (1.5pt);\n% rotation arc at O (partial turn)\n\\draw[->, gray, thick] (0.3,0) arc (0:50:0.3);\n\\node[blue, above right] at (P) {$P(x,y)$};\n\\node[red, below left] at (Pp) {$P'(-x,-y)$};\n\\node[below left] at (0,0) {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "598907f9d36efc7f.svg",
+    "w": 251.78,
+    "h": 252.32
+   },
+   {
+    "i": 9,
+    "key": "2658f34905530ee39834f7a8f8c22a900f81abea0bc8d1e9bcdaa6b69e626604",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.4,0) -- (1.4,0) node[right]{$x$};\n\\draw[->] (0,-1.4) -- (0,1.4) node[above]{$y$};\n% unit circle\n\\draw[thick] (0,0) circle (1);\n% horizontal line y = sin(50 deg) = 0.766\n\\draw[dashed, gray, thick] (-1.35,0.766) -- (1.35,0.766);\n\\coordinate (P1) at (0.643,0.766);\n\\coordinate (P2) at (-0.643,0.766);\n\\filldraw[blue] (P1) circle (1.6pt);\n\\filldraw[red] (P2) circle (1.6pt);\n\\draw[blue, thick] (0,0) -- (P1);\n\\draw[red, thick] (0,0) -- (P2);\n\\node[blue,above right] at (P1) {$\\alpha$};\n\\node[red,above left] at (P2) {$180^{\\circ}-\\alpha$};\n\\node[left] at (-1.8,0.766) {$\\sin\\alpha$};\n\\node[below left] at (0,0) {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "2658f34905530ee3.svg",
+    "w": 312.97,
+    "h": 252.32
+   },
+   {
+    "i": 10,
+    "key": "c80413bb4e2a01fdeb8bca179205d67ec6ec395c11a6672a19c1d43c3dd59708",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.4,0) -- (1.4,0) node[right]{$x$};\n\\draw[->] (0,-1.4) -- (0,1.4) node[above]{$y$};\n% unit circle\n\\draw[thick] (0,0) circle (1);\n% vertical line x = cos(50 deg) = 0.643\n\\draw[dashed, gray, thick] (0.643,-1.35) -- (0.643,1.35);\n\\coordinate (P1) at (0.643,0.766);\n\\coordinate (P2) at (0.643,-0.766);\n\\filldraw[blue] (P1) circle (1.6pt);\n\\filldraw[red] (P2) circle (1.6pt);\n\\draw[blue, thick] (0,0) -- (P1);\n\\draw[red, thick] (0,0) -- (P2);\n\\node[blue, above right] at (P1) {$\\alpha$};\n\\node[red, below right] at (P2) {$360^{\\circ}-\\alpha$};\n\\node[below] at (0.643,-1.42) {$\\cos\\alpha$};\n\\node[below left] at (0,0) {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "c80413bb4e2a01fd.svg",
+    "w": 251.78,
+    "h": 265
+   },
+   {
+    "i": 11,
+    "key": "da8f32b31a0739f2ac2e5b66e9d622c8e46297ba26fb8e1a849945ed2c6b521d",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=3]\n% coordinate axes\n\\draw[->] (-1.4,0) -- (1.4,0) node[right]{$x$};\n\\draw[->] (0,-1.4) -- (0,1.4) node[above]{$y$};\n% unit circle\n\\draw[thick] (0,0) circle (1);\n% terminal-side line through O with slope tan(50 deg) = 1.19 (k > 0 case)\n\\draw[thick, blue!70!black] (-0.739,-0.881) -- (0.739,0.881);\n\\coordinate (P1) at (0.643,0.766);\n\\coordinate (P2) at (-0.643,-0.766);\n\\filldraw[blue] (P1) circle (1.6pt);\n\\filldraw[red] (P2) circle (1.6pt);\n\\node[blue, above right] at (P1) {$\\alpha$};\n\\node[red, below left] at (P2) {$180^{\\circ}+\\alpha$};\n\\node[blue!70!black, above right] at (0.8,0.98) {$y=(\\tan\\alpha)\\,x$};\n\\node[below left] at (0,0) {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "da8f32b31a0739f2.svg",
+    "w": 251.78,
+    "h": 252.32
+   },
+   {
+    "i": 12,
+    "key": "3fc4452fda658c53501def472e81558cc7bf0f055c3b3093d0cf87a08c9141b0",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=12cm, height=5cm,\n    xmin=-380, xmax=380,\n    ymin=-1.4, ymax=1.4,\n    xtick={-360,-270,-180,-90,0,90,180,270,360},\n    xticklabels={$-360^{\\circ}$,$-270^{\\circ}$,$-180^{\\circ}$,$-90^{\\circ}$,$0^{\\circ}$,$90^{\\circ}$,$180^{\\circ}$,$270^{\\circ}$,$360^{\\circ}$},\n    ytick={-1,0,1},\n    axis lines=middle,\n    xlabel={$\\theta$}, ylabel={$y$},\n    samples=200,scale = 2\n]\n\\addplot[domain=-360:360, blue, very thick] {sin(x)};\n\\node[blue] at (axis cs:230,0.72) {$y=\\sin\\theta$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "3fc4452fda658c53.svg",
+    "w": 594.46,
+    "h": 194.93
+   },
+   {
+    "i": 13,
+    "key": "f42fcd65db265863b15b571964027f79bc22b7fd43b88ba0563be50902d5fb31",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=12cm, height=5cm,\n    xmin=-380, xmax=380,\n    ymin=-1.4, ymax=1.4,\n    xtick={-360,-270,-180,-90,0,90,180,270,360},\n    xticklabels={$-360^{\\circ}$,$-270^{\\circ}$,$-180^{\\circ}$,$-90^{\\circ}$,$0^{\\circ}$,$90^{\\circ}$,$180^{\\circ}$,$270^{\\circ}$,$360^{\\circ}$},\n    ytick={-1,0,1},\n    axis lines=middle,\n    xlabel={$\\theta$}, ylabel={$y$},\n    samples=200,scale = 2\n]\n\\addplot[domain=-360:360, red, very thick] {cos(x)};\n\\node[red] at (axis cs:210,-0.72) {$y=\\cos\\theta$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "f42fcd65db265863.svg",
+    "w": 594.46,
+    "h": 194.93
+   },
+   {
+    "i": 14,
+    "key": "e897eb03c51457463555a750b4c406425cc8d893a3b79ee214c78ad97569d378",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=12cm, height=6cm,\n    xmin=-380, xmax=380,\n    ymin=-4, ymax=4,\n    xtick={-360,-270,-180,-90,0,90,180,270,360},\n    xticklabels={$-360^{\\circ}$,$-270^{\\circ}$,$-180^{\\circ}$,$-90^{\\circ}$,$0^{\\circ}$,$90^{\\circ}$,$180^{\\circ}$,$270^{\\circ}$,$360^{\\circ}$},\n    ytick={-3,-1,0,1,3},\n    axis lines=middle,\n    xlabel={$\\theta$}, ylabel={$y$},\n    samples=200,scale = 2\n]\n\\addplot[domain=-360:-271, orange, very thick] {tan(x)};\n\\addplot[domain=-269:-91, orange, very thick] {tan(x)};\n\\addplot[domain=-89:89, orange, very thick] {tan(x)};\n\\addplot[domain=91:269, orange, very thick] {tan(x)};\n\\addplot[domain=271:360, orange, very thick] {tan(x)};\n% vertical asymptotes\n\\draw[dashed, gray] (axis cs:-270,-4) -- (axis cs:-270,4);\n\\draw[dashed, gray] (axis cs:-90,-4) -- (axis cs:-90,4);\n\\draw[dashed, gray] (axis cs:90,-4) -- (axis cs:90,4);\n\\draw[dashed, gray] (axis cs:270,-4) -- (axis cs:270,4);\n\\node[orange] at (axis cs:250,2.2) {$y=\\tan\\theta$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "e897eb03c5145746.svg",
+    "w": 594.46,
+    "h": 251.82
+   },
+   {
+    "i": 15,
+    "key": "fb95a8a3b2931a1a70676b6d7f4c43c5d71563ae51436e7282ef9d4dcd5d7045",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=12cm, height=5cm,\n    xmin=0, xmax=380,\n    ymin=-1.4, ymax=1.4,\n    xtick={0,90,180,270,360},\n    xticklabels={$0^{\\circ}$,$90^{\\circ}$,$180^{\\circ}$,$270^{\\circ}$,$360^{\\circ}$},\n    ytick={-1,0,1},\n    axis lines=middle,\n    xlabel={$\\theta$}, ylabel={$y$},\n    samples=200,\n    scale = 2\n]\n\\addplot[domain=0:360, blue, very thick] {sin(x)};\n\\addplot[domain=0:360, red, very thick] {cos(x)};\n\\node[blue] at (axis cs:250,0.65) {$y=\\sin\\theta$};\n\\node[red] at (axis cs:130,-0.75) {$y=\\cos\\theta$};\n\\draw[<->, gray] (axis cs:90,1.28) -- (axis cs:0,1.28);\n\\node[gray] at (axis cs:45,1.4) {$90^{\\circ}$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "fb95a8a3b2931a1a.svg",
+    "w": 614.83,
+    "h": 194.93
+   },
+   {
+    "i": 16,
+    "key": "7942f17a6bcdb644d0a8efcb4a75f1c17c4c164c4f677218738d62e93528a9d3",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=12cm, height=5cm,\n    xmin=-200, xmax=200,\n    ymin=-1.4, ymax=1.4,\n    xtick={-180,-90,0,90,180},\n    xticklabels={$-180^{\\circ}$,$-90^{\\circ}$,$0^{\\circ}$,$90^{\\circ}$,$180^{\\circ}$},\n    ytick={-1,0,1},\n    axis lines=middle,\n    xlabel={$\\theta$}, ylabel={$y$},\n    samples=200,\n]\n% full sine curve (light)\n\\addplot[domain=-180:180, gray!40, thick] {sin(x)};\n% principal branch (bold)\n\\addplot[domain=-90:90, blue, very thick] {sin(x)};\n% boundary of principal interval\n\\draw[dashed, gray] (axis cs:-90,-1) -- (axis cs:-90,1);\n\\draw[dashed, gray] (axis cs:90,-1) -- (axis cs:90,1);\n\\node[blue] at (axis cs:-130,0.9) {principal branch};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "7942f17a6bcdb644.svg",
+    "w": 298.83,
+    "h": 97.66
+   },
+   {
+    "i": 17,
+    "key": "abb65f9769fde18dca3c599bf3ffc5674bfee1b3067a2f6e1e97bd89f8fc85a9",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=12cm, height=5cm,\n    xmin=-200, xmax=200,\n    ymin=-1.4, ymax=1.4,\n    xtick={-180,-90,0,90,180},\n    xticklabels={$-180^{\\circ}$,$-90^{\\circ}$,$0^{\\circ}$,$90^{\\circ}$,$180^{\\circ}$},\n    ytick={-1,0,1},\n    axis lines=middle,\n    xlabel={$\\theta$}, ylabel={$y$},\n    samples=200,\n]\n% full cosine curve (light)\n\\addplot[domain=-180:180, gray!40, thick] {cos(x)};\n% principal branch (bold)\n\\addplot[domain=0:180, red, very thick] {cos(x)};\n% boundary of principal interval\n\\draw[dashed, gray] (axis cs:0,-1) -- (axis cs:0,1);\n\\draw[dashed, gray] (axis cs:180,-1) -- (axis cs:180,1);\n\\node[red] at (axis cs:-90,0.85) {principal branch};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "abb65f9769fde18d.svg",
+    "w": 298.83,
+    "h": 97.66
+   },
+   {
+    "i": 18,
+    "key": "496adb9ead13384079a70cf1213057a94df66f2ee973a397446deb7941b934c9",
+    "attrs": {},
+    "src": "\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n    width=12cm, height=5cm,\n    xmin=-200, xmax=200,\n    ymin=-4, ymax=4,\n    xtick={-180,-90,0,90,180},\n    xticklabels={$-180^{\\circ}$,$-90^{\\circ}$,$0^{\\circ}$,$90^{\\circ}$,$180^{\\circ}$},\n    ytick={-3,-1,0,1,3},\n    axis lines=middle,\n    xlabel={$\\theta$}, ylabel={$y$},\n    samples=200,\n]\n% full tangent curves (light)\n\\addplot[domain=-180:-91, gray!40, thick] {tan(x)};\n\\addplot[domain=-89:89, gray!40, thick] {tan(x)};\n\\addplot[domain=91:180, gray!40, thick] {tan(x)};\n% principal branch (bold)\n\\addplot[domain=-89:89, orange, very thick] {tan(x)};\n% vertical asymptotes\n\\draw[dashed, gray] (axis cs:-90,-4) -- (axis cs:-90,4);\n\\draw[dashed, gray] (axis cs:90,-4) -- (axis cs:90,4);\n\\node[orange] at (axis cs:-140,3.2) {principal branch};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "496adb9ead133840.svg",
+    "w": 298.83,
+    "h": 97.66
+   },
+   {
+    "i": 19,
+    "key": "342fe56c39762960420102725e3fc76a04ee1e1ec234a6b4e2b4bec5168e6b86",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=2]\n% right triangle: O(left-bottom), A(right-bottom, right angle), B(right-top)\n\\coordinate (O) at (0,0);\n\\coordinate (A) at (3,0);\n\\coordinate (B) at (3,1.8);\n\\draw[thick] (O) -- (A) node[midway, below] {$\\cos\\alpha=\\sqrt{1-x^2}$};\n\\draw[thick] (A) -- (B) node[midway, right] {$\\sin\\alpha=x$};\n\\draw[thick] (B) -- (O) node[midway, above left] {$1$};\n% right angle mark at A\n\\draw (2.7,0) -- (2.7,0.3) -- (3,0.3);\n% angle alpha at O\n\\draw (0.55,0) arc (0:31:0.55);\n\\node at (0.36,0.28) {$\\alpha=\\arcsin x$};\n% angle beta at B\n\\draw (2.66,1.52) arc (235:270:0.5);\n\\node at (2.58,1.78) {$\\beta=\\arccos x$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "342fe56c39762960.svg",
+    "w": 226.45,
+    "h": 126.54
+   }
+  ],
+  "hkdse-course/dse-课题讲义/chapter-27-解方程方法-(iii).html": [
+   {
+    "i": 0,
+    "key": "9396048201e478222e28c72e7fd1a8f5204fb84b4ff7f4fd23b3ddc3ea0f9863",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\usepackage{pgfplots}\n\n\\begin{document}\n\\begin{tikzpicture}\n\\begin{axis}[\n  xlabel={$x$}, ylabel={$y$},\n  xmin=-0.2, xmax=2.6, ymin=0, ymax=6.5,\n  legend pos=north west,\n]\n\\addplot[domain=-0.2:2.6, samples=80, blue!70!black, thick] {2^x};\n\\addlegendentry{$y=2^x$}\n\\addplot[domain=-0.2:2.6, samples=80, red!70!black, thick] {5^(x-1)};\n\\addlegendentry{$y=5^{x-1}$}\n\\draw[dashed, gray] (axis cs:1.756,0) -- (axis cs:1.756,3.38);\n\\filldraw[black] (axis cs:1.756,3.38) circle (2pt);\n\\node[above right] at (axis cs:1.76,3.30) {$(1.76,\\ 3.38)$};\n\\end{axis}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "9396048201e47822.svg",
+    "w": 239.21,
+    "h": 188.37
    }
   ],
   "hkdse-course/dse-课题讲义/chapter-28-不等式-(ii).html": [
@@ -3471,6 +3913,16 @@
    },
    {
     "i": 5,
+    "key": "7f16c5849dd69ca0a147bbe835cf4f425297290becda4cd7312ca6b3796a8d68",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.6,0.2);\n  \\coordinate (B) at (4.2,0.2);\n  \\coordinate (C) at (2.9,2.4);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[very thick] (A) -- (B) -- (C) -- (A);\n  \\coordinate (as0) at (1.5,0.2);\n  \\draw (as0) arc[start angle=0, end angle=43.73, radius=0.9];\n  \\node at (1.62,0.52) {$\\theta$};\n  \\node[below left] at (A) {$A$};\n  \\node[below right] at (B) {$B$};\n  \\node[above] at (C) {$C$};\n  \\node[below] at (2.4,0.14) {$AB$};\n  \\node[above left] at (1.62,1.42) {$CA$};\n  \\node[above right] at (3.75,1.42) {$BC$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "7f16c5849dd69ca0.svg",
+    "w": 182.98,
+    "h": 123.87
+   },
+   {
+    "i": 6,
     "key": "c8a9b6ee3d8cd136cd060cf955a450e744c563cc63d4ba25b154ee1a3793f31c",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3,0);\n  \\coordinate (C) at (1.315,2.472);\n  \\coordinate (F) at (1.315,0);\n  \\draw[very thick] (A) -- (B) -- (C) -- cycle;\n  \\draw[dashed] (C) -- (F);\n  \\draw (1.535,0) -- (1.535,0.22) -- (1.315,0.22);\n  \\draw (A) ++(5:0.5) arc (5:57:0.5);\n  \\node[right] at (0.617,0.371) {$\\theta$};\n  \\node[above left] at (A) {$A$};\n  \\node[below right] at (B) {$B$};\n  \\node[above right] at (C) {$C$};\n  \\node[below] at (F) {$F$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3480,7 +3932,7 @@
     "h": 132.91
    },
    {
-    "i": 6,
+    "i": 7,
     "key": "723a7412587293cb3188dbb479ef681ed4ba0310d4cc5ba33849b6410cdd11b0",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3,0);\n  \\coordinate (C) at (0,2.6);\n  \\draw[very thick] (A) -- (B) -- (C) -- cycle;\n  \\draw (0.25,0) -- (0.25,0.25) -- (0,0.25);\n  \\node[below left] at (A) {$A$};\n  \\node[below right] at (B) {$B$};\n  \\node[above left] at (C) {$C$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3490,7 +3942,7 @@
     "h": 138.38
    },
    {
-    "i": 7,
+    "i": 8,
     "key": "897d7a7a95467382f2d383fb8d991cbc3b5bb816f888e189730c191bd81bef21",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3,0);\n  \\coordinate (C) at (-0.974,2.411);\n  \\coordinate (F) at (-0.974,0);\n  \\draw[very thick] (A) -- (B) -- (C) -- cycle;\n  \\draw[dotted] (A) -- (F);\n  \\draw[dashed] (C) -- (F);\n  \\draw (-0.754,0) -- (-0.754,0.22) -- (-0.974,0.22);\n  \\draw (A) ++(6:0.5) arc (6:106:0.5);\n  \\node[right] at (0.420,0.622) {$\\theta$};\n  \\node[above right] at (A) {$A$};\n  \\node[below left] at (F) {$F$};\n  \\node[below right] at (B) {$B$};\n  \\node[above left] at (C) {$C$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3500,7 +3952,7 @@
     "h": 130.31
    },
    {
-    "i": 8,
+    "i": 9,
     "key": "203be6be348dfbe07ee5c8b79039f25f2b837c491f71530d1b27e170612dbf0b",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3,0);\n  \\coordinate (C) at (2.4,4.157);\n  \\draw[very thick] (C) -- (A);\n  \\draw[very thick] (A) -- (B);\n  \\draw[thick, dashed] (B) -- (C);\n  \\draw (A) ++(7:0.55) arc (7:53:0.55);\n  \\node[right] at (0.87,0.50) {$60^{\\circ}$};\n  \\node[below left] at (A) {$A$};\n  \\node[below right] at (B) {$B$};\n  \\node[above] at (C) {$C$};\n  \\node[below] at (1.5,-0.28) {$AB = 5$};\n  \\node[above right] at (1.2,2.078) {$CA = 8$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3510,7 +3962,7 @@
     "h": 216.79
    },
    {
-    "i": 9,
+    "i": 10,
     "key": "e32ee8646f8725308370a5fc648108f4048e5e4ed69de4c4afe6fb3055a06898",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (3.6,0);\n  \\coordinate (A) at (1.35,3.5);\n  \\draw[blue!65!black, very thick] (B) -- (C);\n  \\draw[red!65!black, very thick] (C) -- (A);\n  \\draw[green!55!black, very thick] (A) -- (B);\n  \\draw[blue!65!black] (A) ++(255:0.5) arc (255:297:0.5);\n  \\draw[red!65!black] (B) ++(6:0.5) arc (6:64:0.5);\n  \\draw[green!55!black] (C) ++(127:0.5) arc (127:175:0.5);\n  \\node[black, above] at (A) {$A$};\n  \\node[black, below left] at (B) {$B$};\n  \\node[black, below right] at (C) {$C$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3520,7 +3972,7 @@
     "h": 176.79
    },
    {
-    "i": 10,
+    "i": 11,
     "key": "10b656e7728c342b3c45f7a7d4d724ba82a1740227cf7c753015a6af60cb6901",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (A) at (0.174,1.992);\n  \\coordinate (B) at (-1.147,-1.638);\n  \\coordinate (C) at (1.732,-1);\n  \\coordinate (M) at (0.293,-1.319);\n  \\draw (O) circle (2);\n  \\draw[very thick] (B) -- (C);\n  \\draw (A) -- (B);\n  \\draw (A) -- (C);\n  \\draw[dashed] (O) -- (B);\n  \\draw[dashed] (O) -- (C);\n  \\draw[dashed] (O) -- (M);\n  \\draw (0.2449,-1.1044) -- (0.0302,-1.152) -- (0.0778,-1.3668);\n  \\draw (A) ++(255:0.45) arc (255:293:0.45);\n  \\node[right] at (0.226,1.244) {$\\theta$};\n  \\draw (O) ++(245:0.55) arc (245:325:0.55);\n  \\node[right] at (0.30,-0.80) {$2\\theta$};\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\node[above right] at (A) {$A$};\n  \\node[below left] at (B) {$B$};\n  \\node[below right] at (C) {$C$};\n  \\node[below right] at (0.358,-1.612) {$M$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3530,7 +3982,7 @@
     "h": 184.28
    },
    {
-    "i": 11,
+    "i": 12,
     "key": "38a6d5cd6f73cd320c3b8a28bb72462fd05fafd48554e0649add25be2163dca8",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (6,0);\n  \\coordinate (C1) at (2.708,2.272);\n  \\coordinate (C2) at (4.333,3.636);\n  \\draw[dashed, gray] (B) ++(110:4) arc (110:150:4);\n  \\draw[dashed, gray] (A) -- (4.75,3.99);\n  \\draw[very thick] (A) -- (B);\n  \\draw[blue!65!black, very thick] (A) -- (C1);\n  \\draw[blue!65!black, very thick] (C1) -- (B);\n  \\draw[red!65!black, thick, dashed] (A) -- (C2);\n  \\draw[red!65!black, thick, dashed] (C2) -- (B);\n  \\draw (A) ++(5:0.6) arc (5:35:0.6);\n  \\node at (0.893,0.325) {$\\theta$};\n  \\node[below left] at (A) {$A$};\n  \\node[below right] at (B) {$B$};\n  \\node[above left] at (C1) {$C_1$};\n  \\node[above] at (C2) {$C_2$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3540,7 +3992,7 @@
     "h": 184.19
    },
    {
-    "i": 12,
+    "i": 13,
     "key": "a1b39d7dcacf4249b7ffc4be86359ed914b7d8505986191f1f48ad7e69cd80cc",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (3.2,0);\n  \\coordinate (A) at (1.168,4.358);\n  \\draw[very thick] (B) -- (C) -- cycle;\n  \\draw[dashed] (B) -- (A);\n  \\draw[dashed] (A) -- (C);\n  \\draw (A) ++(260:0.5) arc (260:290:0.5);\n  \\node at (1.238,3.561) {$40^{\\circ}$};\n  \\draw (C) ++(122:0.5) arc (122:174:0.5);\n  \\node at (2.484,0.455) {$65^{\\circ}$};\n  \\node[above] at (A) {$A$};\n  \\node[below left] at (B) {$B$};\n  \\node[below right] at (C) {$C$};\n  \\node[below] at (1.6,-0.28) {$BC = 8$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3550,7 +4002,7 @@
     "h": 225.37
    },
    {
-    "i": 13,
+    "i": 14,
     "key": "cbe2579b87d2f934b3c83a17f84063794b364ada26ba5182464046dd4075d549",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.4,2.6);\n  \\coordinate (B) at (-1.9,0);\n  \\coordinate (C) at (2.7,0);\n  \\fill[blue, opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[very thick] (A) -- (B) -- (C) -- cycle;\n  \\node[above] at (A) {$A$};\n  \\node[below left] at (B) {$B$};\n  \\node[below right] at (C) {$C$};\n  \\node[above left] at (-0.75,1.3) {$AB$};\n  \\node[below] at (0.4,-0.28) {$BC$};\n  \\node[above right] at (1.55,1.3) {$CA$};\n  \\node at (0.4,0.866) {$S$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3560,7 +4012,7 @@
     "h": 150.33
    },
    {
-    "i": 14,
+    "i": 15,
     "key": "f4f16433a57a069a486af28f4b205128e20f13d468cd7af0b49d099c485a8194",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (4.9,0);\n  \\coordinate (A) at (1.75,4.2);\n  \\draw[very thick] (A) -- (B) -- (C) -- cycle;\n  \\node[above] at (A) {$A$};\n  \\node[below left] at (B) {$B$};\n  \\node[below right] at (C) {$C$};\n  \\node[above left] at (0.875,2.1) {$AB = 13$};\n  \\node[below] at (2.45,-0.28) {$BC = 14$};\n  \\node[above right] at (3.325,2.1) {$CA = 15$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3570,7 +4022,7 @@
     "h": 218.62
    },
    {
-    "i": 15,
+    "i": 16,
     "key": "ce22049b644de3060cea1c6126f65d7418797bf5af0c017ce14f434ee96f5554",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.7);\n  \\coordinate (a2) at (3.0,-0.1);\n  \\coordinate (a3) at (4.0,1.2);\n  \\coordinate (a4) at (0.4,2.0);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (A) at (2.0,0.95);\n  \\coordinate (P) at (2.0,3.5);\n  \\draw[dashed,very thick] (A) -- (P);\n  \\draw[very thick] (0.2,1.35) -- (3.8,0.55);\n  \\draw[very thick] (2.6,1.35) -- (1.4,0.55);\n  \\node[above] at (2.0,3.54) {$l$};\n  \\node[left] at (0.15,1.4) {$m_1$};\n  \\node[above right] at (2.62,1.32) {$m_2$};\n  \\node[below left] at (1.9,0.9) {$A$};\n  \\node[below] at (-0.55,0.62) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3580,7 +4032,7 @@
     "h": 169.36
    },
    {
-    "i": 16,
+    "i": 17,
     "key": "d2a90801d8a8d0f7101aae39e3c21cab8779ed2395a3c9c10ad16773dc50c050",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.9);\n  \\coordinate (a2) at (2.8,0.1);\n  \\coordinate (a3) at (3.8,1.4);\n  \\coordinate (a4) at (0.4,2.2);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (O) at (1.9,0.95);\n  \\coordinate (X) at (3.3,1.28);\n  \\coordinate (P) at (1.9,3.5);\n  \\draw[dashed,very thick] (O) -- (P);\n  \\draw[very thick] (O) -- (X);\n  \\draw[very thick] (P) -- (X);\n  \\coordinate (q1) at (2.192,1.019);   % O + 0.3*(0.9733,0.2293)\n  \\coordinate (q2) at (2.192,1.319);   % q1 + 0.3*(0,1)\n  \\coordinate (q3) at (1.9,1.25);      % O + 0.3*(0,1)\n  \\draw (q3) -- (q2) -- (q1);\n  \\node[above] at (1.9,3.54) {$P$};\n  \\node[below left] at (1.85,0.9) {$O$};\n  \\node[right] at (3.4,1.3) {$X$};\n  \\node[below] at (0.5,0.75) {$\\Pi$};\n  \\node[above] at (2.08,1.5) {$90^\\circ$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3590,37 +4042,89 @@
     "h": 160.71
    },
    {
-    "i": 17,
-    "key": "7ad37eef0da4f3dcc9466338bada6bef4105671caaf3b6b5805d5c218fdd105d",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3.0,0);\n  \\coordinate (C) at (1.1,1.2);\n  \\coordinate (V) at (1.05,3.2);\n  \\coordinate (O) at (1.05,1.05);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[very thick] (V) -- (O);\n  \\draw[dashed,thick] (O) -- (A);\n  \\draw[dashed,thick] (O) -- (B);\n  \\draw[dashed,thick] (O) -- (C);\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below] at (3.0,-0.05) {$B$};\n  \\node[above right] at (1.1,1.05) {$C$};\n  \\node[above] at (1.05,3.24) {$V$};\n  \\node[below] at (1.05,0.98) {$O$};\n  \\node[right] at (1.25,2.1) {$h = VO$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "7ad37eef0da4f3dc.svg",
-    "w": 149.78,
-    "h": 167.81
-   },
-   {
     "i": 18,
-    "key": "d75a392da52983a2c323843594fecfe19683e4994d5eef538c194f2ab7d783f1",
+    "key": "aefeaff25182a76e333cf85b3cbd78da270f68c09423f0a9ca911af38b74a534",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.8);\n  \\coordinate (a2) at (2.8,0.0);\n  \\coordinate (a3) at (3.8,1.3);\n  \\coordinate (a4) at (0.4,2.1);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (O) at (1.7,0.95);\n  \\coordinate (P) at (1.7,3.5);\n  \\coordinate (X1) at (3.2,1.4);\n  \\coordinate (X2) at (0.7,1.5);\n  \\draw[dashed,very thick] (O) -- (P);\n  \\draw[dashed,thick] (P) -- (X1);\n  \\draw[dashed,thick] (P) -- (X2);\n  \\node[above] at (1.7,3.54) {$P$};\n  \\node[below left] at (1.62,0.9) {$O$};\n  \\node[right] at (3.3,1.42) {$X_1$};\n  \\node[left] at (0.6,1.55) {$X_2$};\n  \\node[below] at (0.4,0.7) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.8);\n  \\coordinate (a2) at (2.8,0.8);\n  \\coordinate (a3) at (3.6,2.1);\n  \\coordinate (a4) at (0.2,2.1);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (O) at (1.9,1.4075);\n  \\coordinate (P) at (1.9,3.6);\n  \\draw[dashed,very thick] (P) -- (O);\n  % right-angle marker at O: sides parallel to ray(O->P) and the plane's (1,0) edge direction\n  \\coordinate (m1) at (1.9,1.7075);\n  \\coordinate (m2) at (2.2,1.7075);\n  \\coordinate (m3) at (2.2,1.4075);\n  \\draw (m1) -- (m2) -- (m3);\n  \\fill (O) circle (1.3pt);\n  \\node[above] at (P) {$P$};\n  \\node[below left] at (1.82,1.36) {$O$};\n  \\node[right] at (3.4,2.15) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "d75a392da52983a2.svg",
-    "w": 188.21,
-    "h": 164.98
+    "file": "aefeaff25182a76e.svg",
+    "w": 185.29,
+    "h": 133.42
    },
    {
     "i": 19,
-    "key": "3d39534ecb6b638a25141682a1379b45973540667cfe60ddb19c033517101672",
+    "key": "20c30a392518443f63aa5cbc48b747783e0e6f317c10d4fc2e47ae440bc2eb75",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.7);\n  \\coordinate (a2) at (3.0,-0.1);\n  \\coordinate (a3) at (4.0,1.2);\n  \\coordinate (a4) at (0.4,2.0);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (A) at (1.8,0.95);\n  \\coordinate (Pl) at (1.8,3.4);\n  \\draw[very thick] (0.1,1.5) -- (3.5,0.4);\n  \\draw[very thick] (2.7,1.6) -- (0.9,0.3);\n  \\draw[dashed,very thick] (A) -- (Pl);\n  \\node[above] at (1.8,3.44) {$l$};\n  \\node[below left] at (1.72,0.9) {$A$};\n  \\node[right] at (3.55,0.35) {$m_1$};\n  \\node[above] at (2.75,1.62) {$m_2$};\n  \\node[below] at (-0.5,0.6) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.8);\n  \\coordinate (a2) at (2.8,0.8);\n  \\coordinate (a3) at (3.6,2.1);\n  \\coordinate (a4) at (0.2,2.1);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (O) at (1.9,1.4075);\n  \\coordinate (P) at (1.9,3.6);\n  \\coordinate (X) at (3.6,2.1);\n  \\draw[dashed,very thick] (P) -- (O);\n  \\draw[very thick] (P) -- (X);\n  \\draw[thick] (O) -- (X);\n  % right-angle marker at O: sides parallel to ray(O->P) and the plane's (1,0) edge direction\n  \\coordinate (m1) at (1.9,1.7075);\n  \\coordinate (m2) at (2.2,1.7075);\n  \\coordinate (m3) at (2.2,1.4075);\n  \\draw (m1) -- (m2) -- (m3);\n  \\fill (O) circle (1.3pt);\n  \\fill (X) circle (1.3pt);\n  \\node[above] at (P) {$P$};\n  \\node[below left] at (1.8,1.34) {$O$};\n  \\node[above right] at (3.25,2.13) {$X$};\n  \\node[right] at (3.45,0.9) {$\\Pi$};\n  \\node[left] at (1.8,2.6) {$d(P,\\Pi)=PO$};\n  \\node[above right] at (2.6,2.9) {$PX$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "3d39534ecb6b638a.svg",
-    "w": 200.07,
-    "h": 165.1
+    "file": "20c30a392518443f.svg",
+    "w": 187.42,
+    "h": 135.7
    },
    {
     "i": 20,
+    "key": "c7181d27500ec0a395a3a8f31cc2f19ed48484ac6d3712ac938b34c9ae7ec642",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3.4,0.2);\n  \\coordinate (C) at (2,2.2);\n  \\coordinate (V) at (1.2,3.3);\n  \\coordinate (O) at (1.2,1.1);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[very thick] (V) -- (O);\n  \\draw[dashed,thick] (O) -- (A);\n  \\draw[dashed,thick] (O) -- (B);\n  \\draw[dashed,thick] (O) -- (C);\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\node[below left] at (A) {$A$};\n  \\node[below right] at (B) {$B$};\n  \\node[above right] at (C) {$C$};\n  \\node[above] at (V) {$V$};\n  \\node[right] at (O) {$O$};\n  \\node[left] at (0.72,2.2) {$h = VO$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "c7181d27500ec0a3.svg",
+    "w": 174.45,
+    "h": 168.26
+   },
+   {
+    "i": 21,
+    "key": "3b5883658782f7d0ba6e219128b360ffbecc70b17f04d255963c90034e7d04ee",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.8);\n  \\coordinate (a2) at (2.8,0.8);\n  \\coordinate (a3) at (3.6,2.1);\n  \\coordinate (a4) at (0.2,2.1);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (O) at (1.7,1.21);\n  \\coordinate (P) at (1.7,3.5);\n  \\coordinate (X1) at (2.68,1.58);\n  \\coordinate (X2) at (1.7,2.1);\n  \\draw[very thick] (O) -- (P);\n  \\draw[very thick] (P) -- (X1);\n  \\draw[very thick] (P) -- (X2);\n  \\fill (O) circle (1.3pt);\n  \\fill (X1) circle (1.3pt);\n  \\fill (X2) circle (1.3pt);\n  \\node[above] at (P) {$P$};\n  \\node[below] at (1.62,1.13) {$O$};\n  \\node[below right] at (2.74,1.54) {$X_1$};\n  \\node[above right] at (1.8,2.12) {$X_2$};\n  \\node[left] at (1.54,2.355) {$PO$};\n  \\node[below right] at (2.9,2.6) {$PX_1$};\n  \\node[below right] at (3.5,0.72) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "3b5883658782f7d0.svg",
+    "w": 189.55,
+    "h": 146.06
+   },
+   {
+    "i": 22,
+    "key": "e89150aabfec81f1932d3bfe533c39b48f68bba6d5a986af1621a485f05e9764",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.8);\n  \\coordinate (a2) at (2.8,0.8);\n  \\coordinate (a3) at (3.6,2.1);\n  \\coordinate (a4) at (0.2,2.1);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (A) at (1.7,1.45);\n  \\coordinate (LT) at (1.7,3.45);\n  \\coordinate (m1a) at (0.4,1.45);\n  \\coordinate (m1b) at (3,1.45);\n  \\coordinate (m2a) at (1.26,0.735);\n  \\coordinate (m2b) at (2.12,2.1325);\n  \\draw[very thick] (m1a) -- (m1b);\n  \\draw[very thick] (m2a) -- (m2b);\n  \\draw[very thick] (A) -- (LT);\n  \\fill (A) circle (1.3pt);\n  \\node[above] at (LT) {$l$};\n  \\node[below left] at (1.6,1.39) {$A$};\n  \\node[right] at (3.05,1.43) {$m_1$};\n  \\node[above] at (2.15,2.1325) {$m_2$};\n  \\node[left] at (0.36,1.15) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "e89150aabfec81f1.svg",
+    "w": 179.67,
+    "h": 130.3
+   },
+   {
+    "i": 23,
+    "key": "c8f60b6eac4ea7f18311734f0262521e66fb04bf6ccded2c8f1c40887a942cf5",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.8);\n  \\coordinate (a2) at (2.8,0.8);\n  \\coordinate (a3) at (3.6,2.1);\n  \\coordinate (a4) at (0.2,2.1);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (A) at (1.7,1.45);\n  \\coordinate (LT) at (1.7,3.45);\n  \\coordinate (m1a) at (0.4,1.45);\n  \\coordinate (m1b) at (3,1.45);\n  \\coordinate (m2a) at (1.26,0.735);\n  \\coordinate (m2b) at (2.12,2.1325);\n  \\draw[very thick] (m1a) -- (m1b);\n  \\draw[very thick] (m2a) -- (m2b);\n  \\draw[dashed,very thick] (A) -- (LT);\n  % right-angle marker at A between l and m1 (sides parallel to both rays)\n  \\coordinate (r1) at (1.7,1.7);\n  \\coordinate (r2) at (1.95,1.7);\n  \\coordinate (r3) at (1.95,1.45);\n  \\draw (r1) -- (r2) -- (r3);\n  % right-angle marker at A between l and m2\n  \\coordinate (s1) at (1.7,1.7);\n  \\coordinate (s2) at (1.831,1.9129);\n  \\coordinate (s3) at (1.831,1.6629);\n  \\draw (s1) -- (s2) -- (s3);\n  \\fill (A) circle (1.3pt);\n  \\node[above] at (LT) {$l$};\n  \\node[below left] at (1.6,1.39) {$A$};\n  \\node[right] at (3.05,1.43) {$m_1$};\n  \\node[above] at (2.15,2.1325) {$m_2$};\n  \\node[left] at (0.36,1.15) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "c8f60b6eac4ea7f1.svg",
+    "w": 179.67,
+    "h": 130.3
+   },
+   {
+    "i": 24,
+    "key": "e8266aa19885004a12d22b3df0121e94273761d6a43bdf01840cfaeffb784913",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (0,0.2);\n  \\coordinate (a2) at (3.2,0.2);\n  \\coordinate (a3) at (4,1.9);\n  \\coordinate (a4) at (0.8,1.9);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (l1a) at (0.2,3.1);\n  \\coordinate (l1b) at (3.4,3.1);\n  \\coordinate (l2t) at (1.6,3);\n  \\coordinate (l2b) at (2.2,-0.6);\n  \\coordinate (A) at (1.9,0.2);\n  \\draw[very thick] (l1a) -- (l1b);\n  \\draw[very thick] (l2t) -- (l2b);\n  \\fill (A) circle (1.5pt);\n  \\node[right] at (l1b) {$l_1$};\n  \\node[above] at (l2t) {$l_2$};\n  \\node[above right] at (A) {$A$};\n  \\node[right] at (3.9,1.05) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "e8266aa19885004a.svg",
+    "w": 181.01,
+    "h": 169.57
+   },
+   {
+    "i": 25,
+    "key": "86c4f308b0d5839f717a3bbde2deab7a09813ee2282d3d3a03b6741c013560fa",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.8);\n  \\coordinate (a2) at (2.8,0.8);\n  \\coordinate (a3) at (3.6,2.1);\n  \\coordinate (a4) at (0.2,2.1);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (o0) at (1,1.45);\n  \\coordinate (o1) at (1.8,1.45);\n  \\coordinate (o2) at (2.6,1.45);\n  \\coordinate (o3) at (3.4,1.45);\n  \\coordinate (p0) at (1,3.35);\n  \\coordinate (p1) at (1.8,3.35);\n  \\coordinate (p2) at (2.6,3.35);\n  \\coordinate (p3) at (3.4,3.35);\n  \\draw[very thick] (1,3.35) -- (3.4,3.35);\n  \\draw[thick] (1,1.45) -- (3.4,1.45);\n  \\draw[dashed] (p0) -- (o0);\n  \\fill (p0) circle (1.2pt);\n  \\fill (o0) circle (1.2pt);\n  \\draw[dashed] (p1) -- (o1);\n  \\fill (p1) circle (1.2pt);\n  \\fill (o1) circle (1.2pt);\n  \\draw[dashed] (p2) -- (o2);\n  \\fill (p2) circle (1.2pt);\n  \\fill (o2) circle (1.2pt);\n  \\draw[dashed] (p3) -- (o3);\n  \\fill (p3) circle (1.2pt);\n  \\fill (o3) circle (1.2pt);\n  \\node[right] at (p3) {$l$};\n  \\node[below right] at (o3) {$l'$};\n  \\node[right] at (3.45,0.72) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "86c4f308b0d5839f.svg",
+    "w": 187.42,
+    "h": 125.82
+   },
+   {
+    "i": 26,
     "key": "b3514fda794095606e1023c975c62521e4298281ee0747d4d81805fc7129ed5e",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[blue!65!black,very thick] (1.21,0.23) -- (5.61,0.23);\n  \\node at (3.41,0.5) {$l$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3630,7 +4134,7 @@
     "h": 41.95
    },
    {
-    "i": 21,
+    "i": 27,
     "key": "f2c2b010063b67d36dda22c51f6060a118342d4fea93e40be653e78f6dfda153",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[dashed] (3.05,0.25) -- (4.55,0.25);\n  \\draw[blue!65!black,very thick] (3.05,0.25) -- (3.05,2.75);\n  \\draw (3.33,0.25) -- (3.33,0.53) -- (3.05,0.53);\n  \\fill (3.05,0.25) circle (1.3pt);\n  \\node at (3.05,2.95) {$l$};\n  \\node at (2.8,0.46) {$A$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3640,7 +4144,7 @@
     "h": 132.91
    },
    {
-    "i": 22,
+    "i": 28,
     "key": "0dfffb64028db505961cdaea97c7f6d2d1c64cc3244cc220c217959476acc215",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[blue!65!black,very thick] (1.76,0.2) -- (5.3,2.89);\n  \\draw[dashed] (4.92,2.6) -- (4.92,0.4);\n  \\draw[dashed] (1.76,0.2) -- (5.27,0.42);\n  \\draw (4.92,0.68) -- (4.64,0.66) -- (4.64,0.38);\n  \\fill (4.92,2.6) circle (1.3pt);\n  \\fill (4.92,0.4) circle (1.3pt);\n  \\node at (5.52,3.02) {$l$};\n  \\node at (4.68,2.8) {$B$};\n  \\node at (1.54,0.4) {$A$};\n  \\node at (5.15,0.24) {$O$};\n  \\node at (5.52,0.4) {$l'$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3650,7 +4154,7 @@
     "h": 135.9
    },
    {
-    "i": 23,
+    "i": 29,
     "key": "7d6f72b35e218a8bb87a5315f3d7c970679185adcda580ba02586d87be90ceba",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[blue!65!black,very thick] (1.76,0.2) -- (5.3,2.89);\n  \\draw[dashed] (4.92,2.6) -- (4.92,0.4);\n  \\draw[dashed] (1.76,0.2) -- (5.27,0.42);\n  \\draw (4.92,0.68) -- (4.64,0.66) -- (4.64,0.38);\n  \\draw (1.76,0.2) ++(3.6:0.75) arc[start angle=3.6, end angle=37.2, radius=0.75];\n  \\fill (4.92,2.6) circle (1.3pt);\n  \\fill (1.76,0.2) circle (1.3pt);\n  \\fill (4.92,0.4) circle (1.3pt);\n  \\node at (5.52,3.02) {$l$};\n  \\node at (4.7,2.8) {$B$};\n  \\node at (1.54,0.4) {$A$};\n  \\node at (5.15,0.24) {$O$};\n  \\node at (5.52,0.4) {$l'$};\n  \\node at (7.35,0.82) {$\\Pi$};\n  \\node at (2.74,0.57) {$\\theta$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3660,7 +4164,7 @@
     "h": 135.9
    },
    {
-    "i": 24,
+    "i": 30,
     "key": "cd3059acf9c677478c8dd4ba6ca0fd88b9c680807906900a7b0858a3e08d9cd3",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[blue!65!black,line width=1pt] (0,0) -- (3.2,2.1);\n  \\draw[blue!65!black] (0,0) -- (3.2,0) -- (3.2,2.1);\n  \\draw (2.9,0) -- (2.9,0.3) -- (3.2,0.3);\n  \\draw (0,0) ++(0:0.8) arc[start angle=0, end angle=33.3, radius=0.8];\n  \\fill (0,0) circle (1.3pt);\n  \\fill (3.2,0) circle (1.3pt);\n  \\fill (3.2,2.1) circle (1.3pt);\n  \\node at (-0.26,-0.26) {$A$};\n  \\node at (3.46,-0.22) {$O$};\n  \\node at (3.2,2.32) {$B$};\n  \\node at (1.26,1.21) {$BA$};\n  \\node at (3.5,1.05) {$BO$};\n  \\node at (1.6,-0.32) {$AO$};\n  \\node at (1.1,0.33) {$\\theta$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3670,17 +4174,7 @@
     "h": 126.17
    },
    {
-    "i": 25,
-    "key": "db12a3d9a2b9c28f5d70b969a1172c3f9f776c8e7a044be481ebd212184d3d82",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (7,0) -- (9.7,1.5) -- (2.7,1.5) -- cycle;\n  \\draw[gray!60] (0,0) -- (7,0);\n  \\draw[gray!60] (7,0) -- (8.44,0.8);\n  \\draw[gray!60,dashed] (8.44,0.8) -- (9.7,1.5);\n  \\draw[gray!60,dashed] (9.7,1.5) -- (2.7,1.5);\n  \\draw[gray!60,dashed] (2.7,1.5) -- (1.44,0.8);\n  \\draw[gray!60] (1.44,0.8) -- (0,0);\n  \\fill[orange,opacity=0.18] (1.44,0.8) -- (8.44,0.8) -- (9.61,2.95) -- (2.61,2.95) -- cycle;\n  \\draw[gray!60] (1.44,0.8) -- (2.61,2.95) -- (9.61,2.95) -- (8.44,0.8);\n  \\draw[blue!65!black,line width=1.1pt] (1.44,0.8) -- (8.44,0.8);\n  \\draw[blue!65!black,very thick] (3.84,0.8) -- (4.62,2.23);\n  \\draw[dashed] (3.84,0.8) -- (4.62,1.23);\n  \\draw[dashed] (4.62,2.23) -- (4.62,1.23);\n  \\draw (4.1,0.8) -- (4.22,1.03) -- (3.96,1.03);\n  \\draw (3.84,0.8) ++(29.1:0.55) arc[start angle=29.1, end angle=61.5, radius=0.55];\n  \\fill (3.84,0.8) circle (1.3pt);\n  \\fill (4.62,2.23) circle (1.3pt);\n  \\fill (4.62,1.23) circle (1.3pt);\n  \\node at (5.6,0.45) {$\\Pi$};\n  \\node at (5.8,1.75) {$\\Omega$};\n  \\node at (8.15,0.95) {$m$};\n  \\node at (3.84,0.6) {$Q$};\n  \\node at (4.4,2.42) {$R$};\n  \\node at (4.88,1.22) {$T$};\n  \\node at (4.47,1.29) {$\\theta$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "db12a3d9a2b9c28f.svg",
-    "w": 414.39,
-    "h": 126.3
-   },
-   {
-    "i": 26,
+    "i": 31,
     "key": "c94c170b128b4e9e4abfcc70e829258dfaf02b1e5e073eb32f70f5e0a0bb4bf8",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[gray!60] (0,0) -- (2.34,0);\n  \\draw[gray!60,dashed] (2.34,0) -- (3.94,0.88);\n  \\draw[gray!60,dashed] (3.94,0.88) -- (1.6,0.88);\n  \\draw[gray!60] (1.6,0.88) -- (0,0);\n  \\draw[gray!60] (0,0) -- (0,6.6);\n  \\draw[gray!60] (0,6.6) -- (2.34,6.6);\n  \\draw[gray!60] (2.34,6.6) -- (3.94,7.48) -- (1.6,7.48) -- (0,6.6);\n  \\draw[gray!60,dashed] (3.94,0.88) -- (3.94,7.48);\n  \\draw[gray!60] (1.6,0.88) -- (1.6,7.48);\n  \\draw[gray!60] (2.34,0) -- (2.34,6.6);\n  \\draw[dashed,blue!65!black] (0,0) -- (3.94,0.88);\n  \\draw[blue!65!black,very thick] (0,0) -- (3.94,7.48);\n  \\draw (3.94,1.18) -- (3.65,1.11) -- (3.65,0.81);\n  \\draw (0,0) ++(12.6:1.1) arc[start angle=12.6, end angle=62.2, radius=1.1];\n  \\fill (0,0) circle (1.3pt);\n  \\fill (3.94,0.88) circle (1.3pt);\n  \\fill (3.94,7.48) circle (1.3pt);\n  \\node at (-0.24,-0.2) {$A$};\n  \\node at (2.34,-0.22) {$B$};\n  \\node at (4.14,0.78) {$C$};\n  \\node at (1.36,1.06) {$D$};\n  \\node at (-0.26,6.66) {$E$};\n  \\node at (2.34,6.82) {$F$};\n  \\node at (4.15,7.62) {$G$};\n  \\node at (1.6,7.68) {$H$};\n  \\node at (1.17,-0.5) {$3$};\n  \\node at (3.14,0.12) {$4$};\n  \\node at (4.25,4.18) {$12$};\n  \\node at (1.32,0.6) {$\\theta$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3690,27 +4184,37 @@
     "h": 362.42
    },
    {
-    "i": 27,
-    "key": "9c52d6ae40fb3cbe07cb21b35448fc3d0984f052c8b6b8d895d9e31ca350edf6",
+    "i": 32,
+    "key": "a4a5cf36bae8deb85a18740e3c01d703817d1c42ab7b89e01483b3c7ea26bf90",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3.0,0);\n  \\coordinate (C) at (3.7,1.05);\n  \\coordinate (D) at (0.7,1.05);\n  \\coordinate (Ap) at (0,2.1);\n  \\coordinate (Bp) at (3.0,2.1);\n  \\coordinate (Cp) at (3.7,3.15);\n  \\coordinate (Dp) at (0.7,3.15);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- (D) -- cycle;\n  \\draw[fill=gray,opacity=0.18] (Ap) -- (Bp) -- (Cp) -- (Dp) -- cycle;\n  \\draw[very thick] (A) -- (B);\n  \\draw[very thick] (B) -- (C);\n  \\draw[very thick] (C) -- (Cp);\n  \\draw[very thick] (D) -- (Dp);\n  \\draw[dashed] (A) -- (Ap);\n  \\draw[dashed] (A) -- (D);\n  \\draw[dashed] (D) -- (C);\n  \\draw (Ap) -- (Bp);\n  \\draw (Bp) -- (Cp);\n  \\draw (Cp) -- (Dp);\n  \\draw (Dp) -- (Ap);\n  \\draw[very thick,red] (A) -- (B);\n  \\draw[very thick,blue] (Dp) -- (Cp);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below] at (3.0,-0.05) {$B$};\n  \\node[right] at (3.7,1.1) {$C$};\n  \\node[left] at (0.6,1.1) {$D$};\n  \\node[left] at (0.6,3.2) {$D'$};\n  \\node[right] at (3.75,3.2) {$C'$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3,0);\n  \\coordinate (C) at (3.7,1.05);\n  \\coordinate (D) at (0.7,1.05);\n  \\coordinate (Ap) at (0,2.3);\n  \\coordinate (Bp) at (3,2.3);\n  \\coordinate (Cp) at (3.7,3.35);\n  \\coordinate (Dp) at (0.7,3.35);\n  \\draw[very thick] (A) -- (B) -- (C) -- (Cp) -- (Dp) -- (Ap) -- (A);\n  \\draw[very thick] (Ap) -- (Bp) -- (Cp);\n  \\draw[very thick] (B) -- (Bp);\n  \\draw[dashed] (A) -- (D);\n  \\draw[dashed] (D) -- (C);\n  \\draw[dashed] (D) -- (Dp);\n  \\draw[very thick,red] (A) -- (B);\n  \\draw[very thick,blue] (C) -- (Cp);\n  \\draw[very thick,green!60!black] (Bp) -- (Cp);\n  \\node[below left] at (A) {$A$};\n  \\node[below] at (B) {$B$};\n  \\node[right] at (C) {$C$};\n  \\node[left] at (D) {$D$};\n  \\node[above left] at (Ap) {$A'$};\n  \\node[above] at (Bp) {$B'$};\n  \\node[above right] at (Cp) {$C'$};\n  \\node[above left] at (Dp) {$D'$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "9c52d6ae40fb3cbe.svg",
-    "w": 191.95,
-    "h": 159.5
+    "file": "a4a5cf36bae8deb8.svg",
+    "w": 192.64,
+    "h": 171.08
    },
    {
-    "i": 28,
-    "key": "508c7fc044589da579691737cc0f07a24798146fcd82ef9ea67ec34f62fea1c9",
+    "i": 33,
+    "key": "199ea9ef20eae882bf3beec71bb2c7969dce88a01294d15f4a4f3b1da44555aa",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (l1a) at (0,0);\n  \\coordinate (l1b) at (4.0,1.6);\n  \\draw[very thick] (l1a) -- (l1b);\n  \\coordinate (l2a) at (1.6,3.4);\n  \\coordinate (l2b) at (5.6,1.8);\n  \\draw[very thick] (l2a) -- (l2b);\n  \\coordinate (O) at (2.6,0.6);\n  \\coordinate (t1) at (4.2,1.24);\n  \\coordinate (t2) at (2.0,1.9);\n  \\draw[thick,red,->] (O) -- (t1);\n  \\draw[thick,blue,->] (O) -- (t2);\n  \\node[right] at (4.3,1.24) {$l_1'$};\n  \\node[above] at (1.9,1.95) {$l_2'$};\n  \\node[below] at (2.55,0.5) {$P$};\n  \\node[below left] at (-0.05,0) {$l_1$};\n  \\node[above left] at (1.55,3.45) {$l_2$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3,0);\n  \\coordinate (C) at (3.5,1);\n  \\coordinate (D) at (0.5,1);\n  \\coordinate (V) at (1.75,2.9);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- (D) -- cycle;\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\draw[very thick] (V) -- (D);\n  \\draw[very thick] (A) -- (B);\n  \\draw[very thick] (B) -- (C);\n  \\draw[dashed] (C) -- (D);\n  \\draw[dashed] (D) -- (A);\n  \\draw[dashed,green!60!black,very thick] (B) -- (D);\n  \\draw[very thick,red] (A) -- (B);\n  \\draw[very thick,blue] (V) -- (C);\n  \\node[below left] at (A) {$A$};\n  \\node[below] at (B) {$B$};\n  \\node[right] at (C) {$C$};\n  \\node[left] at (D) {$D$};\n  \\node[above] at (V) {$V$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "508c7fc044589da5.svg",
-    "w": 256.1,
-    "h": 177.86
+    "file": "199ea9ef20eae882.svg",
+    "w": 178.49,
+    "h": 151.18
    },
    {
-    "i": 29,
+    "i": 34,
+    "key": "665d82e80d46ed1266b48e0fa34f45f450702ae3e299ae4e3baf2b5198e7dd00",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (l1a) at (0,0);\n  \\coordinate (l1b) at (4,1.6);\n  \\coordinate (l2a) at (1.6,3.4);\n  \\coordinate (l2b) at (5.6,1.8);\n  \\coordinate (P) at (2.6,0.2);\n  \\coordinate (t1) at (4.1784,0.8314);\n  \\coordinate (t2) at (3.9463,-0.3385);\n  \\draw[very thick] (l1a) -- (l1b);\n  \\draw[very thick] (l2a) -- (l2b);\n  \\draw[thick,red,->] (P) -- (t1);\n  \\draw[thick,blue,->] (P) -- (t2);\n  \\draw[dashed] (2.6,1.04) -- (P);\n  \\draw[dashed] (3.165,2.775) -- (P);\n  \\fill (P) circle (1.3pt);\n  \\node[below] at (P) {$P$};\n  \\node[below left] at (l1a) {$l_1$};\n  \\node[above left] at (l2a) {$l_2$};\n  \\node[right] at (t1) {$l_1'$};\n  \\node[above right] at (t2) {$l_2'$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "665d82e80d46ed12.svg",
+    "w": 253.97,
+    "h": 175.75
+   },
+   {
+    "i": 35,
     "key": "7a8c8330769195cd5ac732efb081b7a478363d54deb4fa9afcd49b060ceeb7a2",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3.0,0);\n  \\coordinate (C) at (3.7,1.0);\n  \\coordinate (D) at (0.7,1.0);\n  \\coordinate (Ap) at (0,2.3);\n  \\coordinate (Bp) at (3.0,2.3);\n  \\coordinate (Cp) at (3.7,3.3);\n  \\coordinate (Dp) at (0.7,3.3);\n  \\draw[thick] (A) -- (B) -- (C) -- (Cp) -- (Dp) -- (Ap) -- (A);\n  \\draw[thick] (Ap) -- (Bp) -- (Cp);\n  \\draw[thick] (B) -- (Bp);\n  \\draw[dashed] (A) -- (D);\n  \\draw[dashed] (D) -- (C);\n  \\draw[dashed] (D) -- (Dp);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below] at (3.0,-0.05) {$B$};\n  \\node[right] at (3.75,0.95) {$C$};\n  \\node[left] at (0.62,1.02) {$D$};\n  \\node[above left] at (0,2.34) {$A'$};\n  \\node[above] at (3.0,2.34) {$B'$};\n  \\node[above right] at (3.75,3.34) {$C'$};\n  \\node[above left] at (0.62,3.34) {$D'$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3720,7 +4224,7 @@
     "h": 172.77
    },
    {
-    "i": 30,
+    "i": 36,
     "key": "0879dc63f03813b38f1e9eb67d12788feb161643c39f08c02947b1acd8f6b7d4",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[very thick] (0.2,0.4) -- (4.2,1.2);\n  \\draw[thick,dashed] (1.8,2.4) -- (2.123,0.785);\n  \\draw[thick] (1.8,2.4) -- (3.534,1.067);\n  \\draw (2.08,1.0) -- (2.296,1.044) -- (2.339,0.828);\n  \\fill (1.8,2.4) circle (1.3pt);\n  \\fill (2.123,0.785) circle (1.3pt);\n  \\fill (3.534,1.067) circle (1.3pt);\n  \\node[above] at (1.8,2.4) {$P$};\n  \\node[below left] at (2.123,0.785) {$H$};\n  \\node[below right] at (3.534,1.067) {$Q$};\n  \\node[right] at (4.35,1.25) {$m$};\n  \\node[left] at (1.66,1.6) {$PH$};\n  \\node[above right] at (2.9,1.9) {$PQ$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3730,17 +4234,19 @@
     "h": 99.66
    },
    {
-    "i": 31,
-    "key": "ba1628dca272fe410c0ef2fff4c1bc454b4809f5933c227902ed947d813c661c",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.3,0.8);\n  \\coordinate (a2) at (3.1,0.1);\n  \\coordinate (a3) at (4.1,1.3);\n  \\coordinate (a4) at (0.7,2.0);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (b1) at (0.5,2.6);\n  \\coordinate (b2) at (3.3,1.75);\n  \\coordinate (b3) at (3.9,3.15);\n  \\coordinate (b4) at (1.1,3.9);\n  \\draw[fill=gray,opacity=0.18] (b1) -- (b2) -- (b3) -- (b4) -- cycle;\n  \\draw[very thick] (0.9,1.0) -- (4.0,2.75);\n  \\node[above] at (2.4,2.78) {$\\Omega$};\n  \\node[above] at (0.9,1.0) {$l$};\n  \\node[below] at (0.2,0.75) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "i": 37,
+    "key": "5c750118b6597bfe47bda0f82b84d7b2e2d674ee4cc4312aca8461d29e3b4a20",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (p1) at (0,0.2);\n  \\coordinate (p2) at (3.2,0.2);\n  \\coordinate (p3) at (4,1.9);\n  \\coordinate (p4) at (0.8,1.9);\n  \\draw[fill=gray,opacity=0.18] (p1) -- (p2) -- (p3) -- (p4) -- cycle;\n  \\coordinate (o1) at (0,1.9);\n  \\coordinate (o2) at (3.2,1.9);\n  \\coordinate (o3) at (3.525,3.025);\n  \\coordinate (o4) at (0.325,3.025);\n  \\draw[fill=gray,opacity=0.18] (o1) -- (o2) -- (o3) -- (o4) -- cycle;\n  \\draw[very thick] (o1) -- (o2);\n  \\node[right] at (o2) {$l$};\n  \\node[right] at (3.9,1.05) {$\\Pi$};\n  \\node[above right] at (3.55,2.9) {$\\Omega$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "ba1628dca272fe41.svg",
-    "w": 188.21,
-    "h": 162.6
+    "file": "5c750118b6597bfe.svg",
+    "w": 181.41,
+    "h": 129.13
    },
    {
-    "i": 32,
+    "i": 38,
     "key": "a399aa83582c97dc3a6a56fa77bb12992ed605d83e0f35f785c13f11e136a963",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.3,0.6);\n  \\coordinate (a2) at (3.1,-0.1);\n  \\coordinate (a3) at (4.1,1.1);\n  \\coordinate (a4) at (0.7,1.8);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (b1) at (-0.3,2.4);\n  \\coordinate (b2) at (3.1,1.7);\n  \\coordinate (b3) at (4.1,2.9);\n  \\coordinate (b4) at (0.7,3.6);\n  \\draw[fill=gray,opacity=0.18] (b1) -- (b2) -- (b3) -- (b4) -- cycle;\n  \\node[below] at (0.2,0.55) {$\\Pi$};\n  \\node[above] at (0.2,3.62) {$\\Omega$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3750,17 +4256,17 @@
     "h": 172.67
    },
    {
-    "i": 33,
-    "key": "0a118c9a3e71a3857d3752fe71aae5236bc77a332b6aceb5fb46e7d2f4f3d507",
+    "i": 39,
+    "key": "30760cd0339abc385b671f7d8afa4d1f4c59f667ecee5d771ccf2a90ab381b89",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (m1) at (0.4,0.3);\n  \\coordinate (m2) at (4.4,1.5);\n  \\draw[very thick] (m1) -- (m2);\n  \\coordinate (a1) at (0.7,1.5);\n  \\coordinate (a2) at (0.3,2.9);\n  \\coordinate (a3) at (4.1,2.2);\n  \\draw[fill=gray,opacity=0.18] (m1) -- (a1) -- (a2) -- (a3) -- (m2) -- cycle;\n  \\coordinate (b1) at (1.0,-0.5);\n  \\coordinate (b2) at (4.6,0.0);\n  \\draw[fill=gray,opacity=0.18] (m1) -- (m2) -- (b2) -- (b1) -- cycle;\n  \\coordinate (M) at (2.2,0.86);\n  \\coordinate (A) at (1.5,2.1);\n  \\coordinate (B) at (3.1,0.2);\n  \\draw[very thick] (M) -- (A);\n  \\draw[very thick] (M) -- (B);\n  \\draw[thick] (1.929,1.339) arc[start angle=119.49, end angle=-36.2, radius=0.55];\n  \\node[above] at (1.35,2.15) {$A$};\n  \\node[below right] at (3.15,0.1) {$B$};\n  \\node[below left] at (2.1,0.85) {$M$};\n  \\node[above] at (2.55,3.05) {$\\Pi$};\n  \\node[below right] at (4.55,-0.1) {$\\Omega$};\n  \\node[above right] at (4.35,1.55) {$l$};\n  \\node[above] at (2.44,1.72) {$\\theta$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (u1) at (0.4,1);\n  \\coordinate (u2) at (3.4,1);\n  \\coordinate (u3) at (4.335,2.275);\n  \\coordinate (u4) at (1.335,2.275);\n  \\coordinate (d1) at (0.6,1);\n  \\coordinate (d2) at (4,1);\n  \\coordinate (d3) at (4.93,0.475);\n  \\coordinate (d4) at (1.53,0.475);\n  \\draw[fill=gray,opacity=0.18] (d1) -- (d2) -- (d3) -- (d4) -- cycle;\n  \\draw[fill=gray,opacity=0.18] (u1) -- (u2) -- (u3) -- (u4) -- cycle;\n  \\draw[very thick] (0.2,1.0) -- (4.8,1.0);\n  \\coordinate (M) at (2,1);\n  \\coordinate (A) at (2.887,2.2096);\n  \\coordinate (B) at (3.2192,0.3118);\n  \\draw[very thick] (M) -- (A);\n  \\draw[very thick] (M) -- (B);\n  % right-angle marker at M between MA and the edge l\n  \\coordinate (r1) at (2.1656,1.2258);\n  \\coordinate (r2) at (2.4456,1.2258);\n  \\coordinate (r3) at (2.28,1);\n  \\draw (r1) -- (r2) -- (r3);\n  % right-angle marker at M between MB and the edge l\n  \\coordinate (s1) at (2.2438,0.8624);\n  \\coordinate (s2) at (2.5238,0.8624);\n  \\coordinate (s3) at (2.28,1);\n  \\draw (s1) -- (s2) -- (s3);\n  \\coordinate (a0) at (2.3253,1.4435);\n  \\draw (a0) arc[start angle=53.75, end angle=-29.45, radius=0.55];\n  \\node at (2.8016,1.1726) {$\\theta$};\n  \\fill (M) circle (1.3pt);\n  \\node[above left] at (A) {$A$};\n  \\node[below right] at (B) {$B$};\n  \\node[below left] at (1.9,0.96) {$M$};\n  \\node[right] at (4.65,0.85) {$l$};\n  \\node[above] at (1.2,2.5) {$\\Pi$};\n  \\node[below] at (0.9,0.15) {$\\Omega$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "0a118c9a3e71a385.svg",
-    "w": 195.67,
-    "h": 165.41
+    "file": "30760cd0339abc38.svg",
+    "w": 202.7,
+    "h": 127.69
    },
    {
-    "i": 34,
+    "i": 40,
     "key": "d029ef4a050b74f4733355c792fbc74aa9a2be4af4f64834281418bba6c8a3e4",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (m0) at (0.3,0.4);\n  \\coordinate (m1) at (4.6,1.7);\n  \\draw[very thick] (m0) -- (m1);\n  \\coordinate (M) at (1.4,0.79);\n  \\coordinate (Mp) at (3.2,1.3);\n  \\coordinate (MAa) at (0.6,1.8);\n  \\coordinate (MAb) at (2.2,2.2);\n  \\coordinate (MBa) at (0.9,-0.2);\n  \\coordinate (MBb) at (2.5,0.15);\n  \\draw[thick] (M) -- (MAa);\n  \\draw[thick] (M) -- (MBa);\n  \\draw[thick] (Mp) -- (MAb);\n  \\draw[thick] (Mp) -- (MBb);\n  \\node[above] at (0.65,1.85) {$A$};\n  \\node[below] at (0.8,-0.3) {$B$};\n  \\node[above] at (2.3,2.25) {$A'$};\n  \\node[below] at (2.6,0.1) {$B'$};\n  \\node[below left] at (1.35,0.72) {$M$};\n  \\node[below left] at (3.1,1.22) {$M'$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3770,27 +4276,37 @@
     "h": 136.91
    },
    {
-    "i": 35,
-    "key": "8794d93ae1345e17d25743aa1be9f933c03f09587128e630c254090df91c41d1",
+    "i": 41,
+    "key": "54e9a1424b9697f438a6ed5f09d189d60bc858cebdaed23164a560999bd507c7",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (C) at (0,0);\n  \\coordinate (D) at (10,0);\n  \\coordinate (M0) at (5,0);\n  \\coordinate (M) at (5,12);\n  \\draw[very thick] (C) -- (M) -- (D);\n  \\draw[dashed,thick] (M) -- (M0);\n  \\draw[very thick] (C) -- (D);\n  \\coordinate (r1) at (5,0.6);\n  \\coordinate (r2) at (5.6,0);\n  \\coordinate (r3) at (5.6,0.6);\n  \\draw (r1) -- (r3);\n  \\draw (r2) -- (r3);\n  \\draw[thick] (4.487,10.59) arc[start angle=250, end angle=290, radius=1.5];\n  \\node[below left] at (0,0) {$C$};\n  \\node[below right] at (10,0) {$D$};\n  \\node[above] at (5,12.05) {$M$};\n  \\node[below right] at (5.05,0.02) {$M_0$};\n  \\node[left] at (2.2,6.6) {$MC = 13$};\n  \\node[right] at (7.6,6.0) {$MD = 13$};\n  \\node[right] at (5.08,6.0) {$MM_0 = 12$};\n  \\node[below] at (5,-0.45) {$CD = 10$};\n  \\node at (4.72,10.7) {$\\theta$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1]\n  \\coordinate (C) at (0,0);\n  \\coordinate (D) at (10,0);\n  \\coordinate (M0) at (5,0);\n  \\coordinate (M) at (5,12);\n  \\draw[very thick] (C) -- (M) -- (D);\n  \\draw[dashed,thick] (M) -- (M0);\n  \\draw[very thick] (C) -- (D);\n  \\coordinate (r1) at (5,0.6);\n  \\coordinate (r2) at (5.6,0);\n  \\coordinate (r3) at (5.6,0.6);\n  \\draw (r1) -- (r3);\n  \\draw (r2) -- (r3);\n  \\draw[thick] (4.487,10.59) arc[start angle=250, end angle=290, radius=1.5];\n  \\node[below left] at (0,0) {$C$};\n  \\node[below right] at (10,0) {$D$};\n  \\node[above] at (5,12.05) {$M$};\n  \\node[below right] at (5.05,0.02) {$M_0$};\n  \\node[left] at (2.2,6.6) {$MC = 13$};\n  \\node[right] at (7.6,6.0) {$MD = 13$};\n  \\node[right] at (5.08,6.0) {$MM_0 = 12$};\n  \\node[below] at (5,-0.45) {$CD = 10$};\n  \\node at (4.72,10.7) {$\\theta$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "8794d93ae1345e17.svg",
-    "w": 456.94,
-    "h": 560.89
+    "file": "54e9a1424b9697f4.svg",
+    "w": 314.68,
+    "h": 383.06
    },
    {
-    "i": 36,
-    "key": "565bdba59306bb5d9ae82d01dbe51c94d5aa771662e1c440f335b2ddcc88a05a",
+    "i": 42,
+    "key": "db12a3d9a2b9c28f5d70b969a1172c3f9f776c8e7a044be481ebd212184d3d82",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A1) at (-0.5,1.0);\n  \\coordinate (A2) at (3.4,0.25);\n  \\coordinate (A3) at (4.3,1.45);\n  \\coordinate (A4) at (0.4,2.2);\n  \\draw[fill=gray,opacity=0.18] (A1) -- (A2) -- (A3) -- (A4) -- cycle;\n  \\coordinate (A) at (1.0,1.05);\n  \\coordinate (O) at (3.0,1.32);\n  \\coordinate (Lp1) at (0.04,0.938);\n  \\coordinate (Lp2) at (3.97,1.45);\n  \\draw[thick] (Lp1) -- (Lp2);\n  \\coordinate (Lu1) at (0.82,2.39);\n  \\coordinate (Lu2) at (1.18,-0.29);\n  \\draw[very thick] (Lu2) -- (Lu1);\n  \\coordinate (P) at (3.0,3.5);\n  \\draw[very thick] (A) -- (P);\n  \\draw[dashed,very thick] (O) -- (P);\n  \\coordinate (q1) at (0.865,1.308);   % A + 0.26*u1 = (1.0-0.0348,1.05+0.2577)\n  \\coordinate (q2) at (0.920,1.343);   % q1 + 0.26*u2 = (0.865+0.2577,1.308+0.0348)\n  \\coordinate (q3) at (1.200,1.143);   % A + 0.26*u2\n  \\draw (q1) -- (q2) -- (q3);\n  \\node[above] at (3.0,3.54) {$P$};\n  \\node[above right] at (3.02,1.28) {$O$};\n  \\node[below left] at (0.98,1.0) {$A$};\n  \\node[left] at (0.72,2.42) {$L_1$};\n  \\node[above] at (2.05,1.4) {$L'$};\n  \\node[above right] at (1.7,2.6) {$L$};\n  \\node[below left] at (-0.4,0.92) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (7,0) -- (9.7,1.5) -- (2.7,1.5) -- cycle;\n  \\draw[gray!60] (0,0) -- (7,0);\n  \\draw[gray!60] (7,0) -- (8.44,0.8);\n  \\draw[gray!60,dashed] (8.44,0.8) -- (9.7,1.5);\n  \\draw[gray!60,dashed] (9.7,1.5) -- (2.7,1.5);\n  \\draw[gray!60,dashed] (2.7,1.5) -- (1.44,0.8);\n  \\draw[gray!60] (1.44,0.8) -- (0,0);\n  \\fill[orange,opacity=0.18] (1.44,0.8) -- (8.44,0.8) -- (9.61,2.95) -- (2.61,2.95) -- cycle;\n  \\draw[gray!60] (1.44,0.8) -- (2.61,2.95) -- (9.61,2.95) -- (8.44,0.8);\n  \\draw[blue!65!black,line width=1.1pt] (1.44,0.8) -- (8.44,0.8);\n  \\draw[blue!65!black,very thick] (3.84,0.8) -- (4.62,2.23);\n  \\draw[dashed] (3.84,0.8) -- (4.62,1.23);\n  \\draw[dashed] (4.62,2.23) -- (4.62,1.23);\n  \\draw (4.1,0.8) -- (4.22,1.03) -- (3.96,1.03);\n  \\draw (3.84,0.8) ++(29.1:0.55) arc[start angle=29.1, end angle=61.5, radius=0.55];\n  \\fill (3.84,0.8) circle (1.3pt);\n  \\fill (4.62,2.23) circle (1.3pt);\n  \\fill (4.62,1.23) circle (1.3pt);\n  \\node at (5.6,0.45) {$\\Pi$};\n  \\node at (5.8,1.75) {$\\Omega$};\n  \\node at (8.15,0.95) {$m$};\n  \\node at (3.84,0.6) {$Q$};\n  \\node at (4.4,2.42) {$R$};\n  \\node at (4.88,1.22) {$T$};\n  \\node at (4.47,1.29) {$\\theta$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "565bdba59306bb5d.svg",
-    "w": 215.18,
-    "h": 177.76
+    "file": "db12a3d9a2b9c28f.svg",
+    "w": 414.39,
+    "h": 126.3
    },
    {
-    "i": 37,
+    "i": 43,
+    "key": "d3f4c72675cd63b0dddaccf353a6ad7f1dbc5ce7547c7c4289a9b54d5b19a907",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (a1) at (-0.6,0.8);\n  \\coordinate (a2) at (2.8,0.8);\n  \\coordinate (a3) at (3.6,2.1);\n  \\coordinate (a4) at (0.2,2.1);\n  \\draw[fill=gray,opacity=0.18] (a1) -- (a2) -- (a3) -- (a4) -- cycle;\n  \\coordinate (A) at (1.3,1.45);\n  \\coordinate (Op) at (2.4,1.45);\n  \\coordinate (P) at (2.4,3.75);\n  \\coordinate (X) at (2.5931,1.8379);\n  \\coordinate (ao1) at (3.4,1.45);\n  \\coordinate (L1e) at (3.2157,2.0247);\n  \\draw[thick] (A) -- (L1e);\n  \\draw[thick] (A) -- (ao1);\n  \\draw[very thick] (A) -- (P);\n  \\draw[dashed,very thick] (Op) -- (P);\n  \\fill (A) circle (1.3pt);\n  \\fill (Op) circle (1.3pt);\n  \\fill (X) circle (1.3pt);\n  \\node[above] at (P) {$P$};\n  \\node[below right] at (Op) {$O$};\n  \\node[below left] at (A) {$A$};\n  \\node[above] at (X) {$X$};\n  \\node[right] at (L1e) {$L_1$};\n  \\node[right] at (ao1) {$AO$};\n  \\node[below right] at (3.5,0.72) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "d3f4c72675cd63b0.svg",
+    "w": 193.21,
+    "h": 156.74
+   },
+   {
+    "i": 44,
     "key": "6359efad7212442078389cf756708b7527ca2b76971051bd9d37074125a16c2b",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[very thick] (1.21,0.23) -- (5.61,0.23);\n  \\node at (3.41,0.52) {$l=l'$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3800,7 +4316,7 @@
     "h": 41.95
    },
    {
-    "i": 38,
+    "i": 45,
     "key": "26b0414af3309afd51303e680dba73fa2548ab8975f7c0bbd8914baa2dc41064",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[very thick] (3.05,0.25) -- (3.05,2.75);\n  \\draw (3.33,0.25) -- (3.33,0.53) -- (3.05,0.53);\n  \\fill (3.05,0.25) circle (1.3pt);\n  \\node at (3.05,2.95) {$l$};\n  \\node at (2.72,0.48) {$A=l'$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3810,7 +4326,7 @@
     "h": 132.91
    },
    {
-    "i": 39,
+    "i": 46,
     "key": "a5e3bd8d06b820c89efb330e7d7db7a59e55bbdf15d11d4496f852e9f73a9ee8",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[very thick] (1.76,0.2) -- (5.3,2.89);\n  \\draw[very thick] (0.7,0.12) -- (5.9,0.44);\n  \\fill (1.76,0.2) circle (1.3pt);\n  \\node at (5.52,3.02) {$l$};\n  \\node at (1.54,0.44) {$A$};\n  \\node at (6.15,0.6) {$l'$};\n  \\node at (7.35,0.9) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3820,7 +4336,7 @@
     "h": 135.9
    },
    {
-    "i": 40,
+    "i": 47,
     "key": "1519fc230e055289d4531356cfcc21c9b052e46dc71c95997682e7c0d593fcf7",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[very thick] (1.2,2.2) -- (6.4,2.2);\n  \\draw[very thick] (1.2,0.42) -- (6.4,0.42);\n  \\draw[dashed] (2.4,0.42) -- (2.4,2.2);\n  \\draw[dashed] (5.0,0.42) -- (5.0,2.2);\n  \\node at (6.6,2.2) {$l$};\n  \\node at (0.92,0.22) {$l'$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3830,7 +4346,7 @@
     "h": 100.9
    },
    {
-    "i": 41,
+    "i": 48,
     "key": "d747c1342bd0e22a78bc1cd058726654265e6d0d42035ba343d75bc43f9d0750",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[very thick] (1.76,0.2) -- (5.3,2.89);\n  \\draw[dashed] (4.92,2.6) -- (4.92,0.4);\n  \\draw (1.76,0.2) -- (4.92,0.4);\n  \\draw (4.661,0.384) -- (4.66,0.644) -- (4.92,0.65);\n  \\fill (1.76,0.2) circle (1.3pt);\n  \\fill (4.92,2.6) circle (1.3pt);\n  \\fill (4.92,0.4) circle (1.3pt);\n  \\node at (5.52,3.02) {$l$};\n  \\node at (4.68,2.8) {$B$};\n  \\node at (1.54,0.44) {$A$};\n  \\node at (5.15,0.24) {$O$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3840,37 +4356,37 @@
     "h": 135.9
    },
    {
-    "i": 42,
-    "key": "94f84ee6859f17bada2a872f951dd47f3f891caff5ae67b60e923b3dc83db1aa",
+    "i": 49,
+    "key": "9f5bb768d4474a8e08e34950835220ad7e94cf1a13b2b892b2bc244f37dc4814",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\\\fill[orange,opacity=0.14] (1.5,0.006) -- (5.15,2.775) -- (5.15,0.416) -- (1.5,0.184) -- cycle;\n  \\draw[gray!70] (1.5,0.006) -- (5.15,2.775);\n  \\draw[gray!70] (1.5,0.184) -- (5.15,0.416);\n  \\draw[very thick] (1.76,0.2) -- (5.3,2.89);\n  \\draw[dashed] (4.92,2.6) -- (4.92,0.4);\n  \\fill (1.76,0.2) circle (1.3pt);\n  \\fill (4.92,2.6) circle (1.3pt);\n  \\fill (4.92,0.4) circle (1.3pt);\n  \\node at (5.52,3.02) {$l$};\n  \\node at (4.72,2.82) {$B$};\n  \\node at (1.5,0.44) {$A$};\n  \\node at (5.15,0.22) {$O$};\n  \\node at (5.42,1.5) {$\\Omega$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\fill[orange,opacity=0.14] (1.5,0.006) -- (5.15,2.775) -- (5.15,0.416) -- (1.5,0.184) -- cycle;\n  \\draw[gray!70] (1.5,0.006) -- (5.15,2.775);\n  \\draw[gray!70] (1.5,0.184) -- (5.15,0.416);\n  \\draw[very thick] (1.76,0.2) -- (5.3,2.89);\n  \\draw[dashed] (4.92,2.6) -- (4.92,0.4);\n  \\fill (1.76,0.2) circle (1.3pt);\n  \\fill (4.92,2.6) circle (1.3pt);\n  \\fill (4.92,0.4) circle (1.3pt);\n  \\node at (5.52,3.02) {$l$};\n  \\node at (4.72,2.82) {$B$};\n  \\node at (1.5,0.44) {$A$};\n  \\node at (5.15,0.22) {$O$};\n  \\node at (5.42,1.5) {$\\Omega$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "94f84ee6859f17ba.svg",
+    "file": "9f5bb768d4474a8e.svg",
     "w": 320.97,
     "h": 135.9
    },
    {
-    "i": 43,
-    "key": "7abc4e96b051ad9d37075081a8be0c1e79c689bbf6c400b077a50ba370944266",
+    "i": 50,
+    "key": "ed70737d7027808c1ce52a51318fada21e3f46be5ffd4b054175f285b49eecc3",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\\\fill[orange,opacity=0.14] (1.5,0.006) -- (5.15,2.775) -- (5.15,0.416) -- (1.5,0.184) -- cycle;\n  \\draw[gray!70] (1.5,0.006) -- (5.15,2.775);\n  \\draw[gray!70] (1.5,0.184) -- (5.15,0.416);\n  \\draw[very thick] (1.76,0.2) -- (5.3,2.89);\n  \\draw[dashed] (4.92,2.6) -- (4.92,0.4);\n  \\draw[dashed] (3.5,1.526) -- (3.5,0.31);\n  \\fill (1.76,0.2) circle (1.3pt);\n  \\fill (4.92,2.6) circle (1.3pt);\n  \\fill (4.92,0.4) circle (1.3pt);\n  \\fill (3.5,1.526) circle (1.3pt);\n  \\fill (3.5,0.31) circle (1.3pt);\n  \\node at (5.52,3.02) {$l$};\n  \\node at (4.72,2.82) {$B$};\n  \\node at (1.48,0.46) {$A$};\n  \\node at (5.2,0.2) {$O$};\n  \\node at (3.62,1.74) {$P$};\n  \\node at (3.66,0.08) {$P'$};\n  \\node at (5.42,1.5) {$\\Omega$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\fill[orange,opacity=0.14] (1.5,0.006) -- (5.15,2.775) -- (5.15,0.416) -- (1.5,0.184) -- cycle;\n  \\draw[gray!70] (1.5,0.006) -- (5.15,2.775);\n  \\draw[gray!70] (1.5,0.184) -- (5.15,0.416);\n  \\draw[very thick] (1.76,0.2) -- (5.3,2.89);\n  \\draw[dashed] (4.92,2.6) -- (4.92,0.4);\n  \\draw[dashed] (3.5,1.526) -- (3.5,0.31);\n  \\fill (1.76,0.2) circle (1.3pt);\n  \\fill (4.92,2.6) circle (1.3pt);\n  \\fill (4.92,0.4) circle (1.3pt);\n  \\fill (3.5,1.526) circle (1.3pt);\n  \\fill (3.5,0.31) circle (1.3pt);\n  \\node at (5.52,3.02) {$l$};\n  \\node at (4.72,2.82) {$B$};\n  \\node at (1.48,0.46) {$A$};\n  \\node at (5.2,0.2) {$O$};\n  \\node at (3.62,1.74) {$P$};\n  \\node at (3.66,0.08) {$P'$};\n  \\node at (5.42,1.5) {$\\Omega$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "7abc4e96b051ad9d.svg",
+    "file": "ed70737d7027808c.svg",
     "w": 320.97,
     "h": 139.37
    },
    {
-    "i": 44,
-    "key": "030d08cb475e4c4c24e931d5f98bb0d796a5bc2b78072ceccb4137a0c5740ca4",
+    "i": 51,
+    "key": "b6088e2317b13c2908617add69277412cef140c292c056cbfb3347a2f2c2789b",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\\\fill[orange,opacity=0.14] (1.5,0.006) -- (5.15,2.775) -- (5.15,0.416) -- (1.5,0.184) -- cycle;\n  \\draw[gray!70] (1.5,0.006) -- (5.15,2.775);\n  \\draw[gray!70] (1.5,0.184) -- (5.15,0.416);\n  \\draw[very thick] (1.76,0.2) -- (5.3,2.89);\n  \\draw[dashed] (4.92,2.6) -- (4.92,0.4);\n  \\draw[very thick] (2.6,0.253) -- (2.6,0.838);\n  \\draw (2.6,0.53) -- (2.86,0.526) -- (2.86,0.273);\n  \\fill (1.76,0.2) circle (1.3pt);\n  \\fill (4.92,2.6) circle (1.3pt);\n  \\fill (4.92,0.4) circle (1.3pt);\n  \\fill (2.6,0.253) circle (1.3pt);\n  \\fill (2.6,0.838) circle (1.3pt);\n  \\node at (5.52,3.02) {$l$};\n  \\node at (4.72,2.82) {$B$};\n  \\node at (1.48,0.46) {$A$};\n  \\node at (5.2,0.2) {$O$};\n  \\node at (2.42,0.05) {$Q$};\n  \\node at (2.32,1.02) {$P$};\n  \\node at (5.42,1.5) {$\\Omega$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\fill[orange,opacity=0.14] (1.5,0.006) -- (5.15,2.775) -- (5.15,0.416) -- (1.5,0.184) -- cycle;\n  \\draw[gray!70] (1.5,0.006) -- (5.15,2.775);\n  \\draw[gray!70] (1.5,0.184) -- (5.15,0.416);\n  \\draw[very thick] (1.76,0.2) -- (5.3,2.89);\n  \\draw[dashed] (4.92,2.6) -- (4.92,0.4);\n  \\draw[very thick] (2.6,0.253) -- (2.6,0.838);\n  \\draw (2.6,0.53) -- (2.86,0.526) -- (2.86,0.273);\n  \\fill (1.76,0.2) circle (1.3pt);\n  \\fill (4.92,2.6) circle (1.3pt);\n  \\fill (4.92,0.4) circle (1.3pt);\n  \\fill (2.6,0.253) circle (1.3pt);\n  \\fill (2.6,0.838) circle (1.3pt);\n  \\node at (5.52,3.02) {$l$};\n  \\node at (4.72,2.82) {$B$};\n  \\node at (1.48,0.46) {$A$};\n  \\node at (5.2,0.2) {$O$};\n  \\node at (2.42,0.05) {$Q$};\n  \\node at (2.32,1.02) {$P$};\n  \\node at (5.42,1.5) {$\\Omega$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "030d08cb475e4c4c.svg",
+    "file": "b6088e2317b13c29.svg",
     "w": 320.97,
     "h": 141.28
    },
    {
-    "i": 45,
+    "i": 52,
     "key": "bea6c39f9235f46fdbe6788e4e8fd79291add226d25850d7ccdb0278990dfdac",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[very thick] (1.2,2.2) -- (6.4,2.2);\n  \\draw[dashed] (2.0,2.2) -- (2.0,0.42);\n  \\draw[dashed] (5.4,2.2) -- (5.4,0.42);\n  \\fill (2.0,2.2) circle (1.3pt);\n  \\fill (5.4,2.2) circle (1.3pt);\n  \\fill (2.0,0.42) circle (1.3pt);\n  \\fill (5.4,0.42) circle (1.3pt);\n  \\node at (6.6,2.2) {$l$};\n  \\node at (1.78,2.44) {$B_1$};\n  \\node at (5.5,2.44) {$B_2$};\n  \\node at (1.8,0.2) {$O_1$};\n  \\node at (5.5,0.2) {$O_2$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3880,17 +4396,17 @@
     "h": 111.84
    },
    {
-    "i": 46,
-    "key": "8a197d7d1f0d7a0bfc3ff964b83170d5259d7e45c6824e077632361d18ffc485",
+    "i": 53,
+    "key": "922a36547f02abed0da23e26b5f702f975d8c9b4cb6a41aec2ea982d0297e372",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\\\fill[orange,opacity=0.12] (1.2,0.42) -- (6.4,0.42) -- (6.4,2.2) -- (1.2,2.2) -- cycle;\n  \\draw[gray!70] (1.2,0.42) -- (1.2,2.2);\n  \\draw[gray!70] (6.4,0.42) -- (6.4,2.2);\n  \\draw[very thick] (1.2,2.2) -- (6.4,2.2);\n  \\draw[very thick] (1.2,0.42) -- (6.4,0.42);\n  \\fill (2.0,2.2) circle (1.3pt);\n  \\fill (5.4,2.2) circle (1.3pt);\n  \\fill (2.0,0.42) circle (1.3pt);\n  \\fill (5.4,0.42) circle (1.3pt);\n  \\node at (6.6,2.28) {$l$};\n  \\node at (1.78,2.44) {$B_1$};\n  \\node at (5.5,2.44) {$B_2$};\n  \\node at (1.8,0.18) {$O_1$};\n  \\node at (5.5,0.18) {$O_2$};\n  \\node at (0.95,0.6) {$n$};\n  \\node at (6.62,1.4) {$\\Omega$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue,opacity=0.18] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\draw[gray!60] (0,0) -- (6,0) -- (7.08,0.6) -- (1.08,0.6) -- cycle;\n  \\fill[orange,opacity=0.12] (1.2,0.42) -- (6.4,0.42) -- (6.4,2.2) -- (1.2,2.2) -- cycle;\n  \\draw[gray!70] (1.2,0.42) -- (1.2,2.2);\n  \\draw[gray!70] (6.4,0.42) -- (6.4,2.2);\n  \\draw[very thick] (1.2,2.2) -- (6.4,2.2);\n  \\draw[very thick] (1.2,0.42) -- (6.4,0.42);\n  \\fill (2.0,2.2) circle (1.3pt);\n  \\fill (5.4,2.2) circle (1.3pt);\n  \\fill (2.0,0.42) circle (1.3pt);\n  \\fill (5.4,0.42) circle (1.3pt);\n  \\node at (6.6,2.28) {$l$};\n  \\node at (1.78,2.44) {$B_1$};\n  \\node at (5.5,2.44) {$B_2$};\n  \\node at (1.8,0.18) {$O_1$};\n  \\node at (5.5,0.18) {$O_2$};\n  \\node at (0.95,0.6) {$n$};\n  \\node at (6.62,1.4) {$\\Omega$};\n  \\node at (7.35,0.82) {$\\Pi$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "8a197d7d1f0d7a0b.svg",
+    "file": "922a36547f02abed.svg",
     "w": 320.97,
     "h": 111.84
    },
    {
-    "i": 47,
+    "i": 54,
     "key": "9f48cafaf5eacec6eb388f2c3af1a61634e3b280c4c5b8e5f3e20fb319eb60b9",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (2.6,0);\n  \\coordinate (C) at (3.3,1.0);\n  \\coordinate (D) at (0.7,1.0);\n  \\coordinate (Ap) at (0,2.4);\n  \\coordinate (Bp) at (2.6,2.4);\n  \\coordinate (Cp) at (3.3,3.4);\n  \\coordinate (Dp) at (0.7,3.4);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- (D) -- cycle;\n  \\draw[fill=gray,opacity=0.18] (Ap) -- (Bp) -- (Cp) -- (Dp) -- cycle;\n  \\draw[thick] (A) -- (B) -- (C) -- (Cp) -- (Dp) -- (Ap) -- (A);\n  \\draw[thick] (Ap) -- (Bp) -- (Cp);\n  \\draw[thick] (B) -- (Bp);\n  \\draw[dashed] (A) -- (D);\n  \\draw[dashed] (D) -- (C);\n  \\draw[dashed] (D) -- (Dp);\n  \\draw[very thick,red] (A) -- (Cp);\n  \\draw[dashed,very thick] (A) -- (C);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below] at (2.6,-0.05) {$B$};\n  \\node[right] at (3.35,1.05) {$C$};\n  \\node[left] at (0.65,1.05) {$D$};\n  \\node[above] at (0,2.44) {$A'$};\n  \\node[above] at (2.6,2.44) {$B'$};\n  \\node[above right] at (3.35,3.42) {$C'$};\n  \\node[left] at (0.65,3.42) {$D'$};\n  \\node[below] at (1.5,0.7) {$AC$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3900,7 +4416,7 @@
     "h": 176.18
    },
    {
-    "i": 48,
+    "i": 55,
     "key": "8e0c37a30535ac218d06f323ea1e4c27329fc5630762f95229bb4fd27a64709b",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3.6,0);\n  \\coordinate (C) at (2.45,1.15);\n  \\coordinate (M) at (1.8,0);\n  \\coordinate (O) at (2.02,0.38);\n  \\coordinate (V) at (2.02,3.3);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\draw[dashed,very thick] (V) -- (M);\n  \\draw[thick] (C) -- (M);\n  \\draw[dashed,thick] (V) -- (O);\n  \\draw[dashed,thick] (O) -- (M);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below] at (3.6,-0.05) {$B$};\n  \\node[above right] at (2.52,1.2) {$C$};\n  \\node[above] at (2.02,3.34) {$V$};\n  \\node[below] at (1.8,0) {$M$};\n  \\node[right] at (2.06,0.42) {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3910,7 +4426,7 @@
     "h": 172.08
    },
    {
-    "i": 49,
+    "i": 56,
     "key": "739c612637ba55d4d82e3834404da693a5152e5eb11416877f7347085683570d",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (2.8,0);\n  \\coordinate (C) at (3.5,0.95);\n  \\coordinate (D) at (0.7,0.95);\n  \\coordinate (O) at (1.75,0.48);\n  \\coordinate (M) at (1.4,0);\n  \\coordinate (V) at (1.75,3.1);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- (D) -- cycle;\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\draw[very thick] (V) -- (D);\n  \\draw[dashed,very thick] (V) -- (O);\n  \\draw[dashed,very thick] (V) -- (M);\n  \\draw[dashed,thick] (O) -- (M);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below] at (2.8,-0.05) {$B$};\n  \\node[right] at (3.55,1.0) {$C$};\n  \\node[left] at (0.6,1.0) {$D$};\n  \\node[above] at (1.75,3.14) {$V$};\n  \\node[right] at (1.8,0.5) {$O$};\n  \\node[below] at (1.4,0) {$M$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3920,7 +4436,7 @@
     "h": 163.54
    },
    {
-    "i": 50,
+    "i": 57,
     "key": "babe36ceece72275a4b50cee98e9cc1178fcf721e1ae60fd582d928269d61174",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3.6,0);\n  \\coordinate (C) at (1.2,1.35);\n  \\coordinate (O) at (1.35,0.75);\n  \\coordinate (V) at (1.35,3.3);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[dashed,very thick] (V) -- (O);\n  \\draw[dashed,thick] (O) -- (A);\n  \\draw[dashed,thick] (O) -- (B);\n  \\draw[dashed,thick] (O) -- (C);\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below] at (3.6,-0.05) {$B$};\n  \\node[above right] at (1.25,1.3) {$C$};\n  \\node[above] at (1.35,3.34) {$V$};\n  \\node[below] at (1.3,0.68) {$O$};\n  \\node[right] at (1.6,2.0) {$VO \\perp \\Pi$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3930,7 +4446,7 @@
     "h": 172.08
    },
    {
-    "i": 51,
+    "i": 58,
     "key": "01676235a44e2ab00b535f4f03b829f3f7a9136e6131b9cbe8cf824103f4ae87",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3.6,0);\n  \\coordinate (C) at (1.2,1.35);\n  \\coordinate (O) at (1.35,0.75);\n  \\coordinate (V) at (1.35,3.3);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[dashed,very thick] (V) -- (O);\n  \\draw[dashed,thick] (O) -- (A);\n  \\draw[dashed,thick] (O) -- (B);\n  \\draw[dashed,thick] (O) -- (C);\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below] at (3.6,-0.05) {$B$};\n  \\node[above right] at (1.25,1.3) {$C$};\n  \\node[above] at (1.35,3.34) {$V$};\n  \\node[below right] at (1.42,0.7) {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3940,7 +4456,7 @@
     "h": 172.08
    },
    {
-    "i": 52,
+    "i": 59,
     "key": "b432d4ed978d9b394f5ea41411352f60b9e91d6ced4540c9dde733bbc03d4d72",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3.6,0);\n  \\coordinate (C) at (1.2,1.35);\n  \\coordinate (O) at (1.35,0.75);\n  \\coordinate (V) at (1.35,3.3);\n  \\fill[blue,opacity=0.14] (V) -- (O) -- (A) -- cycle;\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[very thick] (V) -- (O) -- (A) -- (V) -- cycle;\n  \\draw[thick] (V) -- (B);\n  \\draw[thick] (V) -- (C);\n  \\draw[dashed,thick] (O) -- (B);\n  \\draw[dashed,thick] (O) -- (C);\n  \\draw (1.35,0.99) -- (1.140,0.873) -- (1.140,0.633);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below] at (3.6,-0.05) {$B$};\n  \\node[above right] at (1.25,1.3) {$C$};\n  \\node[above] at (1.35,3.34) {$V$};\n  \\node[below right] at (1.42,0.72) {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3950,7 +4466,7 @@
     "h": 172.08
    },
    {
-    "i": 53,
+    "i": 60,
     "key": "495a2ede3cf30c97435bd3122bef3f0105ebc7f83012e1f0fdb784250cf58330",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.3,0.6);\n  \\coordinate (B) at (3.3,0);\n  \\coordinate (C) at (1.5,1.9);\n  \\coordinate (O) at (1.5,0.8);\n  \\coordinate (V) at (1.5,3.1);\n  \\coordinate (M1) at (1.415,0.377);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[dashed,very thick] (V) -- (O);\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\draw[dashed,thick] (V) -- (M1);\n  \\node[below left] at (0.3,0.6) {$A$};\n  \\node[below] at (3.3,-0.05) {$B$};\n  \\node[above] at (1.5,1.95) {$C$};\n  \\node[above] at (1.5,3.14) {$V$};\n  \\node[below left] at (1.46,0.76) {$O$};\n  \\node[below right] at (1.45,0.33) {$M_1$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3960,7 +4476,7 @@
     "h": 163.54
    },
    {
-    "i": 54,
+    "i": 61,
     "key": "fe19b3f4e03ce4ff16a11fe18b317e7dae31251d831e6875d49502bd57f68fac",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.3,0.6);\n  \\coordinate (B) at (3.3,0);\n  \\coordinate (C) at (1.5,1.9);\n  \\coordinate (O) at (1.5,0.8);\n  \\coordinate (V) at (1.5,3.1);\n  \\coordinate (M1) at (1.415,0.377);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[dashed,very thick] (V) -- (O);\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\draw[dashed,thick] (V) -- (M1);\n  \\draw[thick] (O) -- (M1);\n  \\draw (1.462,0.612) -- (1.228,0.659) -- (1.181,0.424);\n  \\node[below left] at (0.3,0.6) {$A$};\n  \\node[below] at (3.3,-0.05) {$B$};\n  \\node[above] at (1.5,1.95) {$C$};\n  \\node[above] at (1.5,3.14) {$V$};\n  \\node[above left] at (1.4,0.86) {$O$};\n  \\node[below right] at (1.45,0.33) {$M_1$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3970,7 +4486,7 @@
     "h": 163.54
    },
    {
-    "i": 55,
+    "i": 62,
     "key": "75d3520ed5b1544af23d4d3284927275ae308bccb90f12d47562b12258c75cd2",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.3,0.6);\n  \\coordinate (B) at (3.3,0);\n  \\coordinate (C) at (1.5,1.9);\n  \\coordinate (O) at (1.5,0.8);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\fill (1.5,0.8) circle (1.3pt);\n  \\draw[thick] (1.5,0.8) -- (1.415,0.377);\n  \\draw[thick] (1.5,0.8) -- (2.048,1.321);\n  \\draw[thick] (1.5,0.8) -- (0.952,1.306);\n  \\fill (1.415,0.377) circle (1.1pt);\n  \\fill (2.048,1.321) circle (1.1pt);\n  \\fill (0.952,1.306) circle (1.1pt);\n  \\node[below left] at (0.3,0.6) {$A$};\n  \\node[below] at (3.3,-0.05) {$B$};\n  \\node[above] at (1.5,1.95) {$C$};\n  \\node[above left] at (1.54,0.86) {$O$};\n  \\node[below right] at (1.45,0.33) {$M_1$};\n  \\node[right] at (2.12,1.36) {$M_2$};\n  \\node[above left] at (0.9,1.35) {$M_3$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3980,7 +4496,7 @@
     "h": 112.76
    },
    {
-    "i": 56,
+    "i": 63,
     "key": "e2c05dac6a71b599b3a6c00652313ec9b4a2d76e4e9fa30f3eda1c03625a8c64",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.3,0.6);\n  \\coordinate (B) at (3.3,0);\n  \\coordinate (C) at (1.5,1.9);\n  \\coordinate (O) at (1.5,0.8);\n  \\coordinate (V) at (1.5,3.1);\n  \\coordinate (M1) at (1.415,0.377);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[dashed,very thick] (V) -- (O);\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\draw[thick] (V) -- (M1) -- (O);\n  \\node[below left] at (0.3,0.6) {$A$};\n  \\node[below] at (3.3,-0.05) {$B$};\n  \\node[above] at (1.5,1.95) {$C$};\n  \\node[above] at (1.5,3.14) {$V$};\n  \\node[above left] at (1.44,0.78) {$O$};\n  \\node[below right] at (1.45,0.33) {$M_1$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3990,7 +4506,7 @@
     "h": 163.54
    },
    {
-    "i": 57,
+    "i": 64,
     "key": "c821b10070a5d58289c24cb5c8f873bbd918f905ac3b1e73a40dc9724024b4ef",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (M1) at (-1.4,0);\n  \\coordinate (O) at (0,0);\n  \\coordinate (V) at (0,2.6);\n  \\draw[very thick] (M1) -- (O) -- (V) -- (M1) -- cycle;\n  \\draw (-0.24,0) -- (-0.24,0.24) -- (0,0.24);\n  \\draw[thick] (-0.9,0) arc[start angle=0, end angle=61.7, radius=0.5];\n  \\node[below left] at (-1.4,0) {$M_1$};\n  \\node[below right] at (0.02,0) {$O$};\n  \\node[above] at (0,2.62) {$V$};\n  \\node[above right] at (-0.75,0.42) {$\\varphi$};\n  \\node at (0.14,1.3) {$VO$};\n  \\node[below] at (-0.7,-0.02) {$OM_1$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4000,7 +4516,7 @@
     "h": 141.57
    },
    {
-    "i": 58,
+    "i": 65,
     "key": "e05c2d46781f46bdb36fbb3f306902be12e9c63e33a7ef3235009e0dbb125db9",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.5,1.8);\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (3.2,0.4);\n  \\coordinate (O) at (0.59,1.09);\n  \\coordinate (V) at (0.59,3.3);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[dashed,very thick] (V) -- (O);\n  \\draw[red,very thick] (V) -- (A);\n  \\draw[blue,very thick] (B) -- (C);\n  \\draw[thick] (V) -- (B);\n  \\draw[thick] (V) -- (C);\n  \\node[above left] at (0.5,1.8) {$A$};\n  \\node[below left] at (0,0) {$B$};\n  \\node[below right] at (3.25,0.38) {$C$};\n  \\node[above] at (0.59,3.34) {$V$};\n  \\node[right] at (0.65,1.1) {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4010,7 +4526,7 @@
     "h": 169.95
    },
    {
-    "i": 59,
+    "i": 66,
     "key": "0cf1d53c97d8475b6237180135ad74df1ad77ce91361f0021d20e5890077f011",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.5,1.8);\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (3.2,0.4);\n  \\coordinate (O) at (0.59,1.09);\n  \\coordinate (D) at (0.71,0.09);\n  \\coordinate (V) at (0.59,3.2);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[dashed,very thick] (V) -- (O);\n  \\draw[thick] (V) -- (A);\n  \\draw[thick] (A) -- (D);\n  \\fill (0.59,1.09) circle (1.2pt);\n  \\draw (0.928,0.117) -- (0.901,0.335) -- (0.683,0.308);\n  \\node[left] at (0.44,1.85) {$A$};\n  \\node[below left] at (0,0) {$B$};\n  \\node[below right] at (3.25,0.38) {$C$};\n  \\node[above] at (0.59,3.24) {$V$};\n  \\node[above right] at (0.64,1.12) {$O$};\n  \\node[below] at (0.71,0.05) {$D$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4020,7 +4536,7 @@
     "h": 165.68
    },
    {
-    "i": 60,
+    "i": 67,
     "key": "16f3719359b647b6331dd870d0934919f5603c71d8e145de3ddef6d681b707bf",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.5,1.8);\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (3.2,0.4);\n  \\coordinate (O) at (0.59,1.09);\n  \\coordinate (D) at (0.71,0.09);\n  \\coordinate (F) at (0.87,1.61);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[thick] (A) -- (D);\n  \\draw[thick] (B) -- (F);\n  \\fill (0.59,1.09) circle (1.2pt);\n  \\node[above left] at (0.5,1.8) {$A$};\n  \\node[below left] at (0,0) {$B$};\n  \\node[below right] at (3.25,0.38) {$C$};\n  \\node[right] at (0.64,1.05) {$O$};\n  \\node[below] at (0.71,0.05) {$D$};\n  \\node[above right] at (0.9,1.65) {$F$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4030,7 +4546,7 @@
     "h": 104.22
    },
    {
-    "i": 61,
+    "i": 68,
     "key": "314a2fa6e851b89f6004ae74cc9a94d554b573366289954cb61813e98cd0047b",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.4,2);\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (3.4,0);\n  \\coordinate (O) at (1.267,0.667);\n  \\coordinate (V) at (1.267,3.2);\n  \\fill[gray,opacity=0.30] (A) -- (B) -- (O) -- cycle;\n  \\fill[gray,opacity=0.18] (B) -- (C) -- (O) -- cycle;\n  \\fill[gray,opacity=0.24] (C) -- (A) -- (O) -- cycle;\n  \\draw[thick] (A) -- (B) -- (C) -- cycle;\n  \\draw[dashed,very thick] (V) -- (O);\n  \\draw[thick] (V) -- (A);\n  \\draw[thick] (V) -- (B);\n  \\draw[thick] (V) -- (C);\n  \\node[above] at (0.4,2.02) {$A$};\n  \\node[below left] at (0,0) {$B$};\n  \\node[below right] at (3.45,-0.02) {$C$};\n  \\node[above] at (1.267,3.24) {$V$};\n  \\node[right] at (1.33,0.7) {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4040,7 +4556,7 @@
     "h": 166.53
    },
    {
-    "i": 62,
+    "i": 69,
     "key": "d1afc31c2d3e02e0e12ac2a05c2b0fde4272cc1e29d6abaa02379ec77aeba305",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.4,2);\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (3.4,0);\n  \\coordinate (D) at (1.7,0);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[thick] (A) -- (D);\n  \\draw[dashed,thick] (D) -- (0.065,0.326);\n  \\draw[dashed,thick] (C) -- (0.131,0.653);\n  \\node[above] at (0.4,2.02) {$A$};\n  \\node[below left] at (0,0) {$B$};\n  \\node[below right] at (3.45,-0.02) {$C$};\n  \\node[below] at (1.7,0) {$D$};\n  \\node[above right] at (0.86,0.22) {$d(D,AB)$};\n  \\node[above right] at (0.92,0.72) {$d(C,AB)$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4050,7 +4566,7 @@
     "h": 114.46
    },
    {
-    "i": 63,
+    "i": 70,
     "key": "d839eea240dd766255416a278bd88732c3c27c26ba9a96d7738505d93ad6b489",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.4,2);\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (3.4,0);\n  \\coordinate (O) at (1.267,0.667);\n  \\coordinate (D) at (1.7,0);\n  \\coordinate (E) at (1.9,1);\n  \\coordinate (F) at (0.2,1);\n  \\fill[gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[thick] (A) -- (D);\n  \\draw[thick] (B) -- (E);\n  \\draw[thick] (C) -- (F);\n  \\fill (1.267,0.667) circle (1.3pt);\n  \\node[above] at (0.4,2.02) {$A$};\n  \\node[below left] at (0,0) {$B$};\n  \\node[below right] at (3.45,-0.02) {$C$};\n  \\node[below] at (1.7,0) {$D$};\n  \\node[right] at (1.98,1.02) {$E$};\n  \\node[left] at (0.18,1.02) {$F$};\n  \\node[above right] at (1.32,0.7) {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4060,7 +4576,7 @@
     "h": 114.46
    },
    {
-    "i": 64,
+    "i": 71,
     "key": "3354c4eb92a6add29b519810af4aecde66daaa8ad5ec26ff53056c2d51b81e6d",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0.4,2);\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (3.4,0);\n  \\coordinate (O) at (1.267,0.667);\n  \\coordinate (D) at (1.7,0);\n  \\coordinate (F) at (0.2,1);\n  \\fill[gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[thick] (A) -- (D);\n  \\draw[thick] (C) -- (F);\n  \\fill (1.267,0.667) circle (1.3pt);\n  \\node[above] at (0.4,2.02) {$A$};\n  \\node[below left] at (0,0) {$B$};\n  \\node[below right] at (3.45,-0.02) {$C$};\n  \\node[below] at (1.7,0) {$D$};\n  \\node[above left] at (0.18,1.02) {$F$};\n  \\node[right] at (1.33,0.72) {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4070,7 +4586,7 @@
     "h": 114.46
    },
    {
-    "i": 65,
+    "i": 72,
     "key": "98edcaf75048336136f4b92dcc1b8e45372f35185a9f0545de5c7b35be12fefe",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3.2,0);\n  \\coordinate (C) at (1.6,1.1);\n  \\coordinate (O) at (1.6,0.37);\n  \\coordinate (V) at (1.6,3);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[dashed,very thick] (V) -- (O);\n  \\draw[very thick] (V) -- (A);\n  \\draw[very thick] (V) -- (B);\n  \\draw[very thick] (V) -- (C);\n  \\fill (1.6,0.37) circle (1.3pt);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below right] at (3.25,-0.02) {$B$};\n  \\node[above] at (1.6,1.14) {$C$};\n  \\node[above] at (1.6,3.04) {$V$};\n  \\node[below] at (1.6,0.33) {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4080,7 +4596,7 @@
     "h": 158
    },
    {
-    "i": 66,
+    "i": 73,
     "key": "ddca6907e7e077f24469e583dc7ea30edddbe6575d1e90046b3410d5473c228c",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (0,0);\n  \\coordinate (B) at (3.2,0);\n  \\coordinate (C) at (1.6,1.1);\n  \\coordinate (O) at (1.6,0.37);\n  \\coordinate (D) at (2.4,0.55);\n  \\coordinate (E) at (0.8,0.55);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[thick] (A) -- (D);\n  \\draw[thick] (B) -- (E);\n  \\draw[thick] (C) -- (1.6,0);\n  \\fill (1.6,0.37) circle (1.3pt);\n  \\node[below left] at (0,0) {$A$};\n  \\node[below right] at (3.25,-0.02) {$B$};\n  \\node[above] at (1.6,1.14) {$C$};\n  \\node[above right] at (1.64,0.4) {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4090,7 +4606,7 @@
     "h": 76.91
    },
    {
-    "i": 67,
+    "i": 74,
     "key": "5bad88f34325906f7060889256997e8f392f88e5f581b5161fd5c03e9736d4ab",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (3.0,2.2);\n  \\coordinate (B) at (0,0);\n  \\coordinate (C) at (4.0,0);\n  \\coordinate (O) at (2.0,1.1);\n  \\coordinate (V) at (2.0,4.3);\n  \\draw[fill=gray,opacity=0.18] (A) -- (B) -- (C) -- cycle;\n  \\draw[very thick] (V) -- (O);\n  \\draw[dashed,thick] (O) -- (A);\n  \\draw[dashed,thick] (O) -- (C);\n  \\draw[dashed,thick] (V) -- (A);\n  \\draw[dashed,thick] (V) -- (C);\n  \\draw (2,1.42) -- (2.215,1.657) -- (2.215,1.337);\n  \\node[above] at (3.0,2.24) {$A$};\n  \\node[below left] at (0,0) {$B$};\n  \\node[below right] at (4.0,-0.05) {$C$};\n  \\node[above right] at (2.02,1.12) {$O$};\n  \\node[above] at (2.0,4.34) {$V$};\n  \\node[right] at (2.6,3.2) {$VO = 12$};\n  \\node[below] at (2.0,0.85) {$OA = 5$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4100,7 +4616,7 @@
     "h": 214.76
    },
    {
-    "i": 68,
+    "i": 75,
     "key": "dd763b2651955706a160d178ed3419c6a832df00980555e4d060ac9b6b58d003",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue, opacity=0.18] (0.5,0.9) -- (5.2,0.9) -- (3.7,-0.7) -- (-1.0,-0.7) -- cycle;\n  \\fill[red, opacity=0.18] (0.5,0.9) -- (5.2,0.9) -- (5.75,2.65) -- (1.05,2.65) -- cycle;\n  \\draw[gray!60] (0.5,0.9) -- (5.2,0.9) -- (3.7,-0.7) -- (-1.0,-0.7) -- cycle;\n  \\draw[gray!60] (0.5,0.9) -- (5.2,0.9) -- (5.75,2.65) -- (1.05,2.65) -- cycle;\n  \\draw[very thick] (-0.3,0.9) -- (5.75,0.9);\n  \\draw[very thick] (1.6,0.9) -- (3.42,1.90) -- (4.1,0.9) -- cycle;\n  \\draw[dashed] (3.42,1.90) -- (3.42,0.28);\n  \\fill (3.42,0.28) circle (1.2pt) node[below] {$C'$};\n  \\fill (3.42,1.90) circle (1.2pt) node[above right] {$C$};\n  \\fill (1.6,0.9) circle (1.2pt) node[below left] {$A$};\n  \\fill (4.1,0.9) circle (1.2pt) node[below right] {$B$};\n  \\node[right] at (5.72,1.05) {$m$};\n  \\node at (-0.15,-0.35) {$\\Pi$};\n  \\node at (1.2,2.35) {$\\Omega$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4110,7 +4626,7 @@
     "h": 143.37
    },
    {
-    "i": 69,
+    "i": 76,
     "key": "286cc79dda468ba192ef5330d4f7c646a0bd0736da8bb45e5bdc1d889149e674",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[thick] (-1.0,0) -- (3.2,0);\n  \\draw[very thick] (0,0) -- (1.7207,2.4575);\n  \\draw[very thick] (0,0) -- (1.7207,0);\n  \\draw[dashed] (1.7207,2.4575) -- (1.7207,0);\n  \\draw (1.7207,0.17) -- (1.5407,0.17) -- (1.5407,0);\n  \\draw (0.7,0) arc (0:55:0.7);\n  \\node at (0.92,0.42) {$\\varphi$};\n  \\fill (0,0) circle (1.4pt) node[below left] {$D$};\n  \\fill (1.7207,2.4575) circle (1.2pt) node[above right] {$C$};\n  \\fill (1.7207,0) circle (1.2pt) node[below right] {$C'$};\n  \\node at (2.9,0.28) {$\\Pi$};\n  \\node at (1.02,1.75) {$\\Omega$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4120,7 +4636,7 @@
     "h": 132.97
    },
    {
-    "i": 70,
+    "i": 77,
     "key": "7b59ee0043406d640bf8d79484059060e1769c85192b3990bd6183fd15d24d36",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[blue, opacity=0.18] (0.5,0.9) -- (5.2,0.9) -- (3.7,-0.7) -- (-1.0,-0.7) -- cycle;\n  \\fill[red, opacity=0.18] (0.5,0.9) -- (5.2,0.9) -- (5.7,2.8) -- (1.0,2.8) -- cycle;\n  \\draw[gray!60] (0.5,0.9) -- (5.2,0.9) -- (3.7,-0.7) -- (-1.0,-0.7) -- cycle;\n  \\draw[gray!60] (0.5,0.9) -- (5.2,0.9) -- (5.7,2.8) -- (1.0,2.8) -- cycle;\n  \\draw[very thick] (-0.3,0.9) -- (5.75,0.9);\n  \\draw[very thick] (1.7,0.9) -- (3.25,2.75) -- (4.4,0.9) -- cycle;\n  \\draw[dashed] (3.25,2.75) -- (3.25,0.30);\n  \\draw[dashed] (1.7,0.9) -- (3.25,0.30) -- (4.4,0.9);\n  \\fill (1.7,0.9) circle (1.2pt) node[below left] {$A$};\n  \\fill (4.4,0.9) circle (1.2pt) node[below right] {$B$};\n  \\fill (3.25,2.75) circle (1.2pt) node[above right] {$C$};\n  \\fill (3.25,0.30) circle (1.2pt) node[below right] {$C'$};\n  \\node[above left] at (2.28,1.95) {$13$};\n  \\node[above right] at (4.05,1.95) {$15$};\n  \\node[below] at (2.1,0.62) {$14$};\n  \\node[right] at (5.72,1.05) {$m$};\n  \\node at (-0.15,-0.35) {$\\Pi$};\n  \\node at (1.2,2.5) {$\\Omega$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4130,7 +4646,7 @@
     "h": 161.14
    },
    {
-    "i": 71,
+    "i": 78,
     "key": "a4f07e8aefc782c230fcfee565dd66b52ea4980614e93dcd33f2495870173e22",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (Xp) at (2.6,0);\n  \\coordinate (Yp) at (3.0,1.15);\n  \\coordinate (Zp) at (0,2.5);\n  \\draw[very thick,->] (O) -- (Xp);\n  \\draw[very thick,->] (O) -- (Yp);\n  \\draw[very thick,->] (O) -- (Zp);\n  \\node[below] at (2.6,-0.05) {$x$};\n  \\node[right] at (3.05,1.2) {$y$};\n  \\node[left] at (-0.08,2.5) {$z$};\n  \\node[below left] at (-0.06,-0.06) {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -4138,6 +4654,26 @@
     "file": "a4f07e8aefc782c2.svg",
     "w": 159.63,
     "h": 128.44
+   },
+   {
+    "i": 79,
+    "key": "750046b8963dc37599fa1f8fec3d1d03576ae1fbd6206efab5173cad61b47bb4",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,0.6);\n  \\coordinate (A) at (3,1.5);\n  \\coordinate (B) at (1.5,3);\n  \\coordinate (S) at (3.5,3.9);\n  \\draw[very thick,->] (O) -- (A);\n  \\draw[very thick,->] (O) -- (B);\n  \\draw[dashed,->] (O) -- (S);\n  \\draw[dashed] (A) -- (S);\n  \\draw[dashed] (B) -- (S);\n  \\fill (O) circle (1.3pt);\n  \\coordinate (hs0) at (1.0615,0.829);\n  \\draw (hs0) arc[start angle=19.09, end angle=65.38, radius=0.7];\n  \\node at (1.28,1.15) {$\\theta$};\n  \\node[below] at (2.95,0.72) {$\\vec{a}$};\n  \\node[above left] at (1.3,2.62) {$\\vec{b}$};\n  \\node[below left] at (O) {$O$};\n  \\node[above right] at (S) {$\\vec{a}+\\vec{b}$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "750046b8963dc375.svg",
+    "w": 175.76,
+    "h": 172.04
+   },
+   {
+    "i": 80,
+    "key": "6c400f46db9f5600416479ceaa7433286bb386fde1a31b9c06c8728b3ebc850e",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.3,0.5);\n  \\coordinate (B) at (2.5,0.7);\n  \\coordinate (C) at (3.3,2.2);\n  \\coordinate (D) at (1.1,2);\n  \\coordinate (E) at (3.3,2.2);\n  \\coordinate (Mc) at (2.9,1.45);\n  \\coordinate (Ml) at (1.8,1.35);\n  \\draw[very thick,->] (O) -- (B);\n  \\draw[very thick,->] (B) -- (C);\n  \\draw[thick,dashed,->] (O) -- (D);\n  \\draw[thick,dashed,->] (D) -- (E);\n  \\draw[very thick,->] (O) -- (E);\n  \\fill (O) circle (1.3pt);\n  \\node[below left] at (O) {$O$};\n  \\node[below] at (B) {$\\vec{b}$};\n  \\node[right] at (Mc) {$\\vec{c}$};\n  \\node[below left] at (Ml) {$\\vec{b}+\\vec{c}$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "6c400f46db9f5600.svg",
+    "w": 143.42,
+    "h": 86.86
    }
   ],
   "hkdse-course/dse-课题讲义/chapter-33-离差的度量.html": [
@@ -4428,6 +4964,340 @@
     "file": "cb878bf40c102879.svg",
     "w": 256.47,
     "h": 106.27
+   }
+  ],
+  "hkdse-course/dse-课题讲义/chapter-34-排列与组合.html": [
+   {
+    "i": 0,
+    "key": "b9823067cc8a18d5e1150a4d1d5932137f993a8054fb97a18e75cf0520cd6a15",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\path (-3.85,-3.5) rectangle (3.85,1.72);\n  \\draw[rounded corners=8pt] (-3.6,-1.5) rectangle (3.6,1.5);\n  \\draw[rounded corners=4pt] (-3.2,-0.6) rectangle (-1.4,0.6);\n  \\draw[rounded corners=4pt] (-0.9,-0.6) rectangle (0.9,0.6);\n  \\draw[rounded corners=4pt] (1.4,-0.6) rectangle (3.2,0.6);\n  \\node at (-2.3,0.24) {$A_1$};\n  \\node at (-2.3,-0.26) {$n(A_1)$};\n  \\node at (0,0.24) {$A_2$};\n  \\node at (0,-0.26) {$n(A_2)$};\n  \\node at (2.3,0.24) {$A_3$};\n  \\node at (2.3,-0.26) {$n(A_3)$};\n  \\draw (-3.5,-1.55)\n    .. controls (-3.5,-1.95) and (-3.28,-2.08) .. (-2.85,-2.08)\n    -- (-0.5,-2.08)\n    .. controls (-0.18,-2.08) and (0,-2.18) .. (0,-2.42)\n    .. controls (0,-2.18) and (0.18,-2.08) .. (0.5,-2.08)\n    -- (2.85,-2.08)\n    .. controls (3.28,-2.08) and (3.5,-1.95) .. (3.5,-1.55);\n  \\node at (0,-2.95) {$\\sum\\limits_{i=1}^{3}n(A_i)$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "b9823067cc8a18d5.svg",
+    "w": 328.63,
+    "h": 222.79
+   },
+   {
+    "i": 1,
+    "key": "20cc025ffd2c5bcbc01632333d8a645e9f908b1529173de5928cb9f8c1d6b88e",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.2]\n  \\path (-0.4,-3.4) rectangle (6.45,2.35);\n  \\fill (0,0) circle (2.5pt);\n  \\node[above] at (0,0) {$S$};\n  \\foreach \\y/\\n in {1.8/a_1, 0/a_2, -1.8/a_3} {\n    \\fill (3,\\y) circle (2.5pt);\n    \\node[above] at (3,\\y) {$\\n$};\n    \\draw (0,0) -- (3,\\y);\n    \\foreach \\d in {0.6,-0.6} {\n      \\fill (6,\\y+\\d) circle (2pt);\n      \\draw (3,\\y) -- (6,\\y+\\d);\n    }\n  }\n  \\node at (4.7,-2.95) {$3\\times2=6$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "20cc025ffd2c5bcb.svg",
+    "w": 233.88,
+    "h": 200.43
+   },
+   {
+    "i": 2,
+    "key": "09b4504f509ec7bb1bc1bbe1b21e9a39a0857a92719933eb2869ab87e15616d2",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1]\n  \\path (-0.4,-3.8) rectangle (8.0,3.05);\n  \\fill (0,0) circle (2.5pt);\n  \\node[above] at (0,0) {$S$};\n  \\fill (2.8,1.5) circle (2.5pt);\n  \\node[above] at (2.8,1.5) {$a_1$};\n  \\fill (2.8,-1.5) circle (2.5pt);\n  \\node[above] at (2.8,-1.5) {$a_2$};\n  \\draw (0,0) -- (2.8,1.5);\n  \\draw (0,0) -- (2.8,-1.5);\n  \\foreach \\y/\\k/\\ya in {2.5/1/1.5, 1.5/2/1.5, 0.5/3/1.5, -0.5/1/-1.5, -1.5/2/-1.5, -2.5/3/-1.5} {\n    \\draw (2.8,\\ya) -- (5.2,\\y);\n    \\fill (5.2,\\y) circle (2.5pt);\n    \\node[above] at (5.2,\\y) {$b_\\k$};\n  }\n  \\foreach \\y in {2.5,1.5,0.5,-0.5,-1.5,-2.5} {\n    \\draw (5.2,\\y) -- (7.6,\\y+0.28);\n    \\draw (5.2,\\y) -- (7.6,\\y-0.28);\n    \\fill (7.6,\\y+0.28) circle (2pt);\n    \\fill (7.6,\\y-0.28) circle (2pt);\n  }\n  \\node at (5.9,-3.4) {$2\\times3\\times2=12$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "09b4504f509ec7bb.svg",
+    "w": 239,
+    "h": 194.9
+   },
+   {
+    "i": 3,
+    "key": "29d47d87b2eb6a2b3f09193c53c04a65664de255d12ab882fe64768b43757887",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\path (0.0,-3.85) rectangle (5.12,1.4);\n  \\draw (0.9,0.6) -- (4.9,0.6);\n  \\draw (0.9,-0.8) -- (4.9,-0.8);\n  \\draw (0.9,-2.2) -- (4.9,-2.2);\n  \\draw (0.9,-3.6) -- (4.9,-3.6);\n  \\draw (0.9,0.6) -- (0.9,-3.6);\n  \\draw (2.9,0.6) -- (2.9,-3.6);\n  \\draw (4.9,0.6) -- (4.9,-3.6);\n  \\node at (1.9,1.05) {$b_1$};\n  \\node at (3.9,1.05) {$b_2$};\n  \\node at (0.35,-0.1) {$a_1$};\n  \\node at (0.35,-1.5) {$a_2$};\n  \\node at (0.35,-2.9) {$a_3$};\n  \\node at (1.9,-0.1) {$(a_1,b_1)$};\n  \\node at (3.9,-0.1) {$(a_1,b_2)$};\n  \\node at (1.9,-1.5) {$(a_2,b_1)$};\n  \\node at (3.9,-1.5) {$(a_2,b_2)$};\n  \\node at (1.9,-2.9) {$(a_3,b_1)$};\n  \\node at (3.9,-2.9) {$(a_3,b_2)$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "29d47d87b2eb6a2b.svg",
+    "w": 218.52,
+    "h": 224.07
+   },
+   {
+    "i": 4,
+    "key": "84d99f4916546ae882c2f9430ab0ce940a22f78ff38a9009ecf0f81a59fe5e2b",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.2]\n  \\path (-4.3,-3.4) rectangle (5.55,2.45);\n  \\draw[dashed] (0.1,2.2) -- (0.1,-3.15);\n  \\draw (-3.2,1.95) rectangle (-1.8,1.05);\n  \\draw (-3.2,0.45) rectangle (-1.8,-0.45);\n  \\draw (-3.2,-1.05) rectangle (-1.8,-1.95);\n  \\node at (-2.5,1.5) {$A_1$};\n  \\node at (-2.5,0) {$A_2$};\n  \\node at (-2.5,-1.5) {$A_3$};\n  \\node at (-2.5,0.75) {$+$};\n  \\node at (-2.5,-0.75) {$+$};\n  \\node at (-2.5,-2.65) {$n(A_1)+n(A_2)+n(A_3)$};\n  \\draw (1.2,-0.45) rectangle (2.1,0.45);\n  \\draw (2.8,-0.45) rectangle (3.7,0.45);\n  \\draw (4.4,-0.45) rectangle (5.3,0.45);\n  \\node at (1.65,0) {$A_1$};\n  \\node at (3.25,0) {$A_2$};\n  \\node at (4.85,0) {$A_3$};\n  \\draw[->] (2.1,0) -- (2.8,0);\n  \\draw[->] (3.7,0) -- (4.4,0);\n  \\node at (3.25,-1.35) {$n(A_1)\\cdot n(A_2)\\cdot n(A_3)$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "84d99f4916546ae8.svg",
+    "w": 336.31,
+    "h": 199.74
+   },
+   {
+    "i": 5,
+    "key": "cea476cad67c895dd0d4b269ab14f5747a019b3d3e87775ad1bd6338effed702",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\path (-3.9,-0.7) rectangle (3.9,1.25);\n  \\foreach \\x/\\t/\\p in {-3.24/n/1, -1.62/n-1/2, 0/\\cdots/\\cdots, 1.62/2/n-1, 3.24/1/n} {\n    \\draw (\\x-0.55,-0.45) rectangle (\\x+0.55,0.45);\n    \\node at (\\x,0) {$\\t$};\n    \\node at (\\x,0.85) {$\\p$};\n  }\n  \\draw[->] (-2.69,0) -- (-2.17,0);\n  \\draw[->] (-1.07,0) -- (-0.55,0);\n  \\draw[->] (0.55,0) -- (1.07,0);\n  \\draw[->] (2.17,0) -- (2.69,0);\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "cea476cad67c895d.svg",
+    "w": 332.9,
+    "h": 83.22
+   },
+   {
+    "i": 6,
+    "key": "8ff076ced6be1e9e9000228d95840178f9dfba64d072312005823433043b0be0",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\path (-3.85,-0.7) rectangle (3.85,1.25);\n  \\foreach \\x/\\t/\\p in {-3/n/1, -1/n-1/2, 1/\\cdots/\\cdots, 3/n-r+1/r} {\n    \\draw (\\x-0.7,-0.45) rectangle (\\x+0.7,0.45);\n    \\node at (\\x,0) {$\\t$};\n    \\node at (\\x,0.85) {$\\p$};\n  }\n  \\draw[->] (-2.3,0) -- (-1.7,0);\n  \\draw[->] (-0.3,0) -- (0.3,0);\n  \\draw[->] (1.7,0) -- (2.3,0);\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "8ff076ced6be1e9e.svg",
+    "w": 328.63,
+    "h": 83.22
+   },
+   {
+    "i": 7,
+    "key": "c083f13ef7db25a0bfec6aef85ca166bfcb3cbd8ee12c3a27203625f84169ee4",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\path (-2.35,-1.85) rectangle (3.75,2.0);\n  \\draw (0,0) ellipse (2.1 and 1.55);\n  \\node at (0,1.8) {$X$};\n  \\fill (-1.45,0.6) circle (2.2pt);\n  \\fill (0.6,1.05) circle (2.2pt);\n  \\fill (1.4,-0.55) circle (2.2pt);\n  \\fill (-0.5,-1.05) circle (2.2pt);\n  \\draw[very thick] (-1.45,0.6) circle (0.28);\n  \\draw[very thick] (1.4,-0.55) circle (0.28);\n  \\node at (-1.45,0.05) {$x_1$};\n  \\node at (1.4,-0.03) {$x_3$};\n  \\node at (1.05,1.12) {$x_2$};\n  \\node at (-1.0,-1.14) {$x_4$};\n  \\node at (3.15,0.2) {$\\{x_1,x_3\\}$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "c083f13ef7db25a0.svg",
+    "w": 260.34,
+    "h": 164.31
+   },
+   {
+    "i": 8,
+    "key": "788625bd806f114305f0ab39b42773bcf8b4c40ed6b978bc0081b19f86414b23",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\path (-2.35,-1.85) rectangle (3.75,2.0);\n  \\draw (0,0) ellipse (2.1 and 1.55);\n  \\node at (0,1.8) {$X$};\n  \\fill (-1.45,0.6) circle (2.2pt);\n  \\fill (0.6,1.05) circle (2.2pt);\n  \\fill (1.4,-0.55) circle (2.2pt);\n  \\fill (-0.5,-1.05) circle (2.2pt);\n  \\node at (-1.45,0.05) {$x_1$};\n  \\node at (1.4,-0.03) {$x_3$};\n  \\node at (1.05,1.12) {$x_2$};\n  \\node at (-1.0,-1.14) {$x_4$};\n  \\draw[->, bend left=28] (-1.45,0.6) to (1.31,-0.51);\n  \\draw[->, bend left=28] (1.4,-0.55) to (-1.36,0.56);\n  \\node at (0,0.78) {$(x_1,x_3)$};\n  \\node at (0,-0.78) {$(x_3,x_1)$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "788625bd806f1143.svg",
+    "w": 260.34,
+    "h": 164.31
+   },
+   {
+    "i": 9,
+    "key": "27cdb0656016a2152da6af0fac9ed173390bdfa6f47b521c0b1bab2c9c25ecfb",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\path (-2.65,-1.85) rectangle (2.6,1.85);\n  \\node at (-2.2,1.5) {$\\{1\\}$};\n  \\node at (-2.2,0.5) {$\\{2\\}$};\n  \\node at (-2.2,-0.5) {$\\{3\\}$};\n  \\node at (-2.2,-1.5) {$\\{4\\}$};\n  \\node at (2.0,1.5) {$\\{2,3,4\\}$};\n  \\node at (2.0,0.5) {$\\{1,3,4\\}$};\n  \\node at (2.0,-0.5) {$\\{1,2,4\\}$};\n  \\node at (2.0,-1.5) {$\\{1,2,3\\}$};\n  \\draw (-1.93,1.5) -- (1.45,1.5);\n  \\draw (-1.93,0.5) -- (1.45,0.5);\n  \\draw (-1.93,-0.5) -- (1.45,-0.5);\n  \\draw (-1.93,-1.5) -- (1.45,-1.5);\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "27cdb0656016a215.svg",
+    "w": 224.07,
+    "h": 157.91
+   },
+   {
+    "i": 10,
+    "key": "d3a58badcd98cab3a34cd2f800bb10f1192fa55f35f1ba9630815fe2319a6d12",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n\\path[use as bounding box] (-5.60,0.05) rectangle (0.65,2.60);\n\\node at (-5.25,1.50) {$\\{$};\n\\node at (-5.00,1.50) {$0,$};\n\\node at (-4.65,1.50) {$1,$};\n\\node at (-4.30,1.50) {$2,$};\n\\node at (-3.95,1.50) {$3,$};\n\\node at (-3.60,1.50) {$4$};\n\\node at (-3.32,1.50) {$\\}$};\n\\draw[thick] (-5.10,1.40) -- (-4.93,1.60);\n\\draw (-2.95,1.10) rectangle (-2.05,1.90);\n\\draw (-1.75,1.10) rectangle (-0.85,1.90);\n\\draw (-0.55,1.10) rectangle (0.35,1.90);\n\\node at (-2.50,1.50) {$4$};\n\\node at (-1.30,1.50) {$4$};\n\\node at (-0.10,1.50) {$3$};\n\\node at (-2.50,2.20) {$1$};\n\\node at (-1.30,2.20) {$2$};\n\\node at (-0.10,2.20) {$3$};\n\\node at (-1.30,0.55) {$4\\times4\\times3=48$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "d3a58badcd98cab3.svg",
+    "w": 266.74,
+    "h": 108.83
+   },
+   {
+    "i": 11,
+    "key": "fd46a6f34944576a14310cb24b38d72181b00cfe850d11e799f019e575e195bc",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.2]\n\\path[use as bounding box] (-0.85,-3.88) rectangle (6.42,2.90);\n\\fill (-0.55,0) circle (0.06);\n\\draw[->] (-0.45,0.10) -- (0.47,2.15);\n\\draw[->] (-0.45,-0.10) -- (0.47,-2.15);\n\\node[anchor=west] at (0.55,2.20) {$u=0$};\n\\node[anchor=west] at (0.55,-2.20) {$u\\in\\{2,4\\}$};\n\\draw (1.80,2.20) circle (0.20);\n\\draw (2.34,-2.20) circle (0.20);\n\\node at (1.80,2.20) {$1$};\n\\node at (2.34,-2.20) {$2$};\n\\draw[->] (2.05,2.20) -- (3.15,2.20);\n\\draw[->] (2.59,-2.20) -- (3.15,-2.20);\n\\draw (3.20,1.80) rectangle (4.10,2.60);\n\\draw (3.20,-2.60) rectangle (4.10,-1.80);\n\\draw (4.45,1.80) rectangle (5.35,2.60);\n\\draw (4.45,-2.60) rectangle (5.35,-1.80);\n\\node at (3.65,2.20) {$4$};\n\\node at (3.65,-2.20) {$3$};\n\\node at (4.90,2.20) {$3$};\n\\node at (4.90,-2.20) {$3$};\n\\draw[->] (4.15,2.20) -- (4.40,2.20);\n\\draw[->] (4.15,-2.20) -- (4.40,-2.20);\n\\draw[->] (5.40,2.20) -- (5.75,2.20);\n\\draw[->] (5.40,-2.20) -- (5.75,-2.20);\n\\node at (5.95,2.20) {$12$};\n\\node at (5.95,-2.20) {$18$};\n\\node at (3.10,-3.40) {$12+18=30$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "fd46a6f34944576a.svg",
+    "w": 248.22,
+    "h": 231.49
+   },
+   {
+    "i": 12,
+    "key": "908e61852854e8abd390fc57a82324d38faca9790eaa292e3efb58de6a6df8d1",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.2]\n\\path[use as bounding box] (-0.20,-1.40) rectangle (6.15,3.30);\n\\foreach \\x in {0.50,1.35,2.20,3.05,3.90,4.75,5.60} \\draw (\\x-0.31,2.29) rectangle (\\x+0.31,2.91);\n\\draw[rounded corners=0.12, dashed] (0.86,2.12) rectangle (3.54,3.08);\n\\node at (2.20,1.70) {$3!$};\n\\draw[line width=1.6pt, rounded corners=0.06] (0.05,0.31) rectangle (1.05,1.19);\n\\fill (0.30,0.75) circle (0.055);\n\\fill (0.55,0.75) circle (0.055);\n\\fill (0.80,0.75) circle (0.055);\n\\foreach \\x in {1.95,2.80,3.65,4.50} \\draw (\\x-0.31,0.44) rectangle (\\x+0.31,1.06);\n\\node at (2.43,-0.05) {$5!$};\n\\node at (2.43,-0.95) {$5!\\times3!$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "908e61852854e8ab.svg",
+    "w": 216.81,
+    "h": 160.47
+   },
+   {
+    "i": 13,
+    "key": "2d3f03d4e3bbcd3c845c98742cc5c557ffc1d492e413151001d218ea03782f2e",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.2]\n\\path[use as bounding box] (-0.15,0.00) rectangle (7.28,3.25);\n\\foreach \\x in {1.20,2.80,4.40,6.00} \\draw (\\x-0.40,1.00) rectangle (\\x+0.40,1.80);\n\\foreach \\x/\\n in {0.40/1,2.00/2,3.60/3,5.20/4,6.80/5} {\n  \\draw (\\x,0.60) -- (\\x,0.95);\n  \\node at (\\x,0.35) {$\\n$};\n}\n\\foreach \\x in {0.40,3.60,6.80} \\draw[->] (\\x,1.02) -- (\\x,2.05);\n\\foreach \\x/\\b in {0.40/1,3.60/2,6.80/3} {\n  \\fill[gray, fill opacity=0.18] (\\x-0.16,2.12) -- (\\x+0.16,2.12) -- (\\x,2.45) -- cycle;\n  \\draw (\\x-0.16,2.12) -- (\\x+0.16,2.12) -- (\\x,2.45) -- cycle;\n  \\node at (\\x,2.85) {$B_\\b$};\n}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "2d3f03d4e3bbcd3c.svg",
+    "w": 253.68,
+    "h": 110.97
+   },
+   {
+    "i": 14,
+    "key": "2e28bc3f9a359bface7ec7c53618458ae2e4b2be758de0c647bbca95a4c7a7f1",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n\\path[use as bounding box] (-0.15,-1.05) rectangle (6.85,1.55);\n\\foreach \\x/\\g/\\p/\\q in {1.10/A/1/2,3.35/B/3/4,5.60/C/5/6} {\n  \\draw (\\x-1.00,-0.80) rectangle (\\x+1.00,0.80);\n  \\node at (\\x,1.12) {$\\g$};\n  \\fill (\\x-0.42,0.20) circle (0.09);\n  \\fill (\\x+0.42,0.20) circle (0.09);\n  \\node at (\\x-0.42,-0.32) {$\\p$};\n  \\node at (\\x+0.42,-0.32) {$\\q$};\n}\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "2e28bc3f9a359bfa.svg",
+    "w": 298.75,
+    "h": 110.97
+   },
+   {
+    "i": 15,
+    "key": "2645468ffe9fb18bb6e19ce941cc7b19bd8a4646c617d23952116a8573f0202f",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.2]\n\\path[use as bounding box] (0.00,-0.62) rectangle (6.20,2.50);\n\\foreach \\x in {1.10,3.10,5.10} {\n  \\draw (\\x-0.85,-0.40) rectangle (\\x+0.85,0.80);\n  \\fill (\\x-0.38,0.32) circle (0.08);\n  \\fill (\\x+0.38,0.32) circle (0.08);\n}\n\\draw[->, bend left=20] (0.35,1.02) to (5.85,1.02);\n\\node at (3.10,2.08) {$3!$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "2645468ffe9fb18b.svg",
+    "w": 211.69,
+    "h": 106.53
+   },
+   {
+    "i": 16,
+    "key": "160c276c47eaed8f47712d31e7e688d3821db93842fba55d9eb61d35b806e8e7",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n\\path[use as bounding box] (-0.20,-0.98) rectangle (5.20,3.20);\n\\draw (0,0) rectangle (5.00,3.00);\n\\node at (4.55,2.62) {$U$};\n\\fill[gray, fill opacity=0.18] (2.00,1.50) circle (1.00);\n\\draw (2.00,1.50) circle (1.00);\n\\node at (2.00,2.12) {$A$};\n\\node at (2.00,1.08) {$n(A)$};\n\\node at (3.88,1.50) {$n(U\\setminus A)$};\n\\node at (4.20,2.15) {$n(U)$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "160c276c47eaed8f.svg",
+    "w": 230.47,
+    "h": 178.4
+   },
+   {
+    "i": 17,
+    "key": "78524d0e03a50a98cf45bd49ae11ba5063c7bd78b81f6dd1c8e03a6ff74f04d2",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n\\path[use as bounding box] (-0.22,-0.28) rectangle (6.02,4.68);\n\\begin{scope}\n\\clip (2.30,1.75) circle (1.30);\n\\clip (3.50,1.75) circle (1.30);\n\\fill[gray, fill opacity=0.18] (0,0) rectangle (5.80,3.60);\n\\end{scope}\n\\draw (0,0) rectangle (5.80,3.60);\n\\draw (2.30,1.75) circle (1.30);\n\\draw (3.50,1.75) circle (1.30);\n\\node at (5.38,3.28) {$U$};\n\\node at (1.44,2.52) {$A$};\n\\node at (4.36,2.52) {$B$};\n\\node at (1.58,1.42) {$n(A\\setminus B)$};\n\\node at (2.90,1.78) {$n(A\\cap B)$};\n\\node at (4.22,1.42) {$n(B\\setminus A)$};\n\\node at (2.90,4.32) {$-n(A\\cap B)$};\n\\draw[->] (2.90,4.02) -- (2.90,3.15);\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "78524d0e03a50a98.svg",
+    "w": 266.32,
+    "h": 211.69
+   },
+   {
+    "i": 18,
+    "key": "d52a570edfc2047e3caabfae507e4f94b6895df7a042c52a81a2f4bea7c464a2",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1]\n\\path[use as bounding box] (0.10,0.36) rectangle (5.00,3.64);\n\\node at (0.80,2.70) {$(a+b)$};\n\\node at (0.80,2.00) {$(a+b)$};\n\\node at (0.80,1.30) {$(a+b)$};\n\\draw[->] (1.33,2.00) -- (2.00,2.00);\n\\draw (2.48,3.00) rectangle (3.42,3.40);\n\\node at (2.95,3.20) {$aaa$};\n\\draw (2.07,2.20) rectangle (4.43,2.60);\n\\node at (2.50,2.40) {$aab$};\n\\node at (3.25,2.40) {$aba$};\n\\node at (4.00,2.40) {$baa$};\n\\draw (2.07,1.40) rectangle (4.43,1.80);\n\\node at (2.50,1.60) {$abb$};\n\\node at (3.25,1.60) {$bab$};\n\\node at (4.00,1.60) {$bba$};\n\\draw (2.48,0.60) rectangle (3.42,1.00);\n\\node at (2.95,0.80) {$bbb$};\n\\node at (4.70,3.20) {$1$};\n\\node at (4.70,2.40) {$3$};\n\\node at (4.70,1.60) {$3$};\n\\node at (4.70,0.80) {$1$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "d52a570edfc2047e.svg",
+    "w": 139.42,
+    "h": 93.32
+   },
+   {
+    "i": 19,
+    "key": "1995d9431ebec8da6fae933491e32e09c0d4a4bd2c08fa8b312a179c69f7cdda",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.2]\n\\path[use as bounding box] (0.10,-1.24) rectangle (8.52,1.50);\n\\node at (1.00,0) {$(a+b)^3=$};\n\\foreach \\x in {3.00,4.60,6.20,7.80} \\draw (\\x-0.55,-0.40) rectangle (\\x+0.55,0.40);\n\\node at (3.00,0) {$a^3$};\n\\node at (4.60,0) {$a^2b$};\n\\node at (6.20,0) {$ab^2$};\n\\node at (7.80,0) {$b^3$};\n\\node at (3.80,0) {$+$};\n\\node at (5.40,0) {$+$};\n\\node at (7.00,0) {$+$};\n\\node at (3.00,0.98) {$C^3_0$};\n\\node at (4.60,0.98) {$C^3_1$};\n\\node at (6.20,0.98) {$C^3_2$};\n\\node at (7.80,0.98) {$C^3_3$};\n\\node at (3.00,-0.88) {$1$};\n\\node at (4.60,-0.88) {$3$};\n\\node at (6.20,-0.88) {$3$};\n\\node at (7.80,-0.88) {$1$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "1995d9431ebec8da.svg",
+    "w": 287.49,
+    "h": 93.55
+   },
+   {
+    "i": 20,
+    "key": "b83546be63b9b0734b971e5c775c6bd49d9e9307f58df1720097207eddaffa7a",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.2]\n\\path[use as bounding box] (-4.06,-4.42) rectangle (2.55,0.42);\n\\node at (0,0) {$1$};\n\\node at (-0.45,-0.80) {$1$};\n\\node at (0.45,-0.80) {$1$};\n\\node at (-0.90,-1.60) {$1$};\n\\node at (0,-1.60) {$2$};\n\\node at (0.90,-1.60) {$1$};\n\\node at (-1.35,-2.40) {$1$};\n\\node at (-0.45,-2.40) {$3$};\n\\node at (0.45,-2.40) {$3$};\n\\node at (1.35,-2.40) {$1$};\n\\node at (-1.80,-3.20) {$1$};\n\\node at (-0.90,-3.20) {$4$};\n\\node at (0,-3.20) {$6$};\n\\node at (0.90,-3.20) {$4$};\n\\node at (1.80,-3.20) {$1$};\n\\node at (-2.25,-4.00) {$1$};\n\\node at (-1.35,-4.00) {$5$};\n\\node at (-0.45,-4.00) {$10$};\n\\node at (0.45,-4.00) {$10$};\n\\node at (1.35,-4.00) {$5$};\n\\node at (2.25,-4.00) {$1$};\n\\node[anchor=east] at (-0.78,0) {$n=0$};\n\\node[anchor=east] at (-1.23,-0.80) {$n=1$};\n\\node[anchor=east] at (-1.68,-1.60) {$n=2$};\n\\node[anchor=east] at (-2.13,-2.40) {$n=3$};\n\\node[anchor=east] at (-2.58,-3.20) {$n=4$};\n\\node[anchor=east] at (-3.03,-4.00) {$n=5$};\n\\draw[->] (-0.88,-3.38) -- (-0.50,-3.82);\n\\draw[->] (-0.02,-3.38) -- (-0.40,-3.82);\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "b83546be63b9b073.svg",
+    "w": 225.69,
+    "h": 165.25
+   }
+  ],
+  "hkdse-course/dse-课题讲义/chapter-35-概率(ii).html": [
+   {
+    "i": 0,
+    "key": "17efe840d646f2b7b7364d8faf3135daa94ab754f9ecd5f8e8ae1ff7ea8c4a66",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[rounded corners=4pt] (-3.0,-1.8) rectangle (3.0,1.8);\n  \\node at (2.55,1.45) {$S$};\n  \\draw (-1.05,0) circle (1.2);\n  \\draw (1.05,0) circle (1.2);\n  \\node at (-1.6,0) {$A$};\n  \\node at (1.6,0) {$B$};\n  \\fill (0,-1.45) circle (2pt);\n  \\node[right] at (0.12,-1.45) {$\\omega$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "17efe840d646f2b7.svg",
+    "w": 256.47,
+    "h": 154.05
+   },
+   {
+    "i": 1,
+    "key": "43083ec02bc5d36b46fd8ec26ce14c248d9cdb51b59c474503fbe8948baf59d6",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\fill[gray,opacity=0.18,rounded corners=4pt] (-3.0,-1.8) rectangle (3.0,1.8);\n  \\fill[white] (-0.9,0) circle (1.5);\n  \\draw[rounded corners=4pt] (-3.0,-1.8) rectangle (3.0,1.8);\n  \\draw (-0.9,0) circle (1.5);\n  \\node at (-0.9,0) {$A$};\n  \\node at (2.55,1.45) {$S$};\n  \\node at (1.55,-1.0) {$A^c$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "43083ec02bc5d36b.svg",
+    "w": 256.47,
+    "h": 154.05
+   },
+   {
+    "i": 2,
+    "key": "8b8e77295dd7f22a3684eb9b4737f3c95ad0de755a0d6eba8c47ed85b12bf989",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[rounded corners=4pt] (-3.0,-1.8) rectangle (3.0,1.8);\n  \\node at (2.55,1.45) {$S$};\n  \\fill[gray,opacity=0.18] (-1.5,0) circle (1.15);\n  \\fill[gray,opacity=0.18] (1.5,0) circle (1.15);\n  \\draw (-1.5,0) circle (1.15);\n  \\draw (1.5,0) circle (1.15);\n  \\node at (-1.5,0) {$A$};\n  \\node at (1.5,0) {$B$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "8b8e77295dd7f22a.svg",
+    "w": 256.47,
+    "h": 154.05
+   },
+   {
+    "i": 3,
+    "key": "4a7193f17abfb73cb01721cc94b925a40c63cf906caa789c755b479d7edbda20",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[rounded corners=4pt] (-2.9,-2.4) rectangle (2.9,2.3);\n  \\node at (2.45,1.9) {$S$};\n  \\fill[gray,opacity=0.18] (0,0) circle (2.0);\n  \\fill[white] (0,0) circle (1.0);\n  \\draw (0,0) circle (2.0);\n  \\draw (0,0) circle (1.0);\n  \\node at (0,0) {$A$};\n  \\node at (0,1.5) {$B\\setminus A$};\n  \\node at (-1.5,-0.8) {$B$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "4a7193f17abfb73c.svg",
+    "w": 247.94,
+    "h": 200.99
+   },
+   {
+    "i": 4,
+    "key": "4b11ee5b1f4055199f13e542946ce3302b29fba1e803f7d4b5d2903f23232080",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[rounded corners=4pt] (-3.0,-2.1) rectangle (3.0,1.8);\n  \\node at (2.55,1.45) {$S$};\n  \\begin{scope}\n    \\clip (-1.05,0) circle (1.2);\n    \\fill[gray,opacity=0.18] (1.05,0) circle (1.2);\n  \\end{scope}\n  \\draw (-1.05,0) circle (1.2);\n  \\draw (1.05,0) circle (1.2);\n  \\node at (-1.45,0.85) {$A$};\n  \\node at (1.45,0.85) {$B$};\n  \\node at (-1.25,-0.5) {$A\\setminus B$};\n  \\node at (1.25,-0.5) {$B\\setminus A$};\n  \\draw (0,-0.58) -- (0,-1.35);\n  \\node at (0,-1.62) {$A\\cap B$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "4b11ee5b1f405519.svg",
+    "w": 256.47,
+    "h": 166.85
+   },
+   {
+    "i": 5,
+    "key": "935dced5ec7c2ff2c04da5e772fe7dd159c99ad018fd44dc554ccd2d12662eb9",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[rounded corners=4pt] (-2.5,-2.35) rectangle (2.5,2.35);\n  \\node at (2.05,1.95) {$S$};\n  \\begin{scope}\n    \\clip (0,0.9) circle (1.15);\n    \\clip (-0.85,-0.6) circle (1.15);\n    \\clip (0.85,-0.6) circle (1.15);\n    \\fill[gray,opacity=0.18] (-2,-2) rectangle (2,2);\n  \\end{scope}\n  \\draw (0,0.9) circle (1.15);\n  \\draw (-0.85,-0.6) circle (1.15);\n  \\draw (0.85,-0.6) circle (1.15);\n  \\node at (0,1.55) {$A$};\n  \\node at (-1.2,-1.0) {$B$};\n  \\node at (1.2,-1.0) {$C$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "935dced5ec7c2ff2.svg",
+    "w": 213.8,
+    "h": 200.99
+   },
+   {
+    "i": 6,
+    "key": "efeaf1811fb4b08ec391adc49238b6cc09713d3d02cb623a47c8753cdbc3bcd3",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[rounded corners=4pt] (-3.0,-1.8) rectangle (3.0,1.8);\n  \\node at (2.55,1.45) {$S$};\n  \\begin{scope}\n    \\clip (1.05,0) circle (1.2);\n    \\fill[gray,opacity=0.18] (-1.05,0) circle (1.2);\n  \\end{scope}\n  \\draw (-1.05,0) circle (1.2);\n  \\draw[very thick] (1.05,0) circle (1.2);\n  \\node at (-1.6,0) {$A$};\n  \\node at (1.6,0) {$B$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "efeaf1811fb4b08e.svg",
+    "w": 256.47,
+    "h": 154.05
+   },
+   {
+    "i": 7,
+    "key": "1823db873f1b5583f5970847c4c83d6cd4c2fdc88386232321f4107ff038db89",
+    "attrs": {
+     "data-tikz-libraries": "calc"
+    },
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (root) at (-3.4,0);\n  \\coordinate (p1) at (-1.5,1.2);\n  \\coordinate (p2) at (-1.5,-1.2);\n  \\coordinate (q1) at (1.4,1.9);\n  \\coordinate (q2) at (1.4,0.5);\n  \\coordinate (q3) at (1.4,-0.5);\n  \\coordinate (q4) at (1.4,-1.9);\n  \\draw (root) -- node[pos=0.35,above,sloped] {$P(A)$} node[pos=0.8,above,sloped] {$A$} (p1);\n  \\draw (root) -- node[pos=0.35,below,sloped] {$P(A^c\\,)$} node[pos=0.8,below,sloped] {$A^c$} (p2);\n  \\draw (p1) -- node[pos=0.25,above,sloped] {$B$} node[pos=0.7,above,sloped] {$P(B\\mid A)$} (q1);\n  \\draw (p1) -- node[pos=0.25,below,sloped] {$B^c$} node[pos=0.7,below,sloped] {$P(B^c\\mid A)$} (q2);\n  \\draw (p2) -- node[pos=0.25,above,sloped] {$B$} node[pos=0.7,above,sloped] {$P(B\\mid A^c)$} (q3);\n  \\draw (p2) -- node[pos=0.25,below,sloped] {$B^c$} node[pos=0.7,below,sloped] {$P(B^c\\mid A^c)$} (q4);\n  \\fill (root) circle (1.8pt);\n  \\fill (q1) circle (1.8pt);\n  \\fill (q2) circle (1.8pt);\n  \\fill (q3) circle (1.8pt);\n  \\fill (q4) circle (1.8pt);\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "1823db873f1b5583.svg",
+    "w": 210.28,
+    "h": 188.85
+   },
+   {
+    "i": 8,
+    "key": "df0ed7a944d3fc079f296e2b920355e11804a6bbf8cff611bc7219e6bdaf2b26",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[dashed, rounded corners=6pt] (0,0) rectangle (1.2,1.2);\n  \\draw[dashed, rounded corners=6pt] (1.6,0) rectangle (2.8,1.2);\n  \\draw[dashed, rounded corners=6pt] (3.2,0) rectangle (4.4,1.2);\n  \\fill (0.35,0.62) circle (0.06);\n  \\fill (0.85,0.62) circle (0.06);\n  \\node[below] at (0.35,0.50) {$1$};\n  \\node[below] at (0.85,0.50) {$2$};\n  \\fill (1.95,0.62) circle (0.06);\n  \\fill (2.45,0.62) circle (0.06);\n  \\node[below] at (1.95,0.50) {$3$};\n  \\node[below] at (2.45,0.50) {$4$};\n  \\fill (3.55,0.62) circle (0.06);\n  \\fill (4.05,0.62) circle (0.06);\n  \\node[below] at (3.55,0.50) {$5$};\n  \\node[below] at (4.05,0.50) {$6$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "df0ed7a944d3fc07.svg",
+    "w": 188.19,
+    "h": 51.61
+   },
+   {
+    "i": 9,
+    "key": "c7d86f70f112e0bd88b52ac005b84cbe49792775b9561afa2bf4f4d5e81325b3",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[->] (-0.6,0) -- (7.6,0);\n  \\foreach \\x/\\l in {0/0, 2/5, 6/15} {\n    \\draw (\\x,0.12) -- (\\x,-0.12);\n    \\node[below] at (\\x,-0.18) {$\\l$};\n  }\n  \\draw[line width=3pt] (0,-0.3) -- (2,-0.3);\n  \\node[above] at (1,0.2) {$E_1$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "c7d86f70f112e0bd.svg",
+    "w": 350.37,
+    "h": 44.73
+   },
+   {
+    "i": 10,
+    "key": "42d96785d254f0f4daddb66c3a1e972eeb3d4d2a13989047f6e32b530e4a3bb4",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw (0,0) rectangle (4,4);\n  \\fill[gray,opacity=0.18] (0,0) -- (1,0) -- (4,3) -- (4,4) -- (3,4) -- (0,1) -- cycle;\n  \\draw[dashed] (1,0) -- (4,3);\n  \\draw[dashed] (0,1) -- (3,4);\n  \\node[below right] at (1.9,0.9) {$y=x-15$};\n  \\node[above left] at (2.1,3.1) {$y=x+15$};\n  \\node[below] at (4,-0.12) {$60$};\n  \\node[left] at (-0.12,4) {$60$};\n  \\node[below] at (-0.12,-0.12) {$O$};\n  \\node at (2,2) {$E$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "42d96785d254f0f4.svg",
+    "w": 201.04,
+    "h": 196.09
    }
   ],
   "hkdse-course/dse-课题讲义/chapter-8-平面几何-(i).html": [

@@ -545,6 +545,7 @@
 | 不可能事件 | Impossible Event |
 | 随机事件 | Random Event |
 | 样本空间 | Sample Space |
+| 结果（样本点） | Outcome |
 | 可能结果 | Possible Outcome |
 | 合适结果 | Favourable Outcome |
 | 事件 | Event |
@@ -927,6 +928,13 @@
 | 圆形排列 | Circular Permutation |
 | 相同物件 | Identical Objects |
 | 相邻 | Adjacent |
+| 排列数 | Number of Permutations |
+| 组合数 | Number of Combinations |
+| 捆绑法 | Bundling Method |
+| 插空法 | Gap Method |
+| 平均分组 | Equal-size Grouping |
+| 补集计数 | Counting by Complement |
+| 帕斯卡恒等式 | Pascal's Identity |
 
 ---
 
@@ -945,10 +953,15 @@
 | 乘法定律 | Multiplication Law |
 | 互斥事件 | Mutually Exclusive Events |
 | 互补事件 | Complementary Events |
+| 补集公式 | Complement Formula |
 | 独立事件 | Independent Events |
 | 条件概率 | Conditional Probability |
 | 德摩根律 | De Morgan's Laws |
 | 贝叶斯定理 | Bayes' Theorem |
+| 概率函数 | Probability Function |
+| 概率公理 | Axioms of Probability |
+| 概率模型 | Probability Model |
+| 度量（长度或面积） | Measure |
 
 ---
 

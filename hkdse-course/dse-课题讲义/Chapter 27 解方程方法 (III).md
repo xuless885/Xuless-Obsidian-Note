@@ -128,7 +128,6 @@ title: 算法（取对数法） | Algorithm（Taking Logarithms）
 
 ```tikz
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.16}
 
 \begin{document}
 \begin{tikzpicture}

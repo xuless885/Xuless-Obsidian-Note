@@ -43,6 +43,8 @@ $$\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.$$
 
 然而，数轴上还有大量点不属于 $\mathbb{Q}$。例如，在 Ch01 中我们证明了 $\sqrt{2}$ 不是有理数。这类数即实数中对 $\mathbb{Q}$ 的「补充」。
 
+%%加一幅配图展示包含关系%%
+
 ````ad-def
 title: 定义（无理数） | Definition（Irrational Number）
 
@@ -442,7 +444,7 @@ title: 定义（复数） | Definition（Complex Number）
 $$z=a+bi$$
 的数称为**复数（Complex Number）**，其中 $a,b\in\mathbb{R}$。
 
-全体复数的集合记作 $\mathbb{C}$。
+全体复数的集合记作 $\mathbb{C}$%%写开 C 的描述%%。
 ````
 
 
@@ -466,7 +468,6 @@ title: 定义（实部与虚部） | Definition（Real Part and Imaginary Part�
 
 **注意：** 虚部是实数 $b$，而非 $bi$。
 ````
-
 
 > 当 $b=0$ 时，$z=a$ 为实数，因此 $\mathbb{R}\subset\mathbb{C}$。
 
@@ -503,6 +504,8 @@ $$z_1=z_2\quad\iff\quad a=c\ \text{且}\ b=d.$$
 特别地，$a+bi=0\iff a=0$ 且 $b=0$。
 ````
 
+同样地，复数同样需要像实数那样定义运算，对于复数，实部和虚部都是实数，对应定义的加法，非常自然地会联想到将对应的实部跟虚部分别相加：
+
 ````ad-def
 title: 定义（复数的加减法） | Definition（Addition and Subtraction）
 
@@ -514,6 +517,7 @@ $$z_1\pm z_2=(a\pm c)+(b\pm d)i.$$
 即实部与实部相加减，虚部与虚部相加减。
 ````
 
+对于乘法而言，可以笼统地将 $i$ 看成一个类似变量的对象，那么整个复数 $a+bi$ 的 “结构” 就会对应一个一元一次多项式 $a+bx$，基于此直觉可以自然地定义一个复数的乘法：
 
 ````ad-def
 title: 定义（复数的乘法） | Definition（Multiplication）
@@ -526,6 +530,7 @@ z_1z_2&=(a+bi)(c+di)\\
 \end{aligned}$$
 ````
 
+为了验证我们定义的加法跟乘法足够 “良好”，我们需要去检查它是否满足在实数中的加法跟乘法那样的性质，即交换率、结合率和分配率：
 
 ````ad-thm
 title: 定理（复数乘法的运算律） | Theorem（Laws of Complex Multiplication）
