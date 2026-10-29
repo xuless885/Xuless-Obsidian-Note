@@ -3215,6 +3215,226 @@
    },
    {
     "i": 3,
+    "key": "feef2de561f3f01133c9b6393f5f5ab7e2c31104ef28cedc3801da6878ed522f",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (1.2,-0.8);\n  \\coordinate (P) at (2.9,-0.8);\n  \\draw[gray!60,->] (-1.2,0) -- (3.6,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.8) -- (0,1.4) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.7);\n  \\draw[dashed] (O) -- (P);\n  \\fill (O) circle (1.2pt) node[above right] {$O(3,-2)$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[below] at (2.05,-0.8) {$r=5$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "feef2de561f3f011.svg",
+    "w": 217.64,
+    "h": 192.57
+   },
+   {
+    "i": 4,
+    "key": "26c1e2884159031214b8f3403d09cc64746a45a5131201119c60362c58b8e5b6",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.8,-0.4);\n  \\coordinate (P) at (1.931,-0.4);\n  \\draw[gray!60,->] (-1.4,0) -- (2.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,1.4) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.131);\n  \\draw[dashed] (O) -- (P);\n  \\fill (O) circle (1.2pt) node[below left] {$O(2,-1)$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[above] at (1.37,-0.4) {$r=2\\sqrt{2}$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "26c1e28841590312.svg",
+    "w": 192.03,
+    "h": 158.42
+   },
+   {
+    "i": 5,
+    "key": "c5126489bd92df3d5b9dd5adaf9605ea0746099f5c9f8b15a621c4102cd66b47",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\coordinate (A) at (1.6,0.8);\n  \\coordinate (B) at (2.4,-0.8);\n  \\coordinate (C) at (0.4,1.2);\n  \\draw[gray!60,->] (-2.2,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.2) -- (0,1.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\draw[gray!70] (A) -- (B) -- (C) -- cycle;\n  \\fill (O) circle (1.2pt) node[below right] {$O(1,-2)$};\n  \\fill (A) circle (1.3pt) node[above right] {$A$};\n  \\fill (B) circle (1.3pt) node[below right] {$B$};\n  \\fill (C) circle (1.3pt) node[above left] {$C$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "c5126489bd92df3d.svg",
+    "w": 234.71,
+    "h": 226.71
+   },
+   {
+    "i": 6,
+    "key": "dd785c4e0741d75aa8379b680aae2eefef596a313f2d1d40a147a1ab9e74a068",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\coordinate (A) at (1.6,0.8);\n  \\coordinate (B) at (2.4,-0.8);\n  \\coordinate (C) at (0.4,1.2);\n  \\draw[gray!60,->] (-2.2,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.0) -- (0,1.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\draw[gray!70,dashed] (-1.0,-1.5) -- (2.8,0.4);\n  \\draw[gray!70,dashed] (-0.6,-1.8) -- (2.4,1.2);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\fill (A) circle (1.3pt) node[above right] {$A$};\n  \\fill (B) circle (1.3pt) node[below right] {$B$};\n  \\fill (C) circle (1.3pt) node[above left] {$C$};\n  \\node[below right] at (2.5,0.25) {$\\ell_1$};\n  \\node[above left] at (2.2,1.0) {$\\ell_2$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "dd785c4e0741d75a.svg",
+    "w": 234.71,
+    "h": 218.18
+   },
+   {
+    "i": 7,
+    "key": "a942c6f7e6c62058cd87367cd5a6ad578a1a85fddb3fa86e5d366a453c236e08",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.6,-0.2);\n  \\coordinate (T) at (1.5,-1.4);\n  \\draw[gray!60,->] (-1.8,0) -- (3.2,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.8) -- (0,1.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[black!70,very thick] (-0.26,-2.72) -- (2.94,-0.32);\n  \\draw[dashed] (O) -- (T);\n  \\draw[gray!70] (1.41,-1.28) -- (1.53,-1.19) -- (1.64,-1.31);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (T) circle (1.3pt) node[below right] {$T$};\n  \\node[left] at (0.98,-0.86) {$r=4$};\n  \\node[above left] at (2.2,-0.86) {$\\ell$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "a942c6f7e6c62058.svg",
+    "w": 226.18,
+    "h": 201.1
+   },
+   {
+    "i": 8,
+    "key": "9bb362ef3eef661ac1cc455b59b341691545652cb414da7968fe486754955acb",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (P1) at (0.55,-0.45);\n  \\coordinate (P2) at (-1.386,0.8);\n  \\coordinate (P3) at (2.25,0.85);\n  \\draw[gray!60,->] (-2.9,0) -- (2.9,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.1) -- (0,2.1) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.6);\n  \\draw[gray!70,dashed] (O) -- (P1) (O) -- (P2) (O) -- (P3);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P1) circle (1.3pt) node[below left] {$P_1$};\n  \\fill (P2) circle (1.3pt) node[above left] {$P_2$};\n  \\fill (P3) circle (1.3pt) node[above right] {$P_3$};\n  \\node[blue!65!black] at (1.05,-0.95) {$f<0$};\n  \\node[blue!65!black] at (-2.15,0.35) {$f=0$};\n  \\node[blue!65!black] at (2.35,0.3) {$f>0$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "9bb362ef3eef661a.svg",
+    "w": 260.32,
+    "h": 192.57
+   },
+   {
+    "i": 9,
+    "key": "58ea3891e0cb567eb4a7544f25da8e835ff9aaa67f79cf1d2ad0b9efa5f5cd80",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (P1) at (0.55,0.35);\n  \\coordinate (P2) at (-1.299,-0.75);\n  \\coordinate (P3) at (1.9,1.3);\n  \\draw[gray!60,->] (-2.4,0) -- (2.4,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.2) -- (0,2.2) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[gray!70,dashed] (O) -- (P2);\n  \\fill (P1) circle (1.3pt) node[above right] {$P_1$};\n  \\fill (P2) circle (1.3pt) node[below left] {$P_2$};\n  \\fill (P3) circle (1.3pt) node[above left] {$P_3$};\n  \\fill (O) circle (1.2pt) node[above left] {$O$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "58ea3891e0cb567e.svg",
+    "w": 217.64,
+    "h": 201.1
+   },
+   {
+    "i": 10,
+    "key": "5e4f84e9aa2c8337a2da057b46db725514c8e91bc08b2d6a7f9872f93aab3a51",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.8,-1.2);\n  \\coordinate (P1) at (0.8,0.4);\n  \\coordinate (P2) at (2.0,0.4);\n  \\coordinate (P3) at (-1.6,-1.2);\n  \\draw[gray!60,->] (-2.6,0) -- (3.2,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.6) -- (0,1.2) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\draw[gray!70,dashed] (O) -- (P1) (O) -- (P2) (O) -- (P3);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\fill (P1) circle (1.3pt) node[above right] {$P_1$};\n  \\fill (P2) circle (1.3pt) node[above right] {$P_2$};\n  \\fill (P3) circle (1.3pt) node[below left] {$P_3$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "5e4f84e9aa2c8337.svg",
+    "w": 260.32,
+    "h": 218.18
+   },
+   {
+    "i": 11,
+    "key": "267717afced2d90907ae9a4143a7d5caa47afae1a3a6317c1d1f8553c6fbf36b",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (1.132,0.640);\n  \\coordinate (B) at (-1.267,-0.293);\n  \\draw[blue!65!black,very thick] (0,0) circle (1.3);\n  \\draw[black!70,thick] (-1.9,-0.54) -- (1.9,0.94);\n  \\fill (A) circle (1.4pt) node[below right] {$A$};\n  \\fill (B) circle (1.4pt) node[below right] {$B$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "267717afced2d909.svg",
+    "w": 162.98,
+    "h": 112.17
+   },
+   {
+    "i": 12,
+    "key": "211143f9d11a139346b14110159245c9207b57670536cd0367a1be9603d3b592",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (T) at (0.78,1.04);\n  \\draw[blue!65!black,very thick] (0,0) circle (1.3);\n  \\draw[black!70,thick] (-0.82,2.24) -- (2.38,-0.16);\n  \\draw[gray!70,dashed] (0,0) -- (T);\n  \\fill (0,0) circle (1.2pt) node[below left] {$O$};\n  \\draw[gray!70] (0.69,0.92) -- (0.81,0.83) -- (0.90,0.95);\n  \\fill (T) circle (1.4pt) node[above right] {$T$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "211143f9d11a1393.svg",
+    "w": 158.06,
+    "h": 152.08
+   },
+   {
+    "i": 13,
+    "key": "29729c63acb27bab07d739eb57eaacecb772332859aec6c7a5c1f74b24c657da",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[blue!65!black,very thick] (0,0) circle (1.3);\n  \\draw[black!70,thick] (-1.9,0.3) -- (0.5,2.7);\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "29729c63acb27bab.svg",
+    "w": 137.57,
+    "h": 171.72
+   },
+   {
+    "i": 14,
+    "key": "adfc20406ae033eb69be9d8ccc22e4ec02843a09ce2facbad6bf8f454d3e29fb",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\draw[gray!60,->] (-2.8,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.2) -- (0,2.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\draw[black!70,thick] (-1.4,1.8) -- (2.8,0.4);\n  \\coordinate (A) at (0.4,1.2);\n  \\coordinate (B) at (1.6,0.8);\n  \\fill (A) circle (1.3pt) node[above right] {$A$};\n  \\fill (B) circle (1.3pt) node[below left] {$B$};\n  \\node[above right] at (-1.0,1.667) {$L_1$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "adfc20406ae033eb.svg",
+    "w": 260.32,
+    "h": 269.39
+   },
+   {
+    "i": 15,
+    "key": "441b6f90d61e8eb2a6212f04e0acf425aae541d1ab582877abfb408cd637b6d0",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\draw[gray!60,->] (-2.8,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.2) -- (0,2.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\draw[black!70,thick] (2.4,-2.9) -- (2.4,1.3);\n  \\coordinate (T) at (2.4,-0.8);\n  \\draw[gray!70,dashed] (O) -- (T);\n  \\draw[gray!70] (2.25,-0.8) -- (2.25,-0.65) -- (2.4,-0.65);\n  \\fill (T) circle (1.3pt) node[below right] {$T$};\n  \\node[above right] at (2.4,1.1) {$L_2$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "441b6f90d61e8eb2.svg",
+    "w": 260.32,
+    "h": 269.39
+   },
+   {
+    "i": 16,
+    "key": "3cc85170f68933f35ba60619be905a296ee96f526c05632c208e30f1bf603272",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\draw[gray!60,->] (-2.8,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.2) -- (0,2.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\draw[black!70,thick] (-2.4,0.8) -- (-0.8,2.4);\n  \\node[above left] at (-1.6,1.6) {$L_3$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "3cc85170f68933f3.svg",
+    "w": 260.32,
+    "h": 269.39
+   },
+   {
+    "i": 17,
+    "key": "21eb78c2e7c641cbd0d51cc9671a8583ca110746cad0f3af679496eb16aa1255",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.5,-0.3);\n  \\coordinate (P) at (1.464,0.849);\n  \\draw[gray!60,->] (-1.4,0) -- (3.2,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,2.4) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[black!70,very thick] (0.085,2.006) -- (2.843,-0.308);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (1.368,0.734) -- (1.482,0.638) -- (1.579,0.753);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[above right] at (0.238,1.878) {$L$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "21eb78c2e7c641cb.svg",
+    "w": 209.1,
+    "h": 201.1
+   },
+   {
+    "i": 18,
+    "key": "e613b80fe0f7b82950c3d09cb23e3daa5e5e845a54996654446ac13bd89422ea",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.2);\n  \\coordinate (P) at (1.472,0.7);\n  \\draw[gray!60,->] (-1.6,0) -- (2.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,2.2) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.4);\n  \\draw[black!70,very thick] (0.379,2.002) -- (2.565,-0.602);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (1.357,0.604) -- (1.454,0.489) -- (1.569,0.585);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "e613b80fe0f7b829.svg",
+    "w": 200.57,
+    "h": 192.57
+   },
+   {
+    "i": 19,
+    "key": "e6bdccf1b8ec07f077c515f81a978634547277e1edab26e6acbe8aacb13dda8d",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.2);\n  \\coordinate (P) at (1.8,-0.2);\n  \\draw[gray!60,->] (-1.6,0) -- (2.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,2.0) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.4);\n  \\draw[black!70,very thick] (1.8,-1.9) -- (1.8,1.5);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (1.65,-0.2) -- (1.65,-0.05) -- (1.8,-0.05);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[below right] {$P$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "e6bdccf1b8ec07f0.svg",
+    "w": 200.57,
+    "h": 184.03
+   },
+   {
+    "i": 20,
+    "key": "f8d3df0d14c81abe2a4177b6fe84581eee764968747d2fee38a88bd1d1e2b208",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.2);\n  \\coordinate (P) at (0.4,1.2);\n  \\draw[gray!60,->] (-1.6,0) -- (2.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,2.0) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.4);\n  \\draw[black!70,very thick] (-1.3,1.2) -- (2.1,1.2);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (0.4,1.05) -- (0.55,1.05) -- (0.55,1.2);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "f8d3df0d14c81abe.svg",
+    "w": 200.57,
+    "h": 184.03
+   },
+   {
+    "i": 21,
+    "key": "713ba452357fb5e314eceba3064ac48051125da8375d40399308492313120a67",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (P) at (0.860,1.229);\n  \\draw[gray!60,->] (-1.8,0) -- (2.6,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-1.8) -- (0,2.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[black!70,very thick] (-0.614,2.262) -- (2.334,0.196);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (0.774,1.106) -- (0.651,1.192) -- (0.737,1.315);\n  \\fill (O) circle (1.2pt);\n  \\node[above left] at (-0.06,0.06) {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[above left] at (-0.614,2.262) {$L$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "713ba452357fb5e3.svg",
+    "w": 200.57,
+    "h": 201.1
+   },
+   {
+    "i": 22,
+    "key": "0f8e52a2dfed04aaefb3874da01a765af37d4593d54c13217300d39cbdbf5ed2",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\coordinate (P) at (1.6,0.8);\n  \\draw[gray!60,->] (-1.6,0) -- (3.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.0) -- (0,2.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\draw[black!70,very thick] (-0.16,2.12) -- (3.36,-0.52);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (1.51,0.68) -- (1.63,0.59) -- (1.72,0.71);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[above right] at (0.44,1.67) {$L$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "0f8e52a2dfed04aa.svg",
+    "w": 243.65,
+    "h": 252.32
+   },
+   {
+    "i": 23,
+    "key": "c1a99d52de9be7e2f718e90c94c2806791c89185a3c6231761ba1debf35fbb7a",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (P) at (1.5,2.0);\n  \\coordinate (T1) at (1.5,0);\n  \\coordinate (T2) at (-0.420,1.440);\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[black!70,very thick] (1.5,-1.8) -- (1.5,2.4);\n  \\draw[black!70,very thick] (-1.9,1.008) -- (2.3,2.233);\n  \\draw[gray!70,dashed] (O) -- (T1) (O) -- (T2) (O) -- (P);\n  \\draw[gray!70] (1.35,0) -- (1.35,-0.15) -- (1.5,-0.15);\n  \\draw[gray!70] (-0.378,1.296) -- (-0.234,1.338) -- (-0.276,1.482);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[below right] {$P$};\n  \\fill (T1) circle (1.3pt) node[above right] {$T_1$};\n  \\fill (T2) circle (1.3pt) node[above left] {$T_2$};\n  \\node[blue!65!black] at (1.98,-1.55) {$x=x_0$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "c1a99d52de9be7e2.svg",
+    "w": 184.15,
+    "h": 180.45
+   },
+   {
+    "i": 24,
+    "key": "06305d9cbca8ae59b17850a86c51492ac57a11356ca9123702120c229605cd7d",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.7,1.4);\n  \\coordinate (P) at (2.8,2.1);\n  \\coordinate (T1) at (2.1,0.7);\n  \\coordinate (T2) at (1.4,2.8);\n  \\draw[gray!60,->] (-1.4,0) -- (3.6,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-0.8) -- (0,3.4) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.565);\n  \\draw[black!70,thick] (P) -- (T1);\n  \\draw[black!70,thick] (P) -- (T2);\n  \\draw[gray!70,dashed] (O) -- (T1) (O) -- (T2) (O) -- (P);\n  \\draw[gray!70] (2.167,0.834) -- (2.033,0.901) -- (1.966,0.767);\n  \\draw[gray!70] (1.534,2.733) -- (1.467,2.599) -- (1.333,2.666);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\fill (T1) circle (1.3pt) node[below right] {$T_1$};\n  \\fill (T2) circle (1.3pt) node[above] {$T_2$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "06305d9cbca8ae59.svg",
+    "w": 226.18,
+    "h": 192.57
+   },
+   {
+    "i": 25,
     "key": "2a47f8d034f6e14bff277160cfc4cdf63400f640180860e8ae408725a12d0cb7",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (1.3,-0.9);\n  \\coordinate (P) at (2.361,0.161);\n  \\draw[gray!60,->] (-1.6,0) -- (3.6,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.2) -- (0,1.4) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[dashed] (O) -- (P);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P(x,y)$};\n  \\node[left] at (1.653,-0.193) {$r$};\n  \\node[blue!65!black] at (1.3,-2.62) {$x^2+y^2+Dx+Ey+F=0$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3224,7 +3444,7 @@
     "h": 209.64
    },
    {
-    "i": 4,
+    "i": 26,
     "key": "66e0997881aa2e2dd64df3f5d2a70e74c4b9a018809a0938a5fe00cec8674e2f",
     "attrs": {
      "data-tikz-libraries": "calc"
@@ -3236,7 +3456,7 @@
     "h": 227.48
    },
    {
-    "i": 5,
+    "i": 27,
     "key": "f4f00d473c5cd18fd01a966d5c6a6c8dcca5d366acedc66774ef844f653e3ec2",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (1.0,-0.7);\n  \\draw[gray!60,->] (-1.4,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.4) -- (0,1.4) node[above left] {$y$};\n  \\fill[blue!65!black] (O) circle (2.0pt) node[above right] {$O$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3246,29 +3466,37 @@
     "h": 175.5
    },
    {
-    "i": 6,
-    "key": "edadd11c28f61a6cfded1605f3f7d81bb7c905eae63450481b9fab77761eefa8",
-    "attrs": {
-     "data-tex-packages": "{\"amssymb\": \"\"}"
-    },
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[gray!60,->] (-1.4,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.4) -- (0,1.4) node[above left] {$y$};\n  \\node[blue!65!black] at (1.0,-0.7) {$\\varnothing$};\n\\end{tikzpicture}\n\\end{document}",
+    "i": 28,
+    "key": "55219fa5eae8fbf6a163587dc17ae9c35ff3d04edc8aa8941a0409d2ae12fe4f",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[gray!60,->] (-1.4,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.4) -- (0,1.4) node[above left] {$y$};\n  \\node[blue!65!black] at (1.0,-0.7) {$\\emptyset$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "edadd11c28f61a6c.svg",
+    "file": "55219fa5eae8fbf6.svg",
     "w": 200.57,
     "h": 175.5
    },
    {
-    "i": 7,
-    "key": "feef2de561f3f01133c9b6393f5f5ab7e2c31104ef28cedc3801da6878ed522f",
+    "i": 29,
+    "key": "c98270e737e2d4923510c921f1ce8ad52bb9868eb03fe587c022e8b3fe69e094",
     "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (1.2,-0.8);\n  \\coordinate (P) at (2.9,-0.8);\n  \\draw[gray!60,->] (-1.2,0) -- (3.6,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.8) -- (0,1.4) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.7);\n  \\draw[dashed] (O) -- (P);\n  \\fill (O) circle (1.2pt) node[above right] {$O(3,-2)$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[below] at (2.05,-0.8) {$r=5$};\n\\end{tikzpicture}\n\\end{document}",
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[gray!60,->] (-2.2,0) -- (2.4,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.6) -- (0,2.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] plot[variable=\\t, domain=0:360, samples=72, smooth] ({cos(\\t)},{2*sin(\\t)});\n  \\node[blue!65!black] at (1.25,-1.75) {$4x^2+y^2=4$};\n\\end{tikzpicture}\n\\end{document}",
     "ok": true,
-    "file": "feef2de561f3f011.svg",
-    "w": 217.64,
-    "h": 192.57
+    "file": "c98270e737e2d492.svg",
+    "w": 209.1,
+    "h": 235.25
    },
    {
-    "i": 8,
+    "i": 30,
+    "key": "3d4219d54fbf4b45df289e82a30a1ccee349ed4bb59b1c07c2596eba943afab7",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[gray!60,->] (-2.6,0) -- (2.6,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.6) -- (0,2.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (-1.4,2.4) -- (2.4,-1.4);\n  \\draw[blue!65!black,very thick] (-2.4,1.4) -- (1.4,-2.4);\n  \\node[blue!65!black] at (1.15,1.95) {$x^2+2xy+y^2=1$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "3d4219d54fbf4b45.svg",
+    "w": 234.71,
+    "h": 235.25
+   },
+   {
+    "i": 31,
     "key": "e354c0dc17a385adde61578f2c2d35405e9134f9242a36c81b5f3e9bb54a25b5",
     "attrs": {
      "data-tikz-libraries": "calc"
@@ -3280,67 +3508,7 @@
     "h": 149.89
    },
    {
-    "i": 9,
-    "key": "c98270e737e2d4923510c921f1ce8ad52bb9868eb03fe587c022e8b3fe69e094",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[gray!60,->] (-2.2,0) -- (2.4,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.6) -- (0,2.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] plot[variable=\\t, domain=0:360, samples=72, smooth] ({cos(\\t)},{2*sin(\\t)});\n  \\node[blue!65!black] at (1.25,-1.75) {$4x^2+y^2=4$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "c98270e737e2d492.svg",
-    "w": 209.1,
-    "h": 235.25
-   },
-   {
-    "i": 10,
-    "key": "3d4219d54fbf4b45df289e82a30a1ccee349ed4bb59b1c07c2596eba943afab7",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[gray!60,->] (-2.6,0) -- (2.6,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.6) -- (0,2.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (-1.4,2.4) -- (2.4,-1.4);\n  \\draw[blue!65!black,very thick] (-2.4,1.4) -- (1.4,-2.4);\n  \\node[blue!65!black] at (1.15,1.95) {$x^2+2xy+y^2=1$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "3d4219d54fbf4b45.svg",
-    "w": 234.71,
-    "h": 235.25
-   },
-   {
-    "i": 11,
-    "key": "26c1e2884159031214b8f3403d09cc64746a45a5131201119c60362c58b8e5b6",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.8,-0.4);\n  \\coordinate (P) at (1.931,-0.4);\n  \\draw[gray!60,->] (-1.4,0) -- (2.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,1.4) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.131);\n  \\draw[dashed] (O) -- (P);\n  \\fill (O) circle (1.2pt) node[below left] {$O(2,-1)$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[above] at (1.37,-0.4) {$r=2\\sqrt{2}$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "26c1e28841590312.svg",
-    "w": 192.03,
-    "h": 158.42
-   },
-   {
-    "i": 12,
-    "key": "c5126489bd92df3d5b9dd5adaf9605ea0746099f5c9f8b15a621c4102cd66b47",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\coordinate (A) at (1.6,0.8);\n  \\coordinate (B) at (2.4,-0.8);\n  \\coordinate (C) at (0.4,1.2);\n  \\draw[gray!60,->] (-2.2,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.2) -- (0,1.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\draw[gray!70] (A) -- (B) -- (C) -- cycle;\n  \\fill (O) circle (1.2pt) node[below right] {$O(1,-2)$};\n  \\fill (A) circle (1.3pt) node[above right] {$A$};\n  \\fill (B) circle (1.3pt) node[below right] {$B$};\n  \\fill (C) circle (1.3pt) node[above left] {$C$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "c5126489bd92df3d.svg",
-    "w": 234.71,
-    "h": 226.71
-   },
-   {
-    "i": 13,
-    "key": "dd785c4e0741d75aa8379b680aae2eefef596a313f2d1d40a147a1ab9e74a068",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\coordinate (A) at (1.6,0.8);\n  \\coordinate (B) at (2.4,-0.8);\n  \\coordinate (C) at (0.4,1.2);\n  \\draw[gray!60,->] (-2.2,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.0) -- (0,1.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\draw[gray!70,dashed] (-1.0,-1.5) -- (2.8,0.4);\n  \\draw[gray!70,dashed] (-0.6,-1.8) -- (2.4,1.2);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\fill (A) circle (1.3pt) node[above right] {$A$};\n  \\fill (B) circle (1.3pt) node[below right] {$B$};\n  \\fill (C) circle (1.3pt) node[above left] {$C$};\n  \\node[below right] at (2.5,0.25) {$\\ell_1$};\n  \\node[above left] at (2.2,1.0) {$\\ell_2$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "dd785c4e0741d75a.svg",
-    "w": 234.71,
-    "h": 218.18
-   },
-   {
-    "i": 14,
-    "key": "a942c6f7e6c62058cd87367cd5a6ad578a1a85fddb3fa86e5d366a453c236e08",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.6,-0.2);\n  \\coordinate (T) at (1.5,-1.4);\n  \\draw[gray!60,->] (-1.8,0) -- (3.2,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.8) -- (0,1.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[black!70,very thick] (-0.26,-2.72) -- (2.94,-0.32);\n  \\draw[dashed] (O) -- (T);\n  \\draw[gray!70] (1.41,-1.28) -- (1.53,-1.19) -- (1.64,-1.31);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (T) circle (1.3pt) node[below right] {$T$};\n  \\node[left] at (0.98,-0.86) {$r=4$};\n  \\node[above left] at (2.2,-0.86) {$\\ell$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "a942c6f7e6c62058.svg",
-    "w": 226.18,
-    "h": 201.1
-   },
-   {
-    "i": 15,
+    "i": 32,
     "key": "e16d31947c8760925a4ff9511c2b374d2ffa76bb80f86a923d4618c9f6771458",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (-1.410,-0.513);\n  \\coordinate (B) at (1.410,0.513);\n  \\coordinate (P) at (0,1.5);\n  \\draw[gray!60,->] (-2.4,0) -- (2.4,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.2) -- (0,2.2) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (0,0) circle (1.5);\n  \\draw[gray!70] (A) -- (B);\n  \\draw (P) -- (A) (P) -- (B);\n  \\draw[gray!70] (-0.086,1.377) -- (0.037,1.291) -- (0.123,1.414);\n  \\fill (A) circle (1.3pt) node[below left] {$A$};\n  \\fill (B) circle (1.3pt) node[above right] {$B$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3350,7 +3518,7 @@
     "h": 201.1
    },
    {
-    "i": 16,
+    "i": 33,
     "key": "88130d4581b03603637cba11ff4fd1304f959c9991c1dbb0c82e5ca2314ed7af",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (M) at (0,0);\n  \\coordinate (A) at (-1.2,-0.6);\n  \\coordinate (B) at (1.2,0.6);\n  \\draw[gray!60,->] (-2.0,0) -- (2.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-1.9) -- (0,1.9) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (M) circle (1.3416);\n  \\draw[gray!70] (A) -- (B);\n  \\draw[gray!70,dashed] (M) -- (A);\n  \\fill (M) circle (1.2pt) node[below right] {$M$};\n  \\fill (A) circle (1.3pt) node[below left] {$A$};\n  \\fill (B) circle (1.3pt) node[above right] {$B$};\n  \\node[above left] at (-0.68,-0.22) {$r$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3360,7 +3528,7 @@
     "h": 175.5
    },
    {
-    "i": 17,
+    "i": 34,
     "key": "1e1537d6bc40020638dcdff130a5c65ef5a54d392b5cd9cf3ca31b7df9fcb7a0",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (1.35,-0.45);\n  \\coordinate (A) at (0.45,0.9);\n  \\coordinate (B) at (2.25,-1.8);\n  \\draw[gray!60,->] (-1.2,0) -- (3.4,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.6) -- (0,1.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.623);\n  \\draw[gray!70] (A) -- (B);\n  \\fill (O) circle (1.2pt) node[above right] {$O$};\n  \\fill (A) circle (1.3pt) node[above left] {$A(1,2)$};\n  \\fill (B) circle (1.3pt) node[below right] {$B(5,-4)$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3370,77 +3538,7 @@
     "h": 201.1
    },
    {
-    "i": 18,
-    "key": "9bb362ef3eef661ac1cc455b59b341691545652cb414da7968fe486754955acb",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (P1) at (0.55,-0.45);\n  \\coordinate (P2) at (-1.386,0.8);\n  \\coordinate (P3) at (2.25,0.85);\n  \\draw[gray!60,->] (-2.9,0) -- (2.9,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.1) -- (0,2.1) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.6);\n  \\draw[gray!70,dashed] (O) -- (P1) (O) -- (P2) (O) -- (P3);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P1) circle (1.3pt) node[below left] {$P_1$};\n  \\fill (P2) circle (1.3pt) node[above left] {$P_2$};\n  \\fill (P3) circle (1.3pt) node[above right] {$P_3$};\n  \\node[blue!65!black] at (1.05,-0.95) {$f<0$};\n  \\node[blue!65!black] at (-2.15,0.35) {$f=0$};\n  \\node[blue!65!black] at (2.35,0.3) {$f>0$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "9bb362ef3eef661a.svg",
-    "w": 260.32,
-    "h": 192.57
-   },
-   {
-    "i": 19,
-    "key": "58ea3891e0cb567eb4a7544f25da8e835ff9aaa67f79cf1d2ad0b9efa5f5cd80",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (P1) at (0.55,0.35);\n  \\coordinate (P2) at (-1.299,-0.75);\n  \\coordinate (P3) at (1.9,1.3);\n  \\draw[gray!60,->] (-2.4,0) -- (2.4,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.2) -- (0,2.2) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[gray!70,dashed] (O) -- (P2);\n  \\fill (P1) circle (1.3pt) node[above right] {$P_1$};\n  \\fill (P2) circle (1.3pt) node[below left] {$P_2$};\n  \\fill (P3) circle (1.3pt) node[above left] {$P_3$};\n  \\fill (O) circle (1.2pt) node[above left] {$O$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "58ea3891e0cb567e.svg",
-    "w": 217.64,
-    "h": 201.1
-   },
-   {
-    "i": 20,
-    "key": "39c8a6649723bc35b8a11970055f1543762379d543f00c4578faaf2bcd76413a",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.8,-1.2);\n  \\coordinate (P) at (1.6,0.4);\n  \\draw[gray!60,->] (-1.8,0) -- (3.2,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.6) -- (0,1.4) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[blue!65!black] at (0.8,-3.42) {$g(4,1)=-5<0$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "39c8a6649723bc35.svg",
-    "w": 226.18,
-    "h": 227.16
-   },
-   {
-    "i": 21,
-    "key": "5e4f84e9aa2c8337a2da057b46db725514c8e91bc08b2d6a7f9872f93aab3a51",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.8,-1.2);\n  \\coordinate (P1) at (0.8,0.4);\n  \\coordinate (P2) at (2.0,0.4);\n  \\coordinate (P3) at (-1.6,-1.2);\n  \\draw[gray!60,->] (-2.6,0) -- (3.2,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.6) -- (0,1.2) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\draw[gray!70,dashed] (O) -- (P1) (O) -- (P2) (O) -- (P3);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\fill (P1) circle (1.3pt) node[above right] {$P_1$};\n  \\fill (P2) circle (1.3pt) node[above right] {$P_2$};\n  \\fill (P3) circle (1.3pt) node[below left] {$P_3$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "5e4f84e9aa2c8337.svg",
-    "w": 260.32,
-    "h": 218.18
-   },
-   {
-    "i": 22,
-    "key": "267717afced2d90907ae9a4143a7d5caa47afae1a3a6317c1d1f8553c6fbf36b",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (1.132,0.640);\n  \\coordinate (B) at (-1.267,-0.293);\n  \\draw[blue!65!black,very thick] (0,0) circle (1.3);\n  \\draw[black!70,thick] (-1.9,-0.54) -- (1.9,0.94);\n  \\fill (A) circle (1.4pt) node[below right] {$A$};\n  \\fill (B) circle (1.4pt) node[below right] {$B$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "267717afced2d909.svg",
-    "w": 162.98,
-    "h": 112.17
-   },
-   {
-    "i": 23,
-    "key": "211143f9d11a139346b14110159245c9207b57670536cd0367a1be9603d3b592",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (T) at (0.78,1.04);\n  \\draw[blue!65!black,very thick] (0,0) circle (1.3);\n  \\draw[black!70,thick] (-0.82,2.24) -- (2.38,-0.16);\n  \\draw[gray!70,dashed] (0,0) -- (T);\n  \\fill (0,0) circle (1.2pt) node[below left] {$O$};\n  \\draw[gray!70] (0.69,0.92) -- (0.81,0.83) -- (0.90,0.95);\n  \\fill (T) circle (1.4pt) node[above right] {$T$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "211143f9d11a1393.svg",
-    "w": 158.06,
-    "h": 152.08
-   },
-   {
-    "i": 24,
-    "key": "29729c63acb27bab07d739eb57eaacecb772332859aec6c7a5c1f74b24c657da",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[blue!65!black,very thick] (0,0) circle (1.3);\n  \\draw[black!70,thick] (-1.9,0.3) -- (0.5,2.7);\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "29729c63acb27bab.svg",
-    "w": 137.57,
-    "h": 171.72
-   },
-   {
-    "i": 25,
+    "i": 35,
     "key": "e08e7514cc818efc84829bdd7122b9bb781cc71d18d41c4c8ed0cdccd17adf4f",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (A) at (1.3963,0.1019);\n  \\coordinate (B) at (-0.7563,1.1782);\n  \\draw[gray!60,->] (-2.4,0) -- (2.4,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-1.9) -- (0,2.0) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (0,0) circle (1.4);\n  \\draw[black!70,thick] (-1.6,1.6) -- (2.1,-0.25);\n  \\draw[gray!70,dashed] (A) -- (1.3963,0) (B) -- (-0.7563,0);\n  \\draw[very thick] (A) -- (B);\n  \\fill (A) circle (1.4pt) node[above right] {$A$};\n  \\fill (B) circle (1.4pt) node[above left] {$B$};\n  \\node at (1.58,-0.18) {$x_1$};\n  \\node at (-0.92,-0.18) {$x_2$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3450,127 +3548,7 @@
     "h": 179.76
    },
    {
-    "i": 26,
-    "key": "adfc20406ae033eb69be9d8ccc22e4ec02843a09ce2facbad6bf8f454d3e29fb",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\draw[gray!60,->] (-2.8,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.2) -- (0,2.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\draw[black!70,thick] (-1.4,1.8) -- (2.8,0.4);\n  \\coordinate (A) at (0.4,1.2);\n  \\coordinate (B) at (1.6,0.8);\n  \\fill (A) circle (1.3pt) node[above right] {$A$};\n  \\fill (B) circle (1.3pt) node[below left] {$B$};\n  \\node[above right] at (-1.0,1.667) {$L_1$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "adfc20406ae033eb.svg",
-    "w": 260.32,
-    "h": 269.39
-   },
-   {
-    "i": 27,
-    "key": "441b6f90d61e8eb2a6212f04e0acf425aae541d1ab582877abfb408cd637b6d0",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\draw[gray!60,->] (-2.8,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.2) -- (0,2.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\draw[black!70,thick] (2.4,-2.9) -- (2.4,1.3);\n  \\coordinate (T) at (2.4,-0.8);\n  \\draw[gray!70,dashed] (O) -- (T);\n  \\draw[gray!70] (2.25,-0.8) -- (2.25,-0.65) -- (2.4,-0.65);\n  \\fill (T) circle (1.3pt) node[below right] {$T$};\n  \\node[above right] at (2.4,1.1) {$L_2$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "441b6f90d61e8eb2.svg",
-    "w": 260.32,
-    "h": 269.39
-   },
-   {
-    "i": 28,
-    "key": "3cc85170f68933f35ba60619be905a296ee96f526c05632c208e30f1bf603272",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\draw[gray!60,->] (-2.8,0) -- (3.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.2) -- (0,2.8) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\fill (O) circle (1.2pt) node[below right] {$O$};\n  \\draw[black!70,thick] (-2.4,0.8) -- (-0.8,2.4);\n  \\node[above left] at (-1.6,1.6) {$L_3$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "3cc85170f68933f3.svg",
-    "w": 260.32,
-    "h": 269.39
-   },
-   {
-    "i": 29,
-    "key": "21eb78c2e7c641cbd0d51cc9671a8583ca110746cad0f3af679496eb16aa1255",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.5,-0.3);\n  \\coordinate (P) at (1.464,0.849);\n  \\draw[gray!60,->] (-1.4,0) -- (3.2,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,2.4) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[black!70,very thick] (0.085,2.006) -- (2.843,-0.308);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (1.368,0.734) -- (1.482,0.638) -- (1.579,0.753);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[above right] at (0.238,1.878) {$L$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "21eb78c2e7c641cb.svg",
-    "w": 209.1,
-    "h": 201.1
-   },
-   {
-    "i": 30,
-    "key": "e613b80fe0f7b82950c3d09cb23e3daa5e5e845a54996654446ac13bd89422ea",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.2);\n  \\coordinate (P) at (1.472,0.7);\n  \\draw[gray!60,->] (-1.6,0) -- (2.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,2.2) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.4);\n  \\draw[black!70,very thick] (0.379,2.002) -- (2.565,-0.602);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (1.357,0.604) -- (1.454,0.489) -- (1.569,0.585);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "e613b80fe0f7b829.svg",
-    "w": 200.57,
-    "h": 192.57
-   },
-   {
-    "i": 31,
-    "key": "e6bdccf1b8ec07f077c515f81a978634547277e1edab26e6acbe8aacb13dda8d",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.2);\n  \\coordinate (P) at (1.8,-0.2);\n  \\draw[gray!60,->] (-1.6,0) -- (2.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,2.0) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.4);\n  \\draw[black!70,very thick] (1.8,-1.9) -- (1.8,1.5);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (1.65,-0.2) -- (1.65,-0.05) -- (1.8,-0.05);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[below right] {$P$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "e6bdccf1b8ec07f0.svg",
-    "w": 200.57,
-    "h": 184.03
-   },
-   {
-    "i": 32,
-    "key": "f8d3df0d14c81abe2a4177b6fe84581eee764968747d2fee38a88bd1d1e2b208",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.2);\n  \\coordinate (P) at (0.4,1.2);\n  \\draw[gray!60,->] (-1.6,0) -- (2.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,2.0) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.4);\n  \\draw[black!70,very thick] (-1.3,1.2) -- (2.1,1.2);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (0.4,1.05) -- (0.55,1.05) -- (0.55,1.2);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "f8d3df0d14c81abe.svg",
-    "w": 200.57,
-    "h": 184.03
-   },
-   {
-    "i": 33,
-    "key": "713ba452357fb5e314eceba3064ac48051125da8375d40399308492313120a67",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (P) at (0.860,1.229);\n  \\draw[gray!60,->] (-1.8,0) -- (2.6,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-1.8) -- (0,2.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[black!70,very thick] (-0.614,2.262) -- (2.334,0.196);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (0.774,1.106) -- (0.651,1.192) -- (0.737,1.315);\n  \\fill (O) circle (1.2pt);\n  \\node[above left] at (-0.06,0.06) {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[above left] at (-0.614,2.262) {$L$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "713ba452357fb5e3.svg",
-    "w": 200.57,
-    "h": 201.1
-   },
-   {
-    "i": 34,
-    "key": "0f8e52a2dfed04aaefb3874da01a765af37d4593d54c13217300d39cbdbf5ed2",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.4,-0.8);\n  \\coordinate (P) at (1.6,0.8);\n  \\draw[gray!60,->] (-1.6,0) -- (3.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-3.0) -- (0,2.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (2.0);\n  \\draw[black!70,very thick] (-0.16,2.12) -- (3.36,-0.52);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\draw[gray!70] (1.51,0.68) -- (1.63,0.59) -- (1.72,0.71);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\node[above right] at (0.44,1.67) {$L$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "0f8e52a2dfed04aa.svg",
-    "w": 243.65,
-    "h": 252.32
-   },
-   {
-    "i": 35,
-    "key": "c1a99d52de9be7e2f718e90c94c2806791c89185a3c6231761ba1debf35fbb7a",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (P) at (1.5,2.0);\n  \\coordinate (T1) at (1.5,0);\n  \\coordinate (T2) at (-0.420,1.440);\n  \\draw[blue!65!black,very thick] (O) circle (1.5);\n  \\draw[black!70,very thick] (1.5,-1.8) -- (1.5,2.4);\n  \\draw[black!70,very thick] (-1.9,1.008) -- (2.3,2.233);\n  \\draw[gray!70,dashed] (O) -- (T1) (O) -- (T2) (O) -- (P);\n  \\draw[gray!70] (1.35,0) -- (1.35,-0.15) -- (1.5,-0.15);\n  \\draw[gray!70] (-0.378,1.296) -- (-0.234,1.338) -- (-0.276,1.482);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[below right] {$P$};\n  \\fill (T1) circle (1.3pt) node[above right] {$T_1$};\n  \\fill (T2) circle (1.3pt) node[above left] {$T_2$};\n  \\node[blue!65!black] at (1.98,-1.55) {$x=x_0$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "c1a99d52de9be7e2.svg",
-    "w": 184.15,
-    "h": 180.45
-   },
-   {
     "i": 36,
-    "key": "06305d9cbca8ae59b17850a86c51492ac57a11356ca9123702120c229605cd7d",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0.7,1.4);\n  \\coordinate (P) at (2.8,2.1);\n  \\coordinate (T1) at (2.1,0.7);\n  \\coordinate (T2) at (1.4,2.8);\n  \\draw[gray!60,->] (-1.4,0) -- (3.6,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-0.8) -- (0,3.4) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.565);\n  \\draw[black!70,thick] (P) -- (T1);\n  \\draw[black!70,thick] (P) -- (T2);\n  \\draw[gray!70,dashed] (O) -- (T1) (O) -- (T2) (O) -- (P);\n  \\draw[gray!70] (2.167,0.834) -- (2.033,0.901) -- (1.966,0.767);\n  \\draw[gray!70] (1.534,2.733) -- (1.467,2.599) -- (1.333,2.666);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\fill (T1) circle (1.3pt) node[below right] {$T_1$};\n  \\fill (T2) circle (1.3pt) node[above] {$T_2$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "06305d9cbca8ae59.svg",
-    "w": 226.18,
-    "h": 192.57
-   },
-   {
-    "i": 37,
-    "key": "a1a04041999dabf2e09780012030724663a9ec15e7c05eb085813fcebe545907",
-    "attrs": {},
-    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (T1) at (-0.9,0.45);\n  \\coordinate (T2) at (0.9,-0.45);\n  \\draw[gray!60,->] (-2.0,0) -- (2.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,2.0) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.006);\n  \\draw[black!70,very thick] (-1.4,-0.55) -- (-0.4,1.45);\n  \\draw[black!70,very thick] (0.4,-1.45) -- (1.4,0.55);\n  \\draw[gray!70,dashed] (O) -- (T1) (O) -- (T2);\n  \\fill (O) circle (1.2pt);\n  \\node[above left] at (-0.06,0.06) {$O$};\n  \\fill (T1) circle (1.3pt) node[above left] {$T_1$};\n  \\fill (T2) circle (1.3pt) node[below right] {$T_2$};\n  \\node[blue!65!black] at (-1.45,-0.9) {$L_1$};\n  \\node[blue!65!black] at (1.45,0.9) {$L_2$};\n\\end{tikzpicture}\n\\end{document}",
-    "ok": true,
-    "file": "a1a04041999dabf2.svg",
-    "w": 183.5,
-    "h": 184.03
-   },
-   {
-    "i": 38,
     "key": "78eba43a9aaef8ca68fba5f5bfd6b0a0fee10b7b15ef790e46bbe4f114a60d25",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (P) at (2.6,0);\n  \\coordinate (T) at (0.754,1.179);\n  \\draw[blue!65!black,very thick] (O) circle (1.4);\n  \\draw[black!70,thick] (P) -- (T);\n  \\draw[gray!70,dashed] (O) -- (T) (O) -- (P);\n  \\draw[gray!70] (0.673,1.053) -- (0.7996,0.972) -- (0.880,1.099);\n  \\fill (O) circle (1.2pt) node[below left] {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\fill (T) circle (1.3pt) node[above] {$T$};\n  \\node[above left] at (0.377,0.590) {$r$};\n  \\node[above right] at (1.677,0.590) {$PT$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3580,7 +3558,7 @@
     "h": 124.37
    },
    {
-    "i": 39,
+    "i": 37,
     "key": "a14a99e2f286c2f216fd38e0bb892ba22290044b55e19f6045c4c224a9089889",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (P) at (2.6,0);\n  \\coordinate (T1) at (0.385,-0.923);\n  \\coordinate (T2) at (0.385,0.923);\n  \\draw[gray!60,->] (-1.6,0) -- (3.2,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-1.6) -- (0,1.6) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.0);\n  \\draw[black!70,thick] (P) -- (T1);\n  \\draw[black!70,thick] (P) -- (T2);\n  \\draw[gray!70,dashed] (O) -- (P);\n  \\fill (O) circle (1.2pt);\n  \\node[above left] at (-0.06,0.06) {$O$};\n  \\fill (P) circle (1.3pt) node[above right] {$P$};\n  \\fill (T1) circle (1.3pt) node[below] {$T_1$};\n  \\fill (T2) circle (1.3pt) node[above] {$T_2$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3590,7 +3568,17 @@
     "h": 149.89
    },
    {
-    "i": 40,
+    "i": 38,
+    "key": "a1a04041999dabf2e09780012030724663a9ec15e7c05eb085813fcebe545907",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O) at (0,0);\n  \\coordinate (T1) at (-0.9,0.45);\n  \\coordinate (T2) at (0.9,-0.45);\n  \\draw[gray!60,->] (-2.0,0) -- (2.0,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-2.0) -- (0,2.0) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O) circle (1.006);\n  \\draw[black!70,very thick] (-1.4,-0.55) -- (-0.4,1.45);\n  \\draw[black!70,very thick] (0.4,-1.45) -- (1.4,0.55);\n  \\draw[gray!70,dashed] (O) -- (T1) (O) -- (T2);\n  \\fill (O) circle (1.2pt);\n  \\node[above left] at (-0.06,0.06) {$O$};\n  \\fill (T1) circle (1.3pt) node[above left] {$T_1$};\n  \\fill (T2) circle (1.3pt) node[below right] {$T_2$};\n  \\node[blue!65!black] at (-1.45,-0.9) {$L_1$};\n  \\node[blue!65!black] at (1.45,0.9) {$L_2$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "a1a04041999dabf2.svg",
+    "w": 183.5,
+    "h": 184.03
+   },
+   {
+    "i": 39,
     "key": "3641f0c17350fc1bce2a67ed78619de0eafec4daa0d3dec97b5539f697ec3b8d",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-1.1,0);\n  \\coordinate (O2) at (1.1,0);\n  \\draw[blue!65!black,very thick] (O1) circle (0.9);\n  \\draw[red!65!black,very thick] (O2) circle (0.6);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above] at (0,0.07) {$d$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3600,7 +3588,7 @@
     "h": 78.02
    },
    {
-    "i": 41,
+    "i": 40,
     "key": "77dc03c52e70513d9bdcc76416433f878af156ba50c30fb99f32c53f2ff34223",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-0.75,0);\n  \\coordinate (O2) at (0.75,0);\n  \\coordinate (T) at (0.15,0);\n  \\draw[blue!65!black,very thick] (O1) circle (0.9);\n  \\draw[red!65!black,very thick] (O2) circle (0.6);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (T) circle (1.4pt);\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above] at (-0.7,0.07) {$d$};\n  \\node[above right] at (0.28,0.12) {$T$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3610,7 +3598,7 @@
     "h": 78.02
    },
    {
-    "i": 42,
+    "i": 41,
     "key": "161f1c0056945841286795533b48526b73137b961e08713643e50bfac0755e35",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-0.5,0);\n  \\coordinate (O2) at (0.6,0);\n  \\coordinate (A) at (0.196,0.571);\n  \\coordinate (B) at (0.196,-0.571);\n  \\draw[blue!65!black,very thick] (O1) circle (0.9);\n  \\draw[red!65!black,very thick] (O2) circle (0.7);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\draw[very thick] (A) -- (B);\n  \\fill (A) circle (1.4pt) node[above left] {$A$};\n  \\fill (B) circle (1.4pt) node[below left] {$B$};\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above] at (-0.15,0.38) {$d$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3620,7 +3608,7 @@
     "h": 78.02
    },
    {
-    "i": 43,
+    "i": 42,
     "key": "be11d42b080290bf1de012740bff1e9d1ac0f9a040a9f9e56cb6e09cf7907043",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (0.6,0);\n  \\coordinate (T) at (1.2,0);\n  \\draw[blue!65!black,very thick] (O1) circle (1.2);\n  \\draw[red!65!black,very thick] (O2) circle (0.6);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (T) circle (1.4pt);\n  \\node[below left] at (-0.05,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above] at (0.3,0.07) {$d$};\n  \\node[above right] at (1.24,0.1) {$T$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3630,7 +3618,7 @@
     "h": 103.63
    },
    {
-    "i": 44,
+    "i": 43,
     "key": "5b83d63eaae5a683685d3c096df52e4bef3a3045eddf6e6124d51bf5bc52d1ac",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (0.45,0);\n  \\draw[blue!65!black,very thick] (O1) circle (1.2);\n  \\draw[red!65!black,very thick] (O2) circle (0.5);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\node[below left] at (-0.05,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above] at (0.22,0.07) {$d$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3640,7 +3628,7 @@
     "h": 103.63
    },
    {
-    "i": 45,
+    "i": 44,
     "key": "45d63661f61789c5e3ca79d9d9056d9c600992e42382da9bf40bb3c2180adfe8",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-0.5,0);\n  \\coordinate (O2) at (0.6,0);\n  \\coordinate (A) at (0.176,0.737);\n  \\coordinate (B) at (0.176,-0.737);\n  \\draw[blue!65!black,very thick] (O1) circle (1.0);\n  \\draw[red!65!black,very thick] (O2) circle (0.85);\n  \\draw[gray!70,dashed] (0.176,-1.15) -- (0.176,1.25);\n  \\draw[very thick] (A) -- (B);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (A) circle (1.3pt) node[above right] {$A$};\n  \\fill (B) circle (1.3pt) node[below right] {$B$};\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above] at (0.176,1.32) {$L$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3650,7 +3638,7 @@
     "h": 119.32
    },
    {
-    "i": 46,
+    "i": 45,
     "key": "d764745d81c6d1189ae38de7bd8fe7d1db2325f4ce5e7dd3fe8fbac9fec14725",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[gray!60,->] (-0.7,0) -- (6.0,0);\n  \\draw[gray!70] (0.4,-0.12) -- (0.4,0.12);\n  \\draw[gray!70] (2.4,-0.12) -- (2.4,0.12);\n  \\draw[gray!70] (4.4,-0.12) -- (4.4,0.12);\n  \\node[below] at (0.4,-0.16) {$0$};\n  \\node[below] at (2.4,-0.16) {$r_1-r_2$};\n  \\node[below] at (4.4,-0.16) {$r_1+r_2$};\n  \\node[blue!65!black] at (1.35,0.72) {$0 \\le d < r_1-r_2$};\n  \\node[blue!65!black] at (2.4,0.30) {$d = r_1-r_2$};\n  \\node[blue!65!black] at (3.4,0.72) {$r_1-r_2 < d < r_1+r_2$};\n  \\node[blue!65!black] at (4.4,0.30) {$d = r_1+r_2$};\n  \\node[blue!65!black] at (5.3,0.72) {$d > r_1+r_2$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3660,7 +3648,7 @@
     "h": 59.31
    },
    {
-    "i": 47,
+    "i": 46,
     "key": "0852c7e596c7b7ad9f6f5783318bac2f7aa4bd80cba425f106cf8cbe1339e8f6",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (1.8,0);\n  \\coordinate (H) at (1.122,0);\n  \\draw[blue!65!black,very thick] (O1) circle (1.2);\n  \\draw[red!65!black,very thick] (O2) circle (0.8);\n  \\draw[black!75,thick] (1.122,-1.4) -- (1.122,1.6);\n  \\draw[gray!70,dashed] (O1) -- (H);\n  \\fill (H) circle (1.3pt);\n  \\draw (1.122,0.20) -- (0.922,0.20) -- (0.922,0);\n  \\node[below left] at (-0.08,-0.12) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[right] at (1.20,-0.32) {$L$};\n  \\node[above] at (0.56,-0.24) {$d(O_1, L)$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3670,7 +3658,7 @@
     "h": 128.84
    },
    {
-    "i": 48,
+    "i": 47,
     "key": "33eb491696c2b8bf25cb8dd14ef6c99a73321704bd27e01de06cbd469bb52044",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (2.0,0);\n  \\coordinate (T) at (1.2,0);\n  \\draw[blue!65!black,very thick] (O1) circle (1.2);\n  \\draw[red!65!black,very thick] (O2) circle (0.8);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (T) circle (1.4pt);\n  \\node[below left] at (-0.05,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above right] at (1.32,0.28) {$T$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3680,7 +3668,7 @@
     "h": 103.63
    },
    {
-    "i": 49,
+    "i": 48,
     "key": "90e3692afc8fb71e1b068812da61edb9e6ad9d286916ee26dc4aba152a95ea97",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (0.4,0);\n  \\coordinate (T) at (1.2,0);\n  \\draw[blue!65!black,very thick] (O1) circle (1.2);\n  \\draw[red!65!black,very thick] (O2) circle (0.8);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (T) circle (1.4pt);\n  \\node[below left] at (-0.05,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above right] at (1.34,0.28) {$T$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3690,7 +3678,7 @@
     "h": 103.63
    },
    {
-    "i": 50,
+    "i": 49,
     "key": "c3d0676d11f1f4bdd2df7954c97c330d6ad6e2e37c5666d9f560b420ff1961e5",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (0.4,0);\n  \\coordinate (P) at (1.0,0);\n  \\draw[blue!65!black,very thick] (O1) circle (1.2);\n  \\draw[red!65!black,very thick] (O2) circle (0.6);\n  \\draw[gray!70,dashed] (O1) -- (P);\n  \\fill (P) circle (1.4pt);\n  \\node[below left] at (-0.05,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above] at (0.5,0.08) {$d+r_2$};\n  \\node[below right] at (1.0,-0.12) {$P$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3700,7 +3688,7 @@
     "h": 103.63
    },
    {
-    "i": 51,
+    "i": 50,
     "key": "5c9072e90bf3ff3a27db2b2be8715eb32579877fe9c81475f0c4193a7f170ffe",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (2.6,0);\n  \\coordinate (P) at (2.0,0);\n  \\draw[blue!65!black,very thick] (O1) circle (1.0);\n  \\draw[red!65!black,very thick] (O2) circle (0.6);\n  \\draw[gray!70,dashed] (O1) -- (P);\n  \\fill (P) circle (1.4pt);\n  \\node[below left] at (-0.05,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above] at (1.5,0.08) {$d-r_2$};\n  \\node[below left] at (1.95,-0.12) {$P$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3710,7 +3698,7 @@
     "h": 86.56
    },
    {
-    "i": 52,
+    "i": 51,
     "key": "c3c7aaef0847a2d2a1e316bf3f00508a7933eba2842985cae0aa47c5dd979f27",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-1.2,0);\n  \\coordinate (O2) at (1.0,0);\n  \\coordinate (T1) at (-1.036,0.885);\n  \\coordinate (T2) at (1.091,0.492);\n  \\draw[blue!65!black,very thick] (O1) circle (0.9);\n  \\draw[red!65!black,very thick] (O2) circle (0.5);\n  \\draw[black!70,very thick] (-1.526,0.976) -- (1.581,0.401);\n  \\draw[gray!70,dashed] (O1) -- (T1) (O2) -- (T2);\n  \\fill (T1) circle (1.4pt);\n  \\fill (T2) circle (1.4pt);\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above right] at (-0.98,0.90) {$T_1$};\n  \\node[above right] at (1.15,0.51) {$T_2$};\n  \\node[above right] at (-1.6,1.02) {$\\ell$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3720,7 +3708,7 @@
     "h": 96.35
    },
    {
-    "i": 53,
+    "i": 52,
     "key": "59e804389058d80032582fba64c3b13e890bc05252e6bee65e785117c0243426",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-1.2,0);\n  \\coordinate (O2) at (1.0,0);\n  \\coordinate (T1) at (-0.627,0.694);\n  \\coordinate (T2) at (0.682,-0.386);\n  \\draw[blue!65!black,very thick] (O1) circle (0.9);\n  \\draw[red!65!black,very thick] (O2) circle (0.5);\n  \\draw[black!70,very thick] (-0.935,0.948) -- (0.990,-0.640);\n  \\draw[gray!70,dashed] (O1) -- (T1) (O2) -- (T2);\n  \\fill (T1) circle (1.4pt);\n  \\fill (T2) circle (1.4pt);\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above right] at (-0.57,0.71) {$T_1$};\n  \\node[below left] at (0.56,-0.39) {$T_2$};\n  \\node[above left] at (-1.0,1.02) {$\\ell$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3730,7 +3718,7 @@
     "h": 96.35
    },
    {
-    "i": 54,
+    "i": 53,
     "key": "1fa8b5b353e88988087ea07f1b01034b5508e91d44d815f20334e12a524ee1b9",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-0.9,0);\n  \\coordinate (O2) at (1.0,0);\n  \\draw[blue!65!black,very thick] (O1) circle (0.7);\n  \\draw[red!65!black,very thick] (O2) circle (0.4);\n  \\draw[black!70,thick] (-1.086,0.738) -- (1.359,0.348);\n  \\draw[black!70,thick] (-1.086,-0.738) -- (1.359,-0.348);\n  \\draw[black!70,thick] (-0.740,0.745) -- (1.013,-0.500);\n  \\draw[black!70,thick] (-0.740,-0.745) -- (1.013,0.500);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (O1) circle (1.2pt);\n  \\node[below left] at (-0.95,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3740,7 +3728,7 @@
     "h": 64.39
    },
    {
-    "i": 55,
+    "i": 54,
     "key": "c31a2179fbb9517a64e85ca6079b07b8d42a85c2e5fc5c6226e6535979c5a9a3",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-0.9,0);\n  \\coordinate (O2) at (1.0,0);\n  \\coordinate (S) at (-0.853,0.296);\n  \\draw[gray!70,dashed] (O1) circle (0.3);\n  \\draw[blue!65!black,very thick] (O1) circle (0.7);\n  \\draw[red!65!black,very thick] (O2) circle (0.4);\n  \\draw[gray!70] (-1.051,0.328) -- (1.197,-0.032);\n  \\draw[gray!70,dashed] (O1) -- (S);\n  \\fill (S) circle (1.3pt) node[above left] {$S$};\n  \\fill (O1) circle (1.2pt);\n  \\node[below left] at (-0.95,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above right] at (0.20,0.135) {$\\ell'$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3750,7 +3738,7 @@
     "h": 60.95
    },
    {
-    "i": 56,
+    "i": 55,
     "key": "5600973531350a552df8d660129ac650d8b847968ce6ea227759ad1753656731",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-0.9,0);\n  \\coordinate (O2) at (1.0,0);\n  \\coordinate (T1) at (-0.79,0.691);\n  \\coordinate (T2) at (1.063,0.395);\n  \\coordinate (S) at (-0.853,0.296);\n  \\draw[gray!70,dashed] (O1) circle (0.3);\n  \\draw[blue!65!black,very thick] (O1) circle (0.7);\n  \\draw[red!65!black,very thick] (O2) circle (0.4);\n  \\draw[black!70,very thick] (-1.086,0.738) -- (1.359,0.348);\n  \\draw[gray!70] (-1.051,0.328) -- (1.197,-0.032);\n  \\draw[gray!70,->] (T2) -- (O2);\n  \\draw[gray!70,->] (T1) -- (S);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (T1) circle (1.2pt) node[above left] {$T_1$};\n  \\fill (T2) circle (1.2pt) node[below right] {$T_2$};\n  \\fill (S) circle (1.2pt) node[below left] {$S$};\n  \\fill (O1) circle (1.2pt);\n  \\node[below left] at (-0.95,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above right] at (1.44,0.46) {$\\ell$};\n  \\node[above left] at (-1.00,0.42) {$\\ell'$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3760,7 +3748,7 @@
     "h": 75.17
    },
    {
-    "i": 57,
+    "i": 56,
     "key": "a60fe075f814a11a7c0a71e363369aec3391aafebec716481cd0ba12619458bf",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-1.0,0);\n  \\coordinate (O2) at (1.0,0);\n  \\draw[blue!65!black,very thick] (O1) circle (0.6);\n  \\draw[red!65!black,very thick] (O2) circle (0.6);\n  \\draw[black!70,very thick] (-1.6,0.6) -- (1.6,0.6);\n  \\draw[black!70,very thick] (-1.6,-0.6) -- (1.6,-0.6);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above right] at (1.5,0.6) {$\\ell_1$};\n  \\node[below right] at (1.5,-0.6) {$\\ell_2$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3770,7 +3758,7 @@
     "h": 81.84
    },
    {
-    "i": 58,
+    "i": 57,
     "key": "74558f916514a67be5cc6ebfeeed12abfd6845041a38c06b5673a29c8ee79f6a",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-0.9,0);\n  \\coordinate (O2) at (1.0,0);\n  \\coordinate (S) at (-0.263,0.897);\n  \\draw[gray!70,dashed] (O1) circle (1.1);\n  \\draw[blue!65!black,very thick] (O1) circle (0.7);\n  \\draw[red!65!black,very thick] (O2) circle (0.4);\n  \\draw[gray!70] (-0.263,0.897) -- (1.122,-0.087);\n  \\draw[gray!70,dashed] (O1) -- (S);\n  \\fill (S) circle (1.3pt) node[above left] {$S$};\n  \\fill (O1) circle (1.2pt);\n  \\node[below left] at (-0.95,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above right] at (0.30,0.475) {$\\ell'$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3780,7 +3768,7 @@
     "h": 99.13
    },
    {
-    "i": 59,
+    "i": 58,
     "key": "2bc2831965568953f71a4ef1e59a85cb30ff1bdc2268e5c1512c86d0c0d4a8d1",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (-0.9,0);\n  \\coordinate (O2) at (1.0,0);\n  \\coordinate (T1) at (-0.495,0.571);\n  \\coordinate (T2) at (0.768,-0.326);\n  \\coordinate (S) at (-0.263,0.897);\n  \\draw[gray!70,dashed] (O1) circle (1.1);\n  \\draw[blue!65!black,very thick] (O1) circle (0.7);\n  \\draw[red!65!black,very thick] (O2) circle (0.4);\n  \\draw[black!70,very thick] (-0.740,0.745) -- (1.013,-0.500);\n  \\draw[gray!70] (-0.263,0.897) -- (1.122,-0.087);\n  \\draw[gray!70,->] (T2) -- (O2);\n  \\draw[gray!70,->] (T1) -- (S);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (T1) circle (1.2pt) node[below left] {$T_1$};\n  \\fill (T2) circle (1.2pt) node[below left] {$T_2$};\n  \\fill (S) circle (1.2pt) node[above right] {$S$};\n  \\fill (O1) circle (1.2pt);\n  \\node[below left] at (-0.95,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above left] at (-0.86,0.82) {$\\ell$};\n  \\node[above left] at (0.45,0.62) {$\\ell'$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3790,7 +3778,7 @@
     "h": 99.13
    },
    {
-    "i": 60,
+    "i": 59,
     "key": "5ae1873cdcc9a5d0c093b19c6a9decd3b43aa8083e82ac9f362d766821b498bb",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (2.2,0);\n  \\coordinate (T1) at (0.2273,0.9737);\n  \\coordinate (T2) at (2.3137,0.4868);\n  \\draw[blue!65!black,very thick] (O1) circle (1.0);\n  \\draw[red!65!black,very thick] (O2) circle (0.5);\n  \\draw[black!70,very thick] (0.2273,0.9737) -- (2.3137,0.4868);\n  \\draw[gray!70,dashed] (O1) -- (T1) (O2) -- (T2);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above right] at (0.29,0.99) {$T_1$};\n  \\node[above right] at (2.37,0.51) {$T_2$};\n  \\node[above left] at (0.10,0.50) {$r_1$};\n  \\node[right] at (2.32,0.30) {$r_2$};\n  \\node[below] at (1.1,-0.15) {$d$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3800,7 +3788,7 @@
     "h": 100.73
    },
    {
-    "i": 61,
+    "i": 60,
     "key": "c215904e3fde2cce0bcac5b5b7fe2127ff6851ced98fc12cd307f880af6c5d2f",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (2.2,0);\n  \\coordinate (T1) at (0.2273,0.9737);\n  \\coordinate (T2) at (2.3137,0.4868);\n  \\coordinate (H) at (0.1136,0.4868);\n  \\draw[blue!65!black,very thick] (O1) circle (1.0);\n  \\draw[red!65!black,very thick] (O2) circle (0.5);\n  \\draw[black!70,very thick] (0.2273,0.9737) -- (2.3137,0.4868);\n  \\draw[gray!70,dashed] (O1) -- (T1) (O2) -- (T2);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\draw[gray!70] (H) -- (O2);\n  \\draw[gray!70] (0.0795,0.3407) -- (0.2256,0.3067) -- (0.2597,0.4527);\n  \\fill (H) circle (1.2pt) node[below right] {$H$};\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above right] at (0.29,0.99) {$T_1$};\n  \\node[above right] at (2.37,0.51) {$T_2$};\n  \\node[left] at (-0.02,0.243) {$r_1-r_2$};\n  \\node[above right] at (1.157,0.243) {$L_{\\mathrm{out}}$};\n  \\node[below] at (1.1,-0.15) {$d$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3810,7 +3798,7 @@
     "h": 100.73
    },
    {
-    "i": 62,
+    "i": 61,
     "key": "15b8e9f23d5fe627b0996a6cb369632d3b36e9cb604e8daab12e7d3523ce75d5",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (1.9,0);\n  \\coordinate (T1) at (0.6631,0.6085);\n  \\coordinate (T2) at (1.5316,-0.3381);\n  \\draw[blue!65!black,very thick] (O1) circle (0.9);\n  \\draw[red!65!black,very thick] (O2) circle (0.5);\n  \\draw[black!70,very thick] (0.6631,0.6085) -- (1.5316,-0.3381);\n  \\draw[gray!70,dashed] (O1) -- (T1) (O2) -- (T2);\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above left] at (0.33,0.30) {$r_1$};\n  \\node[left] at (0.55,0.6085) {$T_1$};\n  \\node[above] at (1.5316,-0.25) {$T_2$};\n  \\node[below] at (0.95,-0.12) {$d$};\n  \\node[above right] at (1.72,0.10) {$r_2$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3820,7 +3808,7 @@
     "h": 78.02
    },
    {
-    "i": 63,
+    "i": 62,
     "key": "40b6bfbdefd780e932c14468e8184eb8ba7461600477c8f95780b9c1e1f23285",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (1.9,0);\n  \\coordinate (S) at (1.0315,0.9465);\n  \\coordinate (T1) at (0.6631,0.6085);\n  \\coordinate (T2) at (1.5316,-0.3381);\n  \\draw[blue!65!black,very thick] (O1) circle (0.9);\n  \\draw[red!65!black,very thick] (O2) circle (0.5);\n  \\draw[black!70,very thick] (0.6631,0.6085) -- (1.5316,-0.3381);\n  \\draw[gray!70,dashed] (O1) -- (T1) (O2) -- (T2);\n  \\draw[gray!70,dashed] (O1) -- (S) (S) -- (O2) (O1) -- (O2);\n  \\draw[gray!70] (0.921,0.845) -- (1.022,0.7346) -- (1.133,0.836);\n  \\fill (S) circle (1.2pt) node[above] {$S$};\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[left] at (0.55,0.6085) {$T_1$};\n  \\node[above] at (1.5316,-0.25) {$T_2$};\n  \\node[above right] at (1.157,0.135) {$L_{\\mathrm{in}}$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3830,7 +3818,7 @@
     "h": 93.11
    },
    {
-    "i": 64,
+    "i": 63,
     "key": "ad439d452cea107ae37f24b0061324f534086d153ffaabe8bd60d1415f06f649",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (3.0,0);\n  \\draw[blue!65!black,very thick] (O1) circle (1.0);\n  \\draw[red!65!black,very thick] (O2) circle (1.3333);\n  \\draw[black!70,thick] (-0.4589,0.9549) -- (3.1997,1.3640);\n  \\draw[black!70,thick] (-0.4589,-0.9549) -- (3.1997,-1.3640);\n  \\draw[black!70,thick] (0.6207,0.8229) -- (2.1201,-1.0325);\n  \\draw[black!70,thick] (0.6207,-0.8229) -- (2.1201,1.0325);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (O1) circle (1.2pt) node[below left] {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3840,7 +3828,7 @@
     "h": 117.23
    },
    {
-    "i": 65,
+    "i": 64,
     "key": "38703869ea1550de4b8f223bbaf1e020126b749c699ae338f102af91b74bd762",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (1.6,0);\n  \\coordinate (T) at (1,0);\n  \\draw[blue!65!black,very thick] (O1) circle (1.0);\n  \\draw[red!65!black,very thick] (O2) circle (0.6);\n  \\draw[black!70,very thick] (1,-1.2) -- (1,1.2);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (T) circle (1.3pt);\n  \\node[above right] at (1.15,0.45) {$T$};\n  \\fill (O1) circle (1.2pt);\n  \\node[below left] at (-0.05,-0.05) {$O_1$};\n  \\fill (O2) circle (1.2pt) node[below right] {$O_2$};\n  \\node[above] at (1,1.3) {$\\ell$};\n\\end{tikzpicture}\n\\end{document}",
@@ -3850,7 +3838,7 @@
     "h": 121.11
    },
    {
-    "i": 66,
+    "i": 65,
     "key": "5a6e37cd43c46672cc72103f7cacd2e6177bd3329ca4c1ec76dc92067783bc04",
     "attrs": {},
     "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\coordinate (O1) at (0,0);\n  \\coordinate (O2) at (0,0.75);\n  \\coordinate (A) at (1.0,0.75);\n  \\coordinate (B) at (-1.0,0.75);\n  \\draw[gray!60,->] (-1.8,0) -- (1.8,0) node[below right] {$x$};\n  \\draw[gray!60,->] (0,-1.5) -- (0,2.1) node[above left] {$y$};\n  \\draw[blue!65!black,very thick] (O1) circle (1.25);\n  \\draw[red!65!black,very thick] (O2) circle (1.0);\n  \\draw[gray!70] (-1.6,0.75) -- (1.6,0.75);\n  \\draw[very thick] (A) -- (B);\n  \\draw[gray!70,dashed] (O1) -- (O2);\n  \\fill (A) circle (1.3pt) node[above right] {$A$};\n  \\fill (B) circle (1.3pt) node[above left] {$B$};\n  \\fill (O1) circle (1.2pt);\n  \\node[below left] at (-0.05,-0.06) {$O_1$};\n  \\fill (O2) circle (1.2pt);\n  \\node[above right] at (0.15,0.75) {$O_2$};\n  \\node[above] at (1.5,0.75) {$L$};\n\\end{tikzpicture}\n\\end{document}",
@@ -5298,6 +5286,38 @@
     "file": "42d96785d254f0f4.svg",
     "w": 201.04,
     "h": 196.09
+   }
+  ],
+  "hkdse-course/dse-课题讲义/chapter-36-数列-(ii).html": [
+   {
+    "i": 0,
+    "key": "0eba096405dca37c67124aa25b5cafa7da2b9bd4d4e4ef9a4dac65572291096a",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\node at (0,1) {$a_1$};\n  \\node at (1,1) {$a_2$};\n  \\node at (2,1) {$\\cdots$};\n  \\node at (3,1) {$a_n$};\n  \\node at (0,0) {$a_n$};\n  \\node at (1,0) {$a_{n-1}$};\n  \\node at (2,0) {$\\cdots$};\n  \\node at (3,0) {$a_1$};\n  \\draw[<->] (0,0.75) -- (0,0.25);\n  \\draw[<->] (1,0.75) -- (1,0.25);\n  \\draw[<->] (3,0.75) -- (3,0.25);\n  \\node[right] at (3.45,0.5) {$a_1+a_n$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "0eba096405dca37c.svg",
+    "w": 195.53,
+    "h": 55.57
+   },
+   {
+    "i": 1,
+    "key": "845878930552bb5bb5f8350eb1cd8fac54deadc39395c34bb58015552412eefd",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\node at (0,0.8) {$a_1$};\n  \\node at (1.2,0.8) {$a_1r$};\n  \\node at (2.4,0.8) {$a_1r^2$};\n  \\node at (3.5,0.8) {$\\cdots$};\n  \\node at (4.7,0.8) {$a_1r^{n-1}$};\n  \\node at (1.2,0) {$a_1r$};\n  \\node at (2.4,0) {$a_1r^2$};\n  \\node at (3.5,0) {$\\cdots$};\n  \\node at (4.7,0) {$a_1r^{n-1}$};\n  \\node at (5.9,0) {$a_1r^{n}$};\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "845878930552bb5b.svg",
+    "w": 273.36,
+    "h": 50.45
+   },
+   {
+    "i": 2,
+    "key": "d9cade79ab8622a7aa1e60c90131efed9e0f0b267c6e267cc6061b0063666518",
+    "attrs": {},
+    "src": "\\begin{document}\n\\begin{tikzpicture}[scale=1.5]\n  \\draw[->, thick] (0,0) -- (4.4,0);\n  \\foreach \\x in {0, 2, 3, 3.5, 4} {\n    \\fill (\\x,0) circle (1.8pt);\n  }\n  \\node[below] at (0,-0.12) {$0$};\n  \\node[below] at (2,-0.12) {$1$};\n  \\node[below] at (3,-0.12) {$\\frac{3}{2}$};\n  \\node[below] at (4,-0.12) {$2$};\n  \\draw[dashed] (4,0) -- (4,0.6);\n\\end{tikzpicture}\n\\end{document}",
+    "ok": true,
+    "file": "d9cade79ab8622a7.svg",
+    "w": 194.02,
+    "h": 49.69
    }
   ],
   "hkdse-course/dse-课题讲义/chapter-8-平面几何-(i).html": [

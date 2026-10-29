@@ -18,6 +18,115 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章把「对应法则」写成集合之间的映射，再把这条映射画进平面。三章旧内容按使用顺序排开。[[Chapter 16 集合论|集合论]] 给描述法、子集、集合运算与笛卡尔积，§19.1 的函数定义与 §19.2 的图像定义都以它为骨架；[[Chapter 6 代数式|代数式]] 给绝对值与分式、根式的定义条件，§19.1.3 求自然定义域时全靠它们分辨「无定义」；[[Chapter 15 解析几何 (I)|解析几何 (I)]] 给有序对、直角坐标系、距离公式与斜率，§19.2 之后每一条曲线都要放回坐标平面才读得懂。下面按本章用到它们的先后重列，只写结论与用法，不重复证明。
+
+### 集合、描述法与笛卡尔积（Sets, Set-Builder Notation and Cartesian Products）
+
+以下各条取自 [[Chapter 16 集合论|集合论]]。常用数集出自 §16.3.1，描述法与子集出自 §16.1.3 与 §16.2.1，集合运算出自 §16.4，笛卡尔积与 $\mathbb{R}^n$ 出自 §16.3.2 与 §16.3.3，区间出自 §16.6，基数出自 §16.5.1。
+
+````ad-def
+title: 定义（回顾: 常用数集记号） | Definition（Recap: Notation for Number Sets）
+
+$\mathbb{N}$ 表自然数集，$\mathbb{Z}$ 表整数集，$\mathbb{Q}$ 表有理数集，$\mathbb{R}$ 表实数集。本章另用 $\mathbb{N}_0=\mathbb{N}\cup\{0\}$ 表示含 $0$ 的自然数集。
+````
+
+§19.1.2 举的函数例子里，$g://mathbb{Z}//to//mathbb{Z}$、$h://mathbb{R}//to//mathbb{R}$ 直接以数集充当定义域与陪域；§19.1.4 的实值函数把陪域固定为 $\mathbb{R}$。§19.2.3 定义多重集的计数函数 $m:U\to\mathbb{N}_0$ 时，用并集把 $0$ 补进自然数集，取值为 $0$ 正好表示该元素不在多重集中。
+
+````ad-def
+title: 定义（回顾: 描述法、子集与基数） | Definition（Recap: Set-Builder Notation, Subsets and Cardinality）
+
+描述法把集合写成 $\{x\mid P(x)\}$，读作所有使 $P(x)$ 为真的 $x$ 所组成的集合。若 $A$ 的每个元素都属于 $B$，称 $A$ 是 $B$ 的**子集（subset）**，记作 $A\subseteq B$；若还有 $A\ne B$，则称 $A$ 是 $B$ 的**真子集（proper subset）**，记作 $A\subsetneq B$。不含任何元素的集合记作 $\varnothing$。有限集 $A$ 的元素数目记作 $n(A)$，称为 $A$ 的**基数（cardinality）**。
+````
+
+§19.1.1 的函数定义以「两个非空集合 $A$ 与 $B$」开场，$A$ 后来成为定义域、$B$ 成为陪域。§19.1.3 用 $R_f\subseteq B$ 说明值域不超过陪域，又用 $R_h=[1,\infty)\subsetneq[0,\infty)$ 说明真子集可以严格小于陪域。§19.2.3 把子集的像写成 $f(S)=\{f(x)\mid x\in S\}$，句式与描述法一致；同一节把重数之和记作 $n(M)$，沿用基数记号。
+
+````ad-def
+title: 定义（回顾: 交集、并集与差集） | Definition（Recap: Intersection, Union and Set Difference）
+
+对集合 $A,B$：
+$$A\cap B=\{x\mid x\in A\ \text{且}\ x\in B\},\qquad A\cup B=\{x\mid x\in A\ \text{或}\ x\in B\},$$
+$$A\setminus B=\{x\in A\mid x\notin B\}.$$
+````
+
+§19.1.4.2 定义函数的和与积时，把定义域取成 $D_{f+g}=D_f\cap D_g$，理由是只有两个函数都有定义的点才能相加；§19.1.4.3 定义商时再差掉使分母为零的点，写成 $D_f\cap D_g\setminus\{x\mid g(x)=0\}$。§19.1.3 示例 4 的答案由两段区间拼成，写作 $(-\infty,-1)\cup(-1,4]$，中间缺掉的正是被差集剔除的 $-1$。
+
+````ad-def
+title: 定义（回顾: 笛卡尔积与 $\mathbb{R}^n$） | Definition（Recap: Cartesian Product and $\mathbb{R}^n$）
+
+$$A\times B=\{(a,b)\mid a\in A,\ b\in B\}.$$
+取 $A=B=\mathbb{R}$ 得 $\mathbb{R}^2=\mathbb{R}\times\mathbb{R}$，即全体有序实数对；一般地 $\mathbb{R}^n$ 是全体 $n$ 元有序实数组的集合，$\mathbb{R}^2$ 的元素可读作平面上的点。
+````
+
+§19.1.1 讲函数的「图像」视角时，说图像是 $A\times B$ 中满足条件的点的全体，这句话的集合含义就落在这里。§19.2.1 由 $A\times B$ 取 $A=B=\mathbb{R}$ 直接得到 $\mathbb{R}^2$，随后把函数图像定义成 $\mathbb{R}^2$ 的子集；同节的距离函数写成 $d:\mathbb{R}^2\times\mathbb{R}^2\to\mathbb{R}$，连定义域本身又是一个笛卡尔积。
+
+````ad-def
+title: 定义（回顾: 区间） | Definition（Recap: Interval）
+
+设 $a<b$。$(a,b)=\{x\in\mathbb{R}\mid a<x<b\}$，$[a,b]=\{x\in\mathbb{R}\mid a\le x\le b\}$，半开区间同理；$[a,\infty)=\{x\in\mathbb{R}\mid x\ge a\}$，$(-\infty,b)=\{x\in\mathbb{R}\mid x<b\}$，靠近无穷的一端一律用圆括号。
+````
+
+§19.1.3 求值域时用 $[0,\infty)$、$[1,\infty)$ 表示连续范围，并指出 $0$ 没有被取到；§19.1.4 的示例取 $D_f=[0,\infty)$，§19.1.3 示例 3 的陪域直接写成 $[0,\infty)$。这些写法都要求区间记号与集合记号可以互换。
+
+### 绝对值与定义条件（Absolute Value and Conditions for Being Defined）
+
+以下各条取自 [[Chapter 6 代数式|代数式]]。算术平方根出自 §6.3.1，代数分式出自 §6.4.1。
+
+````ad-def
+title: 定义（回顾: 代数分式与偶次根式的定义条件） | Definition（Recap: Conditions for Fractions and Even Roots）
+
+代数分式 $\dfrac{P}{Q}$ 要求 $Q\ne0$。算术平方根 $\sqrt{m}$ 只对 $m\ge0$ 有定义，偶次根式 $\sqrt[4]{g(x)}$ 同理。这两条是「解析式在某点无定义」的全部来源。
+````
+
+§19.1.3 的自然定义域表把「无定义」分成两行：分母含 $x$ 时要求 $g(x)\ne0$，偶次根式时要求 $g(x)\ge0$。同节示例 2 由 $x-2=0$ 剔除 $2$，示例 3 由 $x+1\ge0$ 得 $[-1,\infty)$，示例 4 把两条限制同时用上，先取 $x\le4$ 再剔 $x\ne-1$。§19.1.4 的示例取 $D_f=[0,\infty)$，也是第二行的直接结果。
+
+### 坐标、距离与斜率（Coordinates, Distance and Slope）
+
+以下各条取自 [[Chapter 15 解析几何 (I)|解析几何 (I)]]。有序对与直角坐标系出自 §15.1.1 与 §15.1.2，距离公式出自 §15.2.2，斜率出自 §15.2.6。
+
+````ad-def
+title: 定义（回顾: 有序对与直角坐标系） | Definition（Recap: Ordered Pairs and the Cartesian Coordinate System）
+
+有序对 $(x,y)$ 的次序不可换，$(x_1,y_1)=(x_2,y_2)$ 当且仅当两个分量分别相等。平面上两条互相垂直、共原点的数轴构成**直角坐标系（Cartesian coordinate system）**，平面上每一点由唯一的有序对 $(x,y)$ 确定，反之亦然。
+````
+
+§19.2.1 靠这条一一对应把「平面」与「$\mathbb{R}^2$」当成同一个对象，随后才能把几何图形写成 $\mathbb{R}^2$ 的子集；§19.2.1 末尾的注记把 $y=c$ 与 $x=c$ 分别写成 $\{(x,y)\mid y=c\}$ 与 $\{(x,y)\mid x=c\}$，读法就是坐标。§19.2.2 的图像 $G_f$ 同样由 $(x,y)$ 这种有序对组成。
+
+````ad-thm
+title: 定理（回顾: 两点间距离公式） | Theorem（Recap: Distance Formula）
+
+平面上两点 $P(x_1,y_1)$ 与 $Q(x_2,y_2)$ 之间的距离为
+$$d(P,Q)=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}.$$
+````
+
+§19.2.1 把这条公式重新读成一个函数：输入是一对点、输出是一个实数，于是有 $d:\mathbb{R}^2\times\mathbb{R}^2\to\mathbb{R}$。同节示例算 $P(1,2)$ 与 $Q(4,6)$ 的距离得 $5$，并点明这就是勾三股四弦五。此后点到集合的距离、两集合间的距离，都以这条公式为底层度量。
+
+````ad-def
+title: 定义（回顾: 斜率） | Definition（Recap: Slope）
+
+过两点 $(x_1,y_1)$ 与 $(x_2,y_2)$（$x_1\ne x_2$）的直线，其**斜率（slope）**为
+$$m=\frac{y_2-y_1}{x_2-x_1},$$
+刻画直线的倾斜程度。
+````
+
+§19.3.2 定义线性函数 $f(x)=kx+b$ 时，直接把 $k$ 称为斜率、$b$ 称为截距，并在注记里指明斜率的定义见 §15.2.6，本章不重证。同节判定 $f(x)=5$ 不是线性函数时，理由正是它画出来是水平直线，斜率取 $0$。
+
+### 其他引用（Other References）
+
+下列各条只在一两处示例或说明里出现，因此不重列公式，只指出位置。
+
+- **§19.1.1 良定义示例**：规则 $T$ 在形如 $\dfrac{n}{m}$ 的数上定义，靠 $\dfrac{1}{3}=\dfrac{3}{9}$ 造出两个不同输出。分数相等的条件见 [[Chapter 1 数系(I)|数系(I)]] §1.3.1。
+- **§19.1.3 示例 1 与示例 3**：由 $x^2\ge0$ 得 $f(x)=x^2$ 的值域为 $[0,\infty)$、$h(x)=x^2+1$ 的值域为 $[1,\infty)$。见 [[Chapter 11 不等式 (I)|不等式 (I)]] §11.3.1。
+- **§19.1.3 示例 2**：判 $f(x)=|x|$ 与分段给出的 $g$ 为同一个函数，逐段比对靠的正是绝对值的分段定义，本章此后凡出现 $|x|$ 都按它读。见 [[Chapter 6 代数式|代数式]] §6.3.1。
+- **§19.2.1 点到集合的距离**：$d(p,S)=\inf\{\,d(p,s)\mid s\in S\,\}$ 与 $d(A,B)=\inf\{\,d(a,b)\mid a\in A,\ b\in B\,\}$ 都取下确界，正因下确界不必在集合内取到，正文才补一句 $d(p,S)=0$ 推不出 $p\in S$。见 [[Chapter 16 集合论|集合论]] §16.7.3。
+- **§19.2.3 示例**：把计数函数 $m$ 读成频数、把 $n(M)$ 读成样本容量，见 [[Chapter 12 数据的组织与表达|数据的组织与表达]] §12.1.1；求平均分与众数见 [[Chapter 13 集中趋势的度量|集中趋势的度量]] §13.1.1。
+- **§19.2.4 平移**：把每点 $(x,y)$ 换成 $(x+a,y)$ 再回推解析式，与坐标平移是同一手法。见 [[Chapter 15 解析几何 (I)|解析几何 (I)]] §15.4.1。
+
+回顾到此为止。§19.1 从两个非空集合之间的对应讲起，第一个要交代的就是「每个 $x$ 都有唯一 $y$」。
+
+---
+
 ## 19.1　函数的概念（The Concept of a Function）
 
 > **本节难度上限**：T B ｜ C C ｜ E B ｜ Q C+
@@ -47,7 +156,7 @@ $$f: A \to B,$$
 要使对应法则 $f$ 真正成为函数，必须同时满足两条：
 
 ````ad-cor
-title: 推论（函数的两条本质要求） | Corollary（函数的两条本质要求）
+title: 推论（函数的两条本质要求） | Corollary（Two Essential Requirements of a Function）
 
 函数 $f: A \to B$ 满足：
 1. **任意性（totality）：** $A$ 中的每个元素都**必须**有对应值。若存在 $a \in A$ 在 $B$ 中没有对应值，则 $f$ 不是从 $A$ 到 $B$ 的函数。
@@ -928,11 +1037,6 @@ title: 定义（多重集） | Definition（Multiset）
 * **计重总数：** $n(M)$ 是 $M$ 中所有元素重数之和（即把所有元素按出现次数加起来）。
 ````
 
-
-**为什么需要多重集？**
-
-普通集合只记录「元素是否出现」，不记录「出现了多少次」。例如一组考试成绩 $\{70, 85, 90\}$ 无法反映「70 分出现了三次」。多重集通过**计数函数**记录每个元素的**重复次数（重数）**，弥补了这一缺憾。下面是严格定义。
-
 ````ad-example
 title: 示例（多重集的计数函数） | Example（Counting Function of a Multiset）
 
@@ -958,7 +1062,7 @@ title: 示例（多重集的计数函数） | Example（Counting Function of a M
 * 这一推广保留了普通集合的所有功能（重数只取 $0$ 或 $1$ 时退化为普通集合），并新增了「记录重复次数」的能力。
 
 ````ad-cor
-title: 推论（多重集是普通集合的推广） | Corollary（多重集是普通集合的推广）
+title: 推论（多重集是普通集合的推广） | Corollary（A Multiset Generalizes an Ordinary Set）
 
 当对每个 $x$ 都有 $m(x) \in \{0, 1\}$（即每个元素至多出现一次）时，多重集退化为普通集合。此时 $M$ 等价于其中实际出现的元素构成的集合 $S = \{x \mid m(x) = 1\}$，且 $n(M) = n(S)$（重数之和等于集合基数）。普通集合是重数恒为 $0$ 或 $1$ 的特殊多重集。
 ````
@@ -1017,18 +1121,13 @@ title: 示例（多重集在统计学中的角色） | Example（The Role of Mul
 
 
 ````ad-def
-title: 定义（函数作用下的多重集像） | Definition（函数作用下的多重集像）
+title: 定义（函数作用下的多重集像） | Definition（Image of a Multiset under a Function）
 
 设 $f: A \to B$，$M$ 为 $A$ 上的多重集（计数函数为 $m$）。将 $f$ 作用于 $M$ 中的每个元素（保留重数），得到 $B$ 上的多重集 $f(M)$，其计数函数为：对 $y \in B$，
 $$m_{f(M)}(y) = \text{「}M \text{ 中满足 } f(x) = y \text{ 的所有 } x \text{ 的重数之和」。}$$
 
 简言之：$f(M)$ 中 $y$ 的重数等于「$M$ 中所有映射到 $y$ 的元素」按重数累加的总数。
 ````
-
-
-**为什么需要多重集？**
-
-普通集合只记录「元素是否出现」，不记录「出现了多少次」。例如一组考试成绩 $\{70, 85, 90\}$ 无法反映「70 分出现了三次」。多重集通过**计数函数**记录每个元素的**重复次数（重数）**，弥补了这一缺憾。下面是严格定义。
 
 ````ad-example
 title: 示例（计算函数作用下的多重集像） | Example（Image of a Multiset under a Function）
@@ -1562,7 +1661,7 @@ $$f(\alpha a + \beta b) = f(\alpha a) + f(\beta b) = \alpha f(a) + \beta f(b).$$
 ````
 
 ````ad-example
-title: 示例（验证线性性） | Example（验证线性性）
+title: 示例（验证线性性） | Example（Verifying Linearity）
 
 
 验证下列函数是否满足线性性：
@@ -1583,7 +1682,7 @@ title: 示例（验证线性性） | Example（验证线性性）
 ````
 
 ````ad-example
-title: 示例（用等价刻画快速验证） | Example（用等价刻画快速验证）
+title: 示例（用等价刻画快速验证） | Example（Quick Verification with an Equivalent Characterization）
 
 
 用推论 19.3.1 的等价刻画验证：
@@ -1690,7 +1789,7 @@ $$\forall x \in D_f, \quad f(-x) = -f(x),$$
 * **图像角度：** 偶函数的图像关于 $y$ 轴折叠后重合；奇函数的图像绕原点旋转 $180^\circ$ 后重合。
 
 ````ad-example
-title: 示例（判断函数的奇偶性） | Example（判断函数的奇偶性）
+title: 示例（判断函数的奇偶性） | Example（Determining the Parity of a Function）
 
 
 判断下列函数在 $\mathbb{R}$ 上是奇函数、偶函数，还是两者都不是：
@@ -1715,7 +1814,7 @@ title: 示例（判断函数的奇偶性） | Example（判断函数的奇偶性
 ````
 
 ````ad-thm
-title: 定理（奇偶性的运算） | Theorem（奇偶性的运算）
+title: 定理（奇偶性的运算） | Theorem（Operations on Parity）
 
 1. 奇函数 $\pm$ 奇函数 $=$ 奇函数；偶函数 $\pm$ 偶函数 $=$ 偶函数。
 2. 奇函数 $\times$ 奇函数 $=$ 偶函数；偶函数 $\times$ 偶函数 $=$ 偶函数。
@@ -1733,7 +1832,7 @@ $$(fg)(-x) = f(-x) \cdot g(-x) = (-f(x)) \cdot (-g(x)) = f(x) \cdot g(x) = (fg)(
 ````
 
 ````ad-example
-title: 示例（应用奇偶运算规则） | Example（应用奇偶运算规则）
+title: 示例（应用奇偶运算规则） | Example（Applying the Rules of Parity Operations）
 
 
 设 $f(x) = x$（奇）、$g(x) = x^2$（偶）、$h(x) = x^3$（奇）。判别下列函数的奇偶性：
@@ -1943,7 +2042,7 @@ title: 定理（幂函数的单调性） | Theorem（Monotonicity of Power Funct
 2. 若 $n$ 为**偶数**，则 $f$ 在 $(-\infty, 0]$ 上**严格递减**、在 $[0, +\infty)$ 上**严格递增**，在 $\mathbb{R}$ 上**不单调**。
 ````
 
-> 配图：$y=x$、$y=x^2$、$y=x^3$ 在同一坐标系下的图像对比——$y=x$、$y=x^3$（奇次幂）在整个 $\mathbb{R}$ 上严格上升；$y=x^2$（偶次幂）在 $y$ 轴左侧下降、右侧上升，最低点为 $(0,0)$。
+> 配图：$y=x$、$y=x^2$、$y=x^3$ 在同一坐标系下的图像对比：$y=x$、$y=x^3$（奇次幂）在整个 $\mathbb{R}$ 上严格上升；$y=x^2$（偶次幂）在 $y$ 轴左侧下降、右侧上升，最低点为 $(0,0)$。
 
 **常见函数的单调区间速查：**
 

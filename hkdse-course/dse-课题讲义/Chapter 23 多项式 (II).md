@@ -16,6 +16,121 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章把第四章的因式分解从「靠观察」换成「靠算法」，用的全是旧工具。[[Chapter 4 多项式(I)|多项式(I)]] 给多项式的定义与相等的判据，§23.1 起每一处「比较系数」都靠它；[[Chapter 19 函数及其图像|函数及其图像]] 给函数的定义，§23.1.1 把多项式写成映射；[[Chapter 6 代数式|代数式]] 给恒等式与立方差公式，§23.2.3 与 §23.5.5 各取一件；[[Chapter 17 数系(II)|数系(II)]] 给复数与共轭，§23.4.2 的共轭根定理整段建立在它上面；[[Chapter 18 解方程方法(II)|解方程方法(II)]] 给判别式，§23.4.2 判二次因式可约与否要用；[[Chapter 1 数系(I)|数系(I)]] 给质因数分解与最大公因数，§23.5.1 与 §23.5.4 的类比以它为模板。下面按本章用到它们的先后重列，只写结论与用法。
+
+### 多项式与多项式的相等（Polynomials and Equality）
+
+以下各条取自 [[Chapter 4 多项式(I)|多项式(I)]]。
+
+````ad-def
+title: 定义（回顾: 多项式） | Definition（Recap: Polynomial）
+
+设 $P_1, P_2, \dots, P_m$ 为 $m$ 个单项式，它们的和
+$$P_1 + P_2 + \cdots + P_m$$
+称为一个**多项式**。$m = 1$ 时为单项式，故单项式是多项式的特例。多项式中的各项按同类项合并、降幂排列后，称为它的最简表示。
+````
+
+§23.1.1 把它收窄到单变量，再把系数域从 $\mathbb{R}$ 换成 $\mathbb{C}$，得到 $\mathbb{R}[x]$ 与 $\mathbb{C}[z]$；§23.1.2 讨论相等时，前提仍是这条定义里的最简表示。
+
+````ad-thm
+title: 定理（回顾: 多项式恒等的等价条件） | Theorem（Recap: Equivalent Condition for Polynomial Identity）
+
+设 $P$、$Q$ 均已化为最简表示。则 $P \equiv Q$ 当且仅当 $\deg P = \deg Q$，且各项对应系数相等。
+````
+
+这是本章全部「比较系数」的依据。§23.1.2 用它由 $P(z) = az^2 + bz + c$ 与 $Q(z) = 2z^2 - z + 5$ 相等读出 $a$、$b$、$c$；§23.2.3 的待定系数法把除法算式 $P(z) \equiv D(z)Q(z) + R(z)$ 两侧展开，逐项对照解出商式与余式的系数。
+
+### 函数与多项式函数（Functions and Polynomial Functions）
+
+以下各条取自 [[Chapter 19 函数及其图像|函数及其图像]]。
+
+````ad-def
+title: 定义（回顾: 函数） | Definition（Recap: Function）
+
+设 $A$、$B$ 为两个非空集合。若存在对应法则 $f$，使 $A$ 中每一个元素 $x$ 都在 $B$ 中有唯一确定的元素 $y$ 与之对应，则称 $f$ 为从 $A$ 到 $B$ 的**函数**，记作
+$$f: A \to B,\qquad y = f(x).$$
+````
+
+§23.1.1 定义单变量多项式时直接套这个格式：$P: \mathbb{C} \to \mathbb{C}$，$P(z) = a_n z^n + \cdots + a_0$。有了函数身份，「$P$ 在 $z_0$ 处取值」「$z_0$ 是 $P$ 的根」这两句话才有意义，§23.3.2 与 §23.4.2 全靠它们。
+
+### 恒等式（Identities）
+
+以下各条取自 [[Chapter 6 代数式|代数式]]。
+
+````ad-def
+title: 定义（回顾: 恒等式） | Definition（Recap: Identity）
+
+含变量的等式若对变量取值范围内的**任意**赋值都成立，则称为**恒等式**。方程用存在量词 $\exists$，恒等式用全称量词 $\forall$，这是两者的分界。
+````
+
+§23.2.1 的除法算式 $P(z) \equiv D(z)Q(z) + R(z)$ 是恒等式而不是方程：它对每个 $z$ 都成立，所以两边可以逐项比较系数，§23.2.3 的待定系数法正是这样做的。
+
+### 复数与共轭（Complex Numbers and Conjugates）
+
+以下各条取自 [[Chapter 17 数系(II)|数系(II)]]。
+
+````ad-def
+title: 定义（回顾: 虚数单位与复数） | Definition（Recap: Imaginary Unit and Complex Number）
+
+定义 $i^2 = -1$，称 $i$ 为**虚数单位**。形如
+$$z = a + bi \qquad (a, b \in \mathbb{R})$$
+的数称为**复数**，全体记作 $\mathbb{C}$。$a$ 为实部，$b$ 为虚部。
+````
+
+§23.1.1 把多项式定义在 $\mathbb{C}$ 上，$\mathbb{C}[z]$ 的记号由此而来；§23.4.2 的代数基本定理断言每个次数不小于 $1$ 的复系数多项式在 $\mathbb{C}$ 中都有根，本章的完全分解就建在这条扩张之上。
+
+````ad-def
+title: 定义（回顾: 共轭复数及其运算性质） | Definition（Recap: Conjugate and Its Properties）
+
+对 $z = a + bi$，其**共轭**为
+$$\overline{z} = a - bi.$$
+共轭保持加法与乘法：
+$$\overline{u + v} = \overline{u} + \overline{v},\qquad \overline{uv} = \overline{u}\,\overline{v},\qquad \overline{\overline{z}} = z.$$
+````
+
+§23.4.2 证明共轭根定理时逐行用它：把 $P(z) = \sum a_i z^i$ 整体取共轭，$P(z)$ 的共轭写成 $\sum \overline{a_i}\,\overline{z^i}$，再由实系数给出 $\overline{a_i} = a_i$，得 $P(\overline{z}) = \overline{P(z)} = 0$。
+
+### 判别式（The Discriminant）
+
+以下各条取自 [[Chapter 18 解方程方法(II)|解方程方法(II)]]。
+
+````ad-def
+title: 定义（回顾: 判别式） | Definition（Recap: Discriminant）
+
+对一元二次方程 $ax^2 + bx + c = 0$（$a \neq 0$），
+$$\Delta = b^2 - 4ac$$
+称为它的**判别式**。$\Delta > 0$ 时有两个相异实根，$\Delta = 0$ 时有一个二重实根，$\Delta < 0$ 时无实根。
+````
+
+§23.4.2 用它给「$\mathbb{R}$ 上的二次不可约因式」下判据：$x^2 + px + q$ 在 $\mathbb{R}$ 上不可约，当且仅当 $\Delta = p^2 - 4q < 0$；§23.4.3 每次处理剩下来的二次式，也是先算 $\Delta$ 再决定继续分解还是收手。
+
+### 质因数分解与最大公因数（Prime Factorization and HCF）
+
+以下各条取自 [[Chapter 1 数系(I)|数系(I)]]。
+
+````ad-thm
+title: 定理（回顾: 唯一质因数分解定理） | Theorem（Recap: Unique Prime Factorization）
+
+任意大于 $1$ 的自然数都可写成若干质数之积，且不计次序时写法唯一。
+````
+
+§23.5.4 的对照表以这条定理为左栏：整数的「基本构成单元」是质数，多项式的对应物是不可约首一多项式；整数 HCF 取公共质因数的最低次幂，§23.5.1 定义多项式 HCF 时照抄这条规则。§23.5.1 末句「系数部分取 $k$、$\ell$ 的最大公因数」，用的也是 [[Chapter 1 数系(I)|数系(I)]] §1.2.4 的整数最大公因数。
+
+### 其他引用（Other References）
+
+下列各条只在一两处示例或推导里出现，因此不重列公式，只指出位置。
+
+- **§23.4.3 示例**：剩余的二次式用十字相乘分解，方法见 [[Chapter 4 多项式(I)|多项式(I)]] §4.3.4。
+- **§23.2.1 的除法算法**：被除式与除式按降幂排列后逐项相除，同类项合并与指数相减的运算见 [[Chapter 4 多项式(I)|多项式(I)]] §4.2.4。
+- **§23.5.5 的有理函数**：约分与通分的运算规则见 [[Chapter 6 代数式|代数式]] §6.4.1。
+- **§23.5.5 的两例**：化简 $\dfrac{x^3 - 3x + 2}{x^3 - 1}$ 与计算 $\dfrac{1}{x^3 - 1} + \dfrac{1}{x^2 - 1}$ 时，分母先按立方差公式拆成 $(x - 1)(x^2 + x + 1)$，才谈得上约分与通分。见 [[Chapter 6 代数式|代数式]] §6.2.2。
+
+回顾到此为止。§23.1 从记法入手，第一步就把「多项式」写成一条从 $\mathbb{C}$ 到 $\mathbb{C}$ 的对应法则。
+
+---
+
 ## 23.1　单变量多项式的记法与基本概念
 
 > **本节难度上限**：T C+ ｜ C D+ ｜ E D ｜ Q C
@@ -800,10 +915,10 @@ title: 证明 | Proof
 故 $P(x) \equiv 0$（零多项式）。
 ````
 
-根数上界告诉我们根「不会太多」，但并未说明根与因式如何组织。以下定理给出实数域上的根—因式结构。
+根数上界告诉我们根「不会太多」，但并未说明根与因式如何组织。以下定理给出实数域上的根与因式结构。
 
 ````ad-thm
-title: 定理（实数域上的根—因式结构） | Theorem（Root-Factor Structure over $\mathbb{R}$）
+title: 定理（实数域上的根与因式结构） | Theorem（Root-Factor Structure over $\mathbb{R}$）
 
 设 $P(x)$ 为非零单变量多项式，$\deg P = n$，首项系数为 $a_n$。若 $P(x)$ 在 $\mathbb{R}$ 中的所有根为 $a_1, a_2, \dots, a_k$，且对应的重数分别为 $m_1, m_2, \dots, m_k$，则存在多项式 $Q(x)$ 满足：
 
@@ -1201,7 +1316,7 @@ title: 算法（求最大公因式） | Algorithm（Finding the HCF）
 ````
 
 ````ad-example
-title: 示例（求 HCF：已分解的多项式） | Example（HCF of Factored Polynomials）
+title: 示例（求最大公因式：已分解的多项式） | Example（HCF of Factored Polynomials）
 
 求 $P(x) = (x - 1)^2(x + 2)$ 与 $Q(x) = (x - 1)(x + 3)^3$ 的 HCF。
 
@@ -1213,7 +1328,7 @@ $$\text{HCF}(P, Q) = (x - 1)$$
 ````
 
 ````ad-example
-title: 示例（求 HCF：需先因式分解） | Example（HCF Requiring Factorization First）
+title: 示例（求最大公因式：需先因式分解） | Example（HCF Requiring Factorization First）
 
 求 $P(x) = x^2 - 1$ 与 $Q(x) = x^3 + x^2 - x - 1$ 的 HCF。
 
@@ -1229,7 +1344,7 @@ $$\text{HCF}(P, Q) = (x - 1)(x + 1) \equiv x^2 - 1$$
 ````
 
 ````ad-example
-title: 示例（求 HCF：含重根） | Example（HCF with Multiple Roots）
+title: 示例（求最大公因式：含重根） | Example（HCF with Multiple Roots）
 
 求 $P(x) = (x - 2)^3(x + 1)$ 与 $Q(x) = (x - 2)^2(x - 3)$ 的 HCF。
 
@@ -1263,7 +1378,7 @@ title: 算法（求最小公倍式） | Algorithm（Finding the LCM）
 ````
 
 ````ad-example
-title: 示例（求 LCM：已分解的多项式） | Example（LCM of Factored Polynomials）
+title: 示例（求最小公倍式：已分解的多项式） | Example（LCM of Factored Polynomials）
 
 求 $P(x) = (x - 1)^2(x + 2)$ 与 $Q(x) = (x - 1)(x + 3)^3$ 的 LCM。
 
@@ -1275,7 +1390,7 @@ $$\text{LCM}(P, Q) = (x - 1)^2(x + 2)(x + 3)^3$$
 ````
 
 ````ad-example
-title: 示例（求 LCM：需先因式分解） | Example（LCM Requiring Factorization First）
+title: 示例（求最小公倍式：需先因式分解） | Example（LCM Requiring Factorization First）
 
 求 $P(x) = x^2 - 1$ 与 $Q(x) = x^3 + x^2 - x - 1$ 的 LCM。
 
@@ -1287,7 +1402,7 @@ $$\text{LCM}(P, Q) = (x - 1)(x + 1)^2$$
 ````
 
 ````ad-example
-title: 示例（求 LCM：三次×三次） | Example（LCM of Two Cubics）
+title: 示例（求最小公倍式：三次×三次） | Example（LCM of Two Cubics）
 
 求 $P(x) = (x - 2)^3(x + 1)$ 与 $Q(x) = (x - 2)^2(x - 3)$ 的 LCM。
 
@@ -1303,7 +1418,7 @@ $$\text{LCM}(P, Q) = (x - 2)^3(x + 1)(x - 3)$$
 ### 23.5.3　HCF 与 LCM 的关系
 
 ````ad-thm
-title: 定理（HCF 与 LCM 的关系） | Theorem（Relationship between HCF and LCM）
+title: 定理（最大公因式与最小公倍式的关系） | Theorem（Relationship between HCF and LCM）
 
 对任意两个非零单变量多项式 $P(x), Q(x)$，
 
@@ -1329,7 +1444,7 @@ $$\text{HCF}(P, Q) \cdot \text{LCM}(P, Q) = \prod_i f_i(x)^{\min(p_i, q_i) + \ma
 ````
 
 ````ad-example
-title: 示例（验证 HCF·LCM 关系） | Example（Verifying the HCF·LCM Relationship）
+title: 示例（验证最大公因式与最小公倍式的关系） | Example（Verifying the HCF·LCM Relationship）
 
 设 $P(x) = (x - 1)^2(x + 2)$，$Q(x) = (x - 1)(x + 2)^3$。验证 $\text{HCF} \cdot \text{LCM} \sim P \cdot Q$。
 
@@ -1366,7 +1481,7 @@ $$P \cdot Q = (x - 1)^2(x + 2) \cdot (x - 1)(x + 2)^3 = (x - 1)^3(x + 2)^4$$
 
 ### 23.5.5　有理函数的运算
 
-回顾第四章，代数分式的运算原则是「先因式分解再约分」。有了 HCF 与 LCM，这些运算有了更系统的工具。
+回顾第六章，代数分式的运算原则是「先因式分解再约分」。有了 HCF 与 LCM，这些运算有了更系统的工具。
 
 - **约分**：分子分母同除以 HCF。
 - **通分**：分母取 LCM。
@@ -1374,7 +1489,7 @@ $$P \cdot Q = (x - 1)^2(x + 2) \cdot (x - 1)(x + 2)^3 = (x - 1)^3(x + 2)^4$$
 - **加减**：通分后分子加减，分母保持 LCM。
 
 ````ad-example
-title: 示例（求 HCF 与 LCM） | Example（Finding HCF and LCM）
+title: 示例（求最大公因式与最小公倍式） | Example（Finding HCF and LCM）
 
 求 $P(x) = x^2 - 4$ 与 $Q(x) = x^2 + 4x + 4$ 的 HCF 与 LCM。
 
@@ -1529,7 +1644,7 @@ $$\frac{(x+1) + (x^2+x+1)}{(x-1)(x+1)(x^2+x+1)} \equiv \frac{x^2 + 2x + 2}{(x-1)
 
 * **余式定理的适用范围**：余式定理仅适用于除式为一次式 $(z - a)$ 的情形。当除式为高次式（如 $z^2 + 1$）时，余式不再是常数，必须用长除法。这是学生常犯的错误（见 §23.3 示例。
 
-* **因式定理的「检测—提取」循环**：因式定理负责检测，除法算法负责提取。每次提取降次 $1$，保证有限终止。这是系统化分解多项式的核心机制，须让学生动手执行完整流程。
+* **因式定理的「检测与提取」循环**：因式定理负责检测，除法算法负责提取。每次提取降次 $1$，保证有限终止。这是系统化分解多项式的核心机制，须让学生动手执行完整流程。
 
 * **$\mathbb{R}$ 与 $\mathbb{C}$ 的对照**：本章最深刻的结论是「实系数多项式在 $\mathbb{C}$ 上可完全分解为一次因式之积，在 $\mathbb{R}$ 上则分解为一次式与 $\Delta < 0$ 的二次式之积」。须用对照表强化，并用具体例子（如 $x^4 + 1$）说明 $Q(x)$ 无实根但仍可分解为二次式。
 

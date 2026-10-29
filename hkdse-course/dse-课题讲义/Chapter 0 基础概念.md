@@ -100,7 +100,7 @@ title: 定义（等式） | Definition（Equality）
 >2.  如果我们想用一些符号指代某一段命题，例如将  “ $1+1 = 2$ ” 指定为 $P$，那么我们写：
 >$$P = (1+1=2)$$
 
-> ($=$)是作用於對象上的工具。兩命題邏輯上相同稱為(等價)，不能用($=$)表示。
+> ($=$)是作用於对象上的工具。两命题逻辑上相同称为(等价)，不能用($=$)表示。
 
 ````ad-example
 title: 示例 | Example
@@ -122,7 +122,7 @@ title: 示例 | Example
 ````ad-def
 title: 定义（否定） | Definition（Negation）
 
-设 $P$ 为命题，定义 $P$ 的否定命題 $\neg P$（读作(非 $P$)），其真值由 $P$ 的真值決定：
+设 $P$ 为命题，定义 $P$ 的否定命题 $\neg P$（读作(非 $P$)），其真值由 $P$ 的真值决定：
 
 | $P$ | $\neg P$ |
 |:---:|:---:|
@@ -135,7 +135,7 @@ title: 定义（否定） | Definition（Negation）
 ````ad-def
 title: 定义（合取） | Definition（Conjunction）
 
-设 $P, Q$ 为两命题，定义合取命題 $P \land Q$（读作($P$ 及 $Q$)），仅当 $P, Q$ 同时为真时 $P \land Q$ 为真：
+设 $P, Q$ 为两命题，定义合取命题 $P \land Q$（读作($P$ 及 $Q$)），仅当 $P, Q$ 同时为真时 $P \land Q$ 为真：
 
 | $P$ | $Q$ | $P \land Q$ |
 |:---:|:---:|:---:|
@@ -150,7 +150,7 @@ title: 定义（合取） | Definition（Conjunction）
 ````ad-def
 title: 定义（析取） | Definition（Disjunction）
 
-设 $P, Q$ 为两命题，定义析取命題 $P \lor Q$（读作($P$ 或 $Q$)），当 $P, Q$ 至少一真时 $P \lor Q$ 为真：
+设 $P, Q$ 为两命题，定义析取命题 $P \lor Q$（读作($P$ 或 $Q$)），当 $P, Q$ 至少一真时 $P \lor Q$ 为真：
 
 | $P$ | $Q$ | $P \lor Q$ |
 |:---:|:---:|:---:|
@@ -165,7 +165,7 @@ title: 定义（析取） | Definition（Disjunction）
 ````ad-def
 title: 定义（条件句） | Definition（Conditional）
 
-设 $P, Q$ 为两命题，定义条件命題 $P \to Q$（读作(若 $P$，则 $Q$)），其中 $P$ 称为**假设**（hypothesis），$Q$ 称为**结论**（conclusion）。仅当 $P$ 真而 $Q$ 假时，$P \to Q$ 为假：
+设 $P, Q$ 为两命题，定义条件命题 $P \to Q$（读作(若 $P$，则 $Q$)），其中 $P$ 称为**假设**（hypothesis），$Q$ 称为**结论**（conclusion）。仅当 $P$ 真而 $Q$ 假时，$P \to Q$ 为假：
 
 | $P$ | $Q$ | $P \to Q$ |
 |:---:|:---:|:---:|
@@ -180,7 +180,7 @@ title: 定义（条件句） | Definition（Conditional）
 ````ad-def
 title: 定义（双条件） | Definition（Biconditional）
 
-设 $P, Q$ 为两命题，定义双条件命題 $P \leftrightarrow Q$（读作($P$ 当且仅当 $Q$)），当 $P, Q$ 真值一致时为真：
+设 $P, Q$ 为两命题，定义双条件命题 $P \leftrightarrow Q$（读作($P$ 当且仅当 $Q$)），当 $P, Q$ 真值一致时为真：
 
 | $P$ | $Q$ | $P \leftrightarrow Q$ |
 |:---:|:---:|:---:|
@@ -551,7 +551,7 @@ title: 定义（算式） | Definition（Arithmetic Expression）
 #### 加法与减法
 
 ````ad-axi
-title: 公理（自然数的加法公理） | Axiom（自然数的加法公理）
+title: 公理（自然数的加法公理） | Axiom（Addition Axioms for Natural Numbers）
 
 对任意自然数 $a, b, c$：
 1. **交换律（Commutativity）：** $a + b = b + a$
@@ -616,7 +616,7 @@ title: 证明 | Proof
 #### 乘法与除法
 
 ````ad-axi
-title: 公理（自然数的乘法公理） | Axiom（自然数的乘法公理）
+title: 公理（自然数的乘法公理） | Axiom（Multiplication Axioms for Natural Numbers）
 
 对任意自然数 $a, b, c$：
 1. **交换律（Commutativity）：** $a \times b = b \times a$
@@ -968,7 +968,7 @@ title: 定义（逆否命题） | Definition（Contrapositive）
 ````
 
 ````ad-thm
-title: 定理（逆否命题的等价性） | Theorem（逆否命题的等价性）
+title: 定理（逆否命题的等价性） | Theorem（Equivalence of the Contrapositive）
 
 条件句与其逆否命题逻辑等价：
 $$(P \to Q) \iff (\neg Q \to \neg P)$$

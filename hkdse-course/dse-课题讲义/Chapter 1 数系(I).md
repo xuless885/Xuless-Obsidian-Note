@@ -10,6 +10,46 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章从自然数一路扩到实数，所用工具全部来自 [[Chapter 0 基础概念|基础概念]]：§0.2 给数与整除，§0.1 给命题与等式公理，§0.3 与 §0.4 给两种从反面入手的证明写法。下面按本章用到它们的先后重列，只写结论与用法。
+
+### 数与整除（Numbers and Divisibility）
+
+````ad-def
+title: 定义（回顾: 自然数） | Definition（Recap: Natural Number）
+
+全体正整数 $\{1,2,3,\dots\}$（亦常包含 $0$），源于计数行为。
+````
+
+````ad-def
+title: 定义（回顾: 整除） | Definition（Recap: Divisibility）
+
+若一个自然数 $n\ne 0$ 可写成 $n=p\times q$（$p,q\ne 0$），则称 $p$ **整除** $n$，记为 $p\mid n$，或 $n\div p=q$。特别地，$0$ 可被所有非零自然数整除。
+````
+
+§1.1.1 的引入句接的正是这条定义：两个自然数构不成整除关系时改用余数描述，于是有带余除法。此后 §1.2.3 的整除性质与 §1.2.4 的互质判定，记号 $p\mid n$ 都沿用这里。
+
+### 反证法（Proof by Contradiction）
+
+````ad-def
+title: 定义（回顾: 反证法） | Definition（Recap: Proof by Contradiction）
+
+要证明命题 $Q$ 为真，先假设 $\neg Q$ 成立，再由此推出一个矛盾，即一个恒假的命题（如 $0=1$，或形如 $P\land\neg P$ 的命题）。矛盾说明 $\neg Q$ 不可能为真，故 $Q$ 为真。
+````
+
+本章四处用到反证法：§1.1.3 用最小反例证每条大于 $1$ 的自然数都有质因数，§1.1.4 假设质数只有有限个而导出矛盾，§1.1.5 再次用最小反例，§1.3.2 假设 $\sqrt2$ 可写成互质之比而推出 $p,q$ 同为偶数。
+
+### 其他引用（Other References）
+
+下列各条只在一两处出现，因此不重列定义，只指出位置。
+
+- **§1.2.3 记号说明**：$p\mid n$ 只表示一种关系，本身是一个命题；命题一词与真值记号 $\mathbb{T}, \mathbb{F}$ 见 [[Chapter 0 基础概念|基础概念]] §0.1.2。
+- **§1.3.2 $\sqrt2$ 无理性的证明**：两边同乘 $a$ 与 $b$ 后再合并两式，用的是等式公理的对称性与传递性，见 [[Chapter 0 基础概念|基础概念]] §0.1.5。
+- **§1.3.4**：把「有理数必为有限小数或循环小数」取逆否，得到「无限不循环小数必为无理数」，逆否命题与原命题的等价见 [[Chapter 0 基础概念|基础概念]] §0.4。
+
+---
+
 ## 1.1　自然数与质数（Natural Numbers and Primes）
 > **本节难度上限**：T B+ ｜ C D+ ｜ E B+ ｜ Q D
 
@@ -159,7 +199,7 @@ title: 示例 | Example
 > 利用「任意大于 $1$ 的自然数都有质因数」这条定理，我们可以证明数学史上最著名的结果之一，即**Euclid 定理**：质数有无穷多个。这个证明距今已有两千多年，思路之精妙至今仍令人赞叹。
 
 ````ad-thm
-title: 定理（Euclid 定理） | Theorem（Euclid's Theorem）
+title: 定理（欧几里得定理） | Theorem（Euclid's Theorem）
 
 质数有无穷多个。
 ````
@@ -522,7 +562,7 @@ title: 示例 | Example
 ````
 
 ````ad-thm
-title: 定理（除以 $-1$） | Theorem（除以 $-1$）
+title: 定理（除以 $-1$） | Theorem（Division by $-1$）
 
 对整数 $a$，
 $$a \div (-1) = -a$$
@@ -551,7 +591,7 @@ title: 证明 | Proof
 ---
 
 ````ad-thm
-title: 定理（除数为负数） | Theorem（除数为负数）
+title: 定理（除数为负数） | Theorem（Division by a Negative Divisor）
 
 对整数 $a, b$（$b \neq 0$），
 $$a \div (-b) = (-a) \div b = -(a \div b)$$
@@ -596,7 +636,7 @@ title: 证明 | Proof
 ---
 
 ````ad-thm
-title: 定理（Division of Two Negative Integers） | Theorem（Division of Two Negative Integers）
+title: 定理（两负数相除） | Theorem（Division of Two Negative Integers）
 
 对整数 $a, b$（$b \neq 0$），
 $$(-a) \div (-b) = a \div b$$
@@ -1023,7 +1063,7 @@ title: 示例 | Example
 ---
 
 ````ad-thm
-title: 定理（被 $2$ 整除） | Theorem（被 $2$ 整除）
+title: 定理（被 $2$ 整除） | Theorem（Divisibility by $2$）
 
 $A$ 可被 $2$ 整除 $\iff$ 末位 $a_1$ 为偶数（$0, 2, 4, 6, 8$）。
 ````
@@ -1043,7 +1083,7 @@ $$A = 10^{n-1}a_n + 10^{n-2}a_{n-1} + \cdots + 10a_2 + a_1$$
 ---
 
 ````ad-thm
-title: 定理（被 $3$ 整除） | Theorem（被 $3$ 整除）
+title: 定理（被 $3$ 整除） | Theorem（Divisibility by $3$）
 
 $A$ 可被 $3$ 整除 $\iff$ 各位数字之和可被 $3$ 整除。
 ````
@@ -1070,7 +1110,7 @@ $$
 ---
 
 ````ad-thm
-title: 定理（被 $4$ 整除） | Theorem（被 $4$ 整除）
+title: 定理（被 $4$ 整除） | Theorem（Divisibility by $4$）
 
 $A$ 可被 $4$ 整除 $\iff$ 末两位 $a_2 a_1$ 可被 $4$ 整除。
 ````
@@ -1095,7 +1135,7 @@ $$
 ---
 
 ````ad-thm
-title: 定理（被 $5$ 整除） | Theorem（被 $5$ 整除）
+title: 定理（被 $5$ 整除） | Theorem（Divisibility by $5$）
 
 $A$ 可被 $5$ 整除 $\iff$ 末位 $a_1 = 0$ 或 $5$。
 ````
@@ -1115,7 +1155,7 @@ $$A = 10^{n-1}a_n + 10^{n-2}a_{n-1} + \cdots + 10a_2 + a_1$$
 ---
 
 ````ad-thm
-title: 定理（被 $6$ 整除） | Theorem（被 $6$ 整除）
+title: 定理（被 $6$ 整除） | Theorem（Divisibility by $6$）
 
 $A$ 可被 $6$ 整除 $\iff$ $A$ 同时可被 $2$ 及 $3$ 整除。
 ````
@@ -1134,7 +1174,7 @@ title: 证明 | Proof
 ---
 
 ````ad-thm
-title: 定理（被 $8$ 整除） | Theorem（被 $8$ 整除）
+title: 定理（被 $8$ 整除） | Theorem（Divisibility by $8$）
 
 $A$ 可被 $8$ 整除 $\iff$ 末三位 $a_3 a_2 a_1$ 可被 $8$ 整除。
 ````
@@ -1155,7 +1195,7 @@ $$A = 10^{n-1}a_n + \cdots + 10^3 a_4 + (100a_3 + 10a_2 + a_1)$$
 ---
 
 ````ad-thm
-title: 定理（被 $9$ 整除） | Theorem（被 $9$ 整除）
+title: 定理（被 $9$ 整除） | Theorem（Divisibility by $9$）
 
 $A$ 可被 $9$ 整除 $\iff$ 各位数字之和可被 $9$ 整除。
 ````
@@ -1252,7 +1292,7 @@ title: 定义（分数） | Definition（Fraction）
 ````
 
 ````ad-thm
-title: 定理（分数相等条件） | Theorem（分数相等条件）
+title: 定理（分数相等条件） | Theorem（Condition for Equal Fractions）
 
 $\dfrac{a}{b} = \dfrac{c}{d} \iff ad = bc$。
 ````
@@ -1387,7 +1427,7 @@ title: 示例 | Example
 > 有了分数的乘除法，接下来讨论加减法。分数加减的关键在于「通分」，即把不同分母的分数化为同分母，再对分子进行加减。我们先从同分母的简单情形开始。
 
 ````ad-thm
-title: 定理（同分母加减） | Theorem（同分母加减）
+title: 定理（同分母加减） | Theorem（Addition and Subtraction with the Same Denominator）
 
 $\dfrac{a}{c} \pm \dfrac{b}{c} = \dfrac{a \pm b}{c}$。
 ````
@@ -1421,7 +1461,7 @@ title: 示例 | Example
 ````
 
 ````ad-thm
-title: 定理（异分母加减） | Theorem（异分母加减）
+title: 定理（异分母加减） | Theorem（Addition and Subtraction with Different Denominators）
 
 $\dfrac{a}{c} \pm \dfrac{b}{d} = \dfrac{ad \pm bc}{cd}$。
 ````
@@ -1527,7 +1567,7 @@ title: 示例 | Example
 ````
 
 ````ad-def
-title: 定义（$\pi$ 的几何定义） | Definition（$\pi$ 的几何定义）
+title: 定义（$\pi$ 的几何定义） | Definition（Geometric Definition of $\pi$）
 
 半径为 $1$ 的圆，其面积为 $\pi$。
 ````
@@ -1761,7 +1801,7 @@ $(\Leftarrow)$ 循环小数可通过代数消去循环节化为分数。例如 $
 $(\Rightarrow)$ 对 $\frac{p}{q}$，用长除法时，每一步的余数只能取 $0, 1, \dots, q-1$（共 $q$ 种）。若出现余数 $0$，则得有限小数；否则由以下原理可知余数必重复，此后小数位将周期循环，即得循环小数：
 
 ```ad-thm
-title: 定理（鸽笼原理） | Theorem（鸽笼原理）
+title: 定理（鸽笼原理） | Theorem（Pigeonhole Principle）
 
 $n$ 个笼子放入 $n+1$ 只鸽子，必有至少一笼有超过一只鸽子。
 ```
@@ -1841,7 +1881,7 @@ $0.\dot{9} = 1$。
 ````
 
 ````ad-proof
-title: 证明（非严谨） | Proof（非严谨）
+title: 证明（非严谨） | Proof（Informal）
 
 设 $m = 0.\dot{9}$，则 $10m = 9.\dot{9} = 9 + m$，解得 $9m = 9$，故 $m = 1$。
 ````
@@ -1872,7 +1912,7 @@ title: 示例 | Example
 > 本节给出比较任意实数大小的通用方法。这些规则虽然看似「理所当然」，但它们是整个不等式理论的**公理基础**，后续所有关于不等式的结论都由此推导而来。
 
 ````ad-axi
-title: 公理（序公理） | Axiom（序公理）
+title: 公理（序公理） | Axiom（Order Axioms）
 
 对任意实数 $x, y$：
 1. **三歧性（Trichotomy）：** $x > y$、$x < y$、$x = y$ 恰一成立。

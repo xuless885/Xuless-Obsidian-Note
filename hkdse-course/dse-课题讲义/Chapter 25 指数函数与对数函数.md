@@ -14,6 +14,99 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章把指数从整数推到实数，再取它的逆变换。这条路分三段，每段都借别处的结论。[[Chapter 6 代数式|代数式]] 给方根记法与分数指数，§25.1 的每一步都从它出发；[[Chapter 3 整数指数律与进制|整数指数律与进制]] 给五条指数定律，§25.1.3 的运算律与之形式相同，只在注记里点一句；[[Chapter 17 数系(II)|数系(II)]] 与 [[Chapter 16 集合论|集合论]] 合用，给出「用有理数逼近无理数」与「确界一定存在」这两件事，§25.2.1 的实数指数全靠它们；[[Chapter 19 函数及其图像|函数及其图像]] 给函数、定义域与单调性，§25.2.2 之后凡说「函数」都指它。下面按本章用到它们的先后重列，只写结论与用法，不重复证明。
+
+### 方根与分数指数（Roots and Fractional Exponents）
+
+以下各条取自 [[Chapter 6 代数式|代数式]]。
+
+````ad-def
+title: 定义（回顾: 偶数次与奇数次方根） | Definition（Recap: Even and Odd $n$-th Roots）
+
+设 $n$ 为正整数，$a$ 为实数。
+
+- 若 $n$ 为**偶数**且 $a\ge 0$，则 $a$ 的 $n$ 次方根有两个，记为 $\pm\sqrt[n]{a}$，其中非负者 $\sqrt[n]{a}$ 称为**算术 $n$ 次方根（principal $n$-th root）**。
+- 若 $n$ 为**奇数**，则对任意实数 $a$，$a$ 的 $n$ 次方根只有一个，记为 $\sqrt[n]{a}$。
+````
+
+§6.3.3 的记法被 §25.1.1 拆成四条情形重述一遍，并补上存在性与唯一性的完整结论。四种情形的分界正是这里的奇偶之分：$n$ 为奇数时任何实数都有根，$n$ 为偶数时负数无实根。§25.1.1 之后的示例判断 $\sqrt[4]{-81}$ 与 $\sqrt[5]{-32}$ 是否有意义，依据也在这里。
+
+````ad-thm
+title: 定理（回顾: $n$ 次方根的乘法性质） | Theorem（Recap: Multiplication Property of $n$-th Roots）
+
+$$\sqrt[n]{ab}=\sqrt[n]{a}\,\sqrt[n]{b}$$
+
+$n$ 为奇数时 $a,b$ 为任意实数；$n$ 为偶数时 $a,b$ 为任意非负实数。
+````
+
+§6.3.3 的乘法性质到 §25.1.1 不再重证，只注明「已在 §6.3.3 证明」。这条性质把两个方根并成一个，是后面把 $a^{m/n}$ 写成 $\left(a^{1/n}\right)^m$ 时能随意拆合的依据。
+
+````ad-def
+title: 定义（回顾: 分数指数） | Definition（Recap: Fractional Exponents）
+
+$$a^{\frac12}=\sqrt{a}\ (a\ge 0),\qquad a^{\frac13}=\sqrt[3]{a}\ (a\in\mathbb{R}).$$
+````
+
+这两条出自 §6.3.1 与 §6.3.2。§25.1.2 的有理指数定义把它们推广成 $a^{1/n}=\sqrt[n]{a}$ 与 $a^{m/n}=\left(\sqrt[n]{a}\right)^m$，并统一要求 $a>0$，好让算术根处处为正、定义不再分奇偶讨论。
+
+### 确界与完备性（Supremum and Completeness）
+
+以下各条取自 [[Chapter 16 集合论|集合论]]。
+
+````ad-def
+title: 定义（回顾: 上确界与下确界） | Definition（Recap: Supremum and Infimum）
+
+设 $S\subseteq\mathbb{R}$ 非空。若 $M$ 是 $S$ 的上界且不超过 $S$ 的每一个上界，则称 $M$ 为 $S$ 的**上确界（supremum）**，记作 $\sup S$，即最小上界。若 $m$ 是 $S$ 的下界且不小于 $S$ 的每一个下界，则称 $m$ 为 $S$ 的**下确界（infimum）**，记作 $\inf S$，即最大下界。
+````
+
+§16.7.3 的两个符号在 §25.2.1 被直接使用：$a>1$ 时令 $a^x=\sup\{a^r\mid r\in\mathbb{Q},\ r\le x\}$，$0<a<1$ 时改取下确界。$a>1$ 与 $0<a<1$ 之所以要分开写，是因为前者集合有上界、后者有下界，取的方向不同。
+
+````ad-axi
+title: 公理（回顾: 完备性公理） | Axiom（Recap: Completeness Axiom）
+
+实数集 $\mathbb{R}$ 的任意非空、有上界的子集，必有上确界，且该上确界属于 $\mathbb{R}$。
+````
+
+§16.7.4 的完备性公理保证 §25.2.1 里的 $\sup S_x$ 确实存在。有理数集不具备这条性质，所以实数指数不能在 $\mathbb{Q}$ 内定义；§25.2.1 的证明把存在性明确归到这条公理上。§16.7.2 的上界概念同时给出了「$a^R$ 是上界」这句话的确切含义。
+
+### 函数语言（The Language of Functions）
+
+以下各条取自 [[Chapter 19 函数及其图像|函数及其图像]]。
+
+````ad-def
+title: 定义（回顾: 定义域、陪域与值域） | Definition（Recap: Domain, Codomain and Range）
+
+设 $f:A\to B$，则 $D_f=A$ 为**定义域（domain）**，$B$ 为**陪域（codomain）**，$R_f=\{f(x)\mid x\in D_f\}$ 为**值域（range）**，且 $R_f\subseteq B$。
+````
+
+§19.1.3 的三要素在 §25.2.2 的定义下方逐条列出：$E_a$ 的定义域 $\mathbb{R}$ 与值域 $(0,+\infty)$，§25.3.4 列出 $L_a$ 的定义域 $(0,+\infty)$ 与值域 $\mathbb{R}$。两者的定义域与值域恰好互换，这正是 §25.3.4 说它们互为逆变换的依据；§25.3.1 又把「真数须为正」落实为对数式的定义域限制。
+
+````ad-def
+title: 定义（回顾: 严格递增与严格递减） | Definition（Recap: Strictly Increasing and Decreasing）
+
+设 $f$ 定义在 $D_f$ 上。若对任意 $x_1,x_2\in D_f$，$x_1<x_2$ 时恒有 $f(x_1)<f(x_2)$，则称 $f$ 在 $D_f$ 上**严格递增（strictly increasing）**；恒有 $f(x_1)>f(x_2)$ 时称**严格递减（strictly decreasing）**。
+````
+
+§19.3.5 的严格单调定义，正是 §25.2.3 分析性质定理对 $E_a$ 要证的内容：$a>1$ 时严格递增、$0<a<1$ 时严格递减；§25.3.4 对 $L_a$ 再证一次。§25.2.3 的注记把它称作引入对数的理论根基：严格单调推出单射，单射才允许从函数值唯一找回自变量。
+
+### 其他引用（Other References）
+
+下列各条只在一两处示例或说明里出现，因此不重列公式，只指出位置。
+
+- **§25.5.1 与 §25.5.2**：线性化后的式子 $Y=\log k+(\log a)x$ 被读成一条直线，斜率是 $\log a$、截距是 $\log k$。斜截式见 [[Chapter 20 直线方程|直线方程]] §20.3.4，斜率的含义见 §20.2.1。
+- **§25.5.1**：把 $Y=\log k+(\log a)x$ 称为 $x$ 的线性函数。线性函数的定义见 [[Chapter 19 函数及其图像|函数及其图像]] §19.3.2。
+- **§25.1.1 引理的证明**：证算术 $n$ 次方根保持大小关系时用反证法，先设结论不成立再导出与 $t_1<t_2$ 矛盾。写法见 [[Chapter 0 基础概念|基础概念]] §0.3。
+- **§25.1.3 注记（与整数指数律的形式对照）**：把有理指数运算律与整数指数定律并列，说明「形式不变」；该节的证明本身由 §25.1.1 的方根性质给出。整数指数定律见 [[Chapter 3 整数指数律与进制|整数指数律与进制]] §3.1.4。
+- **§25.2.1 引理（$S_x$ 的有界性）的证明**：由稠密性取有理数 $R>x$，才敢断言 $a^R$ 是 $S_x$ 的上界（$0<a<1$ 时为下界）；§25.2.3 证 $a^h>1$（$h$ 无理）时同样取有理数 $0<r<h$。稠密性见 [[Chapter 17 数系(II)|数系(II)]] §17.1.2。
+- **§25.2.1 注记（与戴德金分割的平行结构）**：把 $\{a^r\mid r\le x\}$ 读成分割的下半部、把 $a^x$ 读成分割点，只是结构上的对照。戴德金分割见 [[Chapter 17 数系(II)|数系(II)]] §17.1.3。
+- **§25.2.2 与 §25.3.4**：用映射记号写下 $E_a:\mathbb{R}\to(0,+\infty)$、$x\mapsto a^x$ 与 $L_a:(0,+\infty)\to\mathbb{R}$，格式沿用函数定义 $f:A\to B$，见 [[Chapter 19 函数及其图像|函数及其图像]] §19.1.1。
+
+回顾到此为止。§25.1 从「$x^n=a$ 有几个根」问起，第一个答案就落在上面那条奇偶记法上。
+
+---
+
 ## 25.1　有理数指数（Rational Exponents）
 
 > **本节难度上限**：T B+ ｜ C C ｜ E B ｜ Q C
@@ -104,7 +197,7 @@ $$(t_2 - t_1)\left(t_2^{n-1} + t_2^{n-2}t_1 + \cdots + t_2 t_1^{n-2} + t_1^{n-1}
 中间 $n-1$ 个交叉项两两抵消。
 ````
 
-> 有了差幂的因式分解恒等式，便能证明「幂保持大小关系」——这是本组引理的核心结论。
+> 有了差幂的因式分解恒等式，便能证明「幂保持大小关系」，这是本组引理的核心结论。
 
 ````ad-lem
 title: 引理（幂的保序性） | Lemma（Order-preserving Property of Powers）
@@ -719,10 +812,13 @@ title: 推论（两个特值） | Corollary（Two Special Values）
 2. $\log_a a = 1$。
 ````
 
-```ad-proof
-1. 因 $a^0 = 1$。故 $\log_a 1 = 0$。
-2. 因 $a^1 = a$。故 $\log_a a = 1$。
-```
+````ad-proof
+title: 证明 | Proof
+
+1. 因 $a^0 = 1$，故 $\log_a 1 = 0$。
+
+2. 因 $a^1 = a$，故 $\log_a a = 1$。
+````
 
 ````ad-def
 title: 定义（常用对数） | Definition（Common Logarithm）
@@ -823,12 +919,18 @@ title: 推论 | Corollary
 2. $\log_a\sqrt[n]{M} \equiv \dfrac{1}{n}\log_a M$
 ````
 
-```ad-proof
-该推论的证明留做练习。
-```
+````ad-proof
+title: 证明 | Proof
+
+1. 在商的对数律 $\log_a\dfrac{M}{N}\equiv\log_a M-\log_a N$ 中取 $M=1$。由 $\log_a 1=0$ 得
+$$\log_a\frac{1}{N}=0-\log_a N=-\log_a N.$$
+
+2. 由 $n$ 次方根的定义，$\sqrt[n]{M}=M^{1/n}$。代入幂的对数律 $\log_a(M^k)\equiv k\log_a M$，取 $k=\dfrac{1}{n}$：
+$$\log_a\sqrt[n]{M}=\log_a\left(M^{1/n}\right)=\frac{1}{n}\log_a M.$$
+````
 
 ````ad-note
-title: 注记（Napier 发明对数的历史动机） | Note（Napier's Motivation for Inventing Logarithms）
+title: 注记（纳皮尔发明对数的历史动机） | Note（Napier's Motivation for Inventing Logarithms）
 
 对数运算律正是纳皮尔发明对数的初衷：把乘除化为加减，把乘方开方化为乘除，从而把大数运算的复杂度整体降一级。在没有电子计算器的时代，对数表让科学家与工程师把乘除运算的时间从数小时缩短到数分钟。运算律 (1) 的「积化为和」是这一思想的核心。
 ````

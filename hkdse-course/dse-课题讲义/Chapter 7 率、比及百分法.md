@@ -11,6 +11,41 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章只有两章垫在下面。[[Chapter 5 解方程方法(I)|解方程方法(I)]] 给的是解一元一次方程与二元一次方程组的手法，§7.1.3 反求成本、§7.3.2 设比例常数、§7.4.2 解混合比例题都要用；[[Chapter 6 代数式|代数式]] 给的是分式的运算与去分母，§7.3.2 的链乘与 §7.4.2 的消分母靠它。下面按本章用到它们的先后重列，只写结论与用法，不重复证明。
+
+### 一元一次方程（Linear Equations）
+
+以下各条取自 [[Chapter 5 解方程方法(I)|解方程方法(I)]]。
+
+````ad-thm
+title: 定理（回顾: 一元一次方程的标准形式与唯一解） | Theorem（Recap: Standard Form and Unique Solution）
+
+一元一次方程可写成 $ax+b=0$ 的形式，其中 $a, b$ 为实数且 $a \neq 0$，其唯一解为
+$$x=-\frac{b}{a}.$$
+````
+
+§7.1.3 的示例（已知售价与盈利率，反求成本）把它写成 $1.2C=4500$，解出 $C=3750$；§7.3.2 的比例常数法由 $12k=6000$ 得 $k=500$；§7.4 的示例由 $8k=40$ 得 $k=5$；§7.4.1.1 的正比例示例由 $12=4k$ 得 $k=3$。四处都只做移项与系数化为 $1$ 两步，解存在且唯一，所以答案不必再讨论。
+
+### 其他引用（Other References）
+
+下列各条只在一两处出现，因此不重列公式，只指出位置。
+
+- **§7.4.1 的四条比例定理**：证明时在等式两边同乘 $bd$、同加 $1$、同减 $1$，前提是这一步不改变解集，即操作前后的方程等价。见 [[Chapter 5 解方程方法(I)|解方程方法(I)]] §5.1.5。
+- **§7.4.2 的示例（逆向求混合量：方程组法）**：把「总重量 $10\,\text{kg}$」与「总成本 $\$720$」各写成一式再联立，求同时满足两条条件的公共解，用的是方程组的合取意义。见 [[Chapter 5 解方程方法(I)|解方程方法(I)]] §5.3.2。
+- **§7.4.2 同一示例的第一步**：由 $x+y=10$ 解出 $y=10-x$ 再代入另一式，把二元化为一元，用的是代入消元。见 [[Chapter 5 解方程方法(I)|解方程方法(I)]] §5.4.1。
+- **§7.3.1 与 §7.4.1**：比写作 $a:b=\dfrac{a}{b}$、比例定理的推导都在分式上进行，后项（分母）非零这条限制同源。见 [[Chapter 6 代数式|代数式]] §6.4.1。
+- **§7.3.2 的解法 II**：由 $\dfrac{a}{c}=\dfrac{a}{b}\cdot\dfrac{b}{c}$ 求 $a:c$，靠的是分式乘法，中间量 $b$ 相消。见 [[Chapter 6 代数式|代数式]] §6.4.1。
+- **§7.4.2 的示例（加权平均方程）**：$\dfrac{50x+80y}{x+y}=62$ 的未知数留在分母上，属代数分式方程，不能直接移项。见 [[Chapter 6 代数式|代数式]] §6.5.1。
+- **§7.4.2 同一示例**：两边同乘 $x+y$ 脱去分母；因 $x+y$ 是总重量、恒为正，不必验根，依据是去分母的等价性。见 [[Chapter 6 代数式|代数式]] §6.5.2。
+- **§7.2.2**：把 $\text{km}=1000\,\text{m}$ 当作等式代换掉原单位，依据是「相等的对象可以互换」。见 [[Chapter 0 基础概念|基础概念]] §0.1.5。
+- **§7.3.1、§7.4、§7.4.1**：比的基本性质、比例常数定理的两个方向、四条比例定理，都在等式两边同步施行同一运算。见 [[Chapter 0 基础概念|基础概念]] §0.6.2。
+
+回顾到此为止。§7.1 从「百分之几」这种写法开始，先把百分数还原成除以 $100$ 的分数。
+
+---
+
 ## 7.1　百分法（Percentages）
 
 > **本节难度上限**：T C+ ｜ C D+ ｜ E C ｜ Q C
@@ -37,7 +72,7 @@ $$x\% \equiv \frac{x}{100}$$
 *   **核心思想：** 百分数、小数、分数是同一数量的三种不同写法。换算的本质是「乘以 $1$ 的变形」：乘以 $100\%$（$=1$）或除以 $100$（不影响数量大小，只改变表示形式）。
 
 ````ad-example
-title: 示例（小数转百分数） | Example（小数转百分数）
+title: 示例（小数转百分数） | Example（Decimal to Percentage）
 
 
 将 $0.375$ 化为百分数：
@@ -93,7 +128,7 @@ $$V_1 = V_0 + \frac{r}{100}V_0 = V_0\left(1 + \frac{r}{100}\right)$$
 此定理提供了从原值和百分变化直接求新值的快捷公式。括号中的 $1$ 代表原值本身，$\dfrac{r}{100}$ 代表变化部分。
 
 ````ad-example
-title: 示例（百分增加） | Example（百分增加）
+title: 示例（百分增加） | Example（Percentage Increase）
 
 
 某商品原价 $\$200$，加价 $15\%$。求新售价：
@@ -103,7 +138,7 @@ $$V_1 = 200 \times \left(1 + \frac{15}{100}\right) = 200 \times 1.15 = \$230$$
 ````
 
 ````ad-example
-title: 示例（百分减少） | Example（百分减少）
+title: 示例（百分减少） | Example（Percentage Decrease）
 
 
 某商品原价 $\$200$，八折出售。求售价：
@@ -137,7 +172,7 @@ title: 示例（连续百分变化） | Example（Successive Percentage Change�
 #### 7.1.3.1　成本、售价与盈利
 
 ````ad-def
-title: 定义（成本、售价与盈利 / Cost, Selling Price, and Profit） | Definition（成本、售价与盈利 / Cost, Selling Price, and Profit）
+title: 定义（成本、售价与盈利） | Definition（Cost, Selling Price and Profit）
 
 
 *   **成本**（Cost，$C$）：购入该商品所花费的金额。
@@ -183,7 +218,7 @@ $$S = C \times \left(1 + \frac{r}{100}\right)$$
 这与百分变化的新值公式 $V_1 = V_0(1 + r/100)$ 一致，其中 $V_0 = C$，$V_1 = S$，即盈利百分率本质上就是以成本为基准的百分变化。
 
 ````ad-example
-title: 示例（求盈利百分率） | Example（求盈利百分率）
+title: 示例（求盈利百分率） | Example（Finding Profit Percentage）
 
 
 成本 $\$150$，售价 $\$180$。求盈利百分率：
@@ -193,7 +228,7 @@ $$\text{盈利百分率} = \frac{180 - 150}{150} \times 100\% = \frac{30}{150} \
 ````
 
 ````ad-example
-title: 示例（由盈利百分率求售价） | Example（由盈利百分率求售价）
+title: 示例（由盈利百分率求售价） | Example（Selling Price from Profit Percentage）
 
 
 成本 $\$200$，盈利 $25\%$。求售价：
@@ -203,10 +238,10 @@ $$S = 200 \times \left(1 + \frac{25}{100}\right) = 200 \times 1.25 = \$250$$
 ````
 
 ````ad-example
-title: 示例（已知售价与盈利率，反求成本） | Example（已知售价与盈利率，反求成本）
+title: 示例（已知售价与盈利率，反求成本） | Example（Cost from Selling Price and Profit Rate）
 
 
-一部手機以 $\$4500$ 出售，盈利 $20\%$。求成本。
+一部手机以 $\$4500$ 出售，盈利 $20\%$。求成本。
 
 ---
 
@@ -217,21 +252,21 @@ $$4500 = C \times 1.2 \implies C = \frac{4500}{1.2} = \$3750$$
 ````
 
 ````ad-example
-title: 示例（标价→折扣→售价→盈利综合题） | Example（标价→折扣→售价→盈利综合题）
+title: 示例（标价→折扣→售价→盈利综合题） | Example（Marked Price, Discount, Selling Price and Profit）
 
 
-某書店一本書標價 $\$120$，打七五折出售。若成本為 $\$80$，求：
-1. 售價；2. 盈利百分率。
+某书店一本书标价 $\$120$，打七五折出售。若成本为 $\$80$，求：
+1. 售价；2. 盈利百分率。
 
 ---
 
-1. 售價 $= 120 \times 0.75 = \$90$。
+1. 售价 $= 120 \times 0.75 = \$90$。
 
 2. 盈利 $= 90 - 80 = \$10$。
 
 $$\text{盈利百分率} = \frac{10}{80} \times 100\% = 12.5\%$$
 
-> 此題涉及三個層次：折扣 → 售價 → 盈利。DSE 考試中常以 « 標價 → 折扣 → 售價 → 盈利 » 的鏈式結構出現，需逐一處理。注意盈利百分率的分母始終是**成本**而非標價或售價。
+> 此题涉及三个层次：折扣 → 售价 → 盈利。DSE 考试中常以 « 标价 → 折扣 → 售价 → 盈利 » 的链式结构出现，需逐一处理。注意盈利百分率的分母始终是**成本**而非标价或售价。
 ````
 
 ---
@@ -250,7 +285,7 @@ $$\text{盈利百分率} = \frac{10}{80} \times 100\% = 12.5\%$$
 | 长度（Length）  | 米 m，千米 km，厘米 cm | $1\,\text{km} = 1000\,\text{m}$，$1\,\text{m} = 100\,\text{cm}$ |
 | 时间（Time）    | 秒 s，小时 h，分 min  | $1\,\text{h} = 60\,\text{min} = 3600\,\text{s}$                |
 | 质量（Mass）    | 千克 kg，克 g       | $1\,\text{kg} = 1000\,\text{g}$                                |
-| 容量（Volume）  | 升 L，毫升 mL       | $1\,\text{L} = 1000\,\text{mL}$                                |
+| 容量（Capacity）  | 升 L，毫升 mL       | $1\,\text{L} = 1000\,\text{mL}$                                |
 
 ---
 
@@ -298,7 +333,7 @@ title: 公理（量纲的代数性质） | Axiom（Algebraic Nature of Dimension
 *   **步骤说明：** 第一步将原量拆成代数乘积形式（量纲符号之间的乘除）；第二步代数代入；第三步纯数值化简。
 
 ````ad-example
-title: 示例（速率换算：代数代入法） | Example（速率换算：代数代入法）
+title: 示例（速率换算：代数代入法） | Example（Speed Conversion: Algebraic Substitution）
 
 
 将 $72\,\text{km/h}$ 换算为 $\text{m/s}$。
@@ -319,7 +354,7 @@ $$
 ````
 
 ````ad-example
-title: 示例（密度换算：代数代入法） | Example（密度换算：代数代入法）
+title: 示例（密度换算：代数代入法） | Example（Density Conversion: Algebraic Substitution）
 
 
 将 $1\,\text{g/cm}^3$ 换算为 $\text{kg/m}^3$。
@@ -391,7 +426,7 @@ $\dfrac{ka}{kb} = \dfrac{a}{b}$，因 $k$ 在分子分母中约去。
 此性质意味着一个比可以有无穷多种写法，我们通常将其化简为最简整数比。
 
 ````ad-example
-title: 示例（化简比） | Example（化简比）
+title: 示例（化简比） | Example（Simplifying a Ratio）
 
 
 化 $24 : 36$ 为最简比：
@@ -401,7 +436,7 @@ $$24 : 36 = \frac{24}{12} : \frac{36}{12} = 2 : 3$$
 ````
 
 ````ad-example
-title: 示例（分数的比） | Example（分数的比）
+title: 示例（分数的比） | Example（Ratio of Fractions）
 
 
 化 $\dfrac{2}{3} : \dfrac{5}{6}$ 为最简整数比：
@@ -440,7 +475,7 @@ $$a : b :c = d : e : f \quad \iff \quad a:b = d:e \quad及 \quad b:c = e:f$$
 ````
 
 ````ad-example
-title: 示例（连比例） | Example（连比例）
+title: 示例（连比例） | Example（Continued Proportion）
 
 
 判断下列是否为连比例：
@@ -475,7 +510,7 @@ title: 示例（连比例） | Example（连比例）
 *   **步骤说明：** 第一步与第二步是比的基本性质 $a:b = ka:kb$ 的直接应用，缩放操作不改变原比值；第三步将已对齐的两个比拼接为连比。
 
 ````ad-example
-title: 示例（求连比） | Example（求连比）
+title: 示例（求连比） | Example（Finding a Continued Ratio）
 
 
 若 $a:b = 2:3$ 且 $b:c = 4:5$，求 $a:b:c$。
@@ -493,14 +528,14 @@ $$\frac{a}{c} = \frac{a}{b} \cdot \frac{b}{c} = \frac{2}{3} \cdot \frac{4}{5} = 
 ````
 
 ````ad-example
-title: 示例（三项连比应用题） | Example（三项连比应用题）
+title: 示例（三项连比应用题） | Example（Three-Term Continued Ratio Problem）
 
 
 $A$、$B$、$C$ 三人投资金额比为 $3:4:5$，总利润 $\$6000$ 按投资比分，求 $A$ 所得：
 
 ---
 
-**解法 I（份數法）：** 总份数 $= 3+4+5 = 12$。
+**解法 I（份数法）：** 总份数 $= 3+4+5 = 12$。
 $$A\text{ 所得} = \frac{3}{12} \times 6000 = \$1500$$
 
 **解法 II（比例常数法）：** 由 $A:B = 3:4$ 与 $B:C = 4:5$，设 $A = 3k,\; B = 4k,\; C = 5k$。由 $A+B+C=6000$：
@@ -534,13 +569,13 @@ title: 证明 | Proof
 该定理把比的关系转化为一次方程，适用于正比例、混合比例等更广泛的情境。
 
 ````ad-example
-title: 示例（比例常数法） | Example（比例常数法）
+title: 示例（比例常数法） | Example（Method of Proportionality Constant）
 
 
-若 $x:y = 3:5$ 且 $x + y = 40$，求 $x$ 與 $y$。
+若 $x:y = 3:5$ 且 $x + y = 40$，求 $x$ 与 $y$。
 
 ---
-設 $x = 3k,\; y = 5k$。由 $x + y = 40$：
+设 $x = 3k,\; y = 5k$。由 $x + y = 40$：
 $$3k + 5k = 40 \implies 8k = 40 \implies k = 5$$
 
 $x = 3 \times 5 = 15$，$y = 5 \times 5 = 25$。
@@ -549,7 +584,7 @@ $x = 3 \times 5 = 15$，$y = 5 \times 5 = 25$。
 ````
 
 ````ad-example
-title: 示例（等比定理 + 比例常数法） | Example（等比定理 + 比例常数法）
+title: 示例（等比定理 + 比例常数法） | Example（Equal Ratios Theorem and Proportionality Constant）
 
 
 $A,B,C$ 三人投资比为 $2:3:5$，总利润 $\$2000$。用等比定理求各人所得。
@@ -599,7 +634,7 @@ $$\frac{a}{b} + 1 = \frac{c}{d} + 1 \implies \frac{a+b}{b} = \frac{c+d}{d}$$
 ````
 
 ````ad-example
-title: 示例（合比定理应用） | Example（合比定理应用）
+title: 示例（合比定理应用） | Example（Applying Componendo）
 
 
 若 $x:y = 3:4$ 且 $x+y = 35$，求 $x$ 与 $y$。
@@ -628,7 +663,7 @@ $$\frac{a}{b} - 1 = \frac{c}{d} - 1 \implies \frac{a-b}{b} = \frac{c-d}{d}$$
 ````
 
 ````ad-thm
-title: 定理（等比定理） | Theorem（等比定理）
+title: 定理（等比定理） | Theorem（Equal Ratios Theorem）
 
 若 $a_1:b_1 = a_2:b_2 = \cdots = a_n:b_n$（$b_i \neq 0$），则
 $$(a_1 + a_2 + \cdots + a_n):(b_1 + b_2 + \cdots + b_n) = a_i:b_i$$
@@ -659,7 +694,7 @@ $$\frac{y}{x} = k \quad \text{或} \quad y = kx$$
 当两项的比始终不变时，它们是成正比变化的。例如「总价 $=$ 单价 $\times$ 数量」中，若单价不变，总价与数量成正比例。
 
 ````ad-example
-title: 示例（正比例） | Example（正比例）
+title: 示例（正比例） | Example（Direct Proportion）
 
 
 若 $y \propto x$，且 $x = 4$ 时 $y = 12$。求
@@ -677,24 +712,24 @@ $$12 = k \cdot 4 \implies k = 3$$
 ````
 
 ````ad-example
-title: 示例（正比例应用题） | Example（正比例应用题）
+title: 示例（正比例应用题） | Example（Direct Proportion Problem）
 
 
-某地圖的比例尺為 $1:50{,}000$。若兩地在地圖上的距離為 $8\,\text{cm}$，求實際距離（以 km 表示）。
+某地图的比例尺为 $1:50{,}000$。若两地在地图上的距离为 $8\,\text{cm}$，求实际距离（以 km 表示）。
 
 ---
 
-實際距離 $d$ 與地圖距離成正比，比例常數 $k = 50{,}000$：
+实际距离 $d$ 与地图距离成正比，比例常数 $k = 50{,}000$：
 $$d = 8 \times 50{,}000 = 400{,}000\,\text{cm}$$
 
-換算為 km：
+换算为 km：
 $$400{,}000\,\text{cm} = 400{,}000 \div 100{,}000 = 4\,\text{km}$$
 
-> 地圖比例尺是正比例的經典應用：$y = kx$ 中 $k$ 即為比例尺的分母。注意單位一致性：cm 須先換算至 km。
+> 地图比例尺是正比例的经典应用：$y = kx$ 中 $k$ 即为比例尺的分母。注意单位一致性：cm 须先换算至 km。
 ````
 
 ````ad-example
-title: 示例（相似图形的边长比与面积比） | Example（相似图形的边长比与面积比）
+title: 示例（相似图形的边长比与面积比） | Example（Ratio of Sides and Areas of Similar Figures）
 
 
 两个相似长方形的边长比为 $2:3$。若小长方形的面积为 $20\,\text{cm}^2$，求大长方形的面积。
@@ -725,7 +760,7 @@ $$xy = k \quad \text{或} \quad y = \frac{k}{x}$$
 当两项的乘积始终不变时，它们是成反比变化的。例如总距离不变时，速度与时间成反比。
 
 ````ad-example
-title: 示例（反比例：比例常数法） | Example（反比例：比例常数法）
+title: 示例（反比例：比例常数法） | Example（Inverse Proportion: Proportionality Constant）
 
 
 若 $x \cdot y = 30$，且 $x = 2$ 时 $y = 15$。求
@@ -744,7 +779,7 @@ title: 示例（反比例：比例常数法） | Example（反比例：比例常
 ````
 
 ````ad-example
-title: 示例（反比例应用题：工程问题，比例常数法） | Example（反比例应用题：工程问题，比例常数法）
+title: 示例（反比例应用题：工程问题，比例常数法） | Example（Inverse Proportion Problem: Work Problem, Proportionality Constant）
 
 
 $6$ 个工人 $10$ 天可完成一项工程，若 $4$ 个工人，需几天完成？（假设效率相同）
@@ -759,22 +794,22 @@ $$4 \cdot d = 60 \implies d = 15 \text{ 天}$$
 ````
 
 ````ad-example
-title: 示例（反比例应用题：固定距离问题，比例常数法） | Example（反比例应用题：固定距离问题，比例常数法）
+title: 示例（反比例应用题：固定距离问题，比例常数法） | Example（Inverse Proportion Problem: Fixed Distance, Proportionality Constant）
 
 
-行駛固定距離 $180\,\text{km}$，若速率為 $v\,\text{km/h}$，所需時間為 $t\,\text{h}$。
+行驶固定距离 $180\,\text{km}$，若速率为 $v\,\text{km/h}$，所需时间为 $t\,\text{h}$。
 
-1. 寫出 $v$ 與 $t$ 的關係式。
+1. 写出 $v$ 与 $t$ 的关系式。
 
-2. 若速率由 $60\,\text{km/h}$ 增至 $90\,\text{km/h}$，時間節省了多少？
+2. 若速率由 $60\,\text{km/h}$ 增至 $90\,\text{km/h}$，时间节省了多少？
 
 ---
 
-1. 固定距离 $D = v \cdot t = 180$。即 $v$ 與 $t$ 成反比例，比例常数 $k = 180$。
+1. 固定距离 $D = v \cdot t = 180$。即 $v$ 与 $t$ 成反比例，比例常数 $k = 180$。
 
-2. $v=60$ 時 $t = \dfrac{180}{60} = 3\,\text{h}$；
-$v=90$ 時 $t = \dfrac{180}{90} = 2\,\text{h}$。
-節省時間 $= 3 - 2 = 1\,\text{h}$。
+2. $v=60$ 时 $t = \dfrac{180}{60} = 3\,\text{h}$；
+$v=90$ 时 $t = \dfrac{180}{90} = 2\,\text{h}$。
+节省时间 $= 3 - 2 = 1\,\text{h}$。
 
 > 反比例的核心判据是**乘积恒定**（$xy = k$）。这里的 $k = 180$ 即固定距离 $D$ 本身，它将 $v$ 与 $t$ 唯一绑定。
 ````
@@ -795,7 +830,7 @@ $$\text{平均单价} = \frac{p_1 w_1 + p_2 w_2}{w_1 + w_2}$$
 *   **三种基本题型：** 正向求平均成本；逆向已知平均成本求混合比例；逆向已知总重量与总成本求各自重量。
 
 ````ad-example
-title: 示例（正向求平均成本） | Example（正向求平均成本）
+title: 示例（正向求平均成本） | Example（Finding Average Cost）
 
 
 将 $3\,\text{kg}$ 咖啡豆（$\$80/$kg）与 $2\,\text{kg}$ 咖啡豆（$\$120/$kg）混合。求混合后每 kg 成本。
@@ -805,11 +840,11 @@ $$\text{总成本} = 80 \times 3 + 120 \times 2 = 240 + 240 = \$480$$
 $$\text{总重量} = 3 + 2 = 5\,\text{kg}$$
 $$\text{平均单价} = \frac{480}{5} = \$96/ \text{kg}$$
 
-> 注意 $\$96$ 并非 $80$ 与 $120$ 的算术平均 ($100$)，较便宜的咖啡豆佔了更多重量（$3\,\text{kg} > 2\,\text{kg}$），拉低了平均值。
+> 注意 $\$96$ 并非 $80$ 与 $120$ 的算术平均 ($100$)，较便宜的咖啡豆占了更多重量（$3\,\text{kg} > 2\,\text{kg}$），拉低了平均值。
 ````
 
 ````ad-example
-title: 示例（逆向求混合量：方程组法） | Example（逆向求混合量：方程组法）
+title: 示例（逆向求混合量：方程组法） | Example（Finding Mixture Quantities in Reverse: System of Equations）
 
 
 每 kg $\$60$ 的茶叶与每 kg $\$90$ 的茶叶混合，得 $10\,\text{kg}$ 混合物，总成本 $\$720$。求两种茶叶各用多少 kg。
@@ -831,7 +866,7 @@ $$y = 10 - 6 = 4$$
 ````
 
 ````ad-example
-title: 示例（逆向求混合比例：加权平均方程） | Example（逆向求混合比例：加权平均方程）
+title: 示例（逆向求混合比例：加权平均方程） | Example（Finding Mixture Ratio in Reverse: Weighted Mean Equation）
 
 
 将单价 $\$50/$kg 与 $\$80/$kg 的糖果混合，欲使混合后单价为 $\$62/$kg。求两种糖果的重量比。
@@ -860,7 +895,7 @@ $$\frac{x}{y} = \frac{18}{12} = \frac{3}{2}$$
 ### 7.5.1　现实意义（Real-World Meaning）
 
 ````ad-def
-title: 定义（率） | Definition（率）
+title: 定义（率） | Definition（Rate）
 
 是比较两个**不同类**（单位不同）的量的比值。
 
@@ -875,7 +910,7 @@ title: 定义（率） | Definition（率）
 *   价格与重量 → 异类量 → **率**（结果有单位，如 $\$12/$ 斤）
 
 ````ad-example
-title: 示例（区分比与率） | Example（区分比与率）
+title: 示例（区分比与率） | Example（Distinguishing Ratio and Rate）
 
 
 判断下列属于「比」还是「率」：
@@ -902,7 +937,7 @@ $$\text{平均速率} = \frac{\text{总距离}}{\text{总时间}} \qquad \left(v
 这是一个容易出错的点。举例说明：前半段路以 $60\,\text{km/h}$ 行驶，后半段路以 $40\,\text{km/h}$ 行驶，平均速率并非 $(60+40)/2 = 50\,\text{km/h}$，因为两段所用时间不同。
 
 ````ad-example
-title: 示例（平均速率 ≠ 算术平均） | Example（平均速率 ≠ 算术平均）
+title: 示例（平均速率 ≠ 算术平均） | Example（Average Speed ≠ Arithmetic Mean）
 
 
 小明骑单车：前 $2\,\text{km}$ 以 $20\,\text{km/h}$ 骑行，后 $2\,\text{km}$ 以 $10\,\text{km/h}$ 骑行。求全程平均速率。
@@ -918,13 +953,13 @@ $$\text{平均速率} = \frac{2+2}{0.1+0.2} = \frac{4}{0.3} \approx 13.3\,\text{
 ````
 
 ````ad-example
-title: 示例（來回程平均速率） | Example（來回程平均速率）
+title: 示例（来回程平均速率） | Example（Average Speed for a Round Trip）
 
 
-小明駕車從 $A$ 地到 $B$ 地，距離 $120\,\text{km}$。去程速率 $60\,\text{km/h}$，回程速率 $40\,\text{km/h}$。求全程平均速率。
+小明驾车从 $A$ 地到 $B$ 地，距离 $120\,\text{km}$。去程速率 $60\,\text{km/h}$，回程速率 $40\,\text{km/h}$。求全程平均速率。
 
 ---
-去程用時：$\dfrac{120}{60} = 2\,\text{h}$；回程用時：$\dfrac{120}{40} = 3\,\text{h}$。
+去程用时：$\dfrac{120}{60} = 2\,\text{h}$；回程用时：$\dfrac{120}{40} = 3\,\text{h}$。
 
 $$\text{平均速率} = \frac{120+120}{2+3} = \frac{240}{5} = 48\,\text{km/h}$$
 
@@ -960,7 +995,7 @@ $$\text{增长率} = \frac{515{,}000 - 500{,}000}{500{,}000} \times 100\% = \fra
    *   百分变化 $= \dfrac{V_1 - V_0}{V_0} \times 100\%$；新值 $V_1 = V_0(1 + r/100)$。
    *   **连续百分变化不可直接加减百分率**，例如先 $+10\%$ 再 $-10\%$，最终为 $0.99$ 倍而非恢复原值。
    *   商业应用中，盈利 $P = S - C$，盈利百分率以成本为基准：$\dfrac{S-C}{C} \times 100\%$。售价公式 $S = C(1 + r/100)$（$r$ 为盈利百分率，亏损时 $r<0$）。
-   *   **DSE 常見鏈式結構**：標價 $\to$ 折扣 $\to$ 售價 $\to$ 盈利。每個環節的基數不同，須逐一處理。反求成本時不可簡單地用 $(1-r\%)$ 乘售價。
+   *   **DSE 常见链式结构**：标价 $\to$ 折扣 $\to$ 售价 $\to$ 盈利。每个环节的基数不同，须逐一处理。反求成本时不可简单地用 $(1-r\%)$ 乘售价。
 
 2. **单位与量纲：**
    *   量纲是物理量的本质类别（长度 $L$、时间 $T$、质量 $M$ 等）；单位是量度的标准。量纲符号仅参与乘除，不参与加减。
@@ -978,8 +1013,8 @@ $$\text{增长率} = \frac{515{,}000 - 500{,}000}{500{,}000} \times 100\% = \fra
    *   **比例常数法**：若 $a:b = c:d$，则 $\exists k \neq 0$ 使 $a = kc,\; b = kd$。这将比的关系转化为一次方程：若 $x:y = a:b$，可设 $x = ak,\; y = bk$，由额外条件（如总和、差值、乘积）解 $k$。
    *   **比例的性质**：更比定理（$a:b=c:d \implies a:c=b:d$）、合比定理（$(a+b):b = (c+d):d$）、分比定理（$(a-b):b = (c-d):d$）、等比定理（$(\sum a_i):(\sum b_i) = a_i:b_i$）。
    *   **正比例**（$y = kx$）：比值恒定，图像为过原点的直线。比例常数 $k$ 与 7.4 定理中的 $k$ 同源。
-   *   **反比例**（$y = k/x$）：乘积恒定为 $k$，图像为双曲线。**DSE 判據**：「固定____」字眼 → 積不變。
-   *   **混合比例**：加权平均 $\text{平均單價} = \dfrac{\sum p_i w_i}{\sum w_i}$。正向求平均成本、逆向（方程组或方程）求混合量或混合比。
+   *   **反比例**（$y = k/x$）：乘积恒定为 $k$，图像为双曲线。**DSE 判据**：「固定____」字眼 → 积不变。
+   *   **混合比例**：加权平均 $\text{平均单价} = \dfrac{\sum p_i w_i}{\sum w_i}$。正向求平均成本、逆向（方程组或方程）求混合量或混合比。
 
 5. **率：**
    *   率是比较**异类**量的比值，结果带复合单位（如 $\text{km/h}$）。可视为比的自然推广：当比的双方来自不同量纲时，比值获得复合单位。

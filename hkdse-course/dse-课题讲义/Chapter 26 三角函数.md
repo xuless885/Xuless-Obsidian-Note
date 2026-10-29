@@ -14,6 +14,108 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章做两件事：把角从锐角放开到任意角，再把三角比升格为函数。两件事用的工具不同。[[Chapter 9 三角学(I)|三角学(I)]] 给直角三角形里的三个比、三条恒等式与特殊角的精确值，§26.1 起一直用到 §26.4；[[Chapter 19 函数及其图像|函数及其图像]] 给奇偶性、单调性与图像变换，§26.2.5 的负角公式与 §26.3 的图像分析靠它；[[Chapter 25 指数函数与对数函数|指数函数与对数函数]] 在 §26.4 的引入处提供一个「限制定义域再取逆」的现成样板。[[Chapter 16 集合论|集合论]] 只提供区间与差集的记号，归在「其他引用」。下面按本章用到它们的先后重列，只写结论与用法，不重复证明。
+
+### 锐角三角比与恒等式（Acute Trigonometric Ratios and Identities）
+
+以下各条取自 [[Chapter 9 三角学(I)|三角学(I)]]。
+
+````ad-def
+title: 定义（回顾: 正弦、余弦与正切） | Definition（Recap: Sine, Cosine and Tangent）
+
+对直角三角形中的锐角 $\theta$，
+$$\sin\theta=\frac{\text{对边}}{\text{斜边}},\qquad \cos\theta=\frac{\text{邻边}}{\text{斜边}},\qquad \tan\theta=\frac{\text{对边}}{\text{邻边}}.$$
+同一个锐角的所有直角三角形彼此相似，故三个比值只依赖 $\theta$，与三角形大小无关。
+````
+
+§9.1.2 的锐角定义在 §26.2.2 被推广到任意角，定义完之后专门留一条注记验证两者相容：锐角时终边点 $P(\cos\theta,\sin\theta)$ 与直角三角形定义的对应点重合。§26.2.1 与 §26.2.3 反复说「推广」，比较的基准就是这条定义。
+
+````ad-thm
+title: 定理（回顾: 平方和恒等式） | Theorem（Recap: Pythagorean Identity）
+
+对任意锐角 $\theta$，
+$$\sin^2\theta+\cos^2\theta\equiv 1.$$
+````
+
+````ad-thm
+title: 定理（回顾: 商数恒等式） | Theorem（Recap: Quotient Identity）
+
+对任意锐角 $\theta$，
+$$\tan\theta\equiv\frac{\sin\theta}{\cos\theta}.$$
+````
+
+§9.2.1 与 §9.2.2 的两条恒等式被 §26.2.3 重列为「基本恒等式」，证明改走单位圆：点 $P(\cos\theta,\sin\theta)$ 到原点距离为 $1$，故平方和为 $1$；$\tan\theta=\dfrac{y}{x}$ 直接给出商数关系。原来的锐角版本只覆盖 $(0^\circ,90^\circ)$，重列之后对一切使 $\tan\theta$ 有定义的角成立。
+
+````ad-note
+title: 注记（回顾: 特殊角的三角比） | Note（Recap: Trigonometric Ratios of Special Angles）
+
+| $\theta$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
+| :---: | :---: | :---: | :---: | :---: |
+| $\sin\theta$ | $\dfrac12$ | $\dfrac{\sqrt2}{2}$ | $\dfrac{\sqrt3}{2}$ | $1$ |
+| $\cos\theta$ | $\dfrac{\sqrt3}{2}$ | $\dfrac{\sqrt2}{2}$ | $\dfrac12$ | $0$ |
+| $\tan\theta$ | $\dfrac{\sqrt3}{3}$ | $1$ | $\sqrt3$ | 未定义 |
+````
+
+这张表出自 §9.3.3。§26.3.1 画正弦图像时先取关键角列表，取的就是 $0^\circ,30^\circ,90^\circ,150^\circ,\dots$ 这些特殊角；§26.2.5 的化锐角公式把任意角化到锐角之后，要算的也正是表里这几个值。
+
+### 奇偶性、单调性与图像变换（Parity, Monotonicity and Transformations）
+
+以下各条取自 [[Chapter 19 函数及其图像|函数及其图像]]。
+
+````ad-def
+title: 定义（回顾: 偶函数与奇函数） | Definition（Recap: Even and Odd Functions）
+
+设 $f$ 的定义域关于原点对称。若对定义域内每个 $x$ 都有 $f(-x)=f(x)$，则称 $f$ 为**偶函数（even function）**；若都有 $f(-x)=-f(x)$，则称 $f$ 为**奇函数（odd function）**。
+````
+
+§19.3.3 的奇偶性定义正对应 §26.2.5 的 $-\alpha$ 行，那行给出 $\sin(-\alpha)\equiv-\sin\alpha$、$\cos(-\alpha)\equiv\cos\alpha$、$\tan(-\alpha)\equiv-\tan\alpha$，正文直接点名这组式子就是奇偶性：$\sin$ 与 $\tan$ 为奇函数，$\cos$ 为偶函数。§26.5 的小结把这一点列为反三角函数的性质之一。
+
+````ad-def
+title: 定义（回顾: 严格递增与严格递减） | Definition（Recap: Strictly Increasing and Decreasing）
+
+设 $f$ 定义在 $D_f$ 上。若 $x_1<x_2$ 时恒有 $f(x_1)<f(x_2)$，则称 $f$ 在 $D_f$ 上**严格递增（strictly increasing）**；恒有 $f(x_1)>f(x_2)$ 时称**严格递减（strictly decreasing）**。
+````
+
+§19.3.5 的单调性定义就是 §26.4.1 挑主值区间的标准：$\sin$ 在 $[-90^\circ,90^\circ]$ 上严格递增，$\cos$ 在 $[0^\circ,180^\circ]$ 上严格递减，$\tan$ 在 $(-90^\circ,90^\circ)$ 上严格递增。单调保证「一个函数值只对应一个角」，逆变换才写得成。
+
+````ad-note
+title: 注记（回顾: 函数变换的四个参数） | Note（Recap: Four Parameters of a Transformation）
+
+对 $y=f(x)$，$y=Af(Bx+C)+D$ 中，$A$ 控制竖直拉伸与反射，$B$ 控制水平伸缩，$\dfrac{C}{B}$ 控制水平平移，$D$ 控制竖直平移。
+````
+
+§19.2.4 的四个参数被 §26.3.2 逐个套到 $y=A\sin(B\theta+C)+D$ 上，振幅、周期、相位、上下平移各对应一个参数，并在证明里明说用的是「变换链」。$\cos\theta=\sin(\theta+90^\circ)$ 这条相位关系被解释成把正弦曲线左移 $90^\circ$，也是这套语言的一次应用。
+
+### 逆变换的引入方式（How an Inverse Is Introduced）
+
+以下一条取自 [[Chapter 25 指数函数与对数函数|指数函数与对数函数]]。
+
+````ad-def
+title: 定义（回顾: 互为逆变换） | Definition（Recap: Mutually Inverse Transformations）
+
+设 $a>0$，$a\ne 1$。对数与指数互为逆变换：
+$$\log_a(a^x)\equiv x\ (x\in\mathbb{R}),\qquad a^{\log_a N}\equiv N\ (N>0).$$
+指数函数严格单调故为单射，值域中每个 $y$ 只对应一个 $x$，逆变换因此唯一。
+````
+
+§25.3.1 的对数就是这样一个样板，§26.4.1 的整段引入都建在它之上：指数函数严格单调，所以能从输出找回输入；三角函数本身周期，不单调，于是先把定义域限制到一段单调区间，再照同样的方式取逆。反正弦、反余弦、反正切就是这样引进的。两者的差别只在「要不要先限制定义域」这一步。
+
+### 其他引用（Other References）
+
+下列各条只在一两处示例或说明里出现，因此不重列公式，只指出位置。
+
+- **§26.1.1**：由整圆周的弧长 $s=2\pi r$ 得整圆周为 $2\pi$ rad，再得 $\pi\ \text{rad}=180^\circ$。圆的定义与周长公式见 [[Chapter 8 平面几何 (I)|平面几何 (I)]] §8.9。
+- **§26.2.2**：把单位圆定义为「以原点为心、半径 $1$ 的圆」，圆作为到定点等距的点集，见 [[Chapter 8 平面几何 (I)|平面几何 (I)]] §8.9。
+- **§26.2.3 基本恒等式的证明**：说点 $P$ 到原点距离为 $1$，用的是两点距离公式。见 [[Chapter 19 函数及其图像|函数及其图像]] §19.2.1。
+- **§26.2.3、§26.3.1、§26.4.1**：正切的定义域写成 $\mathbb{R}\setminus\{90^\circ+180^\circ k\}$（挖掉使 $\cos\theta=0$ 的角），单调区间与主值区间写成 $[-90^\circ,90^\circ]$、$(-90^\circ,90^\circ)$ 一类，沿用 [[Chapter 16 集合论|集合论]] 的区间与差集记号；端点开闭即端点是否取到。记号见 §16.6.1、§16.4.3。
+- **§26.4.2**：证 $\arcsin x+\arccos x\equiv 90^\circ$ 时用 $\cos(90^\circ-\alpha)\equiv\sin\alpha$，即 [[Chapter 9 三角学(I)|三角学(I)]] §9.2.3 的互余关系；§26.2.5 的 $90^\circ-\alpha$ 一行与它一致，属形式对照。
+
+回顾到此为止。§26.1 从「度不是实数」讲起，第一个换算就落在圆周长与弧长的比值上。
+
+---
+
 ## 26.1　弧度法（Radian Measure）
 
 > **本节难度上限**：T C ｜ C D ｜ E D ｜ Q D

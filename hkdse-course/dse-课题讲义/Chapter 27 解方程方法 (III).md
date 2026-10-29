@@ -14,6 +14,128 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章解三类超越方程，套路只有一条：先想办法把方程化回代数方程，再交给前面几章收尾。[[Chapter 25 指数函数与对数函数|指数函数与对数函数]] 给单射性与对数定义，§27.1 与 §27.2 的每一步化简都以它为依据；[[Chapter 5 解方程方法(I)|解方程方法(I)]] 给一元一次方程的解法，化到 $ax=b$ 之后由此收口；[[Chapter 18 解方程方法(II)|解方程方法(II)]] 给二次方程的解法与换元框架，§27.1.3 与 §27.3.2 直接套用；[[Chapter 26 三角函数|三角函数]] 给三角方程的通解与符号法则，§27.3 整节建在它上面。下面按本章用到它们的先后重列，只写结论与用法，不重复证明。
+
+### 指数与对数的单调性（Monotonicity of Exponentials and Logarithms）
+
+以下各条取自 [[Chapter 25 指数函数与对数函数|指数函数与对数函数]]。
+
+````ad-thm
+title: 定理（回顾: 指数函数的单调性与单射性） | Theorem（Recap: Monotonicity and Injectivity of $E_a$）
+
+设 $a>0$，$a\ne 1$。若 $a>1$，则 $E_a(x)=a^x$ 在 $\mathbb{R}$ 上严格递增；若 $0<a<1$，则严格递减。两种情形都有单射性：
+$$a^{x_1}=a^{x_2}\implies x_1=x_2.$$
+````
+
+§25.2.3 的单射性是 §27.1.1 同底法的全部依据，那条定理只是把这句话改写成方程语言：把 $a^{f(x)}=a^{g(x)}$ 换成 $f(x)=g(x)$，等价性由单射保证，无需验根。§27.1.3 说明换元后 $x\mapsto k^x$ 是 $\mathbb{R}$ 到 $(0,+\infty)$ 的双射，用的也是严格单调加值域。
+
+````ad-def
+title: 定义（回顾: 对数与真数条件） | Definition（Recap: Logarithms）
+
+设 $a>0$，$a\ne 1$，$N>0$。若 $a^x=N$，则记
+$$\log_a N=x\iff a^x=N.$$
+$N$ 称为**真数（argument）**，必须为正；对数的定义域是 $(0,+\infty)$，值域是 $\mathbb{R}$。
+````
+
+§25.3.1 的对数定义让 §27.2.1 的定义法成立：把 $\log_a f(x)=b$ 换成 $f(x)=a^b$，并指出这一步不产生增根，理由是 $a^b>0$ 自动满足真数为正。§27.1.2 的取对数法则反过来用同一条定义：$a^{f(x)}=b$ 换成 $f(x)=\log_a b$，前提 $b>0$ 也是从值域读出来的。
+
+````ad-thm
+title: 定理（回顾: 对数的基本运算律） | Theorem（Recap: Laws of Logarithms）
+
+设 $a>0$，$a\ne 1$，$M,N>0$，$k\in\mathbb{R}$：
+$$\log_a(MN)\equiv\log_a M+\log_a N,\quad \log_a\frac{M}{N}\equiv\log_a M-\log_a N,\quad \log_a(M^k)\equiv k\log_a M.$$
+````
+
+§25.3.2 的三条运算律在 §27.1.2 与 §27.2.2 各用一次。§27.1.2 用第三条把 $\log_c\left(a^{f(x)}\right)$ 拉成 $f(x)\log_c a$，指数就此落地。§27.2.2 用前两条把多个对数项并成一个：$\log_a M+\log_a N$ 并成 $\log_a(MN)$，差并成商。三条都要求真数为正，这一点在合并后会变松，§27.2 的验根正是为此而设。
+
+````ad-thm
+title: 定理（回顾: 对数函数的单射性） | Theorem（Recap: Injectivity of $L_a$）
+
+设 $a>0$，$a\ne 1$。则
+$$\log_a x_1=\log_a x_2\iff x_1=x_2.$$
+````
+
+§25.3.4 的单射性让 §27.2.2 的对数合并法可以去掉两边的对数：合并成 $\log_a F(x)=\log_a G(x)$ 之后，直接得 $F(x)=G(x)$。原文同时写明前提 $F(x)>0$、$G(x)>0$，正因为单射只在两边都有定义时可用，这也是全节验根的由来。
+
+### 一元一次方程（Linear Equations in One Variable）
+
+以下一条取自 [[Chapter 5 解方程方法(I)|解方程方法(I)]]。
+
+````ad-alg
+title: 算法（回顾: 解一元一次方程的步骤） | Algorithm（Recap: Solving a Linear Equation）
+
+1. **去分母**：两边同乘各分母的最小公倍数；
+2. **去括号**：用分配律展开；
+3. **移项**：含未知数的项移到一边，常数项移到另一边，注意变号；
+4. **合并同类项**：化为 $ax=b$；
+5. **系数化为 1**：两边同除以 $a$。
+````
+
+§5.2.2 的五步在 §27.1.1 只用后三步：比较指数后得到 $2x=3x-6$ 一类式子，第 3 步与第 5 步即可解出；§27.1.2 取对数后得到的 $\left(f(x)\right)\log_c a=\left(g(x)\right)\log_c b$ 也是一次方程。§27.3.1 把通解写成 $\alpha+360^\circ k$ 之后，要在指定区间内定出 $k$ 的取值范围，化简到底同样是一次不等式，解法与这五步同源。
+
+### 二次方程与换元（Quadratic Equations and Substitution）
+
+以下各条取自 [[Chapter 18 解方程方法(II)|解方程方法(II)]]。
+
+````ad-thm
+title: 定理（回顾: 零积性质） | Theorem（Recap: Zero Product Property）
+
+设 $A,B$ 为代数式，则
+$$AB=0\iff A=0\ \text{或}\ B=0.$$
+````
+
+§18.1.2 的零积性质在 §27.1.1 的第二个示例里显形：把 $x^2=3x$ 整理成 $x(x-3)=0$，随即写出 $x=0$ 或 $x=3$，中间那一步就是这条。§27.2.1 的示例把 $x^2-2x-3$ 分解成 $(x-3)(x+1)$ 后分写两根，同理。
+
+````ad-alg
+title: 算法（回顾: 换元法的五步） | Algorithm（Recap: Substitution）
+
+1. **识别模式**：确定可统一替换的表达式 $f(x)$；
+2. **换元**：令 $u=f(x)$，把方程化为关于 $u$ 的二次方程；
+3. **解 $u$**：解出 $u$；
+4. **回代**：对每个 $u$，解 $f(x)=u$；
+5. **检验**：排除不满足原方程定义域的解。
+````
+
+§18.4.1 的五步被 §27.1.3 照搬，只把 $f(x)$ 取成 $k^x$，并在第 3 步与第 4 步之间插入「舍去 $u\le 0$」这一条，依据是 $k^x>0$。§27.3.2 取 $u=\sin\theta$ 或 $\cos\theta$，第 5 步换成「舍去 $|u|>1$」。本章末尾的对照表把这两处改动单列成各自的一行。
+
+### 三角方程（Trigonometric Equations）
+
+以下各条取自 [[Chapter 26 三角函数|三角函数]]。
+
+````ad-note
+title: 注记（回顾: 三角函数的值域） | Note（Recap: Ranges of Trigonometric Functions）
+
+$$\sin:\mathbb{R}\to[-1,1],\qquad \cos:\mathbb{R}\to[-1,1],\qquad \tan:\mathbb{R}\setminus\{90^\circ+180^\circ k\}\to\mathbb{R}.$$
+````
+
+§26.2.3 给出的三个值域，正是 §27.3.2 舍根的判据：换元得到 $u=\sin\theta$，若 $|u|>1$ 则方程无解，该根必须舍去；$u=\tan\theta$ 时任意实数都可保留。原文的证明把这句判据直接归到三个值域上。
+
+````ad-thm
+title: 定理（回顾: 三角方程的通解公式） | Theorem（Recap: General Solutions）
+
+1. 若 $\sin\theta=\sin\alpha$，则 $\theta=\alpha+360^\circ k$ 或 $\theta=180^\circ-\alpha+360^\circ k$（$k\in\mathbb{Z}$）；
+2. 若 $\cos\theta=\cos\alpha$，则 $\theta=\pm\alpha+360^\circ k$（$k\in\mathbb{Z}$）；
+3. 若 $\tan\theta=\tan\alpha$，则 $\theta=\alpha+180^\circ k$（$k\in\mathbb{Z}$）。
+````
+
+§26.2.6 的通解公式被 §27.3.1 原样列为首节内容，并给出通解法的完整流程：化方程为 $\sin\theta=k$、判解况、定象限、取特解 $\alpha$、按公式展开、截取指定区间。三组公式的周期不同，$360^\circ$ 与 $180^\circ$ 的差别决定了截取时 $k$ 的步长，这也是本章反复强调「先写通解再截取」的原因。
+
+### 其他引用（Other References）
+
+下列各条只在一两处示例或说明里出现，因此不重列公式，只指出位置。
+
+- **§27.2 全节**：合并对数会放松真数为正这一约束，去掉对数后可能得到不满足原方程的解，须逐个代回检验。增根这个概念与验根的做法见 [[Chapter 6 代数式|代数式]] §6.5.3，那里讲的是去分母，机理相同。
+- **§27.3.3**：用 $\sin^2\theta+\cos^2\theta\equiv 1$ 与 $\tan\theta\equiv\dfrac{\sin\theta}{\cos\theta}$ 把方程统一成单一函数。两条恒等式见 [[Chapter 26 三角函数|三角函数]] §26.2.3。
+- **§27.3.1 与 §27.3.2**：把解限制在 $0^\circ\le\theta<360^\circ$ 内，做法是解一元一次不等式定出整数 $k$ 的取值。解法见 [[Chapter 11 不等式 (I)|不等式 (I)]] §11.2.1。
+- **§27.3.1 与 §27.3.2 的定象限一步**：通解法第 3 步按 $k$ 的符号与 ASTC 法则定出解落在哪两个象限，再由象限写特解。符号表见 [[Chapter 26 三角函数|三角函数]] §26.2.4。
+- **§27.1.3 算法第 2 步**：换元得到 $Au^2+Bu+C=0$，若不易因式分解则套求根公式，判别式为负便判无实解，$u$ 一并舍去。公式见 [[Chapter 18 解方程方法(II)|解方程方法(II)]] §18.1.4。
+
+回顾到此为止。§27.1 从 $2^x=32$ 这类式子讲起，第一步就是把两边化成同底，再靠指数函数的单射性去掉底数。
+
+---
+
 ## 27.1　指数方程（Exponential Equations）
 
 > **本节难度上限**：T B- ｜ C C+ ｜ E C+ ｜ Q C+

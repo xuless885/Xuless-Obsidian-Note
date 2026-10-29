@@ -10,13 +10,105 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章把方程当成一个有真假的命题来处理：先给方程、根与等价性下定义，再谈等式两端怎样同时变形，最后落到一元一次方程与二元一次方程组。这样看，它同时站在两章上。[[Chapter 0 基础概念|基础概念]] 给命题与真值、代数式与等式、等式的性质，也给出分配律、最小公倍数与代入法，§5.1 的每条定义与每一步变形都由它们支撑；[[Chapter 4 多项式(I)|多项式(I)]] 给多项式、最简表示与次数，§5.1.3 起凡说到「多项式方程」「方程的次数」都指回那里。下面按本章用到它们的先后重列，只写结论与用法。
+
+### 命题、等式与等式的性质（Propositions, Equalities and Their Properties）
+
+以下各条取自 [[Chapter 0 基础概念|基础概念]]。
+
+````ad-def
+title: 定义（回顾: 命题、开放命题与真值） | Definition（Recap: Proposition, Open Proposition and Truth Value）
+
+一个陈述性语句，客观描述一个只可能为真或假的现象，称为**命题（proposition）**。包含可自由决定的变量 $x, y, \cdots$ 的命题记作 $P(x, y, \dots)$，赋予变量具体值之前无真假之分，称为**开放命题（open proposition）**。真命题记 $\mathbb{T}$，假命题记 $\mathbb{F}$。
+````
+
+§5.1.1 把方程定义成「含有未知数（变量）的等式」，随后的解释用的正是这条：等式本身是命题，出现变量之后成了开放命题。§5.1.4 定义根时写「使得该方程成立（即等式 $P(x_0, y_0, \dots) = \mathbb{T}$）」，把「是根」翻译成「赋值后真值为真」，符号直接取自这里。
+
+````ad-def
+title: 定义（回顾: 代数式与等式） | Definition（Recap: Algebraic Expression and Equality）
+
+由数、变量和运算符号组成的式子称为**代数式（algebraic expression）**，如 $3x + 5y - 2$，它是不含真假的对象。以「$=$」连接两个对象、断言两者在数值上一致的式子称为**等式（equality）**，它是一个命题。
+````
+
+§5.1.1 开头那句「等式是由 $=$ 所连接的代数式」，与紧随其后的「等式与表达式之辨」，说的都是这条区分：$3x + 1$ 是代数式，$3x + 1 = 7$ 才是方程。§5.1.3 定义多项式方程时要求「方程两端的代数式均为多项式」，被判断的对象就是这里的代数式。
+
+````ad-thm
+title: 定理（回顾: 等式的性质） | Theorem（Recap: Properties of Equality）
+
+1. **加减法不变性：** $a = b \implies a + c = b + c$
+2. **乘除法不变性：** 若 $c \ne 0$，则 $a = b \iff ac = bc$
+````
+
+§5.1.2 的恒等变换就是这两条的应用：示例中两边同减 $1$、同除以 $2$，分别对应 (1) 与 (2)。§5.2.1 证 $ax + b = 0$ 的唯一解为 $x = -\dfrac{b}{a}$ 时，先加 $-b$ 再乘 $\dfrac{1}{a}$，两步各用一条。§5.2.2 的去分母、移项，是这两条在等式两端的批量使用。§5.1.4 又把它们原样重列了一次，标题就是「等式的性质」。
+
+### 多项式与最简表示（Polynomials and Simplest Form）
+
+以下各条取自 [[Chapter 4 多项式(I)|多项式(I)]]。
+
+````ad-def
+title: 定义（回顾: 多项式与最简表示） | Definition（Recap: Polynomials and Simplest Form）
+
+设 $P_1, P_2, \ldots, P_m$ 为 $m$ 个单项式，它们的和 $P_1 + P_2 + \cdots + P_m$ 称为**多项式（polynomial）**。若表示中每个 $P_i$ 两两之间均为异类项，则此表示称为 $P$ 的**最简表示（simplest form）**。
+````
+
+§5.1.3 定义多项式方程，要求两端「均为多项式」；同节定义方程的最简表示，把 $P_1 = P_2$ 化成 $P_1 - P_2 = 0$ 后取 $Q$ 为 $P_1 - P_2$ 的最简表示，用的就是这两个现成概念。§5.2.1 与 §5.3.1 判定「一元一次」「二元一次」，判的也都是最简表示的形状。
+
+````ad-def
+title: 定义（回顾: 多项式的次数） | Definition（Recap: Degree of a Polynomial）
+
+对最简表示 $P = P_1 + \cdots + P_m$，$P$ 的**次数（degree）**为所有 $P_i$ 中次数最大者，记为 $\deg P$。若 $P$ 为非零常数单项式，则 $\deg P = 0$。
+````
+
+§5.1.3 定义「方程的次数」时直接引用这条：对最简表示 $Q = 0$，把 $Q$ 的次数称为方程的次数，于是 $x^2 + y^3 = 1$ 是二元三次方程。§5.2.1 说一元一次方程可写成 $ax + b = 0$（$a \ne 0$），「一次」二字也由这条给出：$ax + b$ 的次数为 $1$。
+
+````ad-thm
+title: 定理（回顾: 同类项的加减） | Theorem（Recap: Addition and Subtraction of Like Terms）
+
+若 $P, Q$ 为两个同类单项式，则 $P \pm Q$ 仍然为一个单项式。
+````
+
+§5.2.1 把 $2x + 3 = 5x - 4$ 化成 $-3x + 7 = 0$，靠的是把 $2x$ 与 $-5x$、$3$ 与 $4$ 各自合并，依据就是这条。§5.2.2 解一元一次方程的第四步「合并同类项」，与 §5.4.2 加减消元后把剩下的项收拢，走的是同一步。把方程整理成最简表示，实质上就是反复用这条定理。
+
+### 运算工具与代入（Computational Tools and Substitution）
+
+以下各条取自 [[Chapter 0 基础概念|基础概念]]。
+
+````ad-axi
+title: 公理（回顾: 乘法分配律） | Axiom（Recap: Distributivity）
+
+对任意自然数 $a, b, c$：$a \times (b + c) = a \times b + a \times c$。
+````
+
+§5.2.2 的第二步「去括号」把 $3(x - 2)$ 展开成 $3x - 6$，用的就是这条；§5.2.1、§5.3.1 各例把带括号的一边展开成最简表示，也是同一步。第一步「去分母」要求两边同乘各分母的**最小公倍数（least common multiple, L.C.M.）**，那是 §0.2.2 后半与最大公因数并列的另一条定义，取既能被各分母整除、又最小的那个数。
+
+````ad-def
+title: 定义（回顾: 代入法） | Definition（Recap: Substitution）
+
+将具体数值或代数式替换公式中对应的变量，从而计算结果的过程。本质上是将开放命题中的变量赋予特定对象。
+````
+
+§5.1.4 验证根与验证解，都是把数值代入方程两端看是否相等。§5.4.1 的代入消元法把这件操作用在式子上：先由一个方程解出 $x = Q$，再把 $Q$ 代进另一个方程，消去一个变量。§5.5 的试根法同样是代入，只是代的是逐个尝试的整数。
+
+### 其他引用（Other References）
+
+下列各条只在一两处示例或说明里出现，因此不重列公式，只指出位置。
+
+- **§5.4.1 步骤 2**：原文注明把 $x = Q$ 代进另一方程依据的是莱布尼茨定律，见 [[Chapter 0 基础概念|基础概念]] §0.1.5。
+- **§5.5 示例**：解 $3^x = 81$ 要逐次算出 $3^1, 3^2, 3^3, 3^4$，整数指数的算法见 [[Chapter 3 整数指数律与进制|整数指数律与进制]] §3.1.2。
+
+回顾到此为止。§5.1 从最简单的定义开始，先要分清代数式与等式。
+
+---
+
 ## 5.1　方程的基本概念（Fundamentals of Equations）
 
 > **本节难度上限**：T C ｜ C D ｜ E D ｜ Q C
 
 ### 5.1.1　方程的定义
 
-> 在第零章我们学过「等式」是由 $=$ 所连接的代数式，例如 $5 = 4+1$，$a = a+0$ 都是等式的例子。等式本身是一个命题 $P$（因为「$=$」本身具有构建命题的作用）。若等式中出现变量，则这些等式是开放命题——我们称这些等式为**方程**。
+> 在第零章我们学过「等式」是由 $=$ 所连接的代数式，例如 $5 = 4+1$，$a = a+0$ 都是等式的例子。等式本身是一个命题 $P$（因为「$=$」本身具有构建命题的作用）。若等式中出现变量，则这些等式是开放命题，我们称这些等式为**方程**。
 
 ````ad-def
 title: 定义（方程） | Definition（Equation）
@@ -26,7 +118,7 @@ title: 定义（方程） | Definition（Equation）
 3. 方程内变量的数量称为该方程的「**元**」。例如一元方程代表该方程有一个变量。
 ````
 
-> 务须分清等式与表达式（代数式）的区别：等式是指以 $=$ 连接的代数式，而表达式只是由数字、字母与其他运算构成的数学命题。
+> 务须分清等式与表达式（代数式）的区别：等式是指以 $=$ 连接的代数式，而表达式只是由数字、字母与其他运算构成的数学对象，本身没有真假。
 
 ````ad-example
 title: 示例 | Example
@@ -45,7 +137,7 @@ title: 示例 | Example
 ````
 
 ````ad-example
-title: 示例（求方程的变量与元） | Example（求方程的变量与元）
+title: 示例（求方程的变量与元） | Variables and Unknowns of an Equation
 
 
 求下列各方程的变量与元：
@@ -194,7 +286,7 @@ title: 定义（解方程） | Definition（Solving Equations）
 ````
 
 ````ad-example
-title: 示例（验证解） | Example（验证解）
+title: 示例（验证解） | Verifying a Solution
 
 
 验证 $x = 1, y = 6$ 是方程 $xy + 2x^2 - 8 = 0$ 的解。
@@ -207,7 +299,7 @@ $$(1)(6) + 2(1)^2 - 8 = 6 + 2 - 8 = 0$$
 ````
 
 ````ad-example
-title: 示例（简单求解） | Example（简单求解）
+title: 示例（简单求解） | Simple Solution
 
 
 解方程 $x + 2 = 3$：
@@ -284,11 +376,11 @@ title: 示例（判断一元一次方程） | Example（Identifying Linear Equat
 
 1. 是。最简表示 $2x - 8 = 0$，$x$ 项系数 $2 \neq 0$。
 2. 否。最简表示 $x^2 + 3 = 0$，为二次方程。
-3. 否。最简表示 $0 = 2$，$x$ 项系数为 $0$（矛盾方程，无解）。
+3. 否。最简表示 $-2 = 0$，$x$ 项系数为 $0$（矛盾方程，无解）。
 ````
 
 ````ad-thm
-title: 定理（一元一次方程的标准形式） | Theorem（一元一次方程的标准形式）
+title: 定理（一元一次方程的标准形式） | Standard Form of a Linear Equation in One Unknown
 
 一元一次方程可被表示为 $ax + b = 0$ 的形式，其中 $a, b$ 为实数且 $a \neq 0$。
 ````
@@ -311,7 +403,7 @@ $$\begin{aligned} 3(2x - 1) &= 4x + 7 \\ 6x - 3 &= 4x + 7 \\ 6x - 4x &= 7 + 3 \\
 ````
 
 ````ad-thm
-title: 定理（一元一次方程的唯一解） | Theorem（一元一次方程的唯一解）
+title: 定理（一元一次方程的唯一解） | Unique Solution of a Linear Equation in One Unknown
 
 一元一次方程 $ax + b = 0$ 的唯一解为 $x = -\dfrac{b}{a}$。
 ````
@@ -365,7 +457,7 @@ $$\begin{aligned} 3(x - 2) &= 2x + 1 \\ &\iff 3x - 6 = 2x + 1 \\ &\iff 3x - 2x =
 5. **系数化为 1**（Make Coefficient 1）：方程两边同除以 $a$。
 
 ````ad-example
-title: 示例（完整步骤） | Example（完整步骤）
+title: 示例（完整步骤） | Complete Steps
 
 
 解方程 $\dfrac{x}{2} - \dfrac{x+1}{3} = 1$：
@@ -455,7 +547,7 @@ $$\begin{aligned} 2x - 8y &= 9 - x + y \\ 2x - 8y - y &= 9 - x \\ 2x - 9y &= 9 -
 ````
 
 ````ad-thm
-title: 定理（二元一次方程有无穷多解） | Theorem（二元一次方程有无穷多解）
+title: 定理（二元一次方程有无穷多解） | Linear Equation in Two Unknowns with Infinitely Many Solutions
 
 二元一次方程 $ax + by + c = 0$ 有无穷多解。
 ````
@@ -485,7 +577,7 @@ $$(E) = \begin{cases} Eq_1 \\ \ \ \vdots \\ Eq_n \end{cases} \iff (Eq_1) \land (
 ````
 
 ````ad-example
-title: 示例（方程组及其解） | Example（方程组及其解）
+title: 示例（方程组及其解） | System of Equations and Its Solution
 
 
 考虑方程组：
@@ -497,7 +589,7 @@ $$(E) = \begin{cases} y = x \\ y - 2x = -1 \end{cases}$$
 因此 $x = 1, y = 1$ 同时是这两个方程的解，即 $(x,y) = (1,1)$ 是方程组 $(E)$ 的解。
 ````
 
-> 方程组的解取决于两个方程是否相容——有的方程组有唯一解，有的有无穷多解，有的则无解。这将在 §5.4.4 系统讨论。
+> 方程组的解取决于两个方程是否相容：有的方程组有唯一解，有的有无穷多解，有的则无解。这将在 §5.4.4 系统讨论。
 
 ---
 
@@ -513,7 +605,7 @@ title: 定义（等价方程组） | Definition（Equivalent Systems）
 
 
 ````ad-thm
-title: 定理（方程替换定理） | Theorem（方程替换定理）
+title: 定理（方程替换定理） | Equation Replacement Theorem
 
 设方程组：
 $$(E) = \begin{cases} Eq_1 \\ \ \ \vdots \\ Eq_k \\ \ \ \vdots \\ Eq_n \end{cases}$$
@@ -529,7 +621,7 @@ title: 证明 | Proof
 ````
 
 ````ad-example
-title: 示例（替换定理的应用） | Example（替换定理的应用）
+title: 示例（替换定理的应用） | Application of the Replacement Theorem
 
 考虑方程组：
 $$(E) = \begin{cases} y = x - 2 & \cdots\cdots E_1 \\ y - x + 1 = 0 & \cdots\cdots E_2 \end{cases}$$
@@ -636,7 +728,7 @@ title: 证明 | Proof
 $$\begin{cases} P_1 = P_2 \\ Q_1 = Q_2 \end{cases} \iff \begin{cases} P = 0 \\ Q = 0 \end{cases}$$
 ````
 
-> **核心思想**：消元（Elimination）——将方程组转化为一元一次方程来求解。因为现階段我们唯一可解的方程只有一元一次方程。
+> **核心思想**：消元（Elimination），即将方程组转化为一元一次方程来求解。因为现阶段我们唯一可解的方程只有一元一次方程。
 
 ---
 
@@ -664,25 +756,25 @@ $$\begin{aligned} P_1 = P_2 \iff P = 0 &\iff ax + by + c = 0 \\ &\iff ax = -c - 
 > 4. **回代**（Back-substitute）：将求得的值代回步骤 1 中的表达式，求出另一个未知数的值。
 
 ````ad-example
-title: 示例（代入消元法） | Example（代入消元法）
+title: 示例（代入消元法） | Method of Substitution
 
 
 解方程组 $E = \begin{cases} x - 2y = -3 & \cdots\cdots (1)\\ 2x + y = -1 & \cdots\cdots (2) \end{cases}$
 
 ---
 
-**步骤 1 — 变形**：将 $(2)$ 做恒等变换：
+**步骤 1：变形**：将 $(2)$ 做恒等变换：
 $$\begin{aligned} 2x + y = -1 &\iff 2x = -y - 1 \\ &\iff x = -\frac{1}{2}y - \frac{1}{2} \end{aligned}$$
 因此 $E \iff \begin{cases} {\color{red}x} - 2y = -3 & \cdots\cdots (1)\\ {\color{red}x} = -\dfrac{1}{2}y - \dfrac{1}{2} & \cdots\cdots (4) \end{cases}$
 
-**步骤 2 — 代入**：将 $(4)$ 代入 $(1)$ 中的 $x$（莱布尼茨定律）：
+**步骤 2：代入**：将 $(4)$ 代入 $(1)$ 中的 $x$（莱布尼茨定律）：
 $$E \iff \begin{cases} {\color{red}\left(-\dfrac{1}{2}y - \dfrac{1}{2}\right)} - 2y = -3 & \cdots\cdots (3)\\ x = -\dfrac{1}{2}y - \dfrac{1}{2} & \cdots\cdots (4) \end{cases}$$
 
-**步骤 3 — 求解**：$(3)$ 是关于 $y$ 的一元一次方程：
+**步骤 3：求解**：$(3)$ 是关于 $y$ 的一元一次方程：
 $$\begin{aligned} -\frac{1}{2}y - \frac{1}{2} - 2y = -3 &\iff -\frac{5}{2}y = -\frac{5}{2} \\ &\iff y = 1 \end{aligned}$$
 $$E \iff \begin{cases} y = 1 \\ x = -\dfrac{1}{2}y - \dfrac{1}{2} \end{cases}$$
 
-**步骤 4 — 回代**：将 $y = 1$ 代入 $(4)$：
+**步骤 4：回代**：将 $y = 1$ 代入 $(4)$：
 $$\begin{aligned} x &= -\frac{1}{2}(1) - \frac{1}{2} \\ &= -1 \end{aligned}$$
 
 因此方程组的解为 $x = -1, y = 1$。
@@ -695,16 +787,16 @@ title: 示例（代入消元法） | Example（Substitution Method）
 
 ---
 
-**步骤 1 — 变形**：将 $(2)$ 改写为用 $x$ 表示 $y$：
+**步骤 1：变形**：将 $(2)$ 改写为用 $x$ 表示 $y$：
 $$x - y = 1 \iff y = x - 1$$
 
-**步骤 2 — 代入**：将 $y = x - 1$ 代入 $(1)$：
+**步骤 2：代入**：将 $y = x - 1$ 代入 $(1)$：
 $$3x + 2(x - 1) = 8$$
 
-**步骤 3 — 求解**：
+**步骤 3：求解**：
 $$\begin{aligned} 3x + 2x - 2 &= 8 \\ 5x &= 10 \\ x &= 2 \end{aligned}$$
 
-**步骤 4 — 回代**：$y = x - 1 = 2 - 1 = 1$。
+**步骤 4：回代**：$y = x - 1 = 2 - 1 = 1$。
 
 因此方程组的解为 $x = 2, y = 1$。
 ````
@@ -718,7 +810,7 @@ $$\begin{aligned} 3x + 2x - 2 &= 8 \\ 5x &= 10 \\ x &= 2 \end{aligned}$$
  - 记法 $a(k) + b$ 表示对方程两边同时乘以 $a$ 加上 $b$，即 $aP_k + b = aQ_k + b$。
  - 记法 $(k) \pm (r)$ 表示对方程 $(k)$ 及 $(r)$ 的左右侧分别进行加减运算，即 $P_k \pm P_r = Q_k \pm Q_r$。
 
->  读者切記不要将 $(k)$ 与「乘以 $k$」的写法混淆。实际书写中建议使用其他记号，如罗马字符 (I), (II), (III), ... 或 $(Eq_k)$ 等。
+>  读者切记不要将 $(k)$ 与「乘以 $k$」的写法混淆。实际书写中建议使用其他记号，如罗马字符 (I), (II), (III), ... 或 $(Eq_k)$ 等。
 
 > **加减消元法步骤：**
 > 1. **变形**（Adjust Coefficients）：将两个方程分别乘以适当的非零常数，使其中一个未知数在两个方程中的系数绝对值相等。
@@ -727,23 +819,23 @@ $$\begin{aligned} 3x + 2x - 2 &= 8 \\ 5x &= 10 \\ x &= 2 \end{aligned}$$
 > 4. **回代**（Back-substitute）：将求得的值代入原方程组中任一方程，求出另一个未知数。
 
 ````ad-example
-title: 示例（加减消元法） | Example（加减消元法）
+title: 示例（加减消元法） | Method of Elimination
 
 
 解方程组 $E = \begin{cases} x - 2y = -3 & \cdots\cdots (A)\\ 2x + y = -1 & \cdots\cdots (B) \end{cases}$
 
 ---
 
-**步骤 1 — 变形**：将 $(A)$ 乘以 $2$：
+**步骤 1：变形**：将 $(A)$ 乘以 $2$：
 $$2(A) \iff 2(x - 2y) = 2(-3) \iff 2x - 4y = -6$$
 $$E \iff \begin{cases} {\color{red}2x} - 4y = -6 & \cdots\cdots 2(A)\\ {\color{red}2x} + y = -1 & \cdots\cdots (B) \end{cases}$$
 
-**步骤 2 — 加减**：$2(A)$ 与 $(B)$ 的 $x$ 项系数均为 $2$（符号相同），故考虑 $(2A) - (B)$：
+**步骤 2：加减**：$2(A)$ 与 $(B)$ 的 $x$ 项系数均为 $2$（符号相同），故考虑 $(2A) - (B)$：
 $$\begin{aligned} 2(A) - (B) &\iff (2x - 4y) - (2x + y) = -6 - (-1) \\ &\iff 2x - 2x - 4y - y = -5 \\ &\iff -5y = -5 \\ &\iff y = 1 \end{aligned}$$
 根据初等行变换引理：
 $$E \iff \begin{cases} y = 1 & \cdots\cdots 2(A)-(B)\\ 2x + y = -1 & \cdots\cdots (B) \end{cases}$$
 
-**步骤 4 — 回代**：将 $y = 1$ 代入 $(B)$：
+**步骤 4：回代**：将 $y = 1$ 代入 $(B)$：
 $$\begin{aligned} 2x + 1 = -1 &\iff 2x = -2 \\ &\iff x = -1 \end{aligned}$$
 
 因此方程组的解为 $x = -1, y = 1$。
@@ -756,13 +848,13 @@ title: 示例（加减消元法） | Example（Elimination Method）
 
 ---
 
-**步骤 1 — 变形**：将 $(B)$ 乘以 $2$，使 $y$ 项系数与 $(A)$ 相反：
+**步骤 1：变形**：将 $(B)$ 乘以 $2$，使 $y$ 项系数与 $(A)$ 相反：
 $$2(B) \iff 2x - 2y = 2$$
 
-**步骤 2 — 加减**：$(A) + 2(B)$ 消去 $y$：
+**步骤 2：加减**：$(A) + 2(B)$ 消去 $y$：
 $$\begin{aligned} (3x + 2y) + (2x - 2y) &= 8 + 2 \\ 5x &= 10 \\ x &= 2 \end{aligned}$$
 
-**步骤 3 — 回代**：将 $x = 2$ 代入 $(B)$：
+**步骤 3：回代**：将 $x = 2$ 代入 $(B)$：
 $$2 - y = 1 \iff y = 1$$
 
 因此方程组的解为 $x = 2, y = 1$。
@@ -813,7 +905,7 @@ $$\begin{cases} x - y = 1 \\ 2x - 2y = 0 \end{cases}$$
 #### 例题
 
 ````ad-example
-title: 示例（唯一解） | Example（唯一解）
+title: 示例（唯一解） | Unique Solution
 
 
 解方程组 $\begin{cases} 2x + y = 5 & \cdots\cdots (1) \\ x - y = 1 & \cdots\cdots (2) \end{cases}$
@@ -827,7 +919,7 @@ title: 示例（唯一解） | Example（唯一解）
 
 
 ````ad-example
-title: 示例（无解） | Example（无解）
+title: 示例（无解） | No Solution
 
 
 判断方程组 $\begin{cases} x + 2y = 3 & \cdots\cdots (1) \\ 2x + 4y = 5 & \cdots\cdots (2) \end{cases}$ 是否有解。
@@ -842,7 +934,7 @@ $$0 = 1$$
 
 
 ````ad-example
-title: 示例（无穷多解） | Example（无穷多解）
+title: 示例（无穷多解） | Infinitely Many Solutions
 
 
 判断方程组 $\begin{cases} 2x + 3y = 6 & \cdots\cdots (1) \\ 4x + 6y = 12 & \cdots\cdots (2) \end{cases}$ 是否有解。
@@ -857,7 +949,7 @@ $$0 = 0$$
 
 
 ````ad-example
-title: 示例（含参数讨论） | Example（含参数讨论）
+title: 示例（含参数讨论） | Discussion with Parameters
 
 
 设方程组 $\begin{cases} 2x + 3y = 6 & \cdots\cdots (1) \\ 4x + ky = m & \cdots\cdots (2) \end{cases}$，其中 $k, m$ 为实数。就 $k, m$ 的取值讨论方程组解的情况。
@@ -893,7 +985,7 @@ title: 定义（试根法） | Definition（Method of Trial and Error）
 ````
 
 ````ad-example
-title: 示例（试根法） | Example（试根法）
+title: 示例（试根法） | Trial Root Method
 
 
 解方程 $3^x = 81$：
@@ -962,13 +1054,13 @@ title: 示例（高斯消元法） | Example（Gaussian Elimination）
 
 ---
 
-**步骤 1 — 构造增广矩阵：**
+**步骤 1 构造增广矩阵：**
 $$\left[ \begin{array}{cc|c} 1 & 1 & 5 \\ 2 & -1 & 4 \end{array} \right]$$
 
-**步骤 2 — 消元**（$R_2 - 2R_1 \to R_2$，消去第二行首项）：
+**步骤 2：消元**（$R_2 - 2R_1 \to R_2$，消去第二行首项）：
 $$\left[ \begin{array}{cc|c} 1 & 1 & 5 \\ 0 & -3 & -6 \end{array} \right]$$
 
-**步骤 3 — 回代**：还原为方程组：
+**步骤 3：回代**：还原为方程组：
 $$\begin{cases} x + y = 5 \\ -3y = -6 \end{cases} \implies y = 2, \quad x = 5 - 2 = 3$$
 
 故解为 $x = 3, y = 2$。
@@ -981,15 +1073,15 @@ title: 示例（高斯消元法，含交换） | Example（Gaussian Elimination 
 
 ---
 
-**步骤 1 — 构造增广矩阵：**
+**步骤 1 构造增广矩阵：**
 $$\left[ \begin{array}{cc|c} 2 & 4 & 10 \\ 1 & 3 & 7 \end{array} \right]$$
 
-**步骤 2 — 消元**：为避免分数，先交换 $R_1 \leftrightarrow R_2$：
+**步骤 2：消元**：为避免分数，先交换 $R_1 \leftrightarrow R_2$：
 $$\left[ \begin{array}{cc|c} 1 & 3 & 7 \\ 2 & 4 & 10 \end{array} \right]$$
 再 $R_2 - 2R_1 \to R_2$：
 $$\left[ \begin{array}{cc|c} 1 & 3 & 7 \\ 0 & -2 & -4 \end{array} \right]$$
 
-**步骤 3 — 回代**：$-2y = -4 \implies y = 2$，$x + 3(2) = 7 \implies x = 1$。
+**步骤 3：回代**：$-2y = -4 \implies y = 2$，$x + 3(2) = 7 \implies x = 1$。
 
 故解为 $x = 1, y = 2$。
 ````
@@ -1029,9 +1121,9 @@ $$\left[ \begin{array}{cc|c} 1 & 3 & 7 \\ 0 & -2 & -4 \end{array} \right]$$
 ### 四、注意事项
 
 - 去分母时，分子是多项式的要加括号。常数项（没分母的项）容易漏乘分母。
-- 等價的方程組有相同的解——所有恒等变换均保證等價性。
+- 等价的方程组有相同的解，所有恒等变换均保证等价性。
 - 记号 $(k)$ 与「乘以 $k$」容易混淆，实际书写中建议使用罗马字符或 $(Eq_k)$ 等记号。
-- 试根法不是乱猜——通常从因数入手。
+- 试根法不是乱猜，通常从因数入手。
 - 矩阵是省略了变量和等号的简写形式。
 
 ---

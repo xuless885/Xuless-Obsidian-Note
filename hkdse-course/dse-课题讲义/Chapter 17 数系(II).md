@@ -16,6 +16,127 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章分两步扩充数系，每一步都踩在旧结论上。[[Chapter 16 集合论|集合论]] 给数集记号、集合运算与 §16.7 的界与确界，§17.1 的每个定义都靠它把「实数的一部分」说清楚，§17.1.2 与 §17.1.3 的证明更是直接调用完备性公理；[[Chapter 1 数系(I)|数系(I)]] 给有理数与无理数的划分、小数判据与带余除法，§17.1.1 的判别与 §17.2.3 的幂循环都取自此；[[Chapter 0 基础概念|基础概念]] 给反证法与命题语言，§17.1.2 的两个证明都从「假设结论不成立」入手；[[Chapter 6 代数式|代数式]] 给根式的乘积律，§17.2.6 判它何时失效正以它为基准。下面按本章用到它们的先后重列，只写结论与用法，不重复证明。
+
+### 集合语言与确界（Set Language and Suprema）
+
+以下各条取自 [[Chapter 16 集合论|集合论]]。数集记号出自 §16.3.1，子集、空集与集合运算出自 §16.2 与 §16.4，区间出自 §16.6，界与确界出自 §16.7.1 至 §16.7.4。
+
+````ad-def
+title: 定义（回顾: 常用数集记号） | Definition（Recap: Notation for Number Sets）
+
+$\mathbb{N}$ 表自然数集，$\mathbb{Z}$ 表整数集，$\mathbb{Q}$ 表有理数集，$\mathbb{R}$ 表实数集。
+````
+
+§17.1.1 开头的定理用这四个记号写数系的包含关系，§17.1.2 的稠密定义把 $\mathbb{R}$ 当作「被铺满的整体」，§17.1.3 的戴德金分割把 $\mathbb{Q}$ 当作「被切开的整体」，写成 $A,B\subseteq\mathbb{Q}$。§17.2.2 之后再添一个 $\mathbb{C}$，四个旧记号全部被收进新数系。
+
+````ad-def
+title: 定义（回顾: 子集、空集与集合运算） | Definition（Recap: Subsets, Empty Set and Set Operations）
+
+$A\subseteq B$ 表示 $A$ 的每一个元素都属于 $B$。不含任何元素的集合记作 $\varnothing$。对集合 $A,B$：
+$$A\cup B=\{x\mid x\in A\ \text{或}\ x\in B\},\qquad A\cap B=\{x\mid x\in A\ \text{且}\ x\in B\},$$
+$$A\setminus B=\{x\in A\mid x\notin B\}.$$
+````
+
+§17.1.2 的稠密定义以 $A\subseteq\mathbb{R}$ 与 $A\ne\varnothing$ 两句开场。§17.1.3 的戴德金分割第一条要求写成 $A\cup B=\mathbb{Q}$ 与 $A\cap B=\varnothing$，意思是两半恰好铺满有理数又互不重叠，而这两条正是上面并集与交集的定义。$\mathbb{R}\setminus\mathbb{Q}$ 这个差集记法在 §17.1.1 用来表示全体无理数。
+
+````ad-def
+title: 定义（回顾: 区间） | Definition（Recap: Interval）
+
+设 $a<b$。$(a,b)=\{x\in\mathbb{R}\mid a<x<b\}$，$[a,b]=\{x\in\mathbb{R}\mid a\le x\le b\}$，半开区间同理，端点取含与不含由括号形状决定。
+````
+
+§17.1.2 证明有理数稠密性时，把 $(a,b)$ 读成「长为 $d=b-a$ 的一段」，再把它放大到长度超过 $1$；同节证明无理数稠密性时，又把 $(a,b)$ 两边同除 $\sqrt{2}$，让区间跟着伸缩。§17.1.3 把戴德金分割比作在数轴上切一刀，切口正落在这类空隙里。
+
+````ad-def
+title: 定义（回顾: 最大值、最小值与上下界） | Definition（Recap: Maximum, Minimum and Bounds）
+
+设 $S\subseteq\mathbb{R}$ 且 $S\ne\varnothing$。若 $M\in S$ 且对任意 $x\in S$ 有 $x\le M$，则 $M=\max S$；若 $m\in S$ 且对任意 $x\in S$ 有 $m\le x$，则 $m=\min S$。若只要求存在实数 $M$ 使对任意 $x\in S$ 有 $x\le M$，则 $M$ 只是 $S$ 的一个上界，不要求 $M\in S$；下界同理。
+````
+
+§17.1.2 把阿基米德性质改写成「$\mathbb{N}$ 在 $\mathbb{R}$ 中没有上界」，其中的上界就是上述含义；反证的第一步「存在 $M$ 使对任意 $n\in\mathbb{N}$ 有 $n\le M$」，逐字对应该定义的句式。§17.1.3 第 3 条要求「$A$ 没有最大值」，这里必须用最大值而不能用上界：最大值要落在 $A$ 里面，上界不必。
+
+````ad-def
+title: 定义（回顾: 上确界与下确界） | Definition（Recap: Supremum and Infimum）
+
+若 $M$ 是 $S$ 的上界，且 $M$ 小于或等于 $S$ 的每一个上界，则 $M=\sup S$，即最小上界。若 $m$ 是 $S$ 的下界，且 $m$ 大于或等于 $S$ 的每一个下界，则 $m=\inf S$，即最大下界。集合有最大值时 $\sup S=\max S$。
+````
+
+§17.1.2 引用完备性公理之后补了一句「$s$ 是 $\mathbb{N}$ 的上界，且任何比 $s$ 小的数都不是上界」，这正是最小上界的读法，该段的收尾也由此得出 $n+1>s$ 与 $n+1\le s$ 相冲。§17.1.3 把分割的切口写成 $\alpha=\sup A=\inf B$，并说明 $B$ 有最小值时 $\alpha$ 就是那个有理数。
+
+````ad-axi
+title: 公理（回顾: 完备性公理） | Axiom（Recap: Completeness Axiom）
+
+实数集 $\mathbb{R}$ 的任意非空、有上界的子集，必有上确界，并且这个上确界属于 $\mathbb{R}$。
+````
+
+全章三处直接调用。§17.1.2 证明阿基米德性质时用它断定 $\mathbb{N}$ 有上确界，同节注记说两个稠密性定理的根源都在这里；§17.1.3 用它说明每个戴德金分割都能在 $\mathbb{R}$ 中取到上确界，于是「切口」变成一个真正的实数。
+
+### 有理数与无理数（Rational and Irrational Numbers）
+
+以下各条取自 [[Chapter 1 数系(I)|数系(I)]] §1.3.2。
+
+````ad-def
+title: 定义（回顾: 有理数与无理数） | Definition（Recap: Rational and Irrational Numbers）
+
+可写为 $\dfrac{p}{q}$（$p,q\in\mathbb{Z}$，$q\ne 0$）形式的数为**有理数（rational number）**，全体记作 $\mathbb{Q}$；不能写为分数形式的数为**无理数（irrational number）**。两者合称**实数（real number）**，记作 $\mathbb{R}$。
+````
+
+§17.1.1 的无理数定义把方向倒过来写：先有实数，再挑出「不能表示为 $\frac pq$」的那些，并把全体记作 $\mathbb{R}\setminus\mathbb{Q}$。方向一倒，「有理数不够用」这句话才有确切的对象可指。
+
+````ad-thm
+title: 定理（回顾: $\sqrt{2}$ 是无理数） | Theorem（Recap: $\sqrt{2}$ is Irrational）
+
+$\sqrt{2}$ 不是有理数。
+````
+
+§17.1.1 用它说明数轴上有不属于 $\mathbb{Q}$ 的点；§17.1.2 证明无理数稠密时先取 $r\sqrt{2}$，再靠这条结论断定它是无理数；§17.1.3 说明 $\mathbb{Q}$ 的空隙时，举的仍是 $\sqrt{2}$ 所在的位置。
+
+### 反证法与命题语言（Proof by Contradiction and Propositional Language）
+
+以下各条取自 [[Chapter 0 基础概念|基础概念]]，反证法出自 §0.3。
+
+````ad-def
+title: 定义（回顾: 反证法） | Definition（Recap: Proof by Contradiction）
+
+要证命题 $Q$，先假设 $\neg Q$，再由此推出一个恒假的命题。矛盾说明 $\neg Q$ 不能成立，故 $Q$ 成立。
+````
+
+§17.1.2 的两处证明都这样开场。阿基米德性质假设 $\mathbb{N}$ 有上界，末尾得到 $n+1\le s$ 与 $n+1>s$ 并存；无理数乘积引理假设 $r\alpha$ 为有理数，推出 $\alpha$ 也是有理数，与前提冲突。两处的「矛盾」都是同一句命题与其否定同时成立。
+
+§17.2.3 把「两个复数相等当且仅当实部与虚部分别相等」列为公理，用的是 §0.1.5 的用法：公理不必由更前面的结论推出，直接作为推理起点。§17.1.3 的第 2 条写成 $\forall a\in A,\ \forall b\in B$ 有 $a<b$，其中的全称量词记号见 §0.1.4。
+
+### 根式与乘积律（Radicals and the Product Rule）
+
+以下各条取自 [[Chapter 6 代数式|代数式]] §6.3.1。
+
+````ad-thm
+title: 定理（回顾: 平方根的乘法性质） | Theorem（Recap: Product Rule for Square Roots）
+
+设 $a,b\ge 0$，则 $\sqrt{ab}=\sqrt{a}\sqrt{b}$。
+````
+
+§17.2.6 整节以这条为基准：先承认它在 $a,b\ge0$ 时成立，再看为负实数约定 $\sqrt a=i\sqrt{|a|}$ 之后它在哪里失效。乘积律两负时两边差一个负号，商律只分母为负时差一个负号，两张判别表都是把四种符号组合逐一代入这条定理得到的。同节末尾的警告与那个「$-1=1$」的假证明，判错的依据也回到前提 $a,b\ge0$。
+
+### 其他引用（Other References）
+
+下列各条只在一两处证明或说明里出现，因此不重列公式，只指出位置。
+
+- **§17.1.1 示例 (c) 判 $0.333\ldots$ 为有理数**：理由是「是循环小数，必为有理数」，用的是小数判据的充分方向。见 [[Chapter 1 数系(I)|数系(I)]] §1.3.3。
+- **§17.2.3 的 $i$ 幂周期**：把指数写成 $n=4q+r$、$r\in\{0,1,2,3\}$，余数范围正是取 $b=4$ 时带余除法给出的。见 [[Chapter 1 数系(I)|数系(I)]] §1.1.1。
+- **§17.2.6 与正实数的平方根对照**：该节把 $\sqrt a$ 从 $a\ge0$ 推到 $a<0$，另立 $\sqrt a=i\sqrt{|a|}$，突破的正是「主平方根取非负值、只对 $m\ge0$ 有定义」这一约定。见 [[Chapter 1 数系(I)|数系(I)]] §1.3.2。
+- **§17.1.2 引理证明**：「两个有理数相乘仍为有理数」用作推理的一步。见 [[Chapter 1 数系(I)|数系(I)]] §1.3.1。
+- **§17.2.1 两处**：判 $x^2+1=0$ 与 $x^2+c=0$（$c>0$）在 $\mathbb{R}$ 中无解，依据是对任意实数 $x$ 有 $x^2\ge 0$。见 [[Chapter 11 不等式 (I)|不等式 (I)]] §11.3.1。
+- **§17.1.3 戴德金分割定义**：把分割写成有序对 $(A,B)$，$(A,B)$ 的记号见 [[Chapter 15 解析几何 (I)|解析几何 (I)]] §15.1.1。
+- **§17.2.5 复平面定义**：复平面「建立直角坐标系，以横轴为实轴、纵轴为虚轴」，坐标系的做法见 [[Chapter 15 解析几何 (I)|解析几何 (I)]] §15.1.2。
+- **§17.2.4 除法算法**：分子分母同乘分母的共轭 $c-di$，与分母有理化同属一套手法。见 [[Chapter 6 代数式|代数式]] §6.4.5。
+
+回顾到此为止。§17.1 从数系的包含关系讲起，紧接着要问的就是 $\mathbb{Q}$ 与 $\mathbb{R}$ 之间差了什么。
+
+---
+
 ## 17.1　实数的本质（The Nature of Real Numbers）
 
 > **本节难度上限**：T A- ｜ C B- ｜ E B+ ｜ Q B
@@ -42,8 +163,6 @@ $$\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.$$
 ````
 
 然而，数轴上还有大量点不属于 $\mathbb{Q}$。例如，在 Ch01 中我们证明了 $\sqrt{2}$ 不是有理数。这类数即实数中对 $\mathbb{Q}$ 的「补充」。
-
-%%加一幅配图展示包含关系%%
 
 ````ad-def
 title: 定义（无理数） | Definition（Irrational Number）
@@ -100,7 +219,7 @@ title: 定义（稠密） | Definition（Dense）
 这两个定理的证明依赖于上一章（[[Chapter 16 集合论|Ch.16 集合论]]）引入的完备性公理。证明有理数稠密性的过程中，需要用到**阿基米德性质**，我们先将其作为引理单独陈述并证明。
 
 ````ad-lem
-title: 引理（阿基米德性质 Archimedean Property） | Lemma（阿基米德性质 Archimedean Property）
+title: 引理（阿基米德性质） | Lemma（Archimedean Property）
 
 对任意正实数 $x>0$，存在正整数 $n$ 使得 $n>x$。
 
@@ -136,7 +255,7 @@ $$n+1>s.$$
 ````
 
 ````ad-note
-title: 注记 | Remark
+title: 注记 | Note
 
 阿基米德性质看似「显而易见」：自然数可以无限增大，当然能超过任何给定的实数。但严格证明它需要完备性公理，这说明「自然数无上界」并非理所当然，而是实数连续性的一个推论。在有理数集 $\mathbb{Q}$ 中，同样可以证明阿基米德性质成立，但它的根基仍然是 $\mathbb{R}$ 的完备性。
 ````
@@ -150,7 +269,7 @@ title: 定理（有理数集的稠密性） | Theorem（Denseness of Q）
 ````
 
 ````ad-proof
-title: 证明（有理数集的稠密性） | Proof（有理数集的稠密性）
+title: 证明（有理数集的稠密性） | Proof（Denseness of the Set of Rational Numbers）
 
 设 $a,b\in\mathbb{R}$ 且 $a<b$。要证：存在有理数 $r$ 使得 $a<r<b$。
 
@@ -229,7 +348,7 @@ title: 定理（无理数集的稠密性） | Theorem（Denseness of R\Q）
 
 
 ````ad-proof
-title: 证明（无理数集的稠密性） | Proof（无理数集的稠密性）
+title: 证明（无理数集的稠密性） | Proof（Denseness of the Set of Irrational Numbers）
 
 设 $a,b\in\mathbb{R}$ 且 $a<b$。要证：存在无理数 $x$ 使得 $a<x<b$。
 
@@ -245,7 +364,7 @@ $$a<r\sqrt{2}<b.$$
 ````
 
 ````ad-note
-title: 注记（稠密性与连续性的区别） | Remark（Denseness vs Continuity）
+title: 注记（稠密性与连续性的区别） | Note（Denseness vs Continuity）
 
 上面证明了 $\mathbb{Q}$ 具有稠密性，但 $\mathbb{Q}$ **不具有连续性**：数轴上 $\mathbb{Q}$ 的元素之间仍然存在「空隙」，例如 $\sqrt{2}$ 所在的位置不是有理数，但它的两侧都有有理数无限逼近。
 
@@ -298,7 +417,7 @@ title: 定义（戴德金分割） | Definition（Dedekind Cut）
 这正好回答了上一章的完备性公理是如何「实现」的：每个戴德金分割给出 $\mathbb{Q}$ 的一个上确界，正是这个上确界填补了有理数之间的空隙。
 
 ````ad-note
-title: 注记 | Remark
+title: 注记 | Note
 
 以下例子涉及较为细致的代数推导，对中学生而言稍难理解。若感觉吃力，可以先跳过，待后续回顾时再细读。
 ````
@@ -373,7 +492,7 @@ title: 证明 | Proof
 ````
 
 ````ad-note
-title: 注记 | Remark
+title: 注记 | Note
 
 戴德金分割由 Richard Dedekind 于 1872 年提出，是严格构造实数系的经典方法。通过确界的语言，戴德金分割与上一章完备性公理建立了清晰的联系：分割的上半部 $B$ 的所有元素都是下半部 $A$ 的上界，$\alpha=\sup A=\inf B$ 正是分割所定义的实数。实数集的连续性是其区别于有理数集的根本特征，也是微积分得以建立的基础。
 ````
@@ -444,7 +563,7 @@ title: 定义（复数） | Definition（Complex Number）
 $$z=a+bi$$
 的数称为**复数（Complex Number）**，其中 $a,b\in\mathbb{R}$。
 
-全体复数的集合记作 $\mathbb{C}$%%写开 C 的描述%%。
+全体复数的集合记作 $\mathbb{C}$。
 ````
 
 

@@ -18,7 +18,7 @@ courses/
   mock.html                    模拟卷清单（仅卷面，外部链接，不含答案）
   outline.html                 大纲（官方考纲 / 课程阐释 PDF / 词汇表）
 hkdse-course/
-  dse-课题讲义/                 课程讲义正文：36 章 + 给读者的简介 + 更新日志（渲染产物）
+  dse-课题讲义/                 课程讲义正文：37 章 + 给读者的简介 + 更新日志（渲染产物）
   dse-课题讲义/*.md             讲义源文（自 Obsidian 库同步，与页面同目录；mtime = 页面「最后修改」）
   大纲/                         DSE 数学词汇表、官方考纲与课题讲义关联分析（渲染产物）
   图片/                         讲义配图（108 个唯一文件名，站内唯一图片目录）
@@ -42,7 +42,7 @@ site-lib/
 
 | 来源 | 路径 | 去处 |
 | --- | --- | --- |
-| Obsidian 文档库 | `C:\Users\xuless\OneDrive\Xuless Obsidian Note` | `HKDSE course/DSE 课题讲义/*.md` → 36 章讲义 |
+| Obsidian 文档库 | `C:\Users\xuless\OneDrive\Xuless Obsidian Note` | `HKDSE course/DSE 课题讲义/*.md` → 37 章讲义 |
 | Obsidian 文档库 | 同上 | `HKDSE course/大纲/*.md` → 词汇表、关联分析 |
 | LaTeX 文档库 | `C:\Users\xuless\OneDrive\文件\HKDSE` | 模拟卷**卷面 PDF**（清单页外链，**不搬进仓库**） |
 
@@ -55,7 +55,7 @@ site-lib/
 
 ```bash
 python .build/sync_vault_sources.py --apply            # 库源 → 仓库 .md 快照（保留 mtime；页面「最后修改」靠它）
-python .build/restructure/render_all_docs.py --apply   # 渲染讲义 + 大纲（40 篇）
+python .build/restructure/render_all_docs.py --apply   # 渲染讲义 + 大纲（41 篇）
 python .build/restructure/fix_images.py --apply        # 修复对不上的图片引用
 node   .build/tikz/prerender_tikz.js --resume          # 新图 → 静态 SVG（--emit-by-page 重写页→图映射）
 python .build/md/integrate_tikz2.py --apply            # 把预渲染 SVG 接进页面
@@ -87,7 +87,7 @@ python .build/restructure/add_cache_bust.py --apply    # 必须最后一步：�
 ## 4. TikZ 图：构建期预渲染成静态 SVG
 
 - 站点本地化 tikzjax 引擎（`site-lib/vendor/tikzjax/`，自带 `tex.wasm`，运行期零外网请求）。
-- **518 张图在构建期渲染成静态 SVG**，分布在 19 个讲义页面；页面里是 `<img class="tikz-figure">`。
+- **520 张图在构建期渲染成静态 SVG**，分布在 20 个讲义页面；页面里是 `<img class="tikz-figure">`。
   **页面不再加载那个 6.7 MB 的引擎** —— 客户端渲染实测每张 20–40 秒，
   一页上百张等于不可用。
 - ⚠️ **字体是承重的**：SVG 里的 `<text>` 用的是 BaKoMa Computer Modern **字形槽位**（不是 Unicode），
@@ -116,7 +116,7 @@ python .build/de/verify.py         # 6 条验收，证据留档
 ## 6. 验收
 
 ```bash
-python .build/lead_final_check.py      # 全站 49 页 + 94 个唯一本地资源，全部 200、无 root-absolute
+python .build/lead_final_check.py      # 全站 50 页 + 94 个唯一本地资源，全部 200、无 root-absolute
 node   .build/test_graph_search.js     # 关系图 / 检索 134 项断言
 python .build/de/verify.py             # 数据层
 ```

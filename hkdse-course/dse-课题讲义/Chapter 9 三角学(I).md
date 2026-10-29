@@ -8,6 +8,50 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章的每一步都站在三章之上。[[Chapter 8 平面几何 (I)|平面几何 (I)]] 给相似三角形、毕氏定理与平行线的角关系，从 §9.1.2 起一直在用；[[Chapter 6 代数式|代数式]] 给根式的化简与分母有理化，§9.1.2 与 §9.3 的答案要写成它的标准形式；[[Chapter 3 整数指数律与进制|整数指数律与进制]] 给指数记号与运算律，§9.2.1 的平方记号与 §9.4.1 的负指数辨析靠它。下面按本章用到它们的先后重列，只写结论与用法，不重复证明。
+
+### 平面几何的事实（Plane Geometry Facts）
+
+以下各条取自 [[Chapter 8 平面几何 (I)|平面几何 (I)]]。
+
+````ad-thm
+title: 定理（回顾: 相似三角形的判定条件） | Theorem（Recap: Similarity Conditions）
+
+以下任何一组条件成立时，两个三角形相似：两角对应相等（AA）；三边成比例（SSS∼）；两边成比例且夹角相等（SAS∼）。相似三角形的对应角相等，对应边成比例。
+````
+
+§9.1.2 的关键洞察就靠 AA：给定锐角 $\theta$ 之后，所有含 $\theta$ 的直角三角形两角已经相等，故彼此相似，对应边的比值与三角形大小无关。$\sin\theta$、$\cos\theta$、$\tan\theta$ 之所以是只依赖 $\theta$ 的常数，理由全在这一步。
+
+````ad-thm
+title: 定理（回顾: 毕氏定理） | Theorem（Recap: Pythagoras' Theorem）
+
+在直角三角形中，斜边长度的平方等于两条直角边长度的平方和。设 $\angle ACB=90^\circ$，$c$ 为斜边，则
+$$a^2+b^2=c^2.$$
+````
+
+§9.2.1 证明平方和恒等式时，把 $\dfrac{\text{Opp}^2+\text{Adj}^2}{\text{Hyp}^2}$ 的分子直接换成 $\text{Hyp}^2$，依据就是它。§9.3.1 用它算出等腰直角三角形的斜边 $\sqrt{1^2+1^2}=\sqrt{2}$，§9.3.2 用它算出等边三角形的高 $\sqrt{2^2-1^2}=\sqrt{3}$。
+
+### 其他引用（Other References）
+
+下列各条只在一两处出现，因此不重列公式，只指出位置。
+
+- **§9.3.1**：等腰直角三角形两腰取 $1$ 后断言两个锐角都是 $45^\circ$，用的是等腰三角形底角相等。见 [[Chapter 8 平面几何 (I)|平面几何 (I)]] §8.7。
+- **§9.3.2**：从等边三角形顶点引高线，断言它同时平分底边与顶角，用的是三线合一。见 [[Chapter 8 平面几何 (I)|平面几何 (I)]] §8.7。
+- **§9.4.2 的仰角俯角证明**：两条水平线平行、视线充当截线，仰角与俯角互为内错角，用的是平行线的角关系。见 [[Chapter 8 平面几何 (I)|平面几何 (I)]] §8.1。
+- **§9.3.3 的数值表与 §9.1.2 的示例**：$\dfrac{\sqrt{2}}{2}$、$\dfrac{\sqrt{3}}{3}$、$\dfrac{5\sqrt{3}}{10}=\dfrac{\sqrt{3}}{2}$ 这些写法要求被开方数不含分母、不含平方因子，即最简根式。见 [[Chapter 6 代数式|代数式]] §6.4.4。
+- **§9.3.1 与 §9.3.2**：把 $\dfrac{1}{\sqrt{2}}$ 改写成 $\dfrac{\sqrt{2}}{2}$、$\dfrac{1}{\sqrt{3}}$ 改写成 $\dfrac{\sqrt{3}}{3}$，一步分母有理化。见 [[Chapter 6 代数式|代数式]] §6.4.5。
+- **§9.2.1**：$\left(\dfrac{\text{Opp}}{\text{Hyp}}\right)^2=\dfrac{\text{Opp}^2}{\text{Hyp}^2}$ 与 $\left(\dfrac{3}{5}\right)^2=\dfrac{9}{25}$ 都按商的幂展开。见 [[Chapter 3 整数指数律与进制|整数指数律与进制]] §3.1.2。
+- **§9.4.1 的注意段**：辨明 $\sin^{-1}y$ 不是 $\dfrac{1}{\sin y}$，对照的是负指数 $a^{-n}=\dfrac{1}{a^n}$。见 [[Chapter 3 整数指数律与进制|整数指数律与进制]] §3.1.4。
+- **§9.4.1 与 §9.4.2 的示例**：答案要求「保留三位有效数字」或「准确至三位有效数字」。见 [[Chapter 2 估算|估算]] §2.1.7。
+- **§9.4.2 的示例**：由 $\tan 40^\circ=\dfrac{h}{CD+50}$ 与 $\tan 65^\circ=\dfrac{h}{CD}$ 消去 $CD$，整理成 $h\left(1-\dfrac{\tan 40^\circ}{\tan 65^\circ}\right)=50\tan 40^\circ$ 后求解。见 [[Chapter 5 解方程方法(I)|解方程方法(I)]] §5.2.1。
+- **§9.3.1 与 §9.3.2**：把三边写成 $1:1:\sqrt{2}$ 与 $1:\sqrt{3}:2$。见 [[Chapter 7 率、比及百分法|率、比及百分法]] §7.3.1。
+
+回顾到此为止。§9.1 从直角三角形的三条边讲起，先给三边命名，再把边与角的对应写成一个比值。
+
+---
+
 ## 9.1　锐角三角比 (Trigonometric Ratios of Acute Angles)
 
 > **本节难度上限**：T C ｜ C C- ｜ E D ｜ Q C
@@ -130,7 +174,7 @@ $$\cos\theta = \pm \frac{4}{5}$$
 ### 9.2.2　商数恒等式 (Quotient Identity)
 
 ````ad-thm
-title: 定理（商数恒等式） | Theorem（商数恒等式）
+title: 定理（商数恒等式） | Theorem（Quotient Identity）
 
 对于任意锐角 $\theta$，
 $$\tan \theta \equiv \frac{\sin \theta}{\cos \theta}$$
@@ -150,7 +194,7 @@ $$\frac{\sin \theta}{\cos \theta} \equiv \frac{\text{Opp}/\text{Hyp}}{\text{Adj}
 在直角三角形中，两锐角互为余角（Complementary Angles），即和为 $90^\circ$。若取一角为 $\theta$，则另一角为 $90^\circ - \theta$。注意到 $\theta$ 的对边即为 $(90^\circ - \theta)$ 的邻边，反之亦然。
 
 ````ad-cor
-title: 推论（互余关系） | Corollary（互余关系）
+title: 推论（互余关系） | Corollary（Complementary Relation）
 
 对于任意锐角 $\theta$，
 $$\sin(90^\circ - \theta) = \cos \theta$$
@@ -189,7 +233,7 @@ title: 示例 | Example
 ### 9.3.1　$45^\circ$-$45^\circ$-$90^\circ$ 三角形
 
 ````ad-thm
-title: 定理（$45^\circ$-$45^\circ$-$90^\circ$ 三角形的边长比） | Theorem（$45^\circ$-$45^\circ$-$90^\circ$ 三角形的边长比）
+title: 定理（$45^\circ$-$45^\circ$-$90^\circ$ 三角形的边长比） | Theorem（Side Ratios of a $45^\circ$-$45^\circ$-$90^\circ$ Triangle）
 
 在等腰直角三角形（Isosceles Right Triangle）中，两锐角均为 $45^\circ$，设两腰长为 $1$，则斜边长度为 $\sqrt{1^2 + 1^2} = \sqrt{2}$。三边比例为 $1 : 1 : \sqrt{2}$。
 
@@ -206,7 +250,7 @@ $$\sin 45^\circ = \frac{\text{对边}}{\text{斜边}} = \frac{1}{\sqrt{2}} = \fr
 
 ### 9.3.2　$30^\circ$-$60^\circ$-$90^\circ$ 三角形
 ````ad-thm
-title: 定理（$30^\circ$-$60^\circ$-$90^\circ$ 三角形的边长比） | Theorem（$30^\circ$-$60^\circ$-$90^\circ$ 三角形的边长比）
+title: 定理（$30^\circ$-$60^\circ$-$90^\circ$ 三角形的边长比） | Theorem（Side Ratios of a $30^\circ$-$60^\circ$-$90^\circ$ Triangle）
 
 取一个边长为 $2$ 的等边三角形，从一顶点向对边引高线（Altitude）。此高线同时为中线及角平分线，将等边三角形分成两个全等的直角三角形，其锐角为 $30^\circ$ 与 $60^\circ$。在其中一个直角三角形中：
 - 对 $30^\circ$ 角的边长 $= 1$（底边的一半），
@@ -238,7 +282,7 @@ $$\sin 60^\circ = \frac{\sqrt{3}}{2},\quad \cos 60^\circ = \frac{1}{2},\quad \ta
 | $\tan\theta$ | $\dfrac{\sqrt{3}}{3}$ |          $1$          |      $\sqrt{3}$       | 未定义        |
 
 ````ad-lem
-title: 引理（记忆规律：） | Lemma（记忆规律：）
+title: 引理（记忆规律：） | Lemma（Mnemonic Pattern）
 
 - $\sin 30^\circ, \sin 45^\circ, \sin 60^\circ$ 的分子依次为 $\sqrt{1}, \sqrt{2}, \sqrt{3}$，分母均为 $2$。
 - $\cos$ 的顺序与 $\sin$ 恰好相反：$\cos 30^\circ = \sin 60^\circ$，$\cos 60^\circ = \sin 30^\circ$（由互余关系可得）。
@@ -342,7 +386,7 @@ title: 定义（俯角） | Definition（Angle of Depression）
 ![[C9 G4.png]]
 
 ````ad-thm
-title: 定理（仰角与俯角的相等关系） | Theorem（仰角与俯角的相等关系）
+title: 定理（仰角与俯角的相等关系） | Theorem（Equality of Angles of Elevation and Depression）
 
 若观测点 $A$ 仰望目标点 $B$ 的仰角为 $\alpha$，则从 $B$ 俯视 $A$ 的俯角亦为 $\alpha$。
 ````
@@ -373,7 +417,7 @@ title: 示例 | Example
 
 代入消去 $CD$：$h = (CD + 50)\tan 40^\circ = \left(\dfrac{h}{\tan 65^\circ} + 50\right)\tan 40^\circ$
 
-整理得 $h\left(1 - \dfrac{\tan 40^\circ}{\tan 65^\circ}\right) = 50\tan 40^\circ$，代入数值可解得 $h \approx 48.8$ m。
+整理得 $h\left(1 - \dfrac{\tan 40^\circ}{\tan 65^\circ}\right) = 50\tan 40^\circ$，代入数值可解得 $h \approx 68.9$ m。
 ````
 
 ---

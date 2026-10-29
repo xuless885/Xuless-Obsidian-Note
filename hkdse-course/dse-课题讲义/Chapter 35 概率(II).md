@@ -14,6 +14,114 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章把概率从「数结果个数」推进到「做集合运算」。事件的身份从 [[Chapter 14 概率(I)|概率(I)]] §14.1 的文字描述换成子集，「并且」「或者」「不发生」换成 [[Chapter 16 集合论|集合论]] §16.4 的交、并、余集，三条运算法则因此可以逐条写成集合等式；分母与分子的数法则全部来自 [[Chapter 34 排列与组合|排列与组合]] §34.1 至 §34.4；§35.6 的几何概率还要把条件翻成不等式与区域，用的是 [[Chapter 28 不等式 (II)|不等式 (II)]] §28.1.4 与 §28.2。下面按本章用到它们的先后重列。
+
+### 试验、样本空间与古典概型（Experiments, Sample Spaces and the Classical Model）
+
+以下取自 [[Chapter 14 概率(I)|概率(I)]]。
+
+````ad-def
+title: 定义（回顾: 随机试验、样本空间与事件） | Definition（Recap: Random Experiment, Sample Space and Event）
+
+一个随机试验所有可能结果的总体称为**样本空间**（sample space），记作 $S$；$S$ 的一个子集称为**事件**（event），只含一个结果的事件称为基本事件。
+````
+
+````ad-def
+title: 定义（回顾: 古典概型） | Definition（Recap: The Classical Model）
+
+若样本空间 $S$ 只有有限多个结果，且每个结果出现的可能性相同，则事件 $A$ 的概率为
+$$P(A) = \frac{n(A)}{n(S)}.$$
+````
+
+§35.1.1 把这两个定义原样接过来，只把「事件」由文字描述改写成子集：$A\subseteq S$，于是「$A$ 不发生」写成 $A^c$、「$A$ 与 $B$ 至少一个发生」写成 $A\cup B$。§35.1.2 的古典概型就是上面这条比值的符号版，分母 $n(S)$ 与分子 $n(A)$ 分别由 §34 的计数法则算出。
+
+````ad-thm
+title: 定理（回顾: 概率的基本性质） | Theorem（Recap: Basic Properties of Probability）
+
+对古典概型下的任意事件 $A$：$0 \le P(A) \le 1$；不可能事件的概率为 $0$；必然事件的概率为 $1$。
+````
+
+§35.1.2 把「必然事件的概率为 $1$」当作出发点，用它确认自己给出的概率值与上一章一致。§35.6.1 定几何概率的比例常数时也用这一条：等可能的前提下，比例常数只能取 $1$，剩下的工作才变成量长度或量面积。§35.7.2 把这些性质改从三条公理出发重新推出，用来检验它们是否真的可以去掉古典概型的限制。
+
+- **§35.1.2 示例**：八个球按「先区分，再计数」处理，同色球也当作不同的个体，见 [[Chapter 14 概率(I)|概率(I)]] §14.1.2 的注记。
+- **§35.1.1**：随机试验与结果的直观说法沿用 [[Chapter 14 概率(I)|概率(I)]] §14.1 的叙述，本章不再重述。
+
+### 集合的四种运算（Four Set Operations）
+
+以下取自 [[Chapter 16 集合论|集合论]]。
+
+````ad-def
+title: 定义（回顾: 交集与并集） | Definition（Recap: Intersection and Union）
+
+$$A\cap B = \{x \mid x\in A \text{ 且 } x\in B\},\qquad A\cup B = \{x \mid x\in A \text{ 或 } x\in B\}.$$
+交集对应「且」，并集对应「或」；并集里的「或」允许同时属于两个集合。
+````
+
+````ad-def
+title: 定义（回顾: 差集、余集与互斥） | Definition（Recap: Difference, Complement and Disjointness）
+
+$$A\setminus B = \{x\in A \mid x\notin B\},\qquad A^c = U\setminus A = \{x\in U \mid x\notin A\}.$$
+若 $A\cap B = \varnothing$，则称 $A$ 与 $B$ **互斥**（disjoint）。
+````
+
+````ad-thm
+title: 定理（回顾: 余集性质与交换律） | Theorem（Recap: Properties of Complement and Commutativity）
+
+设全集为 $U$，$A\subseteq U$，则
+$$A\cup A^c = U,\qquad A\cap A^c = \varnothing.$$
+集合的并与交都满足交换律：$A\cup B = B\cup A$，$A\cap B = B\cap A$。
+````
+
+§35.1.3 的补集公式 $P(A^c) = 1 - P(A)$ 只有两步：先由 $A\cup A^c = S$ 且 $A\cap A^c=\varnothing$ 把 $1 = P(S)$ 拆成两项，再移项。§35.2.1 的互斥加法定律读的是互斥定义的直接后果：$A\cap B=\varnothing$ 时 $A\cup B$ 里的结果正好是两边的结果拼起来。§35.2.3 推导三事件加法定律时，用交换律把 $A\cap C$ 改写成 $C\cap A$ 才能与其余各项合并。
+
+````ad-thm
+title: 定理（回顾: 容斥原理与互斥计数） | Theorem（Recap: Inclusion-Exclusion and Counting Disjoint Sets）
+
+设 $A$、$B$ 为有限集，则
+$$n(A\cup B) = n(A) + n(B) - n(A\cap B).$$
+若 $A$ 与 $B$ 互斥，则退化为 $n(A\cup B) = n(A) + n(B)$。
+````
+
+§35.2.2 的一般加法定律就是把这条等式两边同除以 $n(S)$：基数之间的关系原样搬成概率之间的关系，交集那一项因此带负号。§35.2.1 与 §35.2.3 用的都是互斥情形，三个事件的版本则把容斥原理逐层展开。
+
+### 计数的四条法则（Counting Rules）
+
+以下取自 [[Chapter 34 排列与组合|排列与组合]]。
+
+````ad-thm
+title: 定理（回顾: 加法法则与乘法法则） | Theorem（Recap: Addition Rule and Multiplication Rule）
+
+设 $A_1, \dots, A_k$ 为有限集。若任意两个互斥，则
+$$n(A_1\cup\cdots\cup A_k) = \sum_{i=1}^{k} n(A_i).$$
+对任意有限集，
+$$n(A_1\times\cdots\times A_k) = n(A_1)\,n(A_2)\cdots n(A_k).$$
+````
+
+````ad-thm
+title: 定理（回顾: 排列数、组合数与两者的关系） | Theorem（Recap: Permutation and Combination Numbers）
+
+设 $1 \le r \le n$，则
+$$P^n_r = n(n-1)\cdots(n-r+1),\qquad C^n_r = \frac{n!}{r!\,(n-r)!},\qquad P^n_r = C^n_r\cdot r!.$$
+````
+
+§35.5.1 给出「数分母、数分子、相除」的三步框架，其中分母用乘法法则与排列数公式，分子用组合数公式；同一节还指出按有序列出与按无序列出相差 $r!$ 倍，这条换算就是 $P^n_r = C^n_r\cdot r!$。§35.5.2 的抽取问题把「两红两白」拆成互斥的几类再相加，用的是加法法则。
+
+- **§35.5.3**：排队与分组的口径由「组有没有编号、各组人数是否相同」决定，读法与 [[Chapter 34 排列与组合|排列与组合]] §34.4.4 相同；组无编号时先按有编号数，再除以组数的阶乘。
+- **§35.5.3**：相邻与不相邻的处理（捆绑、插空）见 [[Chapter 34 排列与组合|排列与组合]] §34.4.2 与 §34.4.3。
+
+### 其他引用（Other References）
+
+下列各条只在一两处出现，因此不重列公式，只指出位置。
+
+- **§35.1.3 与 §35.4.2**：把「至少一个」换成「一个都没有」的补集，分子不必分类、直接相减，用的是 $n(U\setminus A)=n(U)-n(A)$，见 [[Chapter 34 排列与组合|排列与组合]] §34.4.5。
+- **§35.6.3**：把「两人到达时刻相差不超过 $15$ 分钟」写成 $\lvert x - y \rvert \le 15$，再拆成 $-15 \le x - y \le 15$，即两条直线所夹的带形，用的是与常数比较的基本解型，见 [[Chapter 28 不等式 (II)|不等式 (II)]] §28.1.4。带形是两块半平面的交，读法与 §28.2 的可行区域相同：每条不等式定一个半平面，交集就是事件对应的区域，概率等于该区域面积与正方形面积之比。
+
+回顾到此为止。§35.1 从样本空间与事件起步，第一步就是把「事件」由一句话换成一个子集。
+
+---
+
 ## 35.1　概率的集合语言与补集公式（The Set Language of Probability and the Complement Formula）
 
 > **本节难度上限**：T C ｜ C C ｜ E C ｜ Q C

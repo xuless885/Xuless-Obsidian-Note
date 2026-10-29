@@ -16,6 +16,122 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章做的是把一元二次方程的代数结论搬到图像上，再把图像上的事翻译回方程。[[Chapter 18 解方程方法(II)|解方程方法(II)]] 提供判别式、配方法与韦达定理，§21.1.2、§21.2 与 §21.8.2 各取一件；[[Chapter 19 函数及其图像|函数及其图像]] 提供图像的记号、奇偶性与图像变换，§21.5 建立对称轴时全靠它们；[[Chapter 20 直线方程|直线方程]] 提供「交点即解集即交集」的三重对照，§21.7 与 §21.8 把它推广到抛物线；[[Chapter 15 解析几何 (I)|解析几何 (I)]] 提供两点间的距离公式，§21.8.2 算弦长时要用。下面按本章用到它们的先后重列，只写结论与用法。
+
+### 一元二次方程的代数结论（Algebraic Results for Quadratic Equations）
+
+以下各条取自 [[Chapter 18 解方程方法(II)|解方程方法(II)]]。
+
+````ad-def
+title: 定义（回顾: 判别式） | Definition（Recap: Discriminant）
+
+对一元二次方程 $ax^2 + bx + c = 0$（$a \neq 0$），二次公式根号内的表达式
+$$\Delta = b^2 - 4ac$$
+称为该方程的**判别式（discriminant）**。
+````
+
+````ad-thm
+title: 定理（回顾: 判别式与根的性质） | Theorem（Recap: Discriminant and Nature of Roots）
+
+设 $ax^2 + bx + c = 0$（$a \neq 0$），$\Delta = b^2 - 4ac$。在实数范围内：$\Delta > 0$ 时有两个相异实根，$\Delta = 0$ 时有一个二重实根，$\Delta < 0$ 时无实根。与之对应，$y = ax^2 + bx + c$ 的图像与 $x$ 轴分别有两个交点、一个交点、没有交点。
+````
+
+§21.1.2 用它把「方程有没有实根」改写成「图像与 $x$ 轴有没有交点」，§21.7.1 再把这张对应表逐行读成抛物线与 $x$ 轴的三种位置关系。本章只讨论实根，$\Delta < 0$ 一律记作无交点。
+
+````ad-thm
+title: 定理（回顾: 配方的恒等变形） | Theorem（Recap: Completing the Square）
+
+对 $a \neq 0$，
+$$ax^2 + bx + c \equiv a\left(x + \frac{b}{2a}\right)^{2} + \frac{4ac - b^2}{4a}.$$
+配方的手法只有一步：把 $x^2 + \dfrac{b}{a}x$ 补上 $\left(\dfrac{b}{2a}\right)^2$，凑成 $\left(x + \dfrac{b}{2a}\right)^2$。
+````
+
+§21.2 把同一步从「解方程」搬到「改写函数式」，得到的 $a\left(x + \dfrac{b}{2a}\right)^2 + \dfrac{4ac - b^2}{4a}$ 就是顶点式的来源；§21.3 求最值时，正因为平方项恒非负，最小值或最大值才落在 $x = -\dfrac{b}{2a}$ 处。
+
+````ad-thm
+title: 定理（回顾: 韦达定理） | Theorem（Recap: Vieta's Formulas）
+
+设 $ax^2 + bx + c = 0$（$a \neq 0$）的两根为 $\alpha$、$\beta$（计入重数），则
+$$\alpha + \beta = -\frac{b}{a},\qquad \alpha\beta = \frac{c}{a}.$$
+````
+
+§21.7 的示例由两个 $x$ 轴交点反求系数，用的就是这两式；§21.8.2 的弦长公式把 $\lvert x_1 - x_2 \rvert$ 化成 $\dfrac{\sqrt{\Delta'}}{\lvert a \rvert}$，中间一步是 $(\alpha + \beta)^2 - 4\alpha\beta$。
+
+### 函数图像、奇偶性与变换（Graphs, Parity and Transformations）
+
+以下各条取自 [[Chapter 19 函数及其图像|函数及其图像]]。
+
+````ad-def
+title: 定义（回顾: 偶函数） | Definition（Recap: Even Function）
+
+设 $f$ 的定义域关于原点对称。若对定义域内每个 $x$ 都有
+$$f(-x) = f(x),$$
+则称 $f$ 为**偶函数（even function）**，其图像关于 $y$ 轴对称。
+````
+
+§21.5 先用它说明 $f_0(x) = ax^2$ 是偶函数，图像关于 $y$ 轴对称；再把这份对称平移到 $f(x) = a(x - h)^2 + k$ 上，得到对称轴 $x = h$。整节的论证骨架就是从这条定义出发的。
+
+````ad-thm
+title: 定理（回顾: 函数图像的变换） | Theorem（Recap: Transformations of Graphs）
+
+设 $f$ 的图像为 $G_f$，则
+$$y = f(x) + k \ \text{（上移 } k\text{）},\qquad y = f(x - h)\ \text{（右移 } h\text{）},\qquad y = a f(x)\ \text{（纵向伸缩）}.$$
+左右平移改的是自变量，上下平移与伸缩改的是函数值。
+````
+
+§21.5 把 $f_0(x) = ax^2$ 按「纵向伸缩 $a$、右移 $h$、上移 $k$」三步得到 $f(x) = a(x - h)^2 + k$，三步合起来就是顶点式；§21.6 讨论 $c$ 的几何角色时，把 $c$ 的变化认作 $y = f(x) + c$ 的垂直平移，形状不变。
+
+### 交点、解集与交集（Intersections, Solution Sets and Intersections of Sets）
+
+以下各条取自 [[Chapter 20 直线方程|直线方程]]。
+
+````ad-def
+title: 定义（回顾: 几何图形的方程，集合论表述） | Definition（Recap: Equation of a Geometric Figure, Set-Theoretic Formulation）
+
+设 $G$ 为坐标平面 $\mathbb{R}^2$ 上的一个几何图形。若关于 $(x, y)$ 的约束条件 $P(x, y)$ 使
+$$G = \{(x, y) \in \mathbb{R}^2 \mid P(x, y)\},$$
+就称 $P(x, y)$ 为 $G$ 的方程，记作 $G: P(x, y)$。点 $Q(x_0, y_0)$ 在 $G$ 上，当且仅当 $P(x_0, y_0)$ 为真。
+````
+
+§21.1.1 定义二次函数时，正是照这个格式把图像写成 $G_f = \{(x, y) \in \mathbb{R}^2 \mid y = ax^2 + bx + c\}$，抛物线由此有了点集身份；§21.7.2 的数形结合总表整张都建在这条定义上，每个「图像特征」都对应一个条件式。
+
+````ad-cor
+title: 推论（回顾: 联立解集即交集） | Corollary（Recap: Solution Set is the Intersection）
+
+设两图形的方程分别为 $P(x, y) = 0$ 与 $Q(x, y) = 0$，则点 $R(x_0, y_0)$ 同时落在两个图形上，当且仅当 $(x_0, y_0)$ 是联立方程组的解。用集合写，
+$$G_P \cap G_Q = \{(x, y) \mid P(x, y) = 0 \ \text{且}\ Q(x, y) = 0\}.$$
+````
+
+§21.1.2 借它把「图像与 $x$ 轴的交点」认作「零点」与「方程的实根」，三句话说的是同一件事；§21.7.2 的数形结合总表与 §21.8.1 的「抛物线与直线的交点」都照这张三重对照表铺开，只是把其中的直线换成抛物线或一般图形。
+
+### 坐标平面上的距离（Distance in the Coordinate Plane）
+
+以下各条取自 [[Chapter 15 解析几何 (I)|解析几何 (I)]]。
+
+````ad-thm
+title: 定理（回顾: 两点间距离公式） | Theorem（Recap: Distance Formula）
+
+平面上任意两点 $A(x_1, y_1)$ 与 $B(x_2, y_2)$ 之间的距离为
+$$AB = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}.$$
+````
+
+§21.8.2 的弦长公式从它出发：把 $y_i = f(x_i)$ 代进去，提出 $\lvert x_1 - x_2 \rvert$，剩下的 $\sqrt{1 + m^2}$ 就是这条公式里两个坐标差之比。§21.8.3 算弓形面积时，底用弦长，高另由点到直线的距离给出。
+
+### 其他引用（Other References）
+
+下列各条只在一两处说明或示例里出现，因此不重列公式，只指出位置。
+
+- **§21.1.1 定义（二次函数）**：图像记作 $G_f = \{(x, y) \in \mathbb{R}^2 \mid y = ax^2 + bx + c\}$，「图像是点集、图像上的点满足方程」这套说法见 [[Chapter 19 函数及其图像|函数及其图像]] §19.2.2，正文未标节号。
+- **§21.2 的推导**：把 $x^2 + \dfrac{b}{a}x$ 补成完全平方式，依据是完全平方公式 $(x + m)^2 \equiv x^2 + 2mx + m^2$，见 [[Chapter 6 代数式|代数式]] §6.2.2。
+- **§21.8.1 示例**：把 $y = mx + d$ 代入 $y = ax^2 + bx + c$ 消去 $y$，得到关于 $x$ 的二次方程，代入消元的步骤见 [[Chapter 18 解方程方法(II)|解方程方法(II)]] §18.3.2。
+- **§21.8.3 示例**：弓形的高是顶点到弦的垂线段长，用点到直线的距离公式算出，见 [[Chapter 20 直线方程|直线方程]] §20.5.1。
+
+回顾到此为止。§21.1 从二次函数与抛物线的定义入手，第一步就要用上「图像是点集」这套语言。
+
+---
+
 ## 21.1　二次函数的定义、零点与截距 (Definition, Zeros, and Intercepts)
 > **本节难度上限**：T B- ｜ C C ｜ E B ｜ Q C
 
@@ -114,7 +230,7 @@ $$G_f = \{(x, y) \in \mathbb{R}^2 \mid y = ax^2 + bx + c\}$$
 4. **「抛物线」一词的溯源**：希腊文 παραβολή (parabolē) 意为「比较、并列」，由古希腊数学家阿波罗尼斯 (Apollonius) 在《圆锥曲线论》中首次用来命名这类曲线。抛物线是圆锥曲线的一种，本章只研究其作为二次函数图像的代数性质；其作为圆锥曲线的几何定义（到定点与定直线等距的点的轨迹）已在 [[Chapter 30 轨迹|轨迹]] §30.1.2 给出，焦点、准线与标准方程见该书 §30.3。
 
 ````ad-example
-title: 示例（判定二次函数） | Example（判定二次函数）
+title: 示例（判定二次函数） | Example（Identifying a Quadratic Function）
 
 判断下列函数哪些是二次函数，并指出一般式中的 $a, b, c$：
 
@@ -679,7 +795,7 @@ ax^2 + bx + c &\equiv a\!\left(x^2 + \frac{b}{a}x\right) + c && \text{（提取 
 ````
 
 ````ad-note
-title: 注记（实用计算策略） | Remark（实用计算 Strategy）
+title: 注记（实用计算策略） | Note（Practical Computation Strategy）
 
 直接记忆 $k = \dfrac{4ac - b^2}{4a}$ 容易出错。实用策略是分两步：
 
@@ -1193,7 +1309,7 @@ $\Delta = 0 \iff -4a \cdot k = 0 \iff k = 0$（因 $a \neq 0$）。故顶点纵�
 把前几节的结论汇总，得到二次函数的数形结合总表。这张表是本章的核心，与第二十章 §20.4.1 的三重对照表呼应。
 
 ````ad-cor
-title: 推论（数形结合总表） | Corollary（数形结合总表）
+title: 推论（数形结合总表） | Corollary（Summary Table of Algebra and Geometry）
 
 设 $f(x) = ax^2 + bx + c$（$a \neq 0$），$\Delta = b^2 - 4ac$，顶点为 $(h, k)$。
 
@@ -1682,7 +1798,7 @@ $$S = \frac{2}{3} b h$$
 ````
 
 ````ad-note
-title: 注记（证明思路）* | Remark（Proof Idea）
+title: 注记（证明思路）* | Note（Proof Idea）
 
 阿基米德的原证用「穷竭法」：用一系列三角形逼近弓形，证明这些三角形面积之和构成几何级数，其和恰为 $\dfrac{2}{3}bh$。此证明较长，此处从略。
 

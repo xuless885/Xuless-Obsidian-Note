@@ -710,6 +710,14 @@
 | 利息 | Interest |
 | 增长 | Growth |
 | 折旧 | Depreciation |
+| 等差中项 | Arithmetic Mean |
+| 等比中项 | Geometric Mean |
+| 递推关系 | Recurrence Relation |
+| 一阶线性递推 | First-Order Linear Recurrence |
+| 特征方程 | Characteristic Equation |
+| 斐波那契数列 | Fibonacci Sequence |
+| 现值 | Present Value |
+| 永久年金 | Perpetuity |
 
 ---
 
@@ -868,6 +876,7 @@
 | 圆心距 | Distance between Centres |
 | 外离 | Externally Separate |
 | 外切 | Externally Tangent |
+| 相交（两圆） | Intersecting (Circles) |
 | 内切 | Internally Tangent |
 | 内含 | Internally Contained |
 | 公切线 | Common Tangent |

@@ -20,6 +20,125 @@ tags: DSE课程笔记
 
 ---
 
+## 前置回顾（Prerequisite Review）
+
+> 本章把解方程的能力从一次推到二次，四章旧内容按使用顺序排开。[[Chapter 5 解方程方法(I)|解方程方法(I)]] 给方程、根与恒等变换，§18.1 的每一步变形都要合法，§18.3 与 §18.5 则是把那里的消元流程原样搬过来；[[Chapter 6 代数式|代数式]] 给两条核心恒等式，§18.1.3 的配方法与 §18.2.2 的求积一步全靠它们，方根与代数分式则只在 §18.4.2 各类型各用一次，归入「其他引用」；[[Chapter 4 多项式(I)|多项式(I)]] 给因式分解三法与多项式恒等的等价条件，§18.1.2 的分解与 §18.2.2 的比较系数都取自那里；[[Chapter 17 数系(II)|数系(II)]] 给复数与负实数的平方根，§18.1.3 之后凡遇 $\Delta<0$ 都靠它把根写出来。下面按本章用到它们的先后重列，只写结论与用法，不重复证明。
+
+### 方程、根与恒等变换（Equations, Roots and Equivalent Transformations）
+
+以下各条取自 [[Chapter 5 解方程方法(I)|解方程方法(I)]]。方程与根出自 §5.1.1 与 §5.1.4，恒等变换出自 §5.1.2，五步解法出自 §5.2.2，代入消元出自 §5.4.1，增广矩阵与初等行变换出自 §5.6.1 与 §5.6.2。
+
+````ad-def
+title: 定义（回顾: 方程、根与恒等变换） | Definition（Recap: Equations, Roots and Equivalent Transformations）
+
+含有未知数的等式称为**方程（equation）**，变量的个数称为方程的**元**。使方程成立的取值称为方程的**解**或**根（root）**。对任意方程，两边同时加上同一实数，或同时乘以同一非零实数，所得方程与原方程等价，这类操作称为**恒等变换（equivalent transformation）**。
+````
+
+§18.1.1 说 $a=0$ 时「退化为 $bx+c=0$，属于第五章的范畴」，指的就是这里的方程定义与元数。§18.1.2 证明零积性质时，把 $AB=0$ 两边同乘 $\dfrac{1}{A}$（$A\ne0$），依据是恒等变换中「同乘非零实数」那一条；同一步若乘的是零，推理即失效。§18.1.2 与 §18.3.2 回代之后都要按根的定义验算，确认所得值确实使原方程成立。
+
+````ad-alg
+title: 算法（回顾: 解一元一次方程的五步） | Algorithm（Recap: Five Steps for Linear Equations）
+
+1. 去分母：两边同乘各分母的最小公倍数。
+2. 去括号：用分配律展开。
+3. 移项：含未知数的项移到一边，常数项移到另一边。
+4. 合并同类项：化为 $ax=b$。
+5. 系数化为 1：两边同除以 $a$。
+````
+
+§18.1.2 的算法第 4 步把两个一次因式分别令为零，接下来解的就是这两类方程，五步照用。§18.3.2 回代后求另一个未知数、§18.4.2 类型 IV 化简后整理成标准形，也都在重复这套动作。
+
+````ad-alg
+title: 算法（回顾: 代入消元法） | Algorithm（Recap: Substitution Method）
+
+1. 变形：从一个方程中把某个未知数用另一个表示。
+2. 代入：把该表达式代入另一个方程。
+3. 求解：解出所得一元方程。
+4. 回代：把求得的值代回第 1 步的表达式。
+````
+
+§18.3.2 的五步与此四步逐条对应，只把「一元一次方程」换成「一元二次方程」，并在末尾多一步「以有序对写出全部解」。§18.4.1 的换元法同样借用这套骨架：换元相当于变形，解 $u$ 相当于求解，回代解 $f(x)=u$ 相当于回代。
+
+````ad-def
+title: 定义（回顾: 增广矩阵与初等行变换） | Definition（Recap: Augmented Matrix and Elementary Row Operations）
+
+把方程组的系数与常数项按行列排成矩形阵列，并在系数与常数项之间加一条竖线，称为**增广矩阵（augmented matrix）**。对它施行以下三种操作不改变方程组的解：交换两行；某行乘以非零常数；把某行的 $k$ 倍加到另一行。
+````
+
+§18.5.1 的三元增广矩阵比二元情形多一行一列，排法与竖线位置完全相同。§18.5.2 的消元与回代照 §5.6.3 的高斯消元流程走，行变换三条法则一字不改，只是多做一轮把第二列主对角线下方也化为零。
+
+### 恒等式（Identities）
+
+以下一条取自 [[Chapter 6 代数式|代数式]] §6.2.2。
+
+````ad-thm
+title: 定理（回顾: 平方差公式与完全平方公式） | Theorem（Recap: Difference of Squares and Perfect Square）
+
+对任意实数 $a,b$：
+$$(a+b)(a-b)\equiv a^2-b^2,\qquad (a\pm b)^2\equiv a^2\pm 2ab+b^2.$$
+````
+
+§18.1.2 开头的回顾把这两条列出来备用。§18.1.3 的配方法核心是把 $x^2+bx$ 补成 $x^2+2mx+m^2$，令 $2m=b$ 即 $m=\dfrac{b}{2}$，所补常数因此是「一次项系数一半的平方」；§18.1.4 的求根公式推导第 4 步，把左侧写成 $\left(x+\dfrac{b}{2a}\right)^2$，用的也是完全平方公式。§18.2.2 证明（二）求两根之积时，用平方差公式把 $(-b+\sqrt{\Delta})(-b-\sqrt{\Delta})$ 收成 $b^2-\Delta$。
+
+### 因式分解与多项式恒等（Factorization and Polynomial Identity）
+
+以下各条取自 [[Chapter 4 多项式(I)|多项式(I)]]。因式分解及其三种方法出自 §4.3.1 至 §4.3.4，多项式恒等的等价条件与比较系数法出自 §4.2.3。
+
+````ad-alg
+title: 算法（回顾: 因式分解三法） | Algorithm（Recap: Three Methods of Factorization）
+
+把一个多项式写成几个多项式之积，称为**因式分解（factorization）**。三种基本方法为：提公因式法；分组分解法；十字相乘法。对二次三项式 $Ax^2+Bxy+Cy^2$，十字相乘法设它恒等于 $(ax+by)(cx+dy)$，展开后比较系数定出 $a,b,c,d$。
+````
+
+§18.1.2 的算法第 2 步把分解这一步整体交给第四章的三法，两个示例都走十字相乘：$x^2-5x+6\equiv(x-2)(x-3)$ 与 $2x^2+7x+3\equiv(2x+1)(x+3)$。§18.4.2 各类型换元后得到的新二次方程，回代前的分解也仍用这三法。
+
+````ad-thm
+title: 定理（回顾: 多项式恒等的等价条件与比较系数法） | Theorem（Recap: Polynomial Identity and Comparing Coefficients）
+
+两多项式 $P,Q$ 恒等，当且仅当次数相同且各项系数相等。若已知两多项式恒等而部分系数未知，可展开后逐项比较系数求解，此法称为**比较系数法（method of comparing coefficients）**。
+````
+
+§18.2.2 证明（一）先把 $a(x-\alpha)(x-\beta)$ 展开成 $ax^2-a(\alpha+\beta)x+a\alpha\beta$，再与原式 $ax^2+bx+c$ 逐项比较，得 $-a(\alpha+\beta)=b$ 与 $a\alpha\beta=c$，韦达定理的两条公式由此得出。这一步成立的依据就是上述等价条件。
+
+### 复数与负实数的平方根（Complex Numbers and Square Roots of Negative Reals）
+
+以下各条取自 [[Chapter 17 数系(II)|数系(II)]]。复数与复数乘法出自 §17.2.2 与 §17.2.3，负实数的平方根出自 §17.2.6。
+
+````ad-def
+title: 定义（回顾: 复数与复数乘法） | Definition（Recap: Complex Numbers and Multiplication）
+
+形如 $z=a+bi$（$a,b\in\mathbb{R}$）的数称为**复数（complex number）**，其中 $i^2=-1$，$a,b$ 分别称为实部与虚部。两复数相乘按多项式展开，再用 $i^2=-1$ 合并同类项：
+$$(a+bi)(c+di)=(ac-bd)+(ad+bc)i.$$
+````
+
+§18.1.3 引理的证明算 $(\pm i\sqrt{|a|})^2$ 时，先按此式展开成 $i^2\cdot|a|$，再由 $i^2=-1$ 得 $-|a|=a$，两根为纯虚数这一结论就落在这一步上。§18.2.1 与 §18.3.2 讨论 $\Delta<0$ 时给出的两根，也由同一乘法验证。
+
+````ad-thm
+title: 定理（回顾: 负实数的平方根） | Theorem（Recap: Square Roots of Negative Reals）
+
+设 $a<0$ 为负实数。约定
+$$\sqrt{a}=i\sqrt{|a|},$$
+则 $\left(i\sqrt{|a|}\right)^2=a$，另一个平方根为 $-i\sqrt{|a|}$。
+````
+
+这是本章调用次数最多的引用结论，共五处：§18.1.3 引理情形 3、§18.1.4 示例把 $\sqrt{-24}$ 写成 $2i\sqrt{6}$、§18.2.1 判别式表在 $\Delta<0$ 时写 $\sqrt{\Delta}=i\sqrt{|\Delta|}$、§18.4.1 双二次方程的回代说明、§18.4.2 类型 II 的推论。判别式的读法也随之改写：$\Delta<0$ 不再表示方程无解，只表示两根不在实轴上。
+
+### 其他引用（Other References）
+
+下列各条只在一两处示例或说明里出现，因此不重列公式，只指出位置。
+
+- **§18.2.2 的注记**：说 $\Delta<0$ 时两根互为共轭，故 $\alpha+\beta=2\operatorname{Re}(\alpha)$ 与 $\alpha\beta=|\alpha|^2$，都是实数。所用的共轭与模见 [[Chapter 17 数系(II)|数系(II)]] §17.2.4 与 §17.2.5。
+- **§18.4.2 类型 II 的定义段与策略**：先回顾 $\sqrt{x}\ge0$ 与 $(\sqrt{x})^2=x$，再令 $u=\sqrt{x}$；解出 $u=4$、$u=-1$ 后必须舍去负值。算术平方根的定义见 [[Chapter 6 代数式|代数式]] §6.3.1。
+- **§18.4.2 类型 III 与类型 IV**：前者换元前声明 $x\ne0$、回代后逐一核对，后者交叉相乘后检验各分母不为零，两处的检验对象都是「分母不得为零」。代数分式见 [[Chapter 6 代数式|代数式]] §6.4.1。
+- **§18.1.1 注记**：把 $ax^2+bx+c=0$ 读成开放命题，并与恒等式对照。见 [[Chapter 6 代数式|代数式]] §6.2.1。
+- **§18.1.2 特例**：$c=0$ 时由 $ax^2+bx\equiv x(ax+b)$ 直接提取公因式得两根。见 [[Chapter 4 多项式(I)|多项式(I)]] §4.3.2。
+- **§18.1.3 示例 2**：$\sqrt{\dfrac{7}{2}}=\dfrac{\sqrt{14}}{2}$ 由分母有理化得到。见 [[Chapter 6 代数式|代数式]] §6.4.5。
+- **§18.3.2 第 5 步**：全部解以有序对 $(x,y)$ 写出。见 [[Chapter 15 解析几何 (I)|解析几何 (I)]] §15.1.1。
+
+回顾到此为止。§18.1 从标准形式讲起，第一个动作就是把方程整理成 $ax^2+bx+c=0$。
+
+---
+
 ## 18.1　一元二次方程的解法（Solving Quadratic Equations）
 
 > **本节难度上限**：T B- ｜ C C+ ｜ E C ｜ Q C+
@@ -200,7 +319,7 @@ $$m^2 = \left(\frac{b}{2}\right)^2.$$
 在正式给出一般步骤之前，先建立一个关于 $x^2 = a$ 的引理，它是配方法与二次公式的逻辑基石。
 
 ````ad-lem
-title: 引理（方程 $x^2 = a$ 在 $\mathbb{C}$ 中的根） | Lemma（方程 $x^2 = a$ 在 $\mathbb{C}$ 中的根）
+title: 引理（方程 $x^2 = a$ 在 $\mathbb{C}$ 中的根） | Lemma（Roots of $x^2 = a$ in $\mathbb{C}$）
 
 设 $a \in \mathbb{R}$。在复数域 $\mathbb{C}$ 中，方程 $x^2 = a$ 恒有两根（计入重数）：
 1. 若 $a > 0$，则 $x = \pm\sqrt{a}$（两个相异实数根）；
@@ -403,7 +522,7 @@ $$x = \frac{-b \pm i\sqrt{|\Delta|}}{2a},$$
 > **注记：** 上表不应被理解为「$\Delta < 0$ 时方程无解」。恰恰相反，方程在 $\mathbb{C}$ 中恒有两根。判别式 $\Delta$ 的作用是区分这两根属于 $\mathbb{R}$ 还是 $\mathbb{C} \setminus \mathbb{R}$（即是否在实轴上），而非判定解的存在性。这一视角的转换是上一章数系扩充的直接后果。
 
 ````ad-cor
-title: 推论（判别式与因式分解） | Corollary（判别式与因式分解）
+title: 推论（判别式与因式分解） | Corollary（Discriminant and Factorization）
 
 在复数域 $\mathbb{C}$ 中，二次三项式 $ax^2+bx+c$ 恒可分解为两个一次因式的乘积：
 $$ax^2+bx+c \equiv a(x-\alpha)(x-\beta),$$
@@ -411,14 +530,14 @@ $$ax^2+bx+c \equiv a(x-\alpha)(x-\beta),$$
 ````
 
 ````ad-cor
-title: 推论（判别式与图像） | Corollary（判别式与图像）
+title: 推论（判别式与图像） | Corollary（Discriminant and Graph）
 
 二次函数 $y = ax^2+bx+c$ 的图像与 $x$ 轴的交点个数等于方程 $ax^2+bx+c=0$ 的实根个数：
 *   $\Delta > 0$ $\Longleftrightarrow$ 与 $x$ 轴有两交点；
 *   $\Delta = 0$ $\Longleftrightarrow$ 与 $x$ 轴相切（一个交点）；
 *   $\Delta < 0$ $\Longleftrightarrow$ 与 $x$ 轴无交点。
 
-详见第二十二章二次函数。
+详见第二十一章二次函数。
 ````
 
 ````ad-example
@@ -485,14 +604,14 @@ $$a(x+\alpha)+b = a(x-\alpha).$$
 ````
 
 ````ad-proof
-title: 证明（一） | Proof（由因式形式）
+title: 证明（一） | Proof（I）
 
 由上述引理，$ax^2+bx+c \equiv a(x - \alpha)(x - \beta) \equiv a\left[x^2 - (\alpha + \beta)x + \alpha\beta\right]$。与原式 $ax^2 + bx + c$ 用第四章的比较系数法比较对应项系数：
 $$\begin{aligned} -a(\alpha + \beta) &= b \implies \alpha + \beta = -\frac{b}{a}, \\ a\alpha\beta &= c \implies \alpha\beta = \frac{c}{a}. \end{aligned}$$
 ````
 
 ````ad-proof
-title: 证明（二） | Proof（由二次公式）
+title: 证明（二） | Proof（II）
 
 由二次公式，两根为 $\alpha = \dfrac{-b + \sqrt{\Delta}}{2a}$，$\beta = \dfrac{-b - \sqrt{\Delta}}{2a}$。
 
@@ -549,7 +668,7 @@ title: 示例 | Example
 ### 18.3.1　问题的形式
 
 ````ad-def
-title: 定义（联立二元一次与二元二次方程组） | Definition（联立二元一次与二元二次方程组）
+title: 定义（联立二元一次与二元二次方程组） | Definition（Simultaneous Linear and Quadratic Equations in Two Unknowns）
 
 由一个二元一次方程和一个二元二次方程组成的方程组，其一般形式为：
 $$\begin{cases} px + qy + r = 0 & \text{(一次方程)} \\ ax^2 + bxy + cy^2 + dx + ey + f = 0 & \text{(二次方程)} \end{cases}$$
@@ -652,7 +771,7 @@ $$ax + b\sqrt{x} + c = 0 \quad (b \neq 0)$$
 > **回顾：** 本类型涉及根式 $\sqrt{x}$，其定义与性质已在第六章 §6.3 给出：$\sqrt{x}$ 为 $x$ 的算术平方根，即 $\sqrt{x} \geq 0$ 且 $(\sqrt{x})^2 = x$（要求 $x \geq 0$）。
 
 ````ad-cor
-title: 推论（负实数不能为根） | Corollary（负实数不能为根）
+title: 推论（负实数不能为根） | Corollary（Negative Real Numbers Cannot Be Roots）
 
 对方程 $ax + b\sqrt{x} + c = 0$（$a, b, c \in \mathbb{R}$，$b \neq 0$），任何负实数都不能成为其根。
 ````
@@ -843,7 +962,7 @@ $$\begin{cases} x + y + z = 6 \\ -3y - z = -9 \\ -\frac{7}{3}z = -7 \end{cases}$
 
 **备课提示：**
 *   完全平方公式 $(a\pm b)^2$ 与平方差公式 $a^2-b^2$ 是因式分解法与配方法的基础工具，第六章 §6.2 已教授。教学时可引导学生回顾第六章的恒等式，确保熟练运用。
-*   配方法是本章的重点与难点，它不仅是推导二次公式的工具，更是后续第二十二章二次函数求顶点、第三十一章解析几何中圆方程配方化的核心技巧。教学中应强调「方法是内容，不是手段」。
+*   配方法是本章的重点与难点，它不仅是推导二次公式的工具，更是后续第二十一章二次函数求顶点、第三十一章解析几何中圆方程配方化的核心技巧。教学中应强调「方法是内容，不是手段」。
 *   判别式与韦达定理在 $\mathbb{C}$ 上均无条件成立。务必纠正「$\Delta<0$ 无解」的误解：方程在 $\mathbb{C}$ 中恒有两根，$\Delta<0$ 仅意味着两根不在实轴上。这是上一章数系扩充的成果落地。
 *   韦达定理的两种证明（因式形式、二次公式）各有价值：前者体现根与因式分解的联系，后者直接从公式验证。建议两种都讲。
 *   联立方程组的解的个数与代入后二次方程的 $\Delta$ 有关，是第三十一章直线与圆锥曲线交点问题的基础。
