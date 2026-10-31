@@ -162,25 +162,25 @@
 
   /* ------------------------------------------------------------------ 布局 */
   function layout() {
-    // 两层环：内环 = 基础衔接，外环 = 六大板块；课程按先后顺序排在外环之外的同一圈上。
+    // 单个实心环：环内 = 基础衔接，环上 = 六大板块，环外 = 课程（按先后顺序）。
     var S0 = Math.max(Math.min(S.w, S.h) / 2, 300);
-    var R1 = S0 * 0.34, R2 = S0 * 0.56, R3 = S0 * 0.77;
-    S.ringR1 = R1; S.ringR2 = R2;
+    var Rin = S0 * 0.30, Rring = S0 * 0.56, R3 = S0 * 0.77;
+    S.ringR = Rring;
     var boards = NODES.filter(function (n) { return n.lvl === 2; });
     var step = Math.PI * 2 / Math.max(1, boards.length);
     boards.forEach(function (b, i) {
       var ang = -Math.PI / 2 + i * step;
       b.ringAngle = ang;
-      b.x = Math.cos(ang) * R2;
-      b.y = Math.sin(ang) * R2;
+      b.x = Math.cos(ang) * Rring;
+      b.y = Math.sin(ang) * Rring;
     });
     var bridges = NODES.filter(function (n) { return n.lvl === 1; });
     bridges.forEach(function (br) {
       var kids = boards.filter(function (b) { return b.parent === br.id; });
       var ang = kids.length ? kids[0].ringAngle : (br.index / Math.max(1, bridges.length)) * Math.PI * 2;
       br.ringAngle = ang;
-      br.x = Math.cos(ang) * R1;
-      br.y = Math.sin(ang) * R1;
+      br.x = Math.cos(ang) * Rin;
+      br.y = Math.sin(ang) * Rin;
     });
     boards.forEach(function (b) {
       var cs = NODES.filter(function (n) { return n.lvl === 3 && n.cat === b.id; });
@@ -224,7 +224,7 @@
 
   var THEME = {
     light: {
-      base: "#f1f3f9",
+      base: "#f6f8fd",
       aurora: 1.72,
       vignette: "rgba(54,72,132,.34)",
       ink: "#121629", inkSoft: "#5a6178",
@@ -235,7 +235,7 @@
       shadow: 0.30, glint: 0.85
     },
     dark: {
-      base: "#08090e",
+      base: "#0b0d15",
       aurora: 0.82,
       vignette: "rgba(0,0,0,.52)",
       ink: "#eef2ff", inkSoft: "#9da7c0",
@@ -668,7 +668,7 @@
       var cy = S.h / 2 + (my - S.h / 2) * 0.42;
       var lit = Math.min(a.litD, b.litD);
       var hot = (S.hover && (S.hover.id === a.id || S.hover.id === b.id)) ? 1 : 0;
-      var al = lit * (0.42 + hot * 0.3) * (S.theme === "dark" ? 1.15 : 1);
+      var al = lit * (0.46 + hot * 0.3) * (S.theme === "dark" ? 1.15 : 1);
       var grad = ctx.createLinearGradient(ax, ay, bx, by);
       grad.addColorStop(0, hexA(a.color, 0));
       grad.addColorStop(0.18, hexA(a.color, al));
@@ -696,6 +696,7 @@
 
     EDGES.forEach(function (e) {
       var p = e.a, c = e.b;
+      if (p.lvl === 1 && c.lvl === 2) return; // 板块直接坐在环上
       var dx = c.sx - p.sx, dy = c.sy - p.sy, d = Math.hypot(dx, dy);
       if (d < 2) return;
       var ux = dx / d, uy = dy / d;
@@ -707,7 +708,7 @@
       var lit = Math.min(p.litD, c.litD);
       var hot = (S.hover && (S.hover.id === p.id || S.hover.id === c.id)) ? 1 : 0;
       var prereq = (p.lvl === 3 && c.lvl === 3);
-      var bm = ((p.lvl === 0 ? 0.44 : 0.52) * lit + hot * 0.22) * (S.theme === "dark" ? 1.15 : 1) * (prereq ? 1.3 : 1);
+      var bm = ((p.lvl === 0 ? 0.44 : 0.52) * lit + hot * 0.22) * (S.theme === "dark" ? 1.15 : 1) * (prereq ? 1.3 : 1) * 1.15;
       if (bm < 0.03) return;
       var grad = ctx.createLinearGradient(ax, ay, bx, by);
       grad.addColorStop(0, hexA(p.color, 0));
@@ -746,23 +747,20 @@
     });
   }
 
-  function drawRings() {
-    if (!S.ringR1) return;
+  function drawRing() {
+    if (!S.ringR) return;
     var cx = (0 - S.cam.x) * S.cam.k + S.w / 2;
     var cy = (0 - S.cam.y) * S.cam.k + S.h / 2;
+    var rr = S.ringR * S.cam.k;
     ctx.save();
-    ctx.strokeStyle = S.theme === "dark" ? "rgba(200,220,255,.18)" : "rgba(40,60,110,.24)";
-    ctx.lineWidth = 1.2;
-    ctx.setLineDash([3, 7]);
-    ctx.beginPath(); ctx.arc(cx, cy, S.ringR1 * S.cam.k, 0, Math.PI * 2); ctx.stroke();
-    ctx.beginPath(); ctx.arc(cx, cy, S.ringR2 * S.cam.k, 0, Math.PI * 2); ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.fillStyle = S.theme === "dark" ? "rgba(200,220,255,.55)" : "rgba(50,70,120,.6)";
-    ctx.font = "600 10px " + SANS;
-    ctx.textAlign = "right";
-    ctx.textBaseline = "middle";
-    ctx.fillText("内环", cx - S.ringR1 * S.cam.k - 9, cy);
-    ctx.fillText("外环", cx - S.ringR2 * S.cam.k - 9, cy);
+    // 柔光
+    ctx.strokeStyle = S.theme === "dark" ? "rgba(190,220,255,.30)" : "rgba(92,128,220,.24)";
+    ctx.lineWidth = 9;
+    ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2); ctx.stroke();
+    // 实线（亮）
+    ctx.strokeStyle = S.theme === "dark" ? "rgba(228,242,255,.92)" : "rgba(74,108,200,.78)";
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2); ctx.stroke();
     ctx.restore();
   }
 
@@ -841,14 +839,14 @@
       ctx.fillStyle = botShade;
       ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
       // 4a) 淡淡的白：让玻璃有体量（参考实现也有一层很淡的玻璃白）
-      var fillA = [0.01, 0.01, 0.01, 0.01][n.lvl];
+      var fillA = [0.05, 0.05, 0.05, 0.05][n.lvl];
       ctx.fillStyle = S.theme === "dark"
         ? "rgba(255,255,255," + (fillA * 0.45) + ")"
         : "rgba(255,255,255," + fillA + ")";
       ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
       // 4b) 类别色浸染：右下更浓，给每一类保留身份色（不是白）
       // 类别色：中心几乎透明、颜色集中在边缘（压低泡心亮度）
-      var tintA = [0.38, 0.46, 0.36, 0.26][n.lvl];
+      var tintA = [0.42, 0.50, 0.40, 0.28][n.lvl];
       if (S.theme === "dark") tintA *= 1.15;
       var cg2 = ctx.createRadialGradient(cx, cy, Math.max(rx, ry) * 0.08,
                                          cx, cy, Math.max(rx, ry) * 1.02);
@@ -860,7 +858,7 @@
       ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
       // 中心压暗：泡心不要发亮（很淡的中性暗纱，越靠边缘越透明）
       var veiling = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(rx, ry) * 0.92);
-      veiling.addColorStop(0, S.theme === "dark" ? "rgba(0,0,0,.20)" : "rgba(14,20,38,.10)");
+      veiling.addColorStop(0, S.theme === "dark" ? "rgba(0,0,0,.16)" : "rgba(14,20,38,.07)");
       veiling.addColorStop(0.6, S.theme === "dark" ? "rgba(0,0,0,.08)" : "rgba(14,20,38,.04)");
       veiling.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = veiling;
@@ -1040,7 +1038,7 @@
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     ctx.globalAlpha = 1;
     ctx.drawImage(bgCanvas, 0, 0, S.w, S.h);
-    drawRings();
+    drawRing();
     drawEdges(S.t);
     if ((frameNo % 2) === 1) takeSnapshot();
     drawNodes(S.t);
