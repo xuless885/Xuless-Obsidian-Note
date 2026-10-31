@@ -336,7 +336,7 @@
   var snapCtx = snapCanvas.getContext("2d");
   var blurCanvas = document.createElement("canvas");
   var blurCtx = blurCanvas.getContext("2d");
-  var BLUR_S = 0.62;
+  var BLUR_S = 0.82;
 
   function takeSnapshot() {
     snapCtx.setTransform(1, 0, 0, 1, 0, 0);
@@ -543,14 +543,51 @@
     noisePattern = ctx.createPattern(cv, "repeat");
   }
 
+  var gridPattern = null, gridTheme = "";
+  function ensureGrid() {
+    if (gridPattern && gridTheme === S.theme) return;
+    var step = Math.max(5, Math.round(22 * (bgCanvas.width / Math.max(1, S.w))));
+    var cv = document.createElement("canvas");
+    cv.width = cv.height = step;
+    var g = cv.getContext("2d");
+    g.fillStyle = S.theme === "dark" ? "rgba(200,220,255,.17)" : "rgba(30,45,80,.13)";
+    g.beginPath();
+    g.arc(step / 2, step / 2, Math.max(0.6, step * 0.035), 0, Math.PI * 2);
+    g.fill();
+    gridPattern = bgCtx.createPattern(cv, "repeat");
+    gridTheme = S.theme;
+  }
+
   function drawBackground(t) {
-    // 纯色背景：颜色只由每枚囊泡自己的类别色承担
     var g = bgCtx;
+    var W = bgCanvas.width, H = bgCanvas.height;
     g.setTransform(1, 0, 0, 1, 0, 0);
     g.globalCompositeOperation = "source-over";
     g.globalAlpha = 1;
     g.fillStyle = T().base;
-    g.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
+    g.fillRect(0, 0, W, H);
+    // 低透明度的大色球：给玻璃边缘的折射/色散提供内容（不铺满、不盖过节点）
+    var orbColors = ["#4C8DFF", "#9B6BFF", "#0FCB97", "#FF5C9E", "#F5A623", "#00C6E6"];
+    for (var i = 0; i < orbColors.length; i++) {
+      var a = -Math.PI / 2 + i * Math.PI / 3;
+      var ox = W * 0.5 + Math.cos(a) * W * 0.30;
+      var oy = H * 0.5 + Math.sin(a) * H * 0.30;
+      var or = Math.min(W, H) * 0.25;
+      var og = g.createRadialGradient(ox, oy, 0, ox, oy, or);
+      og.addColorStop(0, hexA(orbColors[i], S.theme === "dark" ? 0.20 : 0.13));
+      og.addColorStop(0.62, hexA(orbColors[i], S.theme === "dark" ? 0.08 : 0.045));
+      og.addColorStop(1, hexA(orbColors[i], 0));
+      g.fillStyle = og;
+      g.beginPath(); g.arc(ox, oy, or, 0, Math.PI * 2); g.fill();
+    }
+    // 细点阵：让折射/位移在玻璃里有可读的纹理
+    ensureGrid();
+    if (gridPattern) {
+      g.globalAlpha = 0.5;
+      g.fillStyle = gridPattern;
+      g.fillRect(0, 0, W, H);
+      g.globalAlpha = 1;
+    }
   }
   /* ------------------------------------------------------------------ 相机 */
   function toScreen(x, y) {
@@ -1488,6 +1525,7 @@
     if (t === S.theme) return;
     S.theme = t;
     spriteCache = {};
+    gridPattern = null;
     drawBackground(S.t);
   }
 
