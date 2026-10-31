@@ -239,7 +239,7 @@
   var THEME = {
     light: {
       base: "#cfd9f2",
-      aurora: 1.55,
+      aurora: 1.72,
       vignette: "rgba(54,72,132,.34)",
       ink: "#121629", inkSoft: "#5a6178",
       label: "rgba(15,19,38,.95)", labelSoft: "rgba(15,19,38,.68)",
@@ -250,7 +250,7 @@
     },
     dark: {
       base: "#04050a",
-      aurora: 0.74,
+      aurora: 0.82,
       vignette: "rgba(0,0,0,.52)",
       ink: "#eef2ff", inkSoft: "#9da7c0",
       label: "rgba(242,246,255,.96)", labelSoft: "rgba(220,230,255,.72)",
@@ -301,9 +301,7 @@
     // 玻璃取景：低分辨率 + 高饱和 = 磨砂玻璃（近似 backdrop-filter: blur(1.5px) saturate(170%)）
     blurCtx.setTransform(1, 0, 0, 1, 0, 0);
     blurCtx.globalCompositeOperation = "copy";
-    blurCtx.filter = "saturate(1.7)";
     blurCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, blurCanvas.width, blurCanvas.height);
-    blurCtx.filter = "none";
     blurCtx.globalCompositeOperation = "source-over";
   }
 
