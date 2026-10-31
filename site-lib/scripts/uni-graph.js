@@ -162,25 +162,28 @@
 
   /* ------------------------------------------------------------------ 布局 */
   function layout() {
-    // 单个实心环：环内 = 基础衔接，环上 = 六大板块，环外 = 课程（按先后顺序）。
+    // 单个实心环：环内 = 基础衔接；环外 = 六大板块（短线接环）；再外 = 课程（按先后顺序）。
     var S0 = Math.max(Math.min(S.w, S.h) / 2, 300);
-    var Rin = S0 * 0.30, Rring = S0 * 0.56, R3 = S0 * 0.77;
+    var Rring = S0 * 0.46;
+    var Rboard = Rring + 72;      // 板块在环外，留出 72 的间距
+    var Rcourse = Rboard + 107;   // 课程再往外
+    var Rbridge = S0 * 0.27;
     S.ringR = Rring;
     var boards = NODES.filter(function (n) { return n.lvl === 2; });
     var step = Math.PI * 2 / Math.max(1, boards.length);
     boards.forEach(function (b, i) {
       var ang = -Math.PI / 2 + i * step;
       b.ringAngle = ang;
-      b.x = Math.cos(ang) * Rring;
-      b.y = Math.sin(ang) * Rring;
+      b.x = Math.cos(ang) * Rboard;
+      b.y = Math.sin(ang) * Rboard;
     });
     var bridges = NODES.filter(function (n) { return n.lvl === 1; });
     bridges.forEach(function (br) {
       var kids = boards.filter(function (b) { return b.parent === br.id; });
       var ang = kids.length ? kids[0].ringAngle : (br.index / Math.max(1, bridges.length)) * Math.PI * 2;
       br.ringAngle = ang;
-      br.x = Math.cos(ang) * Rin;
-      br.y = Math.sin(ang) * Rin;
+      br.x = Math.cos(ang) * Rbridge;
+      br.y = Math.sin(ang) * Rbridge;
     });
     boards.forEach(function (b) {
       var cs = NODES.filter(function (n) { return n.lvl === 3 && n.cat === b.id; });
@@ -190,7 +193,7 @@
       cs.forEach(function (c, i) {
         var t = n === 1 ? 0.5 : i / (n - 1);
         var ang = b.ringAngle - spread / 2 + spread * t;
-        var r = R3 + (i % 2) * S0 * 0.035;
+        var r = Rcourse + (i % 2) * 26;
         c.x = Math.cos(ang) * r;
         c.y = Math.sin(ang) * r;
       });
@@ -752,15 +755,33 @@
     var cx = (0 - S.cam.x) * S.cam.k + S.w / 2;
     var cy = (0 - S.cam.y) * S.cam.k + S.h / 2;
     var rr = S.ringR * S.cam.k;
+    var ringColor = S.theme === "dark" ? "rgba(228,242,255,.92)" : "rgba(74,108,200,.78)";
+    var glow = S.theme === "dark" ? "rgba(190,220,255,.30)" : "rgba(92,128,220,.24)";
     ctx.save();
-    // 柔光
-    ctx.strokeStyle = S.theme === "dark" ? "rgba(190,220,255,.30)" : "rgba(92,128,220,.24)";
+    // 环的柔光 + 实线
+    ctx.strokeStyle = glow;
     ctx.lineWidth = 9;
     ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2); ctx.stroke();
-    // 实线（亮）
-    ctx.strokeStyle = S.theme === "dark" ? "rgba(228,242,255,.92)" : "rgba(74,108,200,.78)";
+    ctx.strokeStyle = ringColor;
     ctx.lineWidth = 2;
     ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2); ctx.stroke();
+    // 板块接线：从环上径向连到环外板块的内侧（环上本身不放任何节点）
+    NODES.forEach(function (b) {
+      if (b.lvl !== 2 || b.vis < 0.05) return;
+      var dx = b.sx - cx, dy = b.sy - cy;
+      var d = Math.hypot(dx, dy);
+      if (d < 2) return;
+      var ux = dx / d, uy = dy / d;
+      var x1 = cx + ux * rr, y1 = cy + uy * rr;
+      var x2 = b.sx - ux * b.srx, y2 = b.sy - uy * b.sry;
+      ctx.globalAlpha = 0.9 * b.litD;
+      ctx.strokeStyle = glow;
+      ctx.lineWidth = 6;
+      ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      ctx.strokeStyle = ringColor;
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    });
     ctx.restore();
   }
 
