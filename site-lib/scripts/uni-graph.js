@@ -1033,25 +1033,25 @@
 
       // 4) 悬停脉冲环
       if (S.hoverId === n.id) {
-        var pr2 = Math.max(rx, ry) * (1.3 + Math.sin(S.t * 2.2) * 0.02);
+        var pr2 = Math.max(rx, ry) * (1.06 + Math.sin(S.t * 2.2) * 0.012);
         ctx.save();
-        var gl = ctx.createRadialGradient(cx, cy, Math.max(rx, ry) * 0.9, cx, cy, pr2 * 1.16);
+        var gl = ctx.createRadialGradient(cx, cy, Math.max(rx, ry) * 0.96, cx, cy, pr2 * 1.08);
         gl.addColorStop(0, hexA(n.color, 0));
-        gl.addColorStop(0.72, hexA(n.color, S.theme === "dark" ? 0.28 : 0.2));
+        gl.addColorStop(0.72, hexA(n.color, S.theme === "dark" ? 0.22 : 0.16));
         gl.addColorStop(1, hexA(n.color, 0));
         ctx.globalAlpha = n.litD;
         ctx.fillStyle = gl;
         ctx.beginPath();
-        ctx.ellipse(cx, cy, pr2 * 1.16, pr2 * 1.16 * (ry / rx), 0, 0, Math.PI * 2);
+        ctx.ellipse(cx, cy, pr2 * 1.08, pr2 * 1.08 * (ry / rx), 0, 0, Math.PI * 2);
         ctx.fill();
-        ctx.strokeStyle = hexA(n.color, 0.95);
-        ctx.lineWidth = 1.6;
-        blobPath(cx, cy, rx * 1.3, ry * 1.3, n.seed, amp);
+        ctx.strokeStyle = hexA(n.color, 0.9);
+        ctx.lineWidth = 1.3;
+        blobPath(cx, cy, rx * 1.045, ry * 1.045, n.seed, amp);
         ctx.stroke();
-        ctx.globalAlpha = 0.4;
+        ctx.globalAlpha = 0.28;
         ctx.strokeStyle = "rgba(255,255,255,.9)";
-        ctx.lineWidth = 1;
-        blobPath(cx, cy, rx * 1.34, ry * 1.34, n.seed, amp);
+        ctx.lineWidth = 0.8;
+        blobPath(cx, cy, rx * 1.07, ry * 1.07, n.seed, amp);
         ctx.stroke();
         ctx.restore();
       }
@@ -1122,11 +1122,11 @@
     if (S.hover) placeTip();
     // 激活涟漪（点击后 0~1）
     if (S.activating) {
-      var n = S.activating, p = toScreen(n.x, n.y), rr = Math.max(n.srx, n.sry) * (1 + S.pulse * 1.6);
+      var n = S.activating, p = toScreen(n.x, n.y), rr = Math.max(n.srx, n.sry) * (1 + S.pulse * 0.55);
       ctx.save();
-      ctx.globalAlpha = (1 - S.pulse) * 0.55;
+      ctx.globalAlpha = (1 - S.pulse) * 0.38;
       ctx.strokeStyle = hexA(n.color, 0.9);
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 1.4;
       ctx.beginPath();
       ctx.arc(p[0], p[1], rr, 0, Math.PI * 2);
       ctx.stroke();
