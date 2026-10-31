@@ -166,6 +166,7 @@
     var S0 = Math.max(Math.min(S.w, S.h) / 2, 300);
     var Rring = S0 * 0.36;
     var Rboard = Rring + 60;
+    S.boardR = Rboard;
     var Rbridge = S0 * 0.21;
     var LEVEL = 82;
     S.ringR = Rring;
@@ -257,6 +258,7 @@
       var yS = 1.16;
       NODES.forEach(function (n) { n.y *= yS; });
     }
+    NODES.forEach(function (n) { n.hx = n.x; n.hy = n.y; n.vx = 0; n.vy = 0; });
   }
 
   function hash01(s) {
@@ -272,7 +274,7 @@
     fit: { x: 0, y: 0, k: 1 },
     hover: null, hoverId: "", focusId: "",
     pointer: { x: 0, y: 0, inside: false },
-    drag: null, touch: null, moved: 0,
+    drag: null, touch: null, moved: 0, nodeDrag: null, physT: 0,
     t: 0, reduce: REDUCE,
     ready: false, theme: "light",
     ms: 0, fps: 0,
@@ -1144,6 +1146,10 @@
     if (fpsN >= 30) { S.fps = Math.round(1000 / (fpsAcc / fpsN)); fpsAcc = 0; fpsN = 0; }
     updateCamera(dt);
     updateLights(dt);
+    if (S.nodeDrag || S.physT > 0) {
+      stepPhysics(dt);
+      S.physT = Math.max(0, S.physT - dt / 1000);
+    }
     if (S.activating) S.pulse = Math.min(1, S.pulse + dt / 300);
     draw();
     if (!S.ready) {
@@ -1171,6 +1177,151 @@
     return best;
   }
 
+  function angleWrap(a) {
+    while (a > Math.PI) a -= Math.PI * 2;
+    while (a < -Math.PI) a += Math.PI * 2;
+    return a;
+  }
+
+  function stepPhysics(dt) {
+    var k = Math.min(dt, 32) / 16.67;
+    var i, j, n;
+    var boards = [];
+    for (i = 0; i < NODES.length; i++) if (NODES[i].lvl === 2) boards.push(NODES[i]);
+    // 软排斥 + 碰撞
+    for (i = 0; i < NODES.length; i++) {
+      for (j = i + 1; j < NODES.length; j++) {
+        var a = NODES[i], b = NODES[j];
+        var dx = b.x - a.x, dy = b.y - a.y, d2 = dx * dx + dy * dy, d = Math.sqrt(d2) || 0.01;
+        var min = Math.max(a.rx, a.ry) + Math.max(b.rx, b.ry) + 10;
+        if (d < 340) {
+          var f = 1100 / (d2 + 700);
+          var fx = dx / d * f, fy = dy / d * f;
+          if (a !== S.nodeDrag) { a.vx -= fx * k; a.vy -= fy * k; }
+          if (b !== S.nodeDrag) { b.vx += fx * k; b.vy += fy * k; }
+        }
+        if (d < min) {
+          var push = (min - d) * 0.5;
+          if (a !== S.nodeDrag) { a.x -= dx / d * push; a.y -= dy / d * push; }
+          if (b !== S.nodeDrag) { b.x += dx / d * push; b.y += dy / d * push; }
+        }
+      }
+    }
+    // 先修/父子边弹簧（回到布局时的边长）
+    for (i = 0; i < EDGES.length; i++) {
+      var e = EDGES[i], p = e.a, c = e.b;
+      var ex = c.x - p.x, ey = c.y - p.y, ed = Math.hypot(ex, ey) || 0.01;
+      var rest = Math.hypot(c.hx - p.hx, c.hy - p.hy) || 1;
+      var ff = (ed - rest) * 0.004;
+      var ux = ex / ed, uy = ey / ed;
+      if (p !== S.nodeDrag) { p.vx += ux * ff * k; p.vy += uy * ff * k; }
+      if (c !== S.nodeDrag) { c.vx -= ux * ff * k; c.vy -= uy * ff * k; }
+    }
+    // 回位弹簧 + 阻尼 + 积分
+    for (i = 0; i < NODES.length; i++) {
+      n = NODES[i];
+      if (n === S.nodeDrag) continue;
+      n.vx += (n.hx - n.x) * 0.024 * k;
+      n.vy += (n.hy - n.y) * 0.024 * k;
+      n.vx *= 0.9; n.vy *= 0.9;
+      n.x += n.vx * k;
+      n.y += n.vy * k;
+    }
+    // 板块：固定半径滑动 + 角向挤压
+    for (i = 0; i < boards.length; i++) {
+      var ang = Math.atan2(boards[i].y, boards[i].x);
+      boards[i].x = Math.cos(ang) * S.boardR;
+      boards[i].y = Math.sin(ang) * S.boardR;
+    }
+    for (i = 0; i < boards.length; i++) {
+      for (j = i + 1; j < boards.length; j++) {
+        var b1 = boards[i], b2 = boards[j];
+        var a1 = Math.atan2(b1.y, b1.x), a2 = Math.atan2(b2.y, b2.x);
+        var da = angleWrap(a2 - a1);
+        var minA = (Math.max(b1.rx, b1.ry) + Math.max(b2.rx, b2.ry) + 12) / S.boardR;
+        if (Math.abs(da) < minA) {
+          var pushA = minA - Math.abs(da);
+          var dir = da >= 0 ? 1 : -1;
+          if (b1 !== S.nodeDrag && b2 !== S.nodeDrag) { a1 -= dir * pushA / 2; a2 += dir * pushA / 2; }
+          else if (b1 === S.nodeDrag) { a2 += dir * pushA; }
+          else { a1 -= dir * pushA; }
+          b1.x = Math.cos(a1) * S.boardR; b1.y = Math.sin(a1) * S.boardR;
+          b2.x = Math.cos(a2) * S.boardR; b2.y = Math.sin(a2) * S.boardR;
+        }
+      }
+    }
+    // 环内外屏障：内侧节点出不去，外侧课程进不来
+    for (i = 0; i < NODES.length; i++) {
+      n = NODES[i];
+      if (n === S.nodeDrag) continue;
+      var rr = Math.hypot(n.x, n.y) || 0.01;
+      if (n.lvl <= 1) {
+        var lim = S.ringR - Math.max(n.rx, n.ry) - 18;
+        if (rr > lim) { n.x = n.x / rr * lim; n.y = n.y / rr * lim; }
+      } else if (n.lvl === 3) {
+        var lim2 = S.ringR + Math.max(n.rx, n.ry) + 18;
+        if (rr < lim2) { n.x = n.x / rr * lim2; n.y = n.y / rr * lim2; }
+      }
+    }
+  }
+
+  function startNodeDrag(n, e) {
+    var lp = localXY(e);
+    var w = toWorld(lp[0], lp[1]);
+    S.nodeDrag = n;
+    S.drag = null;
+    S.moved = 0;
+    S.physT = 2.2;
+    n.vx = 0; n.vy = 0;
+    n.grabX = n.x - w[0];
+    n.grabY = n.y - w[1];
+    n.lastX = n.x; n.lastY = n.y; n.lastT = performance.now();
+    setHover(n);
+    canvas.classList.add("is-dragging");
+  }
+
+  function moveNodeDrag(e) {
+    var n = S.nodeDrag;
+    if (!n) return;
+    var lp = localXY(e);
+    var w = toWorld(lp[0], lp[1]);
+    var nx, ny;
+    if (n.lvl === 2) {
+      var ang = Math.atan2(w[1], w[0]);
+      nx = Math.cos(ang) * S.boardR;
+      ny = Math.sin(ang) * S.boardR;
+    } else {
+      nx = w[0] + n.grabX;
+      ny = w[1] + n.grabY;
+      var rr = Math.hypot(nx, ny) || 0.01;
+      var margin = 18 + Math.max(n.rx, n.ry);
+      if (n.lvl <= 1) {
+        var lim = S.ringR - margin;
+        if (rr > lim) { nx = nx / rr * lim; ny = ny / rr * lim; }
+      } else if (n.lvl === 3) {
+        var lim2 = S.ringR + margin;
+        if (rr < lim2) { nx = nx / rr * lim2; ny = ny / rr * lim2; }
+      }
+    }
+    var t = performance.now();
+    var dtx = Math.max(1, t - (n.lastT || t));
+    n.vx = (nx - n.lastX) / dtx * 16;
+    n.vy = (ny - n.lastY) / dtx * 16;
+    n.lastX = nx; n.lastY = ny; n.lastT = t;
+    S.moved = Math.max(S.moved, Math.hypot(nx - n.x, ny - n.y) * S.cam.k);
+    n.x = nx; n.y = ny;
+  }
+
+  function endNodeDrag() {
+    var n = S.nodeDrag;
+    if (!n) return;
+    S.nodeDrag = null;
+    S.physT = 2.2;
+    canvas.classList.remove("is-dragging");
+    if (S.moved > 6) return;
+    tapNode(n);
+  }
+
   function onPointerDown(e) {
     if (e.target !== canvas) return;
     clearTimeout(navTimer);
@@ -1178,26 +1329,30 @@
     closeDrawer();
     canvas.setPointerCapture && canvas.setPointerCapture(e.pointerId);
     var lp = localXY(e);
+    var hit = hitTest(lp[0], lp[1]);
     if (e.pointerType === "touch") {
       if (!S.touch) S.touch = {};
       S.touch[e.pointerId] = { x: e.clientX, y: e.clientY };
       var ids = Object.keys(S.touch);
       if (ids.length === 2) {
+        S.nodeDrag = null;
         var a = S.touch[ids[0]], b = S.touch[ids[1]];
         var rc = canvas.getBoundingClientRect();
         var pcx = (a.x + b.x) / 2 - rc.left, pcy = (a.y + b.y) / 2 - rc.top;
         S.pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), k: S.camT.k, cx: pcx, cy: pcy, wx: 0, wy: 0 };
         var wp = toWorld(pcx, pcy);
         S.pinch.wx = wp[0]; S.pinch.wy = wp[1];
-      } else {
-        S.drag = { x: e.clientX, y: e.clientY, camx: S.camT.x, camy: S.camT.y, id: e.pointerId };
-        S.moved = 0;
+        return;
       }
+      if (hit) { startNodeDrag(hit, e); return; }
+      S.drag = { x: e.clientX, y: e.clientY, camx: S.camT.x, camy: S.camT.y, id: e.pointerId };
+      S.moved = 0;
       return;
     }
+    if (hit) { startNodeDrag(hit, e); return; }
     S.drag = { x: e.clientX, y: e.clientY, camx: S.camT.x, camy: S.camT.y, id: e.pointerId };
     S.moved = 0;
-    setHover(hitTest(lp[0], lp[1]));
+    setHover(null);
     canvas.classList.add("is-dragging");
   }
 
@@ -1219,6 +1374,7 @@
         return;
       }
     }
+    if (S.nodeDrag) { moveNodeDrag(e); return; }
     if (S.drag) {
       var dx = e.clientX - S.drag.x, dy = e.clientY - S.drag.y;
       S.moved = Math.max(S.moved, Math.hypot(dx, dy));
@@ -1231,11 +1387,18 @@
       return;
     }
     var lpm = localXY(e);
-    var n = hitTest(lpm[0], lpm[1]);
-    setHover(n);
+    setHover(hitTest(lpm[0], lpm[1]));
   }
 
   function onPointerUp(e) {
+    if (S.nodeDrag) {
+      endNodeDrag();
+      if (e.pointerType === "touch" && S.touch) {
+        delete S.touch[e.pointerId];
+        if (Object.keys(S.touch).length < 2) S.pinch = null;
+      }
+      return;
+    }
     if (e.pointerType === "touch" && S.touch) {
       delete S.touch[e.pointerId];
       if (Object.keys(S.touch).length < 2) S.pinch = null;
