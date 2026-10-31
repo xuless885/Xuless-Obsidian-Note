@@ -19,29 +19,33 @@
    * 第一部分：纯函数层（无 DOM 依赖，可被 node require）
    * ========================================================================== */
 
-  /** 物理参数（世界坐标单位 ≈ CSS 像素 @k=1） */
+  /**
+   * 物理参数（世界坐标单位 ≈ CSS 像素 @k=1）。
+   *
+   * 2026-10-31：整套换成 **Obsidian Publish 图谱同构** 的 d3-force 模型 ——
+   * 线上 help.obsidian.md 的关系图由一个 Worker 跑 /sim.js（d3-force 打包），
+   * 参数取自该文件本身：向心 `forceX/forceY(0.1)`、连线 `forceLink(250)`（强度默认
+   * `1/min(度数)`）、斥力 `forceManyBody(-1000, distanceMin 30)`、碰撞
+   * `forceCollide(半径 60, strength 0.5)`、`velocityDecay 0.6`、
+   * alpha 300 tick 从 1 降到 0.001。旧实现用「斥力 3050/d² + 硬分离 + 拖拽专用阻尼」
+   * 去糊手感，结果邻居会来回掉头（实测 27–35%），越调越抖；这里直接回到同构模型。
+   */
   var PHYSICS = {
-    repulsion: 3050,       // 斥力系数：a = repulsion / d²（2026-10-16 从 1750 上调：用户说节点太密）
-    spring: 0.20,          // 弹簧系数
-    linkDistance: 76,      // 弹簧自然长度基准（52 → 76：整体更疏）
-    linkDistanceScale: 5,  // 每单位度数的额外长度（高度节点连线更长，像 Obsidian）
-    center: 0.00014,       // 向心力：a = center * 到原点距离（调小 → 允许铺得更开）
-    damping: 0.86,         // 速度阻尼（常态）
-    dragDamping: 0.885,    // **拖拽时**的阻尼：0.86 太粘（邻居不动）、0.945 太飘（会来回抽搐）
-    dragSpring: 1.15,      // 拖拽时弹簧稍硬：邻居跟得上，但不过冲
-    dragAlphaFloor: 0.24,  // 拖拽时 alpha 不低于此值 → 物理一直“热”，邻居不会中途冻住
-    dragMaxVelocity: 5.2,  // 拖拽期间的单步位移上限（比常态更小：防过冲抖动）
-    dragMaxSeparation: 1.5,// 拖拽期间的硬分离上限（世界px）
-    alphaDecay: 0.985,     // alpha 每步衰减
-    alphaMin: 0.006,       // 低于此值即认为静止 → 停止 rAF
-    maxVelocity: 16,       // 单步位移上限（防爆）
-    maxForce: 60,          // 单点加速度上限（防爆）
-    minDist2: 25,          // 软核：距离平方下限
-    collision: 1.35,       // 短程碰撞系数：圆点重叠时额外推开（0 = 关闭）
-    collidePad: 11,        // 碰撞判定的额外间隙：节点之间始终留白，不贴边（7 → 11）
-    maxSeparation: 2.0,    // 单步「硬分离」位移上限（世界px）：一次推太多会让邻居瞬移 → 抽搐
-    collideKick: 0.30,     // 碰撞时同时给一点速度（硬分离 + 弹性观感，避免静摩擦糊死）
-    preSettleSteps: 560    // 首帧前的同步预收敛步数（避免开场炸开 + 首帧即收敛）
+    linkDistance: 250,     // 连线自然长度（d3 forceLink distance）
+    linkStrength: 1,       // 乘 1/min(两端度数) —— d3 默认
+    centerStrength: 0.1,   // forceX / forceY 强度
+    repel: 1000,           // forceManyBody 强度（取正数，内部按排斥用）
+    distanceMin: 30,       // forceManyBody distanceMin
+    collideRadius: 60,     // forceCollide 半径（所有节点同一半径，Obsidian 即如此）
+    collideStrength: 0.5,  // forceCollide strength
+    velocityDecay: 0.6,    // 每 tick 速度保留比例（d3 velocityDecay = 1-0.4）
+    alphaDecay: 1 - Math.pow(0.001, 1 / 300), // 300 tick 从 1 衰减到 0.001
+    alphaMin: 0.001,       // 低于此值即静止 → 停止 rAF
+    dragAlpha: 0.3,        // 拖拽时 alphaTarget（Obsidian 拖动时发 alpha:0.3 / alphaTarget:0.3）
+    maxVelocity: 60,       // 单步位移安全阀（正常远达不到，只防初始位置极端时炸开）
+    preSettleSteps: 420,   // 首帧前的同步预收敛步数（避免开场炸开；之后静止 0 CPU）
+    // 兼容旧字段（外部测试/工具会读 PHYSICS.damping）
+    damping: 0.6
   };
 
   function clamp(v, lo, hi) {
@@ -185,21 +189,21 @@
 
   /**
    * 画出来的半径（世界坐标）—— 与 degreeRadius 的区别：
-   * 世界半径直接乘 k 时，默认 fit 视角下节点能有 25px、放大后更是撑满一屏
-   * （用户截图：「节点图标太大，不能随缩放变换」）。这里把**屏幕半径**夹在
-   * [minPx, maxPx] 再换回世界坐标：节点始终是 3–13px 的圆点，
-   * 放大不会变成大饼，缩到很远也还看得见。物理/碰撞仍用 degreeRadius，观感不受影响。
+   * Obsidian 的节点屏幕尺寸走 `nodeScale = sqrt(1/scale)`（Publish app.js），
+   * 即**屏幕半径 ∝ sqrt(k)**：放大时缓慢变大、缩小时缓慢变小，不会放大成大饼、
+   * 也不会缩没。这里按同一规律换算回世界坐标（渲染是在 scale(k) 的上下文里画的）。
    */
   function screenRadius(worldR, k, minPx, maxPx) {
-    var kk = k || 1;
-    var lo = (minPx === undefined) ? 2.6 : minPx;
-    var hi = (maxPx === undefined) ? 13 : maxPx;
-    return clamp((worldR || 3) * kk, lo, hi) / kk;
+    var kk = Math.max(0.01, k || 1);
+    var lo = (minPx === undefined) ? 1.8 : minPx;
+    var hi = (maxPx === undefined) ? 24 : maxPx;
+    return clamp((worldR || 3) * Math.sqrt(kk), lo, hi) / kk;
   }
 
-  /** 标签字号：屏幕上恒定在 [10.5, 13]px（世界坐标 = 屏幕字号 / k） */
+  /** 标签字号：同 Obsidian，屏幕字号 ∝ sqrt(k)，锚在 fit 视角 ≈12.8px，两端夹住 */
   function labelFontScreen(k) {
-    return clamp(11.0 * (0.84 + 0.12 * (k || 1)), 10.5, 13);
+    var kk = Math.max(0.01, k || 1);
+    return clamp(12.8 * Math.sqrt(kk / 1.05), 9.5, 16);
   }
 
   /** 初始位置：同心圆 + 确定性抖动（像 Obsidian 开场那样铺开） */
@@ -220,7 +224,15 @@
   }
 
   /**
-   * 力导向「一步」更新：斥力(O(n²)) + 弹簧 + 向心力 → 速度 → 位置。
+   * 力导向「一步」更新（d3-force 语义：力直接作用在速度上，随后统一乘 velocityDecay 再积分）。
+   *
+   * 与 Obsidian Publish /sim.js 保持一致的四条力：
+   *   1) many-body：strength -1000、distanceMin 30，力度 ∝ 1/d² × alpha
+   *   2) link：distance 250，strength = 1/min(两端度数)（d3 默认；两端按度数平分修正）
+   *   3) center：forceX / forceY，strength 0.1
+   *   4) collide：半径 60、strength 0.5（不乘 alpha；采样位置含本帧速度，d3 同款）
+   *
+   * 被拖拽的节点（pinned）位置由交互层每帧写入，积分时速度清零、坐标不动。
    * 任何非有限值都会被就地修复，保证不产生 NaN/Infinity。
    * @returns {number} 本步最大速度（用于判断是否静止）
    */
@@ -228,107 +240,113 @@
     var p = params || PHYSICS;
     var alpha = clamp(state && state.alpha, 0, 1);
     var n = (nodes && nodes.length) || 0;
-    var i, j, a, b, dx, dy, d2, d, f, ax, ay;
-    // 拖拽一个节点时：阻尼调小、弹簧调硬 —— 邻居才会「跟着走」而不是被按住不动
-    // （用户反馈：拖拽时其他节点阻力太大）。
-    var dragging = !!(state && state.drag && state.drag.mode === 'node');
-    var damp = dragging ? (p.dragDamping === undefined ? p.damping : p.dragDamping) : p.damping;
-    var springK = dragging ? p.spring * (p.dragSpring === undefined ? 1 : p.dragSpring) : p.spring;
+    if (!n) return 0;
+    var i, j, a, b, ed;
 
-    for (i = 0; i < n; i++) { nodes[i].ax = 0; nodes[i].ay = 0; nodes[i].sx = 0; nodes[i].sy = 0; }
-
-    // 1) 斥力：所有「可见」节点两两相斥
+    // 只对可见节点积分；隐藏节点（筛选掉/孤立节点关闭）不参与物理
+    var list = [];
     for (i = 0; i < n; i++) {
       a = nodes[i];
       if (a.active === false) continue;
-      for (j = i + 1; j < n; j++) {
-        b = nodes[j];
-        if (b.active === false) continue;
-        dx = b.x - a.x; dy = b.y - a.y;
-        d2 = dx * dx + dy * dy;
+      if (!isFinite(a.x)) a.x = 0;
+      if (!isFinite(a.y)) a.y = 0;
+      if (!isFinite(a.vx)) a.vx = 0;
+      if (!isFinite(a.vy)) a.vy = 0;
+      list.push(i);
+    }
+    var m = list.length;
+    if (!m) return 0;
+
+    // 可见子图的度数：决定连线的 strength 与两端修正比（d3 的默认 link strength）
+    var deg = new Array(n);
+    for (i = 0; i < n; i++) deg[i] = 0;
+    var el = (edges && edges.length) || 0;
+    for (i = 0; i < el; i++) {
+      ed = edges[i];
+      if (!ed || ed.active === false) continue;
+      a = nodes[ed.si]; b = nodes[ed.ti];
+      if (!a || !b || a.active === false || b.active === false) continue;
+      deg[ed.si]++; deg[ed.ti]++;
+    }
+
+    // 1) many-body 斥力（精确 n²；42 个节点的量级下 Barnes-Hut 没有意义）
+    var rep = p.repel * alpha;
+    var minD2 = p.distanceMin * p.distanceMin;
+    for (var ii = 0; ii < m; ii++) {
+      i = list[ii]; a = nodes[i];
+      for (var jj = ii + 1; jj < m; jj++) {
+        j = list[jj]; b = nodes[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var d2 = dx * dx + dy * dy;
         if (!(d2 > 1e-6)) {                       // 完全重合 → 确定性微扰，避免 0 除法
           dx = ((i % 7) - 3) * 0.31 + 0.117;
           dy = ((j % 5) - 2) * 0.29 + 0.073;
           d2 = dx * dx + dy * dy;
         }
-        if (d2 < p.minDist2) d2 = p.minDist2;     // 软核
-        d = Math.sqrt(d2);
-        f = p.repulsion / d2;
-        // 短程碰撞：两个圆点（含间隙）重叠时**硬**推开 + 给一点速度。
-        // 只加加速度的话，节点会在阻尼下停在「刚好挨着」的位置，看起来像糊在一起；
-        // 改成直接修正坐标（硬分离）并叠加速度冲击，才有多体碰撞的弹性观感。
-        var pad = (p.collidePad != null) ? p.collidePad : 1.5;
-        var rsum = (a.r || 3) + (b.r || 3) + pad;
-        if (p.collision > 0 && d < rsum) {
-          f += (rsum - d) * p.collision;
-          // 硬分离：先**累加**到 sx/sy，配对循环结束后统一限幅施加（Jacobi 式）。
-          // 直接在每个配对上改坐标的问题是：一个节点同时压着 3–4 个邻居时，
-          // 单步会被推 10px 以上（不走 maxVelocity 限制）→ 视觉上就是抽搐。
-          var overlap = (rsum - d);
-          if (overlap > 0) {
-            var nx = dx / d, ny = dy / d;
-            var push = overlap * 0.22;
-            a.sx -= nx * push; a.sy -= ny * push;
-            b.sx += nx * push; b.sy += ny * push;
-          }
-        }
-        if (f > p.maxForce) f = p.maxForce;
-        ax = (dx / d) * f; ay = (dy / d) * f;
-        a.ax -= ax; a.ay -= ay;
-        b.ax += ax; b.ay += ay;
+        if (d2 < minD2) d2 = minD2;               // distanceMin
+        var f = rep / d2;
+        a.vx += dx * f; a.vy += dy * f;
+        b.vx -= dx * f; b.vy -= dy * f;
       }
     }
 
-    // 2) 弹簧：边的两端互相拉近（embed 边更松）
-    var m = (edges && edges.length) || 0;
-    for (i = 0; i < m; i++) {
-      var ed = edges[i];
-      if (ed.active === false) continue;
+    // 2) 弹簧：端点用「位置 + 当前速度」算距离（d3-force v3 的做法，能压掉一部分振荡）
+    for (i = 0; i < el; i++) {
+      ed = edges[i];
+      if (!ed || ed.active === false) continue;
       a = nodes[ed.si]; b = nodes[ed.ti];
       if (!a || !b || a.active === false || b.active === false) continue;
-      dx = b.x - a.x; dy = b.y - a.y;
-      d2 = dx * dx + dy * dy;
-      if (!(d2 > 1e-6)) { dx = 0.31; dy = 0.29; d2 = dx * dx + dy * dy; }
-      d = Math.sqrt(d2);
-      var L = p.linkDistance + p.linkDistanceScale * Math.min(((a.degree || 0) + (b.degree || 0)), 12);
-      f = ((d - L) / d) * springK * (ed.kind === 'embed' ? 0.6 : 1);
-      if (f > p.maxForce) f = p.maxForce; else if (f < -p.maxForce) f = -p.maxForce;
-      ax = dx * f; ay = dy * f;
-      a.ax += ax; a.ay += ay;
-      b.ax -= ax; b.ay -= ay;
+      var ldx = (b.x + b.vx) - (a.x + a.vx);
+      var ldy = (b.y + b.vy) - (a.y + a.vy);
+      var ld = Math.sqrt(ldx * ldx + ldy * ldy);
+      if (!(ld > 1e-6)) { ldx = 0.31; ldy = 0.29; ld = Math.sqrt(ldx * ldx + ldy * ldy); }
+      var da = deg[ed.si] || 1, db = deg[ed.ti] || 1;
+      var strength = p.linkStrength / Math.min(da, db);
+      var bias = da / (da + db);
+      var lf = ((ld - p.linkDistance) / ld) * alpha * strength;
+      var fx = ldx * lf, fy = ldy * lf;
+      a.vx += fx * (1 - bias); a.vy += fy * (1 - bias);
+      b.vx -= fx * bias;       b.vy -= fy * bias;
     }
 
-    // 3) 向心力：把整体拉回原点，避免漂移
-    for (i = 0; i < n; i++) {
-      a = nodes[i];
-      if (a.active === false) continue;
-      a.ax -= a.x * p.center;
-      a.ay -= a.y * p.center;
+    // 3) 向心力（forceX / forceY）
+    for (ii = 0; ii < m; ii++) {
+      a = nodes[list[ii]];
+      a.vx += (0 - a.x) * p.centerStrength * alpha;
+      a.vy += (0 - a.y) * p.centerStrength * alpha;
     }
 
-    // 4) 积分（被拖动的节点是「钉住」的，不参与积分）
-    var maxSpeed = 0;
-    var sepCap = dragging && p.dragMaxSeparation ? p.dragMaxSeparation
-               : (p.maxSeparation === undefined ? 2.0 : p.maxSeparation);
-    for (i = 0; i < n; i++) {
-      a = nodes[i];
-      if (a.active === false) continue;
-      if (a.pinned) { a.vx = 0; a.vy = 0; a.ax = 0; a.ay = 0; a.sx = 0; a.sy = 0; continue; }
-      // 先把本步累加的硬分离位移限幅施加（防止多邻居同时挤压时瞬移）
-      if (a.sx || a.sy) {
-        var sl = Math.sqrt(a.sx * a.sx + a.sy * a.sy);
-        if (sl > sepCap) { var ss = sepCap / sl; a.sx *= ss; a.sy *= ss; }
-        a.x += a.sx; a.y += a.sy;
-        a.sx = 0; a.sy = 0;
+    // 4) 碰撞（d3 同款：不乘 alpha；采样位置带本帧速度；等半径时先算的一方拿全量、
+    //    另一方按 r²/(r²+r²) 拿一半 —— 照抄 d3-force 的非对称分配）
+    var rr = p.collideRadius * 2;
+    var rr2 = rr * rr;
+    for (ii = 0; ii < m; ii++) {
+      i = list[ii]; a = nodes[i];
+      for (jj = ii + 1; jj < m; jj++) {
+        j = list[jj]; b = nodes[j];
+        var cdx = (a.x + a.vx) - (b.x + b.vx);
+        var cdy = (a.y + a.vy) - (b.y + b.vy);
+        var cd2 = cdx * cdx + cdy * cdy;
+        if (!(cd2 < rr2)) continue;
+        if (!(cd2 > 1e-6)) { cdx = ((i % 7) - 3) * 0.31 + 0.117; cdy = ((j % 5) - 2) * 0.29 + 0.073; cd2 = cdx * cdx + cdy * cdy; }
+        var cd = Math.sqrt(cd2);
+        var cf = ((rr - cd) / cd) * p.collideStrength;
+        a.vx += cdx * cf; a.vy += cdy * cf;
+        b.vx -= cdx * cf * 0.5; b.vy -= cdy * cf * 0.5;
       }
-      var vx = (a.vx + a.ax * alpha) * damp;
-      var vy = (a.vy + a.ay * alpha) * damp;
+    }
+
+    // 5) 积分：钉住的节点（正在拖拽）不参与；其余乘 velocityDecay 后位移
+    var maxSpeed = 0;
+    for (ii = 0; ii < m; ii++) {
+      a = nodes[list[ii]];
+      if (a.pinned) { a.vx = 0; a.vy = 0; continue; }
+      var vx = a.vx, vy = a.vy;
       var sp2 = vx * vx + vy * vy;
       if (!isFinite(sp2)) { vx = 0; vy = 0; sp2 = 0; }
       var sp = Math.sqrt(sp2);
-      // 拖拽期间用更小的速度上限：位移小一点，邻居是「跟过去」而不是「冲过头再弹回来」
-      var vcap = dragging && p.dragMaxVelocity ? p.dragMaxVelocity : p.maxVelocity;
-      if (sp > vcap) { var s = vcap / sp; vx *= s; vy *= s; sp = vcap; }
+      if (sp > p.maxVelocity) { var s = p.maxVelocity / sp; vx *= s; vy *= s; sp = p.maxVelocity; }
+      vx *= p.velocityDecay; vy *= p.velocityDecay;
       a.vx = vx; a.vy = vy;
       a.x += vx; a.y += vy;
       if (!isFinite(a.x) || !isFinite(a.y)) { a.x = 0; a.y = 0; a.vx = 0; a.vy = 0; sp = 0; }
@@ -337,15 +355,12 @@
     return maxSpeed;
   }
 
-  /** 一步 + alpha 衰减 + 静止判定 */
+  /** 一步 + alpha 衰减 + 静止判定（d3：alpha += (alphaTarget - alpha) * alphaDecay） */
   function runStep(nodes, edges, state, params) {
     var p = params || PHYSICS;
     var maxSpeed = simulateStep(nodes, edges, state, p);
-    state.alpha = clamp(state.alpha, 0, 1) * p.alphaDecay;
-    // 拖拽期间不让 alpha 掉下去：否则拖到一半物理就「冻」了，邻居不再跟随
-    if (state.drag && state.drag.mode === 'node' && p.dragAlphaFloor && state.alpha < p.dragAlphaFloor) {
-      state.alpha = p.dragAlphaFloor;
-    }
+    var target = (state && typeof state.alphaTarget === 'number' && isFinite(state.alphaTarget)) ? state.alphaTarget : 0;
+    state.alpha = clamp(clamp(state.alpha, 0, 1) + (target - clamp(state.alpha, 0, 1)) * p.alphaDecay, 0, 1);
     state.maxSpeed = maxSpeed;
     state.settled = state.alpha < p.alphaMin;
     return state;
@@ -356,6 +371,7 @@
     var p = params || PHYSICS;
     var total = Math.max(0, steps | 0);
     state = state || { alpha: 1 };
+    state.alphaTarget = 0;
     for (var i = 0; i < total; i++) runStep(nodes, edges, state, p);
     state.alpha = 0;
     state.settled = true;
@@ -424,7 +440,8 @@
       if (!a || a.active === false) continue;
       var dx = wx - a.x, dy = wy - a.y;
       var d2 = dx * dx + dy * dy;
-      var rr = (a.r || 3) + pad;
+      // 命中半径跟「画出来的」节点一致（随 sqrt(k) 缩放的屏幕半径换算回世界坐标）
+      var rr = screenRadius(a.r || 3, k || 1) + pad;
       if (d2 <= rr * rr && d2 < bestD) { bestD = d2; best = i; }
     }
     return best;
@@ -699,6 +716,7 @@
     }
     function animateViewTo(target, ms) {
       if (!target) return;
+      S.zoom = null;                            // 视图缓动接管时取消滚轮缩放
       viewAnim = { from: { k: S.view.k, x: S.view.x, y: S.view.y },
                    to: { k: target.k, x: target.x, y: target.y },
                    t0: nowMs(), dur: ms || 420 };
@@ -717,6 +735,58 @@
       S.view = { k: from.k + (to.k - from.k) * e,
                  x: from.x + (to.x - from.x) * e,
                  y: from.y + (to.y - from.y) * e };
+      return true;
+    }
+
+    /**
+     * 滚轮缩放缓动：Obsidian 的 updateZoom() 是**逐帧**把当前缩放逼近目标
+     * （`scale = scale*.85 + target*.15`），不是每个 wheel 事件直接跳到位。
+     * 我们沿用同一比例：每帧走剩余差的 15%，锚点（光标）下的世界坐标保持不动，
+     * 所以连续滚轮是「顺滑推近/拉远」，而不是一格一跳。
+     */
+    var ZOOM_EASE = 0.15;
+    function stepZoom() {
+      var z = S.zoom;
+      if (!z) return false;
+      var k0 = S.view.k || 1;
+      var k1 = z.k;
+      if (Math.abs(k1 - k0) <= Math.max(0.0005, k0 * 0.0015)) {
+        S.zoom = null;
+        return false;
+      }
+      var nk = k0 + (k1 - k0) * ZOOM_EASE;
+      var f = nk / k0;
+      S.view = { k: nk,
+                 x: z.ax - (z.ax - S.view.x) * f,
+                 y: z.ay - (z.ay - S.view.y) * f };
+      return true;
+    }
+
+    /**
+     * 「重新布局」的补间：新布局先在后台同步算好（settle），再把节点从旧坐标
+     * 缓动到新坐标。这样既能看见「图在重排」，又绝不会出现 alpha=1 起步时的爆炸位移。
+     */
+    function stepMorph() {
+      var m = S.morph;
+      if (!m) return false;
+      var t = (nowMs() - m.t0) / m.dur;
+      if (!(t < 1)) {
+        for (var j = 0; j < S.nodes.length; j++) {
+          if (m.to[j]) { S.nodes[j].x = m.to[j][0]; S.nodes[j].y = m.to[j][1]; }
+          S.nodes[j].vx = 0; S.nodes[j].vy = 0;
+        }
+        S.morph = null;
+        return false;
+      }
+      var t0 = Math.max(0, Math.min(1, t));
+      var e = t0 * t0 * (3 - 2 * t0);   // smoothstep：起止速度都是 0，重排不「猛地一窜」
+      for (var i = 0; i < S.nodes.length; i++) {
+        var from = m.from[i], to = m.to[i];
+        if (!from || !to) continue;
+        S.nodes[i].x = from[0] + (to[0] - from[0]) * e;
+        S.nodes[i].y = from[1] + (to[1] - from[1]) * e;
+        S.nodes[i].vx = 0; S.nodes[i].vy = 0;
+      }
       return true;
     }
 
@@ -749,7 +819,9 @@
       labelOrder: null, labelKey: '', labelWidths: null,
       hover: -1, selected: -1,
       view: { k: 1, x: 0, y: 0 },
-      alpha: 0, settled: true, rafId: 0,
+      alpha: 0, alphaTarget: 0, settled: true, rafId: 0,
+      zoom: null,                 // 滚轮缩放的缓动目标 { k, ax, ay }
+      morph: null,                // 「重新布局」：旧坐标 → 新坐标的补间
       drag: null, clickCandidate: -1,
       width: 0, height: 0, dpr: 1,
       theme: null, themeKey: '',
@@ -841,8 +913,8 @@
       return { idx: idx, set: set };
     }
 
-    /** 焦点外节点的目标亮度（配合每节点缓动 _a 使用） */
-    var FOCUS_DIM = 0.12;
+    /** 焦点外节点的目标亮度（配合每节点缓动 _a 使用；Obsidian 的 Vo = 0.2） */
+    var FOCUS_DIM = 0.2;
 
     function edgeAlpha(focus, si, ti) {
       var ambient = clamp(0.18 + 0.42 * S.view.k, 0.14, 0.62);
@@ -1026,7 +1098,7 @@
         if (focus) wantA = focus.set[i] ? 1 : FOCUS_DIM;
         else if (S.matchSet && !S.matchSet[i]) wantA = 0.3;
         if (n._a === undefined) n._a = wantA;
-        else if (Math.abs(n._a - wantA) > 0.005) { n._a += (wantA - n._a) * 0.22; animating = true; }
+        else if (Math.abs(n._a - wantA) > 0.005) { n._a += (wantA - n._a) * 0.12; animating = true; } // Obsidian：每帧 10%（Ce 的 g5=.9）
         else n._a = wantA;
         r = screenRadius(n.r || 3, kk) * (1 + 0.16 * n._t) * (0.6 + 0.4 * intro);
         col = S.theme.cats[(n.catIndex || 0) % 6];
@@ -1108,11 +1180,14 @@
     function labelWidth(ctx2, txt) {
       var cache = S.labelWidths;
       if (!cache) { cache = S.labelWidths = Object.create(null); }
-      var w = cache[txt];
+      // 缓存键必须带字号：标签屏幕字号随 k 变化（sqrt(k)），只按文本缓存会把
+      // 放大后的宽度读成旧值 → 遮挡剔除算错、标签叠在一起。
+      var key = (ctx2.font || '') + '|' + txt;
+      var w = cache[key];
       if (w === undefined) {
         try { w = ctx2.measureText(txt).width; } catch (e) { w = txt.length * 6; }
         if (!isFinite(w) || w <= 0) w = txt.length * 6;
-        cache[txt] = w;
+        cache[key] = w;
       }
       return w;
     }
@@ -1215,11 +1290,13 @@
 
     function frame() {
       S.rafId = 0;
-      if (S.alpha > PHYSICS.alphaMin) runStep(S.nodes, S.edges, S, PHYSICS);
+      var morphing = stepMorph();
+      if (!morphing && S.alpha > PHYSICS.alphaMin) runStep(S.nodes, S.edges, S, PHYSICS);
       var viewMoving = stepViewAnim();
+      var zoomMoving = stepZoom();
       render();
-      // 静止后不再调度 → 0 空转；只有物理还热、视图缓动中、或开场未结束才继续
-      if (S.alpha > PHYSICS.alphaMin || viewMoving) requestRender();
+      // 静止后不再调度 → 0 空转；只有物理还热、补间/视图/缩放缓动中、或开场未结束才继续
+      if (morphing || S.alpha > PHYSICS.alphaMin || viewMoving || zoomMoving) requestRender();
     }
 
     /**
@@ -1498,15 +1575,22 @@
       var bRelayout = el('button', 'btn btn-ghost', '重新布局');
       bRelayout.type = 'button';
       bRelayout.addEventListener('click', function () {
+        // 在后台同步算好一份新布局（与首帧同一套预收敛），然后把节点从旧坐标
+        // 缓动到新坐标：既能看见「图在重排」，又不会出现 alpha=1 起步时的爆炸位移。
+        var old = S.nodes.map(function (n) { return [n.x, n.y]; });
         initPositions(S.nodes, (Date.now() & 0x7fffffff) || 1);
         S.nodes.forEach(function (n) { n.vx = 0; n.vy = 0; n.pinned = false; });
-        S.alpha = 1;
-        // 「重新布局」是用户点的按钮 → 永远播动画（连 prefers-reduced-motion 也不该让它瞬间跳完）
-        requestRender();
-        window.setTimeout(function () {
-          S.userTouched = false;
-          animateViewTo(fitGraph(), 520);    // 布局收敛后缓动收拢视野
-        }, 900);
+        S.alpha = 1; S.alphaTarget = 0;
+        settle(S.nodes, S.edges, S, PHYSICS.preSettleSteps, PHYSICS);
+        var to = S.nodes.map(function (n) { return [n.x, n.y]; });
+        // 先按新坐标取一次最终视野，再把节点放回旧坐标开始补间
+        S.nodes.forEach(function (n, i) { n.x = to[i][0]; n.y = to[i][1]; });
+        var targetView = fitGraph();
+        S.nodes.forEach(function (n, i) { n.x = old[i][0]; n.y = old[i][1]; });
+        S.morph = { from: old, to: to, t0: nowMs(), dur: 650 };
+        S.alpha = 0;
+        S.userTouched = false;
+        animateViewTo(targetView, 650);    // 视野与新布局同步收拢
       });
       btnRow.appendChild(bReset);
       btnRow.appendChild(bRelayout);
@@ -1573,12 +1657,19 @@
       var w = screenToWorld(S.view, p.x, p.y);
       var idx = pickNode(S.nodes, w.x, w.y, S.view.k);
       canvas.setPointerCapture && canvas.setPointerCapture(ev.pointerId);
+      S.morph = null;             // 用户一动手就接管当前坐标
       if (idx >= 0) {
         S.drag = { mode: 'node', idx: idx, id: ev.pointerId, moved: 0, sx: p.x, sy: p.y };
         S.nodes[idx].pinned = true;
         S.nodes[idx].x = w.x; S.nodes[idx].y = w.y;
+        S.nodes[idx].vx = 0; S.nodes[idx].vy = 0;
         S.clickCandidate = idx;
-        heat(0.62, true);   // 抓住节点：给足 alpha，邻居才会被弹簧拉着动起来
+        // 与 Obsidian 的 dragNode 一致：钉住节点，并把物理重新加热到 alphaTarget 0.3
+        // （它在 pointermove 里也是发 `{alpha: .3, alphaTarget: .3}`）。拖动期间 alpha
+        // 稳定在 0.3，邻居被弹簧带着走；松手后 alphaTarget=0，让子图自然回落。
+        S.alphaTarget = PHYSICS.dragAlpha;
+        S.alpha = Math.max(S.alpha, PHYSICS.dragAlpha);
+        requestRender();
       } else {
         S.drag = { mode: 'pan', id: ev.pointerId, moved: 0, sx: p.x, sy: p.y, vx: S.view.x, vy: S.view.y };
         S.clickCandidate = -1;
@@ -1598,20 +1689,12 @@
           S.userTouched = true;
           render();
         } else {
+          // 钉住节点 = 指针在哪它就在哪（Obsidian 也是 fx/fy 直接等于指针世界坐标）
           var w = screenToWorld(S.view, p.x, p.y);
           var n = S.nodes[S.drag.idx];
           n.x = w.x; n.y = w.y;
-          // 记录指针速度（指数平滑）→ 松手时“甩”一下，动画更自然
-          var tNow = nowMs();
-          if (S.drag.last) {
-            var dt = Math.max(8, tNow - S.drag.last.t);
-            var ivx = (p.x - S.drag.last.x) / dt * 16;   // 屏幕像素 / 帧
-            var ivy = (p.y - S.drag.last.y) / dt * 16;
-            S.drag.pvx = (S.drag.pvx === undefined) ? ivx : S.drag.pvx * 0.55 + ivx * 0.45;
-            S.drag.pvy = (S.drag.pvy === undefined) ? ivy : S.drag.pvy * 0.55 + ivy * 0.45;
-          }
-          S.drag.last = { x: p.x, y: p.y, t: tNow };
-          heat(0.62, true);   // 拖动全程持续供能，物理不衰减（否则拖到一半就「冻住」）
+          n.vx = 0; n.vy = 0;
+          requestRender();          // 物理在跑（alphaTarget=0.3），这个请求只是保证下一帧立刻画
         }
         return;
       }
@@ -1630,19 +1713,17 @@
       var wasNode = S.drag.mode === 'node';
       var idx = S.drag.idx;
       var moved = S.drag.moved;
-      var fling = { x: S.drag.pvx || 0, y: S.drag.pvy || 0 };
       S.drag = null;
       if (wasNode && idx !== undefined) {
         var nd = S.nodes[idx];
         nd.pinned = false;
-        // 松手时的惯性：把「屏幕像素/帧」换算到世界坐标，并限速（免得一甩飞出去）
-        var kk = S.view.k || 1;
-        if (Math.abs(fling.x) > 0.5 || Math.abs(fling.y) > 0.5) {
-          nd.vx = clamp(fling.x / kk * 0.6, -14, 14);
-          nd.vy = clamp(fling.y / kk * 0.6, -14, 14);
-        }
+        // **不甩**：Obsidian 松手只是把 fx/fy 清空、alphaTarget 归零，没有额外惯性。
+        // 之前注入的「甩出速度」（最多 14px/帧）正是松手后飘/抖的来源。
+        nd.vx = 0; nd.vy = 0;
+        S.alphaTarget = 0;
+        S.alpha = Math.max(S.alpha, PHYSICS.dragAlpha * 0.8); // 让子图回落有余温
         if (moved < 5) showDetail(idx);
-        heat(0.5, true);    // 松手后让子图回弹收敛 —— 这段回弹就是「物理效果」
+        requestRender();
       }
       try { canvas.releasePointerCapture && ev.pointerId !== undefined && canvas.releasePointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
     }
@@ -1654,9 +1735,12 @@
       if (ev.deltaMode === 1) delta *= 16;
       else if (ev.deltaMode === 2) delta *= S.height;
       var factor = Math.exp(-clamp(delta, -240, 240) * 0.0016);
-      S.view = zoomAt(S.view, p.x, p.y, factor, 0.22, 3.5);
+      // 目标值基于当前**缓动目标**（连续滚轮会累乘，不会互相覆盖成一次跳变）
+      var baseK = S.zoom ? S.zoom.k : (S.view.k || 1);
+      var targetK = Math.min(3.5, Math.max(0.22, baseK * factor));
+      S.zoom = { k: targetK, ax: p.x, ay: p.y };
       S.userTouched = true;
-      render();
+      requestRender();
     }
 
     function onKeyDown(ev) {
@@ -1774,8 +1858,10 @@
       //   自动适配视图时缩放被压到标签阈值以下，整个图既散又看不到标签。
       applyFilters(false);
       S.alpha = 1;
+      S.alphaTarget = 0;
       settle(S.nodes, S.edges, S, PHYSICS.preSettleSteps, PHYSICS); // 首帧前同步收敛
       S.view = fitGraph();
+      S.zoom = null;
       S.introStart = nowMs();               // 开场淡入 + 轻微放大从这里计时
       buildControls(controls);
       renderCounts();
@@ -1831,8 +1917,9 @@
      */
     window.DSH_GRAPH_STATE = function () {
       return {
-        k: S.view.k, alpha: S.alpha, settled: S.alpha <= PHYSICS.alphaMin,
+        k: S.view.k, alpha: S.alpha, alphaTarget: S.alphaTarget, settled: S.alpha <= PHYSICS.alphaMin,
         view: { k: S.view.k, x: S.view.x, y: S.view.y },
+        zooming: !!S.zoom, zoomTargetK: S.zoom ? S.zoom.k : S.view.k,
         width: S.width, height: S.height,
         nodes: S.nodes.length,
         active: S.counts.nodes, edges: S.counts.edges,
