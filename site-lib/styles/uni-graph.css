@@ -1,0 +1,437 @@
+/* ============================================================================
+   大学数学内容 · 现代数学知识地图（courses/uni.html）
+   画布负责囊泡/连线/背景，本文件只管画布之上的玻璃 UI：
+   左上说明面板、悬停提示卡、右下缩放控件、右侧目录抽屉、移动端降级。
+   主题变量沿用全站（--bg/--fg/--border/--accent…），玻璃参数在 .uni-stage 上局部定义。
+   ========================================================================== */
+
+main.uni-main { padding: 0; }
+
+.uni-stage {
+  --glass: rgba(255, 255, 255, .52);
+  --glass-strong: rgba(255, 255, 255, .74);
+  --glass-border: rgba(255, 255, 255, .72);
+  --glass-line: rgba(24, 32, 58, .10);
+  --glass-shadow: 0 18px 50px rgba(23, 32, 64, .16);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, .85);
+  --ink: #111527;
+  --ink-soft: #545b70;
+  --chip: rgba(17, 21, 39, .06);
+  position: relative;
+  height: calc(100vh - var(--nav-h, 60px));
+  height: calc(100svh - var(--nav-h, 60px));
+  min-height: 560px;
+  overflow: hidden;
+  background: #eef1f8;
+  isolation: isolate;
+}
+html[data-theme="dark"] .uni-stage {
+  --glass: rgba(16, 20, 32, .52);
+  --glass-strong: rgba(20, 25, 40, .74);
+  --glass-border: rgba(255, 255, 255, .14);
+  --glass-line: rgba(255, 255, 255, .10);
+  --glass-shadow: 0 18px 50px rgba(0, 0, 0, .45);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, .16);
+  --ink: #eef1fa;
+  --ink-soft: #a8b0c6;
+  --chip: rgba(255, 255, 255, .07);
+  background: #06070c;
+}
+
+.uni-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+  outline: none;
+  opacity: 0;
+  transition: opacity .8s cubic-bezier(.22, .61, .36, 1);
+}
+html.uni-ready .uni-canvas { opacity: 1; }
+.uni-canvas.is-dragging { cursor: grabbing; }
+.uni-canvas.is-hover { cursor: pointer; }
+
+/* ---------------- 左上说明面板 ---------------- */
+.uni-panel {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  z-index: 6;
+  width: 336px;
+  max-width: calc(100% - 44px);
+  padding: 20px 22px 18px;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(24px) saturate(1.7);
+  backdrop-filter: blur(24px) saturate(1.7);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  color: var(--ink);
+  animation: uni-panel-in .7s cubic-bezier(.22, .61, .36, 1) both;
+}
+@keyframes uni-panel-in {
+  from { opacity: 0; transform: translateY(10px) scale(.985); }
+  to { opacity: 1; transform: none; }
+}
+.uni-eyebrow {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  color: var(--accent);
+  opacity: .85;
+}
+.uni-title {
+  margin: 8px 0 6px;
+  font-size: 27px;
+  line-height: 1.15;
+  letter-spacing: -.035em;
+  font-weight: 800;
+  color: var(--ink);
+}
+.uni-sub {
+  margin: 0 0 14px;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.uni-legend {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0 2px;
+  border-top: 1px solid var(--glass-line);
+}
+.uni-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 8px 6px 7px;
+  margin: 0 -8px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .18s ease;
+}
+.uni-legend-row:hover, .uni-legend-row.is-hot { background: var(--chip); }
+.uni-legend-row.is-hot .uni-legend-name { color: var(--accent); }
+.uni-dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c, var(--accent));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c, var(--accent)) 15%, transparent);
+}
+.uni-legend-name { font-weight: 650; letter-spacing: .01em; }
+.uni-legend-en {
+  margin-left: 2px;
+  font-size: 10px;
+  letter-spacing: .04em;
+  color: var(--ink-soft);
+  opacity: .85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.uni-legend-n {
+  margin-left: auto;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+  opacity: .8;
+}
+.uni-hint {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 13px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--glass-line);
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.uni-hint span { position: relative; }
+.uni-hint span + span::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .5;
+}
+.uni-actions { display: flex; gap: 8px; margin-top: 14px; }
+.uni-mobile-hint { display: none; }
+.uni-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-line);
+  background: var(--glass-strong);
+  color: var(--ink);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .18s cubic-bezier(.22, .61, .36, 1), background .18s, border-color .18s;
+}
+.uni-btn:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--accent) 45%, var(--glass-line)); }
+.uni-btn:active { transform: translateY(0) scale(.97); }
+.uni-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.uni-btn-ico { font-size: 13px; line-height: 1; opacity: .8; }
+.uni-btn[aria-pressed="false"] { color: var(--ink-soft); }
+.uni-btn[aria-pressed="false"] .uni-btn-ico { opacity: .4; }
+.uni-stat {
+  margin: 12px 0 0;
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: .02em;
+}
+.uni-stat b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---------------- 悬停提示卡 ---------------- */
+.uni-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  width: 196px;
+  padding: 11px 13px 10px;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-strong);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  color: var(--ink);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .16s ease;
+  will-change: transform;
+}
+.uni-tip.is-on { opacity: 1; }
+.uni-tip-path {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: .05em;
+  color: var(--ink-soft);
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.uni-tip-name { display: block; font-size: 15px; letter-spacing: -.01em; line-height: 1.35; }
+.uni-tip-en { display: block; font-size: 10.5px; color: var(--ink-soft); margin-top: 1px; }
+.uni-tip-go {
+  display: block;
+  margin-top: 7px;
+  padding-top: 7px;
+  border-top: 1px solid var(--glass-line);
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--accent);
+}
+
+/* ---------------- 右下缩放 ---------------- */
+.uni-zoom {
+  position: absolute;
+  right: 22px;
+  bottom: 24px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  gap: 2px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+}
+.uni-zoom-btn {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .16s, transform .16s;
+}
+.uni-zoom-btn:hover { background: var(--chip); }
+.uni-zoom-btn:active { transform: scale(.92); }
+.uni-zoom-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* ---------------- 目录抽屉 ---------------- */
+.uni-drawer {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  z-index: 7;
+  width: 318px;
+  max-width: calc(100% - 44px);
+  max-height: calc(100% - 150px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-strong);
+  -webkit-backdrop-filter: blur(26px) saturate(1.7);
+  backdrop-filter: blur(26px) saturate(1.7);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  color: var(--ink);
+  animation: uni-drawer-in .28s cubic-bezier(.22, .61, .36, 1) both;
+}
+@keyframes uni-drawer-in {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: none; }
+}
+.uni-drawer[hidden] { display: none; }
+.uni-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 12px 11px 17px;
+  border-bottom: 1px solid var(--glass-line);
+}
+.uni-drawer-title { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .7; }
+.uni-drawer-close {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: .6;
+}
+.uni-drawer-close:hover { opacity: 1; background: var(--chip); }
+.uni-drawer-body { overflow: auto; padding: 8px 8px 14px; overscroll-behavior: contain; }
+.uni-tree { font-size: 13px; }
+.uni-tree-group { padding: 5px 0 8px; }
+.uni-tree-group + .uni-tree-group { border-top: 1px solid var(--glass-line); }
+.uni-tree-cat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 9px;
+  border-radius: 10px;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+.uni-tree-cat:hover { background: var(--chip); text-decoration: none; }
+.uni-tree-t { letter-spacing: .01em; }
+.uni-tree-en { margin-left: auto; font-size: 10px; font-weight: 500; color: var(--ink-soft); opacity: .8; }
+.uni-tree-kids { padding: 2px 0 0 17px; }
+.uni-tree-branch { position: relative; padding: 1px 0 3px; }
+.uni-tree-branch::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 12px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--glass-line);
+}
+.uni-tree-b {
+  display: block;
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.uni-tree-b:hover { background: var(--chip); color: var(--ink); }
+.uni-tree-topics { padding-left: 4px; }
+.uni-tree-tp {
+  display: block;
+  padding: 3px 8px;
+  border-radius: 7px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  text-decoration: none;
+  opacity: .92;
+}
+.uni-tree-tp:hover { background: var(--chip); color: var(--ink); }
+.uni-tree a:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ---------------- 放大后的提示 ---------------- */
+.uni-veil-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  z-index: 5;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  backdrop-filter: blur(16px) saturate(1.5);
+  box-shadow: var(--glass-inset);
+  color: var(--ink-soft);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.uni-veil-hint[hidden] { display: none; }
+
+/* ---------------- 无脚本兜底 ---------------- */
+.uni-noscript { max-width: 720px; margin: 40px auto; padding: 0 24px; }
+.uni-noscript h2 { margin: 0 0 10px; }
+
+/* ---------------- 窄屏 ---------------- */
+@media (max-width: 900px) {
+  .uni-panel {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+    padding: 12px 14px 12px;
+    border-radius: 18px;
+  }
+  .uni-eyebrow { display: none; }
+  .uni-title { margin: 0 0 2px; font-size: 18px; }
+  .uni-sub { margin: 0 0 10px; font-size: 11.5px; line-height: 1.5; }
+  .uni-legend, .uni-hint { display: none; }
+  .uni-mobile-hint {
+    display: block;
+    margin: 7px 0 0;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: .02em;
+  }
+  .uni-actions { margin-top: 0; gap: 6px; }
+  .uni-btn { padding: 7px 12px; font-size: 12px; }
+  .uni-stat { display: none; }
+  .uni-zoom { right: 12px; bottom: 16px; }
+  .uni-drawer { top: 12px; right: 12px; left: 12px; width: auto; max-width: none; max-height: calc(100% - 24px); }
+  .uni-veil-hint { bottom: 66px; font-size: 10.5px; }
+}
+@media (max-width: 560px) {
+  .uni-sub { display: none; }
+  .uni-title { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .uni-panel, .uni-drawer { animation: none; }
+  .uni-btn, .uni-zoom-btn, .uni-tip { transition: none; }
+}

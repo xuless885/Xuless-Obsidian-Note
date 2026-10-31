@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中心极限定理 · 大学数学内容 · 许少 Xuless</title>
+<meta name="description" content="大量独立小扰动叠加后，为什么近似正态。">
+<meta property="og:title" content="中心极限定理 · 大学数学内容 · 许少 Xuless">
+<meta property="og:description" content="大量独立小扰动叠加后，为什么近似正态。">
+<link rel="icon" href="../../site-lib/media/favicon.png">
+<script>window.DSH_ROOT = "../../";</script>
+<style>:root{--bg:#f7f7f5;--bg-elev:#fff;--bg-sunken:#efeee9;--fg:#17181c;--fg-muted:#5b5f6b;--fg-subtle:#8b8f9a;
+--accent:#3b5bdb;--accent-2:#0ca678;--accent-soft:#e7ecff;--grad-hero:linear-gradient(135deg,#3b5bdb 0%,#7048e8 45%,#0ca678 100%);
+--border:#e3e2dd;--border-strong:#cfcec7;--radius-s:8px;--radius-m:14px;--radius-l:22px;--radius-pill:999px;
+--shadow-s:0 1px 2px rgba(16,18,27,.06);--shadow-m:0 6px 22px rgba(16,18,27,.09);--shadow-l:0 18px 48px rgba(16,18,27,.14);
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:48px;--space-8:72px;
+--maxw:1120px;--nav-h:60px;--ease:cubic-bezier(.22,.61,.36,1);--dur-fast:.14s;--dur:.26s;--dur-slow:.5s;
+--font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;--font-mono:"Cascadia Code","Chiron Hei HK",ui-monospace,monospace}
+html[data-theme="dark"]{--bg:#111216;--bg-elev:#191b21;--bg-sunken:#0d0e12;--fg:#ecedf1;--fg-muted:#a2a7b4;--fg-subtle:#767c8a;
+--accent:#7f95ff;--accent-2:#38d9a9;--accent-soft:#1e2436;--grad-hero:linear-gradient(135deg,#2b3a8f 0%,#5b34b8 45%,#0b7a58 100%);
+--border:#2a2d36;--border-strong:#3a3e4a;--shadow-s:0 1px 2px rgba(0,0,0,.4);--shadow-m:0 6px 22px rgba(0,0,0,.45);--shadow-l:0 18px 48px rgba(0,0,0,.55)}
+
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);line-height:1.7;-webkit-font-smoothing:antialiased;
+font-family:var(--font-sans);transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--space-5)}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;z-index:99;background:var(--bg-elev);padding:12px 16px;border-radius:8px}
+.site-nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(12px);
+background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid var(--border)}
+.site-nav-inner{display:flex;align-items:center;gap:var(--space-5);height:var(--nav-h);max-width:var(--maxw);margin:0 auto;padding:0 var(--space-5)}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--fg)}.brand:hover{text-decoration:none}
+.brand-mark{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--grad-hero);color:#fff;font-weight:800;font-size:15px}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-link{padding:7px 12px;border-radius:var(--radius-pill);color:var(--fg-muted);font-size:.94rem;transition:background var(--dur-fast),color var(--dur-fast)}
+.nav-link:hover{background:var(--bg-sunken);color:var(--fg);text-decoration:none}
+.nav-link.is-active{color:var(--accent);background:var(--accent-soft)}
+.theme-toggle{width:36px;height:36px;border-radius:var(--radius-pill);border:1px solid var(--border);background:var(--bg-elev);
+color:var(--fg-muted);cursor:pointer;display:grid;place-items:center;font-size:15px;transition:all var(--dur-fast)}
+.theme-toggle:hover{color:var(--accent);border-color:var(--border-strong)}
+.nav-toggle{display:none}
+@media (max-width:760px){.nav-links{position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;background:var(--bg-elev);
+border-bottom:1px solid var(--border);padding:var(--space-3);display:none;box-shadow:var(--shadow-m)}
+.site-nav.is-open .nav-links{display:flex}.nav-toggle{display:grid;margin-left:auto}}
+.page-head{position:relative;overflow:hidden;padding:var(--space-7) 0 var(--space-6);background:var(--grad-hero);color:#fff}
+.page-head::after{content:"";position:absolute;inset:0;pointer-events:none;
+background:radial-gradient(1100px 380px at 10% -20%,rgba(255,255,255,.26),transparent 60%)}
+.page-head .wrap{position:relative;z-index:1}
+.crumbs{font-size:.85rem;color:rgba(255,255,255,.82);margin-bottom:var(--space-4)}
+.crumbs a{color:rgba(255,255,255,.92)}.crumbs span{opacity:.7;margin:0 7px}
+.page-title{margin:0 0 var(--space-3);font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:-.03em;font-weight:800}
+.page-sub{margin:0;max-width:46em;color:rgba(255,255,255,.9)}
+main{display:block;padding:var(--space-7) 0}
+.grid{display:grid;gap:var(--space-5)}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card{position:relative;display:flex;flex-direction:column;padding:var(--space-5);border-radius:var(--radius-l);
+border:1px solid var(--border);background:var(--bg-elev);box-shadow:var(--shadow-s);overflow:hidden;
+transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur)}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-m);border-color:var(--border-strong);text-decoration:none}
+.card-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:22px;margin-bottom:var(--space-4);
+background:var(--grad-hero);color:#fff}
+.card-title{margin:0 0 var(--space-2);font-size:1.16rem;color:var(--fg);letter-spacing:-.01em}
+.card-desc{margin:0 0 var(--space-4);color:var(--fg-muted);font-size:.94rem;flex:1}
+.card-go{display:inline-flex;align-items:center;gap:7px;font-weight:650;color:var(--accent);font-size:.93rem}
+.card-go::after{content:"\2192";transition:transform var(--dur) var(--ease)}
+.card:hover .card-go::after{transform:translateX(4px)}
+.h-list{display:grid;gap:var(--space-3)}
+.h-item{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-5);border:1px solid var(--border);
+border-radius:var(--radius-m);background:var(--bg-elev);transition:transform var(--dur-fast) var(--ease),border-color var(--dur-fast),box-shadow var(--dur-fast)}
+.h-item:hover{transform:translateX(4px);border-color:var(--border-strong);box-shadow:var(--shadow-s);text-decoration:none}
+.h-idx{flex:0 0 46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--bg-sunken);
+border:1px solid var(--border);color:var(--fg-muted);font-weight:700;font-size:.88rem}
+.h-body{flex:1;min-width:0}
+.h-title{color:var(--fg);font-weight:600;letter-spacing:-.01em;overflow-wrap:anywhere}
+.h-meta{color:var(--fg-subtle);font-size:.83rem;margin-top:2px}
+.h-tag{flex:0 0 auto;padding:3px 10px;border-radius:var(--radius-pill);background:var(--accent-soft);color:var(--accent);font-size:.78rem}
+.empty{padding:var(--space-8) var(--space-5);text-align:center;border:1px dashed var(--border-strong);border-radius:var(--radius-l);background:var(--bg-elev)}
+.empty-ico{font-size:42px;margin-bottom:var(--space-4)}.empty-title{font-size:1.2rem;font-weight:700;margin:0 0 var(--space-3)}
+.empty-text{color:var(--fg-muted);max-width:36em;margin:0 auto}
+.note{padding:var(--space-4) var(--space-5);border-left:3px solid var(--accent);border-radius:0 var(--radius-m) var(--radius-m) 0;
+background:var(--accent-soft);color:var(--fg-muted);font-size:.93rem;margin:var(--space-5) 0}
+.note strong{color:var(--fg)}
+.section-title{margin:var(--space-7) 0 var(--space-4);font-size:1.25rem;letter-spacing:-.02em}
+.section-title:first-child{margin-top:0}
+.pager{display:flex;justify-content:space-between;gap:var(--space-4);margin-top:var(--space-6);flex-wrap:wrap}
+.pager a{padding:10px 16px;border:1px solid var(--border);border-radius:var(--radius-pill);background:var(--bg-elev);color:var(--fg-muted)}
+.pager a:hover{color:var(--accent);border-color:var(--border-strong);text-decoration:none}
+.footer-site{border-top:1px solid var(--border);margin-top:var(--space-8);padding:var(--space-6) 0 var(--space-7);color:var(--fg-muted);font-size:.9rem}
+.footer-grid{display:flex;justify-content:space-between;gap:var(--space-5);flex-wrap:wrap}
+.footer-links{display:flex;gap:var(--space-4);flex-wrap:wrap}.footer-links a{color:var(--fg-muted)}.footer-links a:hover{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(18px)}
+.reveal.is-visible{opacity:1;transform:none;transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+/* ---- 高中数学课程页专用：章节一览网格 + 阅读路径 ---- */
+.chap-grid{display:grid;gap:11px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));margin-top:var(--space-4)}
+.chap{display:flex;align-items:center;gap:10px;padding:13px 14px;border:1px solid var(--border);border-radius:var(--radius-s);
+background:var(--bg-elev);color:var(--fg);transition:border-color var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast)}
+.chap:hover{transform:translateY(-2px);border-color:var(--border-strong);box-shadow:var(--shadow-s);text-decoration:none}
+.chap-num{flex:0 0 34px;height:24px;border-radius:6px;display:grid;place-items:center;background:var(--bg-sunken);
+border:1px solid var(--border);color:var(--fg-subtle);font-size:.74rem;font-weight:700;font-variant-numeric:tabular-nums}
+.chap-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.92rem}
+.chap.is-todo{border-style:dashed;background:transparent}
+.chap.is-todo .chap-num{background:transparent;border-style:dashed}
+.chap.is-todo .chap-name{color:var(--fg-subtle)}
+.steps{display:grid;gap:var(--space-3);counter-reset:step;margin-top:var(--space-4)}
+.step{display:flex;gap:var(--space-4);padding:var(--space-4) var(--space-5);border:1px solid var(--border);border-radius:var(--radius-m);background:var(--bg-elev)}
+.step-n{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);
+font-weight:700;font-size:.82rem}
+.step-n::before{counter-increment:step;content:counter(step)}
+.step-body{min-width:0}.step-title{font-weight:650;color:var(--fg);margin-bottom:2px}
+.step-desc{color:var(--fg-muted);font-size:.92rem}
+.faq{display:grid;gap:var(--space-3);margin-top:var(--space-4)}
+.faq-item{padding:var(--space-4) var(--space-5);border:1px solid var(--border);border-radius:var(--radius-m);background:var(--bg-elev)}
+.faq-q{font-weight:650;color:var(--fg);margin-bottom:4px}.faq-a{color:var(--fg-muted);font-size:.93rem}
+@media (prefers-reduced-motion:reduce){.reveal,.reveal.is-visible{opacity:1;transform:none;transition:none}.card:hover,.h-item:hover,.chap:hover{transform:none}}
+</style>
+<link rel="stylesheet" href="../../site-lib/styles/blog-theme.css?v=c4cfd54d">
+<link rel="stylesheet" href="../../site-lib/styles/pages.css?v=f6a3ec74">
+<link rel="stylesheet" href="../../site-lib/styles/uni-note.css?v=ad08ed68">
+</head>
+<body class="un-page">
+<a class="skip" href="#main">跳到主要内容</a>
+<nav class="site-nav" id="site-nav" aria-label="站点导航">
+ <div class="site-nav-inner">
+  <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">X</span><span>许少 Xuless</span></a>
+  <button class="theme-toggle nav-toggle" type="button" aria-label="展开导航" aria-expanded="false" data-nav-toggle>&#9776;</button>
+  <div class="nav-links">
+   <a class="nav-link" href="../../index.html">首页</a>
+   <a class="nav-link" href="../../courses/hs.html">高中数学课程</a>
+   <a class="nav-link is-active" href="../../courses/uni.html">大学数学内容</a>
+   <a class="nav-link" href="../../blog/graph.html">知识图谱</a>
+   <a class="nav-link" href="../../search.html">搜索</a>
+   <a class="nav-link" href="../../about.html">关于</a>
+   <button class="theme-toggle" type="button" aria-label="切换深浅主题" data-theme-toggle>&#9680;</button>
+  </div>
+ </div>
+</nav>
+<main id="main" class="un-main">
+<div class="un-shell" style="--cat:#29B6D4">
+<nav class="un-tree" aria-label="课程树">
+ <div class="un-tree-top">
+  <span class="un-tree-title">课程树</span>
+  <span class="un-tree-sub">6 大类 · 15 分支 · 32 课题</span>
+  <a class="un-glass" href="../uni.html"><span aria-hidden="true">&#8592;</span> 返回知识地图</a>
+ </div>
+ <input type="checkbox" class="un-tree-check" id="un-tree-toggle">
+ <label class="un-tree-ctl" for="un-tree-toggle">
+  <span class="un-tree-ctl-label">课程树 · 中心极限定理</span>
+  <span class="un-tree-ctl-caret" aria-hidden="true">&#9662;</span>
+ </label>
+ <div class="un-tree-body">
+  <div class="un-cat" style="--cat:#5B8DEF">
+   <a class="un-cat-head" href="analysis.html" title="分析 · 5 个分支">
+    <span class="un-dot" style="--cat:#5B8DEF" aria-hidden="true"></span><span class="un-cat-name">分析</span>
+    <span class="un-cat-n">5 分支</span>
+   </a>
+  </div>
+  <div class="un-cat" style="--cat:#9B7BF0">
+   <a class="un-cat-head" href="algebra.html" title="代数 · 2 个分支">
+    <span class="un-dot" style="--cat:#9B7BF0" aria-hidden="true"></span><span class="un-cat-name">代数</span>
+    <span class="un-cat-n">2 分支</span>
+   </a>
+  </div>
+  <div class="un-cat" style="--cat:#21B78B">
+   <a class="un-cat-head" href="geometry.html" title="几何 · 2 个分支">
+    <span class="un-dot" style="--cat:#21B78B" aria-hidden="true"></span><span class="un-cat-name">几何</span>
+    <span class="un-cat-n">2 分支</span>
+   </a>
+  </div>
+  <div class="un-cat" style="--cat:#EE6FA6">
+   <a class="un-cat-head" href="topology.html" title="拓扑 · 2 个分支">
+    <span class="un-dot" style="--cat:#EE6FA6" aria-hidden="true"></span><span class="un-cat-name">拓扑</span>
+    <span class="un-cat-n">2 分支</span>
+   </a>
+  </div>
+  <div class="un-cat" style="--cat:#E0A02E">
+   <a class="un-cat-head" href="computational-mathematics.html" title="计算数学 · 2 个分支">
+    <span class="un-dot" style="--cat:#E0A02E" aria-hidden="true"></span><span class="un-cat-name">计算数学</span>
+    <span class="un-cat-n">2 分支</span>
+   </a>
+  </div>
+  <div class="un-cat" style="--cat:#29B6D4">
+   <a class="un-cat-head is-open" href="probability-statistics.html" title="概率统计 · 2 个分支">
+    <span class="un-dot" style="--cat:#29B6D4" aria-hidden="true"></span><span class="un-cat-name">概率统计</span>
+    <span class="un-cat-n">2 分支</span>
+   </a>
+   <div class="un-cat-body">
+    <a class="un-branch-link" href="probability-theory.html">概率论</a>
+    <ul class="un-topic-list">
+     <li><a class="un-topic-link" href="random-variables.html">随机变量</a></li>
+     <li><a class="un-topic-link" href="law-of-large-numbers.html">大数定律</a></li>
+     <li><a class="un-topic-link is-current" href="central-limit-theorem.html" aria-current="page">中心极限定理</a></li>
+    </ul>
+    <a class="un-branch-link" href="mathematical-statistics.html">数理统计</a>
+    <ul class="un-topic-list">
+     <li><a class="un-topic-link" href="estimation-theory.html">估计理论</a></li>
+     <li><a class="un-topic-link" href="hypothesis-testing.html">假设检验</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</nav>
+<div class="un-doc">
+<nav class="un-crumbs" aria-label="面包屑"><a href="../../index.html">首页</a><span class="un-crumb-sep" aria-hidden="true">/</span><a href="../uni.html">大学数学内容</a><span class="un-crumb-sep" aria-hidden="true">/</span><a href="probability-statistics.html">概率统计</a><span class="un-crumb-sep" aria-hidden="true">/</span><a href="probability-theory.html">概率论</a><span class="un-crumb-sep" aria-hidden="true">/</span><span class="is-here">中心极限定理</span></nav>
+<header class="un-head">
+ <div class="un-eyebrow"><span class="un-dot" style="--cat:#29B6D4" aria-hidden="true"></span><span>概率统计 &#8250; 概率论 · 第三层</span></div>
+ <h1 class="un-title">中心极限定理</h1>
+ <p class="un-title-en" lang="en">Central Limit Theorem</p>
+ <p class="un-lead">大量独立小扰动叠加后，为什么近似正态。</p>
+ <div class="un-chips"><span class="un-chip is-branch" title="所属分支"><span class="un-dot" style="--cat:#29B6D4" aria-hidden="true"></span>概率论</span><span class="un-chip" title="节点类型">课题</span><span class="un-chip is-status"><span class="un-dot" style="--cat:#29B6D4" aria-hidden="true"></span>笔记整理中</span></div>
+</header>
+<article class="un-body">
+<section class="un-sec" id="overview">
+ <div class="un-sec-h"><span class="un-sec-n" aria-hidden="true">01</span><h2>主题概览</h2><span class="un-sec-meta">结构说明 · 不含数学正文</span></div>
+ <p>「中心极限定理」是「概率论」分支下的课题，位于「概率统计」大类，处在知识地图的最细一层。向上它归属于分支「概率论」，与同分支的「随机变量」、「大数定律」并列；课题的笔记规划了 3 个小节。</p>
+ <p>这一页目前是结构骨架：本课题的笔记正文尚未整理，因此没有定义、定理、公式与例题；页面先固定住它在知识树里的位置、规划大纲与相邻节点，等开始整理时再按大纲逐节展开。</p>
+<div class="un-panel">
+ <p class="un-panel-k">在知识树中的位置</p>
+ <div class="un-path"><a class="un-path-item" href="../uni.html"><span class="un-path-tag">根</span><span class="un-path-name">现代数学</span></a><span class="un-path-arrow" aria-hidden="true">&#8594;</span><a class="un-path-item" href="probability-statistics.html"><span class="un-path-tag">大类</span><span class="un-path-name">概率统计</span></a><span class="un-path-arrow" aria-hidden="true">&#8594;</span><a class="un-path-item" href="probability-theory.html"><span class="un-path-tag">分支</span><span class="un-path-name">概率论</span></a><span class="un-path-arrow" aria-hidden="true">&#8594;</span><span class="un-path-item is-here"><span class="un-path-tag">课题</span><span class="un-path-name">中心极限定理</span></span></div>
+</div>
+</section>
+<section class="un-sec" id="outline">
+ <div class="un-sec-h"><span class="un-sec-n" aria-hidden="true">02</span><h2>笔记大纲</h2><span class="un-sec-meta">3 个小节</span></div>
+ <p>本课题的笔记规划为 3 个小节。以下标题来自知识地图的规划稿，正文尚未整理，因此每条只作为骨架占位。</p>
+<ol class="un-outline">
+<li><div class="un-row is-static"><span class="un-row-n" aria-hidden="true">01</span><span class="un-row-main"><span class="un-row-name">特征函数</span></span><span class="un-row-tag">整理中</span></div></li>
+<li><div class="un-row is-static"><span class="un-row-n" aria-hidden="true">02</span><span class="un-row-main"><span class="un-row-name">Lindeberg–Lévy 定理</span></span><span class="un-row-tag">整理中</span></div></li>
+<li><div class="un-row is-static"><span class="un-row-n" aria-hidden="true">03</span><span class="un-row-main"><span class="un-row-name">正态逼近与连续性修正</span></span><span class="un-row-tag">整理中</span></div></li>
+</ol>
+</section>
+<section class="un-sec" id="related">
+ <div class="un-sec-h"><span class="un-sec-n" aria-hidden="true">03</span><h2>相关分支</h2><span class="un-sec-meta">1 个链接</span></div>
+<p>知识地图没有为「中心极限定理」标注交叉链接；以下列出同一大类中的其他分支。</p>
+<div class="un-rel-groups">
+<div class="un-rel-group">
+ <h3 class="un-h3">同属「概率统计」的其他分支</h3>
+ <ul class="un-rel-list"><li><a class="un-rel" href="mathematical-statistics.html" style="--relcat:#29B6D4"><span class="un-dot" aria-hidden="true"></span><span class="un-rel-name">数理统计</span><span class="un-rel-en" lang="en">Mathematical Statistics</span></a></li></ul>
+</div>
+</div>
+</section>
+<section class="un-sec" id="explore">
+ <div class="un-sec-h"><span class="un-sec-n" aria-hidden="true">04</span><h2>继续探索</h2><span class="un-sec-meta">同级顺序</span></div>
+<p>课题之间的顺序与知识地图一致；也可以回到知识地图切换到其他分支。</p>
+<div class="un-explore"><a class="un-x is-map" href="../uni.html"><span class="un-x-k">返回</span><span class="un-x-t">知识地图</span><span class="un-x-d">回到液态玻璃地图，从大类重新选择入口</span></a><a class="un-x" href="law-of-large-numbers.html"><span class="un-x-k">&#8592; 上一个课题</span><span class="un-x-t">大数定律</span><span class="un-x-d" lang="en">Law of Large Numbers</span></a></div>
+</section>
+</article>
+</div>
+<nav class="un-toc" aria-label="本页目录" data-un-toc>
+ <p class="un-toc-title">本页目录</p>
+ <ol class="un-toc-list">
+<li><a class="un-toc-link" href="#overview"><span class="un-toc-n" aria-hidden="true">01</span>主题概览</a></li>
+<li><a class="un-toc-link" href="#outline"><span class="un-toc-n" aria-hidden="true">02</span>笔记大纲</a></li>
+<li><a class="un-toc-link" href="#related"><span class="un-toc-n" aria-hidden="true">03</span>相关分支</a></li>
+<li><a class="un-toc-link" href="#explore"><span class="un-toc-n" aria-hidden="true">04</span>继续探索</a></li>
+ </ol>
+</nav>
+</div>
+</main>
+<footer class="footer-site">
+ <div class="wrap footer-grid">
+  <div>
+   <strong style="color:var(--fg)">许少 Xuless</strong>
+   <div style="margin-top:6px">纯静态站点 · 内容源自 Obsidian 与 LaTeX 文档库</div>
+   <div style="margin-top:6px;font-size:.84rem;color:var(--fg-subtle)">&copy; <span id="year">2026</span> 许少 Xuless</div>
+  </div>
+  <div class="footer-links">
+   <a href="https://github.com/xuless885" target="_blank" rel="noopener">GitHub</a>
+   <a href="../../about.html">关于本站</a>
+   <a href="../../blog/graph.html">知识图谱</a>
+  </div>
+ </div>
+</footer>
+
+<script defer src="../../site-lib/scripts/site.js?v=358b4874"></script>
+<script>
+(function(){"use strict";
+ var ROOT=window.DSH_ROOT||".";
+ var root=document.documentElement;
+ function applyTheme(t){root.setAttribute("data-theme",t);try{localStorage.setItem("dsh-theme",t);}catch(e){}}
+ try{var s=localStorage.getItem("dsh-theme");
+  if(s)root.setAttribute("data-theme",s);
+  else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)root.setAttribute("data-theme","dark");}catch(e){}
+ document.addEventListener("click",function(e){
+  var tb=e.target.closest&&e.target.closest("[data-theme-toggle]");
+  if(tb){e.preventDefault();applyTheme(root.getAttribute("data-theme")==="dark"?"light":"dark");return;}
+  var nb=e.target.closest&&e.target.closest("[data-nav-toggle]");
+  if(nb){e.preventDefault();var p=nb.closest(".site-nav");p.classList.toggle("is-open");nb.setAttribute("aria-expanded",String(p.classList.contains("is-open")));}
+ });
+ var y=document.getElementById("year"); if(y) y.textContent=String(new Date().getFullYear());
+ var rv=document.querySelectorAll(".reveal");
+ if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("is-visible");io.unobserve(en.target);}});},{threshold:.05});rv.forEach(function(n){io.observe(n);});}
+ else{rv.forEach(function(n){n.classList.add("is-visible");});}
+})();
+</script>
+
+<script>
+(function () {
+ "use strict";
+ var nav = document.querySelector("[data-un-toc]");
+ if (!nav) return;
+ var links = [].slice.call(nav.querySelectorAll("a[href^='#']"));
+ var secs = [];
+ links.forEach(function (a) {
+  var el = document.getElementById(a.getAttribute("href").slice(1));
+  if (el) secs.push(el);
+ });
+ if (!secs.length) return;
+ function activate(id) {
+  links.forEach(function (a) {
+   a.classList.toggle("is-active", a.getAttribute("href") === "#" + id);
+  });
+ }
+ if ("IntersectionObserver" in window) {
+  var visible = [];
+  var io = new IntersectionObserver(function (entries) {
+   entries.forEach(function (en) {
+    var k = visible.indexOf(en.target);
+    if (en.isIntersecting && k < 0) visible.push(en.target);
+    else if (!en.isIntersecting && k >= 0) visible.splice(k, 1);
+   });
+   for (var i = secs.length - 1; i >= 0; i--) {
+    if (visible.indexOf(secs[i]) >= 0) { activate(secs[i].id); break; }
+   }
+  }, { rootMargin: "-16% 0px -68% 0px", threshold: 0 });
+  secs.forEach(function (s) { io.observe(s); });
+ }
+ links.forEach(function (a) {
+  a.addEventListener("click", function () { activate(a.getAttribute("href").slice(1)); });
+ });
+ activate(secs[0].id);
+ /* 桌面端：长课程树里把当前节点滚进视野（移动端树默认折叠，不处理） */
+ try {
+  var tree = document.querySelector(".un-tree");
+  if (tree && window.innerWidth > 900) {
+   var cur = tree.querySelector("[aria-current=page]");
+   if (cur && tree.scrollHeight > tree.clientHeight + 2) {
+    var tb = tree.getBoundingClientRect();
+    var cb = cur.getBoundingClientRect();
+    if (cb.top < tb.top + 8 || cb.bottom > tb.bottom - 8) {
+     tree.scrollTop += cb.top - tb.top - Math.max(48, tree.clientHeight / 2);
+    }
+   }
+  }
+ } catch (e) {}
+})();
+</script>
+</body>
+</html>
