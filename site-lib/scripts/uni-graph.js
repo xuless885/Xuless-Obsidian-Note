@@ -128,9 +128,9 @@
   /* 每个节点的尺寸与字号（世界坐标；屏幕尺寸 = ×k） */
   var FONT = {
     0: { name: 28, sub: 9.5, weight: 800 },
-    1: { name: 18.5, sub: 8.5, weight: 750 },
-    2: { name: 13.2, sub: 0, weight: 650 },
-    3: { name: 11.4, sub: 0, weight: 600 }
+    1: { name: 15, sub: 0, weight: 650 },
+    2: { name: 17.5, sub: 8.5, weight: 750 },
+    3: { name: 12.5, sub: 0, weight: 600 }
   };
   function measure() {
     NODES.forEach(function (n) {
@@ -146,12 +146,11 @@
         nameW = Math.max(nameW, w);
       });
       if (n.lvl === 0) {
-        n.rx = n.ry = 67;
+        n.rx = n.ry = 64;
       } else if (n.lvl === 1) {
-        n.rx = n.ry = 48;
+        n.rx = n.ry = 36;
       } else if (n.lvl === 2) {
-        n.rx = Math.max(31, nameW / 2 + 12);
-        n.ry = Math.max(24, n.rx * 0.82);
+        n.rx = n.ry = 46;
       } else {
         var lineH = f.name * 1.22;
         n.rx = Math.max(25, nameW / 2 + 10);
@@ -163,60 +162,46 @@
 
   /* ------------------------------------------------------------------ 布局 */
   function layout() {
+    // 两层环：内环 = 基础衔接，外环 = 六大板块；课程按先后顺序排在外环之外的同一圈上。
     var S0 = Math.max(Math.min(S.w, S.h) / 2, 300);
-    var R1 = S0 * 0.40, R2 = S0 * 0.625, R3 = S0 * 0.80, R3b = S0 * 0.895;
-    var weights = CATS.map(function (c) {
-      var nT = 0;
-      c.children.forEach(function (b) { nT += b.children.length; });
-      return nT + c.children.length * 1.15;
+    var R1 = S0 * 0.34, R2 = S0 * 0.56, R3 = S0 * 0.77;
+    S.ringR1 = R1; S.ringR2 = R2;
+    var boards = NODES.filter(function (n) { return n.lvl === 2; });
+    var step = Math.PI * 2 / Math.max(1, boards.length);
+    boards.forEach(function (b, i) {
+      var ang = -Math.PI / 2 + i * step;
+      b.ringAngle = ang;
+      b.x = Math.cos(ang) * R2;
+      b.y = Math.sin(ang) * R2;
     });
-    var totalW = weights.reduce(function (a, b) { return a + b; }, 0);
-    var GAP = 0.045;
-    var usable = Math.PI * 2 - GAP * CATS.length;
-    var ang = -Math.PI / 2;
-    CATS.forEach(function (cat, ci) {
-      var span = usable * weights[ci] / totalW;
-      var a0 = ang;
-      var a1 = ang + span;
-      ang = a1 + GAP;
-      cat.a0 = a0; cat.a1 = a1;
-      var mid = (a0 + a1) / 2;
-      cat.x = Math.cos(mid) * R1;
-      cat.y = Math.sin(mid) * R1;
-
-      var brs = cat.children;
-      var bw = brs.map(function (b) { return Math.max(1, b.children.length); });
-      var bwT = bw.reduce(function (a, b) { return a + b; }, 0);
-      var BPAD = 0.016;
-      var bSpan = (a1 - a0) - BPAD * Math.max(0, brs.length - 1);
-      var ba = a0;
-      brs.forEach(function (br, bi) {
-        var bwk = bSpan * bw[bi] / bwT;
-        var bMid = ba + bwk / 2;
-        var rJit = (hash01(br.id) - 0.5) * R2 * 0.05;
-        br.x = Math.cos(bMid) * (R2 + rJit);
-        br.y = Math.sin(bMid) * (R2 + rJit);
-        ba += bwk + BPAD;
-
-        var tps = br.children;
-        var USE = Math.min(bwk * 0.78, 0.62);
-        var startA = bMid - USE / 2;
-        tps.forEach(function (tp, ti) {
-          var frac = tps.length === 1 ? 0.5 : ti / (tps.length - 1);
-          var ta = startA + USE * frac;
-          var ring = ti % 2;
-          var r = (ring ? R3b : R3) + (hash01(tp.id) - 0.5) * S0 * 0.035;
-          tp.x = Math.cos(ta) * r;
-          tp.y = Math.sin(ta) * r;
-        });
+    var bridges = NODES.filter(function (n) { return n.lvl === 1; });
+    bridges.forEach(function (br) {
+      var kids = boards.filter(function (b) { return b.parent === br.id; });
+      var ang = kids.length ? kids[0].ringAngle : (br.index / Math.max(1, bridges.length)) * Math.PI * 2;
+      br.ringAngle = ang;
+      br.x = Math.cos(ang) * R1;
+      br.y = Math.sin(ang) * R1;
+    });
+    boards.forEach(function (b) {
+      var cs = NODES.filter(function (n) { return n.lvl === 3 && n.cat === b.id; });
+      var n = cs.length;
+      if (!n) return;
+      var spread = step * 0.64;
+      cs.forEach(function (c, i) {
+        var t = n === 1 ? 0.5 : i / (n - 1);
+        var ang = b.ringAngle - spread / 2 + spread * t;
+        var r = R3 + (i % 2) * S0 * 0.035;
+        c.x = Math.cos(ang) * r;
+        c.y = Math.sin(ang) * r;
       });
     });
+    CENTER.x = 0; CENTER.y = 0;
     if (S.narrow) {
-      var yS = 1.22;
+      var yS = 1.16;
       NODES.forEach(function (n) { n.y *= yS; });
     }
-    CENTER.x = 0; CENTER.y = 0;
   }
+
   function hash01(s) {
     var h = 2166136261;
     for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
@@ -342,7 +327,7 @@
   function bbox() {
     var x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
     NODES.forEach(function (n) {
-      if (S.narrow && n.lvl > 1) return;
+      if (S.narrow && n.lvl > 2) return;
       x0 = Math.min(x0, n.x - n.rx); x1 = Math.max(x1, n.x + n.rx);
       y0 = Math.min(y0, n.y - n.ry); y1 = Math.max(y1, n.y + n.ry);
     });
@@ -597,15 +582,12 @@
   function updateLights(dt) {
     var f = S.reduce ? 1 : 1 - Math.exp(-dt * 0.012);
     var zr = S.cam.k / Math.max(0.001, S.fit.k);
-    var t2 = 1, t3 = 1;
-    if (S.narrow) {
-      t2 = clamp((zr - 1.18) / 0.22, 0, 1);
-      t3 = clamp((zr - 1.55) / 0.30, 0, 1);
-    }
+    var t2 = 1;
+    if (S.narrow) t2 = clamp((zr - 1.18) / 0.22, 0, 1);
     NODES.forEach(function (n) {
       n.lit += (n.litT - n.lit) * f;
       n.pop += (n.popT - n.pop) * (S.reduce ? 1 : 1 - Math.exp(-dt * 0.02));
-      var vt = n.lvl === 3 ? t3 : (n.lvl === 2 ? t2 : 1);
+      var vt = n.lvl === 3 ? t2 : 1;
       n.vis += (vt - n.vis) * f;
       n.litD = n.lit * n.vis;
     });
@@ -724,7 +706,8 @@
       var mx = (ax + bx) / 2 - uy * wob, my = (ay + by) / 2 + ux * wob;
       var lit = Math.min(p.litD, c.litD);
       var hot = (S.hover && (S.hover.id === p.id || S.hover.id === c.id)) ? 1 : 0;
-      var bm = ((p.lvl === 0 ? 0.44 : 0.52) * lit + hot * 0.22) * (S.theme === "dark" ? 1.15 : 1);
+      var prereq = (p.lvl === 3 && c.lvl === 3);
+      var bm = ((p.lvl === 0 ? 0.44 : 0.52) * lit + hot * 0.22) * (S.theme === "dark" ? 1.15 : 1) * (prereq ? 1.3 : 1);
       if (bm < 0.03) return;
       var grad = ctx.createLinearGradient(ax, ay, bx, by);
       grad.addColorStop(0, hexA(p.color, 0));
@@ -734,15 +717,15 @@
       grad.addColorStop(1, hexA(c.color, 0));
       ctx.save();
       // 发光层（宽、淡） + 细芯（窄、亮）
-      ctx.globalAlpha = 0.52;
+      ctx.globalAlpha = prereq ? 0.62 : 0.52;
       ctx.strokeStyle = grad;
-      ctx.lineWidth = 6;
+      ctx.lineWidth = prereq ? 6.6 : 6;
       ctx.beginPath();
       ctx.moveTo(ax, ay);
       ctx.quadraticCurveTo(mx, my, bx, by);
       ctx.stroke();
       ctx.globalAlpha = 1;
-      ctx.lineWidth = 1.15;
+      ctx.lineWidth = prereq ? 1.5 : 1.15;
       ctx.beginPath();
       ctx.moveTo(ax, ay);
       ctx.quadraticCurveTo(mx, my, bx, by);
@@ -761,6 +744,26 @@
         ctx.fill();
       }
     });
+  }
+
+  function drawRings() {
+    if (!S.ringR1) return;
+    var cx = (0 - S.cam.x) * S.cam.k + S.w / 2;
+    var cy = (0 - S.cam.y) * S.cam.k + S.h / 2;
+    ctx.save();
+    ctx.strokeStyle = S.theme === "dark" ? "rgba(200,220,255,.18)" : "rgba(40,60,110,.24)";
+    ctx.lineWidth = 1.2;
+    ctx.setLineDash([3, 7]);
+    ctx.beginPath(); ctx.arc(cx, cy, S.ringR1 * S.cam.k, 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy, S.ringR2 * S.cam.k, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = S.theme === "dark" ? "rgba(200,220,255,.55)" : "rgba(50,70,120,.6)";
+    ctx.font = "600 10px " + SANS;
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    ctx.fillText("内环", cx - S.ringR1 * S.cam.k - 9, cy);
+    ctx.fillText("外环", cx - S.ringR2 * S.cam.k - 9, cy);
+    ctx.restore();
   }
 
   function drawNodes(t) {
@@ -804,9 +807,7 @@
         tt = tt * tt * (3 - 2 * tt);
         return 0.92 - stepK * tt;
       }
-      var cuts = n.lvl <= 1 ? [0.84, 0.72, 0.60, 0.48, 0.36, 0.24, 0.12]
-             : n.lvl === 2 ? [0.78, 0.58, 0.36, 0.14]
-             : [0.56];
+      var cuts = n.lvl <= 2 ? [0.84, 0.72, 0.60, 0.48, 0.36, 0.24, 0.12] : [0.56];
 
       ctx.save();
       blobPath(cx, cy, rx, ry, n.seed, amp);
@@ -988,7 +989,7 @@
       var pop = 1 + (n.pop - 1) * 0.55;
       var lines = n.lines;
       var lh = n.lineH * pop;
-      var hasSub = n.lvl === 0 || n.lvl === 1;
+      var hasSub = n.lvl === 0 || n.lvl === 2;
       var subH = hasSub ? (n.lvl === 0 ? 15 : 11) * pop : 0;
       var total = lines.length * lh + subH;
       var y0 = n.sy - total / 2 + lh / 2;
@@ -1039,6 +1040,7 @@
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     ctx.globalAlpha = 1;
     ctx.drawImage(bgCanvas, 0, 0, S.w, S.h);
+    drawRings();
     drawEdges(S.t);
     if ((frameNo % 2) === 1) takeSnapshot();
     drawNodes(S.t);

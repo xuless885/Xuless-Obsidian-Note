@@ -1228,3 +1228,15 @@ html[data-theme="dark"] .un-head {
         box-shadow: none;
     }
 }
+
+/* 衔接课题的空状态说明 */
+.un-note {
+  margin: 14px 0 0;
+  padding: 12px 16px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-m);
+  background: var(--bg-elev);
+  color: var(--fg-muted);
+  font-size: .92rem;
+  line-height: 1.7;
+}

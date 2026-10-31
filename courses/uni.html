@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>大学数学内容 · 许少 Xuless</title>
-<meta name="description" content="现代数学知识地图：从中心节点出发，沿着分析、代数、几何、拓扑、计算数学、概率统计六大类与分支，走到具体课题笔记。">
+<meta name="description" content="现代数学知识地图：中心「现代数学」→ 内环的高中—大学衔接课题 → 外环六大板块，板块下的课程按先后顺序相连，点击进入笔记页。">
 <meta property="og:title" content="大学数学内容 · 许少 Xuless">
-<meta property="og:description" content="现代数学知识地图：从中心节点出发，沿着分析、代数、几何、拓扑、计算数学、概率统计六大类与分支，走到具体课题笔记。">
+<meta property="og:description" content="现代数学知识地图：中心「现代数学」→ 内环的高中—大学衔接课题 → 外环六大板块，板块下的课程按先后顺序相连，点击进入笔记页。">
 <link rel="icon" href="../site-lib/media/favicon.png">
 <script>window.DSH_ROOT = "../";</script>
 <style>:root{--bg:#f7f7f5;--bg-elev:#fff;--bg-sunken:#efeee9;--fg:#17181c;--fg-muted:#5b5f6b;--fg-subtle:#8b8f9a;
@@ -140,19 +140,19 @@ font-weight:700;font-size:.82rem}
 <main id="main" class="uni-main">
  <div class="uni-stage" id="uni-stage">
   <canvas id="uni-canvas" class="uni-canvas" role="img"
-          aria-label="现代数学知识地图：中心节点连向分析、代数、几何、拓扑、计算数学、概率统计六条主线，每条主线再分出分支与课题。"></canvas>
+          aria-label="现代数学知识地图：中心节点连向四个基础衔接课题（内环），再连向分析、代数、几何、拓扑、计算数学、概率统计六个板块（外环），每个板块下的课程按先后顺序相连。"></canvas>
 
   <aside class="uni-panel" id="uni-panel" aria-label="知识地图说明">
    <span class="uni-eyebrow">UNIVERSITY MATHEMATICS</span>
    <h1 class="uni-title">大学数学内容</h1>
-   <p class="uni-sub">现代数学的知识地图：从中心出发，沿六大类与分支走到具体课题。</p>
+   <p class="uni-sub">内环：高中—大学衔接；外环：六大板块；板块下的课程按先后顺序相连。</p>
    <ul class="uni-legend" id="uni-legend">
-    <li class="uni-legend-row" data-cat="analysis"><span class="uni-dot" style="--c:#5B8DEF"></span><span class="uni-legend-name">分析</span><span class="uni-legend-en">Analysis</span><span class="uni-legend-n">10</span></li>
-    <li class="uni-legend-row" data-cat="algebra"><span class="uni-dot" style="--c:#9B7BF0"></span><span class="uni-legend-name">代数</span><span class="uni-legend-en">Algebra</span><span class="uni-legend-n">5</span></li>
-    <li class="uni-legend-row" data-cat="geometry"><span class="uni-dot" style="--c:#21B78B"></span><span class="uni-legend-name">几何</span><span class="uni-legend-en">Geometry</span><span class="uni-legend-n">4</span></li>
-    <li class="uni-legend-row" data-cat="topology"><span class="uni-dot" style="--c:#EE6FA6"></span><span class="uni-legend-name">拓扑</span><span class="uni-legend-en">Topology</span><span class="uni-legend-n">4</span></li>
-    <li class="uni-legend-row" data-cat="computational-mathematics"><span class="uni-dot" style="--c:#E0A02E"></span><span class="uni-legend-name">计算数学</span><span class="uni-legend-en">Computational Mathematics</span><span class="uni-legend-n">4</span></li>
-    <li class="uni-legend-row" data-cat="probability-statistics"><span class="uni-dot" style="--c:#29B6D4"></span><span class="uni-legend-name">概率统计</span><span class="uni-legend-en">Probability & Statistics</span><span class="uni-legend-n">5</span></li>
+    <li class="uni-legend-row" data-cat="analysis"><span class="uni-dot" style="--c:#5B8DEF"></span><span class="uni-legend-name">分析</span><span class="uni-legend-en">Analysis</span><span class="uni-legend-n">5</span></li>
+    <li class="uni-legend-row" data-cat="algebra"><span class="uni-dot" style="--c:#9B7BF0"></span><span class="uni-legend-name">代数</span><span class="uni-legend-en">Algebra</span><span class="uni-legend-n">2</span></li>
+    <li class="uni-legend-row" data-cat="geometry"><span class="uni-dot" style="--c:#21B78B"></span><span class="uni-legend-name">几何</span><span class="uni-legend-en">Geometry</span><span class="uni-legend-n">2</span></li>
+    <li class="uni-legend-row" data-cat="topology"><span class="uni-dot" style="--c:#EE6FA6"></span><span class="uni-legend-name">拓扑</span><span class="uni-legend-en">Topology</span><span class="uni-legend-n">2</span></li>
+    <li class="uni-legend-row" data-cat="computational-mathematics"><span class="uni-dot" style="--c:#E0A02E"></span><span class="uni-legend-name">计算数学</span><span class="uni-legend-en">Computational Mathematics</span><span class="uni-legend-n">2</span></li>
+    <li class="uni-legend-row" data-cat="probability-statistics"><span class="uni-dot" style="--c:#29B6D4"></span><span class="uni-legend-name">概率统计</span><span class="uni-legend-en">Probability & Statistics</span><span class="uni-legend-n">2</span></li>
    </ul>
    <p class="uni-hint"><span>拖动平移</span><span>滚轮缩放</span><span>单击进入笔记</span><span>双击聚焦</span></p>
    <p class="uni-mobile-hint">双指缩放展开分支 · 点按囊泡进入笔记</p>
@@ -167,7 +167,7 @@ font-weight:700;font-size:.82rem}
      <span class="uni-btn-ico" aria-hidden="true">&#10047;</span><span>动效开</span>
     </button>
    </div>
-   <p class="uni-stat"><b>6</b> 大类 · <b>15</b> 分支 · <b>32</b> 课题</p>
+   <p class="uni-stat"><b>4</b> 衔接 · <b>6</b> 板块 · <b>15</b> 课程</p>
   </aside>
 
   <div class="uni-tip" id="uni-tip" hidden>
@@ -190,140 +190,57 @@ font-weight:700;font-size:.82rem}
    <div class="uni-drawer-body">
 <nav class="uni-tree" aria-label="大学数学目录">
  <div class="uni-tree-group">
+  <a class="uni-tree-cat" href="uni/foundations.html"><span class="uni-dot" style="--c:#6f7d97"></span><span class="uni-tree-t">基础衔接</span><span class="uni-tree-en">Foundations</span></a>
+  <div class="uni-tree-kids">
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/calculus-bridge.html">微积分</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/basic-algebra.html">基础代数</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/basic-geometry.html">基础几何</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/basic-probability.html">基础概率</a></div>
+  </div>
+ </div>
+ <div class="uni-tree-group">
   <a class="uni-tree-cat" href="uni/analysis.html"><span class="uni-dot" style="--c:#5B8DEF"></span><span class="uni-tree-t">分析</span><span class="uni-tree-en">Analysis</span></a>
   <div class="uni-tree-kids">
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/mathematical-analysis.html">数学分析</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/calculus.html">微积分</a>
-     <a class="uni-tree-tp" href="uni/series.html">级数</a>
-    </div>
-   </div>
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/real-analysis.html">实分析</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/measure-theory.html">测度论</a>
-     <a class="uni-tree-tp" href="uni/lebesgue-integral.html">勒贝格积分</a>
-    </div>
-   </div>
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/complex-analysis.html">复分析</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/holomorphic-functions.html">全纯函数</a>
-     <a class="uni-tree-tp" href="uni/residue-theorem.html">留数定理</a>
-    </div>
-   </div>
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/functional-analysis.html">泛函分析</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/banach-spaces.html">巴拿赫空间</a>
-     <a class="uni-tree-tp" href="uni/hilbert-spaces.html">希尔伯特空间</a>
-    </div>
-   </div>
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/differential-equations.html">微分方程</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/ordinary-differential-equations.html">常微分方程</a>
-     <a class="uni-tree-tp" href="uni/partial-differential-equations.html">偏微分方程</a>
-    </div>
-   </div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/mathematical-analysis.html">数学分析</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/real-analysis.html">实分析</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/complex-analysis.html">复分析</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/functional-analysis.html">泛函分析</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/differential-equations.html">微分方程</a></div>
   </div>
  </div>
  <div class="uni-tree-group">
   <a class="uni-tree-cat" href="uni/algebra.html"><span class="uni-dot" style="--c:#9B7BF0"></span><span class="uni-tree-t">代数</span><span class="uni-tree-en">Algebra</span></a>
   <div class="uni-tree-kids">
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/linear-algebra.html">线性代数</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/vector-spaces.html">向量空间</a>
-     <a class="uni-tree-tp" href="uni/matrices-and-linear-maps.html">矩阵与线性映射</a>
-     <a class="uni-tree-tp" href="uni/eigenvalues-and-diagonalization.html">特征值与对角化</a>
-    </div>
-   </div>
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/abstract-algebra.html">抽象代数</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/group-theory.html">群论</a>
-     <a class="uni-tree-tp" href="uni/rings-and-fields.html">环与域</a>
-    </div>
-   </div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/linear-algebra.html">线性代数</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/abstract-algebra.html">抽象代数</a></div>
   </div>
  </div>
  <div class="uni-tree-group">
   <a class="uni-tree-cat" href="uni/geometry.html"><span class="uni-dot" style="--c:#21B78B"></span><span class="uni-tree-t">几何</span><span class="uni-tree-en">Geometry</span></a>
   <div class="uni-tree-kids">
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/differential-geometry.html">微分几何</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/smooth-manifolds.html">光滑流形</a>
-     <a class="uni-tree-tp" href="uni/differential-forms.html">微分形式</a>
-    </div>
-   </div>
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/classical-geometry.html">古典几何</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/euclidean-geometry.html">欧氏几何</a>
-     <a class="uni-tree-tp" href="uni/analytic-geometry.html">解析几何</a>
-    </div>
-   </div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/differential-geometry.html">微分几何</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/classical-geometry.html">古典几何</a></div>
   </div>
  </div>
  <div class="uni-tree-group">
   <a class="uni-tree-cat" href="uni/topology.html"><span class="uni-dot" style="--c:#EE6FA6"></span><span class="uni-tree-t">拓扑</span><span class="uni-tree-en">Topology</span></a>
   <div class="uni-tree-kids">
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/point-set-topology.html">点集拓扑</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/topological-spaces.html">拓扑空间</a>
-     <a class="uni-tree-tp" href="uni/compactness.html">紧致性</a>
-    </div>
-   </div>
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/algebraic-topology.html">代数拓扑</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/fundamental-group.html">基本群</a>
-     <a class="uni-tree-tp" href="uni/homology.html">同调论</a>
-    </div>
-   </div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/point-set-topology.html">点集拓扑</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/algebraic-topology.html">代数拓扑</a></div>
   </div>
  </div>
  <div class="uni-tree-group">
   <a class="uni-tree-cat" href="uni/computational-mathematics.html"><span class="uni-dot" style="--c:#E0A02E"></span><span class="uni-tree-t">计算数学</span><span class="uni-tree-en">Computational Mathematics</span></a>
   <div class="uni-tree-kids">
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/numerical-analysis.html">数值分析</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/numerical-linear-algebra.html">数值线性代数</a>
-     <a class="uni-tree-tp" href="uni/numerical-differential-equations.html">数值微分方程</a>
-    </div>
-   </div>
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/optimization.html">最优化</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/convex-optimization.html">凸优化</a>
-     <a class="uni-tree-tp" href="uni/iterative-methods.html">迭代法</a>
-    </div>
-   </div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/numerical-analysis.html">数值分析</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/optimization.html">最优化</a></div>
   </div>
  </div>
  <div class="uni-tree-group">
   <a class="uni-tree-cat" href="uni/probability-statistics.html"><span class="uni-dot" style="--c:#29B6D4"></span><span class="uni-tree-t">概率统计</span><span class="uni-tree-en">Probability & Statistics</span></a>
   <div class="uni-tree-kids">
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/probability-theory.html">概率论</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/random-variables.html">随机变量</a>
-     <a class="uni-tree-tp" href="uni/law-of-large-numbers.html">大数定律</a>
-     <a class="uni-tree-tp" href="uni/central-limit-theorem.html">中心极限定理</a>
-    </div>
-   </div>
-   <div class="uni-tree-branch">
-    <a class="uni-tree-b" href="uni/mathematical-statistics.html">数理统计</a>
-    <div class="uni-tree-topics">
-     <a class="uni-tree-tp" href="uni/estimation-theory.html">估计理论</a>
-     <a class="uni-tree-tp" href="uni/hypothesis-testing.html">假设检验</a>
-    </div>
-   </div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/probability-theory.html">概率论</a></div>
+   <div class="uni-tree-branch"><a class="uni-tree-b" href="uni/mathematical-statistics.html">数理统计</a></div>
   </div>
  </div>
 </nav>
@@ -336,7 +253,7 @@ font-weight:700;font-size:.82rem}
 <noscript>
  <div class="uni-noscript">
   <h2>大学数学内容</h2>
-  <p>知识地图需要 JavaScript。<a href="uni/calculus.html">微积分</a> 等笔记页可以直接访问。</p>
+  <p>知识地图需要 JavaScript。<a href="uni/calculus-bridge.html">微积分</a> 等笔记页可以直接访问。</p>
  </div>
 </noscript>
 <footer class="footer-site">
@@ -375,7 +292,7 @@ font-weight:700;font-size:.82rem}
  else{rv.forEach(function(n){n.classList.add("is-visible");});}
 })();
 </script>
-<script>window.UNI_MAP = {"center":{"id":"modern-mathematics","lvl":0,"name":"现代数学","en":"Modern Mathematics","desc":"六条主线——分析、代数、几何、拓扑、计算数学、概率统计——共同织成现代数学。这张地图按「大类 → 分支 → 课题」三层组织，从中心出发，逐层走到具体课题。","href":"","parent":"","cat":"","color":""},"nodes":[{"id":"modern-mathematics","lvl":0,"name":"现代数学","en":"Modern Mathematics","desc":"六条主线——分析、代数、几何、拓扑、计算数学、概率统计——共同织成现代数学。这张地图按「大类 → 分支 → 课题」三层组织，从中心出发，逐层走到具体课题。","href":"","parent":"","cat":"","color":""},{"id":"analysis","lvl":1,"name":"分析","en":"Analysis","desc":"以极限为骨架：从微积分一路走到实分析、复分析、泛函分析与微分方程。","href":"uni/analysis.html","parent":"modern-mathematics","cat":"analysis","color":"#5B8DEF"},{"id":"mathematical-analysis","lvl":2,"name":"数学分析","en":"Mathematical Analysis","desc":"一元与多元微积分的严格基础：极限、导数、积分与级数。","href":"uni/mathematical-analysis.html","parent":"analysis","cat":"analysis","color":"#5B8DEF"},{"id":"calculus","lvl":3,"name":"微积分","en":"Calculus","desc":"极限、导数、积分与微积分基本定理。","href":"uni/calculus.html","parent":"mathematical-analysis","cat":"analysis","color":"#5B8DEF"},{"id":"series","lvl":3,"name":"级数","en":"Series","desc":"从数项级数到幂级数，以及一致收敛为何重要。","href":"uni/series.html","parent":"mathematical-analysis","cat":"analysis","color":"#5B8DEF"},{"id":"real-analysis","lvl":2,"name":"实分析","en":"Real Analysis","desc":"把积分推广到测度上：可测集、可测函数与收敛定理。","href":"uni/real-analysis.html","parent":"analysis","cat":"analysis","color":"#5B8DEF"},{"id":"measure-theory","lvl":3,"name":"测度论","en":"Measure Theory","desc":"从 σ-代数出发定义测度，解决「长度」对集合的推广。","href":"uni/measure-theory.html","parent":"real-analysis","cat":"analysis","color":"#5B8DEF"},{"id":"lebesgue-integral","lvl":3,"name":"勒贝格积分","en":"Lebesgue Integral","desc":"按值域切片定义积分，换来更好的极限定理。","href":"uni/lebesgue-integral.html","parent":"real-analysis","cat":"analysis","color":"#5B8DEF"},{"id":"complex-analysis","lvl":2,"name":"复分析","en":"Complex Analysis","desc":"复可微的函数出奇地刚性：全纯性、级数展开与留数。","href":"uni/complex-analysis.html","parent":"analysis","cat":"analysis","color":"#5B8DEF"},{"id":"holomorphic-functions","lvl":3,"name":"全纯函数","en":"Holomorphic Functions","desc":"复可微、Cauchy–Riemann 方程与解析性。","href":"uni/holomorphic-functions.html","parent":"complex-analysis","cat":"analysis","color":"#5B8DEF"},{"id":"residue-theorem","lvl":3,"name":"留数定理","en":"Residue Theorem","desc":"用一个点的局部信息算出整条闭路上的积分。","href":"uni/residue-theorem.html","parent":"complex-analysis","cat":"analysis","color":"#5B8DEF"},{"id":"functional-analysis","lvl":2,"name":"泛函分析","en":"Functional Analysis","desc":"把函数看成空间中的点：范数、内积与线性算子。","href":"uni/functional-analysis.html","parent":"analysis","cat":"analysis","color":"#5B8DEF"},{"id":"banach-spaces","lvl":3,"name":"巴拿赫空间","en":"Banach Spaces","desc":"完备的赋范空间，以及其上的有界线性泛函。","href":"uni/banach-spaces.html","parent":"functional-analysis","cat":"analysis","color":"#5B8DEF"},{"id":"hilbert-spaces","lvl":3,"name":"希尔伯特空间","en":"Hilbert Spaces","desc":"带内积的完备空间：正交、投影与 Riesz 表示。","href":"uni/hilbert-spaces.html","parent":"functional-analysis","cat":"analysis","color":"#5B8DEF"},{"id":"differential-equations","lvl":2,"name":"微分方程","en":"Differential Equations","desc":"描述变化的方程：存在唯一性、解法与稳定性。","href":"uni/differential-equations.html","parent":"analysis","cat":"analysis","color":"#5B8DEF"},{"id":"ordinary-differential-equations","lvl":3,"name":"常微分方程","en":"Ordinary Differential Equations","desc":"一元函数的方程：解的存在唯一性、线性系统与稳定性。","href":"uni/ordinary-differential-equations.html","parent":"differential-equations","cat":"analysis","color":"#5B8DEF"},{"id":"partial-differential-equations","lvl":3,"name":"偏微分方程","en":"Partial Differential Equations","desc":"热、波、位势三类方程的定解问题。","href":"uni/partial-differential-equations.html","parent":"differential-equations","cat":"analysis","color":"#5B8DEF"},{"id":"algebra","lvl":1,"name":"代数","en":"Algebra","desc":"研究运算与结构本身：线性空间、群、环、域。","href":"uni/algebra.html","parent":"modern-mathematics","cat":"algebra","color":"#9B7BF0"},{"id":"linear-algebra","lvl":2,"name":"线性代数","en":"Linear Algebra","desc":"向量空间与线性映射：基、矩阵、特征值。","href":"uni/linear-algebra.html","parent":"algebra","cat":"algebra","color":"#9B7BF0"},{"id":"vector-spaces","lvl":3,"name":"向量空间","en":"Vector Spaces","desc":"线性无关、基与维数——线性结构的语法。","href":"uni/vector-spaces.html","parent":"linear-algebra","cat":"algebra","color":"#9B7BF0"},{"id":"matrices-and-linear-maps","lvl":3,"name":"矩阵与线性映射","en":"Matrices & Linear Maps","desc":"同一个线性映射在不同基下的矩阵表示。","href":"uni/matrices-and-linear-maps.html","parent":"linear-algebra","cat":"algebra","color":"#9B7BF0"},{"id":"eigenvalues-and-diagonalization","lvl":3,"name":"特征值与对角化","en":"Eigenvalues & Diagonalization","desc":"找一组让线性映射变成对角形的基。","href":"uni/eigenvalues-and-diagonalization.html","parent":"linear-algebra","cat":"algebra","color":"#9B7BF0"},{"id":"abstract-algebra","lvl":2,"name":"抽象代数","en":"Abstract Algebra","desc":"把运算抽成结构：群、环、域与同态。","href":"uni/abstract-algebra.html","parent":"algebra","cat":"algebra","color":"#9B7BF0"},{"id":"group-theory","lvl":3,"name":"群论","en":"Group Theory","desc":"对称性的数学：子群、商群、同态与群作用。","href":"uni/group-theory.html","parent":"abstract-algebra","cat":"algebra","color":"#9B7BF0"},{"id":"rings-and-fields","lvl":3,"name":"环与域","en":"Rings & Fields","desc":"两种运算的代数：理想、同态与域扩张。","href":"uni/rings-and-fields.html","parent":"abstract-algebra","cat":"algebra","color":"#9B7BF0"},{"id":"geometry","lvl":1,"name":"几何","en":"Geometry","desc":"从古典图形到光滑流形，研究形状与它的不变性质。","href":"uni/geometry.html","parent":"modern-mathematics","cat":"geometry","color":"#21B78B"},{"id":"differential-geometry","lvl":2,"name":"微分几何","en":"Differential Geometry","desc":"用微积分研究弯曲的空间：流形、切空间与曲率。","href":"uni/differential-geometry.html","parent":"geometry","cat":"geometry","color":"#21B78B"},{"id":"smooth-manifolds","lvl":3,"name":"光滑流形","en":"Smooth Manifolds","desc":"局部像欧氏空间、整体可能弯曲的空间。","href":"uni/smooth-manifolds.html","parent":"differential-geometry","cat":"geometry","color":"#21B78B"},{"id":"differential-forms","lvl":3,"name":"微分形式","en":"Differential Forms","desc":"可以积分、也可以求外微分的代数对象。","href":"uni/differential-forms.html","parent":"differential-geometry","cat":"geometry","color":"#21B78B"},{"id":"classical-geometry","lvl":2,"name":"古典几何","en":"Classical Geometry","desc":"欧氏平面与空间中的图形、坐标与变换。","href":"uni/classical-geometry.html","parent":"geometry","cat":"geometry","color":"#21B78B"},{"id":"euclidean-geometry","lvl":3,"name":"欧氏几何","en":"Euclidean Geometry","desc":"从公理出发的图形理论：三角形、圆与作图。","href":"uni/euclidean-geometry.html","parent":"classical-geometry","cat":"geometry","color":"#21B78B"},{"id":"analytic-geometry","lvl":3,"name":"解析几何","en":"Analytic Geometry","desc":"把几何问题翻译成坐标与方程。","href":"uni/analytic-geometry.html","parent":"classical-geometry","cat":"geometry","color":"#21B78B"},{"id":"topology","lvl":1,"name":"拓扑","en":"Topology","desc":"只保留「连续」这一件事，研究空间最柔软的结构。","href":"uni/topology.html","parent":"modern-mathematics","cat":"topology","color":"#EE6FA6"},{"id":"point-set-topology","lvl":2,"name":"点集拓扑","en":"Point-Set Topology","desc":"开集、连续、紧致与连通：拓扑空间的入门。","href":"uni/point-set-topology.html","parent":"topology","cat":"topology","color":"#EE6FA6"},{"id":"topological-spaces","lvl":3,"name":"拓扑空间","en":"Topological Spaces","desc":"用开集重新定义「附近」与「连续」。","href":"uni/topological-spaces.html","parent":"point-set-topology","cat":"topology","color":"#EE6FA6"},{"id":"compactness","lvl":3,"name":"紧致性","en":"Compactness","desc":"有限覆盖性质，以及它为什么等价于「列紧」。","href":"uni/compactness.html","parent":"point-set-topology","cat":"topology","color":"#EE6FA6"},{"id":"algebraic-topology","lvl":2,"name":"代数拓扑","en":"Algebraic Topology","desc":"用代数不变量区分空间：基本群与同调。","href":"uni/algebraic-topology.html","parent":"topology","cat":"topology","color":"#EE6FA6"},{"id":"fundamental-group","lvl":3,"name":"基本群","en":"Fundamental Group","desc":"把闭路按同伦分类，得到空间的第一个代数不变量。","href":"uni/fundamental-group.html","parent":"algebraic-topology","cat":"topology","color":"#EE6FA6"},{"id":"homology","lvl":3,"name":"同调论","en":"Homology","desc":"用链复形数「洞」：同调群与它的计算。","href":"uni/homology.html","parent":"algebraic-topology","cat":"topology","color":"#EE6FA6"},{"id":"computational-mathematics","lvl":1,"name":"计算数学","en":"Computational Mathematics","desc":"把连续的问题化成可计算的算法，并回答它有多快、多稳。","href":"uni/computational-mathematics.html","parent":"modern-mathematics","cat":"computational-mathematics","color":"#E0A02E"},{"id":"numerical-analysis","lvl":2,"name":"数值分析","en":"Numerical Analysis","desc":"用有限步的算法逼近连续问题，并控制误差。","href":"uni/numerical-analysis.html","parent":"computational-mathematics","cat":"computational-mathematics","color":"#E0A02E"},{"id":"numerical-linear-algebra","lvl":3,"name":"数值线性代数","en":"Numerical Linear Algebra","desc":"矩阵分解、迭代法与特征值算法。","href":"uni/numerical-linear-algebra.html","parent":"numerical-analysis","cat":"computational-mathematics","color":"#E0A02E"},{"id":"numerical-differential-equations","lvl":3,"name":"数值微分方程","en":"Numerical Differential Equations","desc":"把微分方程离散成可算的格式，并讨论稳定性。","href":"uni/numerical-differential-equations.html","parent":"numerical-analysis","cat":"computational-mathematics","color":"#E0A02E"},{"id":"optimization","lvl":2,"name":"最优化","en":"Optimization","desc":"在约束下找最优：凸性与迭代。","href":"uni/optimization.html","parent":"computational-mathematics","cat":"computational-mathematics","color":"#E0A02E"},{"id":"convex-optimization","lvl":3,"name":"凸优化","en":"Convex Optimization","desc":"凸集、凸函数与对偶，让「局部最优」等于「全局最优」。","href":"uni/convex-optimization.html","parent":"optimization","cat":"computational-mathematics","color":"#E0A02E"},{"id":"iterative-methods","lvl":3,"name":"迭代法","en":"Iterative Methods","desc":"从一个初值出发，一步步逼近最优解。","href":"uni/iterative-methods.html","parent":"optimization","cat":"computational-mathematics","color":"#E0A02E"},{"id":"probability-statistics","lvl":1,"name":"概率统计","en":"Probability & Statistics","desc":"从随机性出发：概率论刻画不确定性，统计从数据反推规律。","href":"uni/probability-statistics.html","parent":"modern-mathematics","cat":"probability-statistics","color":"#29B6D4"},{"id":"probability-theory","lvl":2,"name":"概率论","en":"Probability Theory","desc":"公理化地处理随机性：随机变量、极限定理。","href":"uni/probability-theory.html","parent":"probability-statistics","cat":"probability-statistics","color":"#29B6D4"},{"id":"random-variables","lvl":3,"name":"随机变量","en":"Random Variables","desc":"把随机试验的结果编码成数，并研究它的分布。","href":"uni/random-variables.html","parent":"probability-theory","cat":"probability-statistics","color":"#29B6D4"},{"id":"law-of-large-numbers","lvl":3,"name":"大数定律","en":"Law of Large Numbers","desc":"样本平均为什么稳定到期望。","href":"uni/law-of-large-numbers.html","parent":"probability-theory","cat":"probability-statistics","color":"#29B6D4"},{"id":"central-limit-theorem","lvl":3,"name":"中心极限定理","en":"Central Limit Theorem","desc":"大量独立小扰动叠加后，为什么近似正态。","href":"uni/central-limit-theorem.html","parent":"probability-theory","cat":"probability-statistics","color":"#29B6D4"},{"id":"mathematical-statistics","lvl":2,"name":"数理统计","en":"Mathematical Statistics","desc":"从样本推断总体：估计、检验与回归。","href":"uni/mathematical-statistics.html","parent":"probability-statistics","cat":"probability-statistics","color":"#29B6D4"},{"id":"estimation-theory","lvl":3,"name":"估计理论","en":"Estimation Theory","desc":"构造估计量，并衡量它离真值有多远。","href":"uni/estimation-theory.html","parent":"mathematical-statistics","cat":"probability-statistics","color":"#29B6D4"},{"id":"hypothesis-testing","lvl":3,"name":"假设检验","en":"Hypothesis Testing","desc":"在不确定的数据上做「是/否」的决策。","href":"uni/hypothesis-testing.html","parent":"mathematical-statistics","cat":"probability-statistics","color":"#29B6D4"}],"edges":[["modern-mathematics","analysis"],["analysis","mathematical-analysis"],["mathematical-analysis","calculus"],["mathematical-analysis","series"],["analysis","real-analysis"],["real-analysis","measure-theory"],["real-analysis","lebesgue-integral"],["analysis","complex-analysis"],["complex-analysis","holomorphic-functions"],["complex-analysis","residue-theorem"],["analysis","functional-analysis"],["functional-analysis","banach-spaces"],["functional-analysis","hilbert-spaces"],["analysis","differential-equations"],["differential-equations","ordinary-differential-equations"],["differential-equations","partial-differential-equations"],["modern-mathematics","algebra"],["algebra","linear-algebra"],["linear-algebra","vector-spaces"],["linear-algebra","matrices-and-linear-maps"],["linear-algebra","eigenvalues-and-diagonalization"],["algebra","abstract-algebra"],["abstract-algebra","group-theory"],["abstract-algebra","rings-and-fields"],["modern-mathematics","geometry"],["geometry","differential-geometry"],["differential-geometry","smooth-manifolds"],["differential-geometry","differential-forms"],["geometry","classical-geometry"],["classical-geometry","euclidean-geometry"],["classical-geometry","analytic-geometry"],["modern-mathematics","topology"],["topology","point-set-topology"],["point-set-topology","topological-spaces"],["point-set-topology","compactness"],["topology","algebraic-topology"],["algebraic-topology","fundamental-group"],["algebraic-topology","homology"],["modern-mathematics","computational-mathematics"],["computational-mathematics","numerical-analysis"],["numerical-analysis","numerical-linear-algebra"],["numerical-analysis","numerical-differential-equations"],["computational-mathematics","optimization"],["optimization","convex-optimization"],["optimization","iterative-methods"],["modern-mathematics","probability-statistics"],["probability-statistics","probability-theory"],["probability-theory","random-variables"],["probability-theory","law-of-large-numbers"],["probability-theory","central-limit-theorem"],["probability-statistics","mathematical-statistics"],["mathematical-statistics","estimation-theory"],["mathematical-statistics","hypothesis-testing"]],"cross":[["point-set-topology","smooth-manifolds"],["differential-forms","mathematical-analysis"],["abstract-algebra","algebraic-topology"],["linear-algebra","numerical-linear-algebra"],["probability-theory","real-analysis"]],"counts":{"categories":6,"branches":15,"topics":32,"nodes":54}};</script>
-<script defer src="../site-lib/scripts/uni-graph.js?v=2d24550c"></script>
+<script>window.UNI_MAP = {"center":{"id":"modern-mathematics","lvl":0,"name":"现代数学","en":"Modern Mathematics","desc":"从中心的「现代数学」出发：内环是高中—大学衔接课题，外环是六大板块；每个板块下的课程按先后顺序相连，具体的定理与内容留给笔记页。","href":"","parent":"","cat":"","color":""},"nodes":[{"id":"modern-mathematics","lvl":0,"name":"现代数学","en":"Modern Mathematics","desc":"从中心的「现代数学」出发：内环是高中—大学衔接课题，外环是六大板块；每个板块下的课程按先后顺序相连，具体的定理与内容留给笔记页。","href":"","parent":"","cat":"","color":""},{"id":"calculus-bridge","lvl":1,"name":"微积分","en":"Calculus","desc":"极限、导数与积分：进入分析类课程之前的第一站。","href":"uni/calculus-bridge.html","parent":"modern-mathematics","cat":"analysis","color":"#5B8DEF"},{"id":"basic-algebra","lvl":1,"name":"基础代数","en":"Basic Algebra","desc":"方程、多项式与线性结构：代数类课程的共同起点。","href":"uni/basic-algebra.html","parent":"modern-mathematics","cat":"algebra","color":"#9B7BF0"},{"id":"basic-geometry","lvl":1,"name":"基础几何","en":"Basic Geometry","desc":"图形、空间与连续变形：几何与拓扑的入口。","href":"uni/basic-geometry.html","parent":"modern-mathematics","cat":"geometry","color":"#21B78B"},{"id":"basic-probability","lvl":1,"name":"基础概率","en":"Basic Probability","desc":"计数、随机试验与分布：概率统计的第一站。","href":"uni/basic-probability.html","parent":"modern-mathematics","cat":"probability-statistics","color":"#29B6D4"},{"id":"analysis","lvl":2,"name":"分析","en":"Analysis","desc":"以极限为骨架：从微积分一路走到实分析、复分析、泛函分析与微分方程。","href":"uni/analysis.html","parent":"calculus-bridge","cat":"analysis","color":"#5B8DEF"},{"id":"algebra","lvl":2,"name":"代数","en":"Algebra","desc":"研究运算与结构本身：线性空间、群、环、域。","href":"uni/algebra.html","parent":"basic-algebra","cat":"algebra","color":"#9B7BF0"},{"id":"geometry","lvl":2,"name":"几何","en":"Geometry","desc":"从古典图形到光滑流形，研究形状与它的不变性质。","href":"uni/geometry.html","parent":"basic-geometry","cat":"geometry","color":"#21B78B"},{"id":"topology","lvl":2,"name":"拓扑","en":"Topology","desc":"只保留「连续」这一件事，研究空间最柔软的结构。","href":"uni/topology.html","parent":"basic-geometry","cat":"topology","color":"#EE6FA6"},{"id":"computational-mathematics","lvl":2,"name":"计算数学","en":"Computational Mathematics","desc":"把连续的问题化成可计算的算法，并回答它有多快、多稳。","href":"uni/computational-mathematics.html","parent":"calculus-bridge","cat":"computational-mathematics","color":"#E0A02E"},{"id":"probability-statistics","lvl":2,"name":"概率统计","en":"Probability & Statistics","desc":"从随机性出发：概率论刻画不确定性，统计从数据反推规律。","href":"uni/probability-statistics.html","parent":"basic-probability","cat":"probability-statistics","color":"#29B6D4"},{"id":"mathematical-analysis","lvl":3,"name":"数学分析","en":"Mathematical Analysis","desc":"一元与多元微积分的严格基础：极限、导数、积分与级数。","href":"uni/mathematical-analysis.html","parent":"analysis","cat":"analysis","color":"#5B8DEF","after":""},{"id":"real-analysis","lvl":3,"name":"实分析","en":"Real Analysis","desc":"把积分推广到测度上：可测集、可测函数与收敛定理。","href":"uni/real-analysis.html","parent":"mathematical-analysis","cat":"analysis","color":"#5B8DEF","after":"mathematical-analysis"},{"id":"complex-analysis","lvl":3,"name":"复分析","en":"Complex Analysis","desc":"复可微的函数出奇地刚性：全纯性、级数展开与留数。","href":"uni/complex-analysis.html","parent":"real-analysis","cat":"analysis","color":"#5B8DEF","after":"real-analysis"},{"id":"functional-analysis","lvl":3,"name":"泛函分析","en":"Functional Analysis","desc":"把函数看成空间中的点：范数、内积与线性算子。","href":"uni/functional-analysis.html","parent":"real-analysis","cat":"analysis","color":"#5B8DEF","after":"real-analysis"},{"id":"differential-equations","lvl":3,"name":"微分方程","en":"Differential Equations","desc":"描述变化的方程：存在唯一性、解法与稳定性。","href":"uni/differential-equations.html","parent":"mathematical-analysis","cat":"analysis","color":"#5B8DEF","after":"mathematical-analysis"},{"id":"linear-algebra","lvl":3,"name":"线性代数","en":"Linear Algebra","desc":"向量空间与线性映射：基、矩阵、特征值。","href":"uni/linear-algebra.html","parent":"algebra","cat":"algebra","color":"#9B7BF0","after":""},{"id":"abstract-algebra","lvl":3,"name":"抽象代数","en":"Abstract Algebra","desc":"把运算抽成结构：群、环、域与同态。","href":"uni/abstract-algebra.html","parent":"linear-algebra","cat":"algebra","color":"#9B7BF0","after":"linear-algebra"},{"id":"differential-geometry","lvl":3,"name":"微分几何","en":"Differential Geometry","desc":"用微积分研究弯曲的空间：流形、切空间与曲率。","href":"uni/differential-geometry.html","parent":"classical-geometry","cat":"geometry","color":"#21B78B","after":"classical-geometry"},{"id":"classical-geometry","lvl":3,"name":"古典几何","en":"Classical Geometry","desc":"欧氏平面与空间中的图形、坐标与变换。","href":"uni/classical-geometry.html","parent":"geometry","cat":"geometry","color":"#21B78B","after":""},{"id":"point-set-topology","lvl":3,"name":"点集拓扑","en":"Point-Set Topology","desc":"开集、连续、紧致与连通：拓扑空间的入门。","href":"uni/point-set-topology.html","parent":"topology","cat":"topology","color":"#EE6FA6","after":""},{"id":"algebraic-topology","lvl":3,"name":"代数拓扑","en":"Algebraic Topology","desc":"用代数不变量区分空间：基本群与同调。","href":"uni/algebraic-topology.html","parent":"point-set-topology","cat":"topology","color":"#EE6FA6","after":"point-set-topology"},{"id":"numerical-analysis","lvl":3,"name":"数值分析","en":"Numerical Analysis","desc":"用有限步的算法逼近连续问题，并控制误差。","href":"uni/numerical-analysis.html","parent":"computational-mathematics","cat":"computational-mathematics","color":"#E0A02E","after":""},{"id":"optimization","lvl":3,"name":"最优化","en":"Optimization","desc":"在约束下找最优：凸性与迭代。","href":"uni/optimization.html","parent":"numerical-analysis","cat":"computational-mathematics","color":"#E0A02E","after":"numerical-analysis"},{"id":"probability-theory","lvl":3,"name":"概率论","en":"Probability Theory","desc":"公理化地处理随机性：随机变量、极限定理。","href":"uni/probability-theory.html","parent":"probability-statistics","cat":"probability-statistics","color":"#29B6D4","after":""},{"id":"mathematical-statistics","lvl":3,"name":"数理统计","en":"Mathematical Statistics","desc":"从样本推断总体：估计、检验与回归。","href":"uni/mathematical-statistics.html","parent":"probability-theory","cat":"probability-statistics","color":"#29B6D4","after":"probability-theory"}],"edges":[["modern-mathematics","calculus-bridge"],["modern-mathematics","basic-algebra"],["modern-mathematics","basic-geometry"],["modern-mathematics","basic-probability"],["calculus-bridge","analysis"],["basic-algebra","algebra"],["basic-geometry","geometry"],["basic-geometry","topology"],["calculus-bridge","computational-mathematics"],["basic-probability","probability-statistics"],["analysis","mathematical-analysis"],["mathematical-analysis","real-analysis"],["real-analysis","complex-analysis"],["real-analysis","functional-analysis"],["mathematical-analysis","differential-equations"],["algebra","linear-algebra"],["linear-algebra","abstract-algebra"],["classical-geometry","differential-geometry"],["geometry","classical-geometry"],["topology","point-set-topology"],["point-set-topology","algebraic-topology"],["computational-mathematics","numerical-analysis"],["numerical-analysis","optimization"],["probability-statistics","probability-theory"],["probability-theory","mathematical-statistics"]],"cross":[["functional-analysis","linear-algebra"],["abstract-algebra","algebraic-topology"],["probability-theory","real-analysis"]],"counts":{"bridges":4,"boards":6,"courses":15,"nodes":26}};</script>
+<script defer src="../site-lib/scripts/uni-graph.js?v=438e04d1"></script>
 </body>
 </html>
