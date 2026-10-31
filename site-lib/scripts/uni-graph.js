@@ -246,7 +246,7 @@
       edge: 0.5, rimA: "rgba(255,255,255,1)", rimB: "rgba(104,126,178,.36)",
       glassTint: 0.26, glassColor: 0.22, spec: 0.85, shade: 0.17,
       topLight: "rgba(255,255,255,.5)", darken: "rgba(25,33,60,.10)",
-      shadow: 0.34, glint: 0.85
+      shadow: 0.30, glint: 0.85
     },
     dark: {
       base: "#04050a",
@@ -257,7 +257,7 @@
       edge: 0.8, rimA: "rgba(255,255,255,.74)", rimB: "rgba(255,255,255,.05)",
       glassTint: 0.12, glassColor: 0.30, spec: 0.5, shade: 0.42,
       topLight: "rgba(255,255,255,.2)", darken: "rgba(0,0,0,.4)",
-      shadow: 0.72, glint: 0.62
+      shadow: 0.62, glint: 0.62
     }
   };
   function T() { return THEME[S.theme] || THEME.light; }
@@ -289,20 +289,31 @@
 
   var snapCanvas = document.createElement("canvas");
   var snapCtx = snapCanvas.getContext("2d");
+  var blurCanvas = document.createElement("canvas");
+  var blurCtx = blurCanvas.getContext("2d");
+  var BLUR_S = 0.62;
 
   function takeSnapshot() {
     snapCtx.setTransform(1, 0, 0, 1, 0, 0);
     snapCtx.globalCompositeOperation = "copy";
     snapCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, S.w, S.h);
     snapCtx.globalCompositeOperation = "source-over";
+    // 玻璃取景：低分辨率 + 高饱和 = 磨砂玻璃（近似 backdrop-filter: blur(1.5px) saturate(170%)）
+    blurCtx.setTransform(1, 0, 0, 1, 0, 0);
+    blurCtx.globalCompositeOperation = "copy";
+    blurCtx.filter = "saturate(1.7)";
+    blurCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, blurCanvas.width, blurCanvas.height);
+    blurCtx.filter = "none";
+    blurCtx.globalCompositeOperation = "source-over";
   }
 
   /** 把背后画面按 s（<1 = 向中心收）缩放后铺满整个囊泡矩形；调用方负责剪裁。 */
   function lensDraw(cx, cy, rx, ry, s, alpha) {
-    var sw = 2 * rx * s, sh = 2 * ry * s;
+    var sw = 2 * rx * s * BLUR_S, sh = 2 * ry * s * BLUR_S;
     if (sw < 1 || sh < 1) return;
     ctx.globalAlpha = alpha;
-    ctx.drawImage(snapCanvas, cx - rx * s, cy - ry * s, sw, sh, cx - rx, cy - ry, rx * 2, ry * 2);
+    ctx.drawImage(blurCanvas, (cx - rx * s) * BLUR_S, (cy - ry * s) * BLUR_S, sw, sh,
+                  cx - rx, cy - ry, rx * 2, ry * 2);
   }
 
   function resize() {
@@ -320,6 +331,8 @@
     bgCanvas.height = Math.max(2, Math.round(h * BG_S));
     snapCanvas.width = w;
     snapCanvas.height = h;
+    blurCanvas.width = Math.max(2, Math.round(w * BLUR_S));
+    blurCanvas.height = Math.max(2, Math.round(h * BLUR_S));
     bakeWaves();
     measure();
     layout();
@@ -828,11 +841,11 @@
 
       // 投影：把玻璃泡从背景上抬起来
       var sh = shadowSprite();
-      var shr = Math.max(rx, ry) * 1.55;
+      var shr = Math.max(rx, ry) * 1.5;
       ctx.globalAlpha = n.litD;
       ctx.save();
-      ctx.translate(cx, cy + ry * 0.34);
-      ctx.scale(1, 0.55);
+      ctx.translate(cx, cy + ry * 0.32);
+      ctx.scale(1, 0.5);
       ctx.drawImage(sh.img, -shr, -shr, shr * 2, shr * 2);
       ctx.restore();
 
@@ -889,14 +902,14 @@
       ctx.fillStyle = botShade;
       ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
       // 4a) 淡淡的白：让玻璃有体量（参考实现也有一层很淡的玻璃白）
-      var fillA = [0.08, 0.08, 0.07, 0.06][n.lvl];
+      var fillA = [0.02, 0.02, 0.02, 0.02][n.lvl];
       ctx.fillStyle = S.theme === "dark"
         ? "rgba(255,255,255," + (fillA * 0.45) + ")"
         : "rgba(255,255,255," + fillA + ")";
       ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
       // 4b) 类别色浸染：右下更浓，给每一类保留身份色（不是白）
       var cg2 = ctx.createLinearGradient(cx - rx * 0.8, cy - ry * 0.9, cx + rx * 0.9, cy + ry);
-      var tintA = [0.50, 0.58, 0.44, 0.28][n.lvl];
+      var tintA = [0.24, 0.30, 0.24, 0.16][n.lvl];
       if (S.theme === "dark") tintA *= 1.15;
       cg2.addColorStop(0, hexA(n.color, tintA * 0.28));
       cg2.addColorStop(0.45, hexA(n.color, tintA * 0.62));
@@ -917,17 +930,13 @@
       ctx.save();
       blobPath(cx, cy, rx, ry, n.seed, amp);
       // 边缘：一道很淡的暗线压形 + 柔光带 + 细亮线（参考实现是柔和的亮边玻璃）
-      ctx.globalAlpha = n.litD * 0.3;
-      ctx.strokeStyle = S.theme === "dark" ? "rgba(0,0,0,.5)" : "rgba(20,28,50,.12)";
-      ctx.lineWidth = 2;
+      ctx.globalAlpha = n.litD * 0.42;
+      ctx.strokeStyle = "rgba(8,12,24,.20)";
+      ctx.lineWidth = 1.6;
       ctx.stroke();
-      ctx.globalAlpha = n.litD * 0.22;
-      ctx.strokeStyle = S.theme === "dark" ? "rgba(220,235,255,.45)" : "rgba(255,255,255,.85)";
-      ctx.lineWidth = 3.4;
-      ctx.stroke();
-      ctx.globalAlpha = n.litD * (S.hoverId === n.id ? 0.95 : 0.8);
-      ctx.strokeStyle = S.theme === "dark" ? "rgba(234,244,255,.55)" : "rgba(255,255,255,.92)";
-      ctx.lineWidth = 1.15;
+      ctx.globalAlpha = n.litD * (S.hoverId === n.id ? 0.95 : 0.72);
+      ctx.strokeStyle = S.theme === "dark" ? "rgba(255,255,255,.30)" : "rgba(255,255,255,.42)";
+      ctx.lineWidth = 1.5;
       ctx.stroke();
       ctx.globalAlpha = n.litD * (S.hoverId === n.id ? 0.9 : 0.5);
       ctx.strokeStyle = hexA(n.color, S.theme === "dark" ? 0.75 : 0.55);
