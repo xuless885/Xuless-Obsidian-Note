@@ -146,11 +146,11 @@
         nameW = Math.max(nameW, w);
       });
       if (n.lvl === 0) {
-        n.rx = n.ry = 64;
+        n.rx = n.ry = 58;
       } else if (n.lvl === 1) {
-        n.rx = n.ry = 36;
+        n.rx = n.ry = 32;
       } else if (n.lvl === 2) {
-        n.rx = n.ry = 46;
+        n.rx = n.ry = 42;
       } else {
         var lineH = f.name * 1.22;
         n.rx = Math.max(25, nameW / 2 + 10);
@@ -162,56 +162,76 @@
 
   /* ------------------------------------------------------------------ 布局 */
   function layout() {
-    // 单个实心环：环内 = 基础衔接；环外 = 六大板块（短线接环）；再外 = 课程（按先后顺序）。
+    // 单环：环内 = 中心 + 基础衔接；环外 = 六大板块（短线接环）；再外 = 课程树（按先修顺序自然展开）。
     var S0 = Math.max(Math.min(S.w, S.h) / 2, 300);
-    var Rring = S0 * 0.46;
-    var Rboard = Rring + 72;      // 板块在环外，留出 72 的间距
-    var Rcourse = Rboard + 120;   // 课程再往外
-    var Rbridge = S0 * 0.27;
+    var Rring = S0 * 0.36;
+    var Rboard = Rring + 60;
+    var Rbridge = S0 * 0.21;
+    var LEVEL = 82;
     S.ringR = Rring;
     var boards = NODES.filter(function (n) { return n.lvl === 2; });
+    var courses = NODES.filter(function (n) { return n.lvl === 3; });
+
+    function leafCount(n) {
+      var kids = n.children.filter(function (c) { return c.lvl === 3; });
+      if (!kids.length) return 1;
+      var sum = 0;
+      kids.forEach(function (k) { sum += leafCount(k); });
+      return sum;
+    }
+
+    function placeChildren(parent, a0, a1, depth) {
+      var kids = parent.children.filter(function (c) { return c.lvl === 3; });
+      if (!kids.length) return;
+      var ws = kids.map(leafCount);
+      var total = ws.reduce(function (a, b) { return a + b; }, 0);
+      var SUBGAP = 0.03;
+      var span = (a1 - a0) - SUBGAP * Math.max(0, kids.length - 1);
+      var a = a0;
+      kids.forEach(function (k, i) {
+        var w = span * ws[i] / total;
+        var mid = a + w / 2;
+        var r = Rboard + depth * LEVEL;
+        k.x = Math.cos(mid) * r;
+        k.y = Math.sin(mid) * r;
+        placeChildren(k, a, a + w, depth + 1);
+        a += w + SUBGAP;
+      });
+    }
+
+    // 板块沿环均匀分布，每个板块的树在自己的扇面里向外自然展开
     var step = Math.PI * 2 / Math.max(1, boards.length);
+    var BGAP = 0.12;
     boards.forEach(function (b, i) {
-      var ang = -Math.PI / 2 + i * step;
-      b.ringAngle = ang;
-      b.x = Math.cos(ang) * Rboard;
-      b.y = Math.sin(ang) * Rboard;
+      var mid = -Math.PI / 2 + i * step;
+      var half = (step - BGAP) / 2;
+      b.ringAngle = mid;
+      b.x = Math.cos(mid) * Rboard;
+      b.y = Math.sin(mid) * Rboard;
+      placeChildren(b, mid - half, mid + half, 1);
     });
+
     var bridges = NODES.filter(function (n) { return n.lvl === 1; });
     bridges.forEach(function (br) {
       var kids = boards.filter(function (b) { return b.parent === br.id; });
-      var ang = kids.length ? kids[0].ringAngle : (br.index / Math.max(1, bridges.length)) * Math.PI * 2;
-      br.ringAngle = ang;
-      br.x = Math.cos(ang) * Rbridge;
-      br.y = Math.sin(ang) * Rbridge;
+      var a = kids.length ? kids[0].ringAngle : (br.index / Math.max(1, bridges.length)) * Math.PI * 2;
+      br.ringAngle = a;
+      br.x = Math.cos(a) * Rbridge;
+      br.y = Math.sin(a) * Rbridge;
     });
-    boards.forEach(function (b) {
-      var cs = NODES.filter(function (n) { return n.lvl === 3 && n.cat === b.id; });
-      var n = cs.length;
-      if (!n) return;
-      var spread = step * (n >= 4 ? 0.86 : 0.66);
-      cs.forEach(function (c, i) {
-        var t = n === 1 ? 0.5 : i / (n - 1);
-        var ang = b.ringAngle - spread / 2 + spread * t;
-        var r = Rcourse + (i % 2) * 26;
-        c.x = Math.cos(ang) * r;
-        c.y = Math.sin(ang) * r;
-      });
-    });
-    // 外圈课程互斥：几轮排斥，避免标签/气泡挤在一起
-    var courses = NODES.filter(function (n) { return n.lvl === 3; });
-    var stepHalf = step * 0.46;
-    var MIN_GAP = 20;
-    for (var it = 0; it < 10; it++) {
+
+    // 树枝之间再做几轮互斥，避免相邻分支的节点压在一起
+    var MIN_GAP = 18;
+    for (var it = 0; it < 8; it++) {
       for (var i = 0; i < courses.length; i++) {
         for (var j = i + 1; j < courses.length; j++) {
-          var a = courses[i], b = courses[j];
-          var dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 0.01;
-          var minD = Math.max(a.rx, a.ry) + Math.max(b.rx, b.ry) + MIN_GAP;
+          var a1 = courses[i], b1 = courses[j];
+          var dx = b1.x - a1.x, dy = b1.y - a1.y, d = Math.hypot(dx, dy) || 0.01;
+          var minD = Math.max(a1.rx, a1.ry) + Math.max(b1.rx, b1.ry) + MIN_GAP;
           if (d < minD) {
             var push = (minD - d) / 2, ux = dx / d, uy = dy / d;
-            a.x -= ux * push; a.y -= uy * push;
-            b.x += ux * push; b.y += uy * push;
+            a1.x -= ux * push; a1.y -= uy * push;
+            b1.x += ux * push; b1.y += uy * push;
           }
         }
       }
@@ -226,23 +246,12 @@
             c.x += dx2 / d2 * p2; c.y += dy2 / d2 * p2;
           }
         }
+        var rr = Math.hypot(c.x, c.y);
+        var minR = Rring + 30 + Math.max(c.rx, c.ry);
+        if (rr < minR) { var kk = minR / (rr || 1); c.x *= kk; c.y *= kk; }
       }
-      courses.forEach(function (c) {
-        var bd = BY[c.cat];
-        if (!bd) return;
-        var ang = Math.atan2(c.y, c.x);
-        var rel = ang - bd.ringAngle;
-        while (rel > Math.PI) rel -= Math.PI * 2;
-        while (rel < -Math.PI) rel += Math.PI * 2;
-        if (rel < -stepHalf) rel = -stepHalf;
-        if (rel > stepHalf) rel = stepHalf;
-        var r = Math.hypot(c.x, c.y);
-        var minR = Rboard + Math.max(bd.rx, bd.ry) + Math.max(c.rx, c.ry) + 14;
-        if (r < minR) r = minR;
-        c.x = Math.cos(bd.ringAngle + rel) * r;
-        c.y = Math.sin(bd.ringAngle + rel) * r;
-      });
     }
+
     CENTER.x = 0; CENTER.y = 0;
     if (S.narrow) {
       var yS = 1.16;
