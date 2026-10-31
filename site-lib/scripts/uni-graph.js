@@ -853,7 +853,9 @@
         tt = tt * tt * (3 - 2 * tt);
         return 0.92 - stepK * tt;
       }
-      var cuts = big ? [0.80, 0.60, 0.34, 0.14] : [0.56];
+      var cuts = n.lvl <= 1 ? [0.84, 0.72, 0.60, 0.48, 0.36, 0.24, 0.12]
+             : n.lvl === 2 ? [0.78, 0.58, 0.36, 0.14]
+             : [0.56];
 
       ctx.save();
       blobPath(cx, cy, rx, ry, n.seed, amp);
