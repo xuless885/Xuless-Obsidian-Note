@@ -129,7 +129,7 @@
     0: { name: 28, sub: 9.5, weight: 800 },
     1: { name: 18.5, sub: 8.5, weight: 750 },
     2: { name: 13.2, sub: 0, weight: 650 },
-    3: { name: 11.4, sub: 0, weight: 550 }
+    3: { name: 11.4, sub: 0, weight: 600 }
   };
   function measure() {
     NODES.forEach(function (n) {
@@ -238,26 +238,26 @@
 
   var THEME = {
     light: {
-      base: "#e9efff",
-      aurora: 1.02,
-      vignette: "rgba(88,108,168,.24)",
+      base: "#cfd9f2",
+      aurora: 1.55,
+      vignette: "rgba(54,72,132,.34)",
       ink: "#121629", inkSoft: "#5a6178",
       label: "rgba(15,19,38,.95)", labelSoft: "rgba(15,19,38,.68)",
       edge: 0.5, rimA: "rgba(255,255,255,1)", rimB: "rgba(104,126,178,.36)",
       glassTint: 0.26, glassColor: 0.22, spec: 0.85, shade: 0.17,
       topLight: "rgba(255,255,255,.5)", darken: "rgba(25,33,60,.10)",
-      shadow: 0.18, glint: 0.85
+      shadow: 0.34, glint: 0.85
     },
     dark: {
-      base: "#05060b",
-      aurora: 0.62,
-      vignette: "rgba(0,0,0,.45)",
+      base: "#04050a",
+      aurora: 0.74,
+      vignette: "rgba(0,0,0,.52)",
       ink: "#eef2ff", inkSoft: "#9da7c0",
       label: "rgba(242,246,255,.96)", labelSoft: "rgba(220,230,255,.72)",
       edge: 0.8, rimA: "rgba(255,255,255,.74)", rimB: "rgba(255,255,255,.05)",
       glassTint: 0.12, glassColor: 0.30, spec: 0.5, shade: 0.42,
       topLight: "rgba(255,255,255,.2)", darken: "rgba(0,0,0,.4)",
-      shadow: 0.62, glint: 0.62
+      shadow: 0.72, glint: 0.62
     }
   };
   function T() { return THEME[S.theme] || THEME.light; }
@@ -265,6 +265,45 @@
   /* -------------------------------------------------------------- 画布尺寸 */
   var bgCanvas = document.createElement("canvas");
   var bgCtx = bgCanvas.getContext("2d");
+  // 玻璃取景用的「背后画面」快照（CSS 分辨率；每帧在画完背景与连线后拍一张，
+  // clamp 后的折射取样都从这里来 —— 参考 shuding/liquid-glass 的 backdrop 模型）
+  var waveCanvas = document.createElement("canvas");
+  var waveCtx = waveCanvas.getContext("2d");
+  function bakeWaves() {
+    waveCanvas.width = S.w; waveCanvas.height = S.h;
+    var g = waveCtx, N = 22;
+    g.clearRect(0, 0, S.w, S.h);
+    g.lineWidth = 1;
+    for (var wi = 0; wi < N; wi++) {
+      var yb = (wi + 0.5) / N * S.h;
+      var amp = 3 + (wi % 4) * 1.6;
+      g.strokeStyle = S.theme === "dark" ? "rgba(190,212,255,.09)" : "rgba(255,255,255,.24)";
+      g.beginPath();
+      for (var wx = 0; wx <= S.w; wx += 8) {
+        var wy = yb + Math.sin(wx * 0.006 + wi * 0.66) * amp;
+        if (wx === 0) g.moveTo(wx, wy); else g.lineTo(wx, wy);
+      }
+      g.stroke();
+    }
+  }
+
+  var snapCanvas = document.createElement("canvas");
+  var snapCtx = snapCanvas.getContext("2d");
+
+  function takeSnapshot() {
+    snapCtx.setTransform(1, 0, 0, 1, 0, 0);
+    snapCtx.globalCompositeOperation = "copy";
+    snapCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, S.w, S.h);
+    snapCtx.globalCompositeOperation = "source-over";
+  }
+
+  /** 把背后画面按 s（<1 = 向中心收）缩放后铺满整个囊泡矩形；调用方负责剪裁。 */
+  function lensDraw(cx, cy, rx, ry, s, alpha) {
+    var sw = 2 * rx * s, sh = 2 * ry * s;
+    if (sw < 1 || sh < 1) return;
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(snapCanvas, cx - rx * s, cy - ry * s, sw, sh, cx - rx, cy - ry, rx * 2, ry * 2);
+  }
 
   function resize() {
     var r = stage.getBoundingClientRect();
@@ -279,6 +318,9 @@
     canvas.style.height = h + "px";
     bgCanvas.width = Math.max(2, Math.round(w * BG_S));
     bgCanvas.height = Math.max(2, Math.round(h * BG_S));
+    snapCanvas.width = w;
+    snapCanvas.height = h;
+    bakeWaves();
     measure();
     layout();
     fitCamera();
@@ -432,6 +474,20 @@
     }
   })();
 
+  var noisePattern = null;
+  function makeNoise() {
+    var n = 128, cv = document.createElement("canvas");
+    cv.width = cv.height = n;
+    var g = cv.getContext("2d");
+    var img = g.createImageData(n, n), d = img.data;
+    for (var i = 0; i < d.length; i += 4) {
+      var v = (Math.random() * 255) | 0;
+      d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255;
+    }
+    g.putImageData(img, 0, 0);
+    noisePattern = ctx.createPattern(cv, "repeat");
+  }
+
   function drawBackground(t) {
     var g = bgCtx;
     var bw = bgCanvas.width, bh = bgCanvas.height;
@@ -451,10 +507,10 @@
       var d = Math.hypot(dx, dy) || 1;
       items.push({
         color: c.color,
-        x: (S.w / 2 + dx / d * mind * (S.theme === "dark" ? 0.46 : 0.30)) * BG_S,
-        y: (S.h / 2 + dy / d * mind * (S.theme === "dark" ? 0.46 : 0.30)) * BG_S,
-        r: Math.max(S.w, S.h) * (0.42 + 0.06 * Math.sin(t * 0.18 + i)) * BG_S,
-        a: th.aurora * (0.82 + 0.18 * Math.sin(t * 0.22 + i * 1.3)),
+        x: (S.w / 2 + dx / d * mind * 0.42) * BG_S,
+        y: (S.h / 2 + dy / d * mind * 0.42) * BG_S,
+        r: Math.max(S.w, S.h) * (0.34 + 0.05 * Math.sin(t * 0.18 + i)) * BG_S,
+        a: th.aurora * (0.95 + 0.15 * Math.sin(t * 0.22 + i * 1.3)),
         ph: i
       });
     });
@@ -481,8 +537,8 @@
 
     // 中心光源：让「现代数学」坐在一束柔光里
     var cg = g.createRadialGradient(bw / 2, bh / 2, 0, bw / 2, bh / 2, Math.max(bw, bh) * (S.theme === "dark" ? 0.36 : 0.5));
-    cg.addColorStop(0, S.theme === "dark" ? "rgba(160,190,255,.13)" : "rgba(255,255,255,.30)");
-    cg.addColorStop(0.35, S.theme === "dark" ? "rgba(120,150,255,.03)" : "rgba(255,255,255,.30)");
+    cg.addColorStop(0, S.theme === "dark" ? "rgba(160,190,255,.10)" : "rgba(255,255,255,.34)");
+    cg.addColorStop(0.35, S.theme === "dark" ? "rgba(120,150,255,.03)" : "rgba(255,255,255,.12)");
     cg.addColorStop(1, "rgba(255,255,255,0)");
     g.fillStyle = cg;
     g.fillRect(0, 0, bw, bh);
@@ -645,9 +701,9 @@
   }
 
   /* ------------------------------------------------------------------ 绘制 */
-  function blobPath(cx, cy, rx, ry, seed, amp) {
+  function blobPath(cx, cy, rx, ry, seed, amp, noBegin) {
     var N = 44;
-    ctx.beginPath();
+    if (!noBegin) ctx.beginPath();
     for (var i = 0; i <= N; i++) {
       var a = i / N * Math.PI * 2;
       var w = 1 + amp * (Math.sin(a * 3 + S.t * 0.55 + seed) * 0.62 +
@@ -696,15 +752,15 @@
       var ux = dx / d, uy = dy / d;
       var nx = -uy, ny = ux;
       var pr = Math.min(p.srx, p.sry), cr = Math.min(c.srx, c.sry);
-      var ax = psx + ux * pr * 0.9, ay = psy + uy * pr * 0.9;
-      var bx = csx - ux * cr * 0.9, by = csy - uy * cr * 0.9;
+      var ax = psx + ux * pr * 0.16, ay = psy + uy * pr * 0.16;
+      var bx = csx - ux * cr * 0.16, by = csy - uy * cr * 0.16;
       var wob = S.reduce ? 0 : Math.sin(S.t * 0.5 + p.seed + c.seed) * Math.min(d * 0.035, 9);
       var mx = (ax + bx) / 2 + nx * wob, my = (ay + by) / 2 + ny * wob;
       var w1 = Math.max(1.8, pr * (p.lvl === 0 ? 0.15 : 0.21));
       var w2 = Math.max(1.3, cr * 0.18);
       var lit = Math.min(p.litD, c.litD);
       var hot = S.hover && (S.hover.id === p.id || S.hover.id === c.id) ? 0.4 : 0;
-      var aBase = (p.lvl === 0 ? 0.15 : 0.21) * lit + hot * (p.lvl === 0 ? 0.3 : 0.5);
+      var aBase = (p.lvl === 0 ? 0.20 : 0.28) * lit + hot * (p.lvl === 0 ? 0.3 : 0.5);
       if (aBase < 0.02) return;
 
       var g1 = ctx.createLinearGradient(ax, ay, bx, by);
@@ -780,73 +836,122 @@
       ctx.drawImage(sh.img, -shr, -shr, shr * 2, shr * 2);
       ctx.restore();
 
-      // 外光晕
+      // 外光晕（只做类别色提示，压低避免发白）
       var halo = haloCache(n.color);
-      var hr = Math.max(rx, ry) * (n.lvl === 0 ? 2.6 : 2.15);
-      ctx.globalAlpha = n.litD * (S.theme === "dark" ? 0.95 : 0.8) * (n.lvl === 1 ? 1.15 : 1);
+      var hr = Math.max(rx, ry) * (n.lvl === 0 ? 2.3 : 1.9);
+      ctx.globalAlpha = n.litD * (S.theme === "dark" ? 0.55 : 0.42) * (n.lvl === 1 ? 1.2 : n.lvl === 3 ? 0.7 : 1);
       ctx.drawImage(halo.img, cx - hr, cy - hr, hr * 2, hr * 2);
 
-      // 玻璃体
+      // 玻璃体：按 shuding/liquid-glass 的模型做「背景折射」——
+      // 边缘取样向中心收（位移最大），中心保持 1:1；玻璃本身不铺白色，
+      // 通透感来自折射 + 取景时预提的 contrast/saturate + 内阴影。
+      var big = n.lvl <= 1;
+      var edgeS = [0.42, 0.48, 0.60, 0.70][n.lvl];
+      var stepK = 0.92 - edgeS;
+      function f(rad) {
+        var tt = clamp((rad - 0.10) / 0.90, 0, 1);
+        tt = tt * tt * (3 - 2 * tt);
+        return 0.92 - stepK * tt;
+      }
+      var cuts = big ? [0.80, 0.60, 0.34, 0.14] : [0.56];
+
       ctx.save();
       blobPath(cx, cy, rx, ry, n.seed, amp);
       ctx.clip();
       ctx.globalAlpha = n.litD;
-      // 1) 采样背后极光（低分辨率背景本来就是模糊的 → 磨砂玻璃）
-      var bx = cx - rx * 1.35, by = cy - ry * 1.35, bw = rx * 2.7, bh = ry * 2.7;
-      var sxs = (bx / S.w) * bgCanvas.width, sys = (by / S.h) * bgCanvas.height;
-      var sws = (bw / S.w) * bgCanvas.width, shs = (bh / S.h) * bgCanvas.height;
-      ctx.drawImage(bgCanvas, sxs, sys, Math.max(1, sws), Math.max(1, shs), bx, by, bw, bh);
-      // 2) 提亮 + 材质
-      ctx.fillStyle = "rgba(255,255,255," + (S.theme === "dark" ? 0.045 : 0.14) + ")";
-      ctx.fillRect(bx, by, bw, bh);
-      var sp = bodySprite(n.lvl, n.color);
-      var scale = Math.max(rx, ry) / sp.R;
-      var sz = sp.SZ * scale;
-      ctx.drawImage(sp.img, cx - sz / 2, cy - sz / 2, sz, sz);
-      if (n.lvl === 0 && !S.reduce) {
-        try {
-          var sw = ctx.createConicGradient(S.t * 0.07 + n.seed, cx, cy);
-          sw.addColorStop(0, hexA("#5B8DEF", 0.10));
-          sw.addColorStop(0.3, hexA("#9B7BF0", 0.15));
-          sw.addColorStop(0.52, "rgba(255,255,255,0)");
-          sw.addColorStop(0.76, hexA("#29B6D4", 0.10));
-          sw.addColorStop(1, hexA("#5B8DEF", 0.10));
-          ctx.fillStyle = sw;
-          ctx.fillRect(bx, by, bw, bh);
-        } catch (e) {}
+      // 1) 边缘一圈：折射最强（evenodd 挖掉内圈）
+      ctx.save();
+      blobPath(cx, cy, rx, ry, n.seed, amp, true);
+      ctx.ellipse(cx, cy, rx * cuts[0], ry * cuts[0], 0, 0, Math.PI * 2);
+      ctx.clip("evenodd");
+      lensDraw(cx, cy, rx, ry, f((cuts[0] + 1) / 2), n.litD);
+      ctx.restore();
+      // 2) 内侧圆盘：越靠中心越接近 1:1（相邻盘尺度差只有 2–5%，接缝几乎不可见）
+      for (var ri = 0; ri < cuts.length; ri++) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, rx * cuts[ri], ry * cuts[ri], 0, 0, Math.PI * 2);
+        ctx.clip();
+        lensDraw(cx, cy, rx, ry, f(cuts[ri]), n.litD);
+        ctx.restore();
       }
+      // 3) 内阴影：上沿厚度 + 下沿暗边（对应参考实现的 inset 阴影）
+      var topShade = ctx.createLinearGradient(cx, cy - ry, cx, cy + ry * 0.12);
+      topShade.addColorStop(0, S.theme === "dark" ? "rgba(0,0,0,.30)" : "rgba(14,20,40,.10)");
+      topShade.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = topShade;
+      ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
+      var botShade = ctx.createLinearGradient(cx, cy + ry * 0.48, cx, cy + ry);
+      botShade.addColorStop(0, "rgba(0,0,0,0)");
+      botShade.addColorStop(1, S.theme === "dark" ? "rgba(0,0,0,.26)" : "rgba(14,20,40,.07)");
+      ctx.fillStyle = botShade;
+      ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
+      // 4a) 淡淡的白：让玻璃有体量（参考实现也有一层很淡的玻璃白）
+      var fillA = [0.08, 0.08, 0.07, 0.06][n.lvl];
+      ctx.fillStyle = S.theme === "dark"
+        ? "rgba(255,255,255," + (fillA * 0.45) + ")"
+        : "rgba(255,255,255," + fillA + ")";
+      ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
+      // 4b) 类别色浸染：右下更浓，给每一类保留身份色（不是白）
+      var cg2 = ctx.createLinearGradient(cx - rx * 0.8, cy - ry * 0.9, cx + rx * 0.9, cy + ry);
+      var tintA = [0.50, 0.58, 0.44, 0.28][n.lvl];
+      if (S.theme === "dark") tintA *= 1.15;
+      cg2.addColorStop(0, hexA(n.color, tintA * 0.28));
+      cg2.addColorStop(0.45, hexA(n.color, tintA * 0.62));
+      cg2.addColorStop(0.8, hexA(n.color, tintA * 0.9));
+      cg2.addColorStop(1, hexA(n.color, tintA));
+      ctx.fillStyle = cg2;
+      ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
+      // 5) 极轻的顶光：只在左上角一点，不再整片泛白
+      var sheen = ctx.createRadialGradient(cx - rx * 0.4, cy - ry * 0.44, 0,
+                                           cx - rx * 0.4, cy - ry * 0.44, Math.max(rx, ry) * 0.62);
+      sheen.addColorStop(0, S.theme === "dark" ? "rgba(255,255,255,.10)" : "rgba(255,255,255,.14)");
+      sheen.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = sheen;
+      ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
       ctx.restore();
 
-      // 3) 边缘玻璃线（左上亮、右下暗）
+      // 轮廓：细暗边 + 左上 1px 高光弧 + 类别色细环
       ctx.save();
       blobPath(cx, cy, rx, ry, n.seed, amp);
-      var rim = ctx.createLinearGradient(cx - rx, cy - ry, cx + rx * 0.9, cy + ry);
-      rim.addColorStop(0, th.rimA);
-      rim.addColorStop(0.45, "rgba(255,255,255," + (S.theme === "dark" ? 0.22 : 0.45) + ")");
-      rim.addColorStop(1, th.rimB);
-      ctx.globalAlpha = n.litD;
-      ctx.strokeStyle = rim;
-      ctx.lineWidth = Math.max(1, Math.min(rx, ry) * 0.045);
+      // 边缘：一道很淡的暗线压形 + 柔光带 + 细亮线（参考实现是柔和的亮边玻璃）
+      ctx.globalAlpha = n.litD * 0.3;
+      ctx.strokeStyle = S.theme === "dark" ? "rgba(0,0,0,.5)" : "rgba(20,28,50,.12)";
+      ctx.lineWidth = 2;
       ctx.stroke();
-      // 外圈类别色细边
-      ctx.globalAlpha = n.litD * (S.hoverId === n.id ? 0.9 : 0.45);
-      ctx.strokeStyle = hexA(n.color, S.theme === "dark" ? 0.55 : 0.7);
-      ctx.lineWidth = Math.max(1, Math.min(rx, ry) * 0.075);
+      ctx.globalAlpha = n.litD * 0.22;
+      ctx.strokeStyle = S.theme === "dark" ? "rgba(220,235,255,.45)" : "rgba(255,255,255,.85)";
+      ctx.lineWidth = 3.4;
       ctx.stroke();
-
-      // 高光弧（左上）+ 折光弧（右下）：让表面读起来像一层有厚度的液体
-      var gl1 = 3.5 + (S.reduce ? 0 : Math.sin(S.t * 0.33 + n.seed) * 0.13);
-      ctx.globalAlpha = n.litD * th.glint;
-      ctx.strokeStyle = "rgba(255,255,255," + (S.theme === "dark" ? 0.72 : 0.95) + ")";
-      ctx.lineWidth = Math.max(1.1, Math.min(rx, ry) * 0.055);
+      ctx.globalAlpha = n.litD * (S.hoverId === n.id ? 0.95 : 0.8);
+      ctx.strokeStyle = S.theme === "dark" ? "rgba(234,244,255,.55)" : "rgba(255,255,255,.92)";
+      ctx.lineWidth = 1.15;
+      ctx.stroke();
+      ctx.globalAlpha = n.litD * (S.hoverId === n.id ? 0.9 : 0.5);
+      ctx.strokeStyle = hexA(n.color, S.theme === "dark" ? 0.75 : 0.55);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      // 色散：内侧极淡的红/青边（只给大类与中心，省描边开销）
+      if (n.lvl <= 1) {
+      ctx.save();
+      blobPath(cx, cy, rx, ry, n.seed, amp);
+      ctx.clip();
+      ctx.globalAlpha = n.litD * 0.55;
+      ctx.translate(-0.9, -0.6);
+      ctx.strokeStyle = "rgba(255,96,120,.16)";
+      ctx.lineWidth = 2.2;
+      ctx.stroke();
+      ctx.translate(1.8, 1.2);
+      ctx.strokeStyle = "rgba(80,190,255,.16)";
+      ctx.stroke();
+      ctx.restore();
+      }
+      var gl1 = 3.55 + (S.reduce ? 0 : Math.sin(S.t * 0.33 + n.seed) * 0.1);
+      ctx.globalAlpha = n.litD * (S.theme === "dark" ? 0.5 : 0.7);
+      ctx.strokeStyle = "rgba(255,255,255,.9)";
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.ellipse(cx, cy, rx * 0.9, ry * 0.9, 0, gl1, gl1 + 0.62);
-      ctx.stroke();
-      ctx.globalAlpha = n.litD * 0.42;
-      ctx.strokeStyle = hexA(n.color, S.theme === "dark" ? 0.9 : 0.8);
-      ctx.lineWidth = Math.max(1, Math.min(rx, ry) * 0.05);
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, rx * 0.92, ry * 0.92, 0, -0.18, 0.42);
+      ctx.ellipse(cx, cy, rx * 0.95, ry * 0.95, 0, gl1, gl1 + 0.5);
       ctx.stroke();
       ctx.restore();
 
@@ -897,6 +1002,11 @@
       lines.forEach(function (line, i) {
         var size = f.name * pop;
         ctx.font = (f.weight || 600) + " " + size.toFixed(1) + "px " + SANS;
+        if (n.lvl <= 1) {
+          ctx.strokeStyle = S.theme === "dark" ? "rgba(0,0,0,.35)" : "rgba(255,255,255,.55)";
+          ctx.lineWidth = Math.max(2, size * 0.16);
+          ctx.strokeText(line, n.sx, y0 + i * lh);
+        }
         ctx.fillText(line, n.sx, y0 + i * lh);
       });
       if (hasSub) {
@@ -931,7 +1041,9 @@
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     ctx.globalAlpha = 1;
     ctx.drawImage(bgCanvas, 0, 0, S.w, S.h);
+    ctx.drawImage(waveCanvas, 0, 0);
     drawEdges(S.t);
+    if ((frameNo % 2) === 1) takeSnapshot();
     drawNodes(S.t);
     if (S.hover) placeTip();
     // 激活涟漪（点击后 0~1）
