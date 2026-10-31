@@ -658,98 +658,93 @@
   }
 
   function drawEdges(t) {
-    var th = T();
-    // 先画跨分支关联（细虚线，从中心附近绕行），再画主树（液体带）
+    // 连线统一改成「发光细线」：从囊泡边缘出发、头尾透明度渐隐；跨分支虚线稍亮但不刺眼
     CROSS.forEach(function (e) {
       var a = e.a, b = e.b;
-      var pa = toScreen(a.x, a.y), pb = toScreen(b.x, b.y);
-      var mx = (pa[0] + pb[0]) / 2, my = (pa[1] + pb[1]) / 2;
+      var dx = b.sx - a.sx, dy = b.sy - a.sy, d = Math.hypot(dx, dy);
+      if (d < 2) return;
+      var ux = dx / d, uy = dy / d;
+      var ra = Math.min(a.srx, a.sry), rb = Math.min(b.srx, b.sry);
+      var ax = a.sx + ux * ra * 0.99, ay = a.sy + uy * ra * 0.99;
+      var bx = b.sx - ux * rb * 0.99, by = b.sy - uy * rb * 0.99;
+      var mx = (ax + bx) / 2, my = (ay + by) / 2;
       var cx = S.w / 2 + (mx - S.w / 2) * 0.42;
       var cy = S.h / 2 + (my - S.h / 2) * 0.42;
       var lit = Math.min(a.litD, b.litD);
-      var litBoost = (S.hover && (S.hover.id === a.id || S.hover.id === b.id)) ? 1 : 0;
-      var alpha = lit * (0.22 + litBoost * 0.5) * (S.theme === "dark" ? 1.2 : 1);
-      var grad = ctx.createLinearGradient(pa[0], pa[1], pb[0], pb[1]);
-      grad.addColorStop(0, hexA(a.color, alpha));
-      grad.addColorStop(1, hexA(b.color, alpha));
+      var hot = (S.hover && (S.hover.id === a.id || S.hover.id === b.id)) ? 1 : 0;
+      var al = lit * (0.42 + hot * 0.3) * (S.theme === "dark" ? 1.15 : 1);
+      var grad = ctx.createLinearGradient(ax, ay, bx, by);
+      grad.addColorStop(0, hexA(a.color, 0));
+      grad.addColorStop(0.18, hexA(a.color, al));
+      grad.addColorStop(0.5, hexA(a.color, al * 0.55));
+      grad.addColorStop(0.82, hexA(b.color, al));
+      grad.addColorStop(1, hexA(b.color, 0));
       ctx.save();
-      ctx.setLineDash([2, 7]);
-      ctx.lineDashOffset = -(t * 14 + a.index * 5) % 9;
+      ctx.setLineDash([2.5, 7]);
+      ctx.lineDashOffset = -(t * 16 + a.index * 5) % 9.5;
       ctx.strokeStyle = grad;
-      ctx.lineWidth = 1.35;
+      ctx.globalAlpha = 0.6;
+      ctx.lineWidth = 4.4;
       ctx.beginPath();
-      ctx.moveTo(pa[0], pa[1]);
-      ctx.quadraticCurveTo(cx, cy, pb[0], pb[1]);
+      ctx.moveTo(ax, ay);
+      ctx.quadraticCurveTo(cx, cy, bx, by);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.lineWidth = 1.15;
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      ctx.quadraticCurveTo(cx, cy, bx, by);
       ctx.stroke();
       ctx.restore();
     });
 
     EDGES.forEach(function (e) {
       var p = e.a, c = e.b;
-      var pa = p, cb = c;
-      var psx = p.sx, psy = p.sy, csx = c.sx, csy = c.sy;
-      var dx = csx - psx, dy = csy - psy;
-      var d = Math.hypot(dx, dy);
+      var dx = c.sx - p.sx, dy = c.sy - p.sy, d = Math.hypot(dx, dy);
       if (d < 2) return;
       var ux = dx / d, uy = dy / d;
-      var nx = -uy, ny = ux;
       var pr = Math.min(p.srx, p.sry), cr = Math.min(c.srx, c.sry);
-      var ax = psx + ux * pr * 0.16, ay = psy + uy * pr * 0.16;
-      var bx = csx - ux * cr * 0.16, by = csy - uy * cr * 0.16;
-      var wob = S.reduce ? 0 : Math.sin(S.t * 0.5 + p.seed + c.seed) * Math.min(d * 0.035, 9);
-      var mx = (ax + bx) / 2 + nx * wob, my = (ay + by) / 2 + ny * wob;
-      var w1 = Math.max(1.8, pr * (p.lvl === 0 ? 0.15 : 0.21));
-      var w2 = Math.max(1.3, cr * 0.18);
+      var ax = p.sx + ux * pr * 0.99, ay = p.sy + uy * pr * 0.99;
+      var bx = c.sx - ux * cr * 0.99, by = c.sy - uy * cr * 0.99;
+      var wob = S.reduce ? 0 : Math.sin(S.t * 0.5 + p.seed + c.seed) * Math.min(d * 0.03, 7);
+      var mx = (ax + bx) / 2 - uy * wob, my = (ay + by) / 2 + ux * wob;
       var lit = Math.min(p.litD, c.litD);
-      var hot = S.hover && (S.hover.id === p.id || S.hover.id === c.id) ? 0.4 : 0;
-      var aBase = (p.lvl === 0 ? 0.20 : 0.28) * lit + hot * (p.lvl === 0 ? 0.3 : 0.5);
-      if (aBase < 0.02) return;
-
-      var g1 = ctx.createLinearGradient(ax, ay, bx, by);
-      g1.addColorStop(0, hexA(p.color, aBase * (S.theme === "dark" ? 1.25 : 1)));
-      g1.addColorStop(1, hexA(c.color, aBase * (S.theme === "dark" ? 1.25 : 1) * 0.75));
-      ctx.fillStyle = g1;
-      ctx.globalAlpha = 0.45;
-      ctx.beginPath();
-      ctx.moveTo(ax + nx * w1 * 2.4, ay + ny * w1 * 2.4);
-      ctx.quadraticCurveTo(mx + nx * (w1 + w2) * 1.2, my + ny * (w1 + w2) * 1.2, bx + nx * w2 * 2.2, by + ny * w2 * 2.2);
-      ctx.lineTo(bx - nx * w2 * 2.2, by - ny * w2 * 2.2);
-      ctx.quadraticCurveTo(mx - nx * (w1 + w2) * 1.2, my - ny * (w1 + w2) * 1.2, ax - nx * w1 * 2.4, ay - ny * w1 * 2.4);
-      ctx.closePath();
-      ctx.fill();
-      ctx.globalAlpha = 1;
-      ctx.beginPath();
-      ctx.moveTo(ax + nx * w1, ay + ny * w1);
-      ctx.quadraticCurveTo(mx + nx * (w1 + w2) / 2, my + ny * (w1 + w2) / 2, bx + nx * w2, by + ny * w2);
-      ctx.lineTo(bx - nx * w2, by - ny * w2);
-      ctx.quadraticCurveTo(mx - nx * (w1 + w2) / 2, my - ny * (w1 + w2) / 2, ax - nx * w1, ay - ny * w1);
-      ctx.closePath();
-      ctx.fill();
-
-      // 玻璃高光线
-      var g2 = ctx.createLinearGradient(ax, ay, bx, by);
-      var la = lit * (S.theme === "dark" ? 0.34 : 0.30) + hot * 0.4;
-      g2.addColorStop(0, hexA(p.color, la));
-      g2.addColorStop(1, hexA(c.color, la * 0.35));
-      ctx.strokeStyle = g2;
-      ctx.lineWidth = 1.1;
+      var hot = (S.hover && (S.hover.id === p.id || S.hover.id === c.id)) ? 1 : 0;
+      var bm = ((p.lvl === 0 ? 0.44 : 0.52) * lit + hot * 0.22) * (S.theme === "dark" ? 1.15 : 1);
+      if (bm < 0.03) return;
+      var grad = ctx.createLinearGradient(ax, ay, bx, by);
+      grad.addColorStop(0, hexA(p.color, 0));
+      grad.addColorStop(0.18, hexA(p.color, bm));
+      grad.addColorStop(0.5, hexA(p.color, bm * 0.7));
+      grad.addColorStop(0.82, hexA(c.color, bm));
+      grad.addColorStop(1, hexA(c.color, 0));
+      ctx.save();
+      // 发光层（宽、淡） + 细芯（窄、亮）
+      ctx.globalAlpha = 0.52;
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 6;
       ctx.beginPath();
       ctx.moveTo(ax, ay);
       ctx.quadraticCurveTo(mx, my, bx, by);
       ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.lineWidth = 1.15;
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      ctx.quadraticCurveTo(mx, my, bx, by);
+      ctx.stroke();
+      ctx.restore();
 
-      // 流向光点（只给主干级别加，避免噪声）
-      if (p.lvl <= 1 && !S.reduce && lit > 0.5) {
-        for (var k = 0; k < 2; k++) {
-          var u = (S.t * (0.10 + 0.02 * k) + (p.index * 0.17 + c.index * 0.31 + k * 0.5)) % 1;
-          var iu = 1 - u;
-          var qx = iu * iu * ax + 2 * iu * u * mx + u * u * bx;
-          var qy = iu * iu * ay + 2 * iu * u * my + u * u * by;
-          ctx.fillStyle = "rgba(255,255,255," + (0.28 * lit + hot * 0.5) + ")";
-          ctx.beginPath();
-          ctx.arc(qx, qy, 1.5, 0, Math.PI * 2);
-          ctx.fill();
-        }
+      // 流向光点：只留一个、更小，避免噪声
+      if (p.lvl <= 1 && !S.reduce && lit > 0.6) {
+        var u = (S.t * 0.10 + p.index * 0.17 + c.index * 0.31) % 1;
+        var iu = 1 - u;
+        var qx = iu * iu * ax + 2 * iu * u * mx + u * u * bx;
+        var qy = iu * iu * ay + 2 * iu * u * my + u * u * by;
+        ctx.fillStyle = "rgba(255,255,255," + (0.5 * lit) + ")";
+        ctx.beginPath();
+        ctx.arc(qx, qy, 1.1, 0, Math.PI * 2);
+        ctx.fill();
       }
     });
   }
