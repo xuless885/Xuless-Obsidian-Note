@@ -238,7 +238,7 @@
 
   var THEME = {
     light: {
-      base: "#cfd9f2",
+      base: "#f1f3f9",
       aurora: 1.72,
       vignette: "rgba(54,72,132,.34)",
       ink: "#121629", inkSoft: "#5a6178",
@@ -249,7 +249,7 @@
       shadow: 0.30, glint: 0.85
     },
     dark: {
-      base: "#04050a",
+      base: "#08090e",
       aurora: 0.82,
       vignette: "rgba(0,0,0,.52)",
       ink: "#eef2ff", inkSoft: "#9da7c0",
@@ -331,7 +331,6 @@
     snapCanvas.height = h;
     blurCanvas.width = Math.max(2, Math.round(w * BLUR_S));
     blurCanvas.height = Math.max(2, Math.round(h * BLUR_S));
-    bakeWaves();
     measure();
     layout();
     fitCamera();
@@ -500,82 +499,14 @@
   }
 
   function drawBackground(t) {
+    // 纯色背景：颜色只由每枚囊泡自己的类别色承担
     var g = bgCtx;
-    var bw = bgCanvas.width, bh = bgCanvas.height;
-    var th = T();
     g.setTransform(1, 0, 0, 1, 0, 0);
     g.globalCompositeOperation = "source-over";
     g.globalAlpha = 1;
-    g.fillStyle = th.base;
-    g.fillRect(0, 0, bw, bh);
-
-    // 类别色光团：位置跟随各分类在屏幕上的方位，越外越淡 —— 颜色与结构对应
-    var items = [];
-    var mind = Math.min(S.w, S.h);
-    CATS.forEach(function (c, i) {
-      var p = toScreen(c.x, c.y);
-      var dx = p[0] - S.w / 2, dy = p[1] - S.h / 2;
-      var d = Math.hypot(dx, dy) || 1;
-      items.push({
-        color: c.color,
-        x: (S.w / 2 + dx / d * mind * 0.42) * BG_S,
-        y: (S.h / 2 + dy / d * mind * 0.42) * BG_S,
-        r: Math.max(S.w, S.h) * (0.34 + 0.05 * Math.sin(t * 0.18 + i)) * BG_S,
-        a: th.aurora * (0.95 + 0.15 * Math.sin(t * 0.22 + i * 1.3)),
-        ph: i
-      });
-    });
-    AURORA.forEach(function (a, i) {
-      items.push({
-        color: a.color,
-        x: (S.w / 2 + a.x * S.w * 0.5 + Math.sin(t * 0.09 + a.ph) * S.w * 0.03) * BG_S,
-        y: (S.h / 2 + a.y * S.h * 0.5 + Math.cos(t * 0.075 + a.ph) * S.h * 0.03) * BG_S,
-        r: Math.max(S.w, S.h) * a.r * 0.8 * BG_S,
-        a: a.a * (S.theme === "dark" ? 1.05 : 0.8),
-        ph: 10 + i
-      });
-    });
-    if (S.theme === "dark") g.globalCompositeOperation = "lighter";
-    items.forEach(function (it) {
-      var rg = g.createRadialGradient(it.x, it.y, 0, it.x, it.y, it.r);
-      rg.addColorStop(0, hexA(it.color, it.a));
-      rg.addColorStop(0.5, hexA(it.color, it.a * 0.32));
-      rg.addColorStop(1, hexA(it.color, 0));
-      g.fillStyle = rg;
-      g.fillRect(0, 0, bw, bh);
-    });
-    g.globalCompositeOperation = "source-over";
-
-    // 中心光源：让「现代数学」坐在一束柔光里
-    var cg = g.createRadialGradient(bw / 2, bh / 2, 0, bw / 2, bh / 2, Math.max(bw, bh) * (S.theme === "dark" ? 0.36 : 0.5));
-    cg.addColorStop(0, S.theme === "dark" ? "rgba(160,190,255,.10)" : "rgba(255,255,255,.34)");
-    cg.addColorStop(0.35, S.theme === "dark" ? "rgba(120,150,255,.03)" : "rgba(255,255,255,.12)");
-    cg.addColorStop(1, "rgba(255,255,255,0)");
-    g.fillStyle = cg;
-    g.fillRect(0, 0, bw, bh);
-
-    // 暗角：拉开中心与边缘的层次
-    var vg = g.createRadialGradient(bw / 2, bh / 2, Math.min(bw, bh) * 0.18, bw / 2, bh / 2, Math.max(bw, bh) * 0.76);
-    vg.addColorStop(0, "rgba(0,0,0,0)");
-    vg.addColorStop(1, th.vignette);
-    g.fillStyle = vg;
-    g.fillRect(0, 0, bw, bh);
-
-    // 漂浮微粒：一点点生气，不抢结构
-    var mAlpha = S.theme === "dark" ? 1 : 0.55;
-    for (var mi = 0; mi < MOTES.length; mi++) {
-      var m = MOTES[mi];
-      var my = ((m.y - t * m.sp) % 1 + 1) % 1;
-      var mx = m.x + Math.sin(t * 0.12 + m.ph) * 0.01;
-      var mr = m.r * ((bw + bh) / 2000);
-      g.fillStyle = S.theme === "dark" ? "rgba(190,212,255," + (m.a * mAlpha) + ")" : "rgba(255,255,255," + (m.a * mAlpha + 0.18) + ")";
-      if (mr < 0.4) continue;
-      g.beginPath();
-      g.arc(mx * bw, my * bh, mr, 0, Math.PI * 2);
-      g.fill();
-    }
+    g.fillStyle = T().base;
+    g.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
   }
-
   /* ------------------------------------------------------------------ 相机 */
   function toScreen(x, y) {
     return [(x - S.cam.x) * S.cam.k + S.w / 2, (y - S.cam.y) * S.cam.k + S.h / 2];
@@ -907,7 +838,7 @@
       ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
       // 4b) 类别色浸染：右下更浓，给每一类保留身份色（不是白）
       var cg2 = ctx.createLinearGradient(cx - rx * 0.8, cy - ry * 0.9, cx + rx * 0.9, cy + ry);
-      var tintA = [0.24, 0.30, 0.24, 0.16][n.lvl];
+      var tintA = [0.48, 0.60, 0.46, 0.32][n.lvl];
       if (S.theme === "dark") tintA *= 1.15;
       cg2.addColorStop(0, hexA(n.color, tintA * 0.28));
       cg2.addColorStop(0.45, hexA(n.color, tintA * 0.62));
@@ -940,21 +871,26 @@
       ctx.strokeStyle = hexA(n.color, S.theme === "dark" ? 0.75 : 0.55);
       ctx.lineWidth = 1;
       ctx.stroke();
-      // 色散：内侧极淡的红/青边（只给大类与中心，省描边开销）
-      if (n.lvl <= 1) {
+      // 色散：沿囊泡边缘的彩虹折射环（conic 光谱，只露出内侧 ~2px）
       ctx.save();
       blobPath(cx, cy, rx, ry, n.seed, amp);
       ctx.clip();
-      ctx.globalAlpha = n.litD * 0.55;
-      ctx.translate(-0.9, -0.6);
-      ctx.strokeStyle = "rgba(255,96,120,.16)";
-      ctx.lineWidth = 2.2;
-      ctx.stroke();
-      ctx.translate(1.8, 1.2);
-      ctx.strokeStyle = "rgba(80,190,255,.16)";
+      ctx.globalAlpha = n.litD * (S.theme === "dark" ? 0.9 : 0.8);
+      var dis = ctx.createConicGradient(S.reduce ? n.seed : S.t * 0.12 + n.seed, cx, cy);
+      var spectrum = [
+        [0.00, "255,86,96"], [0.14, "255,170,80"], [0.28, "255,236,120"],
+        [0.42, "120,230,150"], [0.56, "90,208,255"], [0.70, "120,140,255"],
+        [0.86, "208,120,255"], [1.00, "255,86,96"]
+      ];
+      for (var si = 0; si < spectrum.length; si++) {
+        dis.addColorStop(spectrum[si][0], "rgba(" + spectrum[si][1] + ",.55)");
+      }
+      ctx.strokeStyle = dis;
+      ctx.lineWidth = Math.max(1.6, Math.min(rx, ry) * 0.07);
+      ctx.beginPath();
+      blobPath(cx, cy, rx * 0.975, ry * 0.975, n.seed, amp, true);
       ctx.stroke();
       ctx.restore();
-      }
       var gl1 = 3.55 + (S.reduce ? 0 : Math.sin(S.t * 0.33 + n.seed) * 0.1);
       ctx.globalAlpha = n.litD * (S.theme === "dark" ? 0.5 : 0.7);
       ctx.strokeStyle = "rgba(255,255,255,.9)";
@@ -1050,7 +986,6 @@
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     ctx.globalAlpha = 1;
     ctx.drawImage(bgCanvas, 0, 0, S.w, S.h);
-    ctx.drawImage(waveCanvas, 0, 0);
     drawEdges(S.t);
     if ((frameNo % 2) === 1) takeSnapshot();
     drawNodes(S.t);
