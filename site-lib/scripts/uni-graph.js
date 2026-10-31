@@ -45,6 +45,7 @@
       id: n.id, lvl: n.lvl, name: n.name, en: n.en, desc: n.desc, href: n.href,
       parent: n.parent, cat: n.cat, color: n.color || "#6f86ff",
       index: i, children: [], seed: (i * 2.39996) % (Math.PI * 2),
+      irr: 0.85 + 0.3 * hash01(n.id),
       x: 0, y: 0, rx: 20, ry: 20, sx: 0, sy: 0, srx: 0, sry: 0,
       lit: 1, litT: 1, litD: 1, vis: 1, visT: 1, pop: 1, popT: 1, depth: 0, path: []
     };
@@ -643,13 +644,26 @@
   }
 
   /* ------------------------------------------------------------------ 绘制 */
+  function blobRadial(a, seed, amp) {
+    // 静态的 2/3/5/7 次谐波给每个囊泡一个独一无二的「不规则形状」，
+    // 再叠一层缓慢的呼吸；归一化保证不会超出布局半径。
+    var stat = Math.sin(a * 2 + seed * 3.1) * 0.42 +
+               Math.sin(a * 3 + seed * 1.7) * 0.30 +
+               Math.sin(a * 5 + seed * 2.3) * 0.20 +
+               Math.sin(a * 7 - seed * 1.1) * 0.10;
+    var breathe = Math.sin(a * 3 + S.t * 0.5 + seed) * 0.42 +
+                  Math.sin(a * 5 - S.t * 0.34 + seed * 1.7) * 0.28 +
+                  Math.sin(a * 2 + S.t * 0.28 + seed * 2.6) * 0.18;
+    var k = amp * (stat * 0.62 + breathe * 0.55);
+    return (1 + k) / (1 + amp * 0.82);
+  }
+
   function blobPath(cx, cy, rx, ry, seed, amp, noBegin) {
-    var N = 44;
+    var N = 64;
     if (!noBegin) ctx.beginPath();
     for (var i = 0; i <= N; i++) {
       var a = i / N * Math.PI * 2;
-      var w = 1 + amp * (Math.sin(a * 3 + S.t * 0.55 + seed) * 0.62 +
-                         Math.sin(a * 5 - S.t * 0.4 + seed * 1.7) * 0.38);
+      var w = blobRadial(a, seed, amp);
       var px = cx + Math.cos(a) * rx * w;
       var py = cy + Math.sin(a) * ry * w;
       if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
@@ -761,7 +775,7 @@
       var pop = 1 + (n.pop - 1) * 0.85;
       var rx = n.srx * pop, ry = n.sry * pop;
       var cx = n.sx, cy = n.sy;
-      var amp = S.reduce ? 0 : [0.05, 0.042, 0.034, 0.028][n.lvl];
+      var amp = [0.15, 0.13, 0.105, 0.09][n.lvl] * n.irr;
 
       // 投影：把玻璃泡从背景上抬起来
       var sh = shadowSprite();
@@ -910,14 +924,12 @@
         ctx.fill();
         ctx.strokeStyle = hexA(n.color, 0.95);
         ctx.lineWidth = 1.6;
-        ctx.beginPath();
-        ctx.ellipse(cx, cy, pr2, pr2 * (ry / rx), 0, 0, Math.PI * 2);
+        blobPath(cx, cy, rx * 1.3, ry * 1.3, n.seed, amp);
         ctx.stroke();
         ctx.globalAlpha = 0.4;
         ctx.strokeStyle = "rgba(255,255,255,.9)";
         ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.ellipse(cx, cy, pr2 + 3.5, (pr2 + 3.5) * (ry / rx), 0, 0, Math.PI * 2);
+        blobPath(cx, cy, rx * 1.34, ry * 1.34, n.seed, amp);
         ctx.stroke();
         ctx.restore();
       }
@@ -1031,7 +1043,7 @@
     for (var i = 0; i < NODES.length; i++) {
       var n = NODES[i];
       if (!n.srx || n.vis < 0.2) continue;
-      var dx = (sx - n.sx) / (n.srx * 1.05), dy = (sy - n.sy) / (n.sry * 1.05);
+      var dx = (sx - n.sx) / (n.srx * 1.12), dy = (sy - n.sy) / (n.sry * 1.12);
       var q = dx * dx + dy * dy;
       if (q <= 1 && q < bestScore) { bestScore = q; best = n; }
     }
