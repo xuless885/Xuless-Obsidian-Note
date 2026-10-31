@@ -913,19 +913,25 @@
       return { idx: idx, set: set };
     }
 
-    /** 焦点外节点的目标亮度（配合每节点缓动 _a 使用；Obsidian 的 Vo = 0.2） */
-    var FOCUS_DIM = 0.2;
+    /**
+     * 悬停/选中时的三级亮度（用户 2026-10-31：「其他未被选中的相关节点不够暗」）：
+     *   被悬停 = 1；一跳邻居 = 0.55；其余 = 0.12。
+     * 三级都通过每节点 _a 缓动（10%/帧），所以进出焦点是淡入淡出而不是闪切。
+     */
+    var FOCUS_DIM = 0.12;
+    var FOCUS_ADJ = 0.55;
 
     function edgeAlpha(focus, si, ti) {
       var ambient = clamp(0.18 + 0.42 * S.view.k, 0.14, 0.62);
       if (!focus) return ambient;
       // 用两端节点**缓动后的**亮度做插值 → 悬停/取消悬停时连线淡入淡出，而不是瞬间跳变
-      var f = 0.5 * (focusRatio(si) + focusRatio(ti));
-      var focused;
-      if (si === focus.idx || ti === focus.idx) focused = 0.85;
-      else if (focus.set[si] && focus.set[ti]) focused = 0.45;
-      else focused = 0.05;
-      return ambient + (focused - ambient) * f;
+      var a = focusRatio(si), b = focusRatio(ti);
+      if (si === focus.idx || ti === focus.idx) {
+        // 与被悬停/选中节点直接相连的边：最亮，但另端越暗它也越淡
+        return 0.5 + 0.4 * Math.max(a, b);
+      }
+      // 邻居之间的边略亮于无关边，但都随两端亮度衰减
+      return 0.05 + 0.16 * Math.max(a, b);
     }
 
     /** 节点「在焦点里的程度」0..1（由缓动后的 _a 归一化而来），供连线与标签共用 */
@@ -1095,7 +1101,7 @@
         else n._t = wantT;
         // 亮度（焦点内外）也走缓动：光标移入/移出节点时，其余节点是淡出而不是闪一下
         var wantA = 1;
-        if (focus) wantA = focus.set[i] ? 1 : FOCUS_DIM;
+        if (focus) wantA = (i === focus.idx) ? 1 : (focus.set[i] ? FOCUS_ADJ : FOCUS_DIM);
         else if (S.matchSet && !S.matchSet[i]) wantA = 0.3;
         if (n._a === undefined) n._a = wantA;
         else if (Math.abs(n._a - wantA) > 0.005) { n._a += (wantA - n._a) * 0.12; animating = true; } // Obsidian：每帧 10%（Ce 的 g5=.9）
@@ -1238,8 +1244,15 @@
         ctx.globalAlpha = 1;
         return { x0: n.x - w / 2 - 1, x1: n.x + w / 2 + 1, y0: y - 1, y1: y + fs + 1 };
       };
+      // 焦点态（悬停/选中）下标签也要跟着节点一起暗：否则节点淡到 0.12、标签还挂着，
+      // 看起来就是「其他节点不够暗」（用户 2026-10-31 的反馈）。
+      var focusActive = !!(S.hover >= 0 || S.selected >= 0);
 
-      for (i = 0; i < forced.length; i++) rects.push(draw(forced[i], intro));
+      for (i = 0; i < forced.length; i++) {
+        var fa = focusActive ? clamp(0.25 + 0.75 * focusRatio(forced[i]), 0, 1) : 1;
+        if (fa * intro <= 0.02) continue;
+        rects.push(draw(forced[i], intro * fa));
+      }
 
       if (auto.length) {
         var order = S.labelOrder && S.labelOrder.length ? S.labelOrder : null;
@@ -1262,7 +1275,10 @@
             if (r.x0 < o.x1 && r.x1 > o.x0 && r.y0 < o.y1 && r.y1 > o.y0) { hit = true; break; }
           }
           if (hit) continue;                        // 与已绘制的标签重叠 → 让位
-          rects.push(draw(list[i], base * intro * (0.35 + 0.65 * focusRatio(list[i]))));
+          var la = focusActive ? intro * focusRatio(list[i])
+                               : base * intro * (0.35 + 0.65 * focusRatio(list[i]));
+          if (la <= 0.02) continue;                 // 焦点外节点的标签一起淡出
+          rects.push(draw(list[i], la));
         }
       }
     }

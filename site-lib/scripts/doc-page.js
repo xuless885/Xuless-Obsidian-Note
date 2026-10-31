@@ -910,7 +910,9 @@
       cv.style.width = "100%"; cv.style.height = "auto";
       ctx.scale(dpr, dpr);
 
-      // 悬停 / 拖动状态：hover 优先于「当前文档」，高亮它的邻居（用户要求「跟其他关联」）
+      // 悬停 / 拖动状态：hover 优先于「当前文档」，高亮它的邻居（用户要求「跟其他关联」）。
+      // 2026-10-31 用户反馈：悬停时其他相关节点不够暗、且没有转场 —— 改成三级亮度
+      // （悬停 1 / 邻居 0.55 / 其余 0.12）并逐帧缓动，和全屏图谱同一套观感。
       var hover = -1, drag = null;
 
       function radiusOf(i) {
@@ -920,10 +922,37 @@
         if (hover >= 0 && adj[hover].indexOf(i) >= 0) return 5.5;
         return n.deg > 0 ? 3.6 : 2.6;
       }
-      function alphaOf(i) {
-        if (hover >= 0) return (i === hover || adj[hover].indexOf(i) >= 0) ? 1 : 0.18;
+      var DIM_OTHER = 0.12, DIM_ADJ = 0.55;
+      function targetAlphaOf(i) {
+        if (hover >= 0) {
+          if (i === hover) return 1;
+          return adj[hover].indexOf(i) >= 0 ? DIM_ADJ : DIM_OTHER;
+        }
         if (cur === undefined) return 1;
         return (i === cur || adj[cur].indexOf(i) >= 0) ? 1 : 0.35;
+      }
+      function alphaOf(i) {
+        var n = nodes[i];
+        return (typeof n._a === "number") ? n._a : 1;
+      }
+      // 逐帧把每节点亮度逼近目标（10%/帧），走完自己停
+      function easeAlphas() {
+        var moving = false;
+        for (var i = 0; i < N; i++) {
+          var n = nodes[i], want = targetAlphaOf(i);
+          if (typeof n._a !== "number") { n._a = want; continue; }
+          if (Math.abs(n._a - want) > 0.004) { n._a += (want - n._a) * 0.1; moving = true; }
+          else n._a = want;
+        }
+        return moving;
+      }
+      var hoverRaf = 0;
+      function requestHoverTick() { if (!hoverRaf) hoverRaf = window.requestAnimationFrame(hoverTick); }
+      function hoverTick() {
+        hoverRaf = 0;
+        var moving = easeAlphas();
+        draw();
+        if (moving) requestHoverTick();
       }
 
       function draw() {
@@ -933,7 +962,13 @@
           var hi;
           if (hover >= 0) hi = (l[0] === hover || l[1] === hover);
           else hi = (cur !== undefined && (l[0] === cur || l[1] === cur));
-          ctx.globalAlpha = hover >= 0 ? (hi ? 0.9 : 0.12) : (hi ? 0.9 : 0.22);
+          var ea = Math.max(alphaOf(l[0]), alphaOf(l[1]));
+          if (hover >= 0) {
+            // 与被悬停点相连的边跟着它亮；其他边随两端亮度一起淡出
+            ctx.globalAlpha = hi ? 0.9 * ea : 0.06 + 0.12 * ea;
+          } else {
+            ctx.globalAlpha = hi ? 0.9 : 0.22;
+          }
           ctx.strokeStyle = hi ? accent : border;
           ctx.beginPath();
           ctx.moveTo(sx(nodes[l[0]]), sy(nodes[l[0]]));
@@ -1009,7 +1044,7 @@
           hover = i;
           showTip(i);
           cv.style.cursor = i >= 0 ? "grab" : "default";
-          draw();
+          requestHoverTick();
         }
       });
       cv.addEventListener("pointerdown", function (ev) {
@@ -1017,7 +1052,7 @@
         if (i < 0) return;
         drag = { i: i, id: ev.pointerId, moved: 0, lastX: ev.clientX, lastY: ev.clientY };
         nodes[i].pinned = true;
-        hover = i; showTip(i); draw();
+        hover = i; showTip(i); requestHoverTick();
         cv.style.cursor = "grabbing";
         try { cv.setPointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
         if (ev.preventDefault) ev.preventDefault();
@@ -1039,7 +1074,7 @@
       cv.addEventListener("pointercancel", endDrag);
       cv.addEventListener("pointerleave", function () {
         if (drag) return;
-        hover = -1; showTip(-1); draw();
+        hover = -1; showTip(-1); requestHoverTick();
       });
       wrap.querySelector(".dsh-mini-canvas-link").addEventListener("click", function (ev) {
         if (cv.dataset.dragged) { ev.preventDefault(); ev.stopPropagation(); return; }
@@ -1047,7 +1082,21 @@
         window.location.href = root + "/blog/graph.html";
       });
 
+      easeAlphas();     // 先给每个节点一个 _a 初值，之后悬停/移出都从当前亮度过渡
       draw();
+
+      // 只读体检钩子：给无头浏览器量「悬停亮度过渡」用，不暴露写操作
+      window.DSH_MINI_STATE = function () {
+        return {
+          hover: hover,
+          cur: (cur === undefined) ? -1 : cur,
+          animating: !!hoverRaf,
+          view: { k: view.k, cx: view.cx, cy: view.cy },
+          positions: nodes.map(function (n) { return [sx(n), sy(n)]; }),
+          alphas: nodes.map(function (n) { return (typeof n._a === "number") ? n._a : 1; }),
+          degrees: nodes.map(function (n) { return n.deg || 0; }),
+        };
+      };
     }).catch(function () {
       // 数据取不到就撤掉这块，绝不留下破图
       var w = document.querySelector(".dsh-mini-graph");
