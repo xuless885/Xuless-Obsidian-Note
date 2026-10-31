@@ -166,7 +166,7 @@
     var S0 = Math.max(Math.min(S.w, S.h) / 2, 300);
     var Rring = S0 * 0.46;
     var Rboard = Rring + 72;      // 板块在环外，留出 72 的间距
-    var Rcourse = Rboard + 107;   // 课程再往外
+    var Rcourse = Rboard + 120;   // 课程再往外
     var Rbridge = S0 * 0.27;
     S.ringR = Rring;
     var boards = NODES.filter(function (n) { return n.lvl === 2; });
@@ -189,7 +189,7 @@
       var cs = NODES.filter(function (n) { return n.lvl === 3 && n.cat === b.id; });
       var n = cs.length;
       if (!n) return;
-      var spread = step * 0.64;
+      var spread = step * (n >= 4 ? 0.86 : 0.66);
       cs.forEach(function (c, i) {
         var t = n === 1 ? 0.5 : i / (n - 1);
         var ang = b.ringAngle - spread / 2 + spread * t;
@@ -198,6 +198,51 @@
         c.y = Math.sin(ang) * r;
       });
     });
+    // 外圈课程互斥：几轮排斥，避免标签/气泡挤在一起
+    var courses = NODES.filter(function (n) { return n.lvl === 3; });
+    var stepHalf = step * 0.46;
+    var MIN_GAP = 20;
+    for (var it = 0; it < 10; it++) {
+      for (var i = 0; i < courses.length; i++) {
+        for (var j = i + 1; j < courses.length; j++) {
+          var a = courses[i], b = courses[j];
+          var dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 0.01;
+          var minD = Math.max(a.rx, a.ry) + Math.max(b.rx, b.ry) + MIN_GAP;
+          if (d < minD) {
+            var push = (minD - d) / 2, ux = dx / d, uy = dy / d;
+            a.x -= ux * push; a.y -= uy * push;
+            b.x += ux * push; b.y += uy * push;
+          }
+        }
+      }
+      for (var ci = 0; ci < courses.length; ci++) {
+        var c = courses[ci];
+        for (var bi = 0; bi < boards.length; bi++) {
+          var bd = boards[bi];
+          var dx2 = c.x - bd.x, dy2 = c.y - bd.y, d2 = Math.hypot(dx2, dy2) || 0.01;
+          var min2 = Math.max(c.rx, c.ry) + Math.max(bd.rx, bd.ry) + MIN_GAP;
+          if (d2 < min2) {
+            var p2 = (min2 - d2);
+            c.x += dx2 / d2 * p2; c.y += dy2 / d2 * p2;
+          }
+        }
+      }
+      courses.forEach(function (c) {
+        var bd = BY[c.cat];
+        if (!bd) return;
+        var ang = Math.atan2(c.y, c.x);
+        var rel = ang - bd.ringAngle;
+        while (rel > Math.PI) rel -= Math.PI * 2;
+        while (rel < -Math.PI) rel += Math.PI * 2;
+        if (rel < -stepHalf) rel = -stepHalf;
+        if (rel > stepHalf) rel = stepHalf;
+        var r = Math.hypot(c.x, c.y);
+        var minR = Rboard + Math.max(bd.rx, bd.ry) + Math.max(c.rx, c.ry) + 14;
+        if (r < minR) r = minR;
+        c.x = Math.cos(bd.ringAngle + rel) * r;
+        c.y = Math.sin(bd.ringAngle + rel) * r;
+      });
+    }
     CENTER.x = 0; CENTER.y = 0;
     if (S.narrow) {
       var yS = 1.16;
