@@ -840,25 +840,34 @@
       ctx.fillStyle = botShade;
       ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
       // 4a) 淡淡的白：让玻璃有体量（参考实现也有一层很淡的玻璃白）
-      var fillA = [0.02, 0.02, 0.02, 0.02][n.lvl];
+      var fillA = [0.01, 0.01, 0.01, 0.01][n.lvl];
       ctx.fillStyle = S.theme === "dark"
         ? "rgba(255,255,255," + (fillA * 0.45) + ")"
         : "rgba(255,255,255," + fillA + ")";
       ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
       // 4b) 类别色浸染：右下更浓，给每一类保留身份色（不是白）
-      var cg2 = ctx.createLinearGradient(cx - rx * 0.8, cy - ry * 0.9, cx + rx * 0.9, cy + ry);
-      var tintA = [0.48, 0.60, 0.46, 0.32][n.lvl];
+      // 类别色：中心几乎透明、颜色集中在边缘（压低泡心亮度）
+      var tintA = [0.38, 0.46, 0.36, 0.26][n.lvl];
       if (S.theme === "dark") tintA *= 1.15;
-      cg2.addColorStop(0, hexA(n.color, tintA * 0.28));
-      cg2.addColorStop(0.45, hexA(n.color, tintA * 0.62));
-      cg2.addColorStop(0.8, hexA(n.color, tintA * 0.9));
+      var cg2 = ctx.createRadialGradient(cx, cy, Math.max(rx, ry) * 0.08,
+                                         cx, cy, Math.max(rx, ry) * 1.02);
+      cg2.addColorStop(0, hexA(n.color, tintA * 0.16));
+      cg2.addColorStop(0.5, hexA(n.color, tintA * 0.42));
+      cg2.addColorStop(0.85, hexA(n.color, tintA * 0.82));
       cg2.addColorStop(1, hexA(n.color, tintA));
       ctx.fillStyle = cg2;
+      ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
+      // 中心压暗：泡心不要发亮（很淡的中性暗纱，越靠边缘越透明）
+      var veiling = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(rx, ry) * 0.92);
+      veiling.addColorStop(0, S.theme === "dark" ? "rgba(0,0,0,.20)" : "rgba(14,20,38,.10)");
+      veiling.addColorStop(0.6, S.theme === "dark" ? "rgba(0,0,0,.08)" : "rgba(14,20,38,.04)");
+      veiling.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = veiling;
       ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
       // 5) 极轻的顶光：只在左上角一点，不再整片泛白
       var sheen = ctx.createRadialGradient(cx - rx * 0.4, cy - ry * 0.44, 0,
                                            cx - rx * 0.4, cy - ry * 0.44, Math.max(rx, ry) * 0.62);
-      sheen.addColorStop(0, S.theme === "dark" ? "rgba(255,255,255,.10)" : "rgba(255,255,255,.14)");
+      sheen.addColorStop(0, S.theme === "dark" ? "rgba(255,255,255,.14)" : "rgba(255,255,255,.20)");
       sheen.addColorStop(1, "rgba(255,255,255,0)");
       ctx.fillStyle = sheen;
       ctx.fillRect(cx - rx, cy - ry, rx * 2, ry * 2);
@@ -868,36 +877,73 @@
       ctx.save();
       blobPath(cx, cy, rx, ry, n.seed, amp);
       // 边缘：一道很淡的暗线压形 + 柔光带 + 细亮线（参考实现是柔和的亮边玻璃）
-      ctx.globalAlpha = n.litD * 0.42;
-      ctx.strokeStyle = "rgba(8,12,24,.20)";
-      ctx.lineWidth = 1.6;
+      ctx.globalAlpha = n.litD * 0.35;
+      ctx.strokeStyle = "rgba(8,12,24,.18)";
+      ctx.lineWidth = 1.1;
       ctx.stroke();
       ctx.globalAlpha = n.litD * (S.hoverId === n.id ? 0.95 : 0.72);
-      ctx.strokeStyle = S.theme === "dark" ? "rgba(255,255,255,.30)" : "rgba(255,255,255,.42)";
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = S.theme === "dark" ? "rgba(255,255,255,.26)" : "rgba(255,255,255,.38)";
+      ctx.lineWidth = 1.0;
       ctx.stroke();
       ctx.globalAlpha = n.litD * (S.hoverId === n.id ? 0.9 : 0.5);
       ctx.strokeStyle = hexA(n.color, S.theme === "dark" ? 0.75 : 0.55);
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 0.8;
       ctx.stroke();
-      // 色散：沿囊泡边缘的彩虹折射环（conic 光谱，只露出内侧 ~2px）
+      // 色散：模拟强光下的棱镜折射——光谱集中在左上受光侧，背光侧只剩很淡的边；
+      // 受光处叠白色高光弧 + 内侧青边 + 外侧暖边，避免整圈彩虹那种塑料感。
       ctx.save();
       blobPath(cx, cy, rx, ry, n.seed, amp);
       ctx.clip();
-      ctx.globalAlpha = n.litD * (S.theme === "dark" ? 0.9 : 0.8);
-      var dis = ctx.createConicGradient(S.reduce ? n.seed : S.t * 0.12 + n.seed, cx, cy);
-      var spectrum = [
-        [0.00, "255,86,96"], [0.14, "255,170,80"], [0.28, "255,236,120"],
-        [0.42, "120,230,150"], [0.56, "90,208,255"], [0.70, "120,140,255"],
-        [0.86, "208,120,255"], [1.00, "255,86,96"]
-      ];
-      for (var si = 0; si < spectrum.length; si++) {
-        dis.addColorStop(spectrum[si][0], "rgba(" + spectrum[si][1] + ",.55)");
+      var lightAng = -2.35;
+      var per = Math.PI * (rx + ry);
+      var lf = (((lightAng % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2)) / (Math.PI * 2);
+      function edgeArc(startFrac, lenFrac, style, width, alpha) {
+        var len = per * lenFrac;
+        var start = per * startFrac - len / 2;
+        ctx.setLineDash([len, per - len]);
+        ctx.lineDashOffset = -start;
+        ctx.globalAlpha = n.litD * alpha;
+        ctx.strokeStyle = style;
+        ctx.lineWidth = width;
+        ctx.beginPath();
+        blobPath(cx, cy, rx * 0.992, ry * 0.992, n.seed, amp, true);
+        ctx.stroke();
       }
+      // 受光侧的彩虹：光谱从白热 → 青 → 蓝紫 → 暖橙，只在 ~28% 的弧上
+      var dis = ctx.createConicGradient(lightAng, cx, cy);
+      var spec = [
+        [0.00, "255,255,255", 0.70], [0.05, "150,240,255", 0.52],
+        [0.10, "90,150,255", 0.36], [0.16, "200,120,255", 0.26],
+        [0.23, "255,200,140", 0.16], [0.30, "255,255,255", 0.06],
+        [0.62, "255,255,255", 0.025], [0.88, "255,255,255", 0.03],
+        [0.96, "255,255,255", 0.12], [1.00, "255,255,255", 0.55]
+      ];
+      for (var si = 0; si < spec.length; si++) dis.addColorStop(spec[si][0], "rgba(" + spec[si][1] + "," + spec[si][2] + ")");
+      ctx.globalAlpha = n.litD;
       ctx.strokeStyle = dis;
-      ctx.lineWidth = Math.max(1.6, Math.min(rx, ry) * 0.07);
+      ctx.lineWidth = 1.05;
       ctx.beginPath();
-      blobPath(cx, cy, rx * 0.975, ry * 0.975, n.seed, amp, true);
+      blobPath(cx, cy, rx * 0.988, ry * 0.988, n.seed, amp, true);
+      ctx.stroke();
+      // 白色高光弧（受光侧），带一圈很淡的柔光
+      edgeArc(lf + 0.005, 0.10, "rgba(255,255,255,.28)", 6.5, 0.65);
+      edgeArc(lf, 0.085, "rgba(255,255,255,.98)", 1.1, 0.95);
+      // 内侧青边 / 外侧暖边（色散的两侧偏移）
+      edgeArc(lf - 0.002, 0.075, "rgba(120,235,255,.75)", 1.4, 0.8);
+      edgeArc(lf + 0.012, 0.06, "rgba(255,175,120,.6)", 1.4, 0.65);
+      ctx.setLineDash([]);
+      ctx.restore();
+      // 背光侧一线很淡的反射光，避免边缘死黑
+      ctx.save();
+      blobPath(cx, cy, rx, ry, n.seed, amp);
+      ctx.clip();
+      ctx.globalAlpha = n.litD * (S.theme === "dark" ? 0.45 : 0.34);
+      ctx.strokeStyle = "rgba(255,255,255,.5)";
+      ctx.lineWidth = 1.0;
+      ctx.setLineDash([per * 0.10, per]);
+      ctx.lineDashOffset = -per * (lf + 0.5) + per * 0.05;
+      ctx.beginPath();
+      blobPath(cx, cy, rx * 0.985, ry * 0.985, n.seed, amp, true);
       ctx.stroke();
       ctx.restore();
       var gl1 = 3.55 + (S.reduce ? 0 : Math.sin(S.t * 0.33 + n.seed) * 0.1);
