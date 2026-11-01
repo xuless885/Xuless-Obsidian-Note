@@ -3,9 +3,21 @@
   var side = document.querySelector(".hs-side");
   if (!side) return;
 
+  var tabs = side.querySelectorAll(".hs-tab[data-subject]");
+  function showSubject(sub) {
+    for (var i = 0; i < tabs.length; i++) tabs[i].classList.toggle("is-on", tabs[i].dataset.subject === sub);
+    var groups = side.querySelectorAll(".hs-subject");
+    for (var j = 0; j < groups.length; j++) groups[j].hidden = groups[j].dataset.subject !== sub;
+  }
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].addEventListener("click", function () { showSubject(this.dataset.subject); });
+  }
+  var active = side.querySelector(".hs-tab.is-on");
+  if (active) showSubject(active.dataset.subject);
+
   var folders = side.querySelectorAll(".hs-folder");
-  for (var i = 0; i < folders.length; i++) {
-    folders[i].addEventListener("click", function () {
+  for (var k = 0; k < folders.length; k++) {
+    folders[k].addEventListener("click", function () {
       var open = !this.classList.contains("is-open");
       this.classList.toggle("is-open", open);
       this.setAttribute("aria-expanded", String(open));
