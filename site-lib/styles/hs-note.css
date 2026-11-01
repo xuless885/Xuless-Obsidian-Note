@@ -1,12 +1,6 @@
 /* 高中数学讲义页 —— 沿用大学数学节点页的三栏 UI */
 .hs-page {
   background: var(--bg, #f6f8fd);
-  --hs-ink: #10192c;
-  --hs-muted: #5b6780;
-}
-html[data-theme="dark"] .hs-page {
-  --hs-ink: #e9e9ef;
-  --hs-muted: #a5a5b2;
 }
 .hs-page .un-main {
   padding-top: 0;
@@ -228,7 +222,6 @@ html[data-theme="dark"] .hs-doc {
   padding: 0 !important;
   margin: 0 !important;
   background: transparent !important;
-  color: var(--fg, #10192c) !important;
 }
 .hs-doc .markdown-preview-view,
 .hs-doc .markdown-preview-sizer {
@@ -241,14 +234,8 @@ html[data-theme="dark"] .hs-doc {
 .hs-doc .markdown-preview-sizer > .el-p,
 .hs-doc .markdown-preview-sizer > .el-ul,
 .hs-doc .markdown-preview-sizer > .el-ol { max-width: 100%; }
-.hs-doc h1, .hs-doc h2, .hs-doc h3, .hs-doc h4, .hs-doc h5, .hs-doc h6,
-.hs-doc .heading, .hs-doc .el-h1 h1, .hs-doc .el-h2 h2, .hs-doc .el-h3 h3,
-.hs-doc .el-h4 h4 { color: var(--hs-ink) !important; }
-.hs-doc p, .hs-doc li { color: var(--ink-soft, #2c3444); }
 .hs-doc img, .hs-doc svg { max-width: 100%; height: auto; }
-.hs-doc table { display: block; overflow-x: auto; max-width: 100%; }
 .hs-doc .dsh-backlinks, .hs-doc .dsh-outlinks, .hs-doc .doc-panel { display: none !important; }
-.hs-doc .internal-link { color: var(--accent, #5b6cff); }
 
 .hs-page .un-toc {
   top: calc(var(--nav-h, 60px) + 26px);
@@ -276,41 +263,11 @@ html[data-theme="dark"] .hs-doc {
 
 .hs-page .un-shell.hs-two-col { grid-template-columns: var(--un-rail) minmax(0, 1fr); }
 
-/* 暗色模式下的正文块 */
-html[data-theme="dark"] .hs-doc blockquote,
-html[data-theme="dark"] .hs-doc .callout,
-html[data-theme="dark"] .hs-doc .ad-note,
-html[data-theme="dark"] .hs-doc .ad-tip,
-html[data-theme="dark"] .hs-doc .ad-warning,
-html[data-theme="dark"] .hs-doc .ad-question,
-html[data-theme="dark"] .hs-doc .ad-quote,
-html[data-theme="dark"] .hs-doc .ad-abstract,
-html[data-theme="dark"] .hs-doc .el-blockquote blockquote {
-  background: rgba(255, 255, 255, .045);
-  border-color: rgba(255, 255, 255, .12);
-  color: var(--fg, #e9e9ef);
+/* 恢复 body.publish 后，文档内容自带 padding/背景会和外壳卡片叠加：压平，让正文与 hero 对齐 */
+body.publish .hs-doc .markdown-preview-view,
+body.publish .hs-doc .obsidian-document {
+  padding: 0 !important;
+  background: transparent !important;
+  max-width: none !important;
+  margin: 0 !important;
 }
-html[data-theme="dark"] .hs-doc pre,
-html[data-theme="dark"] .hs-doc code {
-  background: rgba(255, 255, 255, .07);
-  color: var(--fg, #e9e9ef);
-}
-html[data-theme="dark"] .hs-doc table,
-html[data-theme="dark"] .hs-doc th,
-html[data-theme="dark"] .hs-doc td {
-  border-color: rgba(255, 255, 255, .14);
-  color: var(--fg, #e9e9ef);
-}
-html[data-theme="dark"] .hs-doc hr { border-color: rgba(255, 255, 255, .14); }
-
-html[data-theme="dark"] .hs-doc strong,
-html[data-theme="dark"] .hs-doc b,
-html[data-theme="dark"] .hs-doc em,
-html[data-theme="dark"] .hs-doc span { color: inherit; }
-
-/* 强制正文文字跟随高中页主题（压过旧 hs 规则里的 --ink-soft fallback） */
-.hs-doc p, .hs-doc li, .hs-doc .el-p, .hs-doc .el-p p,
-.hs-doc .el-li, .hs-doc .el-ul, .hs-doc .el-ol { color: var(--hs-ink) !important; }
-.hs-doc h1, .hs-doc h2, .hs-doc h3, .hs-doc h4, .hs-doc h5, .hs-doc h6,
-.hs-doc .heading, .hs-doc .el-h1 h1, .hs-doc .el-h2 h2, .hs-doc .el-h3 h3,
-.hs-doc .el-h4 h4 { color: var(--hs-ink) !important; }
