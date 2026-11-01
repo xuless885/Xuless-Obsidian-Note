@@ -3,31 +3,16 @@
   var side = document.querySelector(".hs-side");
   if (!side) return;
 
-  function active(row, key) {
-    var btn = side.querySelector(".hs-tab-row--" + row + " .hs-tab.is-on");
-    return btn && btn.dataset[key] ? btn.dataset[key] : null;
-  }
-
-  function apply() {
-    var sub = active("subject", "subject") || side.dataset.subject || "algebra";
-    var stage = active("stage", "stage") || side.dataset.stage || "junior";
-    var items = side.querySelectorAll(".hs-chap[data-subject][data-stage]");
-    for (var i = 0; i < items.length; i++) {
-      var a = items[i];
-      a.hidden = !(a.dataset.subject === sub && a.dataset.stage === stage);
-    }
-  }
-
-  var tabs = side.querySelectorAll(".hs-tab");
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].addEventListener("click", function () {
-      var row = this.parentElement;
-      var siblings = row.querySelectorAll(".hs-tab");
-      for (var j = 0; j < siblings.length; j++) siblings[j].classList.toggle("is-on", siblings[j] === this);
-      apply();
+  var folders = side.querySelectorAll(".hs-folder");
+  for (var i = 0; i < folders.length; i++) {
+    folders[i].addEventListener("click", function () {
+      var open = !this.classList.contains("is-open");
+      this.classList.toggle("is-open", open);
+      this.setAttribute("aria-expanded", String(open));
+      var body = this.nextElementSibling;
+      if (body && body.classList.contains("hs-folder-body")) body.hidden = !open;
     });
   }
-  apply();
 
   // 右侧目录：滚动时高亮当前节（无 JS 也可用）
   var links = document.querySelectorAll(".hs-page .un-toc-link");

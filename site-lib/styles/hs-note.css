@@ -299,3 +299,54 @@ body.publish .hs-doc .markdown-preview-section {
 .hs-page .site-footer * {
   font-family: var(--font-sans) !important;
 }
+
+/* 学科标签（静态）+ 初中/高中文件夹 */
+.hs-groups { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+.hs-subject-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 6px 2px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--fg, #10192c);
+}
+.hs-subject-head .hs-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c, var(--accent));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c, var(--accent)) 14%, transparent);
+}
+.hs-subject-n { margin-left: auto; font-size: 10px; color: var(--fg-muted, #5b6780); opacity: .8; }
+.hs-folders { display: flex; flex-direction: column; gap: 1px; padding-left: 14px; }
+.hs-folder {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fg-muted, #5b6780);
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+}
+.hs-folder:hover { background: var(--chip, rgba(20, 30, 60, .05)); color: var(--fg, #10192c); }
+.hs-folder-caret {
+  display: inline-block;
+  width: 10px;
+  font-size: 9px;
+  color: var(--fg-muted, #5b6780);
+  transition: transform .16s ease;
+}
+.hs-folder.is-open .hs-folder-caret { transform: rotate(90deg); }
+.hs-folder-name { font-weight: 650; }
+.hs-folder-n { margin-left: auto; font-size: 10px; opacity: .75; }
+.hs-folder-body { display: flex; flex-direction: column; gap: 1px; padding: 2px 0 3px 14px; }
+.hs-folder-body[hidden] { display: none; }
