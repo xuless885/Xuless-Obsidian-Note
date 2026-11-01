@@ -164,11 +164,11 @@
   function layout() {
     // 单环：环内 = 中心 + 基础衔接；环外 = 六大板块（短线接环）；再外 = 课程树（按先修顺序自然展开）。
     var S0 = Math.max(Math.min(S.w, S.h) / 2, 300);
-    var Rring = S0 * 0.36;
-    var Rboard = Rring + 60;
+    var Rring = S0 * 0.35;
+    var Rboard = Rring + 58;
     S.boardR = Rboard;
-    var Rbridge = S0 * 0.21;
-    var LEVEL = 82;
+    var Rbridge = S0 * 0.20;
+    var LEVEL = 78;
     S.ringR = Rring;
     var boards = NODES.filter(function (n) { return n.lvl === 2; });
     var courses = NODES.filter(function (n) { return n.lvl === 3; });
@@ -394,11 +394,11 @@
   }
   function fitCamera() {
     var b = bbox();
-    var padX = S.w < 900 ? 26 : 66;
-    var padTop = S.w < 900 ? 100 : 44;
-    var padBot = S.w < 900 ? 52 : 38;
+    var padX = S.w < 900 ? 22 : 34;
+    var padTop = S.w < 900 ? 92 : 26;
+    var padBot = S.w < 900 ? 48 : 22;
     var k = Math.min((S.w - padX * 2) / b.w, (S.h - padTop - padBot) / b.h);
-    k = Math.max(0.42, Math.min(k, 1.7));
+    k = Math.max(0.42, Math.min(k, 1.82));
     var cyShift = (padTop - padBot) / 2 / k;
     S.fit = { x: b.cx, y: b.cy - cyShift, k: k };
     S.camT.x = S.fit.x; S.camT.y = S.fit.y; S.camT.k = S.fit.k;
@@ -749,6 +749,21 @@
     ctx.closePath();
   }
 
+  function arrowHeadCenter(x, y, dx, dy, size, color, alpha) {
+    var px = -dy, py = dx;
+    var tx = x + dx * size * 0.5, ty = y + dy * size * 0.5;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(tx, ty);
+    ctx.lineTo(x - dx * size * 0.5 + px * size * 0.45, y - dy * size * 0.5 + py * size * 0.45);
+    ctx.lineTo(x - dx * size * 0.5 - px * size * 0.45, y - dy * size * 0.5 - py * size * 0.45);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
   function arrowHead(x, y, dx, dy, size, color, alpha) {
     var px = -dy, py = dx;
     ctx.save();
@@ -801,8 +816,6 @@
       ctx.moveTo(ax, ay);
       ctx.quadraticCurveTo(cx, cy, bx, by);
       ctx.stroke();
-      arrowHead(ax, ay, -ux, -uy, 5, hexA(a.color, 0.9), al * 1.2);
-      arrowHead(bx, by, ux, uy, 5, hexA(b.color, 0.9), al * 1.2);
       ctx.restore();
     });
 
@@ -843,7 +856,11 @@
       ctx.moveTo(ax, ay);
       ctx.quadraticCurveTo(mx, my, bx, by);
       ctx.stroke();
-      arrowHead(bx, by, ux, uy, prereq ? 6.2 : 5.2, hexA(c.color, 0.95), lit * 0.85);
+      if (p.lvl !== 0) {
+        var amx = 0.25 * ax + 0.5 * mx + 0.25 * bx;
+        var amy = 0.25 * ay + 0.5 * my + 0.25 * by;
+        arrowHeadCenter(amx, amy, ux, uy, prereq ? 8.5 : 7.5, hexA(c.color, 1), lit * 0.95);
+      }
       ctx.restore();
 
       // 流向光点：只留一个、更小，避免噪声
