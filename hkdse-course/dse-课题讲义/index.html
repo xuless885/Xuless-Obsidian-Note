@@ -10,31 +10,91 @@
 <link rel="stylesheet" href="../../site-lib/styles/blog-theme.css?v=c4cfd54d">
 <link rel="stylesheet" href="../../site-lib/styles/pages.css?v=f6a3ec74">
 <link rel="stylesheet" href="../../site-lib/styles/lecture-index.css?v=7f72ab90">
+<link rel="stylesheet" href="../../site-lib/styles/uni-note.css?v=1b65e05b">
+<link rel="stylesheet" href="../../site-lib/styles/hs-note.css?v=4ee4553e">
+<script defer src="../../site-lib/scripts/hs-note.js?v=fb6f75c0"></script>
 </head>
-<body>
-<a class="skip" href="#main">跳到主要内容</a>
+<body class="un-page hs-page">
 <nav class="site-nav" id="site-nav" aria-label="站点导航">
  <div class="site-nav-inner">
   <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">X</span><span>许少 Xuless</span></a>
   <button class="theme-toggle nav-toggle" type="button" aria-label="展开导航" aria-expanded="false" data-nav-toggle>&#9776;</button>
   <div class="nav-links">
-    <a class="nav-link" href="../../index.html">首页</a>
-    <a class="nav-link is-active" href="../../courses/hs.html">高中数学课程</a>
-    <a class="nav-link" href="../../courses/uni.html">大学数学内容</a>
-    <a class="nav-link" href="../../blog/graph.html">知识图谱</a>
-    <a class="nav-link" href="../../search.html">搜索</a>
-    <a class="nav-link" href="../../about.html">关于</a>
+   <a class="nav-link" href="../../index.html">首页</a>
+   <a class="nav-link is-active" href="../../courses/hs.html">高中数学课程</a>
+   <a class="nav-link" href="../../courses/uni.html">大学数学内容</a>
+   <a class="nav-link" href="../../blog/graph.html">知识图谱</a>
+   <a class="nav-link" href="../../search.html">搜索</a>
+   <a class="nav-link" href="../../about.html">关于</a>
    <button class="theme-toggle" type="button" aria-label="切换深浅主题" data-theme-toggle>&#9680;</button>
   </div>
  </div>
 </nav>
-<main id="main" class="wrap" style="padding-top:var(--space-6)">
 
-<div class="crumbs"><a href="../../courses/hs.html">高中数学课程</a><span>/</span><span>个人 DSE 课程讲义</span></div>
-<h1 class="page-title">个人 DSE 课程讲义</h1>
-<p class="page-sub">按章整理的 HKDSE 数学课程讲义正文：核心概念、定理与推导、例题与图示。共 37 篇。</p>
-<a class="intro-card" href="./给读者的简介-introduction-for-every-reader.html">
-  <span class="intro-ico" aria-hidden="true">&#128214;</span>
+<main id="main" class="un-main hs-main">
+<div class="un-shell hs-two-col" style="--cat:#4C8DFF">
+
+  <nav class="hs-side" aria-label="高中数学课程树" data-subject="algebra" data-stage="junior">
+    <div class="hs-side-top">
+      <span class="hs-side-kicker">HKDSE MATHEMATICS</span>
+      <a class="hs-side-title" href="../../courses/hs.html">高中数学课程</a>
+      <p class="hs-side-sub">37 章 · 代数 / 几何 / 统计 / 分析</p>
+      <a class="hs-back" href="../../courses/hs.html"><span aria-hidden="true">&#8592;</span> 返回高中数学</a>
+    </div>
+    <div class="hs-tabs" role="group" aria-label="分类">
+      <div class="hs-tab-row hs-tab-row--subject"><button type="button" class="hs-tab is-on" data-subject="algebra" style="--c:#9B6BFF">代数</button><button type="button" class="hs-tab" data-subject="geometry" style="--c:#0FCB97">几何</button><button type="button" class="hs-tab" data-subject="statistics" style="--c:#00C6E6">统计</button><button type="button" class="hs-tab" data-subject="analysis" style="--c:#4C8DFF">分析</button></div>
+      <div class="hs-tab-row hs-tab-row--stage"><button type="button" class="hs-tab is-on" data-stage="junior">初中</button><button type="button" class="hs-tab" data-stage="senior">高中</button></div>
+    </div>
+    <div class="hs-list">
+      <a class="hs-intro" href="./给读者的简介-introduction-for-every-reader.html">开始之前 · 给读者的简介</a>
+    <a class="hs-chap" data-subject="analysis" data-stage="junior" href="./chapter-0-基础概念.html"><span class="hs-chap-n">00</span><span class="hs-chap-t">基础概念</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-1-数系(i).html"><span class="hs-chap-n">01</span><span class="hs-chap-t">数系(i)</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="junior" href="./chapter-2-估算.html"><span class="hs-chap-n">02</span><span class="hs-chap-t">估算</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-3-整数指数律与进制.html"><span class="hs-chap-n">03</span><span class="hs-chap-t">整数指数律与进制</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-4-多项式(i).html"><span class="hs-chap-n">04</span><span class="hs-chap-t">多项式(i)</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-5-解方程方法(i).html"><span class="hs-chap-n">05</span><span class="hs-chap-t">解方程方法(i)</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-6-代数式.html"><span class="hs-chap-n">06</span><span class="hs-chap-t">代数式</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="junior" href="./chapter-7-率、比及百分法.html"><span class="hs-chap-n">07</span><span class="hs-chap-t">率、比及百分法</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="junior" href="./chapter-8-平面几何-(i).html"><span class="hs-chap-n">08</span><span class="hs-chap-t">平面几何-(i)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="junior" href="./chapter-9-三角学(i).html"><span class="hs-chap-n">09</span><span class="hs-chap-t">三角学(i)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="junior" href="./chapter-10-立体几何-(i).html"><span class="hs-chap-n">10</span><span class="hs-chap-t">立体几何-(i)</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-11-不等式-(i).html"><span class="hs-chap-n">11</span><span class="hs-chap-t">不等式-(i)</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="junior" href="./chapter-12-数据的组织与表达.html"><span class="hs-chap-n">12</span><span class="hs-chap-t">数据的组织与表达</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="junior" href="./chapter-13-集中趋势的度量.html"><span class="hs-chap-n">13</span><span class="hs-chap-t">集中趋势的度量</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="junior" href="./chapter-14-概率(i).html"><span class="hs-chap-n">14</span><span class="hs-chap-t">概率(i)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="junior" href="./chapter-15-解析几何-(i).html"><span class="hs-chap-n">15</span><span class="hs-chap-t">解析几何-(i)</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-16-集合论.html"><span class="hs-chap-n">16</span><span class="hs-chap-t">集合论</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-17-数系(ii).html"><span class="hs-chap-n">17</span><span class="hs-chap-t">数系(ii)</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-18-解方程方法(ii).html"><span class="hs-chap-n">18</span><span class="hs-chap-t">解方程方法(ii)</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-19-函数及其图像.html"><span class="hs-chap-n">19</span><span class="hs-chap-t">函数及其图像</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="senior" href="./chapter-20-直线方程.html"><span class="hs-chap-n">20</span><span class="hs-chap-t">直线方程</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-21-二次函数.html"><span class="hs-chap-n">21</span><span class="hs-chap-t">二次函数</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-22-变分.html"><span class="hs-chap-n">22</span><span class="hs-chap-t">变分</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-23-多项式-(ii).html"><span class="hs-chap-n">23</span><span class="hs-chap-t">多项式-(ii)</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-24-数列（i）.html"><span class="hs-chap-n">24</span><span class="hs-chap-t">数列（i）</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-25-指数函数与对数函数.html"><span class="hs-chap-n">25</span><span class="hs-chap-t">指数函数与对数函数</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-26-三角函数.html"><span class="hs-chap-n">26</span><span class="hs-chap-t">三角函数</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-27-解方程方法-(iii).html"><span class="hs-chap-n">27</span><span class="hs-chap-t">解方程方法-(iii)</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-28-不等式-(ii).html"><span class="hs-chap-n">28</span><span class="hs-chap-t">不等式-(ii)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="senior" href="./chapter-29-平面几何-(ii).html"><span class="hs-chap-n">29</span><span class="hs-chap-t">平面几何-(ii)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="senior" href="./chapter-30-轨迹.html"><span class="hs-chap-n">30</span><span class="hs-chap-t">轨迹</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="senior" href="./chapter-31-解析几何-(ii).html"><span class="hs-chap-n">31</span><span class="hs-chap-t">解析几何-(ii)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="senior" href="./chapter-32-立体几何-(ii).html"><span class="hs-chap-n">32</span><span class="hs-chap-t">立体几何-(ii)</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="senior" href="./chapter-33-离差的度量.html"><span class="hs-chap-n">33</span><span class="hs-chap-t">离差的度量</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="senior" href="./chapter-34-排列与组合.html"><span class="hs-chap-n">34</span><span class="hs-chap-t">排列与组合</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="senior" href="./chapter-35-概率(ii).html"><span class="hs-chap-n">35</span><span class="hs-chap-t">概率(ii)</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-36-数列-(ii).html"><span class="hs-chap-n">36</span><span class="hs-chap-t">数列-(ii)</span></a>
+    </div>
+  </nav>
+<article class="un-body hs-article">
+  <header class="hs-hero" style="--cat:#4C8DFF">
+    <span class="hs-hero-kicker">高中数学课程 · 课程讲义</span>
+    <h1 class="hs-hero-title">课程讲义</h1>
+    <p class="hs-hero-sub">HKDSE 数学 · 37 章讲义 + 给读者的简介</p>
+    <div class="hs-hero-chips"><span class="hs-chip">37 章</span><span class="hs-chip">初中 / 高中</span><span class="hs-chip">给读者的简介</span></div>
+  </header>
+<div class="hs-doc"><a class="intro-card" href="./%E7%BB%99%E8%AF%BB%E8%80%85%E7%9A%84%E7%AE%80%E4%BB%8B-introduction-for-every-reader.html">
+  <span class="intro-ico" aria-hidden="true">📖</span>
   <span class="intro-body">
     <span class="intro-kicker">开始之前 · 先读这篇</span>
     <span class="intro-title">给读者的简介</span>
@@ -43,222 +103,218 @@
   <span class="intro-go">阅读 →</span>
 </a>
 <div class="h-list h-list-side">
- <a class="h-item" href="./更新日志-changelog.html">
-  <div class="h-idx">&#128210;</div>
+ <a class="h-item" href="./%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-changelog.html">
+  <div class="h-idx">📒</div>
   <div class="h-body"><div class="h-title">更新日志 · Changelog</div><div class="h-meta">完整更新流水：每章的上线、修订与验证记录</div></div>
   <span class="h-tag">阅读</span>
  </a>
 </div>
 <h2 class="list-head">章节正文<span class="list-head-num">37 篇</span></h2>
 <div class="h-list">
- <a class="h-item" href="./chapter-0-基础概念.html">
+ <a class="h-item" href="./chapter-0-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5.html">
   <div class="h-idx">00</div>
   <div class="h-body"><div class="h-title">基础概念</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-1-数系(i).html">
+ <a class="h-item" href="./chapter-1-%E6%95%B0%E7%B3%BB(i).html">
   <div class="h-idx">01</div>
   <div class="h-body"><div class="h-title">数系 (I)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-2-估算.html">
+ <a class="h-item" href="./chapter-2-%E4%BC%B0%E7%AE%97.html">
   <div class="h-idx">02</div>
   <div class="h-body"><div class="h-title">估算</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-3-整数指数律与进制.html">
+ <a class="h-item" href="./chapter-3-%E6%95%B4%E6%95%B0%E6%8C%87%E6%95%B0%E5%BE%8B%E4%B8%8E%E8%BF%9B%E5%88%B6.html">
   <div class="h-idx">03</div>
   <div class="h-body"><div class="h-title">整数指数律与进制</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-4-多项式(i).html">
+ <a class="h-item" href="./chapter-4-%E5%A4%9A%E9%A1%B9%E5%BC%8F(i).html">
   <div class="h-idx">04</div>
   <div class="h-body"><div class="h-title">多项式 (I)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-5-解方程方法(i).html">
+ <a class="h-item" href="./chapter-5-%E8%A7%A3%E6%96%B9%E7%A8%8B%E6%96%B9%E6%B3%95(i).html">
   <div class="h-idx">05</div>
   <div class="h-body"><div class="h-title">解方程方法 (I)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-6-代数式.html">
+ <a class="h-item" href="./chapter-6-%E4%BB%A3%E6%95%B0%E5%BC%8F.html">
   <div class="h-idx">06</div>
   <div class="h-body"><div class="h-title">代数式</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-7-率、比及百分法.html">
+ <a class="h-item" href="./chapter-7-%E7%8E%87%E3%80%81%E6%AF%94%E5%8F%8A%E7%99%BE%E5%88%86%E6%B3%95.html">
   <div class="h-idx">07</div>
   <div class="h-body"><div class="h-title">率、比及百分法</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-8-平面几何-(i).html">
+ <a class="h-item" href="./chapter-8-%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95-(i).html">
   <div class="h-idx">08</div>
   <div class="h-body"><div class="h-title">平面几何 (I)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-9-三角学(i).html">
+ <a class="h-item" href="./chapter-9-%E4%B8%89%E8%A7%92%E5%AD%A6(i).html">
   <div class="h-idx">09</div>
   <div class="h-body"><div class="h-title">三角学 (I)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-10-立体几何-(i).html">
+ <a class="h-item" href="./chapter-10-%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95-(i).html">
   <div class="h-idx">10</div>
   <div class="h-body"><div class="h-title">立体几何 (I)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-11-不等式-(i).html">
+ <a class="h-item" href="./chapter-11-%E4%B8%8D%E7%AD%89%E5%BC%8F-(i).html">
   <div class="h-idx">11</div>
   <div class="h-body"><div class="h-title">不等式 (I)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-12-数据的组织与表达.html">
+ <a class="h-item" href="./chapter-12-%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%84%E7%BB%87%E4%B8%8E%E8%A1%A8%E8%BE%BE.html">
   <div class="h-idx">12</div>
   <div class="h-body"><div class="h-title">数据的组织与表达</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-13-集中趋势的度量.html">
+ <a class="h-item" href="./chapter-13-%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E7%9A%84%E5%BA%A6%E9%87%8F.html">
   <div class="h-idx">13</div>
   <div class="h-body"><div class="h-title">集中趋势的度量</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-14-概率(i).html">
+ <a class="h-item" href="./chapter-14-%E6%A6%82%E7%8E%87(i).html">
   <div class="h-idx">14</div>
   <div class="h-body"><div class="h-title">概率 (I)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-15-解析几何-(i).html">
+ <a class="h-item" href="./chapter-15-%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95-(i).html">
   <div class="h-idx">15</div>
   <div class="h-body"><div class="h-title">解析几何 (I)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-16-集合论.html">
+ <a class="h-item" href="./chapter-16-%E9%9B%86%E5%90%88%E8%AE%BA.html">
   <div class="h-idx">16</div>
   <div class="h-body"><div class="h-title">集合论</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-17-数系(ii).html">
+ <a class="h-item" href="./chapter-17-%E6%95%B0%E7%B3%BB(ii).html">
   <div class="h-idx">17</div>
   <div class="h-body"><div class="h-title">数系 (II)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-18-解方程方法(ii).html">
+ <a class="h-item" href="./chapter-18-%E8%A7%A3%E6%96%B9%E7%A8%8B%E6%96%B9%E6%B3%95(ii).html">
   <div class="h-idx">18</div>
   <div class="h-body"><div class="h-title">解方程方法 (II)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-19-函数及其图像.html">
+ <a class="h-item" href="./chapter-19-%E5%87%BD%E6%95%B0%E5%8F%8A%E5%85%B6%E5%9B%BE%E5%83%8F.html">
   <div class="h-idx">19</div>
   <div class="h-body"><div class="h-title">函数及其图像</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-20-直线方程.html">
+ <a class="h-item" href="./chapter-20-%E7%9B%B4%E7%BA%BF%E6%96%B9%E7%A8%8B.html">
   <div class="h-idx">20</div>
   <div class="h-body"><div class="h-title">直线方程</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-21-二次函数.html">
+ <a class="h-item" href="./chapter-21-%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0.html">
   <div class="h-idx">21</div>
   <div class="h-body"><div class="h-title">二次函数</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-22-变分.html">
+ <a class="h-item" href="./chapter-22-%E5%8F%98%E5%88%86.html">
   <div class="h-idx">22</div>
   <div class="h-body"><div class="h-title">变分</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-23-多项式-(ii).html">
+ <a class="h-item" href="./chapter-23-%E5%A4%9A%E9%A1%B9%E5%BC%8F-(ii).html">
   <div class="h-idx">23</div>
   <div class="h-body"><div class="h-title">多项式 (II)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-24-数列（i）.html">
+ <a class="h-item" href="./chapter-24-%E6%95%B0%E5%88%97%EF%BC%88i%EF%BC%89.html">
   <div class="h-idx">24</div>
   <div class="h-body"><div class="h-title">数列 (I)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-25-指数函数与对数函数.html">
+ <a class="h-item" href="./chapter-25-%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E4%B8%8E%E5%AF%B9%E6%95%B0%E5%87%BD%E6%95%B0.html">
   <div class="h-idx">25</div>
   <div class="h-body"><div class="h-title">指数函数与对数函数</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-26-三角函数.html">
+ <a class="h-item" href="./chapter-26-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0.html">
   <div class="h-idx">26</div>
   <div class="h-body"><div class="h-title">三角函数</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-27-解方程方法-(iii).html">
+ <a class="h-item" href="./chapter-27-%E8%A7%A3%E6%96%B9%E7%A8%8B%E6%96%B9%E6%B3%95-(iii).html">
   <div class="h-idx">27</div>
   <div class="h-body"><div class="h-title">解方程方法 (III)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-28-不等式-(ii).html">
+ <a class="h-item" href="./chapter-28-%E4%B8%8D%E7%AD%89%E5%BC%8F-(ii).html">
   <div class="h-idx">28</div>
   <div class="h-body"><div class="h-title">不等式 (II)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-29-平面几何-(ii).html">
+ <a class="h-item" href="./chapter-29-%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95-(ii).html">
   <div class="h-idx">29</div>
   <div class="h-body"><div class="h-title">平面几何 (II)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-30-轨迹.html">
+ <a class="h-item" href="./chapter-30-%E8%BD%A8%E8%BF%B9.html">
   <div class="h-idx">30</div>
   <div class="h-body"><div class="h-title">轨迹</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-31-解析几何-(ii).html">
+ <a class="h-item" href="./chapter-31-%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95-(ii).html">
   <div class="h-idx">31</div>
   <div class="h-body"><div class="h-title">解析几何 (II)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-32-立体几何-(ii).html">
+ <a class="h-item" href="./chapter-32-%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95-(ii).html">
   <div class="h-idx">32</div>
   <div class="h-body"><div class="h-title">立体几何 (II)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-33-离差的度量.html">
+ <a class="h-item" href="./chapter-33-%E7%A6%BB%E5%B7%AE%E7%9A%84%E5%BA%A6%E9%87%8F.html">
   <div class="h-idx">33</div>
   <div class="h-body"><div class="h-title">离差的度量</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-34-排列与组合.html">
+ <a class="h-item" href="./chapter-34-%E6%8E%92%E5%88%97%E4%B8%8E%E7%BB%84%E5%90%88.html">
   <div class="h-idx">34</div>
   <div class="h-body"><div class="h-title">排列与组合</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-35-概率(ii).html">
+ <a class="h-item" href="./chapter-35-%E6%A6%82%E7%8E%87(ii).html">
   <div class="h-idx">35</div>
   <div class="h-body"><div class="h-title">概率 (II)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
- <a class="h-item" href="./chapter-36-数列-(ii).html">
+ <a class="h-item" href="./chapter-36-%E6%95%B0%E5%88%97-(ii).html">
   <div class="h-idx">36</div>
   <div class="h-body"><div class="h-title">数列 (II)</div><div class="h-meta">课程讲义</div></div>
   <span class="h-tag">阅读</span>
  </a>
 </div>
 
+</div>
+</article>
+</div>
 </main>
 <footer class="footer-site">
  <div class="wrap footer-grid">
-  <div><strong style="color:var(--fg)">许少 Xuless</strong>
-   <div style="margin-top:6px">纯静态站点 · 内容源自 Obsidian 与 LaTeX 文档库</div></div>
-  <div class="footer-links"><a href="../../about.html">关于本站</a><a href="../../blog/graph.html">知识图谱</a></div>
+  <div>
+   <strong style="color:var(--fg)">许少 Xuless</strong>
+   <div style="margin-top:6px">纯静态站点 · 内容源自 Obsidian 与 LaTeX 文档库</div>
+   <div style="margin-top:6px;font-size:.84rem;color:var(--fg-subtle)">&copy; <span id="year">2026</span> 许少 Xuless</div>
+  </div>
+  <div class="footer-links">
+   <a href="https://github.com/xuless885" target="_blank" rel="noopener">GitHub</a>
+   <a href="../../about.html">关于本站</a>
+   <a href="../../blog/graph.html">知识图谱</a>
+  </div>
  </div>
 </footer>
-<script defer src="../../site-lib/scripts/site.js?v=358b4874"></script>
-<script>
-(function(){"use strict";var root=document.documentElement;
- function applyTheme(t){root.setAttribute("data-theme",t);try{localStorage.setItem("dsh-theme",t);}catch(e){}}
- try{var s=localStorage.getItem("dsh-theme");
-  if(s)root.setAttribute("data-theme",s);
-  else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)root.setAttribute("data-theme","dark");}catch(e){}
- document.addEventListener("click",function(e){
-  var tb=e.target.closest&&e.target.closest("[data-theme-toggle]");
-  if(tb){e.preventDefault();applyTheme(root.getAttribute("data-theme")==="dark"?"light":"dark");return;}
-  var nb=e.target.closest&&e.target.closest("[data-nav-toggle]");
-  if(nb){e.preventDefault();var p=nb.closest(".site-nav");p.classList.toggle("is-open");nb.setAttribute("aria-expanded",String(p.classList.contains("is-open")));}
- });})();
-</script>
-</body>
-</html>
+
+</body></html>

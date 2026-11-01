@@ -14,22 +14,102 @@
 <link rel="icon" href="../../site-lib/media/favicon.png">
 <link rel="stylesheet" href="../../site-lib/styles/blog-theme.css?v=c4cfd54d">
 <link rel="stylesheet" href="../../site-lib/styles/mathjax-chtml.css?v=4b446072">
-<script defer>async function loadIncludes(){let e=document.querySelectorAll("link[itemprop='include']");for(const t of e){let e=t.getAttribute("href");try{let o="";if(e.startsWith("https:")||e.startsWith("http:")||"file:"!=window.location.protocol){const n=await fetch(e);if(!n.ok){console.log("Could not include file: "+e),t?.remove();continue}o=await n.text()}else{const t=document.getElementById(btoa(encodeURI(e)));if(t){const e=JSON.parse(decodeURI(atob(t.getAttribute("value")??"")));o=e?.data??""}}let n=document.createRange().createContextualFragment(o);t.before(n),t.remove(),console.log("Included text: "+o),console.log("Included file: "+e)}catch(o){t?.remove(),console.log("Could not include file: "+e,o);continue}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script")));!function e(n){let l=o[n],c=n+1;l?(l&&"true"!=l.getAttribute("loaded")||n<o.length&&e(c),n<o.length&&l.addEventListener("load",(()=>e(c)))):n<o.length?e(c):t()}(0)}</script>
+
 <script defer src="../../site-lib/scripts/site.js?v=358b4874"></script>
-<script defer src="../../site-lib/scripts/doc-page.js?v=a4573486"></script>
+
 <meta name="dsh-doc-id" content="20b5baa9d2">
 <meta name="dsh-doc-title" content="给读者的简介 · DSE 课题讲义">
 <!-- ==DSH-INJECT:head== -->
 <meta name="dsh-tags" content="HKDSE,简介,课题讲义">
 <meta name="dsh-description" content="DSE 课题讲义各章讲义的定位、读者、目录与用法">
-</head><body class="publish css-settings-manager mod-windows is-hidden-frameless styled-scrollbars show-inline-title show-ribbon mathcraft-active theorem-style-framed is-focused">
+<link rel="stylesheet" href="../../site-lib/styles/uni-note.css?v=1b65e05b">
+<link rel="stylesheet" href="../../site-lib/styles/hs-note.css?v=4ee4553e">
+<script defer src="../../site-lib/scripts/hs-note.js?v=fb6f75c0"></script>
+</head>
+<body class="un-page hs-page">
 <script>(function(){var d=document.documentElement;function rd(k){try{return localStorage.getItem(k)}catch(e){return null}}var t=rd("dsh-theme")||rd("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"!=t&&(t="light");d.setAttribute("data-theme",t);d.classList.add("theme-"+t);if("dark"==t){d.classList.add("theme-dark");d.classList.remove("theme-light")}else{d.classList.add("theme-light");d.classList.remove("theme-dark")}var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content","dark"==t?"#111216":"#f7f7f5");var mv=parseInt(rd("dsh-doc-measure")||"",10);if(mv>=480&&mv<=1400)d.style.setProperty("--doc-measure",mv+"px");function vp(){var b=document.body;if(!b)return;b.classList.remove("is-phone","is-tablet","is-small-screen","is-large-screen");b.classList.add(window.innerWidth<480?"is-phone":window.innerWidth<768?"is-tablet":window.innerWidth<1024?"is-small-screen":"is-large-screen")}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",vp):vp();})()</script>
-<div class="parsed-feature-container" style="display: contents;"></div>
-<div id="main">
-<div id="navbar"><!-- ==DSH-INJECT:nav== --><a class="site-nav-back" href="../../index.html">← 返回博客首页</a><span class="site-nav-crumb">课程讲义 → 给读者的简介 · DSE 课题讲义</span><span class="dsh-measure-wrap"><span class="dsh-measure-inline"><span class="dsh-measure-label">版心</span><span class="dsh-measure-val">832px</span><input class="dsh-measure-range" type="range" min="480" max="1400" step="8" value="832" aria-label="正文版心宽度"><button class="dsh-measure-reset" type="button" title="恢复默认版心（832px）" aria-label="恢复默认版心">↺</button></span><button class="dsh-measure-btn" type="button" data-measure-toggle aria-expanded="false" aria-controls="dsh-measure-pop" aria-label="调整正文左右页边距" title="调整正文左右页边距"><span class="dsh-measure-icon" aria-hidden="true">⇔</span></button><div id="dsh-measure-pop" class="dsh-measure-pop" hidden><div class="dsh-measure-head"><span>正文版心</span></div><div class="dsh-measure-foot"><span>窄</span><span>宽</span></div></div></span><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换主题" title="切换主题"><span data-theme-icon class="theme-toggle-icon" aria-hidden="true">☾</span></button></div>
-<div id="main-horizontal">
-<div id="left-content" class="leaf" style="--sidebar-width: var(--sidebar-width-left);"><div id="left-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><div id="search-container"><div id="search-wrapper"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div aria-label="Clear search" id="search-clear-button"></div></div></div></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="left-sidebar-content" class="leaf-content"><link itemprop="include" href="../../site-lib/html/file-tree-content.html?v=ec1c920c"></div></div><script defer>let ls = document.querySelector("#left-sidebar"); ls.classList.toggle("is-collapsed", window.innerWidth < 768); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div></div>
-<div id="center-content" class="leaf"><div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event allow-fold-headings allow-fold-lists show-indentation-guide show-properties is-readable-line-width" data-type="markdown"><div class="markdown-preview-sizer markdown-preview-section"><div class="header"><h1 class="page-title heading inline-title" id="给读者的简介_·_DSE_课题讲义_0">给读者的简介 · DSE 课题讲义</h1><div class="data-bar"></div></div><div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div><div class="el-blockquote"><blockquote dir="auto">
+<nav class="site-nav" id="site-nav" aria-label="站点导航">
+ <div class="site-nav-inner">
+  <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">X</span><span>许少 Xuless</span></a>
+  <button class="theme-toggle nav-toggle" type="button" aria-label="展开导航" aria-expanded="false" data-nav-toggle>&#9776;</button>
+  <div class="nav-links">
+   <a class="nav-link" href="../../index.html">首页</a>
+   <a class="nav-link is-active" href="../../courses/hs.html">高中数学课程</a>
+   <a class="nav-link" href="../../courses/uni.html">大学数学内容</a>
+   <a class="nav-link" href="../../blog/graph.html">知识图谱</a>
+   <a class="nav-link" href="../../search.html">搜索</a>
+   <a class="nav-link" href="../../about.html">关于</a>
+   <button class="theme-toggle" type="button" aria-label="切换深浅主题" data-theme-toggle>&#9680;</button>
+  </div>
+ </div>
+</nav>
+
+<main id="main" class="un-main hs-main">
+<div class="un-shell" style="--cat:#5B6CFF">
+
+  <nav class="hs-side" aria-label="高中数学课程树" data-subject="algebra" data-stage="junior">
+    <div class="hs-side-top">
+      <span class="hs-side-kicker">HKDSE MATHEMATICS</span>
+      <a class="hs-side-title" href="../../courses/hs.html">高中数学课程</a>
+      <p class="hs-side-sub">37 章 · 代数 / 几何 / 统计 / 分析</p>
+      <a class="hs-back" href="../../courses/hs.html"><span aria-hidden="true">&#8592;</span> 返回高中数学</a>
+    </div>
+    <div class="hs-tabs" role="group" aria-label="分类">
+      <div class="hs-tab-row hs-tab-row--subject"><button type="button" class="hs-tab is-on" data-subject="algebra" style="--c:#9B6BFF">代数</button><button type="button" class="hs-tab" data-subject="geometry" style="--c:#0FCB97">几何</button><button type="button" class="hs-tab" data-subject="statistics" style="--c:#00C6E6">统计</button><button type="button" class="hs-tab" data-subject="analysis" style="--c:#4C8DFF">分析</button></div>
+      <div class="hs-tab-row hs-tab-row--stage"><button type="button" class="hs-tab is-on" data-stage="junior">初中</button><button type="button" class="hs-tab" data-stage="senior">高中</button></div>
+    </div>
+    <div class="hs-list">
+      <a class="hs-intro is-current" href="./给读者的简介-introduction-for-every-reader.html">开始之前 · 给读者的简介</a>
+    <a class="hs-chap" data-subject="analysis" data-stage="junior" href="./chapter-0-基础概念.html"><span class="hs-chap-n">00</span><span class="hs-chap-t">基础概念</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-1-数系(i).html"><span class="hs-chap-n">01</span><span class="hs-chap-t">数系(i)</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="junior" href="./chapter-2-估算.html"><span class="hs-chap-n">02</span><span class="hs-chap-t">估算</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-3-整数指数律与进制.html"><span class="hs-chap-n">03</span><span class="hs-chap-t">整数指数律与进制</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-4-多项式(i).html"><span class="hs-chap-n">04</span><span class="hs-chap-t">多项式(i)</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-5-解方程方法(i).html"><span class="hs-chap-n">05</span><span class="hs-chap-t">解方程方法(i)</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-6-代数式.html"><span class="hs-chap-n">06</span><span class="hs-chap-t">代数式</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="junior" href="./chapter-7-率、比及百分法.html"><span class="hs-chap-n">07</span><span class="hs-chap-t">率、比及百分法</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="junior" href="./chapter-8-平面几何-(i).html"><span class="hs-chap-n">08</span><span class="hs-chap-t">平面几何-(i)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="junior" href="./chapter-9-三角学(i).html"><span class="hs-chap-n">09</span><span class="hs-chap-t">三角学(i)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="junior" href="./chapter-10-立体几何-(i).html"><span class="hs-chap-n">10</span><span class="hs-chap-t">立体几何-(i)</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="junior" href="./chapter-11-不等式-(i).html"><span class="hs-chap-n">11</span><span class="hs-chap-t">不等式-(i)</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="junior" href="./chapter-12-数据的组织与表达.html"><span class="hs-chap-n">12</span><span class="hs-chap-t">数据的组织与表达</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="junior" href="./chapter-13-集中趋势的度量.html"><span class="hs-chap-n">13</span><span class="hs-chap-t">集中趋势的度量</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="junior" href="./chapter-14-概率(i).html"><span class="hs-chap-n">14</span><span class="hs-chap-t">概率(i)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="junior" href="./chapter-15-解析几何-(i).html"><span class="hs-chap-n">15</span><span class="hs-chap-t">解析几何-(i)</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-16-集合论.html"><span class="hs-chap-n">16</span><span class="hs-chap-t">集合论</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-17-数系(ii).html"><span class="hs-chap-n">17</span><span class="hs-chap-t">数系(ii)</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-18-解方程方法(ii).html"><span class="hs-chap-n">18</span><span class="hs-chap-t">解方程方法(ii)</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-19-函数及其图像.html"><span class="hs-chap-n">19</span><span class="hs-chap-t">函数及其图像</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="senior" href="./chapter-20-直线方程.html"><span class="hs-chap-n">20</span><span class="hs-chap-t">直线方程</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-21-二次函数.html"><span class="hs-chap-n">21</span><span class="hs-chap-t">二次函数</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-22-变分.html"><span class="hs-chap-n">22</span><span class="hs-chap-t">变分</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-23-多项式-(ii).html"><span class="hs-chap-n">23</span><span class="hs-chap-t">多项式-(ii)</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-24-数列（i）.html"><span class="hs-chap-n">24</span><span class="hs-chap-t">数列（i）</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-25-指数函数与对数函数.html"><span class="hs-chap-n">25</span><span class="hs-chap-t">指数函数与对数函数</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-26-三角函数.html"><span class="hs-chap-n">26</span><span class="hs-chap-t">三角函数</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-27-解方程方法-(iii).html"><span class="hs-chap-n">27</span><span class="hs-chap-t">解方程方法-(iii)</span></a>
+    <a class="hs-chap" data-subject="algebra" data-stage="senior" href="./chapter-28-不等式-(ii).html"><span class="hs-chap-n">28</span><span class="hs-chap-t">不等式-(ii)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="senior" href="./chapter-29-平面几何-(ii).html"><span class="hs-chap-n">29</span><span class="hs-chap-t">平面几何-(ii)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="senior" href="./chapter-30-轨迹.html"><span class="hs-chap-n">30</span><span class="hs-chap-t">轨迹</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="senior" href="./chapter-31-解析几何-(ii).html"><span class="hs-chap-n">31</span><span class="hs-chap-t">解析几何-(ii)</span></a>
+    <a class="hs-chap" data-subject="geometry" data-stage="senior" href="./chapter-32-立体几何-(ii).html"><span class="hs-chap-n">32</span><span class="hs-chap-t">立体几何-(ii)</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="senior" href="./chapter-33-离差的度量.html"><span class="hs-chap-n">33</span><span class="hs-chap-t">离差的度量</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="senior" href="./chapter-34-排列与组合.html"><span class="hs-chap-n">34</span><span class="hs-chap-t">排列与组合</span></a>
+    <a class="hs-chap" data-subject="statistics" data-stage="senior" href="./chapter-35-概率(ii).html"><span class="hs-chap-n">35</span><span class="hs-chap-t">概率(ii)</span></a>
+    <a class="hs-chap" data-subject="analysis" data-stage="senior" href="./chapter-36-数列-(ii).html"><span class="hs-chap-n">36</span><span class="hs-chap-t">数列-(ii)</span></a>
+    </div>
+  </nav>
+<article class="un-body hs-article">
+  <header class="hs-hero" style="--cat:#5B6CFF">
+    <span class="hs-hero-kicker">开始之前 · 给读者的简介</span>
+    <h1 class="hs-hero-title">给读者的简介</h1>
+    <p class="hs-hero-sub">HKDSE 数学 · 课程讲义</p>
+    <div class="hs-hero-chips">
+      <span class="hs-chip">开始之前</span>
+      <a class="hs-chip hs-chip-link" href="./index.html">返回课程讲义 <span aria-hidden="true">&#8594;</span></a>
+    </div>
+  </header>
+<div class="hs-doc"><div id="center-content" class="leaf"><div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event allow-fold-headings allow-fold-lists show-indentation-guide show-properties is-readable-line-width" data-type="markdown"><div class="markdown-preview-sizer markdown-preview-section"><div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div><div class="el-blockquote"><blockquote dir="auto">
 <div class="el-p"><p dir="auto">👈 <a class="internal-link" data-href="../网页简介 Webpage Introduction" href="../../courses/hs.html" target="_self">返回 HKDSE 数学课程主页</a></p></div></blockquote></div><div class="el-p"><p dir="auto">欢迎来到 DSE 课题讲义板块。</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="这是什么？" dir="auto" class="heading" id="这是什么？">这是什么？</h2></div><div class="el-p"><p dir="auto">DSE 课题讲义是 <strong>DSE Textbook Plan 草稿的「成品化」版本</strong>。</p></div><div class="el-p"><p dir="auto">Textbook Plan 只列出各章的骨架——定义、定理与推论；课题讲义在这副骨架上添血肉：</p></div><div class="el-ul"><ul class="has-list-bullet">
 <li dir="auto"><span class="list-bullet"></span><strong>详细的概念解释</strong>——为什么要这样定义、背后的直觉是什么</li>
 </ul>
@@ -42,7 +122,7 @@
 <ul class="has-list-bullet">
 <li dir="auto"><span class="list-bullet"></span><strong>章末的收梢</strong>——中英对照词汇表收术语，较新的章节还有小结与方法总表</li>
 </ul></div><div class="el-p"><p dir="auto">正文用简体中文书写，关键术语中英双语，每章末尾附一张中英对照词汇表。</p></div><div class="el-blockquote"><blockquote dir="auto">
-<div class="el-p"><p dir="auto">⚠️ <strong>当前状态：已上线 Ch0–Ch36，共 37 章</strong>（详见下方目录）。</p></div><div class="el-p"><p dir="auto">全部章节均已发布，Textbook Plan 的 37 章到此走完第一轮。</p></div><div class="el-p"><p dir="auto">各章的上线与逐轮修订全部记在 <a class="internal-link" data-href="更新日志 Changelog" href="./更新日志-changelog.html" target="_self">更新日志</a>，本页只留最近三次。</p></div></blockquote></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="谁适合读" dir="auto" class="heading" id="谁适合读">谁适合读</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<div class="el-p"><p dir="auto">⚠️ <strong>当前状态：已上线 Ch0–Ch36，共 37 章</strong>（详见下方目录）。</p></div><div class="el-p"><p dir="auto">全部章节均已发布，Textbook Plan 的 37 章到此走完第一轮。</p></div><div class="el-p"><p dir="auto">各章的上线与逐轮修订全部记在 <a class="internal-link" data-href="更新日志 Changelog" href="./%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-changelog.html" target="_self">更新日志</a>，本页只留最近三次。</p></div></blockquote></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="谁适合读" dir="auto" class="heading" id="谁适合读">谁适合读</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
 <thead>
 <tr>
 <th dir="ltr">读者类型</th>
@@ -83,97 +163,97 @@
 <td dir="ltr">Ch0</td>
 <td dir="ltr">基础概念</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 0 基础概念" href="./chapter-0-基础概念.html" target="_self">Chapter 0 基础概念</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 0 基础概念" href="./chapter-0-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5.html" target="_self">Chapter 0 基础概念</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch1</td>
 <td dir="ltr">数系 (I)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 1 数系(I)" href="./chapter-1-数系(i).html" target="_self">Chapter 1 数系(I)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 1 数系(I)" href="./chapter-1-%E6%95%B0%E7%B3%BB(i).html" target="_self">Chapter 1 数系(I)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch2</td>
 <td dir="ltr">估算</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 2 估算" href="./chapter-2-估算.html" target="_self">Chapter 2 估算</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 2 估算" href="./chapter-2-%E4%BC%B0%E7%AE%97.html" target="_self">Chapter 2 估算</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch3</td>
 <td dir="ltr">整数指数律与进制</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 3 整数指数律与进制" href="./chapter-3-整数指数律与进制.html" target="_self">Chapter 3 整数指数律与进制</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 3 整数指数律与进制" href="./chapter-3-%E6%95%B4%E6%95%B0%E6%8C%87%E6%95%B0%E5%BE%8B%E4%B8%8E%E8%BF%9B%E5%88%B6.html" target="_self">Chapter 3 整数指数律与进制</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch4</td>
 <td dir="ltr">多项式 (I)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 4 多项式(I)" href="./chapter-4-多项式(i).html" target="_self">Chapter 4 多项式(I)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 4 多项式(I)" href="./chapter-4-%E5%A4%9A%E9%A1%B9%E5%BC%8F(i).html" target="_self">Chapter 4 多项式(I)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch5</td>
 <td dir="ltr">解方程方法 (I)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 5 解方程方法(I)" href="./chapter-5-解方程方法(i).html" target="_self">Chapter 5 解方程方法(I)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 5 解方程方法(I)" href="./chapter-5-%E8%A7%A3%E6%96%B9%E7%A8%8B%E6%96%B9%E6%B3%95(i).html" target="_self">Chapter 5 解方程方法(I)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch6</td>
 <td dir="ltr">代数式</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 6 代数式" href="./chapter-6-代数式.html" target="_self">Chapter 6 代数式</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 6 代数式" href="./chapter-6-%E4%BB%A3%E6%95%B0%E5%BC%8F.html" target="_self">Chapter 6 代数式</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch7</td>
 <td dir="ltr">率、比及百分法</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 7 率、比及百分法" href="./chapter-7-率、比及百分法.html" target="_self">Chapter 7 率、比及百分法</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 7 率、比及百分法" href="./chapter-7-%E7%8E%87%E3%80%81%E6%AF%94%E5%8F%8A%E7%99%BE%E5%88%86%E6%B3%95.html" target="_self">Chapter 7 率、比及百分法</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch8</td>
 <td dir="ltr">平面几何 (I)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 8 平面几何 (I)" href="./chapter-8-平面几何-(i).html" target="_self">Chapter 8 平面几何 (I)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 8 平面几何 (I)" href="./chapter-8-%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95-(i).html" target="_self">Chapter 8 平面几何 (I)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch9</td>
 <td dir="ltr">三角学 (I)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 9 三角学(I)" href="./chapter-9-三角学(i).html" target="_self">Chapter 9 三角学(I)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 9 三角学(I)" href="./chapter-9-%E4%B8%89%E8%A7%92%E5%AD%A6(i).html" target="_self">Chapter 9 三角学(I)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch10</td>
 <td dir="ltr">立体几何 (I)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 10 立体几何 (I)" href="./chapter-10-立体几何-(i).html" target="_self">Chapter 10 立体几何 (I)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 10 立体几何 (I)" href="./chapter-10-%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95-(i).html" target="_self">Chapter 10 立体几何 (I)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch11</td>
 <td dir="ltr">不等式 (I)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 11 不等式 (I)" href="./chapter-11-不等式-(i).html" target="_self">Chapter 11 不等式 (I)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 11 不等式 (I)" href="./chapter-11-%E4%B8%8D%E7%AD%89%E5%BC%8F-(i).html" target="_self">Chapter 11 不等式 (I)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch12</td>
 <td dir="ltr">数据的组织与表达</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 12 数据的组织与表达" href="./chapter-12-数据的组织与表达.html" target="_self">Chapter 12 数据的组织与表达</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 12 数据的组织与表达" href="./chapter-12-%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%84%E7%BB%87%E4%B8%8E%E8%A1%A8%E8%BE%BE.html" target="_self">Chapter 12 数据的组织与表达</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch13</td>
 <td dir="ltr">集中趋势的度量</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 13 集中趋势的度量" href="./chapter-13-集中趋势的度量.html" target="_self">Chapter 13 集中趋势的度量</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 13 集中趋势的度量" href="./chapter-13-%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E7%9A%84%E5%BA%A6%E9%87%8F.html" target="_self">Chapter 13 集中趋势的度量</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch14</td>
 <td dir="ltr">概率 (I)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 14 概率(I)" href="./chapter-14-概率(i).html" target="_self">Chapter 14 概率(I)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 14 概率(I)" href="./chapter-14-%E6%A6%82%E7%8E%87(i).html" target="_self">Chapter 14 概率(I)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch15</td>
 <td dir="ltr">解析几何 (I)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 15 解析几何 (I)" href="./chapter-15-解析几何-(i).html" target="_self">Chapter 15 解析几何 (I)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 15 解析几何 (I)" href="./chapter-15-%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95-(i).html" target="_self">Chapter 15 解析几何 (I)</a></td>
 </tr>
 </tbody>
 </table>
@@ -191,127 +271,127 @@
 <td dir="ltr">Ch16</td>
 <td dir="ltr">集合论</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 16 集合论" href="./chapter-16-集合论.html" target="_self">Chapter 16 集合论</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 16 集合论" href="./chapter-16-%E9%9B%86%E5%90%88%E8%AE%BA.html" target="_self">Chapter 16 集合论</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch17</td>
 <td dir="ltr">数系 (II)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 17 数系(II)" href="./chapter-17-数系(ii).html" target="_self">Chapter 17 数系(II)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 17 数系(II)" href="./chapter-17-%E6%95%B0%E7%B3%BB(ii).html" target="_self">Chapter 17 数系(II)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch18</td>
 <td dir="ltr">解方程方法 (II)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 18 解方程方法(II)" href="./chapter-18-解方程方法(ii).html" target="_self">Chapter 18 解方程方法(II)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 18 解方程方法(II)" href="./chapter-18-%E8%A7%A3%E6%96%B9%E7%A8%8B%E6%96%B9%E6%B3%95(ii).html" target="_self">Chapter 18 解方程方法(II)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch19</td>
 <td dir="ltr">函数及其图像</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 19 函数及其图像" href="./chapter-19-函数及其图像.html" target="_self">Chapter 19 函数及其图像</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 19 函数及其图像" href="./chapter-19-%E5%87%BD%E6%95%B0%E5%8F%8A%E5%85%B6%E5%9B%BE%E5%83%8F.html" target="_self">Chapter 19 函数及其图像</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch20</td>
 <td dir="ltr">直线方程</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 20 直线方程" href="./chapter-20-直线方程.html" target="_self">Chapter 20 直线方程</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 20 直线方程" href="./chapter-20-%E7%9B%B4%E7%BA%BF%E6%96%B9%E7%A8%8B.html" target="_self">Chapter 20 直线方程</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch21</td>
 <td dir="ltr">二次函数</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 21 二次函数" href="./chapter-21-二次函数.html" target="_self">Chapter 21 二次函数</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 21 二次函数" href="./chapter-21-%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0.html" target="_self">Chapter 21 二次函数</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch22</td>
 <td dir="ltr">变分</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 22 变分" href="./chapter-22-变分.html" target="_self">Chapter 22 变分</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 22 变分" href="./chapter-22-%E5%8F%98%E5%88%86.html" target="_self">Chapter 22 变分</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch23</td>
 <td dir="ltr">多项式 (II)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 23 多项式 (II)" href="./chapter-23-多项式-(ii).html" target="_self">Chapter 23 多项式 (II)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 23 多项式 (II)" href="./chapter-23-%E5%A4%9A%E9%A1%B9%E5%BC%8F-(ii).html" target="_self">Chapter 23 多项式 (II)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch24</td>
 <td dir="ltr">数列 (I)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 24 数列（I）" href="./chapter-24-数列（i）.html" target="_self">Chapter 24 数列（I）</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 24 数列（I）" href="./chapter-24-%E6%95%B0%E5%88%97%EF%BC%88i%EF%BC%89.html" target="_self">Chapter 24 数列（I）</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch25</td>
 <td dir="ltr">指数函数与对数函数</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 25 指数函数与对数函数" href="./chapter-25-指数函数与对数函数.html" target="_self">Chapter 25 指数函数与对数函数</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 25 指数函数与对数函数" href="./chapter-25-%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E4%B8%8E%E5%AF%B9%E6%95%B0%E5%87%BD%E6%95%B0.html" target="_self">Chapter 25 指数函数与对数函数</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch26</td>
 <td dir="ltr">三角函数</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 26 三角函数" href="./chapter-26-三角函数.html" target="_self">Chapter 26 三角函数</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 26 三角函数" href="./chapter-26-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0.html" target="_self">Chapter 26 三角函数</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch27</td>
 <td dir="ltr">解方程方法 (III)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 27 解方程方法 (III)" href="./chapter-27-解方程方法-(iii).html" target="_self">Chapter 27 解方程方法 (III)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 27 解方程方法 (III)" href="./chapter-27-%E8%A7%A3%E6%96%B9%E7%A8%8B%E6%96%B9%E6%B3%95-(iii).html" target="_self">Chapter 27 解方程方法 (III)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch28</td>
 <td dir="ltr">不等式 (II)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 28 不等式 (II)" href="./chapter-28-不等式-(ii).html" target="_self">Chapter 28 不等式 (II)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 28 不等式 (II)" href="./chapter-28-%E4%B8%8D%E7%AD%89%E5%BC%8F-(ii).html" target="_self">Chapter 28 不等式 (II)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch29</td>
 <td dir="ltr">平面几何 (II)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 29 平面几何 (II)" href="./chapter-29-平面几何-(ii).html" target="_self">Chapter 29 平面几何 (II)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 29 平面几何 (II)" href="./chapter-29-%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95-(ii).html" target="_self">Chapter 29 平面几何 (II)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch30</td>
 <td dir="ltr">轨迹</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 30 轨迹" href="./chapter-30-轨迹.html" target="_self">Chapter 30 轨迹</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 30 轨迹" href="./chapter-30-%E8%BD%A8%E8%BF%B9.html" target="_self">Chapter 30 轨迹</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch31</td>
 <td dir="ltr">解析几何 (II)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 31 解析几何 (II)" href="./chapter-31-解析几何-(ii).html" target="_self">Chapter 31 解析几何 (II)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 31 解析几何 (II)" href="./chapter-31-%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95-(ii).html" target="_self">Chapter 31 解析几何 (II)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch32</td>
 <td dir="ltr">立体几何 (II)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 32 立体几何 (II)" href="./chapter-32-立体几何-(ii).html" target="_self">Chapter 32 立体几何 (II)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 32 立体几何 (II)" href="./chapter-32-%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95-(ii).html" target="_self">Chapter 32 立体几何 (II)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch33</td>
 <td dir="ltr">离差的度量</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 33 离差的度量" href="./chapter-33-离差的度量.html" target="_self">Chapter 33 离差的度量</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 33 离差的度量" href="./chapter-33-%E7%A6%BB%E5%B7%AE%E7%9A%84%E5%BA%A6%E9%87%8F.html" target="_self">Chapter 33 离差的度量</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch34</td>
 <td dir="ltr">排列与组合</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 34 排列与组合" href="./chapter-34-排列与组合.html" target="_self">Chapter 34 排列与组合</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 34 排列与组合" href="./chapter-34-%E6%8E%92%E5%88%97%E4%B8%8E%E7%BB%84%E5%90%88.html" target="_self">Chapter 34 排列与组合</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch35</td>
 <td dir="ltr">概率 (II)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 35 概率(II)" href="./chapter-35-概率(ii).html" target="_self">Chapter 35 概率(II)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 35 概率(II)" href="./chapter-35-%E6%A6%82%E7%8E%87(ii).html" target="_self">Chapter 35 概率(II)</a></td>
 </tr>
 <tr>
 <td dir="ltr">Ch36</td>
 <td dir="ltr">数列 (II)</td>
 <td dir="ltr">✅</td>
-<td dir="ltr"><a class="internal-link" data-href="Chapter 36 数列 (II)" href="./chapter-36-数列-(ii).html" target="_self">Chapter 36 数列 (II)</a></td>
+<td dir="ltr"><a class="internal-link" data-href="Chapter 36 数列 (II)" href="./chapter-36-%E6%95%B0%E5%88%97-(ii).html" target="_self">Chapter 36 数列 (II)</a></td>
 </tr>
 </tbody>
 </table>
@@ -338,17 +418,17 @@
 </ol>
 <ol start="8">
 <li dir="auto"><strong>练习不在讲义里</strong>——讲义不设练习板块，题目一律走习题册侧。</li>
-</ol></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="📒 最近更新" dir="auto" class="heading" id="📒_最近更新">📒 最近更新</h2></div><div class="el-p"><p dir="auto">本页只留最近三次更新的要点，完整流水见 <a class="internal-link" data-href="更新日志 Changelog" href="./更新日志-changelog.html" target="_self">📒 更新日志</a>。</p></div><div class="el-h3"><h3 data-heading="2026-10-30" dir="auto" class="heading" id="2026-10-30">2026-10-30</h3></div><div class="el-ul"><ul class="has-list-bullet">
+</ol></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="📒 最近更新" dir="auto" class="heading" id="📒_最近更新">📒 最近更新</h2></div><div class="el-p"><p dir="auto">本页只留最近三次更新的要点，完整流水见 <a class="internal-link" data-href="更新日志 Changelog" href="./%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-changelog.html" target="_self">📒 更新日志</a>。</p></div><div class="el-h3"><h3 data-heading="2026-10-30" dir="auto" class="heading" id="2026-10-30">2026-10-30</h3></div><div class="el-ul"><ul class="has-list-bullet">
 <li dir="auto"><span class="list-bullet"></span><strong>Ch36 数列 (II) 修订·第一轮（注释整改）</strong>：按 5 条批注整改。§36.1.4 求和公式拆为「定理（首末项式）」与「推论（首项公差式）」两条，各配证明；用求和记号写的版本降为注记，主证明只用逐项配对（求和记号不属常规课程要求）。</li>
 </ul>
 <ul class="has-list-bullet">
 <li dir="auto"><span class="list-bullet"></span>§36.2.2 的指数不等式改为取对数、换底公式配计算器求值；§36.2.5 的四种收敛情形各配一条具体数列（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mstyle space="4"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-mstyle></mjx-math></mjx-container></span> 趋于 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-math></mjx-container></span>、<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 与 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 无界、<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 跳动、<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 越跳越大）。</li>
 </ul>
 <ul class="has-list-bullet">
-<li dir="auto"><span class="list-bullet"></span>§36.6 的两条映射定理后各补一例（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-TeXAtom size="s" texclass="ORD"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-TeXAtom></mjx-script></mjx-msup></mjx-math></mjx-container></span> 与 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container></span>）；连带把 §36.1.2 通项证明与 §36.3 引理定义式中的求和记号改为展开式，主线正文已不用该记号。</li>
+<li dir="auto"><span class="list-bullet"></span>§36.6 的两条映射定理后各补一例（<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-texatom></mjx-script></mjx-msup></mjx-math></mjx-container></span> 与 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container></span>）；连带把 §36.1.2 通项证明与 §36.3 引理定义式中的求和记号改为展开式，主线正文已不用该记号。</li>
 </ul>
 <ul class="has-list-bullet">
-<li dir="auto"><span class="list-bullet"></span>详情见 <a class="internal-link" data-href="更新日志 Changelog" href="./更新日志-changelog.html#2026-10-30" target="_self">更新日志 2026-10-30</a>。</li>
+<li dir="auto"><span class="list-bullet"></span>详情见 <a class="internal-link" data-href="更新日志 Changelog" href="./%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-changelog.html#2026-10-30" target="_self">更新日志 2026-10-30</a>。</li>
 </ul></div><div class="el-h3"><h3 data-heading="2026-10-29" dir="auto" class="heading" id="2026-10-29">2026-10-29</h3></div><div class="el-ul"><ul class="has-list-bullet">
 <li dir="auto"><span class="list-bullet"></span><strong>Ch36 数列 (II) 首次上线</strong>：四个主线教学节加四个延伸节与小结。主线对应必修单位 7 的 7.1–7.7：§36.1 等差数列（定义、通项、下标和性质、倒序相加求和）、§36.2 等比数列（定义、通项、下标积性质、错位相减求和、无限项和与收敛条件）、§36.3 通项与前 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 项和的关系、§36.4 单利复利与增长折旧。</li>
 </ul>
@@ -359,7 +439,7 @@
 <li dir="auto"><span class="list-bullet"></span>三个主线节的难度上限按相对校准定档（§36.2 的 T／C 两维高于 §36.1，因无限项和引入收敛判断、指数运算复杂度更高），共 23 个示例各带示例难度行，3 幅配图（倒序相加、错位相减、部分和趋近极限）。</li>
 </ul>
 <ul class="has-list-bullet">
-<li dir="auto"><span class="list-bullet"></span>详情见 <a class="internal-link" data-href="更新日志 Changelog" href="./更新日志-changelog.html#2026-10-29" target="_self">更新日志 2026-10-29</a>。</li>
+<li dir="auto"><span class="list-bullet"></span>详情见 <a class="internal-link" data-href="更新日志 Changelog" href="./%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-changelog.html#2026-10-29" target="_self">更新日志 2026-10-29</a>。</li>
 </ul>
 <ul class="has-list-bullet">
 <li dir="auto"><span class="list-bullet"></span><strong>每章新增「前置回顾」</strong>：Ch1–Ch36 共 36 章在章首 <code>前置：</code> 行之后各设一节 <code>## 前置回顾（Prerequisite Review）</code>，把该章真正要用到的前章结论重列一遍，每条都注明「本章在 §N.M 处怎样用它」。开卷前若某条读起来陌生，回到原章对应小节补读即可；读得顺，可直接进第一节。<ul class="has-list-bullet">
@@ -369,7 +449,7 @@
 <li dir="auto"><span class="list-bullet"></span>Ch36 顺带修正两处前章节号：§36.2.2 的「§25.1 的指数函数」改为 §25.2.2，§36.7 的「§24.2.2 的常数求和定理」改为 §24.2.1。</li>
 </ul>
 <ul class="has-list-bullet">
-<li dir="auto"><span class="list-bullet"></span>规范同步见 <span class="is-unresolved" data-unresolved="../规划说明方案/课题讲义写作规范" title="本站未发布：../规划说明方案/课题讲义写作规范">《课题讲义写作规范》</span> 新增的 4.10 节；详情见 <a class="internal-link" data-href="更新日志 Changelog" href="./更新日志-changelog.html#2026-10-29" target="_self">更新日志 2026-10-29</a>。</li>
+<li dir="auto"><span class="list-bullet"></span>规范同步见 <span class="is-unresolved" data-unresolved="../规划说明方案/课题讲义写作规范" title="本站未发布：../规划说明方案/课题讲义写作规范">《课题讲义写作规范》</span> 新增的 4.10 节；详情见 <a class="internal-link" data-href="更新日志 Changelog" href="./%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-changelog.html#2026-10-29" target="_self">更新日志 2026-10-29</a>。</li>
 </ul></li>
 </ul></div><div class="el-h3"><h3 data-heading="2026-10-28" dir="auto" class="heading" id="2026-10-28">2026-10-28</h3></div><div class="el-ul"><ul class="has-list-bullet">
 <li dir="auto"><span class="list-bullet"></span><strong>Ch31 解析几何 (II) 修订·第十三轮（超纲分节与官方表述）</strong>：按「超纲内容尽可能分开成不同的节」把 §31.1／§31.2 切净——判别量判定、两种退化、椭圆与两平行线反例、直径式集中到新 §31.3「延伸内容：圆的方程」；韦达弦长、切线长、点到直线距离路线集中到新 §31.4「延伸内容：直线与圆」；原 §31.3 两圆改名 §31.5、小结改 §31.6。</li>
@@ -381,7 +461,7 @@
 <li dir="auto"><span class="list-bullet"></span>图号按题注重编为 66 幅（图 31-1 至 31-49）；关联分析 Ch31 改为六节六行，规范补「超纲内容的分节优先」「任务句用官方考纲用语」等四条。</li>
 </ul>
 <ul class="has-list-bullet">
-<li dir="auto"><span class="list-bullet"></span>详情见 <a class="internal-link" data-href="更新日志 Changelog" href="./更新日志-changelog.html#2026-10-28" target="_self">更新日志 2026-10-28</a>。</li>
+<li dir="auto"><span class="list-bullet"></span>详情见 <a class="internal-link" data-href="更新日志 Changelog" href="./%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-changelog.html#2026-10-28" target="_self">更新日志 2026-10-28</a>。</li>
 </ul></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="🔗 相关链接" dir="auto" class="heading" id="🔗_相关链接">🔗 相关链接</h2></div><div class="el-ul"><ul class="has-list-bullet">
 <li dir="auto"><span class="list-bullet"></span>👈 <a class="internal-link" data-href="../网页简介 Webpage Introduction" href="../../courses/hs.html" target="_self">返回 HKDSE 数学课程主页</a></li>
 </ul>
@@ -389,21 +469,48 @@
 <li dir="auto"><span class="list-bullet"></span>👉 <span class="is-unresolved" data-unresolved="../DSE Textbook Plan/给读者的简介 Introduction for every reader" title="本站未发布：../DSE Textbook Plan/给读者的简介 Introduction for every reader">前往 DSE Textbook Plan 给读者的简介</span></li>
 </ul>
 <ul class="has-list-bullet">
-<li dir="auto"><span class="list-bullet"></span>📒 <a class="internal-link" data-href="更新日志 Changelog" href="./更新日志-changelog.html" target="_self">DSE 课题讲义 更新日志</a></li>
+<li dir="auto"><span class="list-bullet"></span>📒 <a class="internal-link" data-href="更新日志 Changelog" href="./%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-changelog.html" target="_self">DSE 课题讲义 更新日志</a></li>
 </ul>
 <ul class="has-list-bullet">
-<li dir="auto"><span class="list-bullet"></span>📖 <a class="internal-link" data-href="../大纲/DSE 数学词汇表" href="../大纲/dse-数学词汇表.html" target="_self">DSE 数学词汇表</a></li>
+<li dir="auto"><span class="list-bullet"></span>📖 <a class="internal-link" data-href="../大纲/DSE 数学词汇表" href="../%E5%A4%A7%E7%BA%B2/dse-%E6%95%B0%E5%AD%A6%E8%AF%8D%E6%B1%87%E8%A1%A8.html" target="_self">DSE 数学词汇表</a></li>
 </ul>
 <ul class="has-list-bullet">
 <li dir="auto"><span class="list-bullet"></span>🏠 <a class="internal-link" data-href="../../许少Xuless的数字花园/Wellcome!" href="../../index.html" target="_self">回到数字花园首页</a></li>
-</ul></div><div class="el-hr"><hr></div><div class="el-p"><p dir="auto">&lt;sub&gt;最后更新：2026 年 10 月 30 日（Ch36 数列 (II) 修订·第一轮：求和公式拆条、求和记号退为注记、指数不等式改对数、收敛条件配实例、§36.6 补两例；各章讲义内容的逐轮修订见上方「最近更新」条目与 <a class="internal-link" data-href="更新日志 Changelog" href="./更新日志-changelog.html" target="_self">更新日志 Changelog</a>）&lt;/sub&gt;</p></div><div class="footer"><div class="data-bar"></div></div>
+</ul></div><div class="el-hr"><hr></div><div class="el-p"><p dir="auto">&lt;sub&gt;最后更新：2026 年 10 月 30 日（Ch36 数列 (II) 修订·第一轮：求和公式拆条、求和记号退为注记、指数不等式改对数、收敛条件配实例、§36.6 补两例；各章讲义内容的逐轮修订见上方「最近更新」条目与 <a class="internal-link" data-href="更新日志 Changelog" href="./%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97-changelog.html" target="_self">更新日志 Changelog</a>）&lt;/sub&gt;</p></div><div class="footer"><div class="data-bar"></div></div>
 <!-- ==DSH-INJECT:panels== -->
-<section id="dsh-backlinks" class="doc-panel dsh-backlinks" data-doc-id="20b5baa9d2">
-  <h2 class="panel-head">反向链接</h2>
-  <div class="backlinks-body" data-backlinks-mount><p class="empty-state">正在加载反向链接…</p></div>
-</section>
-<section id="dsh-outlinks" class="doc-panel dsh-outlinks" data-doc-id="20b5baa9d2">
-  <h2 class="panel-head">本文引用</h2>
-  <div class="outlinks-body" data-outlinks-mount><p class="empty-state">正在加载…</p></div>
-</section>
-</div></div></div><div id="right-content" class="leaf" style="--sidebar-width: var(--sidebar-width-right);"><div id="right-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="right-sidebar-content" class="leaf-content"><div id="outline" class=" tree-container"><div class="feature-header"><div class="feature-title">Table Of Contents</div><button class="clickable-icon nav-action-button tree-collapse-all" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M4 9L12 3L20 9"></path><path d="M4 15L12 21L20 15"></path></svg></button></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#这是什么？" data-path="#这是什么？"><div class="tree-item-inner heading-link" heading-name="这是什么？">这是什么？</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#谁适合读" data-path="#谁适合读"><div class="tree-item-inner heading-link" heading-name="谁适合读">谁适合读</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="#📑_章节目录与跳转" data-path="#📑_章节目录与跳转"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="📑 章节目录与跳转">📑 章节目录与跳转</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="#第一部分：初中（Ch0–Ch15）" data-path="#第一部分：初中（Ch0–Ch15）"><div class="tree-item-inner heading-link" heading-name="第一部分：初中（Ch0–Ch15）">第一部分：初中（Ch0–Ch15）</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="#第二部分：高中（Ch16–Ch36）" data-path="#第二部分：高中（Ch16–Ch36）"><div class="tree-item-inner heading-link" heading-name="第二部分：高中（Ch16–Ch36）">第二部分：高中（Ch16–Ch36）</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#📝_使用建议" data-path="#📝_使用建议"><div class="tree-item-inner heading-link" heading-name="📝 使用建议">📝 使用建议</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="#📒_最近更新" data-path="#📒_最近更新"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="📒 最近更新">📒 最近更新</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="#2026-10-30" data-path="#2026-10-30"><div class="tree-item-inner heading-link" heading-name="2026-10-30">2026-10-30</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="#2026-10-29" data-path="#2026-10-29"><div class="tree-item-inner heading-link" heading-name="2026-10-29">2026-10-29</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="#2026-10-28" data-path="#2026-10-28"><div class="tree-item-inner heading-link" heading-name="2026-10-28">2026-10-28</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="#🔗_相关链接" data-path="#🔗_相关链接"><div class="tree-item-inner heading-link" heading-name="🔗 相关链接">🔗 相关链接</div></a><div class="tree-item-children"></div></div></div></div></div><script defer>let rs = document.querySelector("#right-sidebar"); rs.classList.toggle("is-collapsed", window.innerWidth < 768); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></div></div></body></html>
+</div></div></div></div>
+</article>
+<nav class="un-toc" aria-label="本页目录" data-un-toc>
+ <p class="un-toc-title">本页目录</p>
+ <div class="un-toc-list">
+   <a class="un-toc-link hs-toc-d1" href="#这是什么？">这是什么？</a>
+   <a class="un-toc-link hs-toc-d1" href="#谁适合读">谁适合读</a>
+   <a class="un-toc-link hs-toc-d1" href="#📑_章节目录与跳转">📑 章节目录与跳转</a>
+   <a class="un-toc-link hs-toc-d2" href="#第一部分：初中（Ch0–Ch15）">第一部分：初中（Ch0–Ch15）</a>
+   <a class="un-toc-link hs-toc-d2" href="#第二部分：高中（Ch16–Ch36）">第二部分：高中（Ch16–Ch36）</a>
+   <a class="un-toc-link hs-toc-d1" href="#📝_使用建议">📝 使用建议</a>
+   <a class="un-toc-link hs-toc-d1" href="#📒_最近更新">📒 最近更新</a>
+   <a class="un-toc-link hs-toc-d2" href="#2026-10-30">2026-10-30</a>
+   <a class="un-toc-link hs-toc-d2" href="#2026-10-29">2026-10-29</a>
+   <a class="un-toc-link hs-toc-d2" href="#2026-10-28">2026-10-28</a>
+   <a class="un-toc-link hs-toc-d1" href="#🔗_相关链接">🔗 相关链接</a>
+ </div>
+</nav>
+</div>
+</main>
+<footer class="footer-site">
+ <div class="wrap footer-grid">
+  <div>
+   <strong style="color:var(--fg)">许少 Xuless</strong>
+   <div style="margin-top:6px">纯静态站点 · 内容源自 Obsidian 与 LaTeX 文档库</div>
+   <div style="margin-top:6px;font-size:.84rem;color:var(--fg-subtle)">&copy; <span id="year">2026</span> 许少 Xuless</div>
+  </div>
+  <div class="footer-links">
+   <a href="https://github.com/xuless885" target="_blank" rel="noopener">GitHub</a>
+   <a href="../../about.html">关于本站</a>
+   <a href="../../blog/graph.html">知识图谱</a>
+  </div>
+ </div>
+</footer>
+
+</body></html>
