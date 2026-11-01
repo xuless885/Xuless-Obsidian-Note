@@ -412,7 +412,7 @@ html.uni-ready .uni-canvas { opacity: 1; }
   .uni-eyebrow { display: none; }
   .uni-title { margin: 0 0 2px; font-size: 18px; }
   .uni-sub { margin: 0 0 10px; font-size: 11.5px; line-height: 1.5; }
-  .uni-legend, .uni-hint { display: none; }
+  .uni-legend, .uni-hint, .uni-linekey { display: none; }
   .uni-mobile-hint {
     display: block;
     margin: 7px 0 0;
@@ -434,4 +434,54 @@ html.uni-ready .uni-canvas { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .uni-panel, .uni-drawer { animation: none; }
   .uni-btn, .uni-zoom-btn, .uni-tip { transition: none; }
+}
+
+/* 连线说明 */
+.uni-linekey {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 12px 0 0;
+  padding: 11px 0 0;
+  border-top: 1px solid var(--glass-line);
+}
+.uni-linekey-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+.uni-linekey-line {
+  position: relative;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 2px;
+  border-radius: 2px;
+}
+.uni-linekey-line.is-solid {
+  background: linear-gradient(90deg, transparent, var(--accent) 35%, #7DD3FC 80%, transparent);
+}
+.uni-linekey-line.is-solid::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-top: 1.4px solid #7DD3FC;
+  border-right: 1.4px solid #7DD3FC;
+  transform: translateY(-50%) rotate(45deg);
+}
+.uni-linekey-line.is-dashed {
+  background: repeating-linear-gradient(90deg, #8FB4FF 0 3px, transparent 3px 7px);
+  opacity: .85;
+}
+.uni-linekey-line.is-ring {
+  width: 30px;
+  height: 12px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  opacity: .75;
 }

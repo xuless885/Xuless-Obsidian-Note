@@ -749,6 +749,20 @@
     ctx.closePath();
   }
 
+  function arrowHead(x, y, dx, dy, size, color, alpha) {
+    var px = -dy, py = dx;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - dx * size + px * size * 0.55, y - dy * size + py * size * 0.55);
+    ctx.lineTo(x - dx * size - px * size * 0.55, y - dy * size - py * size * 0.55);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
   function drawEdges(t) {
     // 连线统一改成「发光细线」：从囊泡边缘出发、头尾透明度渐隐；跨分支虚线稍亮但不刺眼
     CROSS.forEach(function (e) {
@@ -787,6 +801,8 @@
       ctx.moveTo(ax, ay);
       ctx.quadraticCurveTo(cx, cy, bx, by);
       ctx.stroke();
+      arrowHead(ax, ay, -ux, -uy, 5, hexA(a.color, 0.9), al * 1.2);
+      arrowHead(bx, by, ux, uy, 5, hexA(b.color, 0.9), al * 1.2);
       ctx.restore();
     });
 
@@ -827,6 +843,7 @@
       ctx.moveTo(ax, ay);
       ctx.quadraticCurveTo(mx, my, bx, by);
       ctx.stroke();
+      arrowHead(bx, by, ux, uy, prereq ? 6.2 : 5.2, hexA(c.color, 0.95), lit * 0.85);
       ctx.restore();
 
       // 流向光点：只留一个、更小，避免噪声
