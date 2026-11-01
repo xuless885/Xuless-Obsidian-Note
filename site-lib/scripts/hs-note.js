@@ -54,23 +54,53 @@
     });
   }
 
-  // 右侧目录：滚动时高亮当前节（无 JS 也可用）
-  var links = document.querySelectorAll(".hs-page .un-toc-link");
-  if (links.length && "IntersectionObserver" in window) {
+  // 右侧目录：滚动时高亮当前节（支持简单列表与旧文档树形 TOC）
+  var tocLinks = document.querySelectorAll(".hs-page .un-toc-link, .hs-page .hs-tree-toc .tree-item-self[href^='#']");
+  if (tocLinks.length && "IntersectionObserver" in window) {
     var map = {};
-    for (var k = 0; k < links.length; k++) {
-      var href = links[k].getAttribute("href") || "";
-      if (href.charAt(0) === "#") map[decodeURIComponent(href.slice(1))] = links[k];
+    for (var k = 0; k < tocLinks.length; k++) {
+      var href = tocLinks[k].getAttribute("href") || "";
+      if (href.charAt(0) !== "#") continue;
+      var id = decodeURIComponent(href.slice(1));
+      if (!map[id]) map[id] = tocLinks[k];
     }
-    var heads = document.querySelectorAll(".hs-doc h2[id], .hs-doc h3[id]");
+    var heads = document.querySelectorAll(".hs-doc h2[id], .hs-doc h3[id], .hs-doc h4[id]");
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
-        for (var id in map) map[id].classList.remove("is-on");
+        for (var id in map) {
+          map[id].classList.remove("is-active");
+          map[id].classList.remove("is-on");
+        }
         var l = map[en.target.id];
-        if (l) l.classList.add("is-on");
+        if (l) {
+          l.classList.add("is-active");
+          l.classList.add("is-on");
+        }
       });
     }, { rootMargin: "-84px 0px -70% 0px", threshold: 0 });
     for (var h = 0; h < heads.length; h++) obs.observe(heads[h]);
+  }
+
+  // 树形 TOC 折叠
+  var tree = document.querySelector(".hs-tree-toc #outline");
+  if (tree) {
+    var icons = tree.querySelectorAll(".tree-item.mod-collapsible > .tree-item-self .collapse-icon");
+    for (var c = 0; c < icons.length; c++) {
+      icons[c].addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var item = this.closest(".tree-item");
+        if (item) item.classList.toggle("is-collapsed");
+      });
+    }
+    var all = tree.querySelector(".tree-collapse-all");
+    if (all) all.addEventListener("click", function (e) {
+      e.preventDefault();
+      var items = tree.querySelectorAll(".tree-item.mod-collapsible");
+      var collapse = !tree.classList.contains("is-all-collapsed");
+      tree.classList.toggle("is-all-collapsed", collapse);
+      for (var i = 0; i < items.length; i++) items[i].classList.toggle("is-collapsed", collapse);
+    });
   }
 })();
