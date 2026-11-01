@@ -10,7 +10,15 @@
     for (var j = 0; j < groups.length; j++) groups[j].hidden = groups[j].dataset.subject !== sub;
   }
   for (var i = 0; i < tabs.length; i++) {
-    tabs[i].addEventListener("click", function () { showSubject(this.dataset.subject); });
+    tabs[i].addEventListener("click", function () {
+      if (this.classList.contains("is-on")) {
+        for (var t = 0; t < tabs.length; t++) tabs[t].classList.remove("is-on");
+        var all = side.querySelectorAll(".hs-subject");
+        for (var g = 0; g < all.length; g++) all[g].hidden = false;
+        return;
+      }
+      showSubject(this.dataset.subject);
+    });
   }
   var active = side.querySelector(".hs-tab.is-on");
   if (active) showSubject(active.dataset.subject);
