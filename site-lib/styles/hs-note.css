@@ -285,3 +285,17 @@ body.publish .hs-doc .markdown-preview-section {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+
+/* 正文之外的 UI 字体回到站点 sans（文档正文仍用文档字体） */
+.hs-page .hs-side,
+.hs-page .hs-side *,
+.hs-page .hs-hero,
+.hs-page .hs-hero *,
+.hs-page .un-toc,
+.hs-page .un-toc *,
+.hs-page .site-nav,
+.hs-page .site-nav *,
+.hs-page .site-footer,
+.hs-page .site-footer * {
+  font-family: var(--font-sans) !important;
+}
