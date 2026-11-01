@@ -368,3 +368,18 @@ body.publish .hs-doc .markdown-preview-section {
   margin-right: 2px;
   transition: transform .16s ease;
 }
+
+/* 保留 .hs-doc 外层浅色卡片；只去掉内部文档容器的灰底与描边 */
+body.publish .hs-doc {
+  border: 0;
+}
+body.publish .hs-doc #center-content,
+body.publish .hs-doc .obsidian-document,
+body.publish .hs-doc .markdown-preview-view,
+body.publish .hs-doc .markdown-preview-sizer,
+body.publish .hs-doc .markdown-preview-section {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
