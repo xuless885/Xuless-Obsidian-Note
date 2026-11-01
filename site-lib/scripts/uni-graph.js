@@ -195,6 +195,7 @@
         var r = Rboard + depth * LEVEL;
         k.x = Math.cos(mid) * r;
         k.y = Math.sin(mid) * r;
+        k.depth = depth;
         placeChildren(k, a, a + w, depth + 1);
         a += w + SUBGAP;
       });
@@ -802,7 +803,8 @@
       grad.addColorStop(1, hexA(b.color, 0));
       ctx.save();
       ctx.setLineDash([2.5, 7]);
-      ctx.lineDashOffset = -(t * 16 + a.index * 5) % 9.5;
+      var flowDir = (a.depth || 1) < (b.depth || 1) ? -1 : ((a.depth || 1) > (b.depth || 1) ? 1 : (a.index < b.index ? -1 : 1));
+      ctx.lineDashOffset = flowDir * (t * 16 + a.index * 5) % 9.5;
       ctx.strokeStyle = grad;
       ctx.globalAlpha = 0.6;
       ctx.lineWidth = 4.4;

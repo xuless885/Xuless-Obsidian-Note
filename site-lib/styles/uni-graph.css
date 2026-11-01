@@ -478,6 +478,17 @@ html.uni-ready .uni-canvas { opacity: 1; }
   background: repeating-linear-gradient(90deg, #8FB4FF 0 3px, transparent 3px 7px);
   opacity: .85;
 }
+.uni-linekey-line.is-dashed::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-top: 1.4px solid #8FB4FF;
+  border-right: 1.4px solid #8FB4FF;
+  transform: translateY(-50%) rotate(45deg);
+}
 .uni-linekey-line.is-ring {
   width: 30px;
   height: 12px;
