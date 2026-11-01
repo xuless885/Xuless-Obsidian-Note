@@ -271,3 +271,17 @@ body.publish .hs-doc .obsidian-document {
   max-width: none !important;
   margin: 0 !important;
 }
+
+/* 文档正文的 832px 可读宽度 + 72px 居中边距在卡片里显得边距过大：强制铺满卡片 */
+body.publish .hs-doc #center-content,
+body.publish .hs-doc .obsidian-document,
+body.publish .hs-doc .markdown-preview-view,
+body.publish .hs-doc .markdown-preview-sizer,
+body.publish .hs-doc .markdown-preview-section {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
