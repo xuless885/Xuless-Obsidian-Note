@@ -4,26 +4,46 @@
   if (!side) return;
 
   var tabs = side.querySelectorAll(".hs-tab[data-subject]");
-  function showSubject(sub) {
-    for (var i = 0; i < tabs.length; i++) tabs[i].classList.toggle("is-on", tabs[i].dataset.subject === sub);
-    var groups = side.querySelectorAll(".hs-subject");
-    for (var j = 0; j < groups.length; j++) groups[j].hidden = groups[j].dataset.subject !== sub;
+  var chapLinks = side.querySelectorAll(".hs-chap[data-subject]");
+  var folders = side.querySelectorAll(".hs-folder");
+
+  function countFolders() {
+    for (var f = 0; f < folders.length; f++) {
+      var body = folders[f].nextElementSibling;
+      var n = 0;
+      if (body) n = body.querySelectorAll(".hs-chap[data-subject]:not([hidden])").length;
+      var num = folders[f].querySelector(".hs-folder-n");
+      if (num) num.textContent = String(n);
+    }
   }
+
+  function filterLinks(sub) {
+    for (var l = 0; l < chapLinks.length; l++) {
+      chapLinks[l].hidden = !!(sub && chapLinks[l].dataset.subject !== sub);
+    }
+    countFolders();
+  }
+
+  function showSubject(sub) {
+    for (var i = 0; i < tabs.length; i++) {
+      tabs[i].classList.toggle("is-on", tabs[i].dataset.subject === sub);
+    }
+    filterLinks(sub);
+  }
+
   for (var i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", function () {
       if (this.classList.contains("is-on")) {
         for (var t = 0; t < tabs.length; t++) tabs[t].classList.remove("is-on");
-        var all = side.querySelectorAll(".hs-subject");
-        for (var g = 0; g < all.length; g++) all[g].hidden = false;
+        filterLinks(null);
         return;
       }
       showSubject(this.dataset.subject);
     });
   }
   var active = side.querySelector(".hs-tab.is-on");
-  if (active) showSubject(active.dataset.subject);
+  if (active) showSubject(active.dataset.subject); else filterLinks(null);
 
-  var folders = side.querySelectorAll(".hs-folder");
   for (var k = 0; k < folders.length; k++) {
     folders[k].addEventListener("click", function () {
       var open = !this.classList.contains("is-open");
