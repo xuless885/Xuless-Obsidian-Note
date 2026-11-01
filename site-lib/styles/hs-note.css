@@ -1,6 +1,12 @@
 /* 高中数学讲义页 —— 沿用大学数学节点页的三栏 UI */
 .hs-page {
   background: var(--bg, #f6f8fd);
+  --hs-ink: #10192c;
+  --hs-muted: #5b6780;
+}
+html[data-theme="dark"] .hs-page {
+  --hs-ink: #e9e9ef;
+  --hs-muted: #a5a5b2;
 }
 .hs-page .un-main {
   padding-top: 0;
@@ -48,13 +54,13 @@ html[data-theme="dark"] .hs-side {
   font-size: 17px;
   font-weight: 800;
   letter-spacing: -.02em;
-  color: var(--ink, #10192c);
+  color: var(--fg, #10192c);
   text-decoration: none;
 }
 .hs-side-sub {
   margin: 0;
   font-size: 10.5px;
-  color: var(--ink-soft, #5b6780);
+  color: var(--fg-muted, #5b6780);
   line-height: 1.4;
 }
 .hs-back {
@@ -67,7 +73,7 @@ html[data-theme="dark"] .hs-side {
   border: 1px solid var(--glass-line, rgba(20, 30, 60, .12));
   border-radius: 999px;
   font-size: 11px;
-  color: var(--ink-soft, #5b6780);
+  color: var(--fg-muted, #5b6780);
   text-decoration: none;
   background: var(--chip, rgba(20, 30, 60, .04));
 }
@@ -80,7 +86,7 @@ html[data-theme="dark"] .hs-side {
   appearance: none;
   border: 1px solid var(--glass-line, rgba(20, 30, 60, .12));
   background: transparent;
-  color: var(--ink-soft, #5b6780);
+  color: var(--fg-muted, #5b6780);
   border-radius: 999px;
   padding: 4px 9px;
   font: inherit;
@@ -123,12 +129,12 @@ html[data-theme="dark"] .hs-side {
   gap: 7px;
   padding: 5px 8px;
   border-radius: 8px;
-  color: var(--ink-soft, #5b6780);
+  color: var(--fg-muted, #5b6780);
   text-decoration: none;
   font-size: 11.5px;
   line-height: 1.45;
 }
-.hs-chap:hover { background: var(--chip, rgba(20, 30, 60, .05)); color: var(--ink, #10192c); }
+.hs-chap:hover { background: var(--chip, rgba(20, 30, 60, .05)); color: var(--fg, #10192c); }
 .hs-chap.is-current {
   background: color-mix(in srgb, var(--cat, var(--accent)) 13%, transparent);
   color: var(--cat, var(--accent));
@@ -138,7 +144,7 @@ html[data-theme="dark"] .hs-side {
   flex: 0 0 22px;
   font-size: 10px;
   font-variant-numeric: tabular-nums;
-  color: var(--ink-faint, #98a2b4);
+  color: var(--fg-faint, #98a2b4);
 }
 .hs-chap.is-current .hs-chap-n { color: inherit; opacity: .8; }
 .hs-chap-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -180,12 +186,12 @@ html[data-theme="dark"] .hs-side {
   line-height: 1.2;
   letter-spacing: -.03em;
   font-weight: 800;
-  color: var(--ink, #10192c);
+  color: var(--fg, #10192c);
 }
 .hs-hero-sub {
   margin: 0 0 14px;
   font-size: 13px;
-  color: var(--ink-soft, #5b6780);
+  color: var(--fg-muted, #5b6780);
 }
 .hs-hero-chips { display: flex; flex-wrap: wrap; gap: 7px; }
 .hs-chip {
@@ -197,7 +203,7 @@ html[data-theme="dark"] .hs-side {
   border: 1px solid var(--glass-line, rgba(20, 30, 60, .12));
   background: var(--chip, rgba(20, 30, 60, .04));
   font-size: 11px;
-  color: var(--ink-soft, #5b6780);
+  color: var(--fg-muted, #5b6780);
 }
 .hs-chip-link { color: var(--cat, var(--accent)); text-decoration: none; }
 .hs-chip-link:hover { border-color: var(--cat, var(--accent)); }
@@ -216,12 +222,13 @@ html[data-theme="dark"] .hs-doc {
   background: rgba(16, 20, 32, .62);
 }
 .hs-doc #center-content { display:block !important; }
-.hs-doc .obsidian-document {
+.hs-doc .obsidian-document,
+.hs-doc .markdown-preview-view {
   max-width: none !important;
   padding: 0 !important;
   margin: 0 !important;
   background: transparent !important;
-  color: var(--ink, #10192c);
+  color: var(--fg, #10192c) !important;
 }
 .hs-doc .markdown-preview-view,
 .hs-doc .markdown-preview-sizer {
@@ -234,7 +241,9 @@ html[data-theme="dark"] .hs-doc {
 .hs-doc .markdown-preview-sizer > .el-p,
 .hs-doc .markdown-preview-sizer > .el-ul,
 .hs-doc .markdown-preview-sizer > .el-ol { max-width: 100%; }
-.hs-doc h2, .hs-doc h3, .hs-doc h4 { color: var(--ink, #10192c); }
+.hs-doc h1, .hs-doc h2, .hs-doc h3, .hs-doc h4, .hs-doc h5, .hs-doc h6,
+.hs-doc .heading, .hs-doc .el-h1 h1, .hs-doc .el-h2 h2, .hs-doc .el-h3 h3,
+.hs-doc .el-h4 h4 { color: var(--hs-ink) !important; }
 .hs-doc p, .hs-doc li { color: var(--ink-soft, #2c3444); }
 .hs-doc img, .hs-doc svg { max-width: 100%; height: auto; }
 .hs-doc table { display: block; overflow-x: auto; max-width: 100%; }
@@ -266,3 +275,42 @@ html[data-theme="dark"] .hs-doc {
 }
 
 .hs-page .un-shell.hs-two-col { grid-template-columns: var(--un-rail) minmax(0, 1fr); }
+
+/* 暗色模式下的正文块 */
+html[data-theme="dark"] .hs-doc blockquote,
+html[data-theme="dark"] .hs-doc .callout,
+html[data-theme="dark"] .hs-doc .ad-note,
+html[data-theme="dark"] .hs-doc .ad-tip,
+html[data-theme="dark"] .hs-doc .ad-warning,
+html[data-theme="dark"] .hs-doc .ad-question,
+html[data-theme="dark"] .hs-doc .ad-quote,
+html[data-theme="dark"] .hs-doc .ad-abstract,
+html[data-theme="dark"] .hs-doc .el-blockquote blockquote {
+  background: rgba(255, 255, 255, .045);
+  border-color: rgba(255, 255, 255, .12);
+  color: var(--fg, #e9e9ef);
+}
+html[data-theme="dark"] .hs-doc pre,
+html[data-theme="dark"] .hs-doc code {
+  background: rgba(255, 255, 255, .07);
+  color: var(--fg, #e9e9ef);
+}
+html[data-theme="dark"] .hs-doc table,
+html[data-theme="dark"] .hs-doc th,
+html[data-theme="dark"] .hs-doc td {
+  border-color: rgba(255, 255, 255, .14);
+  color: var(--fg, #e9e9ef);
+}
+html[data-theme="dark"] .hs-doc hr { border-color: rgba(255, 255, 255, .14); }
+
+html[data-theme="dark"] .hs-doc strong,
+html[data-theme="dark"] .hs-doc b,
+html[data-theme="dark"] .hs-doc em,
+html[data-theme="dark"] .hs-doc span { color: inherit; }
+
+/* 强制正文文字跟随高中页主题（压过旧 hs 规则里的 --ink-soft fallback） */
+.hs-doc p, .hs-doc li, .hs-doc .el-p, .hs-doc .el-p p,
+.hs-doc .el-li, .hs-doc .el-ul, .hs-doc .el-ol { color: var(--hs-ink) !important; }
+.hs-doc h1, .hs-doc h2, .hs-doc h3, .hs-doc h4, .hs-doc h5, .hs-doc h6,
+.hs-doc .heading, .hs-doc .el-h1 h1, .hs-doc .el-h2 h2, .hs-doc .el-h3 h3,
+.hs-doc .el-h4 h4 { color: var(--hs-ink) !important; }
